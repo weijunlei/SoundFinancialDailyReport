@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>港股前200 红黑榜 2026-07-30</title>
+<style>
+:root{--red:#d8342c;--redbg:#fdecea;--green:#1a9e54;--ink:#1c2230;--muted:#6b7385;
+--line:#e7e9ef;--card:#fff;--bg:#f4f6fa;--chip:#eef1f6;--dark:#23262d;--darkbg:#ececef}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",
+"Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);
+line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 16px 64px}
+header.top{background:linear-gradient(135deg,#1c2230,#2c3550);color:#fff;border-radius:14px;
+padding:22px 24px;margin-bottom:20px;box-shadow:0 6px 24px rgba(20,26,46,.12)}
+header.top h1{margin:0 0 6px;font-size:24px;letter-spacing:.5px}
+header.top .sub{opacity:.85;font-size:13px}
+header.top .sub b{color:#ffd166;font-weight:600}
+nav.mkt{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;
+background:rgba(244,246,250,.92);backdrop-filter:blur(6px);padding:10px 0;margin-bottom:14px}
+nav.mkt a{text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);
+padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600}
+nav.mkt a:hover{border-color:var(--red);color:var(--red)}
+.summary{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.summary .chip{background:var(--card);border:1px solid var(--line);border-radius:10px;
+padding:8px 12px;font-size:12px;color:var(--muted)}
+.summary .chip b{color:var(--ink);font-size:14px;margin-left:4px}
+section.board{margin:26px 0}
+.board-title{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:19px}
+.board-title .dot{width:10px;height:10px;border-radius:50%}
+.board-title.red .dot{background:var(--red)}
+.board-title.black .dot{background:var(--dark)}
+.board-title small{color:var(--muted);font-weight:400;font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+position:relative;transition:box-shadow .15s}
+.card:hover{box-shadow:0 4px 18px rgba(20,26,46,.08)}
+.card.red{border-top:3px solid var(--red)}
+.card.black{border-top:3px solid var(--dark)}
+.rank{position:absolute;top:10px;right:12px;font-size:26px;font-weight:800;color:#eceff5}
+.card.red .rank{color:#fbdcD9}
+.nm{font-size:16px;font-weight:700}
+.nm .tk{color:var(--muted);font-weight:500;font-size:12px;margin-left:6px}
+.tag{display:inline-block;background:var(--chip);color:var(--muted);border-radius:6px;
+padding:1px 7px;font-size:11px;margin:6px 6px 0 0}
+.price-row{display:flex;align-items:baseline;gap:10px;margin:10px 0 4px}
+.price{font-size:24px;font-weight:800}
+.pct{font-size:14px;font-weight:700;padding:2px 8px;border-radius:8px}
+.up{color:var(--red)}.down{color:var(--green)}.flat{color:var(--muted)}
+.pct.up{background:var(--redbg)}.pct.down{background:#e2f4e9}.pct.flat{background:var(--chip)}
+.psrc{font-size:11px;color:var(--muted);margin-left:auto}
+.scores{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.scores span{background:var(--chip);border-radius:6px;padding:2px 8px;font-size:11px;color:var(--muted)}
+.scores span b{color:var(--ink)}
+.pts{font-size:12.5px;margin:8px 0 0}
+.pts .h{font-weight:700;font-size:12px;margin:6px 0 2px}
+.pts .h.bull{color:var(--red)}.pts .h.bear{color:var(--green)}
+.pts ul{margin:2px 0 4px;padding-left:18px;color:#3a4152}
+.pts li{margin:1px 0}
+.masters{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:11px;color:var(--muted)}
+.masters b{color:var(--ink)}
+.summ{font-size:12.5px;color:#3a4152;background:#fafbfd;border:1px solid var(--line);
+border-radius:8px;padding:8px 10px;margin-top:8px}
+.empty{color:var(--muted);background:var(--card);border:1px dashed var(--line);
+border-radius:10px;padding:18px;text-align:center}
+footer{margin-top:34px;color:var(--muted);font-size:12px;text-align:center;line-height:1.8}
+a.lnk{color:var(--red);text-decoration:none}
+</style>
+</head>
+<body><div class="wrap">
+<header class="top">
+  <h1>港股前200 红黑榜</h1>
+  <div class="sub">榜单日期 <b>2026-07-30</b> · 榜单生成 2026-07-30 01:29:44<br>盘价采集时间 <b>2026-07-30 22:37:23</b>（Asia/Shanghai）</div>
+</header>
+<div class="summary"><span class="chip">覆盖股票<b>200</b></span><span class="chip">模型命中<b>198</b></span><span class="chip">伯克希尔打分<b>已叠加</b></span></div>
+
+<section class="board">
+  <h2 class="board-title red"><span class="dot"></span>港股前200 · 红榜 TOP 10 <small>盘价采集 2026-07-30 22:37:23</small></h2>
+  <div class="cards">
+<div class="card red">
+  <span class="rank">1</span>
+  <div class="nm">腾讯控股<span class="tk">00700</span></div>
+  <div><span class="tag">市值 4.2万</span></div>
+  <div class="price-row">
+    <span class="price">HK$471.80</span>
+    <span class="pct up">+1.16%</span>
+    <span class="psrc">实时</span>
+  </div>
+  <div class="scores">
+    <span>综合 <b>93.8</b></span>
+    <span>大师均值 <b>78</b></span>
+    <span>信号 <b>positive</b></span>
+  </div>
+  <div class="pts"><div class="h bull">看多理由</div><ul><li>股价上涨4.29%</li><li>科技龙头地位稳固</li></ul></div>
+  <div class="masters">大师评分：<b>段永平</b>80 · <b>巴菲特</b>75 · <b>达利欧</b>70 · <b>林奇</b>85 · <b>芒格</b>80</div>
+  
+</div>
+<div class="card red">
+  <span class="rank">2</span>
+  <div class="nm">比亚迪股份<span class="tk">01211</span></div>
+  <div><span class="tag">市值 3448</span></div>
+  <div class="price-row">
+    <span class="price">HK$94.80</span>
+    <span class="pct up">+1.28%</span>
+    <span class="psrc">实时</span>
+  </div>
+  <div class="scores">
+    <span>综合 <b>90.6</b></span>
+    <span>大师均值 <b>74</b></span>
+    <span>信号 <b>positive</b></span>
+  </div>
+  <div class="pts"><div class="h bull">看多理由</div><ul><li>新能源车行业龙头</li><li>近期股价表现强劲</li></ul></div>
+  <div class="masters">大师评分：<b>段永平</b>85 · <b>巴菲特</b>75 · <b>达利欧</b>60 · <b>林奇</b>80 · <b>芒格</b>70</div>
+  
+</div>
+<div class="card red">
+  <span class="rank">3</span>
+  <div class="nm">农夫山泉<span class="tk">09633</span></div>
+  <div><span class="tag">市值 2261</span></div>
+  <div class="price-row">
+    <span class="price">HK$45.56</span>
+    <span class="pct up">+1.47%</span>
+    <span class="psrc">实时</span>
+  </div>
+  <div class="scores">
+    <span>综合 <b>90.6</b></span>
+    <span>大师均值 <b>68</b></span>
+    <span>信号 <b>positive</b></span>
+  </div>
+  <div class="pts"><div class="h bull">看多理由</div><ul><li>高涨幅7.26%，市场情绪积极</li><li>消费行业防御性强</li></ul></div>
+  <div class="masters">大师评分：<b>段永平</b>75 · <b>巴菲特</b>70 · <b>达利欧</b>60 · <b>林奇</b>65 · <b>芒格</b>70</div>
+  
+</div>
+<div class="card red">
+  <span class="rank">4</span>
+  <div class="nm">中国中免<span class="tk">01880</span></div>
+  <div><span class="tag">市值 66</span></div>
+  <div class="price-row">
+    <span class="price">HK$52.85</span>
+    <span class="pct up">+0.09%</span>
+    <span class="psrc">实时</span>
+  </div>
+  <div class="scores">
+    <span>综合 <b>84.4</b></span>
+    <span>大师均值 <b>78</b></span>
+    <span>信号 <b>positive</b></span>
+  </div>
+  <div class="pts"><div class="h bull">看多理由</div><ul><li>免税政策红利</li><li>消费升级趋势</li></ul></div>
+  <div class="masters">大师评分：<b>段永平</b>85 · <b>巴菲特</b>80 · <b>达利欧</b>70 · <b>林奇</b>75 · <b>芒格</b>80</div>
+  
+</div>
+<div class="card red">
+  <span class="rank">5</span>
+  <div class="nm">福耀玻璃<span class="tk">03606</span></div>
+  <div><span class="tag">市值 354</span></div>
+  <div class="price-row">
+    <span class="price">HK$58.95</span>
+    <span class="pct up">+0.94%</span>
+    <span class="psrc">实时</span>
+  </div>
+  <div class="scores">
+    <span>综合 <b>84.4</b></span>
+    <span>大师均值 <b>78</b></span>
+    <span>信号 <b>positive</b></span>
+  </div>
+  <div class="pts"><div class="h bull">看多理由</div><ul><li>强劲的股价表现（6.09%涨幅）</li><li>作为汽车玻璃龙头具有稳定增长潜力</li></ul></div>
+  <div class="masters">大师评分：<b>段永平</b>80 · <b>巴菲特</b>75 · <b>达利欧</b>70 · <b>林奇</b>85 · <b>芒格</b>80</div>
+  
+</div>
+<div class="card red">
+  <span class="rank">6</span>
+  <div class="nm">海底捞<span class="tk">06862</span></div>
+  <div><span class="tag">市值 667</span></div>
+  <div class="price-row">
+    <span class="price">HK$11.96</span>
+    <span class="pct flat">0.00%</span>
+    <span class="psrc">实时</span>
+  </div>
+  <div class="scores">
+    <span>综合 <b>81.2</b></span>
+    <span>大师均值 <b>82</b></span>
+    <span>信号 <b>positive</b></span>
+  </div>
+  <div class="pts"><div class="h bull">看多理由</div><ul><li>餐饮行业复苏强劲</li><li>品牌价值突出</li></ul></div>
+  <div class="masters">大师评分：<b>段永平</b>85 · <b>巴菲特</b>80 · <b>达利欧</b>75 · <b>林奇</b>90 · <b>芒格</b>80</div>
+  
+</div>
+<div class="card red">
+  <span class="rank">7</span>
+  <div class="nm">携程集团-S<span class="tk">09961</span></div>
+  <div><span class="tag">市值 2311</span></div>
+  <div class="price-row">
+    <span class="price">HK$367.00</span>
+    <span class="pct flat">0.00%</span>
+    <span class="psrc">实时</span>
+  </div>
+  <div class="scores">
+    <span>综合 <b>81.2</b></span>
+    <span>大师均值 <b>80</b></span>
+    <span>信号 <b>positive</b></span>
+  </div>
+  <div class="pts"><div class="h bull">看多理由</div><ul><li>股价上涨5.1%，表现强劲</li><li>作为在线旅游龙头，受益于消费复苏</li></ul></div>
+  <div class="masters">大师评分：<b>段永平</b>80 · <b>巴菲特</b>70 · <b>达利欧</b>75 · <b>林奇</b>90 · <b>芒格</b>85</div>
+  
+</div>
+<div class="card red">
+  <span class="rank">8</span>
+  <div class="nm">中国财险<span class="tk">02328</span></div>
+  <div><span class="tag">市值 1151</span></div>
+  <div class="price-row">
+    <span class="price">HK$16.80</span>
+    <span class="pct up">+0.66%</span>
+    <span class="psrc">实时</span>
+  </div>
+  <div class="scores">
+    <span>综合 <b>81.2</b></span>
+    <span>大师均值 <b>78</b></span>
+    <span>信号 <b>positive</b></span>
+  </div>
+  <div class="pts"><div class="h bull">看多理由</div><ul><li>股价涨幅显著</li><li>保险行业需求稳定</li></ul></div>
+  <div class="masters">大师评分：<b>段永平</b>75 · <b>巴菲特</b>80 · <b>达利欧</b>70 · <b>林奇</b>85 · <b>芒格</b>80</div>
+  
+</div>
+<div class="card red">
+  <span class="rank">9</span>
+  <div class="nm">小米集团-W<span class="tk">01810</span></div>
+  <div><span class="tag">市值 6821</span></div>
+  <div class="price-row">
+    <span class="price">HK$31.04</span>
+    <span class="pct down">-2.63%</span>
+    <span class="psrc">实时</span>
+  </div>
+  <div class="scores">
+    <span>综合 <b>81.2</b></span>
+    <span>大师均值 <b>75</b></span>
+    <span>信号 <b>positive</b></span>
+  </div>
+  <div class="pts"><div class="h bull">看多理由</div><ul><li>股价上涨强劲，涨幅近9%</li><li>市值较大，市场认可度高</li></ul></div>
+  <div class="masters">大师评分：<b>段永平</b>80 · <b>巴菲特</b>65 · <b>达利欧</b>70 · <b>林奇</b>85 · <b>芒格</b>75</div>
+  
+</div>
+<div class="card red">
+  <span class="rank">10</span>
+  <div class="nm">青岛啤酒股份<span class="tk">00168</span></div>
+  <div><span class="tag">市值 308</span></div>
+  <div class="price-row">
+    <span class="price">HK$48.56</span>
+    <span class="pct up">+3.14%</span>
+    <span class="psrc">实时</span>
+  </div>
+  <div class="scores">
+    <span>综合 <b>81.2</b></span>
+    <span>大师均值 <b>74</b></span>
+    <span>信号 <b>positive</b></span>
+  </div>
+  <div class="pts"><div class="h bull">看多理由</div><ul><li>消费升级受益</li><li>品牌价值突出</li></ul></div>
+  <div class="masters">大师评分：<b>段永平</b>80 · <b>巴菲特</b>75 · <b>达利欧</b>65 · <b>林奇</b>70 · <b>芒格</b>80</div>
+  
+</div></div>
+</section>
+
+<section class="board">
+  <h2 class="board-title black"><span class="dot"></span>港股前200 · 黑榜 BOTTOM 10 <small>盘价采集 2026-07-30 22:37:23</small></h2>
+  <div class="cards">
+<div class="card black">
+  <span class="rank">1</span>
+  <div class="nm">鼎泰高科<span class="tk">01377</span></div>
+  <div><span class="tag">市值 36</span></div>
+  <div class="price-row">
+    <span class="price">HK$269.40</span>
+    <span class="pct down">-5.80%</span>
+    <span class="psrc">实时</span>
+  </div>
+  <div class="scores">
+    <span>综合 <b>24.4</b></span>
+    <span>大师均值 <b>40</b></span>
+    <span>信号 <b>negative</b></span>
+  </div>
+  <div class="pts"><div class="h bear">看空理由</div><ul><li>估值过高</li><li>市场波动风险</li></ul></div>
+  <div class="masters">大师评分：<b>段永平</b>35 · <b>巴菲特</b>25 · <b>达利欧</b>45 · <b>林奇</b>55 · <b>芒格</b>40</div>
+  
+</div>
+<div class="card black">
+  <span class="rank">2</span>
+  <div class="nm">兆易创新<span class="tk">03986</span></div>
+  <div><span class="tag">市值 145</span></div>
+  <div class="price-row">
+    <span class="price">HK$428.20</span>
+    <span class="pct down">-1.92%</span>
+    <span class="psrc">实时</span>
+  </div>
+  <div class="scores">
+    <span>综合 <b>31.2</b></span>
+    <span>大师均值 <b>44</b></span>
+    <span>信号 <b>negative</b></span>
+  </div>
+  <div class="pts"><div class="h bear">看空理由</div><ul><li>近期表现疲软</li><li>市场竞争加剧</li></ul></div>
+  <div class="masters">大师评分：<b>段永平</b>40 · <b>巴菲特</b>30 · <b>达利欧</b>50 · <b>林奇</b>60 · <b>芒格</b>40</div>
+  
+</div>
+<div class="card black">
+  <span class="rank">3</span>
+  <div class="nm">中国国航<span class="tk">00753</span></div>
+  <div><span class="tag">市值 213</span></div>
+  <div class="price-row">
+    <span class="price">HK$4.29</span>
+    <span class="pct down">-0.23%</span>
+    <span class="psrc">实时</span>
+  </div>
+  <div class="scores">
+    <span>综合 <b>33.1</b></span>
+    <span>大师均值 <b>40</b></span>
+    <span>信号 <b>negative</b></span>
+  </div>
+  <div class="pts"><div class="h bear">看空理由</div><ul><li>疫情反复风险</li><li>油价上涨压力</li></ul></div>
+  <div class="masters">大师评分：<b>段永平</b>45 · <b>巴菲特</b>30 · <b>达利欧</b>50 · <b>林奇</b>40 · <b>芒格</b>35</div>
+  
+</div>
+<div class="card black">
+  <span class="rank">4</span>
+  <div class="nm">中芯国际<span class="tk">00981</span></div>
+  <div><span class="tag">市值 4041</span></div>
+  <div class="price-row">
+    <span class="price">HK$62.00</span>
+    <span class="pct down">-7.74%</span>
+    <span class="psrc">实时</span>
+  </div>
+  <div class="scores">
+    <span>综合 <b>36.2</b></span>
+    <span>大师均值 <b>32</b></span>
+    <span>信号 <b>negative</b></span>
+  </div>
+  <div class="pts"><div class="h bear">看空理由</div><ul><li>股价下跌趋势明显</li><li>地缘政治风险</li></ul></div>
+  <div class="masters">大师评分：<b>段永平</b>30 · <b>巴菲特</b>25 · <b>达利欧</b>40 · <b>林奇</b>35 · <b>芒格</b>30</div>
+  
+</div>
+<div class="card black">
+  <span class="rank">5</span>
+  <div class="nm">胜宏科技<span class="tk">02476</span></div>
+  <div><span class="tag">市值 197</span></div>
+  <div class="price-row">
+    <span class="price">HK$168.30</span>
+    <span class="pct down">-5.61%</span>
+    <span class="psrc">实时</span>
+  </div>
+  <div class="scores">
+    <span>综合 <b>36.2</b></span>
+    <span>大师均值 <b>32</b></span>
+    <span>信号 <b>negative</b></span>
+  </div>
+  <div class="pts"><div class="h bear">看空理由</div><ul><li>股价大幅下跌7.9%，表现疲软</li><li>科技行业竞争加剧</li></ul></div>
+  <div class="masters">大师评分：<b>段永平</b>30 · <b>巴菲特</b>25 · <b>达利欧</b>35 · <b>林奇</b>40 · <b>芒格</b>30</div>
+  
+</div>
+<div class="card black">
+  <span class="rank">6</span>
+  <div class="nm">澜起科技<span class="tk">06809</span></div>
+  <div><span class="tag">市值 204</span></div>
+  <div class="price-row">
+    <span class="price">HK$251.40</span>
+    <span class="pct down">-6.75%</span>
+    <span class="psrc">实时</span>
+  </div>
+  <div class="scores">
+    <span>综合 <b>36.2</b></span>
+    <span>大师均值 <b>36</b></span>
+    <span>信号 <b>negative</b></span>
+  </div>
+  <div class="pts"><div class="h bear">看空理由</div><ul><li>近期表现疲软</li><li>行业竞争加剧</li></ul></div>
+  <div class="masters">大师评分：<b>段永平</b>35 · <b>巴菲特</b>30 · <b>达利欧</b>40 · <b>林奇</b>45 · <b>芒格</b>30</div>
+  
+</div>
+<div class="card black">
+  <span class="rank">7</span>
+  <div class="nm">广合科技<span class="tk">01989</span></div>
+  <div><span class="tag">市值 43</span></div>
+  <div class="price-row">
+    <span class="price">HK$83.35</span>
+    <span class="pct down">-10.47%</span>
+    <span class="psrc">实时</span>
+  </div>
+  <div class="scores">
+    <span>综合 <b>38.1</b></span>
+    <span>大师均值 <b>40</b></span>
+    <span>信号 <b>negative</b></span>
+  </div>
+  <div class="pts"><div class="h bear">看空理由</div><ul><li>股价大幅下跌</li><li>市场信心不足</li></ul></div>
+  <div class="masters">大师评分：<b>段永平</b>40 · <b>巴菲特</b>30 · <b>达利欧</b>45 · <b>林奇</b>50 · <b>芒格</b>35</div>
+  
+</div>
+<div class="card black">
+  <span class="rank">8</span>
+  <div class="nm">建滔积层板<span class="tk">01888</span></div>
+  <div><span class="tag">市值 994</span></div>
+  <div class="price-row">
+    <span class="price">HK$29.14</span>
+    <span class="pct down">-7.61%</span>
+    <span class="psrc">实时</span>
+  </div>
+  <div class="scores">
+    <span>综合 <b>38.8</b></span>
+    <span>大师均值 <b>40</b></span>
+    <span>信号 <b>negative</b></span>
+  </div>
+  <div class="pts"><div class="h bear">看空理由</div><ul><li>股价大幅下跌6.52%，短期承压</li><li>基本面可能存在隐忧</li></ul></div>
+  <div class="masters">大师评分：<b>段永平</b>40 · <b>巴菲特</b>35 · <b>达利欧</b>45 · <b>林奇</b>50 · <b>芒格</b>30</div>
+  
+</div>
+<div class="card black">
+  <span class="rank">9</span>
+  <div class="nm">友邦保险<span class="tk">01299</span></div>
+  <div><span class="tag">市值 8086</span></div>
+  <div class="price-row">
+    <span class="price">HK$79.65</span>
+    <span class="pct up">+1.92%</span>
+    <span class="psrc">实时</span>
+  </div>
+  <div class="scores">
+    <span>综合 <b>39.4</b></span>
+    <span>大师均值 <b>50</b></span>
+    <span>信号 <b>negative</b></span>
+  </div>
+  <div class="pts"><div class="h bear">看空理由</div><ul><li>疫情影响持续</li><li>亚洲市场波动</li></ul></div>
+  <div class="masters">大师评分：<b>段永平</b>40 · <b>巴菲特</b>60 · <b>达利欧</b>50 · <b>林奇</b>45 · <b>芒格</b>55</div>
+  
+</div>
+<div class="card black">
+  <span class="rank">10</span>
+  <div class="nm">天数智芯<span class="tk">09903</span></div>
+  <div><span class="tag">市值 1149</span></div>
+  <div class="price-row">
+    <span class="price">HK$377.00</span>
+    <span class="pct down">-14.71%</span>
+    <span class="psrc">实时</span>
+  </div>
+  <div class="scores">
+    <span>综合 <b>40.0</b></span>
+    <span>大师均值 <b>50</b></span>
+    <span>信号 <b>negative</b></span>
+  </div>
+  <div class="pts"><div class="h bear">看空理由</div><ul><li>股价大幅下跌显示市场信心不足</li><li>基本面信息不足增加投资风险</li></ul></div>
+  <div class="masters">大师评分：<b>段永平</b>45 · <b>巴菲特</b>40 · <b>达利欧</b>55 · <b>林奇</b>60 · <b>芒格</b>50</div>
+  
+</div></div>
+</section>
+<footer>稳健理财Agent · 红黑榜每日归档 · 数据来源：MiniMax 多Agent投研 + 实时行情<br>红涨绿跌（A股配色）· 仅供研究，不构成投资建议</footer>
+</div></body>
+</html>
