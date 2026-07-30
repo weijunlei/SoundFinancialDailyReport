@@ -10,3 +10,4 @@
 
 > 自包含 HTML（内联样式，无外部依赖）。克隆仓库后直接用浏览器打开，
 > 或在 GitHub 上开启 Pages 后在线浏览。仅供研究，不构成投资建议。
+网站：https://dailyagent.xiaofenglei.cn/
