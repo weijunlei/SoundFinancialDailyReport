@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SNPS(SNPS) 红榜 2026-07-30</title>
+<style>
+:root{--red:#d8342c;--redbg:#fdecea;--green:#1a9e54;--ink:#1c2230;--muted:#6b7385;
+--line:#e7e9ef;--card:#fff;--bg:#f4f6fa;--chip:#eef1f6;--dark:#23262d;--darkbg:#ececef}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",
+"Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);
+line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 16px 64px}
+header.top{background:linear-gradient(135deg,#1c2230,#2c3550);color:#fff;border-radius:14px;
+padding:22px 24px;margin-bottom:20px;box-shadow:0 6px 24px rgba(20,26,46,.12)}
+header.top h1{margin:0 0 6px;font-size:24px;letter-spacing:.5px}
+header.top .sub{opacity:.85;font-size:13px}
+header.top .sub b{color:#ffd166;font-weight:600}
+nav.mkt{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;
+background:rgba(244,246,250,.92);backdrop-filter:blur(6px);padding:10px 0;margin-bottom:14px}
+nav.mkt a{text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);
+padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600}
+nav.mkt a:hover{border-color:var(--red);color:var(--red)}
+.summary{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.summary .chip{background:var(--card);border:1px solid var(--line);border-radius:10px;
+padding:8px 12px;font-size:12px;color:var(--muted)}
+.summary .chip b{color:var(--ink);font-size:14px;margin-left:4px}
+section.board{margin:26px 0}
+.board-title{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:19px}
+.board-title .dot{width:10px;height:10px;border-radius:50%}
+.board-title.red .dot{background:var(--red)}
+.board-title.black .dot{background:var(--dark)}
+.board-title small{color:var(--muted);font-weight:400;font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+position:relative;transition:box-shadow .15s}
+.card:hover{box-shadow:0 4px 18px rgba(20,26,46,.08)}
+.card.red{border-top:3px solid var(--red)}
+.card.black{border-top:3px solid var(--dark)}
+.rank{position:absolute;top:10px;right:12px;font-size:26px;font-weight:800;color:#eceff5}
+.card.red .rank{color:#fbdcD9}
+.nm{font-size:16px;font-weight:700}
+.nm .tk{color:var(--muted);font-weight:500;font-size:12px;margin-left:6px}
+.tag{display:inline-block;background:var(--chip);color:var(--muted);border-radius:6px;
+padding:1px 7px;font-size:11px;margin:6px 6px 0 0}
+.price-row{display:flex;align-items:baseline;gap:10px;margin:10px 0 4px}
+.price{font-size:24px;font-weight:800}
+.pct{font-size:14px;font-weight:700;padding:2px 8px;border-radius:8px}
+.up{color:var(--red)}.down{color:var(--green)}.flat{color:var(--muted)}
+.pct.up{background:var(--redbg)}.pct.down{background:#e2f4e9}.pct.flat{background:var(--chip)}
+.psrc{font-size:11px;color:var(--muted);margin-left:auto}
+.scores{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.scores span{background:var(--chip);border-radius:6px;padding:2px 8px;font-size:11px;color:var(--muted)}
+.scores span b{color:var(--ink)}
+.pts{font-size:12.5px;margin:8px 0 0}
+.pts .h{font-weight:700;font-size:12px;margin:6px 0 2px}
+.pts .h.bull{color:var(--red)}.pts .h.bear{color:var(--green)}
+.pts ul{margin:2px 0 4px;padding-left:18px;color:#3a4152}
+.pts li{margin:1px 0}
+.masters{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:11px;color:var(--muted)}
+.masters b{color:var(--ink)}
+.summ{font-size:12.5px;color:#3a4152;background:#fafbfd;border:1px solid var(--line);
+border-radius:8px;padding:8px 10px;margin-top:8px}
+.empty{color:var(--muted);background:var(--card);border:1px dashed var(--line);
+border-radius:10px;padding:18px;text-align:center}
+footer{margin-top:34px;color:var(--muted);font-size:12px;text-align:center;line-height:1.8}
+a.lnk{color:var(--red);text-decoration:none}
+/* ── detail page ── */
+.backbar{margin-bottom:14px;font-size:13px}
+.backbar a{color:var(--muted);text-decoration:none;margin-right:14px}
+.backbar a:hover{color:var(--red)}
+.badge{display:inline-block;border-radius:6px;padding:2px 10px;font-size:12px;font-weight:700;margin-right:8px}
+.badge.red{background:var(--red);color:#fff}.badge.black{background:var(--dark);color:#fff}
+.trade{display:flex;flex-wrap:wrap;gap:10px;background:linear-gradient(135deg,#2c3550,#1c2230);
+color:#fff;border-radius:12px;padding:16px 18px;margin:16px 0}
+.trade .cell{min-width:120px}
+.trade .k{font-size:11px;opacity:.75}
+.trade .v{font-size:18px;font-weight:800;margin-top:2px}
+.trade .v.buy{color:#7ee2a8}.trade .v.sell{color:#ff9d97}.trade .v.hold{color:#ffd166}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0}
+.mgrid .m{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.mgrid .m .k{font-size:11px;color:var(--muted)}
+.mgrid .m .v{font-size:16px;font-weight:700;margin-top:2px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.panel>h2{margin:0 0 12px;font-size:17px}
+.panel>h2 .sub{font-size:12px;color:var(--muted);font-weight:400;margin-left:8px}
+.mreply{border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;
+padding:12px 14px;margin:10px 0;background:#fff}
+.mreply .mh{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.mreply .mh .who{font-weight:700;font-size:14px}
+.mreply .mh .mscore{margin-left:auto;background:var(--chip);border-radius:6px;padding:1px 8px;font-size:12px;font-weight:700}
+.md h2,.md h3,.md h4,.md h5{margin:12px 0 6px;font-size:15px}
+.md p{margin:6px 0;font-size:13.5px;color:#2c3345}
+.md ul{margin:6px 0;padding-left:20px;font-size:13.5px;color:#2c3345}
+.md li{margin:3px 0}
+.md strong{color:var(--ink)}
+details{border:1px solid var(--line);border-radius:10px;background:#fff;margin:10px 0;padding:0}
+details>summary{cursor:pointer;padding:12px 16px;font-weight:700;font-size:14px;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary:before{content:"▸ ";color:var(--red)}
+details[open]>summary:before{content:"▾ "}
+details>.body{padding:0 16px 14px;border-top:1px dashed var(--line)}
+.ychip{display:inline-block;background:var(--chip);border-radius:8px;padding:4px 10px;font-size:12px;margin:3px 6px 3px 0}
+.ychip b{font-size:13px}
+.news .nitem{border-top:1px dashed var(--line);padding:8px 0;font-size:13px}
+.news .nitem .t{font-weight:600}
+.news .nitem .s{color:var(--muted);font-size:12px}
+</style>
+</head>
+<body><div class="wrap">
+<div class="backbar"><a href="../index.html">← 总览</a><a href="../us.html">← 美股榜单</a></div>
+<header class="top">
+  <h1><span class="badge red">红榜 #6</span>SNPS<span class="tk" style="opacity:.7;font-size:15px;font-weight:400;margin-left:8px">SNPS</span></h1>
+  <div class="sub">美股 ·  · 榜单日期 <b>2026-07-30</b> · 盘价采集 <b>2026-07-30 23:05:41</b></div>
+  <div class="price-row" style="margin-top:12px">
+    <span class="price" style="color:#fff">$373.34</span>
+    <span class="pct down">-0.09%</span>
+    <span class="psrc" style="color:rgba(255,255,255,.6)">实时</span>
+  </div>
+  <div class="scores" style="margin-top:10px">
+    <span>综合 <b>93.8</b></span>
+    <span>多头 <b>85</b></span>
+    <span>空头 <b>20</b></span>
+    <span>大师均值 <b>77</b></span>
+    <span>信号 <b>positive</b></span>
+  </div>
+</header>
+<div class="trade"><div class="cell"><div class="k">交易评级</div><span class="v buy">Buy</span></div><div class="cell"><div class="k">加仓区间</div><span class="v">371.40 ~ 386.72</span></div><div class="cell"><div class="k">目标价</div><span class="v">428.84</span></div><div class="cell"><div class="k">伯克希尔</div><span class="v">买入</span></div><div class="cell"><div class="k">伯克希尔分</div><span class="v">4.50</span></div></div>
+<div class="panel"><h2>财务指标</h2><div class="mgrid"><div class="m"><div class="k">市盈率 PE</div><div class="v">87.45</div></div><div class="m"><div class="k">市净率 PB</div><div class="v">2.41</div></div><div class="m"><div class="k">ROE</div><div class="v">3.8%</div></div><div class="m"><div class="k">总市值</div><div class="v">733</div></div><div class="m"><div class="k">营收同比</div><div class="v">41.9%</div></div><div class="m"><div class="k">净利同比</div><div class="v">-96.0%</div></div></div></div>
+<div class="panel"><h2>历史收益</h2><span class="ychip">近1月 <b class="down">-14.39%</b></span><span class="ychip">近6月 <b class="down">-20.23%</b></span><span class="ychip">近1年 <b class="down">-39.78%</b></span><span class="ychip">近5年 <b class="up">+34.10%</b></span></div>
+<div class="panel"><h2>大师圆桌<span class="sub">5 位</span></h2><div class="mreply"><div class="mh"><span class="who">段永平</span><span class="mscore">75</span></div><div class="md"><p>结论：我会长期关注SNPS这家公司，但目前不会考虑重仓买入。</p><p>理由：</p><ul><li>首先，从生意模式来看，SNPS作为半导体设计自动化(EDA)领域的龙头企业，拥有明显的竞争优势。这符合我们&quot;只投看得懂的好生意&quot;的原则。EDA软件是半导体产业链中不可或缺的一环，具有较高的技术壁垒和客户粘性。</li></ul><ul><li>公司在技术创新方面持续投入，保持了行业领先地位。这一点从其营收同比增长41.9%可以看出，市场对其产品需求旺盛。</li></ul><ul><li>然而，当前的估值水平让我有所顾虑。市盈率(PE)高达87倍，远高于市场平均水平。虽然这反映了市场对公司未来增长的预期，但过高的估值会压缩未来的回报空间。</li></ul><ul><li>需要注意的是，公司净利润同比大幅下降96%，这表明在当前环境下，公司面临成本上升的压力。同时，地缘政治风险可能对半导体产业链产生影响。</li></ul><p>风险/行动建议：</p><ul><li>短期来看，需要关注公司如何应对研发成本上升和地缘政治风险。如果这些问题得不到有效控制，可能会影响公司的盈利能力。</li></ul><ul><li>对于长期投资者来说，可以考虑在估值更具吸引力的时候逐步建仓。建议重点关注：</li><li>公司能否维持技术领先地位</li><li>毛利率是否能够稳定或提升</li><li>净利润是否能够恢复增长</li></ul><ul><li>作为价值投资者，我们更倾向于在市场恐慌时买入优质资产。如果未来出现因市场情绪导致的价格回调，可能会提供更好的买入机会。</li></ul><ul><li>建议持续关注公司财报和管理层对未来的展望，重点评估其长期竞争力和盈利能力。</li></ul><p>总之，这是一家值得长期关注的公司，但目前估值偏高，需要耐心等待更好的买入时机。投资要本分，不急于一时，要做对的事，而不是容易的事。</p></div></div><div class="mreply"><div class="mh"><span class="who">巴菲特</span><span class="mscore">65</span></div><div class="md"><p>我倾向于对SNPS持谨慎乐观的态度，但不会急于买入。</p><p>结论：SNPS是一家具有显著竞争优势的企业，但当前估值偏高，需要耐心等待更好的买入时机。</p><p>理由如下：</p><ul><li>护城河分析：</li></ul><p>SNPS在EDA（电子设计自动化）软件领域拥有近乎垄断的市场地位，其产品是半导体设计和制造过程中不可或缺的工具。这种技术领先地位构成了强大的护城河，使其能够持续获得稳定的市场份额和高利润率。</p><ul><li>自由现金流：</li></ul><p>虽然公司当前的净利润波动较大，但经营活动现金流表现稳健。这表明公司的核心业务盈利能力依然强劲，净利润的波动更多是由于研发投入的增加，而非业务基本面恶化。</p><ul><li>ROE水平：</li></ul><p>目前3.82%的ROE确实偏低，但这是由于公司持续加大研发投入所致。从长期来看，随着新产品的推出和市场份额的巩固，ROE有望逐步回升。</p><ul><li>行业前景：</li></ul><p>半导体行业正处于长期增长周期，AI、5G、汽车电子等新兴应用领域对芯片设计的需求持续增长，这为SNPS提供了良好的发展机遇。</p><p>风险/行动建议：</p><ul><li>主要风险：</li><li>当前87倍的市盈率意味着市场已经给予公司很高的预期，未来需要持续兑现业绩才能支撑这样的估值。</li><li>地缘政治风险，特别是中美之间的科技竞争，可能影响公司的业务发展。</li><li>持续上升的研发成本可能影响短期盈利能力。</li></ul><ul><li>投资建议：</li><li>建议耐心等待更合适的买入时机，比如市盈率回落到50-60倍区间。</li><li>密切跟踪公司研发投入的产出效率，以及新产品的市场接受度。</li><li>关注地缘政治局势变化对科技行业的影响。</li></ul><p>总的来说，SNPS是一家值得长期关注的企业，但目前的价格并不具有足够的安全边际。作为价值投资者，我们应当保持耐心，等待更好的入场机会。</p></div></div><div class="mreply"><div class="mh"><span class="who">达利欧</span><span class="mscore">80</span></div><div class="md"><h4>结论</h4><p>SNPS（Synopsys）是一家符合长期趋势且具备高增长潜力的公司，但当前估值较高，需要谨慎对待。</p><h4>理由</h4><p>首先，从宏观角度来看，半导体行业正处于一个强劲的增长周期。SNPS作为一家在EDA（电子设计自动化）领域处于技术领先地位的公司，将直接受益于这一趋势。其营收同比增长41.9%，显示出强劲的市场需求和公司竞争力。</p><p>其次，SNPS在技术创新和市场份额方面具有显著优势，这为其未来的增长提供了坚实的基础。尽管当前净利润同比下降96%，但这主要是由于研发成本上升和短期市场波动所致，而非根本性业务问题。</p><p>然而，我们也必须看到当前估值较高的问题。当前PE为87.42，PB为2.41，相对于其盈利能力和账面价值，估值偏高。此外，地缘政治风险和研发成本上升也是需要考虑的不利因素。</p><h4>风险/行动建议</h4><ul><li><strong>风险平衡</strong>：考虑到当前高估值和地缘政治风险，建议采取分批建仓的策略，以降低短期波动带来的风险。</li></ul><ul><li><strong>去相关</strong>：在投资组合中，SNPS可以作为一个与科技行业高度相关的标的，但需要与其他行业或地区的资产进行对冲，以实现风险分散。</li></ul><ul><li><strong>原则化投资</strong>：根据我们的原则化投资框架，SNPS符合长期趋势和产业重要性高的标准，但在当前高估值下，建议投资者保持耐心，等待更合适的买入时机。</li></ul><ul><li><strong>具体行动</strong>：</li><li>如果投资者已经持有SNPS，可以考虑在股价回调时适当加仓，以降低平均成本。</li><li>如果尚未持有，建议密切关注市场动态，等待更合适的买入时机。</li><li>同时，可以考虑通过期权策略来对冲短期波动风险。</li></ul><p>总之，SNPS是一家具备长期增长潜力的公司，但在当前市场环境下，投资者需要谨慎对待，合理配置仓位，以实现风险与收益的平衡。</p></div></div><div class="mreply"><div class="mh"><span class="who">林奇</span><span class="mscore">85</span></div><div class="md"><p>各位投资者，大家好，今天我们来讨论一下SNPS这家公司。我的结论是，SNPS值得重点关注，但需要谨慎对待当前的高估值。</p><p>首先，从生活场景的角度来看，SNPS作为一家半导体设计软件公司，其产品和技术与我们的生活息息相关。无论是智能手机、电脑，还是新兴的人工智能和物联网设备，都离不开半导体技术的支持。而SNPS在EDA（电子设计自动化）领域处于全球领先地位，其产品是半导体产业链中不可或缺的一环。随着5G、人工智能和自动驾驶等技术的快速发展，SNPS的市场需求将会持续增长。</p><p>从景气验证的角度来看，半导体行业的增长是显而易见的。根据最新的数据，SNPS的营收同比增长了41.9%，这表明公司在行业中的竞争力和市场需求的强劲。尽管净利润同比下降了96%，但这主要是由于研发成本的上升和地缘政治因素的影响。长期来看，这些因素可能会被市场消化。</p><p>在成长性方面，SNPS的技术领先地位和市场占有率是其最大的优势。公司在研发上的持续投入，虽然短期内影响了利润，但长期来看将为其带来更多的创新产品和更高的市场份额。此外，半导体行业的整体增长也为SNPS提供了良好的发展环境。</p><p>然而，SNPS的估值确实是一个需要关注的问题。当前其PE高达87倍，PB为2.4倍，这样的估值水平意味着市场对其未来增长有很高的预期。如果公司不能持续保持高速增长，或者出现行业性的调整，当前的高估值可能会面临回调压力。</p><p>基于以上分析，我建议：</p><ul><li>关注SNPS的研发投入和新技术进展，这将是其未来增长的关键驱动力。如果公司能够在技术创新上持续领先，其高估值将得到支撑。</li></ul><ul><li>密切跟踪半导体行业的整体景气度，特别是地缘政治因素对产业链的影响。如果行业出现下行风险，需要及时调整投资策略。</li></ul><ul><li>对于风险承受能力较低的投资者，可以考虑等待更好的买入时机，比如在市场出现回调时逐步建仓。</li></ul><p>总之，SNPS是一家值得关注的优质公司，但其高估值需要我们保持警惕。只有在行业景气度持续向好、公司业绩持续增长的情况下，其当前估值才具有合理性。</p></div></div><div class="mreply"><div class="mh"><span class="who">芒格</span><span class="mscore">80</span></div><div class="md"><p>各位同仁，今天我们来讨论一下SNPS这只股票。我先给出我的结论：我认为SNPS值得投资，但需要谨慎对待。</p><p>让我们先从逆向思考的角度来分析。首先，考虑什么情况会导致投资SNPS失败。第一个风险是地缘政治因素，特别是在当前的国际形势下，半导体行业极易受到贸易政策和国家关系的影响。第二个风险是研发成本的持续上升，这可能会侵蚀公司的利润空间。</p><p>接下来，我用多元思维模型来审视这家公司。从技术角度来看，SNPS在半导体领域确实拥有显著的技术领先地位，这是其核心竞争优势。从财务指标来看，尽管其市盈率高达87倍，显示出市场对其未来增长的强烈预期，但其市净率仅为2.4倍，表明其资产质量仍然稳健。然而，值得注意的是，其净资产收益率（ROE）仅为3.8%，这表明其盈利能力有待提高。</p><p>从质量优先的角度来看，SNPS在技术创新和市场份额方面表现出色，但其净利润同比下降96%是一个警示信号。这可能是由于研发投入增加或其他一次性因素，但无论如何，这需要我们密切关注。</p><p>基于以上分析，我提出以下建议：</p><p>首先，关注地缘政治风险。投资者应密切关注国际贸易政策的变化，特别是与半导体行业相关的政策。如果出现不利政策，可能需要重新评估投资。</p><p>其次，密切关注研发成本。虽然研发投入是保持技术领先的关键，但过高的成本可能会影响公司的盈利能力。投资者应关注公司未来的成本控制措施和盈利能力改善计划。</p><p>最后，考虑分批买入。由于当前市盈率较高，市场预期已经反映在股价中，投资者可以考虑分批买入，以降低短期波动风险。</p><p>总的来说，SNPS是一家具有强大技术壁垒和竞争优势的公司，但在当前环境下，投资者需要保持谨慎，密切关注风险因素。希望这些分析对大家有所帮助。</p></div></div></div>
+<div class="panel"><h2>分析师报告<span class="sub">2 篇</span></h2><details open><summary>市场面分析</summary><div class="body"><div class="md"><h4>SNPS SNPS 市场面分析</h4><ul><li>红黑榜多空分数：多头 85 / 空头 20，分差 65。</li><li>当前价格：383.01。</li><li>当前交易评级：Buy。</li><li>值得加仓区间：371.40 - 386.72。</li><li>目标价格：428.84。</li><li>市场愿意给溢价的原因：半导体行业增长；技术领先地位。</li><li>当前主要压制因素：地缘政治风险；研发成本上升。</li></ul></div></div></details><details open><summary>基本面分析</summary><div class="body"><div class="md"><h4>SNPS SNPS 基本面分析</h4><ul><li>报告期：暂无。</li><li>PE(TTM)：87.45。</li><li>PB：2.41。</li><li>ROE：3.82%。</li><li>营收同比：41.90%。</li><li>归母净利润同比：-96.00%。</li><li>核心判断：收入仍在增长；估值偏贵，需要更强兑现。</li></ul></div></div></details></div>
+<div class="panel"><h2>研究与计划</h2>
+<details><summary>基本面摘要</summary><div class="body"><div class="md"><h3>核心财务快照</h3><ul><li>报告期: 数据缺失</li><li>当前股价: 383.01 元</li><li>总市值: 733.39 亿元</li><li>PE (TTM): 87.45</li><li>PB: 2.41</li><li>PS (TTM): 数据缺失</li><li>营业总收入(报告期): 数据缺失 亿元</li><li>营收同比增长率: 41.90%</li><li>归母净利润(报告期): 数据缺失 亿元</li><li>归母净利润同比增长率: -96.00%</li><li>ROE (TTM/估算): 3.82%</li><li>资产负债率: 数据缺失</li><li>经营性现金流 / 归母净利润: 数据缺失</li></ul><h4>缺失字段</h4><ul><li>PS(TTM), 营业总收入, 归母净利润, 资产负债率, 经营性现金流与归母净利润比值</li></ul></div></div></details>
+<details><summary>研究计划</summary><div class="body"><div class="md"><h4>SNPS SNPS 研究摘要</h4><ul><li>红黑榜结论: Buy</li><li>多头/空头: 85/20</li><li>正向信号: 营收同比 41.90%；PB 2.41</li><li>风险信号: ROE 3.82%；归母净利润同比 -96.00%；PE(TTM) 87.42</li><li>榜单看多理由: 半导体行业增长；技术领先地位</li><li>榜单风险提示: 地缘政治风险；研发成本上升</li></ul></div></div></details>
+<details><summary>交易计划</summary><div class="body"><div class="md"><h4>SNPS SNPS 交易计划</h4><ul><li>评级: Buy</li><li>当前价格: 382.89</li><li>值得加仓区间: 371.40 - 386.72</li><li>目标价格: 428.84</li><li>止损位: 352.26</li><li>备注: 当前为缓存降级交易卡，后续若完整 TradingAgent 结果生成，将自动覆盖。</li></ul></div></div></details>
+<details><summary>交易决策</summary><div class="body"><div class="md"><p>Buy</p><p>SNPS SNPS 当前使用红黑榜缓存结果生成兜底交易卡。多头 85 / 空头 20，分差 65。当前尚未取得完整 TradingAgent 长文决策，但榜单分数、财务快照和大师观点已经足够生成基础交易建议。</p></div></div></details>
+</div>
+<div class="panel"><h2>多空逻辑</h2><div class="pts"><div class="h bull">看多逻辑</div><div class="md"><p>半导体行业增长</p><p>技术领先地位</p></div></div><div class="pts"><div class="h bear">看空逻辑</div><div class="md"><p>地缘政治风险</p><p>研发成本上升</p></div></div></div>
+<div class="panel"><h2>伯克希尔研究</h2><p><strong>SNPS是一家具有强大护城河、长期增长潜力及稳健财务表现的半导体设计软件公司，值得关注并考虑买入。</strong></p><p>伯克希尔综合评分：<strong>4.5</strong></p><div class="md"><p>{&quot;verdict&quot;: &quot;买入&quot;, &quot;conservative_tip&quot;: &quot;建议在PE TTM 35倍以下买入，目标价400美元。&quot;, &quot;moderate_tip&quot;: &quot;建议在PE TTM 40倍以下买入，目标价450美元。&quot;, &quot;aggressive_tip&quot;: &quot;建议在PE TTM 45倍以下买入，目标价500美元。&quot;, &quot;catalysts_plus&quot;: [&quot;AI和5G技术快速发展带动芯片设计需求增长。&quot;, &quot;公司发布强劲财报或上调业绩指引。&quot;, &quot;地缘政治紧张局势缓解。&quot;], &quot;catalysts_minus&quot;: [&quot;中美科技战升级。&quot;, &quot;公司财报不及预期。&quot;, &quot;全球经济衰退导致芯片需求下降。&quot;]}</p></div></div>
+<div class="panel news"><h2>最新资讯</h2><div class="md"><p>共12条新闻，其中利多8条，利空2条，中性2条，整体情绪偏利好。</p></div><div class="nitem"><div class="t">Synopsys and Intel Foundry Fast-Track Customer Readiness from Silicon to Systems on Intel 14A</div><div class="s">PR Newswire · 利好</div></div><div class="nitem"><div class="t">Synopsys Stock: A Compelling Chip Lifecycle Monetization Story (NASDAQ:SNPS)</div><div class="s">Seeking Alpha · 利好</div></div><div class="nitem"><div class="t">Atreides Management LP Makes New Investment in Synopsys, Inc. $SNPS</div><div class="s">MarketBeat · 利好</div></div><div class="nitem"><div class="t">SNPS Fairly Valued by DCF at $394</div><div class="s">GuruFocus · 中性</div></div><div class="nitem"><div class="t">Synopsys, Inc. (SNPS) is Attracting Investor Attention: Here is What You Should Know</div><div class="s">Yahoo Finance · 利好</div></div><div class="nitem"><div class="t">Why Synopsys (SNPS) Stock Is Up Today</div><div class="s">Quiver Quantitative · 利好</div></div><div class="nitem"><div class="t">How New Autonomous AI Chip-Design Alliances At Synopsys (SNPS) Have Changed Its Investment Story</div><div class="s">simplywall.st · 利好</div></div><div class="nitem"><div class="t">Synopsys Demonstrates AI Agents That Compress Chip Verification to Hours</div><div class="s">Stock Titan · 利好</div></div></div>
+<footer>稳健理财Agent · 红黑榜每日归档 · 红榜 #6 · 仅供研究，不构成投资建议</footer>
+</div></body>
+</html>

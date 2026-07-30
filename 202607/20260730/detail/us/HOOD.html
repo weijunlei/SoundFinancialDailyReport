@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HOOD(HOOD) 黑榜 2026-07-30</title>
+<style>
+:root{--red:#d8342c;--redbg:#fdecea;--green:#1a9e54;--ink:#1c2230;--muted:#6b7385;
+--line:#e7e9ef;--card:#fff;--bg:#f4f6fa;--chip:#eef1f6;--dark:#23262d;--darkbg:#ececef}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",
+"Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);
+line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 16px 64px}
+header.top{background:linear-gradient(135deg,#1c2230,#2c3550);color:#fff;border-radius:14px;
+padding:22px 24px;margin-bottom:20px;box-shadow:0 6px 24px rgba(20,26,46,.12)}
+header.top h1{margin:0 0 6px;font-size:24px;letter-spacing:.5px}
+header.top .sub{opacity:.85;font-size:13px}
+header.top .sub b{color:#ffd166;font-weight:600}
+nav.mkt{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;
+background:rgba(244,246,250,.92);backdrop-filter:blur(6px);padding:10px 0;margin-bottom:14px}
+nav.mkt a{text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);
+padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600}
+nav.mkt a:hover{border-color:var(--red);color:var(--red)}
+.summary{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.summary .chip{background:var(--card);border:1px solid var(--line);border-radius:10px;
+padding:8px 12px;font-size:12px;color:var(--muted)}
+.summary .chip b{color:var(--ink);font-size:14px;margin-left:4px}
+section.board{margin:26px 0}
+.board-title{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:19px}
+.board-title .dot{width:10px;height:10px;border-radius:50%}
+.board-title.red .dot{background:var(--red)}
+.board-title.black .dot{background:var(--dark)}
+.board-title small{color:var(--muted);font-weight:400;font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+position:relative;transition:box-shadow .15s}
+.card:hover{box-shadow:0 4px 18px rgba(20,26,46,.08)}
+.card.red{border-top:3px solid var(--red)}
+.card.black{border-top:3px solid var(--dark)}
+.rank{position:absolute;top:10px;right:12px;font-size:26px;font-weight:800;color:#eceff5}
+.card.red .rank{color:#fbdcD9}
+.nm{font-size:16px;font-weight:700}
+.nm .tk{color:var(--muted);font-weight:500;font-size:12px;margin-left:6px}
+.tag{display:inline-block;background:var(--chip);color:var(--muted);border-radius:6px;
+padding:1px 7px;font-size:11px;margin:6px 6px 0 0}
+.price-row{display:flex;align-items:baseline;gap:10px;margin:10px 0 4px}
+.price{font-size:24px;font-weight:800}
+.pct{font-size:14px;font-weight:700;padding:2px 8px;border-radius:8px}
+.up{color:var(--red)}.down{color:var(--green)}.flat{color:var(--muted)}
+.pct.up{background:var(--redbg)}.pct.down{background:#e2f4e9}.pct.flat{background:var(--chip)}
+.psrc{font-size:11px;color:var(--muted);margin-left:auto}
+.scores{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.scores span{background:var(--chip);border-radius:6px;padding:2px 8px;font-size:11px;color:var(--muted)}
+.scores span b{color:var(--ink)}
+.pts{font-size:12.5px;margin:8px 0 0}
+.pts .h{font-weight:700;font-size:12px;margin:6px 0 2px}
+.pts .h.bull{color:var(--red)}.pts .h.bear{color:var(--green)}
+.pts ul{margin:2px 0 4px;padding-left:18px;color:#3a4152}
+.pts li{margin:1px 0}
+.masters{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:11px;color:var(--muted)}
+.masters b{color:var(--ink)}
+.summ{font-size:12.5px;color:#3a4152;background:#fafbfd;border:1px solid var(--line);
+border-radius:8px;padding:8px 10px;margin-top:8px}
+.empty{color:var(--muted);background:var(--card);border:1px dashed var(--line);
+border-radius:10px;padding:18px;text-align:center}
+footer{margin-top:34px;color:var(--muted);font-size:12px;text-align:center;line-height:1.8}
+a.lnk{color:var(--red);text-decoration:none}
+/* ── detail page ── */
+.backbar{margin-bottom:14px;font-size:13px}
+.backbar a{color:var(--muted);text-decoration:none;margin-right:14px}
+.backbar a:hover{color:var(--red)}
+.badge{display:inline-block;border-radius:6px;padding:2px 10px;font-size:12px;font-weight:700;margin-right:8px}
+.badge.red{background:var(--red);color:#fff}.badge.black{background:var(--dark);color:#fff}
+.trade{display:flex;flex-wrap:wrap;gap:10px;background:linear-gradient(135deg,#2c3550,#1c2230);
+color:#fff;border-radius:12px;padding:16px 18px;margin:16px 0}
+.trade .cell{min-width:120px}
+.trade .k{font-size:11px;opacity:.75}
+.trade .v{font-size:18px;font-weight:800;margin-top:2px}
+.trade .v.buy{color:#7ee2a8}.trade .v.sell{color:#ff9d97}.trade .v.hold{color:#ffd166}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0}
+.mgrid .m{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.mgrid .m .k{font-size:11px;color:var(--muted)}
+.mgrid .m .v{font-size:16px;font-weight:700;margin-top:2px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.panel>h2{margin:0 0 12px;font-size:17px}
+.panel>h2 .sub{font-size:12px;color:var(--muted);font-weight:400;margin-left:8px}
+.mreply{border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;
+padding:12px 14px;margin:10px 0;background:#fff}
+.mreply .mh{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.mreply .mh .who{font-weight:700;font-size:14px}
+.mreply .mh .mscore{margin-left:auto;background:var(--chip);border-radius:6px;padding:1px 8px;font-size:12px;font-weight:700}
+.md h2,.md h3,.md h4,.md h5{margin:12px 0 6px;font-size:15px}
+.md p{margin:6px 0;font-size:13.5px;color:#2c3345}
+.md ul{margin:6px 0;padding-left:20px;font-size:13.5px;color:#2c3345}
+.md li{margin:3px 0}
+.md strong{color:var(--ink)}
+details{border:1px solid var(--line);border-radius:10px;background:#fff;margin:10px 0;padding:0}
+details>summary{cursor:pointer;padding:12px 16px;font-weight:700;font-size:14px;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary:before{content:"▸ ";color:var(--red)}
+details[open]>summary:before{content:"▾ "}
+details>.body{padding:0 16px 14px;border-top:1px dashed var(--line)}
+.ychip{display:inline-block;background:var(--chip);border-radius:8px;padding:4px 10px;font-size:12px;margin:3px 6px 3px 0}
+.ychip b{font-size:13px}
+.news .nitem{border-top:1px dashed var(--line);padding:8px 0;font-size:13px}
+.news .nitem .t{font-weight:600}
+.news .nitem .s{color:var(--muted);font-size:12px}
+</style>
+</head>
+<body><div class="wrap">
+<div class="backbar"><a href="../index.html">← 总览</a><a href="../us.html">← 美股榜单</a></div>
+<header class="top">
+  <h1><span class="badge black">黑榜 #6</span>HOOD<span class="tk" style="opacity:.7;font-size:15px;font-weight:400;margin-left:8px">HOOD</span></h1>
+  <div class="sub">美股 ·  · 榜单日期 <b>2026-07-30</b> · 盘价采集 <b>2026-07-30 23:05:41</b></div>
+  <div class="price-row" style="margin-top:12px">
+    <span class="price" style="color:#fff">$87.48</span>
+    <span class="pct down">-2.63%</span>
+    <span class="psrc" style="color:rgba(255,255,255,.6)">实时</span>
+  </div>
+  <div class="scores" style="margin-top:10px">
+    <span>综合 <b>38.8</b></span>
+    <span>多头 <b>55</b></span>
+    <span>空头 <b>65</b></span>
+    <span>大师均值 <b>43</b></span>
+    <span>信号 <b>negative</b></span>
+  </div>
+</header>
+<div class="trade"><div class="cell"><div class="k">交易评级</div><span class="v hold">Hold</span></div><div class="cell"><div class="k">加仓区间</div><span class="v">84.45 ~ 88.04</span></div><div class="cell"><div class="k">伯克希尔</div><span class="v">观望</span></div><div class="cell"><div class="k">伯克希尔分</div><span class="v">2.50</span></div></div>
+<div class="panel"><h2>财务指标</h2><div class="mgrid"><div class="m"><div class="k">市盈率 PE</div><div class="v">43.61</div></div><div class="m"><div class="k">市净率 PB</div><div class="v">8.69</div></div><div class="m"><div class="k">ROE</div><div class="v">21.5%</div></div><div class="m"><div class="k">总市值</div><div class="v">809</div></div><div class="m"><div class="k">营收同比</div><div class="v">15.1%</div></div><div class="m"><div class="k">净利同比</div><div class="v">2.7%</div></div></div></div>
+<div class="panel"><h2>历史收益</h2><span class="ychip">近1月 <b class="down">-10.41%</b></span><span class="ychip">近6月 <b class="down">-9.69%</b></span><span class="ychip">近1年 <b class="down">-15.33%</b></span><span class="ychip">近5年 <b class="up">+155.59%</b></span></div>
+<div class="panel"><h2>大师圆桌<span class="sub">5 位</span></h2><div class="mreply"><div class="mh"><span class="who">段永平</span><span class="mscore">40</span></div><div class="md"><p>首先，我得说HOOD这家公司目前不在我的投资范围内。我的结论是：现在不适合投资HOOD。</p><p>让我解释一下原因。首先，我投资的核心原则是&quot;只投看得懂的好生意&quot;。而HOOD的商业模式让我有些担忧。它过于依赖散户交易，这使得公司的盈利能力持续承压。虽然HOOD确实拥有年轻的用户基础和创新的交易平台，但这些优势是否能转化为持久的竞争优势还有待观察。</p><p>具体来说，HOOD的市盈率已经达到43倍，而市净率更是高达8.68倍，这表明市场对它的预期已经非常高。与此同时，它的营收同比增长15.1%，但净利润同比增长仅为2.7%，说明公司的成本控制或盈利能力存在问题。ROE虽然有21.46%，但考虑到其高估值，这个回报率并不算特别吸引人。</p><p>此外，市场竞争加剧也是一个重要的风险因素。传统券商和新兴金融科技公司都在积极抢占市场份额，这可能会进一步压缩HOOD的利润空间。</p><p>基于以上分析，我建议采取以下行动：</p><ul><li>如果你已经在持有HOOD，建议重新评估你的投资逻辑，看看公司的长期竞争力是否足够强，能否支撑当前的估值水平。</li></ul><ul><li>对于考虑买入的投资者，我建议保持耐心，等待更好的入场时机。当前估值水平下，安全边际不足。</li></ul><ul><li>密切关注HOOD的用户增长趋势和盈利能力改善情况。如果公司能够证明其商业模式可以持续产生现金流，届时再考虑投资也不迟。</li></ul><p>记住，投资要本分，要做对的事。我们要做的是找到那些真正值得长期持有的好生意，而不是追逐短期热点。</p></div></div><div class="mreply"><div class="mh"><span class="who">巴菲特</span><span class="mscore">30</span></div><div class="md"><p>各位同仁，感谢给我这个机会来谈谈我对HOOD这家公司的看法。我的结论是：HOOD目前不符合我投资的标准。</p><p>首先，我非常重视企业是否拥有持久的护城河。从HOOD的情况来看，虽然它拥有年轻投资者这个稳固的用户基础，并且交易平台具有一定创新性，但这些优势并不足以构成强有力的护城河。金融科技行业竞争异常激烈，新的竞争对手不断涌现，HOOD目前的市场地位很容易受到冲击。</p><p>其次，我非常关注自由现金流和盈利能力。虽然HOOD的收入同比增长了15.1%，但净利润同比仅增长了2.7%，这表明公司的盈利能力持续承压。更重要的是，在当前43倍以上的市盈率下，投资者为这些增长支付了过高的溢价。</p><p>再者，虽然公司的ROE达到了21.46%，看起来还不错，但考虑到其8.69倍的市净率，这个回报率并不足以支撑如此高的估值。</p><p>关于风险，我认为主要来自以下几个方面：</p><ul><li>市场竞争加剧可能会进一步压缩公司的利润率</li><li>过度依赖年轻用户群体，存在用户年龄增长后流失的风险</li><li>持续的高估值使投资面临较大的市场波动风险</li></ul><p>基于以上分析，我的建议是：目前应该保持观望。如果HOOD能够展现出更强的盈利能力，并且证明其在用户留存和变现方面具有可持续性，我们再重新评估也不迟。在投资中，我们永远不应该为看似光明的未来支付过高的价格。</p><p>记住，投资就像打棒球，我们不需要每次都挥棒，而是要等待那个完美的击球机会。</p></div></div><div class="mreply"><div class="mh"><span class="who">达利欧</span><span class="mscore">50</span></div><div class="md"><p>各位同仁，关于HOOD这只股票，我有以下观点：</p><h4>结论</h4><p>我持谨慎偏空的立场，建议投资者保持观望。当前市场环境下，HOOD的吸引力有限。</p><h4>理由</h4><ul><li><strong>年轻投资者用户基础稳固</strong>：HOOD确实拥有强大的年轻用户群体，这为其提供了持续的业务基础。然而，这一优势已被市场充分定价。</li></ul><ul><li><strong>交易平台创新性较强</strong>：HOOD在交易平台上的创新性是其一大亮点，但这种创新是否能转化为持续的盈利能力仍需观察。</li></ul><ul><li><strong>盈利能力持续承压</strong>：尽管营收同比增长15.1%，但净利润同比增长仅为2.7%，显示出盈利能力面临较大压力。当前43.61的市盈率（PE）过高，反映出市场对其盈利能力的预期过于乐观。</li></ul><ul><li><strong>市场竞争加剧</strong>：金融科技领域的竞争日益激烈，HOOD面临的挑战不仅来自传统金融机构，还包括其他新兴金融科技公司。这将对其市场份额和利润率构成威胁。</li></ul><ul><li><strong>市场波动性较大</strong>：当前市场环境下，HOOD的股价波动性较高，这增加了投资风险。</li></ul><h4>风险/行动建议</h4><ul><li><strong>风险评估</strong>：考虑到HOOD的盈利能力承压和市场竞争加剧，建议投资者密切关注其财报和用户增长数据。若用户增长放缓或盈利能力进一步恶化，应及时调整投资策略。</li></ul><ul><li><strong>去相关策略</strong>：在投资组合中，若已持有HOOD，建议考虑将其与其他相关性较低的行业或资产进行对冲，以降低整体投资组合的风险。</li></ul><ul><li><strong>观望为主</strong>：当前不建议大规模买入HOOD。若投资者对其长期前景仍有信心，可以考虑在股价回调至更合理水平时逐步建仓。</li></ul><ul><li><strong>关注宏观环境</strong>：金融科技行业的监管环境和技术变革对其影响较大。投资者应密切关注相关政策变化和技术发展趋势，以便及时调整投资策略。</li></ul><p>总之，HOOD虽有亮点，但在当前市场环境下，其风险大于机会。建议投资者保持谨慎，密切关注其基本面变化。</p></div></div><div class="mreply"><div class="mh"><span class="who">林奇</span><span class="mscore">60</span></div><div class="md"><p>我今天想谈谈HOOD这只股票。我的观点是：HOOD目前处于一个需要谨慎观察的阶段，我给它一个&quot;中性偏观望&quot;的评级。</p><p>让我先说说我的观察：</p><p>首先，我注意到HOOD有一个非常吸引人的特点 - 它在年轻投资者群体中有着稳固的用户基础。作为一个经常在购物中心观察人们行为的投资者，我经常看到年轻人使用HOOD进行股票交易。这种现象让我想起了当年我在富达工作时，看到人们排队购买共同基金的场景。这是一个积极的信号，说明HOOD在目标用户群体中建立了良好的品牌认知。</p><p>其次，HOOD的交易平台确实有一些创新性，比如它的社交交易功能。这让我想起了当年我在麦哲伦基金时，看到投资者们互相交流投资想法的场景。这种社交属性可能会吸引更多用户，并提高用户粘性。</p><p>然而，我们也需要看到一些令人担忧的地方。HOOD的盈利能力持续承压，PE高达43倍，而净利润增长率仅为2.7%。这意味着投资者为每一美元的利润支付了过高的价格。与此同时，市场竞争正在加剧，像嘉信理财和盈透证券这样的传统券商也在不断改进他们的平台。</p><p>从PEG的角度来看，目前的估值显然偏高。即使考虑到HOOD的创新性和用户增长潜力，我认为目前的股价并没有足够的成长性来支撑。</p><p>基于以上分析，我的建议是：</p><ul><li>观望为主：目前不是买入的合适时机。我们需要看到HOOD在盈利能力上的改善，或者用户增长出现超预期的情况。</li></ul><ul><li>关注用户增长指标：特别是月活跃用户数(MAU)和付费用户转化率的变化。这些指标将直接影响HOOD的长期价值。</li></ul><ul><li>等待更好的入场时机：如果HOOD的股价出现回调，或者公司推出新的盈利模式，届时可能是更好的投资机会。</li></ul><p>总之，HOOD是一只值得持续关注的股票，但目前的价格让我选择暂时观望。我们需要看到更坚实的业绩支撑，才能做出更积极的判断。</p></div></div><div class="mreply"><div class="mh"><span class="who">芒格</span><span class="mscore">35</span></div><div class="md"><p>我的结论是：HOOD这只股票目前不适合作为优质投资标的，我建议持谨慎观望态度。</p><p>让我从几个角度来解释这个判断：</p><p>首先，从逆向思考的角度来看，当一只股票被市场热捧为&quot;创新性&quot;和&quot;年轻用户基础强大&quot;时，我们更应该警惕。当所有人都关注其用户增长和平台创新时，我们更应该问：这些用户能带来多少实际利润？平台的创新是否能转化为可持续的竞争优势？目前数据显示，其净利增速仅为2.7%，远低于营收增速的15.1%，这表明其商业模式存在严重问题。</p><p>从多元思维模型的角度分析：</p><ul><li>财务角度：43.6倍的市盈率(P/E)对于一个净利润增速仅为2.7%的公司来说明显过高。8.7倍的市净率(P/B)也表明市场对其估值过于乐观。</li></ul><ul><li>商业模式角度：虽然其平台具有创新性，但证券经纪业务本身缺乏坚固的护城河。市场竞争加剧将持续压缩其利润率。</li></ul><ul><li>风险管理角度：该公司过于依赖散户交易活动，在市场波动加剧时，其收入可能面临较大不确定性。</li></ul><p>关于风险，我认为主要来自以下几个方面：</p><ul><li>盈利能力风险：当前利润率过低，且缺乏明确的改善路径。</li></ul><ul><li>竞争风险：传统金融机构和新兴金融科技公司都在积极抢占市场份额。</li></ul><ul><li>监管风险：随着金融科技监管环境趋严，其商业模式可能面临更大挑战。</li></ul><p>基于以上分析，我的行动建议是：</p><ul><li>观望为主，不要急于买入。即使要投资，也应等待更合理的估值水平。</li></ul><ul><li>密切关注其用户增长质量和盈利能力改善情况，特别是净利润率的提升。</li></ul><ul><li>考虑其竞争对手的表现，作为判断其市场地位的参考。</li></ul><p>记住，在投资中，避免愚蠢往往比追求聪明更重要。当一只股票被过度炒作时，我们更需要保持清醒的头脑。</p></div></div></div>
+<div class="panel"><h2>分析师报告<span class="sub">2 篇</span></h2><details open><summary>市场面分析</summary><div class="body"><div class="md"><h4>HOOD HOOD 市场面分析</h4><ul><li>红黑榜多空分数：多头 55 / 空头 65，分差 -10。</li><li>当前价格：89.84。</li><li>当前交易评级：Hold。</li><li>值得加仓区间：84.45 - 88.04。</li><li>市场愿意给溢价的原因：年轻投资者用户基础稳固；交易平台创新性较强。</li><li>当前主要压制因素：盈利能力持续承压；市场竞争加剧。</li></ul></div></div></details><details open><summary>基本面分析</summary><div class="body"><div class="md"><h4>HOOD HOOD 基本面分析</h4><ul><li>报告期：暂无。</li><li>PE(TTM)：43.61。</li><li>PB：8.69。</li><li>ROE：21.46%。</li><li>营收同比：15.10%。</li><li>归母净利润同比：2.70%。</li><li>核心判断：盈利能力处于可接受区间；收入仍在增长；利润端保持扩张。</li></ul></div></div></details></div>
+<div class="panel"><h2>研究与计划</h2>
+<details><summary>基本面摘要</summary><div class="body"><div class="md"><h3>核心财务快照</h3><ul><li>报告期: 数据缺失</li><li>当前股价: 89.84 元</li><li>总市值: 809.01 亿元</li><li>PE (TTM): 43.61</li><li>PB: 8.69</li><li>PS (TTM): 数据缺失</li><li>营业总收入(报告期): 数据缺失 亿元</li><li>营收同比增长率: 15.10%</li><li>归母净利润(报告期): 数据缺失 亿元</li><li>归母净利润同比增长率: 2.70%</li><li>ROE (TTM/估算): 21.46%</li><li>资产负债率: 数据缺失</li><li>经营性现金流 / 归母净利润: 数据缺失</li></ul><h4>缺失字段</h4><ul><li>PS(TTM), 营业总收入, 归母净利润, 资产负债率, 经营性现金流与归母净利润比值</li></ul></div></div></details>
+<details><summary>研究计划</summary><div class="body"><div class="md"><h4>HOOD HOOD 研究摘要</h4><ul><li>红黑榜结论: Hold</li><li>多头/空头: 55/65</li><li>正向信号: ROE 21.46%；营收同比 15.10%；归母净利润同比 2.70%；PE(TTM) 43.61</li><li>榜单看多理由: 年轻投资者用户基础稳固；交易平台创新性较强</li><li>榜单风险提示: 盈利能力持续承压；市场竞争加剧</li></ul></div></div></details>
+<details><summary>交易计划</summary><div class="body"><div class="md"><h4>HOOD HOOD 交易计划</h4><ul><li>评级: Hold</li><li>当前价格: 89.84</li><li>值得加仓区间: 84.45 - 88.04</li><li>目标价格: 94.33</li><li>止损位: 80.86</li><li>备注: 当前为缓存降级交易卡，后续若完整 TradingAgent 结果生成，将自动覆盖。</li></ul></div></div></details>
+<details><summary>交易决策</summary><div class="body"><div class="md"><p>Hold</p><p>HOOD HOOD 当前使用红黑榜缓存结果生成兜底交易卡。多头 55 / 空头 65，分差 -10。当前尚未取得完整 TradingAgent 长文决策，但榜单分数、财务快照和大师观点已经足够生成基础交易建议。</p></div></div></details>
+</div>
+<div class="panel"><h2>多空逻辑</h2><div class="pts"><div class="h bull">看多逻辑</div><div class="md"><p>年轻投资者用户基础稳固</p><p>交易平台创新性较强</p></div></div><div class="pts"><div class="h bear">看空逻辑</div><div class="md"><p>盈利能力持续承压</p><p>市场竞争加剧</p></div></div></div>
+<div class="panel"><h2>伯克希尔研究</h2><p><strong>HOOD商业模式创新但护城河不足，行业竞争加剧，当前估值偏高，建议观望。</strong></p><p>伯克希尔综合评分：<strong>2.5</strong></p><div class="md"><p>{&quot;verdict&quot;: &quot;观望&quot;, &quot;conservative_tip&quot;: &quot;建议在股价低于5美元时考虑少量买入。&quot;, &quot;moderate_tip&quot;: &quot;建议在股价低于7美元时适度建仓。&quot;, &quot;aggressive_tip&quot;: &quot;建议在股价低于10美元时谨慎买入，但需严格控制仓位。&quot;, &quot;catalysts_plus&quot;: [&quot;用户增长重新加速。&quot;, &quot;PFOF模式监管风险解除。&quot;, &quot;推出创新产品或服务。&quot;], &quot;catalysts_minus&quot;: [&quot;用户增长继续放缓。&quot;, &quot;监管政策进一步收紧。&quot;, &quot;竞争对手推出更具吸引力的产品。&quot;]}</p></div></div>
+<div class="panel news"><h2>最新资讯</h2><div class="md"><p>共2条利好，1条利空，8条中性。整体情绪偏中性。</p></div><div class="nitem"><div class="t">Robinhood quarterly profit rises on strong trading activity</div><div class="s">Yahoo Finance · 利好</div></div><div class="nitem"><div class="t">When spit hoods are used on children, troubling patterns emerge</div><div class="s">The Seattle Times · 中性</div></div><div class="nitem"><div class="t">Lebanon County man discovers 5-ft-long python under the hood of his work vehicle</div><div class="s">fox43.com · 中性</div></div><div class="nitem"><div class="t">5DEV Shredville Flatbar XC Hood Mounts Bring Dropbar Hoods and Shifting to Your MTB</div><div class="s">Bikerumor · 中性</div></div><div class="nitem"><div class="t">Grasshopper Fire grows to nearly 14,000 acres in Mt. Hood National Forest, forcing evacuations</div><div class="s">KPTV · 中性</div></div><div class="nitem"><div class="t">&#x27;Like a nightmare:&#x27; Family remebers 16-year-old killed in crash that injured 5 others</div><div class="s">6abc Philadelphia · 中性</div></div><div class="nitem"><div class="t">Snakes alive! Central Pa. family discovers abandoned python under car hood</div><div class="s">PennLive.com · 中性</div></div><div class="nitem"><div class="t">Robinhood Stock Dips Ahead of Q2 Earnings Report</div><div class="s">Benzinga · 利空</div></div></div>
+<footer>稳健理财Agent · 红黑榜每日归档 · 黑榜 #6 · 仅供研究，不构成投资建议</footer>
+</div></body>
+</html>

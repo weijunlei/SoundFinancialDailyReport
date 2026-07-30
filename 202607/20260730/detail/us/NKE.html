@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NKE(NKE) 红榜 2026-07-30</title>
+<style>
+:root{--red:#d8342c;--redbg:#fdecea;--green:#1a9e54;--ink:#1c2230;--muted:#6b7385;
+--line:#e7e9ef;--card:#fff;--bg:#f4f6fa;--chip:#eef1f6;--dark:#23262d;--darkbg:#ececef}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",
+"Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);
+line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 16px 64px}
+header.top{background:linear-gradient(135deg,#1c2230,#2c3550);color:#fff;border-radius:14px;
+padding:22px 24px;margin-bottom:20px;box-shadow:0 6px 24px rgba(20,26,46,.12)}
+header.top h1{margin:0 0 6px;font-size:24px;letter-spacing:.5px}
+header.top .sub{opacity:.85;font-size:13px}
+header.top .sub b{color:#ffd166;font-weight:600}
+nav.mkt{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;
+background:rgba(244,246,250,.92);backdrop-filter:blur(6px);padding:10px 0;margin-bottom:14px}
+nav.mkt a{text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);
+padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600}
+nav.mkt a:hover{border-color:var(--red);color:var(--red)}
+.summary{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.summary .chip{background:var(--card);border:1px solid var(--line);border-radius:10px;
+padding:8px 12px;font-size:12px;color:var(--muted)}
+.summary .chip b{color:var(--ink);font-size:14px;margin-left:4px}
+section.board{margin:26px 0}
+.board-title{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:19px}
+.board-title .dot{width:10px;height:10px;border-radius:50%}
+.board-title.red .dot{background:var(--red)}
+.board-title.black .dot{background:var(--dark)}
+.board-title small{color:var(--muted);font-weight:400;font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+position:relative;transition:box-shadow .15s}
+.card:hover{box-shadow:0 4px 18px rgba(20,26,46,.08)}
+.card.red{border-top:3px solid var(--red)}
+.card.black{border-top:3px solid var(--dark)}
+.rank{position:absolute;top:10px;right:12px;font-size:26px;font-weight:800;color:#eceff5}
+.card.red .rank{color:#fbdcD9}
+.nm{font-size:16px;font-weight:700}
+.nm .tk{color:var(--muted);font-weight:500;font-size:12px;margin-left:6px}
+.tag{display:inline-block;background:var(--chip);color:var(--muted);border-radius:6px;
+padding:1px 7px;font-size:11px;margin:6px 6px 0 0}
+.price-row{display:flex;align-items:baseline;gap:10px;margin:10px 0 4px}
+.price{font-size:24px;font-weight:800}
+.pct{font-size:14px;font-weight:700;padding:2px 8px;border-radius:8px}
+.up{color:var(--red)}.down{color:var(--green)}.flat{color:var(--muted)}
+.pct.up{background:var(--redbg)}.pct.down{background:#e2f4e9}.pct.flat{background:var(--chip)}
+.psrc{font-size:11px;color:var(--muted);margin-left:auto}
+.scores{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.scores span{background:var(--chip);border-radius:6px;padding:2px 8px;font-size:11px;color:var(--muted)}
+.scores span b{color:var(--ink)}
+.pts{font-size:12.5px;margin:8px 0 0}
+.pts .h{font-weight:700;font-size:12px;margin:6px 0 2px}
+.pts .h.bull{color:var(--red)}.pts .h.bear{color:var(--green)}
+.pts ul{margin:2px 0 4px;padding-left:18px;color:#3a4152}
+.pts li{margin:1px 0}
+.masters{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:11px;color:var(--muted)}
+.masters b{color:var(--ink)}
+.summ{font-size:12.5px;color:#3a4152;background:#fafbfd;border:1px solid var(--line);
+border-radius:8px;padding:8px 10px;margin-top:8px}
+.empty{color:var(--muted);background:var(--card);border:1px dashed var(--line);
+border-radius:10px;padding:18px;text-align:center}
+footer{margin-top:34px;color:var(--muted);font-size:12px;text-align:center;line-height:1.8}
+a.lnk{color:var(--red);text-decoration:none}
+/* ── detail page ── */
+.backbar{margin-bottom:14px;font-size:13px}
+.backbar a{color:var(--muted);text-decoration:none;margin-right:14px}
+.backbar a:hover{color:var(--red)}
+.badge{display:inline-block;border-radius:6px;padding:2px 10px;font-size:12px;font-weight:700;margin-right:8px}
+.badge.red{background:var(--red);color:#fff}.badge.black{background:var(--dark);color:#fff}
+.trade{display:flex;flex-wrap:wrap;gap:10px;background:linear-gradient(135deg,#2c3550,#1c2230);
+color:#fff;border-radius:12px;padding:16px 18px;margin:16px 0}
+.trade .cell{min-width:120px}
+.trade .k{font-size:11px;opacity:.75}
+.trade .v{font-size:18px;font-weight:800;margin-top:2px}
+.trade .v.buy{color:#7ee2a8}.trade .v.sell{color:#ff9d97}.trade .v.hold{color:#ffd166}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0}
+.mgrid .m{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.mgrid .m .k{font-size:11px;color:var(--muted)}
+.mgrid .m .v{font-size:16px;font-weight:700;margin-top:2px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.panel>h2{margin:0 0 12px;font-size:17px}
+.panel>h2 .sub{font-size:12px;color:var(--muted);font-weight:400;margin-left:8px}
+.mreply{border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;
+padding:12px 14px;margin:10px 0;background:#fff}
+.mreply .mh{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.mreply .mh .who{font-weight:700;font-size:14px}
+.mreply .mh .mscore{margin-left:auto;background:var(--chip);border-radius:6px;padding:1px 8px;font-size:12px;font-weight:700}
+.md h2,.md h3,.md h4,.md h5{margin:12px 0 6px;font-size:15px}
+.md p{margin:6px 0;font-size:13.5px;color:#2c3345}
+.md ul{margin:6px 0;padding-left:20px;font-size:13.5px;color:#2c3345}
+.md li{margin:3px 0}
+.md strong{color:var(--ink)}
+details{border:1px solid var(--line);border-radius:10px;background:#fff;margin:10px 0;padding:0}
+details>summary{cursor:pointer;padding:12px 16px;font-weight:700;font-size:14px;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary:before{content:"▸ ";color:var(--red)}
+details[open]>summary:before{content:"▾ "}
+details>.body{padding:0 16px 14px;border-top:1px dashed var(--line)}
+.ychip{display:inline-block;background:var(--chip);border-radius:8px;padding:4px 10px;font-size:12px;margin:3px 6px 3px 0}
+.ychip b{font-size:13px}
+.news .nitem{border-top:1px dashed var(--line);padding:8px 0;font-size:13px}
+.news .nitem .t{font-weight:600}
+.news .nitem .s{color:var(--muted);font-size:12px}
+</style>
+</head>
+<body><div class="wrap">
+<div class="backbar"><a href="../index.html">← 总览</a><a href="../us.html">← 美股榜单</a></div>
+<header class="top">
+  <h1><span class="badge red">红榜 #8</span>NKE<span class="tk" style="opacity:.7;font-size:15px;font-weight:400;margin-left:8px">NKE</span></h1>
+  <div class="sub">美股 ·  · 榜单日期 <b>2026-07-30</b> · 盘价采集 <b>2026-07-30 23:05:41</b></div>
+  <div class="price-row" style="margin-top:12px">
+    <span class="price" style="color:#fff">$41.48</span>
+    <span class="pct down">-4.04%</span>
+    <span class="psrc" style="color:rgba(255,255,255,.6)">实时</span>
+  </div>
+  <div class="scores" style="margin-top:10px">
+    <span>综合 <b>87.5</b></span>
+    <span>多头 <b>80</b></span>
+    <span>空头 <b>20</b></span>
+    <span>大师均值 <b>72</b></span>
+    <span>信号 <b>positive</b></span>
+  </div>
+</header>
+<div class="trade"><div class="cell"><div class="k">交易评级</div><span class="v buy">Buy</span></div><div class="cell"><div class="k">加仓区间</div><span class="v">42.06 ~ 43.80</span></div><div class="cell"><div class="k">目标价</div><span class="v">48.57</span></div><div class="cell"><div class="k">伯克希尔</div><span class="v">买入</span></div><div class="cell"><div class="k">伯克希尔分</div><span class="v">4.00</span></div></div>
+<div class="panel"><h2>财务指标</h2><div class="mgrid"><div class="m"><div class="k">市盈率 PE</div><div class="v">20.66</div></div><div class="m"><div class="k">市净率 PB</div><div class="v">4.33</div></div><div class="m"><div class="k">ROE</div><div class="v">22.1%</div></div><div class="m"><div class="k">总市值</div><div class="v">644</div></div><div class="m"><div class="k">营收同比</div><div class="v">-110.0%</div></div><div class="m"><div class="k">净利同比</div><div class="v">428.0%</div></div></div></div>
+<div class="panel"><h2>历史收益</h2><span class="ychip">近1月 <b class="up">+4.54%</b></span><span class="ychip">近6月 <b class="down">-30.73%</b></span><span class="ychip">近1年 <b class="down">-44.64%</b></span><span class="ychip">近5年 <b class="down">-74.03%</b></span></div>
+<div class="panel"><h2>大师圆桌<span class="sub">5 位</span></h2><div class="mreply"><div class="mh"><span class="who">段永平</span><span class="mscore">75</span></div><div class="md"><p>我今天的发言主题是关于耐克（NKE）的投资价值分析。</p><p>我的结论是：耐克是一家值得长期持有的好公司，但需要关注一些关键风险点。</p><p>首先说说我的理由：</p><p>耐克最核心的竞争优势在于其强大的品牌价值，这是我们做投资时最看重的&quot;本分&quot;所在。耐克作为全球运动品牌的领导者，拥有极高的品牌认知度和消费者忠诚度。这种品牌影响力不是一朝一夕能够建立起来的，而是经过长期积累形成的护城河。</p><p>从行业角度来看，运动服饰市场仍然保持稳健增长，这为耐克这样的头部品牌提供了良好的发展环境。公司的财务指标也显示出较强的盈利能力，净资产收益率（ROE）达到22%，说明其资本运用效率很高。</p><p>然而，我们也需要正视一些风险：</p><ul><li>供应链风险：耐克的生产基地主要集中在东南亚地区，面临劳动力成本上升、贸易政策变化等不确定性。</li></ul><ul><li>地缘政治风险：作为一家全球化运营的公司，需要应对不同国家和地区的政策变化和市场波动。</li></ul><p>基于以上分析，我给出以下建议：</p><p>首先，要以长期持有的心态来投资耐克。作为价值投资者，我们更看重的是企业长期的竞争优势，而不是短期的市场波动。耐克在品牌建设方面的持续投入和积累，是其长期发展的基石。</p><p>其次，要密切关注供应链管理的变化。投资者需要定期评估公司应对供应链挑战的能力，以及其在不同地区的生产布局调整。</p><p>最后，要对地缘政治风险保持适度警惕。虽然耐克具有较强的风险应对能力，但投资者仍需对相关风险保持关注，并在必要时做出相应调整。</p><p>总的来说，耐克是一家符合我们&quot;做对的事&quot;和&quot;只投看得懂的好生意&quot;理念的公司。只要我们能够理性看待风险，耐克仍然是一个值得长期投资的选择。</p></div></div><div class="mreply"><div class="mh"><span class="who">巴菲特</span><span class="mscore">70</span></div><div class="md"><p>各位同仁，关于耐克（NKE），我的观点是：这是一个符合长期价值投资标准的标的，但需要谨慎管理风险。</p><p>首先给出结论：我认为耐克是一个值得长期关注的投资机会，主要基于其强大的品牌护城河和良好的资本回报能力。</p><p>让我详细说明理由：</p><p>耐克拥有无与伦比的品牌影响力，这是其最坚固的护城河。无论是在北美市场还是全球新兴市场，耐克都占据着消费者心智的顶端位置。这种品牌优势不仅体现在市场份额上，更体现在其产品的定价权上。</p><p>从财务指标来看，耐克的ROE达到22%，这是一个相当健康的水平，表明公司能够有效利用股东资本创造价值。虽然当前市盈率20.65倍并不算特别便宜，但在当前市场环境下，考虑到其品牌价值和增长潜力，这个估值水平是可以接受的。</p><p>耐克还展现出良好的自由现金流创造能力，这使其能够在不依赖过度举债的情况下进行必要的资本配置，包括股票回购和战略性收购。</p><p>然而，我们也必须正视一些风险因素：</p><p>首先，供应链问题是一个持续存在的挑战。无论是原材料成本波动还是物流挑战，都可能影响公司的利润率。</p><p>其次，地缘政治风险不容忽视。耐克在中国市场的业务占比相当可观，而当前的国际形势增加了不确定性。</p><p>基于以上分析，我的建议是：</p><ul><li>如果您正在寻找一个可以长期持有的优质标的，耐克值得考虑。但不建议在当前价格水平上重仓买入。</li></ul><ul><li>建议密切关注公司如何应对供应链挑战，以及其在中国市场的表现。如果这些方面出现积极信号，可以考虑适度增持。</li></ul><ul><li>密切关注自由现金流的持续性，这将是判断公司长期价值的重要指标。</li></ul><p>总之，耐克是一个具有持久竞争优势的企业，但在当前环境下，我们需要保持适当的谨慎，通过分批建仓的方式进行投资可能是更为明智的选择。</p></div></div><div class="mreply"><div class="mh"><span class="who">达利欧</span><span class="mscore">65</span></div><div class="md"><h4>结论</h4><p>对于耐克（NKE），我持部分看好的态度，但需要谨慎管理风险。</p><h4>理由</h4><ul><li><strong>品牌全球影响力强</strong>：耐克拥有强大的品牌效应，这是其长期竞争优势的基础。无论经济环境如何变化，消费者对耐克品牌的认知度和忠诚度都较高，这为其提供了稳定的收入来源。</li></ul><ul><li><strong>运动服饰市场增长</strong>：全球运动服饰市场持续增长，尤其是在新兴市场和发展中国家。随着健康意识的提升和运动文化的普及，耐克在这一领域有较大的增长潜力。</li></ul><ul><li><strong>财务表现</strong>：尽管营收同比下降，但净利润同比大幅增长，净资产收益率（ROE）达到22.14%，显示出公司良好的盈利能力和资本运用效率。</li></ul><h4>风险/行动建议</h4><ul><li><strong>供应链风险</strong>：耐克的供应链遍布全球，尤其是在亚洲地区。地缘政治紧张局势、贸易政策变化以及疫情等不可控因素可能对供应链造成冲击。建议密切关注供应链的稳定性，并考虑多元化供应链以降低风险。</li></ul><ul><li><strong>地缘政治影响</strong>：当前全球地缘政治环境复杂多变，可能对耐克的国际市场表现产生负面影响。建议进行情景分析，评估不同地缘政治情景下的潜在影响，并制定相应的应对策略。</li></ul><ul><li><strong>估值风险</strong>：当前市盈率（PE）为20.65倍，接近历史平均水平，但考虑到市场波动和不确定性，可能存在估值回调的风险。建议在投资组合中保持适度仓位，并通过期权等衍生工具进行风险对冲。</li></ul><h4>行动建议</h4><ul><li><strong>多元化投资组合</strong>：将耐克作为投资组合的一部分，但不要过度集中。考虑增加与其他行业或地区的投资标的，以实现风险去相关。</li></ul><ul><li><strong>持续监控</strong>：定期评估耐克的财务状况、供应链稳定性和地缘政治环境的变化，及时调整投资策略。</li></ul><ul><li><strong>风险管理</strong>：使用衍生工具对冲潜在的市场风险，同时保持足够的流动性以应对突发事件。</li></ul><p>总之，耐克是一个具有长期投资价值的公司，但在当前环境下，需要通过原则化的风险管理策略来平衡潜在收益和风险。</p></div></div><div class="mreply"><div class="mh"><span class="who">林奇</span><span class="mscore">80</span></div><div class="md"><h4>结论：</h4><p>耐克（NKE）是一家值得关注的消费股，目前的估值和成长性较为匹配，我对其持乐观态度。</p><h4>理由：</h4><ul><li><strong>品牌全球影响力强</strong>：</li></ul><p>   耐克作为全球领先的运动品牌，其品牌价值和市场认知度非常高。无论是在北美、欧洲还是新兴市场，耐克都拥有强大的品牌忠诚度和市场份额。这种品牌影响力不仅体现在其高端产品的定价能力上，也为其在运动服饰和鞋类市场的持续增长提供了保障。</p><ul><li><strong>运动服饰市场增长</strong>：</li></ul><p>   运动服饰市场近年来一直保持稳定增长，尤其是在健康意识提升和运动参与度增加的背景下。耐克作为行业领导者，能够很好地抓住这一趋势，推出符合消费者需求的产品。此外，耐克在数字化转型和直接面向消费者（DTC）渠道的拓展方面也取得了显著进展，这为其未来的增长提供了新的动力。</p><ul><li><strong>财务表现</strong>：</li></ul><p>   从财务数据来看，耐克的净资产收益率（ROE）达到22.14%，显示出其强大的盈利能力。尽管营收同比略有下降，但净利润同比大幅增长428%，这表明公司在成本控制和运营效率方面取得了显著成效。当前20.65倍的市盈率（PE）与其成长性相比，估值相对合理。</p><h4>风险/行动建议：</h4><ul><li><strong>供应链风险</strong>：</li></ul><p>   耐克面临的主要风险之一是供应链问题，尤其是在全球疫情和地缘政治紧张局势的影响下。原材料价格波动、运输成本上升以及生产中断都可能对其盈利能力造成影响。建议关注公司如何应对这些挑战，以及其在供应链多元化方面的进展。</p><ul><li><strong>地缘政治影响</strong>：</li></ul><p>   地缘政治因素，如贸易摩擦和关税政策，也可能对耐克的国际业务产生影响。建议密切关注国际市场的政策变化，以及公司如何调整其全球战略以应对这些挑战。</p><h4>行动建议：</h4><ul><li><strong>长期持有</strong>：</li></ul><p>   如果你是一个长期投资者，并且相信耐克在品牌影响力和市场增长方面的持续优势，那么耐克是一个值得持有的标的。其强大的品牌价值和数字化转型战略为其未来的增长提供了坚实的基础。</p><ul><li><strong>关注季度财报</strong>：</li></ul><p>   建议密切关注耐克的季度财报，特别是其营收和净利润的增长情况，以及其在供应链管理和国际市场拓展方面的进展。如果这些方面表现良好，可以考虑增加持仓。</p><ul><li><strong>估值调整</strong>：</li></ul><p>   虽然目前估值相对合理，但如果市场出现大幅波动，导致估值过高或过低，可以根据具体情况调整持仓。在估值过高时，可以考虑部分获利了结；在估值过低时，可以考虑逢低买入。</p><p>总之，耐克是一家具有强大品牌影响力和市场增长潜力的公司，目前的估值和成长性较为匹配，值得长期关注和持有。</p></div></div><div class="mreply"><div class="mh"><span class="who">芒格</span><span class="mscore">70</span></div><div class="md"><h4>结论</h4><p>我会给耐克（NKE）一个谨慎乐观的评价，评级为70分。这个评分反映了我对耐克长期竞争优势的认可，同时也认识到当前存在的一些风险因素。</p><h4>理由</h4><p>首先，让我们从逆向思考的角度出发。假设耐克在未来10年失败了，最可能的原因是什么？我认为主要风险在于：1）品牌影响力的削弱；2）供应链管理的重大失误；3）过度依赖中国市场而忽视其他新兴市场。</p><p>然而，从多元思维模型的角度分析，耐克的优势是显而易见的：</p><ul><li><strong>品牌护城河</strong>：耐克拥有全球最强的品牌影响力之一，这种无形资产是竞争对手难以复制的。品牌价值不仅体现在消费者忠诚度上，也体现在与顶级运动员和赛事的长期合作关系中。</li></ul><ul><li><strong>行业增长潜力</strong>：全球运动服饰市场预计将持续增长，这为耐克提供了充足的发展空间。特别是在健康意识提升和运动参与度增加的背景下，耐克的核心业务具有长期增长潜力。</li></ul><ul><li><strong>财务稳健性</strong>：20.65倍的市盈率（PE）和22.14%的净资产收益率（ROE）表明公司盈利能力强劲，且估值相对合理。</li></ul><ul><li><strong>创新能力</strong>：耐克持续在产品研发和数字化转型方面投入，这使其能够保持市场竞争力。</li></ul><p>然而，我们也要避免愚蠢的错误：</p><ul><li><strong>供应链风险</strong>：耐克的生产高度依赖亚洲市场，特别是中国的制造业。如果地缘政治紧张局势加剧或供应链中断，可能会严重影响其运营。</li></ul><ul><li><strong>过度依赖中国市场</strong>：虽然中国市场增长迅速，但也存在政策风险和消费者偏好变化的风险。耐克需要多元化其市场策略。</li></ul><h4>风险/行动建议</h4><ul><li><strong>密切关注供应链管理</strong>：投资者应密切关注耐克的供应链策略，包括其对单一市场的依赖程度和应对供应链中断的应急计划。</li></ul><ul><li><strong>评估中国市场风险</strong>：耐克需要在中国市场保持平衡，既要抓住增长机会，又要防范潜在的政策风险。投资者应关注耐克在中国的销售数据和市场策略调整。</li></ul><ul><li><strong>长期持有策略</strong>：鉴于耐克的品牌实力和行业地位，建议采取长期持有的投资策略。短期波动可能会提供买入机会，但投资者应保持耐心，等待合适的入场时机。</li></ul><ul><li><strong>多元化投资组合</strong>：虽然耐克是一个优质的投资标的，但为了降低单一股票的风险，建议将其作为多元化投资组合的一部分，而不是全部押注。</li></ul><p>总之，耐克是一个值得关注的投资标的，但投资者需要保持警惕，密切关注其供应链管理和中国市场表现。</p></div></div></div>
+<div class="panel"><h2>分析师报告<span class="sub">2 篇</span></h2><details open><summary>市场面分析</summary><div class="body"><div class="md"><h4>NKE NKE 市场面分析</h4><ul><li>红黑榜多空分数：多头 80 / 空头 20，分差 60。</li><li>当前价格：43.38。</li><li>当前交易评级：Buy。</li><li>值得加仓区间：42.06 - 43.80。</li><li>目标价格：48.57。</li><li>市场愿意给溢价的原因：品牌全球影响力强；运动服饰市场增长。</li><li>当前主要压制因素：供应链风险；地缘政治影响。</li></ul></div></div></details><details open><summary>基本面分析</summary><div class="body"><div class="md"><h4>NKE NKE 基本面分析</h4><ul><li>报告期：暂无。</li><li>PE(TTM)：20.66。</li><li>PB：4.33。</li><li>ROE：22.14%。</li><li>营收同比：-110.00%。</li><li>归母净利润同比：428.00%。</li><li>核心判断：盈利能力处于可接受区间；利润端保持扩张。</li></ul></div></div></details></div>
+<div class="panel"><h2>研究与计划</h2>
+<details><summary>基本面摘要</summary><div class="body"><div class="md"><h3>核心财务快照</h3><ul><li>报告期: 数据缺失</li><li>当前股价: 43.38 元</li><li>总市值: 643.62 亿元</li><li>PE (TTM): 20.66</li><li>PB: 4.33</li><li>PS (TTM): 数据缺失</li><li>营业总收入(报告期): 数据缺失 亿元</li><li>营收同比增长率: -110.00%</li><li>归母净利润(报告期): 数据缺失 亿元</li><li>归母净利润同比增长率: 428.00%</li><li>ROE (TTM/估算): 22.14%</li><li>资产负债率: 数据缺失</li><li>经营性现金流 / 归母净利润: 数据缺失</li></ul><h4>缺失字段</h4><ul><li>PS(TTM), 营业总收入, 归母净利润, 资产负债率, 经营性现金流与归母净利润比值</li></ul></div></div></details>
+<details><summary>研究计划</summary><div class="body"><div class="md"><h4>NKE NKE 研究摘要</h4><ul><li>红黑榜结论: Buy</li><li>多头/空头: 80/20</li><li>正向信号: ROE 22.14%；归母净利润同比 428.00%；PE(TTM) 20.65；PB 4.33</li><li>风险信号: 营收同比 -110.00%</li><li>榜单看多理由: 品牌全球影响力强；运动服饰市场增长</li><li>榜单风险提示: 供应链风险；地缘政治影响</li></ul></div></div></details>
+<details><summary>交易计划</summary><div class="body"><div class="md"><h4>NKE NKE 交易计划</h4><ul><li>评级: Buy</li><li>当前价格: 43.37</li><li>值得加仓区间: 42.06 - 43.80</li><li>目标价格: 48.57</li><li>止损位: 39.90</li><li>备注: 当前为缓存降级交易卡，后续若完整 TradingAgent 结果生成，将自动覆盖。</li></ul></div></div></details>
+<details><summary>交易决策</summary><div class="body"><div class="md"><p>Buy</p><p>NKE NKE 当前使用红黑榜缓存结果生成兜底交易卡。多头 80 / 空头 20，分差 60。当前尚未取得完整 TradingAgent 长文决策，但榜单分数、财务快照和大师观点已经足够生成基础交易建议。</p></div></div></details>
+</div>
+<div class="panel"><h2>多空逻辑</h2><div class="pts"><div class="h bull">看多逻辑</div><div class="md"><p>品牌全球影响力强</p><p>运动服饰市场增长</p></div></div><div class="pts"><div class="h bear">看空逻辑</div><div class="md"><p>供应链风险</p><p>地缘政治影响</p></div></div></div>
+<div class="panel"><h2>伯克希尔研究</h2><p><strong>耐克是一家拥有强大品牌护城河、稳健财务表现和长期增长潜力的全球运动服饰巨头，但需关注竞争加剧和供应链风险。</strong></p><p>伯克希尔综合评分：<strong>4.0</strong></p><div class="md"><p>{&quot;verdict&quot;: &quot;买入&quot;, &quot;conservative_tip&quot;: &quot;建议在PE TTM低于25倍时买入。&quot;, &quot;moderate_tip&quot;: &quot;建议在PE TTM低于30倍时买入。&quot;, &quot;aggressive_tip&quot;: &quot;建议在PE TTM低于35倍时买入。&quot;, &quot;catalysts_plus&quot;: [&quot;强劲的季度业绩报告。&quot;, &quot;成功的数字化转型进展。&quot;, &quot;供应链问题缓解。&quot;], &quot;catalysts_minus&quot;: [&quot;竞争加剧导致市场份额下降。&quot;, &quot;供应链中断或地缘政治问题恶化。&quot;, &quot;消费者偏好显著变化。&quot;]}</p></div></div>
+<div class="panel news"><h2>最新资讯</h2><div class="md"><p>利空新闻较多，共6条利空，3条利好，3条中性。</p></div><div class="nitem"><div class="t">NKE Stock Ticks Higher After Hours on Second Round of Layoffs In 2026</div><div class="s">Stocktwits · 利空</div></div><div class="nitem"><div class="t">Opal Capital LLC Has $3.66 Million Holdings in NIKE, Inc. $NKE</div><div class="s">MarketBeat · 利好</div></div><div class="nitem"><div class="t">Investors Heavily Search NIKE, Inc. (NKE): Here is What You Need to Know</div><div class="s">Yahoo Finance · 中性</div></div><div class="nitem"><div class="t">Is NIKE (NKE) Fully Priced After Its China Distribution Reset?</div><div class="s">simplywall.st · 利空</div></div><div class="nitem"><div class="t">NIKE, Inc. ($NKE) CEO 2026 Pay Revealed</div><div class="s">Quiver Quantitative · 中性</div></div><div class="nitem"><div class="t">NKE, OWL, SMR Stocks Hit 52-Week Lows Last Week: What Drove The Selloff?</div><div class="s">Stocktwits · 利空</div></div><div class="nitem"><div class="t">Nike results top estimates even as China sales drop 12%; retailer expects $986 million tariff refund</div><div class="s">CNBC · 利好</div></div><div class="nitem"><div class="t">OMERS ADMINISTRATION Corp Sells 2,469,669 Shares of NIKE, Inc. $NKE</div><div class="s">MarketBeat · 利空</div></div></div>
+<footer>稳健理财Agent · 红黑榜每日归档 · 红榜 #8 · 仅供研究，不构成投资建议</footer>
+</div></body>
+</html>
