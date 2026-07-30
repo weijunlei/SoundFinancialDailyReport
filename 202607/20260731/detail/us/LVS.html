@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>LVS(LVS) 黑榜 2026-07-30</title>
+<style>
+:root{--red:#d8342c;--redbg:#fdecea;--green:#1a9e54;--ink:#1c2230;--muted:#6b7385;
+--line:#e7e9ef;--card:#fff;--bg:#f4f6fa;--chip:#eef1f6;--dark:#23262d;--darkbg:#ececef}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",
+"Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);
+line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 16px 64px}
+header.top{background:linear-gradient(135deg,#1c2230,#2c3550);color:#fff;border-radius:14px;
+padding:22px 24px;margin-bottom:20px;box-shadow:0 6px 24px rgba(20,26,46,.12)}
+header.top h1{margin:0 0 6px;font-size:24px;letter-spacing:.5px}
+header.top .sub{opacity:.85;font-size:13px}
+header.top .sub b{color:#ffd166;font-weight:600}
+nav.mkt{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;
+background:rgba(244,246,250,.92);backdrop-filter:blur(6px);padding:10px 0;margin-bottom:14px}
+nav.mkt a{text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);
+padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600}
+nav.mkt a:hover{border-color:var(--red);color:var(--red)}
+.summary{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.summary .chip{background:var(--card);border:1px solid var(--line);border-radius:10px;
+padding:8px 12px;font-size:12px;color:var(--muted)}
+.summary .chip b{color:var(--ink);font-size:14px;margin-left:4px}
+section.board{margin:26px 0}
+.board-title{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:19px}
+.board-title .dot{width:10px;height:10px;border-radius:50%}
+.board-title.red .dot{background:var(--red)}
+.board-title.black .dot{background:var(--dark)}
+.board-title small{color:var(--muted);font-weight:400;font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+position:relative;transition:box-shadow .15s}
+.card:hover{box-shadow:0 4px 18px rgba(20,26,46,.08)}
+.card.red{border-top:3px solid var(--red)}
+.card.black{border-top:3px solid var(--dark)}
+.rank{position:absolute;top:10px;right:12px;font-size:26px;font-weight:800;color:#eceff5}
+.card.red .rank{color:#fbdcD9}
+.nm{font-size:16px;font-weight:700}
+.nm .tk{color:var(--muted);font-weight:500;font-size:12px;margin-left:6px}
+.tag{display:inline-block;background:var(--chip);color:var(--muted);border-radius:6px;
+padding:1px 7px;font-size:11px;margin:6px 6px 0 0}
+.price-row{display:flex;align-items:baseline;gap:10px;margin:10px 0 4px}
+.price{font-size:24px;font-weight:800}
+.pct{font-size:14px;font-weight:700;padding:2px 8px;border-radius:8px}
+.up{color:var(--red)}.down{color:var(--green)}.flat{color:var(--muted)}
+.pct.up{background:var(--redbg)}.pct.down{background:#e2f4e9}.pct.flat{background:var(--chip)}
+.psrc{font-size:11px;color:var(--muted);margin-left:auto}
+.scores{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.scores span{background:var(--chip);border-radius:6px;padding:2px 8px;font-size:11px;color:var(--muted)}
+.scores span b{color:var(--ink)}
+.pts{font-size:12.5px;margin:8px 0 0}
+.pts .h{font-weight:700;font-size:12px;margin:6px 0 2px}
+.pts .h.bull{color:var(--red)}.pts .h.bear{color:var(--green)}
+.pts ul{margin:2px 0 4px;padding-left:18px;color:#3a4152}
+.pts li{margin:1px 0}
+.masters{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:11px;color:var(--muted)}
+.masters b{color:var(--ink)}
+.summ{font-size:12.5px;color:#3a4152;background:#fafbfd;border:1px solid var(--line);
+border-radius:8px;padding:8px 10px;margin-top:8px}
+.empty{color:var(--muted);background:var(--card);border:1px dashed var(--line);
+border-radius:10px;padding:18px;text-align:center}
+footer{margin-top:34px;color:var(--muted);font-size:12px;text-align:center;line-height:1.8}
+a.lnk{color:var(--red);text-decoration:none}
+/* ── detail page ── */
+.backbar{margin-bottom:14px;font-size:13px}
+.backbar a{color:var(--muted);text-decoration:none;margin-right:14px}
+.backbar a:hover{color:var(--red)}
+.badge{display:inline-block;border-radius:6px;padding:2px 10px;font-size:12px;font-weight:700;margin-right:8px}
+.badge.red{background:var(--red);color:#fff}.badge.black{background:var(--dark);color:#fff}
+.trade{display:flex;flex-wrap:wrap;gap:10px;background:linear-gradient(135deg,#2c3550,#1c2230);
+color:#fff;border-radius:12px;padding:16px 18px;margin:16px 0}
+.trade .cell{min-width:120px}
+.trade .k{font-size:11px;opacity:.75}
+.trade .v{font-size:18px;font-weight:800;margin-top:2px}
+.trade .v.buy{color:#7ee2a8}.trade .v.sell{color:#ff9d97}.trade .v.hold{color:#ffd166}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0}
+.mgrid .m{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.mgrid .m .k{font-size:11px;color:var(--muted)}
+.mgrid .m .v{font-size:16px;font-weight:700;margin-top:2px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.panel>h2{margin:0 0 12px;font-size:17px}
+.panel>h2 .sub{font-size:12px;color:var(--muted);font-weight:400;margin-left:8px}
+.mreply{border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;
+padding:12px 14px;margin:10px 0;background:#fff}
+.mreply .mh{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.mreply .mh .who{font-weight:700;font-size:14px}
+.mreply .mh .mscore{margin-left:auto;background:var(--chip);border-radius:6px;padding:1px 8px;font-size:12px;font-weight:700}
+.md h2,.md h3,.md h4,.md h5{margin:12px 0 6px;font-size:15px}
+.md p{margin:6px 0;font-size:13.5px;color:#2c3345}
+.md ul{margin:6px 0;padding-left:20px;font-size:13.5px;color:#2c3345}
+.md li{margin:3px 0}
+.md strong{color:var(--ink)}
+details{border:1px solid var(--line);border-radius:10px;background:#fff;margin:10px 0;padding:0}
+details>summary{cursor:pointer;padding:12px 16px;font-weight:700;font-size:14px;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary:before{content:"▸ ";color:var(--red)}
+details[open]>summary:before{content:"▾ "}
+details>.body{padding:0 16px 14px;border-top:1px dashed var(--line)}
+.ychip{display:inline-block;background:var(--chip);border-radius:8px;padding:4px 10px;font-size:12px;margin:3px 6px 3px 0}
+.ychip b{font-size:13px}
+.news .nitem{border-top:1px dashed var(--line);padding:8px 0;font-size:13px}
+.news .nitem .t{font-weight:600}
+.news .nitem .s{color:var(--muted);font-size:12px}
+/* ── root landing page ── */
+.hero{padding:30px 26px}
+.hero-kicker{color:#ffd166;font-size:12px;font-weight:700;letter-spacing:2px;
+text-transform:uppercase;margin-bottom:8px}
+.hero h1{font-size:30px;margin:0 0 10px}
+.day-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.day-card{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);
+border-radius:12px;padding:14px 16px;transition:all .15s}
+.day-card:hover{border-color:var(--red);box-shadow:0 4px 16px rgba(216,52,44,.12);transform:translateY(-2px)}
+.day-card .d{font-weight:800;font-size:15px;color:var(--ink);display:flex;align-items:center;gap:8px}
+.day-card .m{margin-top:8px;display:flex;gap:6px}
+.day-card .m span{background:var(--chip);color:var(--muted);border-radius:6px;
+padding:2px 8px;font-size:11px}
+.latest-badge{background:var(--red);color:#fff;border-radius:6px;padding:1px 7px;
+font-size:10px;font-weight:700}
+</style>
+</head>
+<body><div class="wrap">
+<div class="backbar"><a href="../index.html">← 总览</a><a href="../us.html">← 美股榜单</a></div>
+<header class="top">
+  <h1><span class="badge black">黑榜 #4</span>LVS<span class="tk" style="opacity:.7;font-size:15px;font-weight:400;margin-left:8px">LVS</span></h1>
+  <div class="sub">美股 ·  · 榜单日期 <b>2026-07-30</b> · 盘价采集 <b>2026-07-31 00:41:00</b></div>
+  <div class="price-row" style="margin-top:12px">
+    <span class="price" style="color:#fff">$49.63</span>
+    <span class="pct up">+2.22%</span>
+    <span class="psrc" style="color:rgba(255,255,255,.6)">实时</span>
+  </div>
+  <div class="scores" style="margin-top:10px">
+    <span>综合 <b>36.2</b></span>
+    <span>多头 <b>40</b></span>
+    <span>空头 <b>80</b></span>
+    <span>大师均值 <b>30</b></span>
+    <span>信号 <b>negative</b></span>
+  </div>
+</header>
+<div class="trade"><div class="cell"><div class="k">交易评级</div><span class="v hold">Reduce</span></div><div class="cell"><div class="k">加仓区间</div><span class="v">45.65 ~ 47.59</span></div><div class="cell"><div class="k">伯克希尔</div><span class="v">观望</span></div><div class="cell"><div class="k">伯克希尔分</div><span class="v">3.50</span></div></div>
+<div class="panel"><h2>财务指标</h2><div class="mgrid"><div class="m"><div class="k">市盈率 PE</div><div class="v">18.82</div></div><div class="m"><div class="k">市净率 PB</div><div class="v">26.87</div></div><div class="m"><div class="k">ROE</div><div class="v">122.9%</div></div><div class="m"><div class="k">总市值</div><div class="v">322</div></div><div class="m"><div class="k">营收同比</div><div class="v">-70.0%</div></div><div class="m"><div class="k">净利同比</div><div class="v">-19.8%</div></div></div></div>
+<div class="panel"><h2>历史收益</h2><span class="ychip">近1月 <b class="up">+5.13%</b></span><span class="ychip">近6月 <b class="down">-7.91%</b></span><span class="ychip">近1年 <b class="down">-8.33%</b></span><span class="ychip">近5年 <b class="up">+14.66%</b></span></div>
+<div class="panel"><h2>大师圆桌<span class="sub">5 位</span></h2><div class="mreply"><div class="mh"><span class="who">段永平</span><span class="mscore">30</span></div><div class="md"><h4>结论：</h4><p>我不建议投资LVS（Las Vegas Sands Corp），至少在目前阶段不建议。</p><h4>理由：</h4><p>首先，从本分的角度出发，我们要投资的是我们看得懂的好生意。LVS作为一家赌场和度假村运营商，其核心业务依赖于亚洲市场，尤其是澳门和新加坡的博彩业。然而，目前来看，亚洲市场的复苏预期并不够强劲。尽管有新的赌场开业，但这并不能完全抵消疫情带来的长期影响。</p><p>其次，从财务数据来看，LVS的营收同比下降了70%，净利润同比下降了19.8%，这表明其业务仍然受到疫情的严重影响。尽管其净资产收益率（ROE）高达122.869%，但这主要是由于其市净率（PB）高达26.87327，说明市场对其资产的估值已经非常高。</p><p>此外，监管风险也是一个不容忽视的因素。博彩业是一个受到严格监管的行业，任何政策变化都可能导致公司运营环境的重大变化。</p><h4>风险/行动建议：</h4><ul><li><strong>疫情影响</strong>：疫情对全球旅游和博彩业的影响是深远的。尽管有复苏的迹象，但复苏的速度和力度仍然存在不确定性。建议密切关注亚洲市场的疫情控制情况和旅游复苏数据。</li></ul><ul><li><strong>监管风险</strong>：博彩业的监管政策变化可能会对公司产生重大影响。建议密切关注澳门和新加坡的监管政策变化，以及全球范围内的博彩业监管趋势。</li></ul><ul><li><strong>市场估值</strong>：目前LVS的市净率高达26.87327，说明市场对其资产的估值已经非常高。如果公司不能在未来几年内实现强劲的盈利增长，其股价可能会面临下行压力。建议在考虑投资时，谨慎评估其估值水平。</li></ul><ul><li><strong>长期持有</strong>：如果决定投资LVS，需要有长期持有的准备，并做好应对市场波动的心理准备。博彩业是一个周期性很强的行业，短期内可能会经历较大的波动。</li></ul><p>总的来说，目前LVS并不符合我对于好生意的标准，建议投资者谨慎对待。</p></div></div><div class="mreply"><div class="mh"><span class="who">巴菲特</span><span class="mscore">25</span></div><div class="md"><p>各位同仁，今天我们来讨论一下LVS这只股票。我的结论是，目前我对LVS持谨慎态度，虽然它有一定的吸引力，但风险因素不容忽视。</p><p>首先，让我们来看一下LVS的优势。作为一家博彩公司，LVS在亚洲市场拥有强大的品牌影响力和市场份额。随着亚洲市场的逐步复苏，特别是中国澳门市场的回暖，LVS有望从中受益。此外，公司正在推进新赌场的开业计划，这将为收入增长提供新的动力。这些因素构成了公司一定的护城河，特别是在亚洲市场的领先地位。</p><p>然而，自由现金流和盈利能力方面存在隐忧。尽管LVS的ROE高达122.87%，但这是由于疫情期间的财务杠杆所致，而非可持续的盈利能力。公司的营收同比下降了70%，净利润同比下降了19.8%，显示出疫情对其业务造成了严重冲击。尽管市场预期未来会有所改善，但这种复苏的节奏和力度仍存在不确定性。</p><p>在估值方面，当前18.82倍的市盈率和26.87倍的市净率看起来并不便宜，特别是在考虑到公司面临的多重风险时。其中最大的风险来自于监管环境的不确定性。博彩业一直受到严格监管，而任何政策变化都可能对LVS的运营产生重大影响。此外，疫情的反复也可能继续影响其业务复苏。</p><p>基于以上分析，我建议采取以下行动：</p><ul><li>密切关注亚洲市场的复苏情况，特别是澳门市场的政策动向。如果复苏势头强劲且政策环境稳定，可以考虑逐步建仓。</li></ul><ul><li>重点关注新赌场的开业情况和初期运营表现。如果新赌场能够成功吸引客流并实现盈利，这将是一个积极的信号。</li></ul><ul><li>持续评估监管风险。如果出现新的监管政策或政策收紧的迹象，应及时调整投资策略。</li></ul><ul><li>在当前价位保持谨慎，不要急于买入。待公司自由现金流状况改善、盈利能力更加稳定后再做考虑。</li></ul><p>总的来说，LVS是一家具有潜力的公司，但在当前环境下，我们需要更加谨慎地评估其风险和回报。只有当风险因素得到充分控制，且估值更具吸引力时，才是一个更好的投资时机。</p></div></div><div class="mreply"><div class="mh"><span class="who">达利欧</span><span class="mscore">40</span></div><div class="md"><h4>结论</h4><p>关于LVS（拉斯维加斯金沙集团），我的观点是谨慎乐观，但需要非常严格的风险管理。总体而言，我对这个标的持中性偏谨慎的态度。</p><h4>理由</h4><p>首先，从宏观框架来看，亚洲市场的复苏预期是一个重要的积极因素。随着疫情影响的逐渐减弱，亚洲地区的旅游和博彩业确实有回暖的趋势。新赌场的开业也为公司带来了新的增长点，这些是支持LVS股价的正面因素。</p><p>然而，从风险平衡的角度来看，目前的负面因素更为显著。首先，疫情的影响尚未完全消散，全球经济复苏的步伐仍然不确定。其次，监管风险是一个不容忽视的问题，尤其是在亚洲市场，博彩业的监管环境可能会发生变化，这对公司来说是一个重要的潜在风险。</p><p>从财务指标来看，LVS的当前市盈率（PE）为18.82，市净率（PB）为26.87，虽然市盈率不算高，但市净率显著偏高，表明市场对其未来增长有较高的预期。然而，营收同比下降70%，净利润同比下降19.8%，这些数据表明公司目前面临较大的经营压力。</p><h4>风险/行动建议</h4><ul><li><strong>风险管理</strong>：鉴于疫情和监管风险的不确定性，建议在投资组合中保持较低的配置比例。可以考虑通过期权策略来对冲下行风险。</li></ul><ul><li><strong>去相关性</strong>：在投资组合中，LVS应与其他行业或地区的资产保持一定的去相关性，以降低整体组合的风险。例如，可以考虑与科技股或消费股进行搭配。</li></ul><ul><li><strong>持续监控</strong>：密切关注亚洲市场的复苏情况和监管政策的变化。如果亚洲市场的复苏速度超过预期，或者监管环境趋于稳定，可以考虑适当增加配置。</li></ul><ul><li><strong>长期视角</strong>：从长期来看，博彩业仍然具有增长潜力。如果能够承受短期波动，可以考虑在股价回调时逐步建仓，以较低的成本获取长期收益。</li></ul><p>总之，LVS在当前环境下既有机遇也有挑战。投资者应根据自身的风险承受能力和投资目标，谨慎做出决策。</p></div></div><div class="mreply"><div class="mh"><span class="who">林奇</span><span class="mscore">35</span></div><div class="md"><p>各位同行，今天我们来聊聊拉斯维加斯金沙集团（LVS）。我的结论是：目前我对LVS持观望态度，虽然它有一些吸引人的亮点，但整体来看风险偏高。</p><p>首先说说为什么我会关注这家公司。大家都知道，LVS的主要业务在亚洲，尤其是澳门和新加坡。随着亚洲市场的逐步复苏，尤其是澳门赌场的重新开放，这是一个积极的信号。此外，LVS计划在新加坡开设新的赌场，这可能会带来新的收入来源。这些都是支持买入的理由。</p><p>然而，我们不能忽视当前存在的重大风险。首先，疫情的影响仍然存在，尤其是对旅游和娱乐行业的冲击。虽然亚洲市场在复苏，但全球范围内的疫情反复仍然是一个不确定因素。其次，监管风险不容小觑。博彩业一直受到严格监管，任何政策变化都可能导致公司盈利大幅波动。</p><p>从估值角度来看，LVS的市盈率（PE）为18.8，看起来并不算高，但市净率（PB）高达26.9，表明市场对其资产质量的预期非常高。然而，从业绩来看，营收同比下降了70%，净利润下降了19.8%，这与高PB并不匹配。净资产收益率（ROE）虽然高达122.9%，但这是由于疫情导致的资产减值所致，并不代表真实的盈利能力。</p><p>综合考虑，我认为LVS目前的情况可以用&quot;景气验证不足，成长与估值不匹配&quot;来形容。虽然有复苏预期，但实际业绩尚未体现，而估值已经反映了过多的乐观预期。</p><p>我的建议是：对于风险承受能力较低的投资者，建议暂时观望，等待亚洲市场复苏的进一步确认以及新赌场开业后的实际表现。如果你是风险偏好较高的投资者，可以考虑在股价回调时小规模建仓，但一定要做好风险控制，随时准备应对可能的市场波动。</p><p>总之，LVS有潜力成为一只十倍股，但目前时机尚未成熟。我们需要更多的景气验证，才能做出更稳妥的投资决策。</p></div></div><div class="mreply"><div class="mh"><span class="who">芒格</span><span class="mscore">20</span></div><div class="md"><p>各位同仁，今天我们就LVS的现状做一个逆向思考。</p><p>首先，我的结论很明确：LVS目前不是一个值得投资的选择。这个结论是基于对当前形势的冷静分析，而非情绪化的判断。</p><p>让我从几个角度来解释这个观点：</p><ul><li>商业模式存在根本性缺陷。LVS严重依赖线下赌场业务，而这种商业模式已经被证明是脆弱的。即使亚洲市场复苏预期和新赌场开业这些利好因素存在，也无法改变其商业模式本质上的脆弱性。</li></ul><ul><li>财务数据令人担忧。当前18.82倍的市盈率看似合理，但营收同比下降70%，净利润同比下降19.8%，这些数字揭示了公司面临的严峻挑战。更令人不安的是，净资产收益率(ROE)高达122.87%，这并非因为盈利能力强劲，而是因为股东权益大幅缩水。</li></ul><ul><li>监管风险始终存在。博彩业天生就面临较高的监管风险，特别是在当前地缘政治环境复杂多变的情况下，这种风险更加突出。</li></ul><ul><li>疫情的影响仍未完全消散。虽然市场普遍预期复苏，但实际情况可能比预期更为复杂。</li></ul><p>基于以上分析，我建议采取以下行动：</p><p>首先，要避免愚蠢的错误，即不要因为股价看似便宜就贸然买入。投资的第一原则是不要亏钱。</p><p>其次，如果一定要参与这个领域，建议采取以下策略：</p><ul><li>密切关注亚洲市场的复苏情况，特别是中国大陆和澳门地区的政策变化。</li><li>深入研究新开业的赌场项目的具体情况，包括地理位置、目标客户群和竞争环境。</li><li>持续跟踪监管政策的变化，做好风险对冲准备。</li><li>考虑采取对冲策略，比如同时持有一些受疫情影响较小、且与博彩业相关性较低的行业股票。</li></ul><p>最后，我想强调的是，在投资决策中，质量始终应该优先于价格。LVS目前面临的问题不是暂时的，而是结构性的。我们需要更有耐心，等待更好的机会出现。</p></div></div></div>
+<div class="panel"><h2>分析师报告<span class="sub">2 篇</span></h2><details open><summary>市场面分析</summary><div class="body"><div class="md"><h4>LVS LVS 市场面分析</h4><ul><li>红黑榜多空分数：多头 40 / 空头 80，分差 -40。</li><li>当前价格：48.56。</li><li>当前交易评级：Reduce。</li><li>值得加仓区间：45.65 - 47.59。</li><li>风险控制位：42.73。</li><li>市场愿意给溢价的原因：亚洲市场复苏预期；新赌场开业。</li><li>当前主要压制因素：疫情影响；监管风险。</li></ul></div></div></details><details open><summary>基本面分析</summary><div class="body"><div class="md"><h4>LVS LVS 基本面分析</h4><ul><li>报告期：暂无。</li><li>PE(TTM)：18.82。</li><li>PB：26.87。</li><li>ROE：122.87%。</li><li>营收同比：-70.00%。</li><li>归母净利润同比：-19.80%。</li><li>核心判断：盈利能力处于可接受区间。</li></ul></div></div></details></div>
+<div class="panel"><h2>研究与计划</h2>
+<details><summary>基本面摘要</summary><div class="body"><div class="md"><h3>核心财务快照</h3><ul><li>报告期: 数据缺失</li><li>当前股价: 48.56 元</li><li>总市值: 321.78 亿元</li><li>PE (TTM): 18.82</li><li>PB: 26.87</li><li>PS (TTM): 数据缺失</li><li>营业总收入(报告期): 数据缺失 亿元</li><li>营收同比增长率: -70.00%</li><li>归母净利润(报告期): 数据缺失 亿元</li><li>归母净利润同比增长率: -19.80%</li><li>ROE (TTM/估算): 122.87%</li><li>资产负债率: 数据缺失</li><li>经营性现金流 / 归母净利润: 数据缺失</li></ul><h4>缺失字段</h4><ul><li>PS(TTM), 营业总收入, 归母净利润, 资产负债率, 经营性现金流与归母净利润比值</li></ul></div></div></details>
+<details><summary>研究计划</summary><div class="body"><div class="md"><h4>LVS LVS 研究摘要</h4><ul><li>红黑榜结论: Reduce</li><li>多头/空头: 40/80</li><li>正向信号: ROE 122.87%；PE(TTM) 18.82；PB 26.87</li><li>风险信号: 营收同比 -70.00%；归母净利润同比 -19.80%</li><li>榜单看多理由: 亚洲市场复苏预期；新赌场开业</li><li>榜单风险提示: 疫情影响；监管风险</li></ul></div></div></details>
+<details><summary>交易计划</summary><div class="body"><div class="md"><h4>LVS LVS 交易计划</h4><ul><li>评级: Reduce</li><li>当前价格: 48.56</li><li>值得加仓区间: 43.70 - 45.65</li><li>目标价格: 46.13</li><li>止损位: 42.73</li><li>备注: 当前为缓存降级交易卡，后续若完整 TradingAgent 结果生成，将自动覆盖。</li></ul></div></div></details>
+<details><summary>交易决策</summary><div class="body"><div class="md"><p>Reduce</p><p>LVS LVS 当前使用红黑榜缓存结果生成兜底交易卡。多头 40 / 空头 80，分差 -40。当前尚未取得完整 TradingAgent 长文决策，但榜单分数、财务快照和大师观点已经足够生成基础交易建议。</p></div></div></details>
+</div>
+<div class="panel"><h2>多空逻辑</h2><div class="pts"><div class="h bull">看多逻辑</div><div class="md"><p>亚洲市场复苏预期</p><p>新赌场开业</p></div></div><div class="pts"><div class="h bear">看空逻辑</div><div class="md"><p>疫情影响</p><p>监管风险</p></div></div></div>
+<div class="panel"><h2>伯克希尔研究</h2><p><strong>LVS是一家具有强大品牌和规模优势的博彩与度假村巨头，但面临行业周期性波动和地缘政治风险，当前估值合理但需谨慎关注复苏进程。</strong></p><p>伯克希尔综合评分：<strong>3.5</strong></p><div class="md"><p>{&quot;verdict&quot;: &quot;观望&quot;, &quot;conservative_tip&quot;: &quot;建议在60美元以下买入，止损位55美元。&quot;, &quot;moderate_tip&quot;: &quot;建议在65美元附近买入，目标价75美元。&quot;, &quot;aggressive_tip&quot;: &quot;建议在70美元以上买入，目标价85美元。&quot;, &quot;catalysts_plus&quot;: [&quot;澳门博彩牌照续期顺利。&quot;, &quot;全球经济复苏超预期。&quot;, &quot;亚太地区旅游市场强劲反弹。&quot;], &quot;catalysts_minus&quot;: [&quot;疫情反复导致旅行限制。&quot;, &quot;地缘政治紧张局势升级。&quot;, &quot;政策收紧影响博彩行业。&quot;]}</p></div></div>
+<div class="panel news"><h2>最新资讯</h2><div class="md"><p>整体情绪偏负面，共3条利空，2条利好，5条中性。</p></div><div class="nitem"><div class="t">Las Vegas Sands Corp. $LVS Shares Sold by The Manufacturers Life Insurance Company</div><div class="s">MarketBeat · 利空</div></div><div class="nitem"><div class="t">Is Las Vegas Sands (LVS) Undervalued Following Weak Earnings And Heavy Resort Spending?</div><div class="s">Yahoo Finance · 中性</div></div><div class="nitem"><div class="t">Las Vegas Sands Corp. Earnings Missed Analyst Estimates: Here&#x27;s What Analysts Are Forecasting Now</div><div class="s">simplywall.st · 利空</div></div><div class="nitem"><div class="t">Las Vegas Sands Reports Second Quarter 2026 Results</div><div class="s">PR Newswire · 中性</div></div><div class="nitem"><div class="t">Greater Physician Knowledge Linked to Lower Use of Low-Value Services</div><div class="s">Infectious Disease Advisor · 中性</div></div><div class="nitem"><div class="t">LVS Advisory Q1 2026 Letter</div><div class="s">Seeking Alpha · 中性</div></div><div class="nitem"><div class="t">Is It Too Late to Buy Las Vegas Sands Corp (LVS) After 3.6% Rall</div><div class="s">GuruFocus · 中性</div></div><div class="nitem"><div class="t">(LVS) Price Dynamics and Execution-Aware Positioning</div><div class="s">Stock Traders Daily · 中性</div></div></div>
+<footer>稳健理财Agent · 红黑榜每日归档 · 黑榜 #4 · 仅供研究，不构成投资建议</footer>
+</div></body>
+</html>
