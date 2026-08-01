@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ASMPT(00522) 红榜 2026-08-01</title>
+<style>
+:root{--red:#d8342c;--redbg:#fdecea;--green:#1a9e54;--ink:#1c2230;--muted:#6b7385;
+--line:#e7e9ef;--card:#fff;--bg:#f4f6fa;--chip:#eef1f6;--dark:#23262d;--darkbg:#ececef}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",
+"Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);
+line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 16px 64px}
+header.top{background:linear-gradient(135deg,#1c2230,#2c3550);color:#fff;border-radius:14px;
+padding:22px 24px;margin-bottom:20px;box-shadow:0 6px 24px rgba(20,26,46,.12)}
+header.top h1{margin:0 0 6px;font-size:24px;letter-spacing:.5px}
+header.top .sub{opacity:.85;font-size:13px}
+header.top .sub b{color:#ffd166;font-weight:600}
+nav.mkt{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;
+background:rgba(244,246,250,.92);backdrop-filter:blur(6px);padding:10px 0;margin-bottom:14px}
+nav.mkt a{text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);
+padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600}
+nav.mkt a:hover{border-color:var(--red);color:var(--red)}
+.summary{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.summary .chip{background:var(--card);border:1px solid var(--line);border-radius:10px;
+padding:8px 12px;font-size:12px;color:var(--muted)}
+.summary .chip b{color:var(--ink);font-size:14px;margin-left:4px}
+section.board{margin:26px 0}
+.board-title{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:19px}
+.board-title .dot{width:10px;height:10px;border-radius:50%}
+.board-title.red .dot{background:var(--red)}
+.board-title.black .dot{background:var(--dark)}
+.board-title small{color:var(--muted);font-weight:400;font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+position:relative;transition:box-shadow .15s}
+.card:hover{box-shadow:0 4px 18px rgba(20,26,46,.08)}
+.card.red{border-top:3px solid var(--red)}
+.card.black{border-top:3px solid var(--dark)}
+.rank{position:absolute;top:10px;right:12px;font-size:26px;font-weight:800;color:#eceff5}
+.card.red .rank{color:#fbdcD9}
+.nm{font-size:16px;font-weight:700}
+.nm .tk{color:var(--muted);font-weight:500;font-size:12px;margin-left:6px}
+.tag{display:inline-block;background:var(--chip);color:var(--muted);border-radius:6px;
+padding:1px 7px;font-size:11px;margin:6px 6px 0 0}
+.price-row{display:flex;align-items:baseline;gap:10px;margin:10px 0 4px}
+.price{font-size:24px;font-weight:800}
+.pct{font-size:14px;font-weight:700;padding:2px 8px;border-radius:8px}
+.up{color:var(--red)}.down{color:var(--green)}.flat{color:var(--muted)}
+.pct.up{background:var(--redbg)}.pct.down{background:#e2f4e9}.pct.flat{background:var(--chip)}
+.psrc{font-size:11px;color:var(--muted);margin-left:auto}
+.scores{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.scores span{background:var(--chip);border-radius:6px;padding:2px 8px;font-size:11px;color:var(--muted)}
+.scores span b{color:var(--ink)}
+.pts{font-size:12.5px;margin:8px 0 0}
+.pts .h{font-weight:700;font-size:12px;margin:6px 0 2px}
+.pts .h.bull{color:var(--red)}.pts .h.bear{color:var(--green)}
+.pts ul{margin:2px 0 4px;padding-left:18px;color:#3a4152}
+.pts li{margin:1px 0}
+.masters{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:11px;color:var(--muted)}
+.masters b{color:var(--ink)}
+.summ{font-size:12.5px;color:#3a4152;background:#fafbfd;border:1px solid var(--line);
+border-radius:8px;padding:8px 10px;margin-top:8px}
+.empty{color:var(--muted);background:var(--card);border:1px dashed var(--line);
+border-radius:10px;padding:18px;text-align:center}
+footer{margin-top:34px;color:var(--muted);font-size:12px;text-align:center;line-height:1.8}
+a.lnk{color:var(--red);text-decoration:none}
+/* ── detail page ── */
+.backbar{margin-bottom:14px;font-size:13px}
+.backbar a{color:var(--muted);text-decoration:none;margin-right:14px}
+.backbar a:hover{color:var(--red)}
+.badge{display:inline-block;border-radius:6px;padding:2px 10px;font-size:12px;font-weight:700;margin-right:8px}
+.badge.red{background:var(--red);color:#fff}.badge.black{background:var(--dark);color:#fff}
+.trade{display:flex;flex-wrap:wrap;gap:10px;background:linear-gradient(135deg,#2c3550,#1c2230);
+color:#fff;border-radius:12px;padding:16px 18px;margin:16px 0}
+.trade .cell{min-width:120px}
+.trade .k{font-size:11px;opacity:.75}
+.trade .v{font-size:18px;font-weight:800;margin-top:2px}
+.trade .v.buy{color:#7ee2a8}.trade .v.sell{color:#ff9d97}.trade .v.hold{color:#ffd166}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0}
+.mgrid .m{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.mgrid .m .k{font-size:11px;color:var(--muted)}
+.mgrid .m .v{font-size:16px;font-weight:700;margin-top:2px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.panel>h2{margin:0 0 12px;font-size:17px}
+.panel>h2 .sub{font-size:12px;color:var(--muted);font-weight:400;margin-left:8px}
+.mreply{border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;
+padding:12px 14px;margin:10px 0;background:#fff}
+.mreply .mh{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.mreply .mh .who{font-weight:700;font-size:14px}
+.mreply .mh .mscore{margin-left:auto;background:var(--chip);border-radius:6px;padding:1px 8px;font-size:12px;font-weight:700}
+.md h2,.md h3,.md h4,.md h5{margin:12px 0 6px;font-size:15px}
+.md p{margin:6px 0;font-size:13.5px;color:#2c3345}
+.md ul{margin:6px 0;padding-left:20px;font-size:13.5px;color:#2c3345}
+.md li{margin:3px 0}
+.md strong{color:var(--ink)}
+details{border:1px solid var(--line);border-radius:10px;background:#fff;margin:10px 0;padding:0}
+details>summary{cursor:pointer;padding:12px 16px;font-weight:700;font-size:14px;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary:before{content:"▸ ";color:var(--red)}
+details[open]>summary:before{content:"▾ "}
+details>.body{padding:0 16px 14px;border-top:1px dashed var(--line)}
+.ychip{display:inline-block;background:var(--chip);border-radius:8px;padding:4px 10px;font-size:12px;margin:3px 6px 3px 0}
+.ychip b{font-size:13px}
+.news .nitem{border-top:1px dashed var(--line);padding:8px 0;font-size:13px}
+.news .nitem .t{font-weight:600}
+.news .nitem .s{color:var(--muted);font-size:12px}
+</style>
+</head>
+<body><div class="wrap">
+<div class="backbar"><a href="../index.html">← 总览</a><a href="../hk.html">← 港股榜单</a></div>
+<header class="top">
+  <h1><span class="badge red">红榜 #4</span>ASMPT<span class="tk" style="opacity:.7;font-size:15px;font-weight:400;margin-left:8px">00522</span></h1>
+  <div class="sub">港股 ·  · 榜单日期 <b>2026-08-01</b> · 盘价采集 <b>2026-08-01 10:00:06</b></div>
+  <div class="price-row" style="margin-top:12px">
+    <span class="price" style="color:#fff">HK$151.30</span>
+    <span class="pct up">+11.99%</span>
+    <span class="psrc" style="color:rgba(255,255,255,.6)">实时</span>
+  </div>
+  <div class="scores" style="margin-top:10px">
+    <span>综合 <b>84.4</b></span>
+    <span>多头 <b>85</b></span>
+    <span>空头 <b>25</b></span>
+    <span>大师均值 <b>68</b></span>
+    <span>信号 <b>positive</b></span>
+  </div>
+</header>
+<div class="trade"><div class="cell"><div class="k">交易评级</div><span class="v buy">Buy</span></div><div class="cell"><div class="k">加仓区间</div><span class="v">146.76 ~ 152.81</span></div><div class="cell"><div class="k">目标价</div><span class="v">169.46</span></div><div class="cell"><div class="k">伯克希尔</div><span class="v">买入</span></div><div class="cell"><div class="k">伯克希尔分</div><span class="v">3.75</span></div></div>
+<div class="panel"><h2>财务指标</h2><div class="mgrid"><div class="m"><div class="k">市盈率 PE</div><div class="v">49.73</div></div><div class="m"><div class="k">市净率 PB</div><div class="v">3.67</div></div><div class="m"><div class="k">ROE</div><div class="v">3.4%</div></div><div class="m"><div class="k">总市值</div><div class="v">635</div></div><div class="m"><div class="k">营收同比</div><div class="v">9.9%</div></div><div class="m"><div class="k">净利同比</div><div class="v">17.5%</div></div></div></div>
+<div class="panel"><h2>历史收益</h2><span class="ychip">近1月 <b class="down">-26.12%</b></span><span class="ychip">近6月 <b class="up">+46.58%</b></span><span class="ychip">近1年 <b class="up">+120.10%</b></span></div>
+<div class="panel"><h2>大师圆桌<span class="sub">5 位</span></h2><div class="mreply"><div class="mh"><span class="who">段永平</span><span class="mscore">80</span></div><div class="md"><h4>结论</h4><p>我会选择继续持有 ASMPT (00522)，因为它符合我投资理念中的“本分”和“看得懂的好生意”标准，并且有长期持有的价值。</p><h4>理由</h4><ul><li><strong>行业前景好</strong>：ASMPT 所在的半导体行业正处于高景气周期。半导体是科技发展的基石，无论是智能手机、数据中心还是新能源汽车，都离不开半导体。这为 ASMPT 提供了稳定的市场需求。</li></ul><ul><li><strong>公司基本面稳健</strong>：从财务数据来看，ASMPT 的营收和净利润同比增长率分别为 9.93% 和 17.54%，显示出良好的增长势头。虽然估值较高（PE 约为 50 倍），但考虑到其在行业中的领先地位和技术优势，这个估值是可以接受的。</li></ul><ul><li><strong>股价表现强势</strong>：股价的强势上涨反映了市场对 ASMPT 的认可。这种上涨并非短期炒作，而是基于公司基本面和市场前景的合理反应。</li></ul><ul><li><strong>符合投资逻辑</strong>：在我的投资理念中，投资要“看得懂”，而 ASMPT 所在的半导体行业是我能够理解和跟踪的。同时，ASMPT 的业务模式清晰，竞争优势明显，符合“好生意”的标准。</li></ul><h4>风险/行动建议</h4><ul><li><strong>估值风险</strong>：虽然 ASMPT 的基本面良好，但当前估值较高，存在一定的回调风险。对于长期投资者来说，这可能是一个需要耐心的阶段。</li></ul><ul><li><strong>地缘政治风险</strong>：半导体行业受地缘政治影响较大，尤其是中美关系的变化可能对 ASMPT 的业务产生影响。作为投资者，需要密切关注相关政策变化。</li></ul><ul><li><strong>行动建议</strong>：</li><li><strong>持有</strong>：对于已经持有的投资者，建议继续持有，享受公司长期增长带来的收益。</li><li><strong>增持</strong>：对于尚未持有的投资者，可以考虑在股价回调时适当增持，但要注意控制仓位，避免过度集中投资。</li><li><strong>长期视角</strong>：投资 ASMPT 需要有长期视角，不要被短期波动所影响。半导体行业的发展是长期的，ASMPT 作为行业领先者，有望在未来继续受益。</li></ul><p>总之，ASMPT 是一家符合我投资理念的好公司，但在当前市场环境下，投资者需要保持理性和耐心，坚持长期持有的策略。</p></div></div><div class="mreply"><div class="mh"><span class="who">巴菲特</span><span class="mscore">40</span></div><div class="md"><p>各位同仁，关于ASMPT这只股票，我的观点如下：</p><p><strong>结论：</strong></p><p>当前价格下，我选择观望，不建议立即投资。</p><p><strong>理由：</strong></p><p>首先，我们来看看ASMPT的护城河。作为半导体封装设备领域的领先企业，公司确实拥有一定的技术和市场地位优势，这是其业务稳定性的基础。然而，当我们审视其财务数据时，会发现一些值得注意的地方：</p><ul><li>虽然公司营收同比增长9.93%，净利润同比增长17.54%，但ROE仅为3.43%，远低于我通常寻找的优质企业水平。这表明公司的盈利能力还有待提升。</li></ul><ul><li>估值方面，目前市盈率高达49.7倍，市净率3.67倍，市销率3.87倍。这些指标都处于较高水平，意味着投资者为公司的未来增长支付了相当高的溢价。</li></ul><ul><li>公司的自由现金流状况没有在数据中明确体现，但考虑到其资本密集型的行业特性，我对其现金创造能力持谨慎态度。</li></ul><ul><li>虽然半导体行业整体处于高景气周期，但这种周期性也意味着未来可能面临更大的波动性。</li></ul><p><strong>风险/行动建议：</strong></p><ul><li>主要风险在于估值过高。当前的价格已经反映了市场对半导体行业的高度乐观预期，一旦行业周期转向，可能会面临较大的回调压力。</li></ul><ul><li>地缘政治风险也不容忽视。半导体行业受国际关系影响较大，任何政策变化都可能对公司的经营产生重大影响。</li></ul><ul><li>对于价值投资者来说，我建议继续观察，等待更合适的价格。如果公司能够证明其盈利能力可以持续提升，并且估值回到更具吸引力的水平，届时再考虑投资也不迟。</li></ul><ul><li>如果一定要投资，我建议采取分批建仓的方式，并密切关注公司基本面和行业周期的变化。</li></ul><p>总的来说，ASMPT是一家值得持续关注的公司，但目前的价格并不符合我价值投资的标准。我们需要更有耐心地等待更好的时机。</p></div></div><div class="mreply"><div class="mh"><span class="who">达利欧</span><span class="mscore">70</span></div><div class="md"><p><strong>结论：</strong></p><p>ASMPT（00522）是一只具有吸引力的投资标的，但需要谨慎对待其估值和地缘政治风险。我的立场是部分看多。</p><p><strong>理由：</strong></p><ul><li><strong>行业景气度高：</strong></li></ul><p>   半导体行业目前处于高景气周期，ASMPT作为半导体设备供应商，直接受益于行业扩张和资本支出增加。从营收同比增长9.93%和净利润同比增长17.54%可以看出，公司在当前环境中表现强劲。</p><ul><li><strong>股价表现强势：</strong></li></ul><p>   股价目前处于151.3港元的水平，且在过去一段时间内表现出色。这反映了市场对半导体行业的乐观预期以及公司自身的竞争力。</p><ul><li><strong>估值较高：</strong></li></ul><p>   尽管公司基本面强劲，但当前市盈率（PE）为49.7，市净率（PB）为3.67，市销率（PS）为3.87，均处于较高水平。这表明市场已经对公司未来的增长给予了较高的预期，任何不及预期的表现都可能引发股价回调。</p><ul><li><strong>地缘政治风险：</strong></li></ul><p>   半导体行业受到地缘政治因素的重大影响，尤其是中美关系的变化可能对ASMPT的业务产生不利影响。这种不确定性需要特别关注。</p><p><strong>风险/行动建议：</strong></p><ul><li><strong>风险平衡：</strong></li></ul><p>   在当前环境下，建议将ASMPT作为投资组合的一部分，但不要过度集中。可以通过配置其他行业或地区的资产来对冲地缘政治风险。</p><ul><li><strong>关注宏观因素：</strong></li></ul><p>   密切关注中美关系的变化以及全球半导体行业的政策动向。这些因素可能对ASMPT的长期前景产生重大影响。</p><ul><li><strong>估值调整：</strong></li></ul><p>   如果股价继续上涨，建议逐步减仓以锁定利润。同时，关注公司未来几个季度的财报表现，如果出现增长放缓的迹象，应及时调整仓位。</p><ul><li><strong>长期视角：</strong></li></ul><p>   从长期来看，半导体行业仍然具有巨大的增长潜力。如果能够承受短期波动，ASMPT仍然是一个值得关注的投资标的。</p><p>总之，ASMPT是一只具有吸引力的股票，但在当前高估值和地缘政治风险的环境下，需要保持谨慎和灵活的投资策略。</p></div></div><div class="mreply"><div class="mh"><span class="who">林奇</span><span class="mscore">90</span></div><div class="md"><p>好的，我来说说对 ASMPT（00522）的看法。</p><p><strong>结论：这是一只值得关注的潜在十倍股，但需要谨慎观察其估值和行业景气度变化。</strong></p><p>让我从几个方面来解释这个结论：</p><p><strong>1. 生活场景验证：</strong></p><p>半导体行业的景气度可以从我们日常生活中的电子产品需求得到验证。无论是智能手机、电脑，还是新兴的电动车、人工智能设备，都离不开半导体元件。作为全球领先的半导体封装设备供应商，ASMPT 的业务直接受益于这些终端需求的增长。</p><p><strong>2. 景气周期分析：</strong></p><p>目前半导体行业处于高景气周期，ASMPT 的股价表现强劲，今年以来涨幅可观。从财务数据来看，收入同比增长约10%，净利润增长超过17%，显示出良好的盈利能力。</p><p><strong>3. 成长性评估：</strong></p><p>从 PEG 角度来看，虽然市盈率（PE）达到约50倍看似偏高，但考虑到其净利润增长率超过17%，PEG 约为3，显示出一定的成长性溢价。考虑到公司在行业中的领先地位和技术优势，这个估值水平在当前市场环境下是可以理解的。</p><p><strong>4. 风险因素：</strong></p><ul><li>估值风险：当前估值水平已经反映了较多的增长预期，未来需要持续跟踪业绩增长能否匹配高估值。</li><li>地缘政治风险：半导体行业受国际政治环境影响较大，任何贸易限制或政策变化都可能影响公司业务。</li><li>行业周期性：半导体行业具有明显的周期性特征，需要警惕景气度拐点的出现。</li></ul><p><strong>行动建议：</strong></p><ul><li>密切关注公司季度业绩表现，重点关注收入和利润增长是否持续。</li><li>留意半导体行业景气度变化，特别是终端需求变化和供应链状况。</li><li>考虑分批建仓的方式，在股价回调时适当增加仓位，而不是一次性重仓买入。</li><li>设定合理的止损位，以应对可能出现的估值回调风险。</li></ul><p>总的来说，ASMPT 是一只具有吸引力的成长股，但投资者需要保持理性，在享受行业红利的同时，也要做好风险管理。</p></div></div><div class="mreply"><div class="mh"><span class="who">芒格</span><span class="mscore">60</span></div><div class="md"><p>各位同仁，我今天来谈谈对ASMPT（00522）的看法。</p><p>我的结论是：目前对ASMPT应该采取谨慎乐观的态度，但不宜过度投入。</p><p>首先，我们来逆向思考这个问题：</p><ul><li>假设半导体行业景气度下降，ASMPT的业绩会如何？</li><li>如果地缘政治风险加剧，对公司的影响有多大？</li><li>当市场整体估值回调，ASMPT的股价会如何反应？</li></ul><p>通过这样的逆向思考，我们可以看到，ASMPT虽然身处高景气行业，但其估值已经反映了相当程度的市场乐观预期。当前49.7倍的市盈率、3.67倍的市净率，以及3.87倍的市销率，都处于历史高位。</p><p>从多元思维模型的角度分析：</p><ul><li>从经济学角度，半导体行业确实处于上升周期，但这种周期性能否持续值得思考</li><li>从管理学角度，公司在行业中的竞争优势需要持续关注</li><li>从心理学角度，市场对半导体行业的追捧可能已经过度乐观</li></ul><p>基于以上分析，我建议采取以下行动：</p><ul><li>避免愚蠢：不要因为市场热度而盲目追高</li><li>质量优先：重点关注公司的长期竞争优势，而非短期股价表现</li><li>仓位控制：当前价位不宜重仓，可考虑分批建仓或等待回调机会</li><li>风险管理：密切关注地缘政治局势变化对半导体产业链的影响</li></ul><p>总之，ASMPT是一家值得持续关注的公司，但我们需要保持清醒的头脑，在享受行业红利的同时，也要警惕估值过高的风险。就像巴菲特常说的：&quot;在别人贪婪时恐惧，在别人恐惧时贪婪。&quot;现在或许正是我们需要保持适度恐惧的时候。</p></div></div></div>
+<div class="panel"><h2>分析师报告<span class="sub">2 篇</span></h2><details open><summary>市场面分析</summary><div class="body"><div class="md"><h4>00522 ASMPT 市场面分析</h4><ul><li>红黑榜多空分数：多头 85 / 空头 25，分差 60。</li><li>当前价格：151.30。</li><li>当前交易评级：Buy。</li><li>值得加仓区间：146.76 - 152.81。</li><li>目标价格：169.46。</li><li>市场愿意给溢价的原因：半导体行业高景气；股价强势上涨。</li><li>当前主要压制因素：估值较高；地缘政治风险。</li></ul></div></div></details><details open><summary>基本面分析</summary><div class="body"><div class="md"><h4>00522 ASMPT 基本面分析</h4><ul><li>报告期：暂无。</li><li>PE(TTM)：49.73。</li><li>PB：3.67。</li><li>PS(TTM)：3.87。</li><li>ROE：3.43%。</li><li>营收同比：9.93%。</li><li>归母净利润同比：17.54%。</li><li>核心判断：收入仍在增长；利润端保持扩张。</li></ul></div></div></details></div>
+<div class="panel"><h2>研究与计划</h2>
+<details><summary>基本面摘要</summary><div class="body"><div class="md"><h3>核心财务快照</h3><ul><li>报告期: 数据缺失</li><li>当前股价: 151.30 元</li><li>总市值: 634.56 亿元</li><li>PE (TTM): 49.73</li><li>PB: 3.67</li><li>PS (TTM): 3.87</li><li>营业总收入(报告期): 数据缺失 亿元</li><li>营收同比增长率: 9.93%</li><li>归母净利润(报告期): 数据缺失 亿元</li><li>归母净利润同比增长率: 17.54%</li><li>ROE (TTM/估算): 3.43%</li><li>资产负债率: 数据缺失</li><li>经营性现金流 / 归母净利润: 数据缺失</li></ul><h4>缺失字段</h4><ul><li>营业总收入, 归母净利润, 资产负债率, 经营性现金流与归母净利润比值</li></ul></div></div></details>
+<details><summary>研究计划</summary><div class="body"><div class="md"><h4>00522 ASMPT 研究摘要</h4><ul><li>红黑榜结论: Buy</li><li>多头/空头: 85/25</li><li>正向信号: 营收同比 9.93%；归母净利润同比 17.54%；PE(TTM) 49.73；PB 3.67</li><li>风险信号: ROE 3.43%</li><li>榜单看多理由: 半导体行业高景气；股价强势上涨</li><li>榜单风险提示: 估值较高；地缘政治风险</li></ul></div></div></details>
+<details><summary>交易计划</summary><div class="body"><div class="md"><h4>00522 ASMPT 交易计划</h4><ul><li>评级: Buy</li><li>当前价格: 151.30</li><li>值得加仓区间: 146.76 - 152.81</li><li>目标价格: 169.46</li><li>止损位: 139.20</li><li>备注: 当前为缓存降级交易卡，后续若完整 TradingAgent 结果生成，将自动覆盖。</li></ul></div></div></details>
+<details><summary>交易决策</summary><div class="body"><div class="md"><p>Buy</p><p>00522 ASMPT 当前使用红黑榜缓存结果生成兜底交易卡。多头 85 / 空头 25，分差 60。当前尚未取得完整 TradingAgent 长文决策，但榜单分数、财务快照和大师观点已经足够生成基础交易建议。</p></div></div></details>
+</div>
+<div class="panel"><h2>多空逻辑</h2><div class="pts"><div class="h bull">看多逻辑</div><div class="md"><p>半导体行业高景气</p><p>股价强势上涨</p></div></div><div class="pts"><div class="h bear">看空逻辑</div><div class="md"><p>估值较高</p><p>地缘政治风险</p></div></div></div>
+<div class="panel"><h2>伯克希尔研究</h2><p><strong>ASMPT是一家具有技术壁垒和稳健财务表现的半导体设备公司，但面临行业周期性波动和竞争压力，当前估值合理但需关注长期增长潜力。</strong></p><p>伯克希尔综合评分：<strong>3.75</strong></p><div class="md"><p>{&quot;verdict&quot;: &quot;买入&quot;, &quot;conservative_tip&quot;: &quot;建议在PE TTM低于13倍时买入。&quot;, &quot;moderate_tip&quot;: &quot;建议在PE TTM低于15倍时买入。&quot;, &quot;aggressive_tip&quot;: &quot;建议在PE TTM低于17倍时买入。&quot;, &quot;catalysts_plus&quot;: [&quot;半导体行业复苏超预期。&quot;, &quot;公司推出突破性新产品。&quot;, &quot;自由现金流持续改善。&quot;], &quot;catalysts_minus&quot;: [&quot;行业竞争加剧。&quot;, &quot;技术变革导致产品过时。&quot;, &quot;宏观经济下行压力加大。&quot;]}</p></div></div>
+<div class="panel news"><h2>最新资讯</h2><div class="md"><p>整体情绪积极，11条新闻中10条利多，1条中性。</p></div><div class="nitem"><div class="t">ASMPT Chief Sees AI Equipment Demand Intact as Bubble Fears Rise</div><div class="s">Bloomberg.com · 利好</div></div><div class="nitem"><div class="t">Trending Industry Today: ASMPT Leads Gains In Power Semiconductor Stocks</div><div class="s">Moomoo · 利好</div></div><div class="nitem"><div class="t">ASMPT Is Riding AI-Driven Demand for Its Precision Equipment</div><div class="s">Morningstar · 利好</div></div><div class="nitem"><div class="t">Earnings call transcript: ASMPT posts strong H1 2026 growth on AI demand</div><div class="s">Investing.com · 利好</div></div><div class="nitem"><div class="t">ASMPT Ltd (ASMVF) (H1 2026) Earnings Call Highlights: Record Growth Driven by AI and ...</div><div class="s">Yahoo Finance Singapore · 利好</div></div><div class="nitem"><div class="t">White Paper for ASMPT</div><div class="s">TechInsights · 中性</div></div><div class="nitem"><div class="t">ASMPT: Strong H1 2026 growth driven by AI and photonics, with robust Q3 outlook and stable margins</div><div class="s">TradingView · 利好</div></div><div class="nitem"><div class="t">ASMPT Limited 2026 Q2 - Results - Earnings Call Presentation (OTCMKTS:ASMVY) 2026-07-28</div><div class="s">Seeking Alpha · 利好</div></div></div>
+<footer>稳健理财Agent · 红黑榜每日归档 · 红榜 #4 · 仅供研究，不构成投资建议</footer>
+</div></body>
+</html>

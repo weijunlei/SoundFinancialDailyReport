@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CMCSA(CMCSA) 黑榜 2026-08-01</title>
+<style>
+:root{--red:#d8342c;--redbg:#fdecea;--green:#1a9e54;--ink:#1c2230;--muted:#6b7385;
+--line:#e7e9ef;--card:#fff;--bg:#f4f6fa;--chip:#eef1f6;--dark:#23262d;--darkbg:#ececef}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",
+"Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);
+line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 16px 64px}
+header.top{background:linear-gradient(135deg,#1c2230,#2c3550);color:#fff;border-radius:14px;
+padding:22px 24px;margin-bottom:20px;box-shadow:0 6px 24px rgba(20,26,46,.12)}
+header.top h1{margin:0 0 6px;font-size:24px;letter-spacing:.5px}
+header.top .sub{opacity:.85;font-size:13px}
+header.top .sub b{color:#ffd166;font-weight:600}
+nav.mkt{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;
+background:rgba(244,246,250,.92);backdrop-filter:blur(6px);padding:10px 0;margin-bottom:14px}
+nav.mkt a{text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);
+padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600}
+nav.mkt a:hover{border-color:var(--red);color:var(--red)}
+.summary{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.summary .chip{background:var(--card);border:1px solid var(--line);border-radius:10px;
+padding:8px 12px;font-size:12px;color:var(--muted)}
+.summary .chip b{color:var(--ink);font-size:14px;margin-left:4px}
+section.board{margin:26px 0}
+.board-title{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:19px}
+.board-title .dot{width:10px;height:10px;border-radius:50%}
+.board-title.red .dot{background:var(--red)}
+.board-title.black .dot{background:var(--dark)}
+.board-title small{color:var(--muted);font-weight:400;font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+position:relative;transition:box-shadow .15s}
+.card:hover{box-shadow:0 4px 18px rgba(20,26,46,.08)}
+.card.red{border-top:3px solid var(--red)}
+.card.black{border-top:3px solid var(--dark)}
+.rank{position:absolute;top:10px;right:12px;font-size:26px;font-weight:800;color:#eceff5}
+.card.red .rank{color:#fbdcD9}
+.nm{font-size:16px;font-weight:700}
+.nm .tk{color:var(--muted);font-weight:500;font-size:12px;margin-left:6px}
+.tag{display:inline-block;background:var(--chip);color:var(--muted);border-radius:6px;
+padding:1px 7px;font-size:11px;margin:6px 6px 0 0}
+.price-row{display:flex;align-items:baseline;gap:10px;margin:10px 0 4px}
+.price{font-size:24px;font-weight:800}
+.pct{font-size:14px;font-weight:700;padding:2px 8px;border-radius:8px}
+.up{color:var(--red)}.down{color:var(--green)}.flat{color:var(--muted)}
+.pct.up{background:var(--redbg)}.pct.down{background:#e2f4e9}.pct.flat{background:var(--chip)}
+.psrc{font-size:11px;color:var(--muted);margin-left:auto}
+.scores{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.scores span{background:var(--chip);border-radius:6px;padding:2px 8px;font-size:11px;color:var(--muted)}
+.scores span b{color:var(--ink)}
+.pts{font-size:12.5px;margin:8px 0 0}
+.pts .h{font-weight:700;font-size:12px;margin:6px 0 2px}
+.pts .h.bull{color:var(--red)}.pts .h.bear{color:var(--green)}
+.pts ul{margin:2px 0 4px;padding-left:18px;color:#3a4152}
+.pts li{margin:1px 0}
+.masters{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:11px;color:var(--muted)}
+.masters b{color:var(--ink)}
+.summ{font-size:12.5px;color:#3a4152;background:#fafbfd;border:1px solid var(--line);
+border-radius:8px;padding:8px 10px;margin-top:8px}
+.empty{color:var(--muted);background:var(--card);border:1px dashed var(--line);
+border-radius:10px;padding:18px;text-align:center}
+footer{margin-top:34px;color:var(--muted);font-size:12px;text-align:center;line-height:1.8}
+a.lnk{color:var(--red);text-decoration:none}
+/* ── detail page ── */
+.backbar{margin-bottom:14px;font-size:13px}
+.backbar a{color:var(--muted);text-decoration:none;margin-right:14px}
+.backbar a:hover{color:var(--red)}
+.badge{display:inline-block;border-radius:6px;padding:2px 10px;font-size:12px;font-weight:700;margin-right:8px}
+.badge.red{background:var(--red);color:#fff}.badge.black{background:var(--dark);color:#fff}
+.trade{display:flex;flex-wrap:wrap;gap:10px;background:linear-gradient(135deg,#2c3550,#1c2230);
+color:#fff;border-radius:12px;padding:16px 18px;margin:16px 0}
+.trade .cell{min-width:120px}
+.trade .k{font-size:11px;opacity:.75}
+.trade .v{font-size:18px;font-weight:800;margin-top:2px}
+.trade .v.buy{color:#7ee2a8}.trade .v.sell{color:#ff9d97}.trade .v.hold{color:#ffd166}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0}
+.mgrid .m{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.mgrid .m .k{font-size:11px;color:var(--muted)}
+.mgrid .m .v{font-size:16px;font-weight:700;margin-top:2px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.panel>h2{margin:0 0 12px;font-size:17px}
+.panel>h2 .sub{font-size:12px;color:var(--muted);font-weight:400;margin-left:8px}
+.mreply{border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;
+padding:12px 14px;margin:10px 0;background:#fff}
+.mreply .mh{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.mreply .mh .who{font-weight:700;font-size:14px}
+.mreply .mh .mscore{margin-left:auto;background:var(--chip);border-radius:6px;padding:1px 8px;font-size:12px;font-weight:700}
+.md h2,.md h3,.md h4,.md h5{margin:12px 0 6px;font-size:15px}
+.md p{margin:6px 0;font-size:13.5px;color:#2c3345}
+.md ul{margin:6px 0;padding-left:20px;font-size:13.5px;color:#2c3345}
+.md li{margin:3px 0}
+.md strong{color:var(--ink)}
+details{border:1px solid var(--line);border-radius:10px;background:#fff;margin:10px 0;padding:0}
+details>summary{cursor:pointer;padding:12px 16px;font-weight:700;font-size:14px;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary:before{content:"▸ ";color:var(--red)}
+details[open]>summary:before{content:"▾ "}
+details>.body{padding:0 16px 14px;border-top:1px dashed var(--line)}
+.ychip{display:inline-block;background:var(--chip);border-radius:8px;padding:4px 10px;font-size:12px;margin:3px 6px 3px 0}
+.ychip b{font-size:13px}
+.news .nitem{border-top:1px dashed var(--line);padding:8px 0;font-size:13px}
+.news .nitem .t{font-weight:600}
+.news .nitem .s{color:var(--muted);font-size:12px}
+</style>
+</head>
+<body><div class="wrap">
+<div class="backbar"><a href="../index.html">← 总览</a><a href="../us.html">← 美股榜单</a></div>
+<header class="top">
+  <h1><span class="badge black">黑榜 #4</span>CMCSA<span class="tk" style="opacity:.7;font-size:15px;font-weight:400;margin-left:8px">CMCSA</span></h1>
+  <div class="sub">美股 ·  · 榜单日期 <b>2026-08-01</b> · 盘价采集 <b>2026-08-01 10:00:06</b></div>
+  <div class="price-row" style="margin-top:12px">
+    <span class="price" style="color:#fff">$23.96</span>
+    <span class="pct up">+1.23%</span>
+    <span class="psrc" style="color:rgba(255,255,255,.6)">实时</span>
+  </div>
+  <div class="scores" style="margin-top:10px">
+    <span>综合 <b>34.4</b></span>
+    <span>多头 <b>15</b></span>
+    <span>空头 <b>85</b></span>
+    <span>大师均值 <b>30</b></span>
+    <span>信号 <b>negative</b></span>
+  </div>
+</header>
+<div class="trade"><div class="cell"><div class="k">交易评级</div><span class="v hold">Reduce</span></div><div class="cell"><div class="k">加仓区间</div><span class="v">21.55 ~ 22.50</span></div><div class="cell"><div class="k">伯克希尔</div><span class="v">买入</span></div><div class="cell"><div class="k">伯克希尔分</div><span class="v">3.75</span></div></div>
+<div class="panel"><h2>财务指标</h2><div class="mgrid"><div class="m"><div class="k">市盈率 PE</div><div class="v">7.68</div></div><div class="m"><div class="k">市净率 PB</div><div class="v">0.95</div></div><div class="m"><div class="k">ROE</div><div class="v">11.5%</div></div><div class="m"><div class="k">总市值</div><div class="v">851</div></div><div class="m"><div class="k">营收同比</div><div class="v">-120.0%</div></div><div class="m"><div class="k">净利同比</div><div class="v">-66.8%</div></div></div></div>
+<div class="panel"><h2>历史收益</h2><span class="ychip">近1月 <b class="down">-2.46%</b></span><span class="ychip">近6月 <b class="down">-19.08%</b></span><span class="ychip">近1年 <b class="down">-23.11%</b></span><span class="ychip">近5年 <b class="down">-56.31%</b></span></div>
+<div class="panel"><h2>大师圆桌<span class="sub">5 位</span></h2><div class="mreply"><div class="mh"><span class="who">段永平</span><span class="mscore">40</span></div><div class="md"><h4>结论</h4><p>我倾向于对CMCSA保持观望态度，目前不是一个特别好的投资机会。</p><h4>理由</h4><p>首先，从本分的角度来看，CMCSA的业务模式确实有一些吸引人的地方。它的多元化业务，包括宽带业务，提供了一定的稳定性，这在当前市场环境下是一个优势。宽带业务的增长势头也表明公司在核心业务上仍然有竞争力。</p><p>然而，从&quot;看得懂&quot;的角度分析，CMCSA的股价表现疲软，传统媒体业务的持续萎缩是一个明显的负面信号。尽管公司的市盈率（PE）和市净率（PB）看起来较低，但这更多反映了市场对其增长前景的担忧。营收和净利润的同比下降也表明公司正面临较大的经营压力。</p><p>从&quot;好生意&quot;的角度来看，CMCSA的业务模式虽然多元化，但并非所有业务都具有强大的增长潜力。传统媒体业务的衰退是一个长期趋势，而宽带业务的增长能否完全抵消这一影响仍需观察。</p><h4>风险/行动建议</h4><ul><li><strong>短期风险</strong>：CMCSA的股价近期表现疲软，市场对其增长前景的担忧可能会继续压制股价。投资者需要警惕短期内股价进一步下跌的风险。</li></ul><ul><li><strong>长期风险</strong>：传统媒体业务的持续萎缩是一个长期趋势，尽管宽带业务有一定的增长潜力，但整体业务的转型和增长需要时间。投资者需要评估公司能否成功转型并找到新的增长点。</li></ul><ul><li><strong>行动建议</strong>：对于已经持有CMCSA的投资者，建议保持观望，关注公司业务转型的进展和宽带业务的增长情况。对于考虑买入的投资者，建议等待更明确的增长信号出现，例如传统媒体业务的企稳或宽带业务的加速增长。</li></ul><p>总的来说，CMCSA目前并不是一个特别好的投资机会，投资者需要谨慎评估其长期增长潜力。</p></div></div><div class="mreply"><div class="mh"><span class="who">巴菲特</span><span class="mscore">30</span></div><div class="md"><p>各位同仁，今天我们来讨论一下康卡斯特（CMCSA）的投资价值。我的结论是：康卡斯特目前处于一个值得关注的阶段，但需要谨慎评估。</p><p>首先谈谈我关注的几点：</p><ul><li>这家公司的护城河依然明显。作为美国最大的有线电视和宽带服务提供商之一，康卡斯特在通信基础设施和客户基础方面拥有显著优势。其宽带业务持续增长，这部分业务具有很强的粘性和稳定性。</li></ul><ul><li>从估值角度来看，当前的价格具有吸引力。市盈率（PE）仅为7.67倍，市净率（PB）不到1倍，显示出市场对其前景的悲观预期可能过度了。即使在传统媒体业务面临挑战的情况下，这样的估值水平也提供了足够的安全边际。</li></ul><ul><li>公司的自由现金流状况依然稳健。尽管营收和净利润同比下降，但康卡斯特的资本配置能力依然值得肯定。其宽带业务产生的现金流能够支撑公司的持续运营和必要的投资。</li></ul><p>然而，我们也必须正视一些风险：</p><ul><li>传统媒体业务的持续萎缩是一个不可忽视的问题。虽然公司正在积极转型，但这个过程可能比预期的更漫长、更艰难。</li></ul><ul><li>股价的疲软表现反映出市场对其增长前景的担忧。在当前的市场环境下，投资者似乎更青睐于那些具有更高成长性的科技公司。</li></ul><ul><li>尽管宽带业务表现良好，但整体营收和净利润的下降趋势需要引起重视。如果这种趋势持续，可能会影响公司的长期竞争力。</li></ul><p>基于以上分析，我的建议是：</p><ul><li>对于长期投资者来说，可以考虑在当前价格水平逐步建立仓位，但要注意控制仓位规模。</li></ul><ul><li>密切关注公司转型进展，特别是其流媒体业务和宽带业务的增长情况。</li></ul><ul><li>做好风险管理，如果传统媒体业务的下滑速度超出预期，或者宽带业务的增长出现停滞，需要及时调整投资策略。</li></ul><p>总的来说，康卡斯特是一家具有坚实基础但面临转型挑战的公司。在当前的价格水平下，它值得投资者认真考虑，但必须保持谨慎和耐心。</p></div></div><div class="mreply"><div class="mh"><span class="who">达利欧</span><span class="mscore">35</span></div><div class="md"><p>各位同行，我今天想就CMCSA的现状发表一些看法。我的结论是：尽管CMCSA目前存在一些下行压力，但它仍然是一个值得关注的投资标的，但需要谨慎对待。</p><p>首先，从宏观框架来看，CMCSA作为一家多元化媒体和科技公司，其业务覆盖了有线电视、宽带、电影制作等多个领域。这种多元化结构在当前经济环境下提供了相当的稳定性，尤其是在消费者对宽带服务的需求持续增长的情况下。宽带业务作为其增长引擎之一，表现出了较好的抗周期性。</p><p>然而，从风险平衡的角度来看，CMCSA面临的压力不容忽视。其股价近期表现疲软，反映了市场对其未来增长的担忧。传统媒体业务的持续萎缩是一个显著的风险点，尤其是在流媒体和数字内容消费快速发展的背景下。此外，尽管其市盈率（PE）和市净率（PB）看起来较低，分别为7.67和0.95，但这也部分反映了市场对其增长前景的悲观预期。</p><p>在去相关方面，CMCSA的业务组合虽然多元化，但在当前市场环境下，其传统媒体业务与新兴科技和流媒体业务的关联性正在减弱。这种去相关性可能会导致其整体业务模式在未来几年内面临更大的挑战。</p><p>基于以上分析，我提出以下风险/行动建议：</p><ul><li><strong>风险识别与评估</strong>：密切关注CMCSA传统媒体业务的下滑速度及其对整体营收的影响。同时，注意其在宽带和流媒体领域的竞争态势，尤其是在面对Netflix、Disney+等强劲对手时。</li></ul><ul><li><strong>多元化投资组合</strong>：如果决定投资CMCSA，建议将其作为投资组合中的一部分，而不是单一的重仓标的。这样可以在一定程度上对冲其传统业务的风险。</li></ul><ul><li><strong>长期观察与等待</strong>：考虑到CMCSA目前缺乏明显的创新动力，建议投资者保持耐心，等待其业务转型或创新举措的进一步明朗化。在市场出现更明确的积极信号之前，不宜大幅增持。</li></ul><ul><li><strong>关注管理层动向</strong>：CMCSA的管理层在过去几年中表现出一定的稳定性，但其战略调整和执行能力仍需持续关注。投资者应密切关注其未来可能的管理层变动或战略调整。</li></ul><p>总之，CMCSA是一个具有潜力的投资标的，但其面临的挑战也不容小觑。通过谨慎的风险管理和多元化的投资策略，可以在一定程度上把握其潜在机会，同时控制下行风险。</p></div></div><div class="mreply"><div class="mh"><span class="who">林奇</span><span class="mscore">25</span></div><div class="md"><p>各位同行，今天我们来讨论一下康卡斯特（CMCSA）。我的结论是：目前对康卡斯特需要谨慎观望，暂不建议大举投资，但可以持续跟踪。</p><p>让我们先从生活场景说起。大家想想看，康卡斯特的业务其实和我们日常生活息息相关。它不仅提供有线电视服务，还经营宽带网络和主题公园。走进任何一家美国家庭，你可能会发现他们正在使用康卡斯特的宽带服务，或者在主题公园里享受家庭时光。这说明公司拥有稳定的客户基础和多元化的收入来源。</p><p>然而，从景气验证的角度来看，情况就不那么乐观了。尽管宽带业务仍在增长，但传统媒体业务持续萎缩。随着越来越多的人转向流媒体平台，传统有线电视的订阅量不断下降。这种趋势在财务数据中得到了验证：营收同比下降120%，净利润同比下降66.8%。这些数字表明，公司正面临较大的转型压力。</p><p>接下来谈谈成长性。康卡斯特的宽带业务确实具有成长潜力，但整体来看，公司的成长速度似乎跟不上市场的变化。尽管市盈率（PE）仅为7.67，股价相对便宜，但净资产收益率（ROE）仅为11.47%，显示出公司盈利能力有所下降。此外，股价近期表现疲软，也反映了市场对其未来增长的担忧。</p><p>最后，我们来谈谈PEG（市盈率相对盈利增长比率）。由于公司净利润大幅下降，PEG指标难以准确计算，但可以肯定的是，目前的估值并没有充分反映其成长潜力。换句话说，即使股价看起来便宜，但考虑到成长性不足，投资吸引力有限。</p><p>综上所述，我的建议是：</p><ul><li>风险提示：传统媒体业务的持续萎缩是主要风险点，需要密切关注其转型进展。</li><li>行动建议：目前不建议大举投资，但可以保持关注，特别是关注公司宽带业务的增长情况和主题公园业务的复苏情况。如果这些业务能够持续增长，并且公司能够成功转型，那么未来可能会出现更好的投资机会。</li></ul><p>总之，康卡斯特正处于转型期，我们需要耐心等待更明确的景气信号。</p></div></div><div class="mreply"><div class="mh"><span class="who">芒格</span><span class="mscore">20</span></div><div class="md"><p>各位同仁，今天我们讨论的是CMCSA这家公司。我的结论是：目前对CMCSA进行投资并不符合我们的价值投资理念。</p><p>让我先从逆向思维的角度来分析这个问题。我们不应该首先关注&quot;这家公司有什么吸引力&quot;，而是应该思考&quot;投资这家公司可能会犯什么错误&quot;。CMCSA的业务模式过于复杂，包含了传统媒体、宽带业务以及影视娱乐等多个板块。这种复杂性增加了我们对其真实价值的判断难度，也提高了犯错的可能性。</p><p>从多元思维模型的角度来看，虽然CMCSA的宽带业务确实保持了增长势头，这为其提供了一定的稳定性，但我们不能忽视其传统媒体业务的持续萎缩。这个行业的结构性变化是显而易见的，就像报纸和杂志曾经面临的困境一样。此外，其股价近期表现疲软，营收和净利润同比大幅下降，这些都表明公司正处于转型阵痛期。</p><p>从质量优先的角度分析，虽然其7.67倍的市盈率和0.95倍的市净率看似具有吸引力，但我们必须考虑其净资产收益率(ROE)仅为11.49%，以及营收和净利润的同比大幅下滑。这些指标都表明公司的盈利能力正在受到挑战。</p><p>关于风险，我建议大家注意以下几点：</p><ul><li>传统媒体业务的持续下滑可能会比预期更严重</li><li>宽带业务的增长可能不足以弥补其他业务的损失</li><li>公司转型过程中可能面临的管理层决策风险</li></ul><p>基于以上分析，我的建议是：对于CMCSA这样的公司，我们应当保持谨慎观望的态度。除非看到其转型出现明确成效，或者其宽带业务能够持续超出市场预期，否则不应轻易介入。我们应当牢记，投资的首要原则是避免重大损失，而不是追求边际收益。</p><p>这就是我今天的观点，谢谢大家。</p></div></div></div>
+<div class="panel"><h2>分析师报告<span class="sub">2 篇</span></h2><details open><summary>市场面分析</summary><div class="body"><div class="md"><h4>CMCSA CMCSA 市场面分析</h4><ul><li>红黑榜多空分数：多头 15 / 空头 85，分差 -70。</li><li>当前价格：23.97。</li><li>当前交易评级：Reduce。</li><li>值得加仓区间：21.55 - 22.50。</li><li>风险控制位：21.07。</li><li>市场愿意给溢价的原因：多元化业务提供稳定性；宽带业务保持增长势头。</li><li>当前主要压制因素：股价近期表现疲软；传统媒体业务持续萎缩。</li></ul></div></div></details><details open><summary>基本面分析</summary><div class="body"><div class="md"><h4>CMCSA CMCSA 基本面分析</h4><ul><li>报告期：暂无。</li><li>PE(TTM)：7.68。</li><li>PB：0.95。</li><li>ROE：11.49%。</li><li>营收同比：-120.00%。</li><li>归母净利润同比：-66.80%。</li><li>核心判断：盈利能力处于可接受区间。</li></ul></div></div></details></div>
+<div class="panel"><h2>研究与计划</h2>
+<details><summary>基本面摘要</summary><div class="body"><div class="md"><h3>核心财务快照</h3><ul><li>报告期: 数据缺失</li><li>当前股价: 23.97 元</li><li>总市值: 850.61 亿元</li><li>PE (TTM): 7.68</li><li>PB: 0.95</li><li>PS (TTM): 数据缺失</li><li>营业总收入(报告期): 数据缺失 亿元</li><li>营收同比增长率: -120.00%</li><li>归母净利润(报告期): 数据缺失 亿元</li><li>归母净利润同比增长率: -66.80%</li><li>ROE (TTM/估算): 11.49%</li><li>资产负债率: 数据缺失</li><li>经营性现金流 / 归母净利润: 数据缺失</li></ul><h4>缺失字段</h4><ul><li>PS(TTM), 营业总收入, 归母净利润, 资产负债率, 经营性现金流与归母净利润比值</li></ul></div></div></details>
+<details><summary>研究计划</summary><div class="body"><div class="md"><h4>CMCSA CMCSA 研究摘要</h4><ul><li>红黑榜结论: Reduce</li><li>多头/空头: 15/85</li><li>正向信号: ROE 11.49%；PE(TTM) 7.67；PB 0.95</li><li>风险信号: 营收同比 -120.00%；归母净利润同比 -66.80%</li><li>榜单看多理由: 多元化业务提供稳定性；宽带业务保持增长势头</li><li>榜单风险提示: 股价近期表现疲软；传统媒体业务持续萎缩</li></ul></div></div></details>
+<details><summary>交易计划</summary><div class="body"><div class="md"><h4>CMCSA CMCSA 交易计划</h4><ul><li>评级: Reduce</li><li>当前价格: 23.94</li><li>值得加仓区间: 21.55 - 22.50</li><li>目标价格: 22.74</li><li>止损位: 21.07</li><li>备注: 当前为缓存降级交易卡，后续若完整 TradingAgent 结果生成，将自动覆盖。</li></ul></div></div></details>
+<details><summary>交易决策</summary><div class="body"><div class="md"><p>Reduce</p><p>CMCSA CMCSA 当前使用红黑榜缓存结果生成兜底交易卡。多头 15 / 空头 85，分差 -70。当前尚未取得完整 TradingAgent 长文决策，但榜单分数、财务快照和大师观点已经足够生成基础交易建议。</p></div></div></details>
+</div>
+<div class="panel"><h2>多空逻辑</h2><div class="pts"><div class="h bull">看多逻辑</div><div class="md"><p>多元化业务提供稳定性</p><p>宽带业务保持增长势头</p></div></div><div class="pts"><div class="h bear">看空逻辑</div><div class="md"><p>股价近期表现疲软</p><p>传统媒体业务持续萎缩</p></div></div></div>
+<div class="panel"><h2>伯克希尔研究</h2><p><strong>CMCSA是一家拥有强大护城河、稳健财务表现和长期增长潜力的综合媒体与通信巨头，但面临行业竞争和监管压力。</strong></p><p>伯克希尔综合评分：<strong>3.75</strong></p><div class="md"><p>{&quot;verdict&quot;: &quot;买入&quot;, &quot;conservative_tip&quot;: &quot;建议在PE低于13倍时买入，目标价50美元。&quot;, &quot;moderate_tip&quot;: &quot;建议在PE低于14倍时买入，目标价55美元。&quot;, &quot;aggressive_tip&quot;: &quot;建议在PE低于15倍时买入，目标价60美元。&quot;, &quot;catalysts_plus&quot;: [&quot;流媒体平台Peacock用户增长超预期。&quot;, &quot;宽带业务市场份额提升。&quot;, &quot;5G网络部署加速。&quot;], &quot;catalysts_minus&quot;: [&quot;内容成本超预期上升。&quot;, &quot;监管政策收紧。&quot;, &quot;流媒体竞争加剧导致用户流失。&quot;]}</p></div></div>
+<div class="panel news"><h2>最新资讯</h2><div class="md"><p>共12条新闻，5条利多，3条利空，4条中性。整体情绪偏多。</p></div><div class="nitem"><div class="t">Comcast (CMCSA) Stock Could Be A Bargain After A 47% Fall</div><div class="s">Yahoo Finance · 中性</div></div><div class="nitem"><div class="t">Bank of America Corp DE Buys 3,783,234 Shares of Comcast Corporation $CMCSA</div><div class="s">MarketBeat · 中性</div></div><div class="nitem"><div class="t">AT&amp;T, CMCSA, CMG Hit 52-Week Lows: What Dragged These Stocks Lower?</div><div class="s">Stocktwits · 利空</div></div><div class="nitem"><div class="t">Comcast Corp (CMCSA) Shares Fall 3.8% -- What GF Score of 63 Tel</div><div class="s">GuruFocus · 利空</div></div><div class="nitem"><div class="t">Comcast (CMCSA) Weighs A Letterboxd Bid As Streaming Competition Heats Up</div><div class="s">simplywall.st · 中性</div></div><div class="nitem"><div class="t">Comcast (CMCSA) Stock Looks Cheap Following Its 51% Five Year Slump</div><div class="s">Sahm · 中性</div></div><div class="nitem"><div class="t">CMCSA SEC Filings - COMCAST CORP 10-K, 10-Q, 8-K Forms</div><div class="s">Stock Titan · 中性</div></div><div class="nitem"><div class="t">Comcast: An Irrational Discount Ahead Of A Major Catalyst</div><div class="s">Seeking Alpha · 中性</div></div></div>
+<footer>稳健理财Agent · 红黑榜每日归档 · 黑榜 #4 · 仅供研究，不构成投资建议</footer>
+</div></body>
+</html>
