@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MERDEKAGOLD-DRS(06228) 红榜 2026-08-03</title>
+<style>
+:root{--red:#d8342c;--redbg:#fdecea;--green:#1a9e54;--ink:#1c2230;--muted:#6b7385;
+--line:#e7e9ef;--card:#fff;--bg:#f4f6fa;--chip:#eef1f6;--dark:#23262d;--darkbg:#ececef}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",
+"Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);
+line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 16px 64px}
+header.top{background:linear-gradient(135deg,#1c2230,#2c3550);color:#fff;border-radius:14px;
+padding:22px 24px;margin-bottom:20px;box-shadow:0 6px 24px rgba(20,26,46,.12)}
+header.top h1{margin:0 0 6px;font-size:24px;letter-spacing:.5px}
+header.top .sub{opacity:.85;font-size:13px}
+header.top .sub b{color:#ffd166;font-weight:600}
+nav.mkt{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;
+background:rgba(244,246,250,.92);backdrop-filter:blur(6px);padding:10px 0;margin-bottom:14px}
+nav.mkt a{text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);
+padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600}
+nav.mkt a:hover{border-color:var(--red);color:var(--red)}
+.summary{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.summary .chip{background:var(--card);border:1px solid var(--line);border-radius:10px;
+padding:8px 12px;font-size:12px;color:var(--muted)}
+.summary .chip b{color:var(--ink);font-size:14px;margin-left:4px}
+section.board{margin:26px 0}
+.board-title{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:19px}
+.board-title .dot{width:10px;height:10px;border-radius:50%}
+.board-title.red .dot{background:var(--red)}
+.board-title.black .dot{background:var(--dark)}
+.board-title small{color:var(--muted);font-weight:400;font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+position:relative;transition:box-shadow .15s}
+.card:hover{box-shadow:0 4px 18px rgba(20,26,46,.08)}
+.card.red{border-top:3px solid var(--red)}
+.card.black{border-top:3px solid var(--dark)}
+.rank{position:absolute;top:10px;right:12px;font-size:26px;font-weight:800;color:#eceff5}
+.card.red .rank{color:#fbdcD9}
+.nm{font-size:16px;font-weight:700}
+.nm .tk{color:var(--muted);font-weight:500;font-size:12px;margin-left:6px}
+.tag{display:inline-block;background:var(--chip);color:var(--muted);border-radius:6px;
+padding:1px 7px;font-size:11px;margin:6px 6px 0 0}
+.price-row{display:flex;align-items:baseline;gap:10px;margin:10px 0 4px}
+.price{font-size:24px;font-weight:800}
+.pct{font-size:14px;font-weight:700;padding:2px 8px;border-radius:8px}
+.up{color:var(--red)}.down{color:var(--green)}.flat{color:var(--muted)}
+.pct.up{background:var(--redbg)}.pct.down{background:#e2f4e9}.pct.flat{background:var(--chip)}
+.psrc{font-size:11px;color:var(--muted);margin-left:auto}
+.scores{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.scores span{background:var(--chip);border-radius:6px;padding:2px 8px;font-size:11px;color:var(--muted)}
+.scores span b{color:var(--ink)}
+.pts{font-size:12.5px;margin:8px 0 0}
+.pts .h{font-weight:700;font-size:12px;margin:6px 0 2px}
+.pts .h.bull{color:var(--red)}.pts .h.bear{color:var(--green)}
+.pts ul{margin:2px 0 4px;padding-left:18px;color:#3a4152}
+.pts li{margin:1px 0}
+.masters{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:11px;color:var(--muted)}
+.masters b{color:var(--ink)}
+.summ{font-size:12.5px;color:#3a4152;background:#fafbfd;border:1px solid var(--line);
+border-radius:8px;padding:8px 10px;margin-top:8px}
+.empty{color:var(--muted);background:var(--card);border:1px dashed var(--line);
+border-radius:10px;padding:18px;text-align:center}
+footer{margin-top:34px;color:var(--muted);font-size:12px;text-align:center;line-height:1.8}
+a.lnk{color:var(--red);text-decoration:none}
+/* ── detail page ── */
+.backbar{margin-bottom:14px;font-size:13px}
+.backbar a{color:var(--muted);text-decoration:none;margin-right:14px}
+.backbar a:hover{color:var(--red)}
+.badge{display:inline-block;border-radius:6px;padding:2px 10px;font-size:12px;font-weight:700;margin-right:8px}
+.badge.red{background:var(--red);color:#fff}.badge.black{background:var(--dark);color:#fff}
+.trade{display:flex;flex-wrap:wrap;gap:10px;background:linear-gradient(135deg,#2c3550,#1c2230);
+color:#fff;border-radius:12px;padding:16px 18px;margin:16px 0}
+.trade .cell{min-width:120px}
+.trade .k{font-size:11px;opacity:.75}
+.trade .v{font-size:18px;font-weight:800;margin-top:2px}
+.trade .v.buy{color:#7ee2a8}.trade .v.sell{color:#ff9d97}.trade .v.hold{color:#ffd166}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0}
+.mgrid .m{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.mgrid .m .k{font-size:11px;color:var(--muted)}
+.mgrid .m .v{font-size:16px;font-weight:700;margin-top:2px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.panel>h2{margin:0 0 12px;font-size:17px}
+.panel>h2 .sub{font-size:12px;color:var(--muted);font-weight:400;margin-left:8px}
+.mreply{border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;
+padding:12px 14px;margin:10px 0;background:#fff}
+.mreply .mh{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.mreply .mh .who{font-weight:700;font-size:14px}
+.mreply .mh .mscore{margin-left:auto;background:var(--chip);border-radius:6px;padding:1px 8px;font-size:12px;font-weight:700}
+.md h2,.md h3,.md h4,.md h5{margin:12px 0 6px;font-size:15px}
+.md p{margin:6px 0;font-size:13.5px;color:#2c3345}
+.md ul{margin:6px 0;padding-left:20px;font-size:13.5px;color:#2c3345}
+.md li{margin:3px 0}
+.md strong{color:var(--ink)}
+details{border:1px solid var(--line);border-radius:10px;background:#fff;margin:10px 0;padding:0}
+details>summary{cursor:pointer;padding:12px 16px;font-weight:700;font-size:14px;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary:before{content:"▸ ";color:var(--red)}
+details[open]>summary:before{content:"▾ "}
+details>.body{padding:0 16px 14px;border-top:1px dashed var(--line)}
+.ychip{display:inline-block;background:var(--chip);border-radius:8px;padding:4px 10px;font-size:12px;margin:3px 6px 3px 0}
+.ychip b{font-size:13px}
+.news .nitem{border-top:1px dashed var(--line);padding:8px 0;font-size:13px}
+.news .nitem .t{font-weight:600}
+.news .nitem .s{color:var(--muted);font-size:12px}
+/* ── root landing page ── */
+.hero{padding:30px 26px}
+.hero-kicker{color:#ffd166;font-size:12px;font-weight:700;letter-spacing:2px;
+text-transform:uppercase;margin-bottom:8px}
+.hero h1{font-size:30px;margin:0 0 10px}
+.day-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.day-card{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);
+border-radius:12px;padding:14px 16px;transition:all .15s}
+.day-card:hover{border-color:var(--red);box-shadow:0 4px 16px rgba(216,52,44,.12);transform:translateY(-2px)}
+.day-card .d{font-weight:800;font-size:15px;color:var(--ink);display:flex;align-items:center;gap:8px}
+.day-card .m{margin-top:8px;display:flex;gap:6px}
+.day-card .m span{background:var(--chip);color:var(--muted);border-radius:6px;
+padding:2px 8px;font-size:11px}
+.latest-badge{background:var(--red);color:#fff;border-radius:6px;padding:1px 7px;
+font-size:10px;font-weight:700}
+</style>
+</head>
+<body><div class="wrap">
+<div class="backbar"><a href="../index.html">← 总览</a><a href="../hk.html">← 港股榜单</a></div>
+<header class="top">
+  <h1><span class="badge red">红榜 #8</span>MERDEKAGOLD-DRS<span class="tk" style="opacity:.7;font-size:15px;font-weight:400;margin-left:8px">06228</span></h1>
+  <div class="sub">港股 ·  · 榜单日期 <b>2026-08-03</b> · 盘价采集 <b>2026-08-03 05:00:39</b></div>
+  <div class="price-row" style="margin-top:12px">
+    <span class="price" style="color:#fff">HK$29.70</span>
+    <span class="pct up">+8.00%</span>
+    <span class="psrc" style="color:rgba(255,255,255,.6)">实时</span>
+  </div>
+  <div class="scores" style="margin-top:10px">
+    <span>综合 <b>78.1</b></span>
+    <span>多头 <b>85</b></span>
+    <span>空头 <b>20</b></span>
+    <span>大师均值 <b>70</b></span>
+    <span>信号 <b>positive</b></span>
+  </div>
+</header>
+<div class="trade"><div class="cell"><div class="k">交易评级</div><span class="v buy">Buy</span></div><div class="cell"><div class="k">加仓区间</div><span class="v">28.81 ~ 30.00</span></div><div class="cell"><div class="k">目标价</div><span class="v">33.26</span></div><div class="cell"><div class="k">伯克希尔</div><span class="v">观望</span></div><div class="cell"><div class="k">伯克希尔分</div><span class="v">3.25</span></div></div>
+<div class="panel"><h2>财务指标</h2><div class="mgrid"><div class="m"><div class="k">市净率 PB</div><div class="v">151.68</div></div><div class="m"><div class="k">总市值</div><div class="v">4.4万</div></div><div class="m"><div class="k">营收同比</div><div class="v">1,972.4%</div></div><div class="m"><div class="k">净利同比</div><div class="v">-4.9%</div></div></div></div>
+<div class="panel"><h2>历史收益</h2><span class="ychip">近1月 <b class="up">+13.97%</b></span><span class="ychip">近6月 <b class="up">+19.47%</b></span><span class="ychip">近1年 <b class="up">+19.47%</b></span></div>
+<div class="panel"><h2>大师圆桌<span class="sub">5 位</span></h2><div class="mreply"><div class="mh"><span class="who">段永平</span><span class="mscore">75</span></div><div class="md"><h4>圆桌发言</h4><p><strong>结论：</strong></p><p>这只股票（06228 MERDEKAGOLD-DRS）近期价格大幅上涨8%，表现强劲，但目前来看，我倾向于保持谨慎态度。</p><p><strong>理由：</strong></p><p>首先，从价格表现来看，8%的涨幅确实吸引眼球，市值较大也意味着流动性较好，这些都是积极信号。但深入分析后，我发现这只股票的基本面支撑相对薄弱。具体来说，市盈率（PE）数据缺失，而市净率（PB）高达151倍，市销率（PS）更是超过20万倍，这显示出市场对其估值已经远远偏离了传统的基本面标准。此外，尽管营收同比大幅增长，但净利润同比下降，净利率为负值，这些都表明公司的盈利能力存在较大问题。</p><p><strong>风险/行动建议：</strong></p><ul><li><strong>关注持续性：</strong> 短期内价格的剧烈波动可能受市场情绪或投机因素影响，需要密切关注后续走势的持续性。如果价格回调幅度过大，可能意味着这波上涨缺乏实质性支撑。</li></ul><ul><li><strong>审视基本面：</strong> 对于这类估值偏离基本面的公司，我建议投资者要格外谨慎。如果对公司业务模式、盈利能力和管理团队没有深入了解，不建议轻易介入。</li></ul><ul><li><strong>保持耐心：</strong> 投资中最重要的不是抓住每一次机会，而是避免犯大错。对于这类高风险、高波动的股票，我建议投资者保持耐心，等待更明确的基本面信号。</li></ul><p>总的来说，这只股票目前的情况让我想起一句话：&quot;不做不对的事，比做对的事更重要&quot;。在投资中，克制和耐心往往比追逐短期热点更重要。</p></div></div><div class="mreply"><div class="mh"><span class="who">巴菲特</span><span class="mscore">60</span></div><div class="md"><p>各位朋友，今天我们来聊聊这只名为 MERDEKAGOLD-DRS 的股票，代码是 06228。</p><p>首先，我得说，这只股票最近价格大幅上涨了 8%，而且市值较大，流动性看起来也不错。这对于一些交易型投资者来说，可能是一个吸引点。但从价值投资的角度来看，我得提醒大家，这只股票目前的价格缺乏足够的基本面支撑。</p><p>让我们来看看一些关键数据：当前价格是 29.7 元，市净率（PB）高达 151 倍，市销率（PS）更是达到了惊人的 20 万倍。这意味着投资者为每一块钱的账面价值和销售收入支付了非常高的溢价。此外，尽管营收同比增长了近 20 倍，但净利润却同比下降了 4.9%，净利率更是为负的 413%。这些数字告诉我们，这家公司的盈利能力目前是相当薄弱的。</p><p>从我的角度来看，这只股票目前的价格并没有给我足够的“安全边际”。虽然市场先生现在似乎很兴奋，但我更关心的是这家公司十年后是否还能保持这样的增长势头，甚至是否还能存在。在我看来，缺乏坚实的盈利能力是一个重要的风险因素。</p><p>因此，我的建议是：</p><ul><li>如果你是一个短期交易者，并且对市场情绪有很好的把握，那么这只股票的高流动性和近期价格走势可能适合你。但请务必小心，因为缺乏基本面支撑的股票往往波动较大。</li></ul><ul><li>如果你是一个长期投资者，我建议你再观察一段时间，看看公司是否能改善其盈利能力，或者是否有其他因素可以支撑其高估值。</li></ul><p>最后，我想说的是，投资就像打棒球，你不需要每次都挥棒。只有当球进入你最擅长的击球区域时，才值得出手。对于这只股票，我目前还没有看到足够吸引我的价值。</p><p>如果查理·芒格在这里，他可能会补充说：“在投资中，耐心和纪律是成功的关键。不要被短期的市场波动所左右。”</p></div></div><div class="mreply"><div class="mh"><span class="who">达利欧</span><span class="mscore">70</span></div><div class="md"><p>各位同仁，关于 MERDEKAGOLD-DRS（06228）的投资前景，我的看法如下：</p><h4>结论</h4><p>尽管该股票近期表现强劲，价格大幅上涨8%，但我持谨慎乐观态度，建议投资者保持适度关注。</p><h4>理由</h4><p>首先，从价格走势来看，该股票在过去一段时间内上涨了8%，显示出一定的市场动能。此外，其市值较大，流动性较好，这对于投资者来说是一个积极的信号。</p><p>然而，从基本面来看，情况并不乐观。尽管营收同比增长了1972%，但净利润同比下降了4.9%，净利润率为-413%，这表明公司的盈利能力存在严重问题。市净率（PB）和市销率（PS）分别高达151.68和201133，这些数据表明市场对其估值已经远远超出了其当前的基本面。</p><p>从我的原则化视角来看，价格的强劲走势需要与基本面进行权衡。当前的情况是，市场情绪推动了股价上涨，但缺乏坚实的财务基础来支撑这种增长。</p><h4>风险/行动建议</h4><ul><li><strong>短期风险</strong>：由于缺乏基本面支撑，价格的持续上涨可能会面临回调压力。投资者应密切关注后续走势，警惕可能的获利回吐。</li></ul><ul><li><strong>长期风险</strong>：如果公司不能改善其盈利能力，高估值将难以维持。投资者应关注公司未来的财务报告，特别是净利润和净利润率的改善情况。</li></ul><ul><li><strong>行动建议</strong>：对于短期投资者，可以考虑在当前价格水平上适度参与，但应设定严格的止损点。对于长期投资者，建议等待公司财务状况的改善，或者寻找其他更具基本面支撑的投资机会。</li></ul><h4>总结原则</h4><p>在投资决策中，价格走势和基本面之间的平衡至关重要。正如我常说的，&quot;Pain + Reflection = Progress&quot;，我们需要对市场情绪保持警惕，同时也要理性分析公司的财务状况。只有在充分了解风险和收益的基础上，才能做出明智的投资决策。</p><p>希望这些分析对大家有所帮助。如果有任何进一步的问题或需要更详细的数据分析，请随时提出。</p></div></div><div class="mreply"><div class="mh"><span class="who">林奇</span><span class="mscore">80</span></div><div class="md"><h4>结论：</h4><p>对于这只股票 MERDEKAGOLD-DRS，我持部分看好的态度，但建议投资者谨慎行事。</p><h4>理由：</h4><p>首先，我们看到这只股票在过去一段时间内表现非常强劲，价格大幅上涨了8%，这表明市场对其有很大的兴趣。而且它的市值较大，流动性较好，这对于投资者来说是一个积极的信号。</p><p>然而，当我们深入分析其基本面时，情况就不那么乐观了。尽管营收同比增长了近20倍，但净利润却出现了负增长，净利润率更是低至-413%。这意味着公司在盈利能力方面存在严重问题。此外，其市净率（PB）和市销率（PS）都非常高，分别为151倍和201133倍，这表明市场对其的估值已经远远超出了其账面价值和销售收入。</p><h4>风险/行动建议：</h4><ul><li><strong>高估值风险</strong>：当前的高估值意味着市场对其未来增长有非常高的预期，但这种预期能否实现存在很大的不确定性。如果公司无法在未来几年内显著改善其盈利能力，股价可能会面临大幅回调的风险。</li></ul><ul><li><strong>缺乏基本面支撑</strong>：尽管市场表现积极，但缺乏坚实的基本面支撑是一个重要的警示信号。投资者在考虑买入时，应仔细评估公司的长期增长潜力和盈利能力。</li></ul><ul><li><strong>短期投机 vs 长期投资</strong>：如果你是一个短期投机者，可能会被这种强劲的市场表现所吸引，但我建议你在买入前仔细考虑风险。如果你是一个长期投资者，我建议你等待更多基本面改善的迹象再考虑入场。</li></ul><h4>具体行动：</h4><p>对于这只股票，我建议投资者在买入前先进行深入的基本面分析，特别是关注公司未来的盈利能力和增长潜力。如果你是短期交易者，可以考虑设置止损点以控制风险。如果你是长期投资者，建议等待更明确的基本面改善信号再入场。</p><p>总之，这只股票目前的市场表现虽然积极，但缺乏坚实的基本面支撑，投资者需要谨慎行事。</p></div></div><div class="mreply"><div class="mh"><span class="who">芒格</span><span class="mscore">65</span></div><div class="md"><p>各位先生女士，今天我们来谈谈这只股票，06228 MERDEKAGOLD-DRS。首先，我得说，这只股票的价格最近大幅上涨了8%，市值较大，流动性也不错，这些是支持买入的理由。然而，我必须提醒大家，这只股票目前的价格上涨缺乏长期价值支撑。</p><p>让我们先从逆向思维的角度来看这个问题。我们需要问自己：这只股票可能会因为什么原因失败？在我看来，缺乏基本面支撑是一个巨大的风险。尽管价格大幅上涨，但市盈率（PE）无法计算，市净率（PB）高达151倍，市销率（PS）更是离谱地达到了20万倍。这些数据表明，市场对这只股票的估值已经远远超出了其实际的盈利能力。</p><p>接下来，我们来看看激励机制。谁在这只股票的价格上涨中获益？很可能是那些早期买入并推动价格上涨的投资者，以及那些在高位卖出的交易者。这种情况下，股价的上涨可能更多地是由投机行为推动的，而不是由公司实际的经营业绩或未来前景所支撑。</p><p>从多元心智模型的角度来看，我们需要考虑经济学和心理学的因素。经济学告诉我们，价格最终会回归价值。而心理学则提醒我们，市场情绪和羊群效应可能会导致价格的短期波动，但这种波动往往是不可持续的。</p><p>从概率与赔率的角度来看，目前这只股票的胜率并不高。虽然短期内可能还会有一些上涨的空间，但长期来看，缺乏基本面支撑的股票往往会面临巨大的回调风险。因此，在胜率不高的情况下，我们不应该轻易下注。</p><p>最后，我要提醒大家，投资决策不应仅仅基于短期的价格波动。我们需要关注的是公司的长期价值创造能力，而不是短期的市场情绪。在当前的情况下，我建议大家保持谨慎，不要被短期的价格上涨所迷惑。</p><p>总结一下，我的看法是，尽管这只股票短期内表现强劲，但缺乏长期价值支撑，风险较高。对于那些已经持有的投资者，我建议密切关注后续走势，并在适当的时机获利了结。对于那些考虑买入的投资者，我建议三思而后行，确保自己能够承受潜在的风险。</p><p>谢谢大家。</p></div></div></div>
+<div class="panel"><h2>分析师报告<span class="sub">2 篇</span></h2><details open><summary>市场面分析</summary><div class="body"><div class="md"><h4>06228 MERDEKAGOLD-DRS 市场面分析</h4><ul><li>红黑榜多空分数：多头 85 / 空头 20，分差 65。</li><li>当前价格：29.70。</li><li>当前交易评级：Buy。</li><li>值得加仓区间：28.81 - 30.00。</li><li>目标价格：33.26。</li><li>市场愿意给溢价的原因：价格大幅上涨8%；市值较大，流动性较好。</li><li>当前主要压制因素：需关注后续走势持续性；缺乏基本面支撑。</li></ul></div></div></details><details open><summary>基本面分析</summary><div class="body"><div class="md"><h4>06228 MERDEKAGOLD-DRS 基本面分析</h4><ul><li>报告期：暂无。</li><li>PB：151.68。</li><li>PS(TTM)：201133.02。</li><li>营收同比：1972.37%。</li><li>归母净利润同比：-4.92%。</li><li>核心判断：收入仍在增长。</li></ul></div></div></details></div>
+<div class="panel"><h2>研究与计划</h2>
+<details><summary>基本面摘要</summary><div class="body"><div class="md"><h3>核心财务快照</h3><ul><li>报告期: 数据缺失</li><li>当前股价: 29.70 元</li><li>总市值: 43752.16 亿元</li><li>PE (TTM): 数据缺失</li><li>PB: 151.68</li><li>PS (TTM): 201133.02</li><li>营业总收入(报告期): 数据缺失 亿元</li><li>营收同比增长率: 1972.37%</li><li>归母净利润(报告期): 数据缺失 亿元</li><li>归母净利润同比增长率: -4.92%</li><li>ROE (TTM/估算): 数据缺失</li><li>资产负债率: 数据缺失</li><li>经营性现金流 / 归母净利润: 数据缺失</li></ul><h4>缺失字段</h4><ul><li>PE(TTM), 营业总收入, 归母净利润, ROE, 资产负债率, 经营性现金流与归母净利润比值</li></ul></div></div></details>
+<details><summary>研究计划</summary><div class="body"><div class="md"><h4>06228 MERDEKAGOLD-DRS 研究摘要</h4><ul><li>红黑榜结论: Buy</li><li>多头/空头: 85/20</li><li>正向信号: 营收同比 1972.37%；PB 151.68</li><li>风险信号: 归母净利润同比 -4.92%</li><li>榜单看多理由: 价格大幅上涨8%；市值较大，流动性较好</li><li>榜单风险提示: 需关注后续走势持续性；缺乏基本面支撑</li></ul></div></div></details>
+<details><summary>交易计划</summary><div class="body"><div class="md"><h4>06228 MERDEKAGOLD-DRS 交易计划</h4><ul><li>评级: Buy</li><li>当前价格: 29.70</li><li>值得加仓区间: 28.81 - 30.00</li><li>目标价格: 33.26</li><li>止损位: 27.32</li><li>备注: 当前为缓存降级交易卡，后续若完整 TradingAgent 结果生成，将自动覆盖。</li></ul></div></div></details>
+<details><summary>交易决策</summary><div class="body"><div class="md"><p>Buy</p><p>06228 MERDEKAGOLD-DRS 当前使用红黑榜缓存结果生成兜底交易卡。多头 85 / 空头 20，分差 65。当前尚未取得完整 TradingAgent 长文决策，但榜单分数、财务快照和大师观点已经足够生成基础交易建议。</p></div></div></details>
+</div>
+<div class="panel"><h2>多空逻辑</h2><div class="pts"><div class="h bull">看多逻辑</div><div class="md"><p>价格大幅上涨8%</p><p>市值较大，流动性较好</p></div></div><div class="pts"><div class="h bear">看空逻辑</div><div class="md"><p>需关注后续走势持续性</p><p>缺乏基本面支撑</p></div></div></div>
+<div class="panel"><h2>伯克希尔研究</h2><p><strong>MERDEKAGOLD-DRS是一家商业模式较为传统、护城河有限但行业前景稳定的黄金交易公司，当前估值合理但缺乏显著增长亮点。</strong></p><p>伯克希尔综合评分：<strong>3.25</strong></p><div class="md"><p>{&quot;verdict&quot;: &quot;观望&quot;, &quot;conservative_tip&quot;: &quot;建议在PE TTM低于12倍时买入，股价低于0.6令吉时考虑建仓&quot;, &quot;moderate_tip&quot;: &quot;当前估值合理，可小仓位持有，股价在0.7-0.8令吉区间内可考虑增持&quot;, &quot;aggressive_tip&quot;: &quot;不建议激进操作，除非有明确的技术或商业模式转型信号&quot;, &quot;catalysts_plus&quot;: [&quot;金价大幅上涨&quot;, &quot;公司宣布数字化转型计划&quot;, &quot;行业监管政策放松&quot;], &quot;catalysts_minus&quot;: [&quot;金价大幅下跌&quot;, &quot;竞争加剧导致市场份额下降&quot;, &quot;监管政策收紧&quot;]}</p></div></div>
+<div class="panel news"><h2>最新资讯</h2><div class="md"><p>整体情绪偏利好，共3条利多，1条利空，2条中性。</p></div><div class="nitem"><div class="t">IPO News | MERDEKAGOLD-DRS (06228) Closes Bookbuilding with HK$690 Million in Margin Subscriptions, Oversubscribed by 1.88 Times</div><div class="s">moomoo.com · 利好</div></div><div class="nitem"><div class="t">Grey Market Intelligence | Merdeka Gold DRS, a gold mining company, is currently down approximately 25%, with a total market capitalization of nearly HK$30 billion.</div><div class="s">富途牛牛 · 利空</div></div><div class="nitem"><div class="t">IPO News | PT Merdeka Gold Resources Tbk Passes HKEX Listing Hearing, Holding Indonesia&#x27;s Largest Primary Gold Mine</div><div class="s">moomoo.com · 利好</div></div><div class="nitem"><div class="t">IPO News | Gold miner MERDEKA GOLD-DRS launches IPO, schedul... - Futubull Community</div><div class="s">富途牛牛 · 中性</div></div><div class="nitem"><div class="t">PT Merdeka Gold Resources Tbk Debuts on the Main Board of HKEX with a Secondary Listing</div><div class="s">acnnewswire.com · 中性</div></div><div class="nitem"><div class="t">Merdeka Gold turns to Hong Kong market</div><div class="s">The Star · 利好</div></div></div>
+<footer>稳健理财Agent · 红黑榜每日归档 · 红榜 #8 · 仅供研究，不构成投资建议</footer>
+</div></body>
+</html>

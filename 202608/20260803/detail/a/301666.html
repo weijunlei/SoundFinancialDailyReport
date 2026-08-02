@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>大普微-UW(301666) 黑榜 2026-08-03</title>
+<style>
+:root{--red:#d8342c;--redbg:#fdecea;--green:#1a9e54;--ink:#1c2230;--muted:#6b7385;
+--line:#e7e9ef;--card:#fff;--bg:#f4f6fa;--chip:#eef1f6;--dark:#23262d;--darkbg:#ececef}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",
+"Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);
+line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 16px 64px}
+header.top{background:linear-gradient(135deg,#1c2230,#2c3550);color:#fff;border-radius:14px;
+padding:22px 24px;margin-bottom:20px;box-shadow:0 6px 24px rgba(20,26,46,.12)}
+header.top h1{margin:0 0 6px;font-size:24px;letter-spacing:.5px}
+header.top .sub{opacity:.85;font-size:13px}
+header.top .sub b{color:#ffd166;font-weight:600}
+nav.mkt{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;
+background:rgba(244,246,250,.92);backdrop-filter:blur(6px);padding:10px 0;margin-bottom:14px}
+nav.mkt a{text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);
+padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600}
+nav.mkt a:hover{border-color:var(--red);color:var(--red)}
+.summary{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.summary .chip{background:var(--card);border:1px solid var(--line);border-radius:10px;
+padding:8px 12px;font-size:12px;color:var(--muted)}
+.summary .chip b{color:var(--ink);font-size:14px;margin-left:4px}
+section.board{margin:26px 0}
+.board-title{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:19px}
+.board-title .dot{width:10px;height:10px;border-radius:50%}
+.board-title.red .dot{background:var(--red)}
+.board-title.black .dot{background:var(--dark)}
+.board-title small{color:var(--muted);font-weight:400;font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+position:relative;transition:box-shadow .15s}
+.card:hover{box-shadow:0 4px 18px rgba(20,26,46,.08)}
+.card.red{border-top:3px solid var(--red)}
+.card.black{border-top:3px solid var(--dark)}
+.rank{position:absolute;top:10px;right:12px;font-size:26px;font-weight:800;color:#eceff5}
+.card.red .rank{color:#fbdcD9}
+.nm{font-size:16px;font-weight:700}
+.nm .tk{color:var(--muted);font-weight:500;font-size:12px;margin-left:6px}
+.tag{display:inline-block;background:var(--chip);color:var(--muted);border-radius:6px;
+padding:1px 7px;font-size:11px;margin:6px 6px 0 0}
+.price-row{display:flex;align-items:baseline;gap:10px;margin:10px 0 4px}
+.price{font-size:24px;font-weight:800}
+.pct{font-size:14px;font-weight:700;padding:2px 8px;border-radius:8px}
+.up{color:var(--red)}.down{color:var(--green)}.flat{color:var(--muted)}
+.pct.up{background:var(--redbg)}.pct.down{background:#e2f4e9}.pct.flat{background:var(--chip)}
+.psrc{font-size:11px;color:var(--muted);margin-left:auto}
+.scores{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.scores span{background:var(--chip);border-radius:6px;padding:2px 8px;font-size:11px;color:var(--muted)}
+.scores span b{color:var(--ink)}
+.pts{font-size:12.5px;margin:8px 0 0}
+.pts .h{font-weight:700;font-size:12px;margin:6px 0 2px}
+.pts .h.bull{color:var(--red)}.pts .h.bear{color:var(--green)}
+.pts ul{margin:2px 0 4px;padding-left:18px;color:#3a4152}
+.pts li{margin:1px 0}
+.masters{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:11px;color:var(--muted)}
+.masters b{color:var(--ink)}
+.summ{font-size:12.5px;color:#3a4152;background:#fafbfd;border:1px solid var(--line);
+border-radius:8px;padding:8px 10px;margin-top:8px}
+.empty{color:var(--muted);background:var(--card);border:1px dashed var(--line);
+border-radius:10px;padding:18px;text-align:center}
+footer{margin-top:34px;color:var(--muted);font-size:12px;text-align:center;line-height:1.8}
+a.lnk{color:var(--red);text-decoration:none}
+/* ── detail page ── */
+.backbar{margin-bottom:14px;font-size:13px}
+.backbar a{color:var(--muted);text-decoration:none;margin-right:14px}
+.backbar a:hover{color:var(--red)}
+.badge{display:inline-block;border-radius:6px;padding:2px 10px;font-size:12px;font-weight:700;margin-right:8px}
+.badge.red{background:var(--red);color:#fff}.badge.black{background:var(--dark);color:#fff}
+.trade{display:flex;flex-wrap:wrap;gap:10px;background:linear-gradient(135deg,#2c3550,#1c2230);
+color:#fff;border-radius:12px;padding:16px 18px;margin:16px 0}
+.trade .cell{min-width:120px}
+.trade .k{font-size:11px;opacity:.75}
+.trade .v{font-size:18px;font-weight:800;margin-top:2px}
+.trade .v.buy{color:#7ee2a8}.trade .v.sell{color:#ff9d97}.trade .v.hold{color:#ffd166}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0}
+.mgrid .m{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.mgrid .m .k{font-size:11px;color:var(--muted)}
+.mgrid .m .v{font-size:16px;font-weight:700;margin-top:2px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.panel>h2{margin:0 0 12px;font-size:17px}
+.panel>h2 .sub{font-size:12px;color:var(--muted);font-weight:400;margin-left:8px}
+.mreply{border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;
+padding:12px 14px;margin:10px 0;background:#fff}
+.mreply .mh{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.mreply .mh .who{font-weight:700;font-size:14px}
+.mreply .mh .mscore{margin-left:auto;background:var(--chip);border-radius:6px;padding:1px 8px;font-size:12px;font-weight:700}
+.md h2,.md h3,.md h4,.md h5{margin:12px 0 6px;font-size:15px}
+.md p{margin:6px 0;font-size:13.5px;color:#2c3345}
+.md ul{margin:6px 0;padding-left:20px;font-size:13.5px;color:#2c3345}
+.md li{margin:3px 0}
+.md strong{color:var(--ink)}
+details{border:1px solid var(--line);border-radius:10px;background:#fff;margin:10px 0;padding:0}
+details>summary{cursor:pointer;padding:12px 16px;font-weight:700;font-size:14px;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary:before{content:"▸ ";color:var(--red)}
+details[open]>summary:before{content:"▾ "}
+details>.body{padding:0 16px 14px;border-top:1px dashed var(--line)}
+.ychip{display:inline-block;background:var(--chip);border-radius:8px;padding:4px 10px;font-size:12px;margin:3px 6px 3px 0}
+.ychip b{font-size:13px}
+.news .nitem{border-top:1px dashed var(--line);padding:8px 0;font-size:13px}
+.news .nitem .t{font-weight:600}
+.news .nitem .s{color:var(--muted);font-size:12px}
+/* ── root landing page ── */
+.hero{padding:30px 26px}
+.hero-kicker{color:#ffd166;font-size:12px;font-weight:700;letter-spacing:2px;
+text-transform:uppercase;margin-bottom:8px}
+.hero h1{font-size:30px;margin:0 0 10px}
+.day-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.day-card{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);
+border-radius:12px;padding:14px 16px;transition:all .15s}
+.day-card:hover{border-color:var(--red);box-shadow:0 4px 16px rgba(216,52,44,.12);transform:translateY(-2px)}
+.day-card .d{font-weight:800;font-size:15px;color:var(--ink);display:flex;align-items:center;gap:8px}
+.day-card .m{margin-top:8px;display:flex;gap:6px}
+.day-card .m span{background:var(--chip);color:var(--muted);border-radius:6px;
+padding:2px 8px;font-size:11px}
+.latest-badge{background:var(--red);color:#fff;border-radius:6px;padding:1px 7px;
+font-size:10px;font-weight:700}
+</style>
+</head>
+<body><div class="wrap">
+<div class="backbar"><a href="../index.html">← 总览</a><a href="../a.html">← A股榜单</a></div>
+<header class="top">
+  <h1><span class="badge black">黑榜 #3</span>大普微-UW<span class="tk" style="opacity:.7;font-size:15px;font-weight:400;margin-left:8px">301666</span></h1>
+  <div class="sub">A股 ·  · 榜单日期 <b>2026-08-03</b> · 盘价采集 <b>2026-08-03 05:00:39</b></div>
+  <div class="price-row" style="margin-top:12px">
+    <span class="price" style="color:#fff">¥403.00</span>
+    <span class="pct up">+3.07%</span>
+    <span class="psrc" style="color:rgba(255,255,255,.6)">实时</span>
+  </div>
+  <div class="scores" style="margin-top:10px">
+    <span>综合 <b>36.9</b></span>
+    <span>多头 <b>50</b></span>
+    <span>空头 <b>70</b></span>
+    <span>大师均值 <b>50</b></span>
+    <span>信号 <b>negative</b></span>
+  </div>
+</header>
+<div class="trade"><div class="cell"><div class="k">交易评级</div><span class="v hold">Reduce</span></div><div class="cell"><div class="k">加仓区间</div><span class="v">378.82 ~ 394.94</span></div><div class="cell"><div class="k">伯克希尔</div><span class="v">观望</span></div><div class="cell"><div class="k">伯克希尔分</div><span class="v">2.75</span></div></div>
+<div class="panel"><h2>财务指标</h2><div class="mgrid"><div class="m"><div class="k">市盈率 PE</div><div class="v">13,542.03</div></div><div class="m"><div class="k">市净率 PB</div><div class="v">65.57</div></div><div class="m"><div class="k">ROE</div><div class="v">2.1%</div></div><div class="m"><div class="k">总市值</div><div class="v">1758</div></div><div class="m"><div class="k">资产负债率</div><div class="v">78.4%</div></div><div class="m"><div class="k">营收(最新)</div><div class="v">13.10亿</div></div><div class="m"><div class="k">营收同比</div><div class="v">341.0%</div></div><div class="m"><div class="k">净利(最新)</div><div class="v">3.70亿</div></div><div class="m"><div class="k">净利同比</div><div class="v">398.9%</div></div><div class="m"><div class="k">报告期</div><div class="v">2026-03-31</div></div></div></div>
+
+<div class="panel"><h2>大师圆桌<span class="sub">5 位</span></h2><div class="mreply"><div class="mh"><span class="who">段永平</span><span class="mscore">55</span></div><div class="md"><h4>圆桌发言：</h4><p><strong>结论：</strong></p><p>对于大普微-UW这家公司，我目前持谨慎态度。创新药行业确实有潜力，但这家公司的估值水平让我有所顾虑。</p><p><strong>理由：</strong></p><p>首先，创新药研发本身就是一个高风险、高回报的领域。大普微-UW作为一家创新药企业，在当前医药政策支持下，有机会获得发展。但从财务数据来看，这家公司的估值已经非常高了，市盈率达到了13542倍，市净率65倍，市销率53倍。这样的估值水平意味着市场对其未来增长有极高的预期。</p><p>然而，创新药研发周期长、投入大、失败率高。虽然公司营收和净利润同比大幅增长，但净利润率仍然较低，净资产收益率仅为2.13%。这表明公司目前还处于投入阶段，盈利能力尚未得到充分验证。</p><p>此外，创新药行业竞争激烈，市场环境变化快。即使公司目前处于政策红利期，未来能否持续保持竞争优势仍存在不确定性。</p><p><strong>风险/行动建议：</strong></p><ul><li><strong>估值风险</strong>：当前估值水平过高，市场预期可能过于乐观。建议投资者谨慎评估公司的长期盈利能力。</li></ul><ul><li><strong>研发风险</strong>：创新药研发失败的可能性始终存在。建议密切关注公司的研发进展和管线布局。</li></ul><ul><li><strong>竞争风险</strong>：行业竞争激烈，市场环境变化快。建议关注公司在行业中的定位和竞争优势。</li></ul><p>如果是我，我会先观察一段时间，等待更明确的市场信号和公司基本面改善的迹象。同时，我会重点关注公司的研发进展和行业竞争格局，而不是单纯依赖短期的财务数据。</p><p><strong>别错过的隐含约束：</strong></p><p>投资创新药企业需要极大的耐心和风险承受能力。不要被短期的增长数据迷惑，要看长期的价值创造能力。</p></div></div><div class="mreply"><div class="mh"><span class="who">巴菲特</span><span class="mscore">40</span></div><div class="md"><h4>巴菲特视角分析：大普微-UW (301666)</h4><h5>结论：</h5><p>对于大普微-UW，我持谨慎态度。这家公司目前并不符合我的投资标准。</p><h5>理由：</h5><p>首先，从护城河的角度来看，大普微-UW是一家创新药研发企业。虽然医药行业确实受益于政策支持，但创新药研发本身具有极高的不确定性。研发投入大、周期长、风险高是这一行业的典型特征。就像我常说的，&quot;在别人贪婪时恐惧&quot;，目前市场对创新药的热情可能已经过度反映了这家公司的潜在价值。</p><p>其次，从财务数据来看，大普微-UW的估值指标令人担忧。其市盈率（PE）高达13542倍，市净率（PB）也达到65.57倍，这意味着投资者为公司的当前盈利和账面价值支付了过高的溢价。即使考虑到其营收和净利润的快速增长，这些指标也远远超出了我所能接受的安全边际范围。</p><p>此外，从能力圈的角度来看，医药研发是一个高度专业化的领域，需要深厚的专业知识和行业经验才能做出准确判断。作为投资者，我更倾向于投资那些我能理解其商业模式和竞争优势的企业。</p><h5>风险/行动建议：</h5><ul><li><strong>研发风险</strong>：创新药研发的成功与否直接关系到公司的未来发展。投资者需要密切关注其研发进展和临床试验结果。</li></ul><ul><li><strong>市场竞争</strong>：医药行业竞争激烈，大普微-UW需要面对来自国内外大型药企的竞争压力。投资者应评估其市场定位和竞争优势。</li></ul><ul><li><strong>估值过高</strong>：当前估值水平过高，投资者应谨慎对待。除非公司未来能够持续保持高速增长，否则股价可能面临回调风险。</li></ul><ul><li><strong>长期持有</strong>：如果投资者决定投资，应做好长期持有的准备，并密切关注公司基本面的变化。</li></ul><h5>芒格的补充：</h5><p>查理可能会补充说，&quot;在投资中，最重要的是避免犯大错。&quot; 对于像大普微-UW这样的高风险、高估值公司，我们需要格外谨慎，确保我们对其商业模式和未来发展有充分的理解。</p><p>总之，虽然大普微-UW所在的医药行业具有吸引力，但目前其估值和风险水平都不符合我的投资标准。投资者应谨慎评估，量力而行。</p></div></div><div class="mreply"><div class="mh"><span class="who">达利欧</span><span class="mscore">50</span></div><div class="md"><h4>圆桌发言：</h4><p><strong>结论：</strong></p><p>大普微-UW（301666）是一家处于高风险和高回报平衡点的创新药研发企业，目前估值极高，短期内需谨慎观察。</p><p><strong>理由：</strong></p><ul><li><strong>政策支持与增长潜力：</strong></li></ul><p>   这家公司身处创新药领域，而中国政府对医药行业的支持政策是一个明确的利好因素。从营收增长来看，最新财报显示其收入同比增长超过340%，净利润增长接近400%，这表明公司正处于高速发展阶段。</p><ul><li><strong>高估值与风险：</strong></li></ul><p>   然而，目前的估值水平极高，市盈率（PE）超过13500倍，市净率（PB）也高达65倍。这样的估值意味着市场已经对其未来增长给予了极高的预期，但同时也蕴含着巨大的风险。创新药研发本身具有高度不确定性，临床试验失败、审批延迟或市场竞争加剧都可能对公司的前景产生重大影响。</p><ul><li><strong>现金流与财务健康：</strong></li></ul><p>   公司的现金流与利润比率接近0.8，表明其盈利质量尚可，但资产负债率接近78%，显示出一定的财务杠杆压力。在高估值和高杠杆的背景下，任何负面消息都可能引发市场的大幅波动。</p><p><strong>风险/行动建议：</strong></p><ul><li><strong>短期风险：</strong></li></ul><p>   短期内，建议密切关注公司的临床试验进展和监管审批情况。这些因素将直接影响其股价表现。同时，考虑到当前极高的估值水平，市场情绪的任何变化都可能导致股价大幅波动。</p><ul><li><strong>长期潜力：</strong></li></ul><p>   如果您是一个长期投资者，并且能够承受高风险，可以考虑在股价回调时逐步建仓。但前提是您对公司的研发能力和市场前景有深入的了解，并且愿意承担研发失败的风险。</p><ul><li><strong>仓位管理：</strong></li></ul><p>   在当前估值水平下，不建议重仓持有。可以考虑将投资分散到其他更具确定性的标的，以平衡整体投资组合的风险。</p><p><strong>总结原则：</strong></p><p>在面对高增长、高风险的投资机会时，务必保持冷静和理性。记住，&quot;Pain + Reflection = Progress&quot;。在做出投资决策前，务必进行充分的尽职调查，并记录下您的决策过程，以便后续复盘和调整策略。</p></div></div><div class="mreply"><div class="mh"><span class="who">林奇</span><span class="mscore">60</span></div><div class="md"><p>各位朋友，关于大普微-UW这只股票，我的看法是：<strong>这是一家典型的快速增长型公司，但目前估值过高，投资风险较大。</strong></p><p>首先，这家公司身处创新药研发领域，这是个充满机遇的赛道。随着医药政策的持续支持，以及社会对创新药物需求的增长，这类企业确实有可能实现爆发式增长。从财务数据来看，公司营收和净利润都出现了大幅增长，尤其是净利润同比增长近400%，显示出强劲的增长势头。</p><p>然而，我们也要看到几个关键问题：</p><ul><li><strong>估值过高</strong>：当前市盈率高达13542倍，市净率65.57倍，市销率53倍，这些指标都远远超出了合理范围。即使考虑到公司的高成长性，这样的估值也让人难以接受。</li></ul><ul><li><strong>研发风险</strong>：创新药研发周期长、投入大、失败率高。公司目前仍处于研发投入阶段，未来能否成功推出有竞争力的产品存在很大不确定性。</li></ul><ul><li><strong>市场竞争</strong>：医药行业竞争激烈，大普微需要面对国内外众多实力强劲的对手，能否在市场中站稳脚跟还需观察。</li></ul><ul><li><strong>盈利质量</strong>：虽然营收和净利润增长迅猛，但现金流与利润的比例仅为0.8，说明公司盈利质量有待提高。</li></ul><p><strong>建议：</strong></p><p>对于这只股票，我的建议是：<strong>暂时观望，不要急于买入。</strong> 如果你真的看好创新药赛道，可以等估值回到更合理水平，或者等公司有更多实质性产品进展时再考虑介入。</p><p><strong>具体行动：</strong></p><ul><li>密切关注公司后续的研发进展和产品上市情况。</li><li>等待市场情绪降温，估值回归合理区间。</li><li>如果实在想参与，可以考虑小仓位试探，但绝不能重仓。</li></ul><p>记住，投资创新药企业就像在赌马，押对了可能获得丰厚回报，但押错了也可能血本无归。所以，一定要控制好风险，保持耐心。</p></div></div><div class="mreply"><div class="mh"><span class="who">芒格</span><span class="mscore">45</span></div><div class="md"><h4>发言内容：</h4><p>各位同仁，关于大普微-UW（301666），我的看法是：这是一个需要极度谨慎对待的投资标的。</p><p>首先，公司的商业模式确实有前景。作为一家创新药研发企业，它受益于当前医药政策的支持，这是其优势所在。创新药研发是推动医疗行业进步的重要力量，而政策扶持则为其提供了良好的发展环境。</p><p>然而，公司的风险因素同样不容忽视。首先，研发风险极高。创新药研发的成功率低，周期长，成本高昂，任何一个环节的失败都可能对公司的财务状况造成重大打击。其次，公司面临激烈的市场竞争压力。尽管有政策支持，但行业内竞争者众多，市场份额的争夺异常激烈。</p><p>从财务数据来看，虽然公司营收和净利润同比大幅增长，但估值水平已经高得离谱。当前股价403元，市盈率高达13542倍，市净率65.57倍，市销率53.25倍。这些数字表明，市场已经对公司的未来增长给予了极高的预期，但这种预期是否能够实现，存在极大的不确定性。</p><h4>风险提示：</h4><ul><li><strong>研发失败风险</strong>：创新药研发的成功率低，任何一个项目的失败都可能对公司的财务状况造成重大打击。</li><li><strong>市场竞争风险</strong>：行业内竞争者众多，市场份额的争夺异常激烈。</li><li><strong>估值风险</strong>：当前估值水平已经高得离谱，市场预期过高，未来增长能否兑现存在极大不确定性。</li><li><strong>现金流风险</strong>：尽管营收和净利润同比大幅增长，但现金流状况并不理想，现金流入与利润的比例仅为0.81，表明公司可能面临资金周转压力。</li></ul><h4>行动建议：</h4><p>对于大普微-UW，我的建议是：保持高度警惕，不要被短期的营收和净利润增长所迷惑。在当前高估值水平下，投资风险极高。如果一定要参与，建议采取以下策略：</p><ul><li><strong>严格控制仓位</strong>：不要将过多资金投入此类高风险标的。</li><li><strong>密切关注研发进展</strong>：持续关注公司的研发进展和市场动态，及时调整投资策略。</li><li><strong>设定止损线</strong>：在投资前设定明确的止损线，一旦股价跌破止损线，立即止损离场。</li></ul><p>总之，投资大普微-UW需要极强的风险承受能力和管理能力。对于大多数投资者来说，最好的策略可能是：远离它。</p></div></div></div>
+<div class="panel"><h2>分析师报告<span class="sub">2 篇</span></h2><details open><summary>市场面分析</summary><div class="body"><div class="md"><h4>301666 大普微-UW 市场面分析</h4><ul><li>红黑榜多空分数：多头 50 / 空头 70，分差 -20。</li><li>当前价格：403.00。</li><li>当前交易评级：Reduce。</li><li>值得加仓区间：378.82 - 394.94。</li><li>风险控制位：354.64。</li><li>市场愿意给溢价的原因：创新药研发企业；受益于医药政策支持。</li><li>当前主要压制因素：研发风险高；面临市场竞争压力。</li></ul></div></div></details><details open><summary>基本面分析</summary><div class="body"><div class="md"><h4>301666 大普微-UW 基本面分析</h4><ul><li>报告期：2026-03-31。</li><li>PE(TTM)：13542.03。</li><li>PB：65.57。</li><li>PS(TTM)：53.25。</li><li>ROE：2.13%。</li><li>营收同比：340.95%。</li><li>归母净利润同比：398.88%。</li><li>资产负债率：78.44%。</li><li>经营现金流/净利润：0.81。</li><li>核心判断：收入仍在增长；利润端保持扩张；估值偏贵，需要更强兑现；杠杆水平偏高。</li></ul></div></div></details></div>
+<div class="panel"><h2>研究与计划</h2>
+<details><summary>基本面摘要</summary><div class="body"><div class="md"><h3>核心财务快照</h3><ul><li>报告期: 2026-03-31</li><li>当前股价: 403.00 元</li><li>总市值: 1757.95 亿元</li><li>PE (TTM): 13542.03</li><li>PB: 65.57</li><li>PS (TTM): 53.25</li><li>营业总收入(报告期): 13.10 亿元</li><li>营收同比增长率: 340.95%</li><li>归母净利润(报告期): 3.70 亿元</li><li>归母净利润同比增长率: 398.88%</li><li>ROE (TTM/估算): 2.13%</li><li>资产负债率: 78.44%</li><li>经营性现金流 / 归母净利润: 0.81</li></ul></div></div></details>
+<details><summary>研究计划</summary><div class="body"><div class="md"><h4>301666 大普微-UW 研究摘要</h4><ul><li>红黑榜结论: Reduce</li><li>多头/空头: 50/70</li><li>正向信号: 营收同比 340.95%；归母净利润同比 398.88%；PB 65.57</li><li>风险信号: ROE 2.13%；PE(TTM) 13542.03</li><li>榜单看多理由: 创新药研发企业；受益于医药政策支持</li><li>榜单风险提示: 研发风险高；面临市场竞争压力</li></ul></div></div></details>
+<details><summary>交易计划</summary><div class="body"><div class="md"><h4>301666 大普微-UW 交易计划</h4><ul><li>评级: Reduce</li><li>当前价格: 403.00</li><li>值得加仓区间: 362.70 - 378.82</li><li>目标价格: 382.85</li><li>止损位: 354.64</li><li>备注: 当前为缓存降级交易卡，后续若完整 TradingAgent 结果生成，将自动覆盖。</li></ul></div></div></details>
+<details><summary>交易决策</summary><div class="body"><div class="md"><p>Reduce</p><p>301666 大普微-UW 当前使用红黑榜缓存结果生成兜底交易卡。多头 50 / 空头 70，分差 -20。当前尚未取得完整 TradingAgent 长文决策，但榜单分数、财务快照和大师观点已经足够生成基础交易建议。</p></div></div></details>
+</div>
+<div class="panel"><h2>多空逻辑</h2><div class="pts"><div class="h bull">看多逻辑</div><div class="md"><p>创新药研发企业</p><p>受益于医药政策支持</p></div></div><div class="pts"><div class="h bear">看空逻辑</div><div class="md"><p>研发风险高</p><p>面临市场竞争压力</p></div></div></div>
+<div class="panel"><h2>伯克希尔研究</h2><p><strong>大普微-UW是一家处于半导体存储领域的公司，其商业模式具备一定技术壁垒，但护城河尚需进一步验证，当前估值偏高，需谨慎观察。</strong></p><p>伯克希尔综合评分：<strong>2.75</strong></p><div class="md"><p>{&quot;verdict&quot;: &quot;观望&quot;, &quot;conservative_tip&quot;: &quot;建议等待更明确的增长信号，当前价格偏高。&quot;, &quot;moderate_tip&quot;: &quot;若股价回调至合理区间，可小仓位介入。&quot;, &quot;aggressive_tip&quot;: &quot;激进投资者可小仓位参与，但需密切关注公司研发进展及行业竞争格局。&quot;, &quot;catalysts_plus&quot;: [&quot;研发取得重大突破&quot;, &quot;市场份额显著提升&quot;, &quot;政策支持力度加大&quot;], &quot;catalysts_minus&quot;: [&quot;竞争加剧导致毛利率下降&quot;, &quot;宏观经济下行影响需求&quot;, &quot;技术变革导致产品过时&quot;]}</p></div></div>
+<div class="panel news"><h2>最新资讯</h2><div class="md"><p>整体情绪偏中性，利多条数略多于利空条数。</p></div><div class="nitem"><div class="t">快手概念涨7.64%，主力资金净流入这些股</div><div class="s">证券时报网 · 利好</div></div><div class="nitem"><div class="t">小红书概念涨6.92%，主力资金净流入这些股</div><div class="s">证券时报网 · 利好</div></div><div class="nitem"><div class="t">今年以来92只新股已发行，共募资1645.21亿元</div><div class="s">证券时报网 · 中性</div></div><div class="nitem"><div class="t">解密主力资金出逃股 连续5日净流出408股</div><div class="s">证券时报网 · 利空</div></div><div class="nitem"><div class="t">25只创业板股今日换手率超20%</div><div class="s">证券时报网 · 中性</div></div><div class="nitem"><div class="t">融资客控盘比例超一成个股（附名单）</div><div class="s">证券时报网 · 中性</div></div><div class="nitem"><div class="t">快手概念上涨4.63%，5股主力资金净流入超5000万元</div><div class="s">证券时报网 · 利好</div></div><div class="nitem"><div class="t">今年以来新股发行募资1619.92亿元，科创板占比48.46%</div><div class="s">证券时报网 · 中性</div></div></div>
+<footer>稳健理财Agent · 红黑榜每日归档 · 黑榜 #3 · 仅供研究，不构成投资建议</footer>
+</div></body>
+</html>

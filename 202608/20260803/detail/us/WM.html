@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>WM(WM) 红榜 2026-08-03</title>
+<style>
+:root{--red:#d8342c;--redbg:#fdecea;--green:#1a9e54;--ink:#1c2230;--muted:#6b7385;
+--line:#e7e9ef;--card:#fff;--bg:#f4f6fa;--chip:#eef1f6;--dark:#23262d;--darkbg:#ececef}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",
+"Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);
+line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 16px 64px}
+header.top{background:linear-gradient(135deg,#1c2230,#2c3550);color:#fff;border-radius:14px;
+padding:22px 24px;margin-bottom:20px;box-shadow:0 6px 24px rgba(20,26,46,.12)}
+header.top h1{margin:0 0 6px;font-size:24px;letter-spacing:.5px}
+header.top .sub{opacity:.85;font-size:13px}
+header.top .sub b{color:#ffd166;font-weight:600}
+nav.mkt{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;
+background:rgba(244,246,250,.92);backdrop-filter:blur(6px);padding:10px 0;margin-bottom:14px}
+nav.mkt a{text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);
+padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600}
+nav.mkt a:hover{border-color:var(--red);color:var(--red)}
+.summary{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.summary .chip{background:var(--card);border:1px solid var(--line);border-radius:10px;
+padding:8px 12px;font-size:12px;color:var(--muted)}
+.summary .chip b{color:var(--ink);font-size:14px;margin-left:4px}
+section.board{margin:26px 0}
+.board-title{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:19px}
+.board-title .dot{width:10px;height:10px;border-radius:50%}
+.board-title.red .dot{background:var(--red)}
+.board-title.black .dot{background:var(--dark)}
+.board-title small{color:var(--muted);font-weight:400;font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+position:relative;transition:box-shadow .15s}
+.card:hover{box-shadow:0 4px 18px rgba(20,26,46,.08)}
+.card.red{border-top:3px solid var(--red)}
+.card.black{border-top:3px solid var(--dark)}
+.rank{position:absolute;top:10px;right:12px;font-size:26px;font-weight:800;color:#eceff5}
+.card.red .rank{color:#fbdcD9}
+.nm{font-size:16px;font-weight:700}
+.nm .tk{color:var(--muted);font-weight:500;font-size:12px;margin-left:6px}
+.tag{display:inline-block;background:var(--chip);color:var(--muted);border-radius:6px;
+padding:1px 7px;font-size:11px;margin:6px 6px 0 0}
+.price-row{display:flex;align-items:baseline;gap:10px;margin:10px 0 4px}
+.price{font-size:24px;font-weight:800}
+.pct{font-size:14px;font-weight:700;padding:2px 8px;border-radius:8px}
+.up{color:var(--red)}.down{color:var(--green)}.flat{color:var(--muted)}
+.pct.up{background:var(--redbg)}.pct.down{background:#e2f4e9}.pct.flat{background:var(--chip)}
+.psrc{font-size:11px;color:var(--muted);margin-left:auto}
+.scores{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.scores span{background:var(--chip);border-radius:6px;padding:2px 8px;font-size:11px;color:var(--muted)}
+.scores span b{color:var(--ink)}
+.pts{font-size:12.5px;margin:8px 0 0}
+.pts .h{font-weight:700;font-size:12px;margin:6px 0 2px}
+.pts .h.bull{color:var(--red)}.pts .h.bear{color:var(--green)}
+.pts ul{margin:2px 0 4px;padding-left:18px;color:#3a4152}
+.pts li{margin:1px 0}
+.masters{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:11px;color:var(--muted)}
+.masters b{color:var(--ink)}
+.summ{font-size:12.5px;color:#3a4152;background:#fafbfd;border:1px solid var(--line);
+border-radius:8px;padding:8px 10px;margin-top:8px}
+.empty{color:var(--muted);background:var(--card);border:1px dashed var(--line);
+border-radius:10px;padding:18px;text-align:center}
+footer{margin-top:34px;color:var(--muted);font-size:12px;text-align:center;line-height:1.8}
+a.lnk{color:var(--red);text-decoration:none}
+/* ── detail page ── */
+.backbar{margin-bottom:14px;font-size:13px}
+.backbar a{color:var(--muted);text-decoration:none;margin-right:14px}
+.backbar a:hover{color:var(--red)}
+.badge{display:inline-block;border-radius:6px;padding:2px 10px;font-size:12px;font-weight:700;margin-right:8px}
+.badge.red{background:var(--red);color:#fff}.badge.black{background:var(--dark);color:#fff}
+.trade{display:flex;flex-wrap:wrap;gap:10px;background:linear-gradient(135deg,#2c3550,#1c2230);
+color:#fff;border-radius:12px;padding:16px 18px;margin:16px 0}
+.trade .cell{min-width:120px}
+.trade .k{font-size:11px;opacity:.75}
+.trade .v{font-size:18px;font-weight:800;margin-top:2px}
+.trade .v.buy{color:#7ee2a8}.trade .v.sell{color:#ff9d97}.trade .v.hold{color:#ffd166}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0}
+.mgrid .m{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.mgrid .m .k{font-size:11px;color:var(--muted)}
+.mgrid .m .v{font-size:16px;font-weight:700;margin-top:2px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.panel>h2{margin:0 0 12px;font-size:17px}
+.panel>h2 .sub{font-size:12px;color:var(--muted);font-weight:400;margin-left:8px}
+.mreply{border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;
+padding:12px 14px;margin:10px 0;background:#fff}
+.mreply .mh{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.mreply .mh .who{font-weight:700;font-size:14px}
+.mreply .mh .mscore{margin-left:auto;background:var(--chip);border-radius:6px;padding:1px 8px;font-size:12px;font-weight:700}
+.md h2,.md h3,.md h4,.md h5{margin:12px 0 6px;font-size:15px}
+.md p{margin:6px 0;font-size:13.5px;color:#2c3345}
+.md ul{margin:6px 0;padding-left:20px;font-size:13.5px;color:#2c3345}
+.md li{margin:3px 0}
+.md strong{color:var(--ink)}
+details{border:1px solid var(--line);border-radius:10px;background:#fff;margin:10px 0;padding:0}
+details>summary{cursor:pointer;padding:12px 16px;font-weight:700;font-size:14px;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary:before{content:"▸ ";color:var(--red)}
+details[open]>summary:before{content:"▾ "}
+details>.body{padding:0 16px 14px;border-top:1px dashed var(--line)}
+.ychip{display:inline-block;background:var(--chip);border-radius:8px;padding:4px 10px;font-size:12px;margin:3px 6px 3px 0}
+.ychip b{font-size:13px}
+.news .nitem{border-top:1px dashed var(--line);padding:8px 0;font-size:13px}
+.news .nitem .t{font-weight:600}
+.news .nitem .s{color:var(--muted);font-size:12px}
+/* ── root landing page ── */
+.hero{padding:30px 26px}
+.hero-kicker{color:#ffd166;font-size:12px;font-weight:700;letter-spacing:2px;
+text-transform:uppercase;margin-bottom:8px}
+.hero h1{font-size:30px;margin:0 0 10px}
+.day-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.day-card{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);
+border-radius:12px;padding:14px 16px;transition:all .15s}
+.day-card:hover{border-color:var(--red);box-shadow:0 4px 16px rgba(216,52,44,.12);transform:translateY(-2px)}
+.day-card .d{font-weight:800;font-size:15px;color:var(--ink);display:flex;align-items:center;gap:8px}
+.day-card .m{margin-top:8px;display:flex;gap:6px}
+.day-card .m span{background:var(--chip);color:var(--muted);border-radius:6px;
+padding:2px 8px;font-size:11px}
+.latest-badge{background:var(--red);color:#fff;border-radius:6px;padding:1px 7px;
+font-size:10px;font-weight:700}
+</style>
+</head>
+<body><div class="wrap">
+<div class="backbar"><a href="../index.html">← 总览</a><a href="../us.html">← 美股榜单</a></div>
+<header class="top">
+  <h1><span class="badge red">红榜 #3</span>WM<span class="tk" style="opacity:.7;font-size:15px;font-weight:400;margin-left:8px">WM</span></h1>
+  <div class="sub">美股 ·  · 榜单日期 <b>2026-08-03</b> · 盘价采集 <b>2026-08-03 05:00:39</b></div>
+  <div class="price-row" style="margin-top:12px">
+    <span class="price" style="color:#fff">$226.55</span>
+    <span class="pct up">+0.10%</span>
+    <span class="psrc" style="color:rgba(255,255,255,.6)">实时</span>
+  </div>
+  <div class="scores" style="margin-top:10px">
+    <span>综合 <b>92.5</b></span>
+    <span>多头 <b>85</b></span>
+    <span>空头 <b>15</b></span>
+    <span>大师均值 <b>82</b></span>
+    <span>信号 <b>positive</b></span>
+  </div>
+</header>
+<div class="trade"><div class="cell"><div class="k">交易评级</div><span class="v buy">Buy</span></div><div class="cell"><div class="k">加仓区间</div><span class="v">219.75 ~ 228.82</span></div><div class="cell"><div class="k">目标价</div><span class="v">253.74</span></div><div class="cell"><div class="k">伯克希尔</div><span class="v">买入</span></div><div class="cell"><div class="k">伯克希尔分</div><span class="v">4.40</span></div></div>
+<div class="panel"><h2>财务指标</h2><div class="mgrid"><div class="m"><div class="k">市盈率 PE</div><div class="v">59.46</div></div><div class="m"><div class="k">市净率 PB</div><div class="v">9.13</div></div><div class="m"><div class="k">ROE</div><div class="v">29.8%</div></div><div class="m"><div class="k">总市值</div><div class="v">906</div></div><div class="m"><div class="k">营收同比</div><div class="v">4.0%</div></div><div class="m"><div class="k">净利同比</div><div class="v">8.3%</div></div></div></div>
+<div class="panel"><h2>历史收益</h2><span class="ychip">近1月 <b class="up">+1.10%</b></span><span class="ychip">近6月 <b class="up">+1.52%</b></span><span class="ychip">近1年 <b class="down">-1.02%</b></span><span class="ychip">近5年 <b class="up">+53.83%</b></span></div>
+<div class="panel"><h2>大师圆桌<span class="sub">5 位</span></h2><div class="mreply"><div class="mh"><span class="who">段永平</span><span class="mscore">80</span></div><div class="md"><h4>发言：</h4><p>关于WM这家公司，我谈谈我的看法。</p><p>首先，我认可这是一个相对稳定的商业模式。废物管理行业本身的需求比较稳定，受经济周期波动的影响相对较小。而且，随着环保趋势的加强，这个行业还有进一步的增长机会。这两点是我比较看好的地方。</p><h4>理由：</h4><p>废物管理行业本质上是一个刚需行业，无论经济好坏，垃圾总是要处理的。这种稳定性让我觉得它是一个相对安全的投资选择。同时，环保意识的提升和政策法规的推动，会让这个行业在未来有更多的发展空间。</p><h4>风险与建议：</h4><p>不过，我也要提醒几点风险：</p><ul><li><strong>经济衰退风险</strong>：虽然废物管理是刚需，但如果经济出现严重衰退，废物产生量可能会减少，这会影响公司的收入。</li><li><strong>运营成本上升</strong>：环保标准的提高和人力成本的增加，都会给公司的利润率带来压力。</li></ul><h4>行动建议：</h4><p>如果是我，我会考虑以下几点：</p><ul><li><strong>长期持有</strong>：基于其稳定的商业模式和增长潜力，我会考虑长期持有。</li><li><strong>关注成本控制</strong>：密切关注公司的成本控制能力，特别是在环保法规和人力成本方面的应对策略。</li><li><strong>估值考量</strong>：目前59倍的市盈率不算低，建议在估值合理时再考虑买入。</li></ul><p>总的来说，这是一个值得关注的行业和公司，但也要注意经济环境和成本控制的风险。希望我的看法对大家有所帮助。</p></div></div><div class="mreply"><div class="mh"><span class="who">巴菲特</span><span class="mscore">90</span></div><div class="md"><h4>发言内容：</h4><p>各位，我来说说关于WM这家公司的一些看法。</p><p>首先，我得说，这是一家符合我投资理念的公司。废物管理这个生意，乍一听可能不太吸引人，但它实际上是一个相当稳定的行业。人们每天都会产生垃圾，这种需求几乎不受经济周期的影响。而且，随着环保意识的增强和环保法规的日益严格，废物管理行业还面临着一些增长的机会。</p><p>从数据上看，WM的营收和净利润都在稳步增长，市值也达到了900多亿美元。这表明市场对这类服务的需求是持续且稳定的。</p><p>然而，我们也不能忽视一些潜在的风险。经济衰退可能会导致废物产生量的减少，这对公司的收入会有一定的影响。此外，运营成本的上升也是一个需要关注的问题，毕竟废物处理的成本可能会随着环保标准的提高而增加。</p><p>从估值的角度来看，目前的市盈率接近60倍，这在我看来是有些偏高的。不过，考虑到其业务的防御性和长期增长潜力，这个价格也并非完全不合理。</p><h4>风险/行动建议：</h4><ul><li><strong>关注经济环境</strong>：如果经济出现衰退迹象，可能会对废物产生量产生影响，进而影响公司的收入。</li><li><strong>成本控制</strong>：密切关注公司的成本控制措施，确保其在环保标准提高的情况下仍能保持盈利能力。</li><li><strong>长期持有</strong>：如果你相信环保趋势的长期发展，并且能够接受当前较高的估值，那么WM可能是一个值得长期持有的投资标的。</li></ul><h4>芒格的补充：</h4><p>查理可能会补充说，虽然废物管理是一个不错的生意，但我们也要警惕那些看似稳定的行业可能会因为技术变革或政策变化而受到冲击。因此，保持对行业趋势的敏感度是非常重要的。</p></div></div><div class="mreply"><div class="mh"><span class="who">达利欧</span><span class="mscore">75</span></div><div class="md"><h4>发言内容：</h4><h5>结论：</h5><p>WM是一家值得关注的投资标的，但需要谨慎评估其当前估值水平和未来成本压力。</p><h5>理由：</h5><ul><li><strong>行业需求稳定且具有抗周期性</strong></li></ul><p>   废物管理行业的需求相对稳定，受经济周期波动影响较小。即使在经济衰退期间，废物产生量虽然可能下降，但不会完全消失。这种稳定性为WM提供了相对可靠的收入基础。</p><ul><li><strong>环保趋势带来长期增长机会</strong></li></ul><p>   全球对可持续发展的重视程度不断提高，推动了废物回收和处理的长期需求增长。WM作为行业领导者，有能力抓住这一趋势带来的机遇。</p><ul><li><strong>当前估值偏高</strong></li></ul><p>   WM的市盈率(PE)接近60倍，远高于市场平均水平。这表明市场已经对其未来增长给予了较高的预期。如果实际增长未能达到预期，可能会面临估值回调的风险。</p><ul><li><strong>成本压力上升</strong></li></ul><p>   运营成本上升是一个需要关注的风险因素，包括人力成本、燃料价格以及环保合规成本等。这些成本压力可能会侵蚀公司的利润率。</p><h5>风险/行动建议：</h5><ul><li><strong>关注成本控制能力</strong></li></ul><p>   建议密切关注WM在成本控制方面的表现，特别是如何应对通胀压力和环保合规成本。如果公司能够有效管理成本，将有助于维持其盈利能力。</p><ul><li><strong>评估增长预期</strong></li></ul><p>   考虑到当前的高估值水平，建议深入分析WM的未来增长预期，包括市场份额扩张、新业务拓展以及技术创新等方面的潜力。如果增长预期能够实现，高估值可能得到支撑。</p><ul><li><strong>考虑宏观经济环境</strong></li></ul><p>   虽然废物管理行业具有抗周期性，但经济衰退仍可能对废物产生量产生一定影响。建议关注宏观经济指标，特别是与废物产生量相关的指标，以评估潜在风险。</p><ul><li><strong>长期视角</strong></li></ul><p>   对于长期投资者而言，WM的环保趋势带来的增长机会是一个重要的考虑因素。如果能够承受短期波动，长期持有可能获得较好的回报。</p><p>总的来说，WM是一家具有吸引力的公司，但需要谨慎评估其当前估值水平和未来成本压力。建议在投资决策中综合考虑这些因素，并保持对行业趋势和公司运营情况的持续关注。</p></div></div><div class="mreply"><div class="mh"><span class="who">林奇</span><span class="mscore">85</span></div><div class="md"><p>关于 WM 这家公司，我的看法是：<strong>这是一只值得长期关注的股票，但目前估值偏高，需要谨慎考虑买入时机。</strong></p><p>让我解释一下我的理由。首先，WM 所在的废物管理行业是一个需求非常稳定的行业。无论经济好坏，人们总是会产生垃圾，这使得公司的收入基础相当稳固。而且，随着环保意识的增强和各国对可持续发展的重视，废物管理行业还迎来了新的增长机会，比如回收利用和垃圾能源化等。</p><p>然而，目前 WM 的估值水平让我有些犹豫。当前 PE 高达近 60 倍，PB 也接近 9 倍，这表明市场已经给予了这家公司相当高的预期。虽然公司的净资产收益率（ROE）表现不错，达到近 30%，但这么高的估值意味着投资者需要对公司未来的增长有非常强的信心。</p><p><strong>风险方面</strong>，主要有两点需要注意：一是经济衰退可能会导致废物产生量下降，从而影响公司的收入；二是运营成本的上升，比如人力成本和燃料成本，可能会压缩公司的利润率。</p><p><strong>我的建议是</strong>，如果你已经持有 WM 的股票，可以继续持有，但不要急于加仓。如果你想买入，建议耐心等待更好的买入时机，比如市场出现回调，或者公司发布一些能证明其增长潜力的新消息时再考虑进场。对于长期投资者来说，关注公司的现金流和市场份额变化比短期的股价波动更为重要。</p><p>记住，投资股票就是投资一门生意，而 WM 这门生意目前看起来还不错，但价格有点贵。我们需要耐心等待更好的价格出现。</p></div></div><div class="mreply"><div class="mh"><span class="who">芒格</span><span class="mscore">80</span></div><div class="md"><p>各位同仁，今天我们来讨论一下废物管理公司 WM 的投资价值。我的结论是：WM 是一个值得长期关注的好生意，但当前估值偏高，需要谨慎对待。</p><p>首先，为什么说 WM 是一个好生意？</p><p>废物管理行业有一个很大的特点：需求极其稳定。无论经济好坏，人们总是会产生垃圾。这种需求刚性使得 WM 拥有类似公用事业公司的现金流特征。此外，随着全球环保意识的增强和可持续发展趋势的推进，废物回收和再利用领域正迎来新的增长机会。WM 作为行业龙头，具备规模优势和长期积累的技术壁垒，这些都是其核心竞争力的体现。</p><p>然而，我们不能忽视当前估值带来的风险。当前 WM 的市盈率高达 59 倍，市净率也达到 9 倍，这意味着市场已经给予其相当高的预期。考虑到经济衰退可能影响废物产生量，以及运营成本上升带来的利润率压力，这种高估值可能面临回调风险。</p><p>从激励机制来看，WM 的管理层有动力通过提高运营效率和开拓新市场来创造价值，这符合股东利益。但我们也必须警惕，任何过度依赖并购扩张的策略都可能带来整合风险。</p><p>基于以上分析，我建议：</p><ul><li>如果你已经在持有 WM，可以继续持有，但要注意控制仓位，避免在估值高位时加仓。</li><li>如果你正在考虑买入，建议等待更合适的买入时机，比如在经济下行周期中寻找更好的入场点。</li><li>密切关注公司成本控制和利润率变化，这将是影响其长期价值的关键因素。</li></ul><p>最后，我想提醒大家，投资就像打扑克，我们不仅要考虑胜率，还要考虑赔率。当前 WM 的胜率较高，但赔率偏低，这意味着我们需要更有耐心，等待更好的下注时机。正如我常说的：&quot;如果我知道自己会死在哪里，我就永远不去那里。&quot; 在高估值时买入，就是投资中典型的&quot;死亡之地&quot;。</p><p>谢谢大家。</p></div></div></div>
+<div class="panel"><h2>分析师报告<span class="sub">2 篇</span></h2><details open><summary>市场面分析</summary><div class="body"><div class="md"><h4>WM WM 市场面分析</h4><ul><li>红黑榜多空分数：多头 85 / 空头 15，分差 70。</li><li>当前价格：226.55。</li><li>当前交易评级：Buy。</li><li>值得加仓区间：219.75 - 228.82。</li><li>目标价格：253.74。</li><li>市场愿意给溢价的原因：废物管理行业需求稳定；环保趋势带来增长机会。</li><li>当前主要压制因素：经济衰退可能影响废物产生量；运营成本上升。</li></ul></div></div></details><details open><summary>基本面分析</summary><div class="body"><div class="md"><h4>WM WM 基本面分析</h4><ul><li>报告期：暂无。</li><li>PE(TTM)：59.46。</li><li>PB：9.13。</li><li>ROE：29.84%。</li><li>营收同比：4.00%。</li><li>归母净利润同比：8.30%。</li><li>核心判断：盈利能力处于可接受区间；收入仍在增长；利润端保持扩张。</li></ul></div></div></details></div>
+<div class="panel"><h2>研究与计划</h2>
+<details><summary>基本面摘要</summary><div class="body"><div class="md"><h3>核心财务快照</h3><ul><li>报告期: 数据缺失</li><li>当前股价: 226.55 元</li><li>总市值: 905.55 亿元</li><li>PE (TTM): 59.46</li><li>PB: 9.13</li><li>PS (TTM): 数据缺失</li><li>营业总收入(报告期): 数据缺失 亿元</li><li>营收同比增长率: 4.00%</li><li>归母净利润(报告期): 数据缺失 亿元</li><li>归母净利润同比增长率: 8.30%</li><li>ROE (TTM/估算): 29.84%</li><li>资产负债率: 数据缺失</li><li>经营性现金流 / 归母净利润: 数据缺失</li></ul><h4>缺失字段</h4><ul><li>PS(TTM), 营业总收入, 归母净利润, 资产负债率, 经营性现金流与归母净利润比值</li></ul></div></div></details>
+<details><summary>研究计划</summary><div class="body"><div class="md"><h4>WM WM 研究摘要</h4><ul><li>红黑榜结论: Buy</li><li>多头/空头: 85/15</li><li>正向信号: ROE 29.84%；营收同比 4.00%；归母净利润同比 8.30%；PE(TTM) 59.46</li><li>榜单看多理由: 废物管理行业需求稳定；环保趋势带来增长机会</li><li>榜单风险提示: 经济衰退可能影响废物产生量；运营成本上升</li></ul></div></div></details>
+<details><summary>交易计划</summary><div class="body"><div class="md"><h4>WM WM 交易计划</h4><ul><li>评级: Buy</li><li>当前价格: 226.55</li><li>值得加仓区间: 219.75 - 228.82</li><li>目标价格: 253.74</li><li>止损位: 208.43</li><li>备注: 当前为缓存降级交易卡，后续若完整 TradingAgent 结果生成，将自动覆盖。</li></ul></div></div></details>
+<details><summary>交易决策</summary><div class="body"><div class="md"><p>Buy</p><p>WM WM 当前使用红黑榜缓存结果生成兜底交易卡。多头 85 / 空头 15，分差 70。当前尚未取得完整 TradingAgent 长文决策，但榜单分数、财务快照和大师观点已经足够生成基础交易建议。</p></div></div></details>
+</div>
+<div class="panel"><h2>多空逻辑</h2><div class="pts"><div class="h bull">看多逻辑</div><div class="md"><p>废物管理行业需求稳定</p><p>环保趋势带来增长机会</p></div></div><div class="pts"><div class="h bear">看空逻辑</div><div class="md"><p>经济衰退可能影响废物产生量</p><p>运营成本上升</p></div></div></div>
+<div class="panel"><h2>伯克希尔研究</h2><p><strong>WM是一家具有强大护城河、稳健财务表现和长期确定性的垃圾处理及回收行业龙头，值得长期持有。</strong></p><p>伯克希尔综合评分：<strong>4.4</strong></p><div class="md"><p>{&quot;verdict&quot;: &quot;买入&quot;, &quot;conservative_tip&quot;: &quot;建议在PE TTM低于25倍时买入，长期持有。&quot;, &quot;moderate_tip&quot;: &quot;建议在PE TTM低于28倍时买入，中期持有。&quot;, &quot;aggressive_tip&quot;: &quot;建议在PE TTM低于30倍时买入，短期持有。&quot;, &quot;catalysts_plus&quot;: [&quot;环保政策利好&quot;, &quot;循环经济趋势加速&quot;, &quot;公司扩展新市场或收购成功&quot;], &quot;catalysts_minus&quot;: [&quot;环保政策收紧&quot;, &quot;原材料价格大幅上涨&quot;, &quot;重大环境事故或丑闻&quot;]}</p></div></div>
+<div class="panel news"><h2>最新资讯</h2><div class="md"><p>整体情绪偏利好，共3条利多，1条利空，7条中性。</p></div><div class="nitem"><div class="t">Is Waste Management (WM) Quietly Rewriting Its Margin Story With Tighter Guidance And More Deals?</div><div class="s">simplywall.st · 利好</div></div><div class="nitem"><div class="t">Obituary for William C Jones</div><div class="s">Gosselin Funeral Home · 中性</div></div><div class="nitem"><div class="t">WM’s healthcare, recycling projects drive balance in Q2</div><div class="s">Waste Dive · 利好</div></div><div class="nitem"><div class="t">Reading Between The Lines Of WM’s Latest Call</div><div class="s">Trefis · 中性</div></div><div class="nitem"><div class="t">WM joins Washoe County Parks’ Big Rig &amp; Dig Week in Reno</div><div class="s">KOLO | 8 News Now · 中性</div></div><div class="nitem"><div class="t">Prince William Admits He and Wife Kate Middleton Frequently “Embarrass” Teenage Son Prince George</div><div class="s">instyle.com · 中性</div></div><div class="nitem"><div class="t">William Wilson Obituary (1942 - 2026) - Forest, VA - The News &amp; Advance</div><div class="s">Legacy obituary · 中性</div></div><div class="nitem"><div class="t">U.S. Navy to Christen Future USS William Charette</div><div class="s">war.gov · 中性</div></div></div>
+<footer>稳健理财Agent · 红黑榜每日归档 · 红榜 #3 · 仅供研究，不构成投资建议</footer>
+</div></body>
+</html>

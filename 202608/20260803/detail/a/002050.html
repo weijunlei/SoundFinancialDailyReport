@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>三花智控(002050) 红榜 2026-08-03</title>
+<style>
+:root{--red:#d8342c;--redbg:#fdecea;--green:#1a9e54;--ink:#1c2230;--muted:#6b7385;
+--line:#e7e9ef;--card:#fff;--bg:#f4f6fa;--chip:#eef1f6;--dark:#23262d;--darkbg:#ececef}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",
+"Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);
+line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 16px 64px}
+header.top{background:linear-gradient(135deg,#1c2230,#2c3550);color:#fff;border-radius:14px;
+padding:22px 24px;margin-bottom:20px;box-shadow:0 6px 24px rgba(20,26,46,.12)}
+header.top h1{margin:0 0 6px;font-size:24px;letter-spacing:.5px}
+header.top .sub{opacity:.85;font-size:13px}
+header.top .sub b{color:#ffd166;font-weight:600}
+nav.mkt{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;
+background:rgba(244,246,250,.92);backdrop-filter:blur(6px);padding:10px 0;margin-bottom:14px}
+nav.mkt a{text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);
+padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600}
+nav.mkt a:hover{border-color:var(--red);color:var(--red)}
+.summary{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.summary .chip{background:var(--card);border:1px solid var(--line);border-radius:10px;
+padding:8px 12px;font-size:12px;color:var(--muted)}
+.summary .chip b{color:var(--ink);font-size:14px;margin-left:4px}
+section.board{margin:26px 0}
+.board-title{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:19px}
+.board-title .dot{width:10px;height:10px;border-radius:50%}
+.board-title.red .dot{background:var(--red)}
+.board-title.black .dot{background:var(--dark)}
+.board-title small{color:var(--muted);font-weight:400;font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+position:relative;transition:box-shadow .15s}
+.card:hover{box-shadow:0 4px 18px rgba(20,26,46,.08)}
+.card.red{border-top:3px solid var(--red)}
+.card.black{border-top:3px solid var(--dark)}
+.rank{position:absolute;top:10px;right:12px;font-size:26px;font-weight:800;color:#eceff5}
+.card.red .rank{color:#fbdcD9}
+.nm{font-size:16px;font-weight:700}
+.nm .tk{color:var(--muted);font-weight:500;font-size:12px;margin-left:6px}
+.tag{display:inline-block;background:var(--chip);color:var(--muted);border-radius:6px;
+padding:1px 7px;font-size:11px;margin:6px 6px 0 0}
+.price-row{display:flex;align-items:baseline;gap:10px;margin:10px 0 4px}
+.price{font-size:24px;font-weight:800}
+.pct{font-size:14px;font-weight:700;padding:2px 8px;border-radius:8px}
+.up{color:var(--red)}.down{color:var(--green)}.flat{color:var(--muted)}
+.pct.up{background:var(--redbg)}.pct.down{background:#e2f4e9}.pct.flat{background:var(--chip)}
+.psrc{font-size:11px;color:var(--muted);margin-left:auto}
+.scores{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.scores span{background:var(--chip);border-radius:6px;padding:2px 8px;font-size:11px;color:var(--muted)}
+.scores span b{color:var(--ink)}
+.pts{font-size:12.5px;margin:8px 0 0}
+.pts .h{font-weight:700;font-size:12px;margin:6px 0 2px}
+.pts .h.bull{color:var(--red)}.pts .h.bear{color:var(--green)}
+.pts ul{margin:2px 0 4px;padding-left:18px;color:#3a4152}
+.pts li{margin:1px 0}
+.masters{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:11px;color:var(--muted)}
+.masters b{color:var(--ink)}
+.summ{font-size:12.5px;color:#3a4152;background:#fafbfd;border:1px solid var(--line);
+border-radius:8px;padding:8px 10px;margin-top:8px}
+.empty{color:var(--muted);background:var(--card);border:1px dashed var(--line);
+border-radius:10px;padding:18px;text-align:center}
+footer{margin-top:34px;color:var(--muted);font-size:12px;text-align:center;line-height:1.8}
+a.lnk{color:var(--red);text-decoration:none}
+/* ── detail page ── */
+.backbar{margin-bottom:14px;font-size:13px}
+.backbar a{color:var(--muted);text-decoration:none;margin-right:14px}
+.backbar a:hover{color:var(--red)}
+.badge{display:inline-block;border-radius:6px;padding:2px 10px;font-size:12px;font-weight:700;margin-right:8px}
+.badge.red{background:var(--red);color:#fff}.badge.black{background:var(--dark);color:#fff}
+.trade{display:flex;flex-wrap:wrap;gap:10px;background:linear-gradient(135deg,#2c3550,#1c2230);
+color:#fff;border-radius:12px;padding:16px 18px;margin:16px 0}
+.trade .cell{min-width:120px}
+.trade .k{font-size:11px;opacity:.75}
+.trade .v{font-size:18px;font-weight:800;margin-top:2px}
+.trade .v.buy{color:#7ee2a8}.trade .v.sell{color:#ff9d97}.trade .v.hold{color:#ffd166}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0}
+.mgrid .m{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.mgrid .m .k{font-size:11px;color:var(--muted)}
+.mgrid .m .v{font-size:16px;font-weight:700;margin-top:2px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.panel>h2{margin:0 0 12px;font-size:17px}
+.panel>h2 .sub{font-size:12px;color:var(--muted);font-weight:400;margin-left:8px}
+.mreply{border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;
+padding:12px 14px;margin:10px 0;background:#fff}
+.mreply .mh{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.mreply .mh .who{font-weight:700;font-size:14px}
+.mreply .mh .mscore{margin-left:auto;background:var(--chip);border-radius:6px;padding:1px 8px;font-size:12px;font-weight:700}
+.md h2,.md h3,.md h4,.md h5{margin:12px 0 6px;font-size:15px}
+.md p{margin:6px 0;font-size:13.5px;color:#2c3345}
+.md ul{margin:6px 0;padding-left:20px;font-size:13.5px;color:#2c3345}
+.md li{margin:3px 0}
+.md strong{color:var(--ink)}
+details{border:1px solid var(--line);border-radius:10px;background:#fff;margin:10px 0;padding:0}
+details>summary{cursor:pointer;padding:12px 16px;font-weight:700;font-size:14px;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary:before{content:"▸ ";color:var(--red)}
+details[open]>summary:before{content:"▾ "}
+details>.body{padding:0 16px 14px;border-top:1px dashed var(--line)}
+.ychip{display:inline-block;background:var(--chip);border-radius:8px;padding:4px 10px;font-size:12px;margin:3px 6px 3px 0}
+.ychip b{font-size:13px}
+.news .nitem{border-top:1px dashed var(--line);padding:8px 0;font-size:13px}
+.news .nitem .t{font-weight:600}
+.news .nitem .s{color:var(--muted);font-size:12px}
+/* ── root landing page ── */
+.hero{padding:30px 26px}
+.hero-kicker{color:#ffd166;font-size:12px;font-weight:700;letter-spacing:2px;
+text-transform:uppercase;margin-bottom:8px}
+.hero h1{font-size:30px;margin:0 0 10px}
+.day-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.day-card{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);
+border-radius:12px;padding:14px 16px;transition:all .15s}
+.day-card:hover{border-color:var(--red);box-shadow:0 4px 16px rgba(216,52,44,.12);transform:translateY(-2px)}
+.day-card .d{font-weight:800;font-size:15px;color:var(--ink);display:flex;align-items:center;gap:8px}
+.day-card .m{margin-top:8px;display:flex;gap:6px}
+.day-card .m span{background:var(--chip);color:var(--muted);border-radius:6px;
+padding:2px 8px;font-size:11px}
+.latest-badge{background:var(--red);color:#fff;border-radius:6px;padding:1px 7px;
+font-size:10px;font-weight:700}
+</style>
+</head>
+<body><div class="wrap">
+<div class="backbar"><a href="../index.html">← 总览</a><a href="../a.html">← A股榜单</a></div>
+<header class="top">
+  <h1><span class="badge red">红榜 #10</span>三花智控<span class="tk" style="opacity:.7;font-size:15px;font-weight:400;margin-left:8px">002050</span></h1>
+  <div class="sub">A股 ·  · 榜单日期 <b>2026-08-03</b> · 盘价采集 <b>2026-08-03 05:00:39</b></div>
+  <div class="price-row" style="margin-top:12px">
+    <span class="price" style="color:#fff">¥37.53</span>
+    <span class="pct up">+5.84%</span>
+    <span class="psrc" style="color:rgba(255,255,255,.6)">实时</span>
+  </div>
+  <div class="scores" style="margin-top:10px">
+    <span>综合 <b>84.4</b></span>
+    <span>多头 <b>85</b></span>
+    <span>空头 <b>25</b></span>
+    <span>大师均值 <b>70</b></span>
+    <span>信号 <b>positive</b></span>
+  </div>
+</header>
+<div class="trade"><div class="cell"><div class="k">交易评级</div><span class="v buy">Buy</span></div><div class="cell"><div class="k">加仓区间</div><span class="v">36.40 ~ 37.91</span></div><div class="cell"><div class="k">目标价</div><span class="v">42.03</span></div><div class="cell"><div class="k">伯克希尔</div><span class="v">买入</span></div><div class="cell"><div class="k">伯克希尔分</div><span class="v">3.75</span></div></div>
+<div class="panel"><h2>财务指标</h2><div class="mgrid"><div class="m"><div class="k">市盈率 PE</div><div class="v">38.64</div></div><div class="m"><div class="k">市净率 PB</div><div class="v">5.02</div></div><div class="m"><div class="k">ROE</div><div class="v">12.7%</div></div><div class="m"><div class="k">总市值</div><div class="v">1579</div></div><div class="m"><div class="k">资产负债率</div><div class="v">33.3%</div></div><div class="m"><div class="k">营收(最新)</div><div class="v">77.74亿</div></div><div class="m"><div class="k">营收同比</div><div class="v">1.4%</div></div><div class="m"><div class="k">净利(最新)</div><div class="v">9.28亿</div></div><div class="m"><div class="k">净利同比</div><div class="v">2.7%</div></div><div class="m"><div class="k">报告期</div><div class="v">2026-03-31</div></div></div></div>
+
+<div class="panel"><h2>大师圆桌<span class="sub">5 位</span></h2><div class="mreply"><div class="mh"><span class="who">段永平</span><span class="mscore">75</span></div><div class="md"><h4>发言内容：</h4><p><strong>结论：</strong></p><p>我对三花智控的看法是，这是一家值得关注的公司，但投资需要谨慎。</p><p><strong>理由：</strong></p><p>首先，三花智控在新能源车热管理领域的需求非常旺盛，这是一个很大的增长点。随着全球对新能源车的重视和普及，这方面的市场空间是显而易见的。此外，三花智控的全球化布局也比较完善，这为其未来的发展提供了保障。</p><p>然而，我们也需要看到一些风险点。比如，原材料价格的波动可能会影响公司的成本控制，而汇率风险则可能对公司的海外收入产生影响。这些都是需要我们密切关注的因素。</p><p>从估值角度来看，目前的市盈率（PE）约为38倍，市净率（PB）约为5倍，这些指标显示市场对其未来增长有较高的预期。但我们需要问自己，这个预期是否合理？是否已经反映在当前的股价中了？</p><p><strong>风险/行动建议：</strong></p><ul><li><strong>关注行业动态：</strong> 新能源车市场的变化非常快，我们需要持续关注行业动态和政策变化。</li><li><strong>关注成本控制：</strong> 原材料价格和汇率的波动是公司面临的主要风险，我们需要密切关注这些因素对公司盈利的影响。</li><li><strong>长期视角：</strong> 如果你打算投资三花智控，建议以长期视角来看待，不要被短期的市场波动所影响。</li><li><strong>估值合理性：</strong> 考虑当前的估值水平，问问自己是否愿意为未来的增长付出这样的价格。</li></ul><p>总的来说，三花智控是一家在新能源车热管理领域有优势的公司，但投资时需要谨慎，关注风险，并保持长期视角。</p></div></div><div class="mreply"><div class="mh"><span class="who">巴菲特</span><span class="mscore">60</span></div><div class="md"><p>各位朋友，今天我们来聊聊三花智控（002050）。</p><p>首先，我的看法是，这是一家有吸引力的公司，但需要谨慎对待。</p><p><strong>理由如下：</strong></p><p>三花智控在新能源车热管理领域有着强劲的需求，这符合未来十年的发展趋势。他们的全球化布局也相当完善，这让我想起了我们投资可口可乐时的思路——在全球范围内建立强大的市场地位。这种布局不仅能分散风险，还能抓住不同地区的增长机会。</p><p>然而，正如我常说的，&quot;四毛钱买一块钱的东西&quot;才是好生意。三花智控的市盈率（PE）高达38.64，远高于市场平均水平，这意味着市场已经给予了这家公司相当高的预期。此外，原材料价格波动和汇率风险也是不可忽视的因素。这些风险可能会侵蚀公司的盈利能力。</p><p><strong>关于风险，我的建议是：</strong></p><ul><li><strong>关注成本控制能力</strong>：原材料价格波动是制造业的常态，关键在于公司能否有效转嫁成本或通过技术创新降低成本。</li></ul><ul><li><strong>评估汇率对冲策略</strong>：全球化布局虽然带来机遇，但也伴随着汇率风险。投资者需要了解公司的对冲策略是否足够稳健。</li></ul><ul><li><strong>耐心等待合理价格</strong>：虽然公司基本面不错，但当前价格并没有给我足够的安全边际。我建议投资者耐心等待更好的买入时机。</li></ul><p>最后，我想引用查理·芒格常说的：&quot;好的投资机会就像公交车，总会有下一辆。&quot;在投资中，保持耐心和纪律性是至关重要的。</p><p>如果是芒格，他可能会补充说：&quot;要确保你对公司的竞争优势有深刻的理解，而不仅仅是追逐热门概念。&quot;</p></div></div><div class="mreply"><div class="mh"><span class="who">达利欧</span><span class="mscore">70</span></div><div class="md"><h4>结论：</h4><p>三花智控是一家值得关注的公司，其基本面稳健，尤其在新能源车热管理领域具有较强的竞争力。然而，投资者也需要关注其面临的原材料价格波动和汇率风险。</p><h4>理由：</h4><ul><li><strong>新能源车热管理需求旺盛</strong>：随着全球新能源汽车市场的快速增长，三花智控在热管理领域的业务前景广阔。公司在这一领域的技术积累和市场份额使其能够受益于行业的长期增长趋势。</li><li><strong>全球化布局完善</strong>：三花智控在全球范围内建立了较为完善的供应链和销售网络，这不仅降低了单一市场的风险，还增强了其应对全球市场需求变化的能力。</li><li><strong>财务表现稳健</strong>：从财务数据来看，公司的营收和净利润均保持增长，资产负债率较低，现金流充足，这为其未来的发展提供了良好的财务基础。</li></ul><h4>风险/行动建议：</h4><ul><li><strong>原材料价格波动</strong>：原材料价格的波动可能会对公司的利润率产生影响。建议投资者密切关注大宗商品市场的动态，并评估其对公司成本结构的影响。</li><li><strong>汇率风险</strong>：由于三花智控的全球化布局，汇率波动可能会对其财务表现产生一定的影响。建议公司采取适当的汇率对冲措施，以降低汇率风险。</li><li><strong>估值水平</strong>：当前公司的市盈率（PE）为38.64，估值水平较高。投资者需要考虑其未来增长潜力是否能够支撑当前的估值水平。建议在投资决策时，结合公司的长期增长预期进行综合评估。</li></ul><h4>原则化建议：</h4><p>在投资决策中，应将公司的基本面、行业发展趋势以及宏观经济环境结合起来考虑。建议投资者建立一套原则化的决策框架，例如：</p><ul><li><strong>原则1</strong>：在评估公司时，始终关注其核心业务的竞争力和市场份额。</li><li><strong>原则2</strong>：在面对高估值时，谨慎评估其未来增长潜力，并考虑市场情绪的影响。</li><li><strong>原则3</strong>：定期复盘投资决策，记录成功和失败的经验，以不断优化投资策略。</li></ul><p>通过这些原则，投资者可以更好地应对市场的不确定性，并在长期中获得稳定的回报。</p></div></div><div class="mreply"><div class="mh"><span class="who">林奇</span><span class="mscore">80</span></div><div class="md"><p>各位好，今天我们讨论一下三花智控这家公司。我的初步结论是：这只股票值得考虑，但需要谨慎对待。</p><p>首先，为什么值得考虑？三花智控在新能源车热管理领域处于领先地位。随着电动车市场的快速增长，对高效热管理系统的需求也在不断上升，这是它的一大优势。此外，三花智控的全球化布局完善，这使得它能够更好地应对不同市场的需求和风险。</p><p>然而，我们也需要看到一些风险点。原材料价格的波动可能会影响其利润率，而汇率风险则可能对公司的海外业务造成冲击。此外，目前的市盈率（PE）约为38倍，对于一家制造业公司来说，这个估值水平并不算低。</p><p>在投资决策上，我建议大家先问自己几个问题：</p><ul><li>你是否真正理解三花智控的业务模式？它的核心竞争力在哪里？</li><li>你是否愿意长期持有这家公司？考虑到其估值水平，短期内的波动可能会比较大。</li><li>你是否能够承受可能的市场风险，比如原材料价格和汇率的波动？</li></ul><p>如果你对这些问题都有明确的答案，并且对三花智控的未来发展有信心，那么可以考虑在合适的价位逐步建仓。但同时，也要做好风险管理，比如设定止损点，或者分散投资以降低单一股票的风险。</p><p>总的来说，三花智控是一家有潜力的公司，但在当前的市场环境下，投资者需要保持谨慎，做好充分的调研和风险评估。希望这些建议对大家有所帮助。</p></div></div><div class="mreply"><div class="mh"><span class="who">芒格</span><span class="mscore">65</span></div><div class="md"><h4>发言：</h4><p>各位同仁，今天我们来聊聊三花智控（002050）。我的看法是，这家公司值得部分关注，但不宜过于激进。</p><p><strong>结论：</strong></p><p>三花智控身处一个前景看好的行业，但竞争加剧和潜在风险不容忽视。我的建议是：可以适度配置，但需密切监控风险。</p><p><strong>理由：</strong></p><p>首先，从行业角度看，三花智控受益于新能源车热管理需求的持续增长。这符合长期趋势，也是其最大的亮点之一。此外，公司的全球化布局较为完善，这为其提供了更广阔的市场空间和风险分散能力。</p><p>然而，我们也要看到一些潜在的风险：</p><ul><li><strong>原材料价格波动</strong>：这可能会直接影响公司的利润率，尤其是在成本控制方面。</li><li><strong>汇率风险</strong>：全球化布局虽然带来机遇，但也伴随着汇率波动的挑战。</li></ul><p>从估值来看，当前市盈率（PE）约为38.64，市净率（PB）约为5.02，相对于其净资产收益率（ROE）12.7%而言，估值并不算低。这意味着市场已经对其增长前景给予了较高的预期。</p><p><strong>风险/行动建议：</strong></p><ul><li><strong>关注竞争格局</strong>：新能源车热管理领域竞争正在加剧，需要密切关注市场份额的变化和竞争对手的动向。</li><li><strong>管理汇率和原材料风险</strong>：公司需要有效的对冲策略来应对汇率和原材料价格波动，投资者也应将这些因素纳入风险评估。</li><li><strong>适度配置</strong>：考虑到行业前景和公司基本面，可以考虑适度配置，但不宜重仓。长期持有需持续跟踪公司战略执行情况和市场环境变化。</li></ul><p>最后，我想提醒大家，投资就像打牌，胜率和赔率都要考虑。三花智控目前胜率较高，但赔率有限。因此，保持适度关注和谨慎配置是明智之举。正如我常说的：&quot;如果我知道自己死在哪里，我就永远不去那里。&quot; 在投资中，识别并避开风险，往往比追求高回报更为重要。</p></div></div></div>
+<div class="panel"><h2>分析师报告<span class="sub">2 篇</span></h2><details open><summary>市场面分析</summary><div class="body"><div class="md"><h4>002050 三花智控 市场面分析</h4><ul><li>红黑榜多空分数：多头 85 / 空头 25，分差 60。</li><li>当前价格：37.53。</li><li>当前交易评级：Buy。</li><li>值得加仓区间：36.40 - 37.91。</li><li>目标价格：42.03。</li><li>市场愿意给溢价的原因：新能源车热管理需求旺盛；全球化布局完善。</li><li>当前主要压制因素：原材料价格波动；汇率风险。</li></ul></div></div></details><details open><summary>基本面分析</summary><div class="body"><div class="md"><h4>002050 三花智控 基本面分析</h4><ul><li>报告期：2026-03-31。</li><li>PE(TTM)：38.64。</li><li>PB：5.02。</li><li>PS(TTM)：5.08。</li><li>ROE：12.70%。</li><li>营收同比：1.36%。</li><li>归母净利润同比：2.68%。</li><li>资产负债率：33.28%。</li><li>经营现金流/净利润：1.19。</li><li>核心判断：盈利能力处于可接受区间；收入仍在增长；利润端保持扩张。</li></ul></div></div></details></div>
+<div class="panel"><h2>研究与计划</h2>
+<details><summary>基本面摘要</summary><div class="body"><div class="md"><h3>核心财务快照</h3><ul><li>报告期: 2026-03-31</li><li>当前股价: 37.53 元</li><li>总市值: 1579.27 亿元</li><li>PE (TTM): 38.64</li><li>PB: 5.02</li><li>PS (TTM): 5.08</li><li>营业总收入(报告期): 77.74 亿元</li><li>营收同比增长率: 1.36%</li><li>归母净利润(报告期): 9.28 亿元</li><li>归母净利润同比增长率: 2.68%</li><li>ROE (TTM/估算): 12.70%</li><li>资产负债率: 33.28%</li><li>经营性现金流 / 归母净利润: 1.19</li></ul></div></div></details>
+<details><summary>研究计划</summary><div class="body"><div class="md"><h4>002050 三花智控 研究摘要</h4><ul><li>红黑榜结论: Buy</li><li>多头/空头: 85/25</li><li>正向信号: ROE 12.70%；营收同比 1.36%；归母净利润同比 2.68%；PE(TTM) 38.64</li><li>榜单看多理由: 新能源车热管理需求旺盛；全球化布局完善</li><li>榜单风险提示: 原材料价格波动；汇率风险</li></ul></div></div></details>
+<details><summary>交易计划</summary><div class="body"><div class="md"><h4>002050 三花智控 交易计划</h4><ul><li>评级: Buy</li><li>当前价格: 37.53</li><li>值得加仓区间: 36.40 - 37.91</li><li>目标价格: 42.03</li><li>止损位: 34.53</li><li>备注: 当前为缓存降级交易卡，后续若完整 TradingAgent 结果生成，将自动覆盖。</li></ul></div></div></details>
+<details><summary>交易决策</summary><div class="body"><div class="md"><p>Buy</p><p>002050 三花智控 当前使用红黑榜缓存结果生成兜底交易卡。多头 85 / 空头 25，分差 60。当前尚未取得完整 TradingAgent 长文决策，但榜单分数、财务快照和大师观点已经足够生成基础交易建议。</p></div></div></details>
+</div>
+<div class="panel"><h2>多空逻辑</h2><div class="pts"><div class="h bull">看多逻辑</div><div class="md"><p>新能源车热管理需求旺盛</p><p>全球化布局完善</p></div></div><div class="pts"><div class="h bear">看空逻辑</div><div class="md"><p>原材料价格波动</p><p>汇率风险</p></div></div></div>
+<div class="panel"><h2>伯克希尔研究</h2><p><strong>三花智控是一家具备核心技术和全球布局的制冷控制元件龙头，具有较强的护城河和长期增长潜力，当前估值合理，适合稳健型投资者。</strong></p><p>伯克希尔综合评分：<strong>3.75</strong></p><div class="md"><p>{&quot;verdict&quot;: &quot;买入&quot;, &quot;conservative_tip&quot;: &quot;建议在PE TTM低于22倍时买入，目标价30元。&quot;, &quot;moderate_tip&quot;: &quot;建议在PE TTM低于25倍时买入，目标价35元。&quot;, &quot;aggressive_tip&quot;: &quot;建议在PE TTM低于28倍时买入，目标价40元。&quot;, &quot;catalysts_plus&quot;: [&quot;新能源车热管理业务快速增长&quot;, &quot;原材料价格回落&quot;, &quot;全球节能环保政策加码&quot;], &quot;catalysts_minus&quot;: [&quot;原材料价格大幅上涨&quot;, &quot;国际竞争对手市场份额扩大&quot;, &quot;新能源车热管理技术变革不及预期&quot;]}</p></div></div>
+<div class="panel news"><h2>最新资讯</h2><div class="md"><p>利多条数较多，主要受公司回购计划提振市场信心。</p></div><div class="nitem"><div class="t">三花智控首次回购280万股，耗资9993万元</div><div class="s">财中社 · 利好</div></div><div class="nitem"><div class="t">三花智控：拟2亿元—4亿元回购股份</div><div class="s">证券时报网 · 利好</div></div><div class="nitem"><div class="t">三花智控披露股份回购方案 拟斥资2亿至4亿元回购A股股份</div><div class="s">央广财经 · 利好</div></div><div class="nitem"><div class="t">三花智控：拟以2亿元-4亿元回购公司A股股份</div><div class="s">财联社 · 利好</div></div><div class="nitem"><div class="t">三花智控拟斥资2亿元至4亿元回购，用于股权激励或员工持股计划</div><div class="s">财中社 · 利好</div></div><div class="nitem"><div class="t">深市回购增持持续升温，多家上市公司真金白银提振市场信心</div><div class="s">深圳商报·读创 · 利好</div></div><div class="nitem"><div class="t">百亿基金经理调仓路径出炉：金梓才增持三环集团 陈韫中建仓安孚科技</div><div class="s">澎湃新闻 · 中性</div></div><div class="nitem"><div class="t">三花智控：控股股东提议回购2亿元至4亿元A股股份</div><div class="s">财联社 · 利好</div></div></div>
+<footer>稳健理财Agent · 红黑榜每日归档 · 红榜 #10 · 仅供研究，不构成投资建议</footer>
+</div></body>
+</html>
