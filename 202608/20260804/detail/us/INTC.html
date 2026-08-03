@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>INTC(INTC) 黑榜 2026-08-04</title>
+<style>
+:root{--red:#d8342c;--redbg:#fdecea;--green:#1a9e54;--ink:#1c2230;--muted:#6b7385;
+--line:#e7e9ef;--card:#fff;--bg:#f4f6fa;--chip:#eef1f6;--dark:#23262d;--darkbg:#ececef}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",
+"Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);
+line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 16px 64px}
+header.top{background:linear-gradient(135deg,#1c2230,#2c3550);color:#fff;border-radius:14px;
+padding:22px 24px;margin-bottom:20px;box-shadow:0 6px 24px rgba(20,26,46,.12)}
+header.top h1{margin:0 0 6px;font-size:24px;letter-spacing:.5px}
+header.top .sub{opacity:.85;font-size:13px}
+header.top .sub b{color:#ffd166;font-weight:600}
+nav.mkt{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;
+background:rgba(244,246,250,.92);backdrop-filter:blur(6px);padding:10px 0;margin-bottom:14px}
+nav.mkt a{text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);
+padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600}
+nav.mkt a:hover{border-color:var(--red);color:var(--red)}
+.summary{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.summary .chip{background:var(--card);border:1px solid var(--line);border-radius:10px;
+padding:8px 12px;font-size:12px;color:var(--muted)}
+.summary .chip b{color:var(--ink);font-size:14px;margin-left:4px}
+section.board{margin:26px 0}
+.board-title{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:19px}
+.board-title .dot{width:10px;height:10px;border-radius:50%}
+.board-title.red .dot{background:var(--red)}
+.board-title.black .dot{background:var(--dark)}
+.board-title small{color:var(--muted);font-weight:400;font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+position:relative;transition:box-shadow .15s}
+.card:hover{box-shadow:0 4px 18px rgba(20,26,46,.08)}
+.card.red{border-top:3px solid var(--red)}
+.card.black{border-top:3px solid var(--dark)}
+.rank{position:absolute;top:10px;right:12px;font-size:26px;font-weight:800;color:#eceff5}
+.card.red .rank{color:#fbdcD9}
+.nm{font-size:16px;font-weight:700}
+.nm .tk{color:var(--muted);font-weight:500;font-size:12px;margin-left:6px}
+.tag{display:inline-block;background:var(--chip);color:var(--muted);border-radius:6px;
+padding:1px 7px;font-size:11px;margin:6px 6px 0 0}
+.price-row{display:flex;align-items:baseline;gap:10px;margin:10px 0 4px}
+.price{font-size:24px;font-weight:800}
+.pct{font-size:14px;font-weight:700;padding:2px 8px;border-radius:8px}
+.up{color:var(--red)}.down{color:var(--green)}.flat{color:var(--muted)}
+.pct.up{background:var(--redbg)}.pct.down{background:#e2f4e9}.pct.flat{background:var(--chip)}
+.psrc{font-size:11px;color:var(--muted);margin-left:auto}
+.scores{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.scores span{background:var(--chip);border-radius:6px;padding:2px 8px;font-size:11px;color:var(--muted)}
+.scores span b{color:var(--ink)}
+.pts{font-size:12.5px;margin:8px 0 0}
+.pts .h{font-weight:700;font-size:12px;margin:6px 0 2px}
+.pts .h.bull{color:var(--red)}.pts .h.bear{color:var(--green)}
+.pts ul{margin:2px 0 4px;padding-left:18px;color:#3a4152}
+.pts li{margin:1px 0}
+.masters{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:11px;color:var(--muted)}
+.masters b{color:var(--ink)}
+.summ{font-size:12.5px;color:#3a4152;background:#fafbfd;border:1px solid var(--line);
+border-radius:8px;padding:8px 10px;margin-top:8px}
+.empty{color:var(--muted);background:var(--card);border:1px dashed var(--line);
+border-radius:10px;padding:18px;text-align:center}
+footer{margin-top:34px;color:var(--muted);font-size:12px;text-align:center;line-height:1.8}
+a.lnk{color:var(--red);text-decoration:none}
+/* ── detail page ── */
+.backbar{margin-bottom:14px;font-size:13px}
+.backbar a{color:var(--muted);text-decoration:none;margin-right:14px}
+.backbar a:hover{color:var(--red)}
+.badge{display:inline-block;border-radius:6px;padding:2px 10px;font-size:12px;font-weight:700;margin-right:8px}
+.badge.red{background:var(--red);color:#fff}.badge.black{background:var(--dark);color:#fff}
+.trade{display:flex;flex-wrap:wrap;gap:10px;background:linear-gradient(135deg,#2c3550,#1c2230);
+color:#fff;border-radius:12px;padding:16px 18px;margin:16px 0}
+.trade .cell{min-width:120px}
+.trade .k{font-size:11px;opacity:.75}
+.trade .v{font-size:18px;font-weight:800;margin-top:2px}
+.trade .v.buy{color:#7ee2a8}.trade .v.sell{color:#ff9d97}.trade .v.hold{color:#ffd166}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0}
+.mgrid .m{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.mgrid .m .k{font-size:11px;color:var(--muted)}
+.mgrid .m .v{font-size:16px;font-weight:700;margin-top:2px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.panel>h2{margin:0 0 12px;font-size:17px}
+.panel>h2 .sub{font-size:12px;color:var(--muted);font-weight:400;margin-left:8px}
+.mreply{border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;
+padding:12px 14px;margin:10px 0;background:#fff}
+.mreply .mh{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.mreply .mh .who{font-weight:700;font-size:14px}
+.mreply .mh .mscore{margin-left:auto;background:var(--chip);border-radius:6px;padding:1px 8px;font-size:12px;font-weight:700}
+.md h2,.md h3,.md h4,.md h5{margin:12px 0 6px;font-size:15px}
+.md p{margin:6px 0;font-size:13.5px;color:#2c3345}
+.md ul{margin:6px 0;padding-left:20px;font-size:13.5px;color:#2c3345}
+.md li{margin:3px 0}
+.md strong{color:var(--ink)}
+details{border:1px solid var(--line);border-radius:10px;background:#fff;margin:10px 0;padding:0}
+details>summary{cursor:pointer;padding:12px 16px;font-weight:700;font-size:14px;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary:before{content:"▸ ";color:var(--red)}
+details[open]>summary:before{content:"▾ "}
+details>.body{padding:0 16px 14px;border-top:1px dashed var(--line)}
+.ychip{display:inline-block;background:var(--chip);border-radius:8px;padding:4px 10px;font-size:12px;margin:3px 6px 3px 0}
+.ychip b{font-size:13px}
+.news .nitem{border-top:1px dashed var(--line);padding:8px 0;font-size:13px}
+.news .nitem .t{font-weight:600}
+.news .nitem .s{color:var(--muted);font-size:12px}
+/* ── root landing page ── */
+.hero{padding:30px 26px}
+.hero-kicker{color:#ffd166;font-size:12px;font-weight:700;letter-spacing:2px;
+text-transform:uppercase;margin-bottom:8px}
+.hero h1{font-size:30px;margin:0 0 10px}
+.day-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.day-card{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);
+border-radius:12px;padding:14px 16px;transition:all .15s}
+.day-card:hover{border-color:var(--red);box-shadow:0 4px 16px rgba(216,52,44,.12);transform:translateY(-2px)}
+.day-card .d{font-weight:800;font-size:15px;color:var(--ink);display:flex;align-items:center;gap:8px}
+.day-card .m{margin-top:8px;display:flex;gap:6px}
+.day-card .m span{background:var(--chip);color:var(--muted);border-radius:6px;
+padding:2px 8px;font-size:11px}
+.latest-badge{background:var(--red);color:#fff;border-radius:6px;padding:1px 7px;
+font-size:10px;font-weight:700}
+</style>
+</head>
+<body><div class="wrap">
+<div class="backbar"><a href="../index.html">← 总览</a><a href="../us.html">← 美股榜单</a></div>
+<header class="top">
+  <h1><span class="badge black">黑榜 #3</span>INTC<span class="tk" style="opacity:.7;font-size:15px;font-weight:400;margin-left:8px">INTC</span></h1>
+  <div class="sub">美股 ·  · 榜单日期 <b>2026-08-04</b> · 盘价采集 <b>2026-08-04 05:00:52</b></div>
+  <div class="price-row" style="margin-top:12px">
+    <span class="price" style="color:#fff">$91.00</span>
+    <span class="pct up">+0.89%</span>
+    <span class="psrc" style="color:rgba(255,255,255,.6)">实时</span>
+  </div>
+  <div class="scores" style="margin-top:10px">
+    <span>综合 <b>26.9</b></span>
+    <span>多头 <b>40</b></span>
+    <span>空头 <b>80</b></span>
+    <span>大师均值 <b>40</b></span>
+    <span>信号 <b>negative</b></span>
+  </div>
+</header>
+<div class="trade"><div class="cell"><div class="k">交易评级</div><span class="v hold">Reduce</span></div><div class="cell"><div class="k">加仓区间</div><span class="v">81.78 ~ 85.42</span></div><div class="cell"><div class="k">伯克希尔</div><span class="v">观望</span></div><div class="cell"><div class="k">伯克希尔分</div><span class="v">2.75</span></div></div>
+<div class="panel"><h2>财务指标</h2><div class="mgrid"><div class="m"><div class="k">市盈率 PE</div><div class="v">44.59</div></div><div class="m"><div class="k">市净率 PB</div><div class="v">5.23</div></div><div class="m"><div class="k">ROE</div><div class="v">-10.7%</div></div><div class="m"><div class="k">总市值</div><div class="v">4583</div></div><div class="m"><div class="k">营收同比</div><div class="v">25.4%</div></div></div></div>
+<div class="panel"><h2>历史收益</h2><span class="ychip">近1月 <b class="down">-25.64%</b></span><span class="ychip">近6月 <b class="up">+84.51%</b></span><span class="ychip">近1年 <b class="up">+366.00%</b></span><span class="ychip">近5年 <b class="up">+68.09%</b></span></div>
+<div class="panel"><h2>大师圆桌<span class="sub">5 位</span></h2><div class="mreply"><div class="mh"><span class="who">段永平</span><span class="mscore">45</span></div><div class="md"><h4>圆桌发言：关于英特尔（INTC）的看法</h4><h5>结论：</h5><p>英特尔目前的情况比较复杂，我个人持谨慎态度。虽然公司在芯片行业有重要的地位和技术积累，但当前面临的市场挑战不容忽视。</p><h5>理由：</h5><ul><li><strong>行业地位与技术积累</strong>：英特尔在芯片行业有着深厚的技术积累和重要的市场地位，这是其长期发展的基础。芯片作为现代科技的核心，英特尔在这一领域的经验和资源是其优势。</li></ul><ul><li><strong>市场竞争加剧</strong>：然而，当前英特尔面临的市场竞争非常激烈。其他芯片制造商如AMD、英伟达等在某些领域已经取得了领先优势，这对英特尔的业务构成了压力。</li></ul><ul><li><strong>股价表现</strong>：从股价表现来看，英特尔近期出现了2.45%的下跌，这可能反映了市场对其未来增长的担忧。此外，其市盈率（PE）高达44.6，显示出市场对其未来增长的高预期，但当前净资产收益率（ROE）为负值，表明其盈利能力面临挑战。</li></ul><h5>风险/行动建议：</h5><ul><li><strong>竞争压力</strong>：需要密切关注英特尔在市场竞争中的表现，特别是其新产品研发和市场策略的调整。如果公司不能在技术创新和市场拓展上取得突破，可能会继续面临压力。</li></ul><ul><li><strong>估值风险</strong>：当前的高市盈率意味着市场对其未来增长有较高的预期。如果公司无法实现预期的增长，股价可能会面临调整压力。因此，投资者需要谨慎评估其估值水平。</li></ul><ul><li><strong>长期视角</strong>：从长期来看，英特尔的技术积累和行业地位仍然是一个重要的考量因素。如果公司能够有效应对当前的挑战，未来仍然有发展的潜力。</li></ul><p>总的来说，英特尔是一个需要谨慎对待的投资标的。如果是我，我会先观察公司在未来几个季度的表现，特别是其技术创新和市场策略的调整，再决定是否投资。在此之前，我会保持观望态度。</p></div></div><div class="mreply"><div class="mh"><span class="who">巴菲特</span><span class="mscore">30</span></div><div class="md"><h4>巴菲特圆桌发言：关于英特尔（INTC）</h4><p><strong>结论：</strong></p><p>在当前情况下，我不会考虑投资英特尔（INTC）。虽然它在芯片行业有着重要的地位，并且拥有长期的技术积累，但目前其商业模式存在一些让我担忧的问题。</p><p><strong>理由：</strong></p><p>首先，英特尔所处的芯片行业确实非常重要，并且公司有着深厚的技术积累，这些都是不可否认的优势。然而，当我们审视其当前的财务状况时，会发现一些令人不安的迹象。例如，其市盈率为44.6倍，远高于市场平均水平，这表明市场对其未来增长抱有很高的期望。但与此同时，其净资产收益率（ROE）为负10.7%，显示出公司在盈利能力方面遇到了显著挑战。</p><p>此外，英特尔面临的竞争环境也在加剧。虽然其在芯片行业有着长期的技术积累，但近年来，其他竞争对手如台积电和三星等在制程技术上取得了显著进步，这对英特尔的竞争优势构成了威胁。</p><p>从市场表现来看，英特尔股价近期下跌了2.45%，这可能反映了投资者对其未来前景的担忧。</p><p><strong>风险/行动建议：</strong></p><ul><li><strong>竞争风险</strong>：英特尔面临来自其他芯片制造商的激烈竞争，需要密切关注其在技术研发和市场拓展方面的进展。</li></ul><ul><li><strong>盈利能力</strong>：当前负的ROE是一个警示信号，需要深入分析其背后的原因，并评估公司是否能够有效扭转这一局面。</li></ul><ul><li><strong>估值风险</strong>：考虑到其较高的市盈率，如果未来增长不及预期，可能会面临估值回调的压力。</li></ul><ul><li><strong>行动建议</strong>：如果你是英特尔的管理层，我会建议你专注于提升核心业务的盈利能力，并积极应对市场竞争。如果你是投资者，我建议你保持谨慎，等待公司基本面出现更明确的改善信号。</li></ul><p><strong>芒格的补充：</strong></p><p>查理可能会补充说，投资就像经营一家果园，你需要关注的是树木的健康状况，而不是每天的风向变化。对于英特尔，我们需要更深入地了解其长期护城河是否依然稳固，以及公司是否能够有效应对当前的挑战。</p></div></div><div class="mreply"><div class="mh"><span class="who">达利欧</span><span class="mscore">50</span></div><div class="md"><p>各位同仁，关于英特尔（INTC）这只股票，我的看法是这样的：</p><p>首先，我给出一个偏中性的结论：目前英特尔处于一个转型期，机遇与挑战并存。尽管芯片行业的重要性不言而喻，且英特尔拥有长期的技术积累，但短期来看，市场竞争加剧和股价表现疲软是不容忽视的风险因素。</p><h4>理由分析：</h4><ul><li><strong>行业地位与长期积累</strong>：芯片行业是现代科技的核心，英特尔作为行业巨头，其技术积累和品牌影响力依然强大。然而，正如我们所见，任何伟大的公司都需要不断适应变化的市场环境。</li></ul><ul><li><strong>转型压力与市场竞争</strong>：从数据上看，英特尔的股价近期下跌了2.45%，这反映了市场对其未来增长的担忧。与此同时，行业内的竞争正在加剧，其他芯片制造商的崛起对英特尔构成了直接挑战。</li></ul><ul><li><strong>财务指标</strong>：当前英特尔的市盈率为44.6，市净率为5.23，这些指标显示市场对其未来增长抱有较高预期。然而，其净资产收益率为-10.715%，这表明公司在盈利能力上面临较大挑战。</li></ul><h4>风险与行动建议：</h4><ul><li><strong>短期风险</strong>：市场竞争加剧和股价下跌是短期内的主要风险。如果公司不能有效应对竞争对手的挑战，股价可能会进一步承压。</li></ul><ul><li><strong>长期机遇</strong>：如果英特尔能够成功转型，抓住新兴技术趋势，如人工智能和量子计算，那么其长期增长潜力依然巨大。</li></ul><ul><li><strong>投资建议</strong>：对于持有英特尔股票的投资人，我建议密切关注公司的转型进展和市场竞争态势。如果你是长期投资者，可以考虑在股价回调时适当增持，但需做好风险管理。对于短期投资者，建议保持谨慎，观察公司能否在短期内扭转颓势。</li></ul><h4>原则化收口：</h4><p>在投资决策中，我们应当遵循&quot;Pain + Reflection = Progress&quot;的原则。面对英特尔的现状，我们需要深入反思其转型路径和市场环境的变化，而不是仅仅依赖过去的成功经验。同时，建议将这次分析记录在决策日志中，以便未来复盘和优化投资策略。</p><p>总之，英特尔正处于一个关键的转型期，投资者需要对其未来发展保持密切关注，并根据自身的风险承受能力做出相应的投资决策。</p></div></div><div class="mreply"><div class="mh"><span class="who">林奇</span><span class="mscore">40</span></div><div class="md"><p>各位，今天我们来聊聊英特尔（INTC）。我的结论是，现在不是买入英特尔的最佳时机。</p><p>首先，英特尔是一家有着深厚技术积累的芯片巨头，在半导体行业的重要性毋庸置疑。但我们投资不能只看历史成就，得看未来增长潜力。目前英特尔的股价表现疲软，市盈率（PE）高达44倍，而市净率（PB）也达到了5.23倍，这表明市场对其未来增长预期过高。</p><p>从数据来看，英特尔的营收同比增长25.4%，看似不错，但净资产收益率（ROE）为-10.7%，这意味着公司盈利能力出现了问题。与此同时，股价在过去一段时间已经下跌了2.45%，这反映出市场对其未来前景的担忧正在加剧。</p><p>再者，半导体行业的竞争格局正在发生剧烈变化。AMD等竞争对手不断蚕食市场份额，而英特尔的转型之路似乎并不平坦。虽然英特尔在芯片制造领域有着长期的技术积累，但要在新一轮技术变革中重新站稳脚跟，还需要克服诸多挑战。</p><p>基于以上分析，我建议投资者暂时观望。如果你已经持有英特尔股票，可以考虑在反弹时适当减仓。对于想要买入的投资者，我建议等到市盈率回到更合理的区间，比如20-25倍左右，并且看到公司盈利能力出现实质性改善后再做决定。</p><p>记住，投资股票就是投资公司的未来现金流。当前的英特尔虽然有反弹的可能，但缺乏足够的增长动力来支撑其高估值。我们要做的是耐心等待更好的买入时机，而不是在不确定性较高的时候贸然进场。</p></div></div><div class="mreply"><div class="mh"><span class="who">芒格</span><span class="mscore">35</span></div><div class="md"><p>各位，我今天想谈谈英特尔（INTC）。首先，我的结论是：现在不是投资英特尔的最佳时机。</p><p>让我先解释我的理由。我们需要先反过来想——英特尔可能会因为什么而失败？当前最明显的风险是市场竞争格局的恶化。尽管英特尔在芯片行业拥有重要的地位，并且拥有长期的技术积累，但这些优势正在被竞争对手不断侵蚀。看看数据，英特尔的股价已经下跌了2.45%，而其市盈率（PE）高达44.6，远高于行业平均水平。这表明市场对其未来增长的预期过高，而其净资产收益率（ROE）目前为负10.7%，这可不是一个健康企业的标志。</p><p>此外，英特尔面临的竞争压力不容小觑。AMD和英伟达等公司在技术进步和市场占有率方面都在不断追赶甚至超越英特尔。这种竞争加剧不仅会影响其市场份额，还会对利润率构成压力。</p><p>再来看激励机制。英特尔的管理层是否有足够的动力和清晰的战略来扭转当前的颓势？这是一个值得深思的问题。如果激励机制没有与长期股东价值创造紧密结合，那么我们很难期待管理层会做出最优决策。</p><p>基于以上分析，我建议采取以下行动：</p><p>首先，不要急于买入。英特尔当前的估值过高，市场对其未来增长的预期可能过于乐观。在竞争格局没有明显改善之前，保持观望是明智的选择。</p><p>其次，如果已经持有英特尔股票，建议密切关注其市场份额变化和新产品发布。如果市场份额持续下滑，或者新产品无法获得市场认可，那么可能需要重新评估投资决策。</p><p>最后，记住投资的第一原则：不要亏钱。在看不清未来的时候，宁可错过，也不要犯错。耐心等待更好的机会出现。</p><p>我能错在哪？我的判断可能过于保守，忽略了英特尔可能通过技术创新或战略调整实现逆转。但正如我常说的，如果我知道自己死在哪里，我就永远不去那里。</p></div></div></div>
+<div class="panel"><h2>分析师报告<span class="sub">2 篇</span></h2><details open><summary>市场面分析</summary><div class="body"><div class="md"><h4>INTC INTC 市场面分析</h4><ul><li>红黑榜多空分数：多头 40 / 空头 80，分差 -40。</li><li>当前价格：90.87。</li><li>当前交易评级：Reduce。</li><li>值得加仓区间：81.78 - 85.42。</li><li>风险控制位：79.97。</li><li>市场愿意给溢价的原因：芯片行业重要性；长期技术积累。</li><li>当前主要压制因素：股价下跌2.45%；市场竞争加剧。</li></ul></div></div></details><details open><summary>基本面分析</summary><div class="body"><div class="md"><h4>INTC INTC 基本面分析</h4><ul><li>报告期：暂无。</li><li>PE(TTM)：44.59。</li><li>PB：5.23。</li><li>ROE：-10.71%。</li><li>营收同比：25.40%。</li><li>核心判断：收入仍在增长。</li></ul></div></div></details></div>
+<div class="panel"><h2>研究与计划</h2>
+<details><summary>基本面摘要</summary><div class="body"><div class="md"><h3>核心财务快照</h3><ul><li>报告期: 数据缺失</li><li>当前股价: 90.87 元</li><li>总市值: 4582.73 亿元</li><li>PE (TTM): 44.59</li><li>PB: 5.23</li><li>PS (TTM): 数据缺失</li><li>营业总收入(报告期): 数据缺失 亿元</li><li>营收同比增长率: 25.40%</li><li>归母净利润(报告期): 数据缺失 亿元</li><li>归母净利润同比增长率: 数据缺失</li><li>ROE (TTM/估算): -10.71%</li><li>资产负债率: 数据缺失</li><li>经营性现金流 / 归母净利润: 数据缺失</li></ul><h4>缺失字段</h4><ul><li>PS(TTM), 营业总收入, 归母净利润, 归母净利润同比增长率, 资产负债率, 经营性现金流与归母净利润比值</li></ul></div></div></details>
+<details><summary>研究计划</summary><div class="body"><div class="md"><h4>INTC INTC 研究摘要</h4><ul><li>红黑榜结论: Reduce</li><li>多头/空头: 40/80</li><li>正向信号: 营收同比 25.40%；PE(TTM) 44.60；PB 5.23</li><li>风险信号: ROE -10.71%</li><li>榜单看多理由: 芯片行业重要性；长期技术积累</li><li>榜单风险提示: 股价下跌2.45%；市场竞争加剧</li></ul></div></div></details>
+<details><summary>交易计划</summary><div class="body"><div class="md"><h4>INTC INTC 交易计划</h4><ul><li>评级: Reduce</li><li>当前价格: 90.87</li><li>值得加仓区间: 81.78 - 85.42</li><li>目标价格: 86.33</li><li>止损位: 79.97</li><li>备注: 当前为缓存降级交易卡，后续若完整 TradingAgent 结果生成，将自动覆盖。</li></ul></div></div></details>
+<details><summary>交易决策</summary><div class="body"><div class="md"><p>Reduce</p><p>INTC INTC 当前使用红黑榜缓存结果生成兜底交易卡。多头 40 / 空头 80，分差 -40。当前尚未取得完整 TradingAgent 长文决策，但榜单分数、财务快照和大师观点已经足够生成基础交易建议。</p></div></div></details>
+</div>
+<div class="panel"><h2>多空逻辑</h2><div class="pts"><div class="h bull">看多逻辑</div><div class="md"><p>芯片行业重要性</p><p>长期技术积累</p></div></div><div class="pts"><div class="h bear">看空逻辑</div><div class="md"><p>股价下跌2.45%</p><p>市场竞争加剧</p></div></div></div>
+<div class="panel"><h2>伯克希尔研究</h2><p><strong>英特尔面临转型挑战，但其在半导体行业的深厚积累和资本实力仍提供一定安全边际，需关注其转型进展及竞争格局变化。</strong></p><p>伯克希尔综合评分：<strong>2.75</strong></p><div class="md"><p>{&quot;verdict&quot;: &quot;观望&quot;, &quot;conservative_tip&quot;: &quot;建议观望，股价低于30美元时可考虑小仓位介入。&quot;, &quot;moderate_tip&quot;: &quot;股价在28-32美元区间内可适度建仓，关注转型进展。&quot;, &quot;aggressive_tip&quot;: &quot;股价低于26美元时，可考虑加大配置，但需控制风险。&quot;, &quot;catalysts_plus&quot;: [&quot;数据中心和AI芯片业务取得突破性进展。&quot;, &quot;制造工艺升级成功，重新获得市场份额。&quot;, &quot;宏观经济复苏，半导体需求回暖。&quot;], &quot;catalysts_minus&quot;: [&quot;竞争对手推出颠覆性产品。&quot;, &quot;转型进展缓慢，财务状况恶化。&quot;, &quot;全球经济衰退，半导体行业需求下降。&quot;]}</p></div></div>
+<div class="panel news"><h2>最新资讯</h2><div class="md"><p>利多新闻6条，利空新闻4条，中性新闻1条，整体情绪偏多。</p></div><div class="nitem"><div class="t">Intel (INTC) Expands Lens Packaging Tie Up As TSMC Targets EMIB</div><div class="s">simplywall.st · 利好</div></div><div class="nitem"><div class="t">Intel Stock Is Falling Monday: What&#x27;s Going On?</div><div class="s">Benzinga · 利空</div></div><div class="nitem"><div class="t">Jim Cramer Reveals Why Intel Corporation (NASDAQ:INTC) Is About More Than Just Selling Computer Chips</div><div class="s">Yahoo Finance · 中性</div></div><div class="nitem"><div class="t">Intel Stock Slides As Sector Weakness And Tariff Risks Rattle Traders</div><div class="s">StocksToTrade · 利空</div></div><div class="nitem"><div class="t">MU, SKHY, NVDA, AMD, INTC Extend Rally Premarket, But Chip Stocks Still On Track For Worst Month Since 2002</div><div class="s">stocktwits.com · 利好</div></div><div class="nitem"><div class="t">MU, SNDK, AMD, and INTC – Why Are AI Chip Stocks Rising in Pre-Market Today, July 31?</div><div class="s">TipRanks · 利好</div></div><div class="nitem"><div class="t">Intel Stock Is Surging Friday: What&#x27;s Going On?</div><div class="s">TradingView · 利好</div></div><div class="nitem"><div class="t">Jim Cramer Says INTC Stock ‘Belongs at $110,’ Blames Situational Awareness Blowup for Intel’s Post-Earnin</div><div class="s">Benzinga · 利好</div></div></div>
+<footer>稳健理财Agent · 红黑榜每日归档 · 黑榜 #3 · 仅供研究，不构成投资建议</footer>
+</div></body>
+</html>

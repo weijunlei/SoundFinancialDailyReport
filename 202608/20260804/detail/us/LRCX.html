@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>LRCX(LRCX) 黑榜 2026-08-04</title>
+<style>
+:root{--red:#d8342c;--redbg:#fdecea;--green:#1a9e54;--ink:#1c2230;--muted:#6b7385;
+--line:#e7e9ef;--card:#fff;--bg:#f4f6fa;--chip:#eef1f6;--dark:#23262d;--darkbg:#ececef}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",
+"Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);
+line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 16px 64px}
+header.top{background:linear-gradient(135deg,#1c2230,#2c3550);color:#fff;border-radius:14px;
+padding:22px 24px;margin-bottom:20px;box-shadow:0 6px 24px rgba(20,26,46,.12)}
+header.top h1{margin:0 0 6px;font-size:24px;letter-spacing:.5px}
+header.top .sub{opacity:.85;font-size:13px}
+header.top .sub b{color:#ffd166;font-weight:600}
+nav.mkt{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;
+background:rgba(244,246,250,.92);backdrop-filter:blur(6px);padding:10px 0;margin-bottom:14px}
+nav.mkt a{text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);
+padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600}
+nav.mkt a:hover{border-color:var(--red);color:var(--red)}
+.summary{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.summary .chip{background:var(--card);border:1px solid var(--line);border-radius:10px;
+padding:8px 12px;font-size:12px;color:var(--muted)}
+.summary .chip b{color:var(--ink);font-size:14px;margin-left:4px}
+section.board{margin:26px 0}
+.board-title{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:19px}
+.board-title .dot{width:10px;height:10px;border-radius:50%}
+.board-title.red .dot{background:var(--red)}
+.board-title.black .dot{background:var(--dark)}
+.board-title small{color:var(--muted);font-weight:400;font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+position:relative;transition:box-shadow .15s}
+.card:hover{box-shadow:0 4px 18px rgba(20,26,46,.08)}
+.card.red{border-top:3px solid var(--red)}
+.card.black{border-top:3px solid var(--dark)}
+.rank{position:absolute;top:10px;right:12px;font-size:26px;font-weight:800;color:#eceff5}
+.card.red .rank{color:#fbdcD9}
+.nm{font-size:16px;font-weight:700}
+.nm .tk{color:var(--muted);font-weight:500;font-size:12px;margin-left:6px}
+.tag{display:inline-block;background:var(--chip);color:var(--muted);border-radius:6px;
+padding:1px 7px;font-size:11px;margin:6px 6px 0 0}
+.price-row{display:flex;align-items:baseline;gap:10px;margin:10px 0 4px}
+.price{font-size:24px;font-weight:800}
+.pct{font-size:14px;font-weight:700;padding:2px 8px;border-radius:8px}
+.up{color:var(--red)}.down{color:var(--green)}.flat{color:var(--muted)}
+.pct.up{background:var(--redbg)}.pct.down{background:#e2f4e9}.pct.flat{background:var(--chip)}
+.psrc{font-size:11px;color:var(--muted);margin-left:auto}
+.scores{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.scores span{background:var(--chip);border-radius:6px;padding:2px 8px;font-size:11px;color:var(--muted)}
+.scores span b{color:var(--ink)}
+.pts{font-size:12.5px;margin:8px 0 0}
+.pts .h{font-weight:700;font-size:12px;margin:6px 0 2px}
+.pts .h.bull{color:var(--red)}.pts .h.bear{color:var(--green)}
+.pts ul{margin:2px 0 4px;padding-left:18px;color:#3a4152}
+.pts li{margin:1px 0}
+.masters{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:11px;color:var(--muted)}
+.masters b{color:var(--ink)}
+.summ{font-size:12.5px;color:#3a4152;background:#fafbfd;border:1px solid var(--line);
+border-radius:8px;padding:8px 10px;margin-top:8px}
+.empty{color:var(--muted);background:var(--card);border:1px dashed var(--line);
+border-radius:10px;padding:18px;text-align:center}
+footer{margin-top:34px;color:var(--muted);font-size:12px;text-align:center;line-height:1.8}
+a.lnk{color:var(--red);text-decoration:none}
+/* ── detail page ── */
+.backbar{margin-bottom:14px;font-size:13px}
+.backbar a{color:var(--muted);text-decoration:none;margin-right:14px}
+.backbar a:hover{color:var(--red)}
+.badge{display:inline-block;border-radius:6px;padding:2px 10px;font-size:12px;font-weight:700;margin-right:8px}
+.badge.red{background:var(--red);color:#fff}.badge.black{background:var(--dark);color:#fff}
+.trade{display:flex;flex-wrap:wrap;gap:10px;background:linear-gradient(135deg,#2c3550,#1c2230);
+color:#fff;border-radius:12px;padding:16px 18px;margin:16px 0}
+.trade .cell{min-width:120px}
+.trade .k{font-size:11px;opacity:.75}
+.trade .v{font-size:18px;font-weight:800;margin-top:2px}
+.trade .v.buy{color:#7ee2a8}.trade .v.sell{color:#ff9d97}.trade .v.hold{color:#ffd166}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0}
+.mgrid .m{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.mgrid .m .k{font-size:11px;color:var(--muted)}
+.mgrid .m .v{font-size:16px;font-weight:700;margin-top:2px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.panel>h2{margin:0 0 12px;font-size:17px}
+.panel>h2 .sub{font-size:12px;color:var(--muted);font-weight:400;margin-left:8px}
+.mreply{border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;
+padding:12px 14px;margin:10px 0;background:#fff}
+.mreply .mh{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.mreply .mh .who{font-weight:700;font-size:14px}
+.mreply .mh .mscore{margin-left:auto;background:var(--chip);border-radius:6px;padding:1px 8px;font-size:12px;font-weight:700}
+.md h2,.md h3,.md h4,.md h5{margin:12px 0 6px;font-size:15px}
+.md p{margin:6px 0;font-size:13.5px;color:#2c3345}
+.md ul{margin:6px 0;padding-left:20px;font-size:13.5px;color:#2c3345}
+.md li{margin:3px 0}
+.md strong{color:var(--ink)}
+details{border:1px solid var(--line);border-radius:10px;background:#fff;margin:10px 0;padding:0}
+details>summary{cursor:pointer;padding:12px 16px;font-weight:700;font-size:14px;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary:before{content:"▸ ";color:var(--red)}
+details[open]>summary:before{content:"▾ "}
+details>.body{padding:0 16px 14px;border-top:1px dashed var(--line)}
+.ychip{display:inline-block;background:var(--chip);border-radius:8px;padding:4px 10px;font-size:12px;margin:3px 6px 3px 0}
+.ychip b{font-size:13px}
+.news .nitem{border-top:1px dashed var(--line);padding:8px 0;font-size:13px}
+.news .nitem .t{font-weight:600}
+.news .nitem .s{color:var(--muted);font-size:12px}
+/* ── root landing page ── */
+.hero{padding:30px 26px}
+.hero-kicker{color:#ffd166;font-size:12px;font-weight:700;letter-spacing:2px;
+text-transform:uppercase;margin-bottom:8px}
+.hero h1{font-size:30px;margin:0 0 10px}
+.day-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.day-card{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);
+border-radius:12px;padding:14px 16px;transition:all .15s}
+.day-card:hover{border-color:var(--red);box-shadow:0 4px 16px rgba(216,52,44,.12);transform:translateY(-2px)}
+.day-card .d{font-weight:800;font-size:15px;color:var(--ink);display:flex;align-items:center;gap:8px}
+.day-card .m{margin-top:8px;display:flex;gap:6px}
+.day-card .m span{background:var(--chip);color:var(--muted);border-radius:6px;
+padding:2px 8px;font-size:11px}
+.latest-badge{background:var(--red);color:#fff;border-radius:6px;padding:1px 7px;
+font-size:10px;font-weight:700}
+</style>
+</head>
+<body><div class="wrap">
+<div class="backbar"><a href="../index.html">← 总览</a><a href="../us.html">← 美股榜单</a></div>
+<header class="top">
+  <h1><span class="badge black">黑榜 #10</span>LRCX<span class="tk" style="opacity:.7;font-size:15px;font-weight:400;margin-left:8px">LRCX</span></h1>
+  <div class="sub">美股 ·  · 榜单日期 <b>2026-08-04</b> · 盘价采集 <b>2026-08-04 05:00:52</b></div>
+  <div class="price-row" style="margin-top:12px">
+    <span class="price" style="color:#fff">$294.61</span>
+    <span class="pct up">+0.54%</span>
+    <span class="psrc" style="color:rgba(255,255,255,.6)">实时</span>
+  </div>
+  <div class="scores" style="margin-top:10px">
+    <span>综合 <b>39.4</b></span>
+    <span>多头 <b>30</b></span>
+    <span>空头 <b>70</b></span>
+    <span>大师均值 <b>39</b></span>
+    <span>信号 <b>negative</b></span>
+  </div>
+</header>
+<div class="trade"><div class="cell"><div class="k">交易评级</div><span class="v hold">Reduce</span></div><div class="cell"><div class="k">加仓区间</div><span class="v">276.93 ~ 288.72</span></div><div class="cell"><div class="k">伯克希尔</div><span class="v">买入</span></div><div class="cell"><div class="k">伯克希尔分</div><span class="v">3.75</span></div></div>
+<div class="panel"><h2>财务指标</h2><div class="mgrid"><div class="m"><div class="k">市盈率 PE</div><div class="v">51.06</div></div><div class="m"><div class="k">市净率 PB</div><div class="v">34.81</div></div><div class="m"><div class="k">ROE</div><div class="v">65.1%</div></div><div class="m"><div class="k">总市值</div><div class="v">3686</div></div><div class="m"><div class="k">营收同比</div><div class="v">30.0%</div></div><div class="m"><div class="k">净利同比</div><div class="v">34.7%</div></div></div></div>
+<div class="panel"><h2>历史收益</h2><span class="ychip">近1月 <b class="down">-15.87%</b></span><span class="ychip">近6月 <b class="up">+40.44%</b></span><span class="ychip">近1年 <b class="up">+199.37%</b></span><span class="ychip">近5年 <b class="up">+353.40%</b></span></div>
+<div class="panel"><h2>大师圆桌<span class="sub">5 位</span></h2><div class="mreply"><div class="mh"><span class="who">段永平</span><span class="mscore">40</span></div><div class="md"><h4>圆桌发言：关于LRCX的分析与思考</h4><p><strong>结论：</strong></p><p>目前我对LRCX持谨慎观望的态度。虽然公司基本面看起来不错，但半导体行业的周期性波动和当前的经济环境让我对短期投资持保留意见。</p><p><strong>理由：</strong></p><ul><li><strong>半导体周期的影响：</strong> LRCX作为半导体设备供应商，其业绩与半导体行业的景气度高度相关。当前全球经济面临下行压力，半导体行业也受到一定冲击，这可能会影响LRCX的订单和收入增长。</li><li><strong>估值偏高：</strong> 从估值指标来看，LRCX的市盈率（PE）超过51，市净率（PB）超过34，显示出市场对其未来增长有较高的预期。然而，在当前市场环境下，这样的估值水平可能面临回调压力。</li><li><strong>股价波动：</strong> 最近股价出现显著下跌，虽然这可能带来一定的买入机会，但需要谨慎评估下跌的原因是否反映了市场对行业前景的担忧。</li></ul><p><strong>风险/行动建议：</strong></p><ul><li><strong>观察行业趋势：</strong> 建议密切关注半导体行业的周期性变化，以及全球经济走势对半导体需求的影响。如果行业景气度持续下滑，可能需要重新评估投资时机。</li><li><strong>评估长期价值：</strong> 对于长期投资者而言，可以考虑在股价回调时逐步建仓，但前提是要对公司长期竞争力有深入理解，并做好承受短期波动的准备。</li><li><strong>保持耐心：</strong> 当前市场环境下，不宜急于做出投资决策。建议多观察一段时间，等待更明确的信号出现。</li></ul><p><strong>别错过的隐含约束：</strong></p><p>不要因为股价的短期波动而忽视了对公司长期竞争力的评估。投资决策应基于对行业趋势和公司基本面的深刻理解，而不是短期市场情绪。</p></div></div><div class="mreply"><div class="mh"><span class="who">巴菲特</span><span class="mscore">20</span></div><div class="md"><p>各位朋友，今天我们讨论的是LRCX这家公司。我对这类科技股的态度一向谨慎，主要原因在于它们不符合我投资理念中的几个核心原则。</p><p>首先，从生意模式来看，LRCX是一家半导体设备公司，属于典型的周期性行业。虽然它在过去一年实现了30%的营收增长和34.7%的净利润增长，净资产收益率也高达65%，这些数据看起来很吸引人，但我们要明白，半导体行业受经济周期影响很大。当经济下行时，对芯片设备的需求会迅速下降，这会对公司的业绩造成严重影响。</p><p>其次，从估值角度来看，目前LRCX的市盈率高达51倍，市净率更是达到了34.8倍。这意味着投资者为公司的盈利能力支付了非常高的溢价。在经济下行周期中，这样的高估值很难维持。</p><p>再者，我投资一向注重寻找那些拥有持久竞争优势的&quot;护城河&quot;企业。虽然LRCX在半导体设备领域确实有很强的技术实力，但这个行业的技术更新换代非常快，竞争对手也在不断追赶，这使得其竞争优势难以长期保持。</p><p>基于以上分析，我给LRCX的投资建议是：</p><p>如果你已经持有这只股票，我建议你重新审视当初买入的逻辑是否仍然成立。如果经济下行趋势持续，半导体行业持续承压，那么现在可能是考虑减持的时机。</p><p>对于想要买入的投资者，我建议要格外谨慎。在当前高估值和行业下行压力下，可能需要等待更好的买入时机。记住，在投资中，我们不需要每次都挥棒，只需要在最有把握的时候出手。</p><p>最后，我想说的是，投资就像经营农场，我们需要的是耐心和定力，而不是追逐短期的热点和波动。我们应该把注意力放在那些能够长期创造价值的企业上，而不是被市场先生的情绪所左右。</p></div></div><div class="mreply"><div class="mh"><span class="who">达利欧</span><span class="mscore">50</span></div><div class="md"><p>各位同仁，今天我们来讨论一下 LRCX（泛林集团）的投资机会。</p><p>首先，我给出我的结论：目前对 LRCX 的投资需要非常谨慎。虽然公司股价近期显著下跌了 2.44%，看似出现了一些买入机会，但从整体周期和行业环境来看，风险依然较高。</p><h4>理由分析：</h4><ul><li><strong>短期价格走势与估值</strong>：LRCX 股价近期大幅下跌，这确实可能反映了市场对半导体行业周期性波动的担忧。当前 51 倍的市盈率（PE）和 34 倍的市净率（PB）都处于较高水平，表明市场对公司的增长预期仍然偏高。在当前的经济环境下，这种高估值可能面临较大压力。</li></ul><ul><li><strong>半导体行业周期</strong>：LRCX 作为半导体设备制造商，其业绩高度依赖于半导体行业的整体周期。目前全球经济下行压力加大，半导体行业正处于调整阶段，这将对 LRCX 的营收和利润增长构成挑战。从历史经验来看，半导体行业的周期性波动往往较为剧烈，公司的财务表现可能会受到较大影响。</li></ul><ul><li><strong>宏观经济环境</strong>：当前全球经济增长放缓，需求端的不确定性增加，这将对整个科技产业链产生负面影响。半导体行业作为科技领域的重要组成部分，难以独善其身。</li></ul><h4>风险提示：</h4><ul><li><strong>行业周期性风险</strong>：半导体行业的周期性波动可能导致 LRCX 的营收和利润出现较大波动，投资者需要做好心理准备。</li></ul><ul><li><strong>估值风险</strong>：当前估值水平较高，如果公司业绩不及预期，股价可能面临进一步下行压力。</li></ul><ul><li><strong>宏观经济风险</strong>：全球经济下行压力加大，可能对半导体行业需求产生负面影响，进而影响 LRCX 的业绩。</li></ul><h4>行动建议：</h4><ul><li><strong>观望为主</strong>：在当前环境下，建议投资者以观望为主，等待更明确的行业周期拐点信号。如果一定要投资，建议采用分批建仓的方式，以降低风险。</li></ul><ul><li><strong>关注长期趋势</strong>：如果投资者对半导体行业的长期发展有信心，可以关注公司在行业低谷期的市场份额变化和技术创新能力，作为长期投资的参考依据。</li></ul><ul><li><strong>保持耐心</strong>：在市场情绪低迷时，保持耐心非常重要。不要被短期的价格波动所左右，要从更长期的角度评估公司的投资价值。</li></ul><p>最后，我想强调的是，在当前的经济环境下，投资决策需要更加谨慎。我们需要密切关注宏观经济指标和行业周期变化，并根据新的信息不断调整我们的投资策略。正如我常说的，&quot;Pain + Reflection = Progress&quot;，在市场波动中保持冷静和理性，才能做出更好的投资决策。</p></div></div><div class="mreply"><div class="mh"><span class="who">林奇</span><span class="mscore">60</span></div><div class="md"><p>各位，我来说说对 LRCX 的看法。简单来说，这家公司目前处于一个复杂的情况，既有机会，也有风险。</p><p>首先，LRCX 是一家半导体设备公司，这类公司在周期中波动很大。从估值来看，当前的市盈率（PE）超过 51，市净率（PB）更是高达 34，这在半导体行业中算是相当高的水平了。半导体行业本身是一个强周期性的行业，经济下行压力下，需求端的不确定性在增加。</p><p>从机会的角度来看，LRCX 最近股价下跌了 2.44%，对于那些相信半导体行业长期增长的人来说，这可能是一个不错的入场点。公司营收同比增长 30%，净利润同比增长 34.7%，这表明公司的基本面依然强劲。此外，净资产收益率（ROE）高达 65%，说明公司的盈利能力非常强。</p><p>然而，风险同样不可忽视。半导体行业受宏观经济影响很大，如果全球经济持续低迷，半导体需求可能会大幅下降。此外，高估值也意味着市场对公司未来的增长预期很高，一旦业绩不达预期，股价可能会面临更大的下行压力。</p><p>我的建议是，如果你对半导体行业有深入的了解，并且相信 LRCX 在行业中的竞争力，那么可以考虑在市场低迷时逐步建仓。但一定要做好风险管理，分批买入，避免一次性重仓。同时，要密切关注行业动态和公司业绩，一旦发现基本面恶化，要及时调整仓位。</p><p>总的来说，LRCX 是一家优秀的公司，但在当前的市场环境下，投资它需要谨慎和耐心。希望大家在做决策时，能够充分考虑自身的风险承受能力和投资目标。</p></div></div><div class="mreply"><div class="mh"><span class="who">芒格</span><span class="mscore">25</span></div><div class="md"><p>各位，关于 LRCX 的投资机会，我的看法如下：</p><p>首先，我不得不说，这家公司目前的处境并不乐观。尽管它拥有半导体行业周期性复苏的潜力，但当前的估值水平实在太高了，PE 高达 51 倍，PB 更达到了惊人的 34 倍。考虑到半导体行业正处于下行周期，这种估值缺乏足够的安全边际。</p><p>让我们先反向思考一下：半导体行业可能面临哪些风险？</p><ul><li>经济衰退导致需求下降 - 这是最直接的风险。半导体行业与全球经济周期高度相关。</li><li>库存积压问题 - 过去几年行业过度扩张，库存调整可能需要更长时间。</li><li>地缘政治风险 - 贸易摩擦可能进一步影响全球供应链。</li></ul><p>再看看激励机制。华尔街分析师们可能因为佣金压力而过于乐观，管理层也可能因为股权激励而倾向于维持高增长预期。这种情况下，过于激进的预测可能会导致决策失误。</p><p>现在谈谈优势。LRCX 的 ROE 高达 65%，显示出强大的盈利能力。但问题是，这种盈利能力能否持续？在当前估值下，市场似乎已经预期了未来多年的高速增长。任何低于预期的表现都可能导致股价大幅回调。</p><p>从概率和赔率的角度来看，目前的胜率不高，而赔率也不够吸引人。考虑到半导体行业的周期性波动，现在买入可能需要等待很长时间才能获得合理回报。</p><p>最后，提醒大家注意一些常见的心理学陷阱：</p><ul><li>不要因为股价已经下跌就认为现在是抄底时机（锚定效应）</li><li>不要因为过去的高增长就假设未来也会持续（线性思维）</li><li>不要因为分析师的乐观预测就忽视基本面风险（权威偏见）</li></ul><p>我的建议是：耐心等待更好的机会。除非你对半导体行业的周期性有深入理解，并且愿意承受可能的价格波动，否则现在不是买入的好时机。</p><p>我能错在哪？也许我对行业复苏的判断过于悲观，或者低估了公司应对周期波动的能力。但无论如何，在当前估值水平下，我认为谨慎是更明智的选择。</p></div></div></div>
+<div class="panel"><h2>分析师报告<span class="sub">2 篇</span></h2><details open><summary>市场面分析</summary><div class="body"><div class="md"><h4>LRCX LRCX 市场面分析</h4><ul><li>红黑榜多空分数：多头 30 / 空头 70，分差 -40。</li><li>当前价格：294.61。</li><li>当前交易评级：Reduce。</li><li>值得加仓区间：276.93 - 288.72。</li><li>风险控制位：259.26。</li><li>市场愿意给溢价的原因：Significant price decline of 2.44%；Exposure to semiconductor cycle。</li><li>当前主要压制因素：Strong negative price movement；Economic downturn impact on semiconductor industry。</li></ul></div></div></details><details open><summary>基本面分析</summary><div class="body"><div class="md"><h4>LRCX LRCX 基本面分析</h4><ul><li>报告期：暂无。</li><li>PE(TTM)：51.06。</li><li>PB：34.81。</li><li>ROE：65.07%。</li><li>营收同比：30.00%。</li><li>归母净利润同比：34.70%。</li><li>核心判断：盈利能力处于可接受区间；收入仍在增长；利润端保持扩张。</li></ul></div></div></details></div>
+<div class="panel"><h2>研究与计划</h2>
+<details><summary>基本面摘要</summary><div class="body"><div class="md"><h3>核心财务快照</h3><ul><li>报告期: 数据缺失</li><li>当前股价: 294.61 元</li><li>总市值: 3686.39 亿元</li><li>PE (TTM): 51.06</li><li>PB: 34.81</li><li>PS (TTM): 数据缺失</li><li>营业总收入(报告期): 数据缺失 亿元</li><li>营收同比增长率: 30.00%</li><li>归母净利润(报告期): 数据缺失 亿元</li><li>归母净利润同比增长率: 34.70%</li><li>ROE (TTM/估算): 65.07%</li><li>资产负债率: 数据缺失</li><li>经营性现金流 / 归母净利润: 数据缺失</li></ul><h4>缺失字段</h4><ul><li>PS(TTM), 营业总收入, 归母净利润, 资产负债率, 经营性现金流与归母净利润比值</li></ul></div></div></details>
+<details><summary>研究计划</summary><div class="body"><div class="md"><h4>LRCX LRCX 研究摘要</h4><ul><li>红黑榜结论: Reduce</li><li>多头/空头: 30/70</li><li>正向信号: ROE 65.07%；营收同比 30.00%；归母净利润同比 34.70%；PE(TTM) 51.06</li><li>榜单看多理由: Significant price decline of 2.44%；Exposure to semiconductor cycle</li><li>榜单风险提示: Strong negative price movement；Economic downturn impact on semiconductor industry</li></ul></div></div></details>
+<details><summary>交易计划</summary><div class="body"><div class="md"><h4>LRCX LRCX 交易计划</h4><ul><li>评级: Reduce</li><li>当前价格: 294.61</li><li>值得加仓区间: 265.15 - 276.93</li><li>目标价格: 279.88</li><li>止损位: 259.26</li><li>备注: 当前为缓存降级交易卡，后续若完整 TradingAgent 结果生成，将自动覆盖。</li></ul></div></div></details>
+<details><summary>交易决策</summary><div class="body"><div class="md"><p>Reduce</p><p>LRCX LRCX 当前使用红黑榜缓存结果生成兜底交易卡。多头 30 / 空头 70，分差 -40。当前尚未取得完整 TradingAgent 长文决策，但榜单分数、财务快照和大师观点已经足够生成基础交易建议。</p></div></div></details>
+</div>
+<div class="panel"><h2>多空逻辑</h2><div class="pts"><div class="h bull">看多逻辑</div><div class="md"><p>Significant price decline of 2.44%</p><p>Exposure to semiconductor cycle</p></div></div><div class="pts"><div class="h bear">看空逻辑</div><div class="md"><p>Strong negative price movement</p><p>Economic downturn impact on semiconductor industry</p></div></div></div>
+<div class="panel"><h2>伯克希尔研究</h2><p><strong>LRCX是一家拥有强大护城河且财务稳健的半导体设备公司，但需警惕行业周期性波动及竞争格局变化。</strong></p><p>伯克希尔综合评分：<strong>3.75</strong></p><div class="md"><p>{&quot;verdict&quot;: &quot;买入&quot;, &quot;conservative_tip&quot;: &quot;建议在PE低于14倍时买入，目标价700美元。&quot;, &quot;moderate_tip&quot;: &quot;建议在PE低于16倍时买入，目标价750美元。&quot;, &quot;aggressive_tip&quot;: &quot;建议在PE低于12倍时买入，目标价800美元。&quot;, &quot;catalysts_plus&quot;: [&quot;半导体行业需求超预期增长。&quot;, &quot;公司推出突破性技术产品。&quot;, &quot;地缘政治风险缓解，半导体产业链恢复稳定。&quot;], &quot;catalysts_minus&quot;: [&quot;全球宏观经济衰退导致半导体需求下降。&quot;, &quot;竞争格局恶化，新进入者抢占市场份额。&quot;, &quot;地缘政治风险加剧，半导体产业链受冲击。&quot;]}</p></div></div>
+<div class="panel news"><h2>最新资讯</h2><div class="md"><p>整体情绪偏利好，共7条利多，1条利空，3条中性。</p></div><div class="nitem"><div class="t">Lam Research Stock Jumps On Fiscal Q4 Beat-And-Raise Report</div><div class="s">Investor&#x27;s Business Daily · 利好</div></div><div class="nitem"><div class="t">Has Lam Research (LRCX) Fallen Far Enough To Look Like A Bargain?</div><div class="s">Yahoo Finance · 中性</div></div><div class="nitem"><div class="t">3 S&amp;P 500 Stocks Worth Your Attention</div><div class="s">StockStory · 中性</div></div><div class="nitem"><div class="t">FAS Wealth Partners Inc. Trims Stock Holdings in Lam Research Corporation $LRCX</div><div class="s">MarketBeat · 利空</div></div><div class="nitem"><div class="t">Lam Research Corporation Reports Financial Results for the Quarter Ended June 28, 2026</div><div class="s">newsroom.lamresearch.com · 中性</div></div><div class="nitem"><div class="t">Is LRCX Overvalued? DCF Says Worth $182</div><div class="s">GuruFocus · 中性</div></div><div class="nitem"><div class="t">Lam Research (LRCX) Stock Price Jumps On Record Margins And AI Demand</div><div class="s">simplywall.st · 利好</div></div><div class="nitem"><div class="t">SPY is up 1.0% today, on LRCX stock price movement</div><div class="s">quiverquant.com · 中性</div></div></div>
+<footer>稳健理财Agent · 红黑榜每日归档 · 黑榜 #10 · 仅供研究，不构成投资建议</footer>
+</div></body>
+</html>

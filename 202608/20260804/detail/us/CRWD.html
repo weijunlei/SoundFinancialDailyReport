@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CRWD(CRWD) 红榜 2026-08-04</title>
+<style>
+:root{--red:#d8342c;--redbg:#fdecea;--green:#1a9e54;--ink:#1c2230;--muted:#6b7385;
+--line:#e7e9ef;--card:#fff;--bg:#f4f6fa;--chip:#eef1f6;--dark:#23262d;--darkbg:#ececef}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",
+"Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);
+line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 16px 64px}
+header.top{background:linear-gradient(135deg,#1c2230,#2c3550);color:#fff;border-radius:14px;
+padding:22px 24px;margin-bottom:20px;box-shadow:0 6px 24px rgba(20,26,46,.12)}
+header.top h1{margin:0 0 6px;font-size:24px;letter-spacing:.5px}
+header.top .sub{opacity:.85;font-size:13px}
+header.top .sub b{color:#ffd166;font-weight:600}
+nav.mkt{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;
+background:rgba(244,246,250,.92);backdrop-filter:blur(6px);padding:10px 0;margin-bottom:14px}
+nav.mkt a{text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);
+padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600}
+nav.mkt a:hover{border-color:var(--red);color:var(--red)}
+.summary{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.summary .chip{background:var(--card);border:1px solid var(--line);border-radius:10px;
+padding:8px 12px;font-size:12px;color:var(--muted)}
+.summary .chip b{color:var(--ink);font-size:14px;margin-left:4px}
+section.board{margin:26px 0}
+.board-title{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:19px}
+.board-title .dot{width:10px;height:10px;border-radius:50%}
+.board-title.red .dot{background:var(--red)}
+.board-title.black .dot{background:var(--dark)}
+.board-title small{color:var(--muted);font-weight:400;font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+position:relative;transition:box-shadow .15s}
+.card:hover{box-shadow:0 4px 18px rgba(20,26,46,.08)}
+.card.red{border-top:3px solid var(--red)}
+.card.black{border-top:3px solid var(--dark)}
+.rank{position:absolute;top:10px;right:12px;font-size:26px;font-weight:800;color:#eceff5}
+.card.red .rank{color:#fbdcD9}
+.nm{font-size:16px;font-weight:700}
+.nm .tk{color:var(--muted);font-weight:500;font-size:12px;margin-left:6px}
+.tag{display:inline-block;background:var(--chip);color:var(--muted);border-radius:6px;
+padding:1px 7px;font-size:11px;margin:6px 6px 0 0}
+.price-row{display:flex;align-items:baseline;gap:10px;margin:10px 0 4px}
+.price{font-size:24px;font-weight:800}
+.pct{font-size:14px;font-weight:700;padding:2px 8px;border-radius:8px}
+.up{color:var(--red)}.down{color:var(--green)}.flat{color:var(--muted)}
+.pct.up{background:var(--redbg)}.pct.down{background:#e2f4e9}.pct.flat{background:var(--chip)}
+.psrc{font-size:11px;color:var(--muted);margin-left:auto}
+.scores{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.scores span{background:var(--chip);border-radius:6px;padding:2px 8px;font-size:11px;color:var(--muted)}
+.scores span b{color:var(--ink)}
+.pts{font-size:12.5px;margin:8px 0 0}
+.pts .h{font-weight:700;font-size:12px;margin:6px 0 2px}
+.pts .h.bull{color:var(--red)}.pts .h.bear{color:var(--green)}
+.pts ul{margin:2px 0 4px;padding-left:18px;color:#3a4152}
+.pts li{margin:1px 0}
+.masters{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:11px;color:var(--muted)}
+.masters b{color:var(--ink)}
+.summ{font-size:12.5px;color:#3a4152;background:#fafbfd;border:1px solid var(--line);
+border-radius:8px;padding:8px 10px;margin-top:8px}
+.empty{color:var(--muted);background:var(--card);border:1px dashed var(--line);
+border-radius:10px;padding:18px;text-align:center}
+footer{margin-top:34px;color:var(--muted);font-size:12px;text-align:center;line-height:1.8}
+a.lnk{color:var(--red);text-decoration:none}
+/* ── detail page ── */
+.backbar{margin-bottom:14px;font-size:13px}
+.backbar a{color:var(--muted);text-decoration:none;margin-right:14px}
+.backbar a:hover{color:var(--red)}
+.badge{display:inline-block;border-radius:6px;padding:2px 10px;font-size:12px;font-weight:700;margin-right:8px}
+.badge.red{background:var(--red);color:#fff}.badge.black{background:var(--dark);color:#fff}
+.trade{display:flex;flex-wrap:wrap;gap:10px;background:linear-gradient(135deg,#2c3550,#1c2230);
+color:#fff;border-radius:12px;padding:16px 18px;margin:16px 0}
+.trade .cell{min-width:120px}
+.trade .k{font-size:11px;opacity:.75}
+.trade .v{font-size:18px;font-weight:800;margin-top:2px}
+.trade .v.buy{color:#7ee2a8}.trade .v.sell{color:#ff9d97}.trade .v.hold{color:#ffd166}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0}
+.mgrid .m{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.mgrid .m .k{font-size:11px;color:var(--muted)}
+.mgrid .m .v{font-size:16px;font-weight:700;margin-top:2px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.panel>h2{margin:0 0 12px;font-size:17px}
+.panel>h2 .sub{font-size:12px;color:var(--muted);font-weight:400;margin-left:8px}
+.mreply{border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;
+padding:12px 14px;margin:10px 0;background:#fff}
+.mreply .mh{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.mreply .mh .who{font-weight:700;font-size:14px}
+.mreply .mh .mscore{margin-left:auto;background:var(--chip);border-radius:6px;padding:1px 8px;font-size:12px;font-weight:700}
+.md h2,.md h3,.md h4,.md h5{margin:12px 0 6px;font-size:15px}
+.md p{margin:6px 0;font-size:13.5px;color:#2c3345}
+.md ul{margin:6px 0;padding-left:20px;font-size:13.5px;color:#2c3345}
+.md li{margin:3px 0}
+.md strong{color:var(--ink)}
+details{border:1px solid var(--line);border-radius:10px;background:#fff;margin:10px 0;padding:0}
+details>summary{cursor:pointer;padding:12px 16px;font-weight:700;font-size:14px;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary:before{content:"▸ ";color:var(--red)}
+details[open]>summary:before{content:"▾ "}
+details>.body{padding:0 16px 14px;border-top:1px dashed var(--line)}
+.ychip{display:inline-block;background:var(--chip);border-radius:8px;padding:4px 10px;font-size:12px;margin:3px 6px 3px 0}
+.ychip b{font-size:13px}
+.news .nitem{border-top:1px dashed var(--line);padding:8px 0;font-size:13px}
+.news .nitem .t{font-weight:600}
+.news .nitem .s{color:var(--muted);font-size:12px}
+/* ── root landing page ── */
+.hero{padding:30px 26px}
+.hero-kicker{color:#ffd166;font-size:12px;font-weight:700;letter-spacing:2px;
+text-transform:uppercase;margin-bottom:8px}
+.hero h1{font-size:30px;margin:0 0 10px}
+.day-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.day-card{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);
+border-radius:12px;padding:14px 16px;transition:all .15s}
+.day-card:hover{border-color:var(--red);box-shadow:0 4px 16px rgba(216,52,44,.12);transform:translateY(-2px)}
+.day-card .d{font-weight:800;font-size:15px;color:var(--ink);display:flex;align-items:center;gap:8px}
+.day-card .m{margin-top:8px;display:flex;gap:6px}
+.day-card .m span{background:var(--chip);color:var(--muted);border-radius:6px;
+padding:2px 8px;font-size:11px}
+.latest-badge{background:var(--red);color:#fff;border-radius:6px;padding:1px 7px;
+font-size:10px;font-weight:700}
+</style>
+</head>
+<body><div class="wrap">
+<div class="backbar"><a href="../index.html">← 总览</a><a href="../us.html">← 美股榜单</a></div>
+<header class="top">
+  <h1><span class="badge red">红榜 #3</span>CRWD<span class="tk" style="opacity:.7;font-size:15px;font-weight:400;margin-left:8px">CRWD</span></h1>
+  <div class="sub">美股 ·  · 榜单日期 <b>2026-08-04</b> · 盘价采集 <b>2026-08-04 05:00:52</b></div>
+  <div class="price-row" style="margin-top:12px">
+    <span class="price" style="color:#fff">$202.54</span>
+    <span class="pct up">+6.12%</span>
+    <span class="psrc" style="color:rgba(255,255,255,.6)">实时</span>
+  </div>
+  <div class="scores" style="margin-top:10px">
+    <span>综合 <b>93.8</b></span>
+    <span>多头 <b>85</b></span>
+    <span>空头 <b>15</b></span>
+    <span>大师均值 <b>76</b></span>
+    <span>信号 <b>positive</b></span>
+  </div>
+</header>
+<div class="trade"><div class="cell"><div class="k">交易评级</div><span class="v buy">Buy</span></div><div class="cell"><div class="k">加仓区间</div><span class="v">195.04 ~ 203.09</span></div><div class="cell"><div class="k">目标价</div><span class="v">225.20</span></div><div class="cell"><div class="k">伯克希尔</div><span class="v">买入</span></div><div class="cell"><div class="k">伯克希尔分</div><span class="v">4.50</span></div></div>
+<div class="panel"><h2>财务指标</h2><div class="mgrid"><div class="m"><div class="k">市盈率 PE</div><div class="v">128.73</div></div><div class="m"><div class="k">市净率 PB</div><div class="v">44.20</div></div><div class="m"><div class="k">ROE</div><div class="v">-0.2%</div></div><div class="m"><div class="k">总市值</div><div class="v">2048</div></div><div class="m"><div class="k">营收同比</div><div class="v">25.6%</div></div></div></div>
+<div class="panel"><h2>历史收益</h2><span class="ychip">近1月 <b class="up">+0.85%</b></span><span class="ychip">近6月 <b class="up">+90.71%</b></span><span class="ychip">近1年 <b class="up">+76.82%</b></span><span class="ychip">近5年 <b class="up">+216.23%</b></span></div>
+<div class="panel"><h2>大师圆桌<span class="sub">5 位</span></h2><div class="mreply"><div class="mh"><span class="who">段永平</span><span class="mscore">80</span></div><div class="md"><p>关于CRWD这家公司，我先说我的看法：我认为CRWD是一家值得关注的公司，但目前的价格可能偏高。</p><p>首先，CRWD在网络安全领域确实是领导者，这一点很值得肯定。随着数字化进程的加快，网络安全的重要性只会越来越高，CRWD作为行业龙头，有很大的发展空间。而且从营收增长来看，25.6%的年增长率也体现了公司的竞争力和市场需求。</p><p>然而，目前的估值确实不低，128倍的市盈率，44倍的市净率，这样的估值水平意味着市场对公司未来的增长预期非常高。任何市场波动或者业绩不达预期，都可能导致股价出现较大调整。</p><p>我的建议是，如果你对网络安全行业有深入的理解，并且能够承受短期波动，那么CRWD可以作为一个长期观察的标的。但不建议现在急于买入，可以等待更好的时机。</p><p>风险方面，主要有两点：一是高估值带来的市场波动风险，二是网络安全行业竞争格局的变化。虽然CRWD目前是领导者，但行业变化快，需要持续关注其竞争优势的保持情况。</p><p>总的来说，投资这家公司需要保持耐心和定力，不要被短期市场情绪左右。更重要的是，要真正理解这个行业和这家公司，而不是盲目追逐热点。</p></div></div><div class="mreply"><div class="mh"><span class="who">巴菲特</span><span class="mscore">55</span></div><div class="md"><p>各位朋友，今天我们讨论的是一家名为 CRWD 的公司，它在网络安全领域处于领先地位。让我从巴菲特的视角来谈谈我的看法。</p><p>首先，我得承认，这是一家让我感到有些棘手的公司。从好的方面来看，CRWD 在网络安全领域确实表现得很出色，并且拥有强劲的营收增长。这两点在当今数字化时代是非常重要的优势，因为网络安全的需求只会随着技术的发展而增加。</p><p>然而，从价值投资的角度来看，我有几个担忧。首先，这家公司的估值偏高，市盈率达到了 128 倍，市净率更是高达 44 倍。这样的估值水平让我不得不思考，市场是否已经过度预期了它的未来增长。其次，虽然营收增长强劲，但净资产收益率（ROE）为负，这让我对公司的盈利能力产生了疑问。</p><p>在考虑是否投资这家公司时，我会问自己几个问题：</p><ul><li>十年后，这家公司还能保持其在网络安全领域的领先地位吗？</li><li>它的盈利能力能否随着时间的推移而改善？</li><li>当前的估值是否已经充分反映了它的增长潜力？</li></ul><p>从我的角度来看，这家公司的商业模式相对复杂，不完全符合我通常寻找的简单易懂、拥有持久竞争优势的生意。虽然它在网络安全领域有很强的竞争力，但高估值和盈利能力的不确定性让我对其持谨慎态度。</p><p>对于那些考虑投资 CRWD 的人来说，我建议：</p><ul><li>仔细评估公司的长期竞争优势，确保其在快速变化的技术环境中能够持续保持领先地位。</li><li>关注公司的盈利能力改善情况，看看管理层是否有明确的计划来提高净资产收益率。</li><li>考虑当前的市场情绪和估值水平，确保你愿意为未来的增长潜力支付一个合理的价格。</li></ul><p>最后，我想引用我常说的那句话：&quot;价格是你付出的，价值是你得到的。&quot; 在投资 CRWD 时，确保你得到的价值能够匹配你所付出的价格。</p><p>如果查理·芒格在这里，他可能会补充说，投资就像在果园里摘苹果，要确保你摘下的每一个苹果都是甜美多汁的，而不是仅仅因为它挂在高高的枝头而显得诱人。</p></div></div><div class="mreply"><div class="mh"><span class="who">达利欧</span><span class="mscore">85</span></div><div class="md"><h4>发言内容：</h4><h5>结论：</h5><p>我对 CRWD 的看法是，它符合一个高度分散化投资组合的需求，但需要谨慎对待其高估值。</p><h5>理由：</h5><ul><li><strong>网络安全领域的领导地位</strong>：CRWD 在网络安全领域处于领先地位，这使其在当前全球数字化转型和网络安全需求不断增长的背景下，拥有显著的市场优势。其产品和服务被广泛采用，显示出强大的竞争力。</li></ul><ul><li><strong>强劲的营收增长</strong>：公司最近几个季度的营收增长非常强劲，显示出其业务模式的可行性和市场需求的持续性。这种增长为投资者提供了信心，表明公司在未来几年内可能继续扩大市场份额。</li></ul><ul><li><strong>高估值问题</strong>：然而，CRWD 的估值确实偏高，其市盈率（PE）达到 128 倍，市净率（PB）更是高达 44 倍。这种高估值意味着市场对其未来增长有很高的预期，任何不及预期的表现都可能引发股价的剧烈波动。</li></ul><ul><li><strong>市场波动风险</strong>：当前市场环境充满不确定性，任何宏观经济波动或地缘政治事件都可能影响投资者情绪，导致高估值股票的价格回调。</li></ul><h5>风险/行动建议：</h5><ul><li><strong>风险</strong>：</li><li>高估值带来的下行风险：如果公司未能持续实现高增长，市场可能对其重新估值，导致股价下跌。</li><li>市场情绪波动：整体市场波动可能加剧股价的短期波动性。</li></ul><ul><li><strong>行动建议</strong>：</li><li><strong>分散投资</strong>：对于 CRWD 的投资应作为整体投资组合的一部分进行配置，而不是过度集中。这样可以降低单一股票波动对整体投资组合的影响。</li><li><strong>长期视角</strong>：考虑到其市场领导地位和增长潜力，投资者应以长期视角看待 CRWD 的投资价值，避免被短期市场波动所左右。</li><li><strong>密切关注基本面</strong>：持续关注公司的财务表现和市场需求变化，特别是在高估值背景下，任何基本面的负面变化都应引起重视。</li></ul><p>总之，CRWD 是一个值得关注的公司，但在当前高估值和市场波动背景下，投资者需要保持谨慎，确保投资组合的多元化。</p></div></div><div class="mreply"><div class="mh"><span class="who">林奇</span><span class="mscore">90</span></div><div class="md"><p>各位投资者朋友们，今天我们来聊聊 CRWD 这家公司。</p><p>首先，我得说，这是一家让我眼前一亮的网络安全公司。从我的投资分类方法来看，它明显属于快速增长型公司，而且是非常典型的代表。网络安全行业本身就是一个充满活力的领域，而 CRWD 在其中占据了领导地位，这让我非常感兴趣。</p><h4>为什么看好这家公司？</h4><ul><li><strong>行业领导者地位</strong>：CRWD 在网络安全领域拥有强大的市场地位，这让它在竞争中占据了先机。随着全球数字化进程的加速，网络安全需求只会不断增加，这为 CRWD 的长期增长提供了坚实的基础。</li></ul><ul><li><strong>强劲的营收增长</strong>：从数据上看，CRWD 的营收同比增长了 25.6%，这是一个非常健康的增长数字。对于一家处于快速增长阶段的公司来说，这样的增长势头是值得肯定的。</li></ul><h4>估值问题</h4><p>不过，我得提醒大家，CRWD 的估值确实不低。当前市盈率（PE）高达 128 倍，市净率（PB）也达到了 44 倍。这样的估值水平意味着市场已经对公司的未来增长给予了很高的预期。如果未来增长不及预期，股价可能会面临较大的回调压力。</p><h4>风险提示</h4><ul><li><strong>估值偏高</strong>：正如我刚才提到的，高估值意味着高预期。如果公司业绩出现任何波动，市场情绪可能会迅速转向负面，导致股价大幅波动。</li></ul><ul><li><strong>市场波动风险</strong>：整体市场环境的不确定性也可能对 CRWD 的股价产生影响。投资者需要做好心理准备，迎接可能的波动。</li></ul><h4>行动建议</h4><p>对于那些已经持有 CRWD 的投资者，我建议密切关注公司的业绩增长和行业动态。如果公司能够持续保持强劲的增长势头，那么当前的估值水平是可以接受的。但如果没有达到预期，可能需要考虑适当减仓。</p><p>对于那些正在考虑买入的投资者，我建议先进行充分的调研，并做好长期持有的准备。毕竟，高增长的公司往往伴随着高波动性。如果你能承受短期内的股价波动，并且相信公司的长期发展前景，那么 CRWD 仍然是一个值得考虑的选择。</p><p>总之，CRWD 是一家充满潜力的公司，但投资者需要根据自己的风险承受能力和投资目标，谨慎做出决策。希望我的分享对大家有所帮助。</p></div></div><div class="mreply"><div class="mh"><span class="who">芒格</span><span class="mscore">70</span></div><div class="md"><p>各位，在讨论 CRWD 之前，我得先说，投资这事儿，得先想清楚怎么失败，而不是怎么成功。让我们先逆向思考一下。</p><p>首先，CRWD 是网络安全领域的领导者，这一点毋庸置疑。它的营收增长也很强劲，过去一年同比增长了 25.6%。这些是它的优势。</p><p>但我们不能只看优点。估值方面，CRWD 的市盈率高达 128 倍，市净率更是达到了 44 倍。这说明市场对它的预期已经非常高，任何风吹草动都可能引发剧烈的波动。此外，市场情绪的影响也不容小觑，投资者可能会因为短期的市场波动而失去耐心。</p><p>从激励机制的角度来看，公司管理层有动力继续推动增长，但这种高估值也给他们带来了压力，可能会导致一些短视的行为。</p><p>再来看风险：</p><ul><li>高估值带来的风险：如果增长不及预期，股价可能会大幅回调。</li><li>市场情绪波动：投资者可能会因为短期的市场波动而失去信心。</li><li>竞争加剧：网络安全领域的竞争日益激烈，可能会影响公司的市场份额。</li></ul><p>基于以上分析，我的建议是：</p><p>如果你是一个长期投资者，并且能够承受短期的波动，那么 CRWD 仍然是一个值得考虑的投资标的。它的长期增长潜力是显而易见的。但如果你是一个短期投资者，或者对市场波动非常敏感，那么现在可能不是一个好的入场时机。</p><p>最后，我要提醒大家，投资决策不能只看收益，还要考虑风险和自身的承受能力。正如我常说的，&quot;如果我知道自己死在哪里，我就永远不去那里&quot;。在投资中，识别风险并避开它们，才是长期成功的关键。</p></div></div></div>
+<div class="panel"><h2>分析师报告<span class="sub">2 篇</span></h2><details open><summary>市场面分析</summary><div class="body"><div class="md"><h4>CRWD CRWD 市场面分析</h4><ul><li>红黑榜多空分数：多头 85 / 空头 15，分差 70。</li><li>当前价格：201.16。</li><li>当前交易评级：Buy。</li><li>值得加仓区间：195.04 - 203.09。</li><li>目标价格：225.20。</li><li>市场愿意给溢价的原因：网络安全领域领导者；强劲的营收增长。</li><li>当前主要压制因素：估值偏高；市场波动可能影响投资者情绪。</li></ul></div></div></details><details open><summary>基本面分析</summary><div class="body"><div class="md"><h4>CRWD CRWD 基本面分析</h4><ul><li>报告期：暂无。</li><li>PE(TTM)：128.73。</li><li>PB：44.20。</li><li>ROE：-0.25%。</li><li>营收同比：25.60%。</li><li>核心判断：收入仍在增长；估值偏贵，需要更强兑现。</li></ul></div></div></details></div>
+<div class="panel"><h2>研究与计划</h2>
+<details><summary>基本面摘要</summary><div class="body"><div class="md"><h3>核心财务快照</h3><ul><li>报告期: 数据缺失</li><li>当前股价: 201.16 元</li><li>总市值: 2048.33 亿元</li><li>PE (TTM): 128.73</li><li>PB: 44.20</li><li>PS (TTM): 数据缺失</li><li>营业总收入(报告期): 数据缺失 亿元</li><li>营收同比增长率: 25.60%</li><li>归母净利润(报告期): 数据缺失 亿元</li><li>归母净利润同比增长率: 数据缺失</li><li>ROE (TTM/估算): -0.25%</li><li>资产负债率: 数据缺失</li><li>经营性现金流 / 归母净利润: 数据缺失</li></ul><h4>缺失字段</h4><ul><li>PS(TTM), 营业总收入, 归母净利润, 归母净利润同比增长率, 资产负债率, 经营性现金流与归母净利润比值</li></ul></div></div></details>
+<details><summary>研究计划</summary><div class="body"><div class="md"><h4>CRWD CRWD 研究摘要</h4><ul><li>红黑榜结论: Buy</li><li>多头/空头: 85/15</li><li>正向信号: 营收同比 25.60%；PB 44.18</li><li>风险信号: ROE -0.25%；PE(TTM) 128.67</li><li>榜单看多理由: 网络安全领域领导者；强劲的营收增长</li><li>榜单风险提示: 估值偏高；市场波动可能影响投资者情绪</li></ul></div></div></details>
+<details><summary>交易计划</summary><div class="body"><div class="md"><h4>CRWD CRWD 交易计划</h4><ul><li>评级: Buy</li><li>当前价格: 201.07</li><li>值得加仓区间: 195.04 - 203.09</li><li>目标价格: 225.20</li><li>止损位: 184.99</li><li>备注: 当前为缓存降级交易卡，后续若完整 TradingAgent 结果生成，将自动覆盖。</li></ul></div></div></details>
+<details><summary>交易决策</summary><div class="body"><div class="md"><p>Buy</p><p>CRWD CRWD 当前使用红黑榜缓存结果生成兜底交易卡。多头 85 / 空头 15，分差 70。当前尚未取得完整 TradingAgent 长文决策，但榜单分数、财务快照和大师观点已经足够生成基础交易建议。</p></div></div></details>
+</div>
+<div class="panel"><h2>多空逻辑</h2><div class="pts"><div class="h bull">看多逻辑</div><div class="md"><p>网络安全领域领导者</p><p>强劲的营收增长</p></div></div><div class="pts"><div class="h bear">看空逻辑</div><div class="md"><p>估值偏高</p><p>市场波动可能影响投资者情绪</p></div></div></div>
+<div class="panel"><h2>伯克希尔研究</h2><p><strong>CrowdStrike是一家具备强大护城河、快速增长且商业模式优秀的网络安全公司，值得长期关注和投资。</strong></p><p>伯克希尔综合评分：<strong>4.5</strong></p><div class="md"><p>{&quot;verdict&quot;: &quot;买入&quot;, &quot;conservative_tip&quot;: &quot;建议在PE TTM低于80倍时买入，目标价300美元。&quot;, &quot;moderate_tip&quot;: &quot;建议在PE TTM低于90倍时买入，目标价320美元。&quot;, &quot;aggressive_tip&quot;: &quot;建议在PE TTM低于100倍时买入，目标价350美元。&quot;, &quot;catalysts_plus&quot;: [&quot;季度业绩超预期&quot;, &quot;新客户签约数量大幅增长&quot;, &quot;技术突破或新产品发布&quot;], &quot;catalysts_minus&quot;: [&quot;重大数据泄露事件影响公司声誉&quot;, &quot;竞争加剧导致市场份额下降&quot;, &quot;宏观经济下行导致企业IT支出减少&quot;]}</p></div></div>
+<div class="panel news"><h2>最新资讯</h2><div class="md"><p>整体情绪偏利好，共7条利多，2条利空，3条中性。</p></div><div class="nitem"><div class="t">CrowdStrike (CRWD) Stock Trades Up, Here Is Why</div><div class="s">StockStory · 利好</div></div><div class="nitem"><div class="t">CrowdStrike Holdings Inc Stock (CRWD) Moved Up by 3.55% on Aug 3: What Investors Need To Know</div><div class="s">TradingKey · 利好</div></div><div class="nitem"><div class="t">How Much CRWD Are You Really Betting On?</div><div class="s">Trefis · 中性</div></div><div class="nitem"><div class="t">CrowdStrike Stock (CRWD) Opinions on AI Infrastructure Spending and Cybersecurity Budgets</div><div class="s">Quiver Quantitative · 中性</div></div><div class="nitem"><div class="t">CrowdStrike (CRWD) Rides the AI Threat Wave, But Can It Lead the Pack?</div><div class="s">Yahoo Finance · 利好</div></div><div class="nitem"><div class="t">CRWD 260731 242.50P (CRWD260731P242500) Stock Options Chain | Quotes &amp; News</div><div class="s">Moomoo · 中性</div></div><div class="nitem"><div class="t">CrowdStrike Holdings (CRWD) Joins Open Secure AI Alliance On A Fair Value Narrative Test</div><div class="s">simplywall.st · 利好</div></div><div class="nitem"><div class="t">CrowdStrike Holdings, Inc. Revenue Breakdown – NASDAQ:CRWD</div><div class="s">tradingview.com · 中性</div></div></div>
+<footer>稳健理财Agent · 红黑榜每日归档 · 红榜 #3 · 仅供研究，不构成投资建议</footer>
+</div></body>
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PGR(PGR) 红榜 2026-08-04</title>
+<style>
+:root{--red:#d8342c;--redbg:#fdecea;--green:#1a9e54;--ink:#1c2230;--muted:#6b7385;
+--line:#e7e9ef;--card:#fff;--bg:#f4f6fa;--chip:#eef1f6;--dark:#23262d;--darkbg:#ececef}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",
+"Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);
+line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 16px 64px}
+header.top{background:linear-gradient(135deg,#1c2230,#2c3550);color:#fff;border-radius:14px;
+padding:22px 24px;margin-bottom:20px;box-shadow:0 6px 24px rgba(20,26,46,.12)}
+header.top h1{margin:0 0 6px;font-size:24px;letter-spacing:.5px}
+header.top .sub{opacity:.85;font-size:13px}
+header.top .sub b{color:#ffd166;font-weight:600}
+nav.mkt{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;
+background:rgba(244,246,250,.92);backdrop-filter:blur(6px);padding:10px 0;margin-bottom:14px}
+nav.mkt a{text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);
+padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600}
+nav.mkt a:hover{border-color:var(--red);color:var(--red)}
+.summary{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.summary .chip{background:var(--card);border:1px solid var(--line);border-radius:10px;
+padding:8px 12px;font-size:12px;color:var(--muted)}
+.summary .chip b{color:var(--ink);font-size:14px;margin-left:4px}
+section.board{margin:26px 0}
+.board-title{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:19px}
+.board-title .dot{width:10px;height:10px;border-radius:50%}
+.board-title.red .dot{background:var(--red)}
+.board-title.black .dot{background:var(--dark)}
+.board-title small{color:var(--muted);font-weight:400;font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+position:relative;transition:box-shadow .15s}
+.card:hover{box-shadow:0 4px 18px rgba(20,26,46,.08)}
+.card.red{border-top:3px solid var(--red)}
+.card.black{border-top:3px solid var(--dark)}
+.rank{position:absolute;top:10px;right:12px;font-size:26px;font-weight:800;color:#eceff5}
+.card.red .rank{color:#fbdcD9}
+.nm{font-size:16px;font-weight:700}
+.nm .tk{color:var(--muted);font-weight:500;font-size:12px;margin-left:6px}
+.tag{display:inline-block;background:var(--chip);color:var(--muted);border-radius:6px;
+padding:1px 7px;font-size:11px;margin:6px 6px 0 0}
+.price-row{display:flex;align-items:baseline;gap:10px;margin:10px 0 4px}
+.price{font-size:24px;font-weight:800}
+.pct{font-size:14px;font-weight:700;padding:2px 8px;border-radius:8px}
+.up{color:var(--red)}.down{color:var(--green)}.flat{color:var(--muted)}
+.pct.up{background:var(--redbg)}.pct.down{background:#e2f4e9}.pct.flat{background:var(--chip)}
+.psrc{font-size:11px;color:var(--muted);margin-left:auto}
+.scores{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.scores span{background:var(--chip);border-radius:6px;padding:2px 8px;font-size:11px;color:var(--muted)}
+.scores span b{color:var(--ink)}
+.pts{font-size:12.5px;margin:8px 0 0}
+.pts .h{font-weight:700;font-size:12px;margin:6px 0 2px}
+.pts .h.bull{color:var(--red)}.pts .h.bear{color:var(--green)}
+.pts ul{margin:2px 0 4px;padding-left:18px;color:#3a4152}
+.pts li{margin:1px 0}
+.masters{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:11px;color:var(--muted)}
+.masters b{color:var(--ink)}
+.summ{font-size:12.5px;color:#3a4152;background:#fafbfd;border:1px solid var(--line);
+border-radius:8px;padding:8px 10px;margin-top:8px}
+.empty{color:var(--muted);background:var(--card);border:1px dashed var(--line);
+border-radius:10px;padding:18px;text-align:center}
+footer{margin-top:34px;color:var(--muted);font-size:12px;text-align:center;line-height:1.8}
+a.lnk{color:var(--red);text-decoration:none}
+/* ── detail page ── */
+.backbar{margin-bottom:14px;font-size:13px}
+.backbar a{color:var(--muted);text-decoration:none;margin-right:14px}
+.backbar a:hover{color:var(--red)}
+.badge{display:inline-block;border-radius:6px;padding:2px 10px;font-size:12px;font-weight:700;margin-right:8px}
+.badge.red{background:var(--red);color:#fff}.badge.black{background:var(--dark);color:#fff}
+.trade{display:flex;flex-wrap:wrap;gap:10px;background:linear-gradient(135deg,#2c3550,#1c2230);
+color:#fff;border-radius:12px;padding:16px 18px;margin:16px 0}
+.trade .cell{min-width:120px}
+.trade .k{font-size:11px;opacity:.75}
+.trade .v{font-size:18px;font-weight:800;margin-top:2px}
+.trade .v.buy{color:#7ee2a8}.trade .v.sell{color:#ff9d97}.trade .v.hold{color:#ffd166}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0}
+.mgrid .m{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.mgrid .m .k{font-size:11px;color:var(--muted)}
+.mgrid .m .v{font-size:16px;font-weight:700;margin-top:2px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.panel>h2{margin:0 0 12px;font-size:17px}
+.panel>h2 .sub{font-size:12px;color:var(--muted);font-weight:400;margin-left:8px}
+.mreply{border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;
+padding:12px 14px;margin:10px 0;background:#fff}
+.mreply .mh{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.mreply .mh .who{font-weight:700;font-size:14px}
+.mreply .mh .mscore{margin-left:auto;background:var(--chip);border-radius:6px;padding:1px 8px;font-size:12px;font-weight:700}
+.md h2,.md h3,.md h4,.md h5{margin:12px 0 6px;font-size:15px}
+.md p{margin:6px 0;font-size:13.5px;color:#2c3345}
+.md ul{margin:6px 0;padding-left:20px;font-size:13.5px;color:#2c3345}
+.md li{margin:3px 0}
+.md strong{color:var(--ink)}
+details{border:1px solid var(--line);border-radius:10px;background:#fff;margin:10px 0;padding:0}
+details>summary{cursor:pointer;padding:12px 16px;font-weight:700;font-size:14px;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary:before{content:"▸ ";color:var(--red)}
+details[open]>summary:before{content:"▾ "}
+details>.body{padding:0 16px 14px;border-top:1px dashed var(--line)}
+.ychip{display:inline-block;background:var(--chip);border-radius:8px;padding:4px 10px;font-size:12px;margin:3px 6px 3px 0}
+.ychip b{font-size:13px}
+.news .nitem{border-top:1px dashed var(--line);padding:8px 0;font-size:13px}
+.news .nitem .t{font-weight:600}
+.news .nitem .s{color:var(--muted);font-size:12px}
+/* ── root landing page ── */
+.hero{padding:30px 26px}
+.hero-kicker{color:#ffd166;font-size:12px;font-weight:700;letter-spacing:2px;
+text-transform:uppercase;margin-bottom:8px}
+.hero h1{font-size:30px;margin:0 0 10px}
+.day-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.day-card{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);
+border-radius:12px;padding:14px 16px;transition:all .15s}
+.day-card:hover{border-color:var(--red);box-shadow:0 4px 16px rgba(216,52,44,.12);transform:translateY(-2px)}
+.day-card .d{font-weight:800;font-size:15px;color:var(--ink);display:flex;align-items:center;gap:8px}
+.day-card .m{margin-top:8px;display:flex;gap:6px}
+.day-card .m span{background:var(--chip);color:var(--muted);border-radius:6px;
+padding:2px 8px;font-size:11px}
+.latest-badge{background:var(--red);color:#fff;border-radius:6px;padding:1px 7px;
+font-size:10px;font-weight:700}
+</style>
+</head>
+<body><div class="wrap">
+<div class="backbar"><a href="../index.html">← 总览</a><a href="../us.html">← 美股榜单</a></div>
+<header class="top">
+  <h1><span class="badge red">红榜 #7</span>PGR<span class="tk" style="opacity:.7;font-size:15px;font-weight:400;margin-left:8px">PGR</span></h1>
+  <div class="sub">美股 ·  · 榜单日期 <b>2026-08-04</b> · 盘价采集 <b>2026-08-04 05:00:52</b></div>
+  <div class="price-row" style="margin-top:12px">
+    <span class="price" style="color:#fff">$210.46</span>
+    <span class="pct down">-0.45%</span>
+    <span class="psrc" style="color:rgba(255,255,255,.6)">实时</span>
+  </div>
+  <div class="scores" style="margin-top:10px">
+    <span>综合 <b>87.5</b></span>
+    <span>多头 <b>85</b></span>
+    <span>空头 <b>25</b></span>
+    <span>大师均值 <b>82</b></span>
+    <span>信号 <b>positive</b></span>
+  </div>
+</header>
+<div class="trade"><div class="cell"><div class="k">交易评级</div><span class="v buy">Buy</span></div><div class="cell"><div class="k">加仓区间</div><span class="v">204.02 ~ 212.43</span></div><div class="cell"><div class="k">目标价</div><span class="v">235.57</span></div><div class="cell"><div class="k">伯克希尔</div><span class="v">买入</span></div><div class="cell"><div class="k">伯克希尔分</div><span class="v">4.00</span></div></div>
+<div class="panel"><h2>财务指标</h2><div class="mgrid"><div class="m"><div class="k">市盈率 PE</div><div class="v">10.55</div></div><div class="m"><div class="k">市净率 PB</div><div class="v">3.56</div></div><div class="m"><div class="k">ROE</div><div class="v">34.9%</div></div><div class="m"><div class="k">总市值</div><div class="v">1223</div></div><div class="m"><div class="k">营收同比</div><div class="v">7.3%</div></div><div class="m"><div class="k">净利同比</div><div class="v">5.0%</div></div></div></div>
+<div class="panel"><h2>历史收益</h2><span class="ychip">近1月 <b class="down">-9.21%</b></span><span class="ychip">近6月 <b class="up">+4.63%</b></span><span class="ychip">近1年 <b class="down">-12.94%</b></span><span class="ychip">近5年 <b class="up">+117.71%</b></span></div>
+<div class="panel"><h2>大师圆桌<span class="sub">5 位</span></h2><div class="mreply"><div class="mh"><span class="who">段永平</span><span class="mscore">85</span></div><div class="md"><h4>段永平圆桌发言：关于 PGR 的看法</h4><h5>结论：</h5><p>PGR 是一家值得关注的优质公司，但投资决策需要考虑当前的市场环境和个人风险承受能力。</p><h5>理由：</h5><p>首先，PGR 在其行业中拥有领先优势，这体现在其持续盈利能力上。从财务数据来看，其 ROE（净资产收益率）高达 34.94%，这表明公司运营效率很高，能够有效利用股东权益创造价值。此外，其营收和净利润的同比增长分别为 7.3% 和 5%，显示出稳定的盈利能力。</p><p>其次，PGR 的市盈率（PE）为 10.55，市净率（PB）为 3.56，相较于其盈利能力而言，估值并不算高。这说明市场对其未来增长有一定的保守预期，但同时也提供了潜在的安全边际。</p><p>然而，投资 PGR 也需要关注一些风险因素。当前市场面临利率上升的压力，这可能会对 PGR 的融资成本和盈利能力产生负面影响。此外，自然灾害等不可控因素也可能对公司的运营造成短期冲击。</p><h5>风险/行动建议：</h5><ul><li><strong>利率风险</strong>：如果市场利率持续上升，可能会对 PGR 的财务状况产生压力。投资者需要密切关注美联储的货币政策动向，以及 PGR 的债务结构和融资成本。</li></ul><ul><li><strong>自然灾害风险</strong>：自然灾害对 PGR 的影响虽然不可预测，但可以通过分散投资来降低单一公司风险。建议投资者在投资组合中保持一定的分散度。</li></ul><ul><li><strong>长期视角</strong>：如果从长期来看，PGR 的商业模式和行业地位依然稳固，那么短期的市场波动可能提供了买入机会。投资者可以结合自身的投资周期和风险偏好，评估是否在当前价位进行投资。</li></ul><p>总的来说，PGR 是一家值得关注的优质公司，但投资决策需要综合考虑市场环境和个人风险承受能力。如果是我，我会继续关注 PGR 的长期发展，同时保持对市场风险的警惕。</p></div></div><div class="mreply"><div class="mh"><span class="who">巴菲特</span><span class="mscore">80</span></div><div class="md"><p>各位朋友，今天我们来聊聊PGR这家公司。我的观点是，这是一家值得关注的优质企业，但投资它需要考虑一些特定的风险。</p><p>首先，PGR在行业中占据着明显的领先地位，这让它拥有了坚固的护城河。就像我常说的，护城河是判断一家公司是否值得投资的关键因素之一。PGR的持续盈利能力也证明了这一点，它的商业模式能够持续创造价值。</p><p>从估值角度来看，目前PGR的市盈率约为10倍，市净率约为3.5倍，考虑到它的行业地位和盈利能力，这个价格可以说是相当合理的。这符合我&quot;四毛钱买一块钱东西&quot;的投资理念。</p><p>然而，投资PGR也需要注意几个风险因素。首先是利率上升的风险，这可能会影响公司的融资成本和盈利能力。其次是自然灾害的影响，这可能会对公司的保险业务造成冲击。</p><p>我的建议是，如果你决定投资PGR，要做好长期持有的准备，因为短期内的市场波动是不可避免的。同时，要密切关注公司的基本面变化，特别是利率环境和自然灾害的影响。</p><p>最后，我想引用查理·芒格的一句话：&quot;投资就像经营果园，你需要耐心等待果实成熟。&quot;投资PGR也是如此，需要耐心和定力。</p><p>所以，我的立场是，PGR符合我的投资标准，但投资者需要做好风险管理，并保持耐心。</p></div></div><div class="mreply"><div class="mh"><span class="who">达利欧</span><span class="mscore">75</span></div><div class="md"><p>各位同仁，今天我们来讨论一下PGR公司的投资前景。我的结论是：PGR是一家值得关注的优质公司，但同时也需要警惕一些潜在风险。</p><p>首先，PGR展现出了显著的抗风险能力，这是我最看重的特质之一。从财务数据来看，它的市盈率（PE）约为10.5，市净率（PB）为3.56，显示出其估值相对合理。更重要的是，其净资产收益率（ROE）高达34.9%，这表明公司在利用股东权益创造利润方面表现非常出色。结合其营收同比增长7.3%和净利润同比增长5%的数据，可以看出这是一家具有持续盈利能力的公司。</p><p>然而，我们也必须正视一些潜在风险。当前市场环境下，利率上升是一个不可忽视的因素，这可能会对PGR的融资成本和盈利能力造成压力。此外，作为一家可能受到自然灾害影响的公司，异常气候事件可能会对其业务运营产生负面影响。</p><p>基于以上分析，我建议采取以下行动：</p><ul><li><strong>密切关注利率走势</strong>：如果美联储继续加息，可能会对PGR的财务状况产生负面影响，投资者需要做好相应的风险对冲。</li></ul><ul><li><strong>评估自然灾害风险</strong>：了解PGR的业务分布区域，评估其对自然灾害的应对能力，并在必要时考虑购买相关保险产品来对冲风险。</li></ul><ul><li><strong>保持适度仓位</strong>：鉴于PGR的强劲基本面和潜在风险，建议投资者保持一个适度的仓位，既不错过其增长机会，也能在风险来临时保持足够的灵活性。</li></ul><p>最后，我要强调的是，投资决策应该基于对公司的深入理解和持续观察。正如我常说的，&quot;Pain + Reflection = Progress&quot;，我们需要不断反思和调整我们的投资策略，以适应不断变化的市场环境。</p></div></div><div class="mreply"><div class="mh"><span class="who">林奇</span><span class="mscore">90</span></div><div class="md"><h4>结论：</h4><p>PGR 是一家值得考虑的公司，但需要密切关注外部风险因素。</p><h4>理由：</h4><p>首先，PGR 拥有明显的行业领先优势，这使得它在竞争中处于有利地位，并且持续盈利能力也得到了验证。从估值角度来看，当前市盈率（PE）约为 10.5 倍，市净率（PB）为 3.56 倍，显示出一定的安全边际。相比于一些高估值的成长型公司，PGR 的估值相对合理。</p><p>此外，公司的净资产收益率（ROE）高达 34.9%，这表明其利用股东资本创造利润的能力非常强。营收和净利润的同比增长分别为 7.3% 和 5%，虽然不算特别高，但在当前经济环境下，这种稳定增长是值得肯定的。</p><h4>风险/行动建议：</h4><p>然而，我们不能忽视一些潜在的风险因素。首先，利率上升可能会对 PGR 的财务状况产生负面影响，因为其业务模式可能对融资成本较为敏感。其次，自然灾害的影响也不容小觑，这可能会对公司的运营和盈利能力造成短期冲击。</p><p>对于投资者来说，我的建议是：</p><ul><li><strong>密切关注利率变化和自然灾害的影响</strong>：如果利率持续上升或自然灾害频发，可能需要重新评估 PGR 的投资价值。</li><li><strong>分批建仓</strong>：考虑到当前估值相对合理，但存在外部风险，可以考虑分批买入，以降低单一时间点的风险。</li><li><strong>长期持有</strong>：如果 PGR 能够继续保持其行业领先地位和盈利能力，长期持有可能会带来不错的回报。</li></ul><p>总的来说，PGR 是一家值得关注的优质公司，但投资者需要保持警惕，密切关注外部环境的变化。</p></div></div><div class="mreply"><div class="mh"><span class="who">芒格</span><span class="mscore">80</span></div><div class="md"><p>各位同仁，今天我们来讨论一下PGR这家公司。我的结论是，这是一家值得关注的稳健型企业，但并非没有风险。</p><p>首先，PGR展现出了行业领先优势和持续盈利能力。从财务数据来看，其市盈率仅为10.5，市净率为3.56，净资产收益率高达34.9%，这些指标都显示出公司具备良好的盈利能力和管理效率。营收同比增长7.3%，净利润同比增长5%，虽然增速不算特别亮眼，但胜在稳定。</p><p>然而，我们不能忽视潜在的风险。利率上升是一个重要的负面因素，可能会增加公司的融资成本，影响其盈利能力。此外，自然灾害的影响也不容小觑，这可能会对公司的资产和运营造成直接冲击。</p><p>从投资的角度来看，PGR符合我们一贯强调的&quot;能力圈&quot;原则。它所处的行业相对容易理解，商业模式也较为清晰。但正如我常说的，&quot;如果我知道自己死在哪里，我就永远不去那里&quot;。在当前市场环境下，利率变化和自然灾害都是我们需要特别警惕的风险因素。</p><p>我的建议是：</p><ul><li>对于已经持有PGR的投资者，可以考虑在当前价位适度减仓，以降低潜在的利率风险敞口。</li></ul><ul><li>对于尚未建仓的投资者，建议等待更明确的利率政策信号，或者在出现因自然灾害导致的股价回调时再考虑介入。</li></ul><ul><li>密切关注美联储的利率政策动向，以及PGR在应对自然灾害方面的风险管理措施。</li></ul><p>最后，我想提醒大家，投资决策永远不能只看眼前的数字。正如我们之前讨论过的，要时刻警惕那些看似诱人但实则危险的&quot;长期低胜率+短期高赔率&quot;的机会。PGR虽然是一家稳健的公司，但我们仍需保持警惕，避免被短期的市场波动所左右。</p><p>记住，投资就像打扑克，最重要的是知道什么时候该下重注，什么时候该弃牌。PGR目前来看是一手不错的牌，但我们要确保自己不会因为过于贪婪而失去理智。</p></div></div></div>
+<div class="panel"><h2>分析师报告<span class="sub">2 篇</span></h2><details open><summary>市场面分析</summary><div class="body"><div class="md"><h4>PGR PGR 市场面分析</h4><ul><li>红黑榜多空分数：多头 85 / 空头 25，分差 60。</li><li>当前价格：210.44。</li><li>当前交易评级：Buy。</li><li>值得加仓区间：204.02 - 212.43。</li><li>目标价格：235.57。</li><li>市场愿意给溢价的原因：行业领先优势；持续盈利能力。</li><li>当前主要压制因素：利率上升风险；自然灾害影响。</li></ul></div></div></details><details open><summary>基本面分析</summary><div class="body"><div class="md"><h4>PGR PGR 基本面分析</h4><ul><li>报告期：暂无。</li><li>PE(TTM)：10.55。</li><li>PB：3.56。</li><li>ROE：34.94%。</li><li>营收同比：7.30%。</li><li>归母净利润同比：5.00%。</li><li>核心判断：盈利能力处于可接受区间；收入仍在增长；利润端保持扩张。</li></ul></div></div></details></div>
+<div class="panel"><h2>研究与计划</h2>
+<details><summary>基本面摘要</summary><div class="body"><div class="md"><h3>核心财务快照</h3><ul><li>报告期: 数据缺失</li><li>当前股价: 210.44 元</li><li>总市值: 1223.50 亿元</li><li>PE (TTM): 10.55</li><li>PB: 3.56</li><li>PS (TTM): 数据缺失</li><li>营业总收入(报告期): 数据缺失 亿元</li><li>营收同比增长率: 7.30%</li><li>归母净利润(报告期): 数据缺失 亿元</li><li>归母净利润同比增长率: 5.00%</li><li>ROE (TTM/估算): 34.94%</li><li>资产负债率: 数据缺失</li><li>经营性现金流 / 归母净利润: 数据缺失</li></ul><h4>缺失字段</h4><ul><li>PS(TTM), 营业总收入, 归母净利润, 资产负债率, 经营性现金流与归母净利润比值</li></ul></div></div></details>
+<details><summary>研究计划</summary><div class="body"><div class="md"><h4>PGR PGR 研究摘要</h4><ul><li>红黑榜结论: Buy</li><li>多头/空头: 85/25</li><li>正向信号: ROE 34.94%；营收同比 7.30%；归母净利润同比 5.00%；PE(TTM) 10.55</li><li>榜单看多理由: 行业领先优势；持续盈利能力</li><li>榜单风险提示: 利率上升风险；自然灾害影响</li></ul></div></div></details>
+<details><summary>交易计划</summary><div class="body"><div class="md"><h4>PGR PGR 交易计划</h4><ul><li>评级: Buy</li><li>当前价格: 210.33</li><li>值得加仓区间: 204.02 - 212.43</li><li>目标价格: 235.57</li><li>止损位: 193.50</li><li>备注: 当前为缓存降级交易卡，后续若完整 TradingAgent 结果生成，将自动覆盖。</li></ul></div></div></details>
+<details><summary>交易决策</summary><div class="body"><div class="md"><p>Buy</p><p>PGR PGR 当前使用红黑榜缓存结果生成兜底交易卡。多头 85 / 空头 25，分差 60。当前尚未取得完整 TradingAgent 长文决策，但榜单分数、财务快照和大师观点已经足够生成基础交易建议。</p></div></div></details>
+</div>
+<div class="panel"><h2>多空逻辑</h2><div class="pts"><div class="h bull">看多逻辑</div><div class="md"><p>行业领先优势</p><p>持续盈利能力</p></div></div><div class="pts"><div class="h bear">看空逻辑</div><div class="md"><p>利率上升风险</p><p>自然灾害影响</p></div></div></div>
+<div class="panel"><h2>伯克希尔研究</h2><p><strong>Progressive Corporation是一家具有强大护城河和稳健财务表现的保险业领导者，但行业竞争加剧和宏观风险需警惕。</strong></p><p>伯克希尔综合评分：<strong>4.0</strong></p><div class="md"><p>{&quot;verdict&quot;: &quot;买入&quot;, &quot;conservative_tip&quot;: &quot;建议在PE TTM低于9倍时买入，长期持有。&quot;, &quot;moderate_tip&quot;: &quot;建议在PE TTM低于10倍时买入，持有3-5年。&quot;, &quot;aggressive_tip&quot;: &quot;建议在PE TTM低于8.5倍时买入，密切关注行业趋势。&quot;, &quot;catalysts_plus&quot;: [&quot;盈利能力持续提升&quot;, &quot;市场份额进一步扩大&quot;, &quot;技术应用提升效率&quot;], &quot;catalysts_minus&quot;: [&quot;自然灾害理赔成本大幅上升&quot;, &quot;利率上升导致投资收益下降&quot;, &quot;新竞争者进入市场&quot;]}</p></div></div>
+<div class="panel news"><h2>最新资讯</h2><div class="md"><p>共10条新闻，其中利多6条，利空1条，中性3条，整体情绪偏利好。</p></div><div class="nitem"><div class="t">PGR: Q2 2026 saw 5% NPW growth, 7% PIF growth, and a 12.7% underwriting margin</div><div class="s">TradingView · 利好</div></div><div class="nitem"><div class="t">Progressive (NYSE: PGR) earns $6,129M H1 2026 and sustains strong margins</div><div class="s">Stock Titan · 利好</div></div><div class="nitem"><div class="t">The Progressive Corporation $PGR Shares Purchased by First National Bank of Mount Dora Trust Investment Services</div><div class="s">MarketBeat · 利好</div></div><div class="nitem"><div class="t">PGR.N - | Stock Price &amp; Latest News</div><div class="s">Reuters · 中性</div></div><div class="nitem"><div class="t">Insider Sale: VP and Chief Financial Officer of $PGR Sells 3,499 Shares</div><div class="s">Quiver Quantitative · 利空</div></div><div class="nitem"><div class="t">Why Progressive (PGR) Stock Is Up Today</div><div class="s">StockStory · 利好</div></div><div class="nitem"><div class="t">Is Progressive Corp (PGR) a Bargain After 3.0% Drop? GF Value Sa</div><div class="s">GuruFocus · 中性</div></div><div class="nitem"><div class="t">Progressive Corporation (The) Revenue Breakdown – NYSE:PGR</div><div class="s">TradingView · 中性</div></div></div>
+<footer>稳健理财Agent · 红黑榜每日归档 · 红榜 #7 · 仅供研究，不构成投资建议</footer>
+</div></body>
+</html>
