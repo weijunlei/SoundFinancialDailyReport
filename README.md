@@ -1,5 +1,4 @@
 # SoundFinancialDailyReport
-https://dailyagent.xiaofenglei.cn/
 
 稳健理财Agent · 每日红黑榜 HTML 归档（A股 / 港股 / 美股，红榜 TOP10 + 黑榜 BOTTOM10）。
 
@@ -7,6 +6,7 @@ https://dailyagent.xiaofenglei.cn/
 
 | 日期 | 完整榜单 | A股 | 港股 | 美股 |
 |---|---|---|---|---|
+| 2026-08-05 | [index](202608/20260805/index.html) | [a](202608/20260805/a.html) | [hk](202608/20260805/hk.html) | [us](202608/20260805/us.html) |
 | 2026-08-04 | [index](202608/20260804/index.html) | [a](202608/20260804/a.html) | [hk](202608/20260804/hk.html) | [us](202608/20260804/us.html) |
 | 2026-08-03 | [index](202608/20260803/index.html) | [a](202608/20260803/a.html) | [hk](202608/20260803/hk.html) | [us](202608/20260803/us.html) |
 | 2026-08-02 | [index](202608/20260802/index.html) | [a](202608/20260802/a.html) | [hk](202608/20260802/hk.html) | [us](202608/20260802/us.html) |
