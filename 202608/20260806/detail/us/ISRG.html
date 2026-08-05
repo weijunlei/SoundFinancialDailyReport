@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ISRG(ISRG) 红榜 2026-08-06</title>
+<style>
+:root{--red:#d8342c;--redbg:#fdecea;--green:#1a9e54;--ink:#1c2230;--muted:#6b7385;
+--line:#e7e9ef;--card:#fff;--bg:#f4f6fa;--chip:#eef1f6;--dark:#23262d;--darkbg:#ececef}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",
+"Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);
+line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 16px 64px}
+header.top{background:linear-gradient(135deg,#1c2230,#2c3550);color:#fff;border-radius:14px;
+padding:22px 24px;margin-bottom:20px;box-shadow:0 6px 24px rgba(20,26,46,.12)}
+header.top h1{margin:0 0 6px;font-size:24px;letter-spacing:.5px}
+header.top .sub{opacity:.85;font-size:13px}
+header.top .sub b{color:#ffd166;font-weight:600}
+nav.mkt{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;
+background:rgba(244,246,250,.92);backdrop-filter:blur(6px);padding:10px 0;margin-bottom:14px}
+nav.mkt a{text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);
+padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600}
+nav.mkt a:hover{border-color:var(--red);color:var(--red)}
+.summary{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.summary .chip{background:var(--card);border:1px solid var(--line);border-radius:10px;
+padding:8px 12px;font-size:12px;color:var(--muted)}
+.summary .chip b{color:var(--ink);font-size:14px;margin-left:4px}
+section.board{margin:26px 0}
+.board-title{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:19px}
+.board-title .dot{width:10px;height:10px;border-radius:50%}
+.board-title.red .dot{background:var(--red)}
+.board-title.black .dot{background:var(--dark)}
+.board-title small{color:var(--muted);font-weight:400;font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+position:relative;transition:box-shadow .15s}
+.card:hover{box-shadow:0 4px 18px rgba(20,26,46,.08)}
+.card.red{border-top:3px solid var(--red)}
+.card.black{border-top:3px solid var(--dark)}
+.rank{position:absolute;top:10px;right:12px;font-size:26px;font-weight:800;color:#eceff5}
+.card.red .rank{color:#fbdcD9}
+.nm{font-size:16px;font-weight:700}
+.nm .tk{color:var(--muted);font-weight:500;font-size:12px;margin-left:6px}
+.tag{display:inline-block;background:var(--chip);color:var(--muted);border-radius:6px;
+padding:1px 7px;font-size:11px;margin:6px 6px 0 0}
+.price-row{display:flex;align-items:baseline;gap:10px;margin:10px 0 4px}
+.price{font-size:24px;font-weight:800}
+.pct{font-size:14px;font-weight:700;padding:2px 8px;border-radius:8px}
+.up{color:var(--red)}.down{color:var(--green)}.flat{color:var(--muted)}
+.pct.up{background:var(--redbg)}.pct.down{background:#e2f4e9}.pct.flat{background:var(--chip)}
+.psrc{font-size:11px;color:var(--muted);margin-left:auto}
+.scores{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.scores span{background:var(--chip);border-radius:6px;padding:2px 8px;font-size:11px;color:var(--muted)}
+.scores span b{color:var(--ink)}
+.pts{font-size:12.5px;margin:8px 0 0}
+.pts .h{font-weight:700;font-size:12px;margin:6px 0 2px}
+.pts .h.bull{color:var(--red)}.pts .h.bear{color:var(--green)}
+.pts ul{margin:2px 0 4px;padding-left:18px;color:#3a4152}
+.pts li{margin:1px 0}
+.masters{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:11px;color:var(--muted)}
+.masters b{color:var(--ink)}
+.summ{font-size:12.5px;color:#3a4152;background:#fafbfd;border:1px solid var(--line);
+border-radius:8px;padding:8px 10px;margin-top:8px}
+.empty{color:var(--muted);background:var(--card);border:1px dashed var(--line);
+border-radius:10px;padding:18px;text-align:center}
+footer{margin-top:34px;color:var(--muted);font-size:12px;text-align:center;line-height:1.8}
+a.lnk{color:var(--red);text-decoration:none}
+/* ── detail page ── */
+.backbar{margin-bottom:14px;font-size:13px}
+.backbar a{color:var(--muted);text-decoration:none;margin-right:14px}
+.backbar a:hover{color:var(--red)}
+.badge{display:inline-block;border-radius:6px;padding:2px 10px;font-size:12px;font-weight:700;margin-right:8px}
+.badge.red{background:var(--red);color:#fff}.badge.black{background:var(--dark);color:#fff}
+.trade{display:flex;flex-wrap:wrap;gap:10px;background:linear-gradient(135deg,#2c3550,#1c2230);
+color:#fff;border-radius:12px;padding:16px 18px;margin:16px 0}
+.trade .cell{min-width:120px}
+.trade .k{font-size:11px;opacity:.75}
+.trade .v{font-size:18px;font-weight:800;margin-top:2px}
+.trade .v.buy{color:#7ee2a8}.trade .v.sell{color:#ff9d97}.trade .v.hold{color:#ffd166}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0}
+.mgrid .m{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.mgrid .m .k{font-size:11px;color:var(--muted)}
+.mgrid .m .v{font-size:16px;font-weight:700;margin-top:2px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.panel>h2{margin:0 0 12px;font-size:17px}
+.panel>h2 .sub{font-size:12px;color:var(--muted);font-weight:400;margin-left:8px}
+.mreply{border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;
+padding:12px 14px;margin:10px 0;background:#fff}
+.mreply .mh{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.mreply .mh .who{font-weight:700;font-size:14px}
+.mreply .mh .mscore{margin-left:auto;background:var(--chip);border-radius:6px;padding:1px 8px;font-size:12px;font-weight:700}
+.md h2,.md h3,.md h4,.md h5{margin:12px 0 6px;font-size:15px}
+.md p{margin:6px 0;font-size:13.5px;color:#2c3345}
+.md ul{margin:6px 0;padding-left:20px;font-size:13.5px;color:#2c3345}
+.md li{margin:3px 0}
+.md strong{color:var(--ink)}
+details{border:1px solid var(--line);border-radius:10px;background:#fff;margin:10px 0;padding:0}
+details>summary{cursor:pointer;padding:12px 16px;font-weight:700;font-size:14px;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary:before{content:"▸ ";color:var(--red)}
+details[open]>summary:before{content:"▾ "}
+details>.body{padding:0 16px 14px;border-top:1px dashed var(--line)}
+.ychip{display:inline-block;background:var(--chip);border-radius:8px;padding:4px 10px;font-size:12px;margin:3px 6px 3px 0}
+.ychip b{font-size:13px}
+.news .nitem{border-top:1px dashed var(--line);padding:8px 0;font-size:13px}
+.news .nitem .t{font-weight:600}
+.news .nitem .s{color:var(--muted);font-size:12px}
+/* ── root landing page ── */
+.hero{padding:30px 26px}
+.hero-kicker{color:#ffd166;font-size:12px;font-weight:700;letter-spacing:2px;
+text-transform:uppercase;margin-bottom:8px}
+.hero h1{font-size:30px;margin:0 0 10px}
+.day-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.day-card{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);
+border-radius:12px;padding:14px 16px;transition:all .15s}
+.day-card:hover{border-color:var(--red);box-shadow:0 4px 16px rgba(216,52,44,.12);transform:translateY(-2px)}
+.day-card .d{font-weight:800;font-size:15px;color:var(--ink);display:flex;align-items:center;gap:8px}
+.day-card .m{margin-top:8px;display:flex;gap:6px}
+.day-card .m span{background:var(--chip);color:var(--muted);border-radius:6px;
+padding:2px 8px;font-size:11px}
+.latest-badge{background:var(--red);color:#fff;border-radius:6px;padding:1px 7px;
+font-size:10px;font-weight:700}
+</style>
+</head>
+<body><div class="wrap">
+<div class="backbar"><a href="../index.html">← 总览</a><a href="../us.html">← 美股榜单</a></div>
+<header class="top">
+  <h1><span class="badge red">红榜 #8</span>ISRG<span class="tk" style="opacity:.7;font-size:15px;font-weight:400;margin-left:8px">ISRG</span></h1>
+  <div class="sub">美股 ·  · 榜单日期 <b>2026-08-06</b> · 盘价采集 <b>2026-08-06 05:00:05</b></div>
+  <div class="price-row" style="margin-top:12px">
+    <span class="price" style="color:#fff">$375.20</span>
+    <span class="pct up">+1.88%</span>
+    <span class="psrc" style="color:rgba(255,255,255,.6)">实时</span>
+  </div>
+  <div class="scores" style="margin-top:10px">
+    <span>综合 <b>88.8</b></span>
+    <span>多头 <b>85</b></span>
+    <span>空头 <b>20</b></span>
+    <span>大师均值 <b>76</b></span>
+    <span>信号 <b>positive</b></span>
+  </div>
+</header>
+<div class="trade"><div class="cell"><div class="k">交易评级</div><span class="v buy">Buy</span></div><div class="cell"><div class="k">加仓区间</div><span class="v">363.13 ~ 378.10</span></div><div class="cell"><div class="k">目标价</div><span class="v">419.28</span></div><div class="cell"><div class="k">伯克希尔</div><span class="v">观望</span></div><div class="cell"><div class="k">伯克希尔分</div><span class="v">4.10</span></div></div>
+<div class="panel"><h2>财务指标</h2><div class="mgrid"><div class="m"><div class="k">市盈率 PE</div><div class="v">42.89</div></div><div class="m"><div class="k">市净率 PB</div><div class="v">7.29</div></div><div class="m"><div class="k">ROE</div><div class="v">17.4%</div></div><div class="m"><div class="k">总市值</div><div class="v">1341</div></div><div class="m"><div class="k">营收同比</div><div class="v">18.5%</div></div><div class="m"><div class="k">净利同比</div><div class="v">26.5%</div></div></div></div>
+<div class="panel"><h2>历史收益</h2><span class="ychip">近1月 <b class="down">-13.51%</b></span><span class="ychip">近6月 <b class="down">-21.41%</b></span><span class="ychip">近1年 <b class="down">-21.52%</b></span><span class="ychip">近5年 <b class="up">+10.20%</b></span></div>
+<div class="panel"><h2>大师圆桌<span class="sub">5 位</span></h2><div class="mreply"><div class="mh"><span class="who">段永平</span><span class="mscore">80</span></div><div class="md"><p>关于 ISRG（直觉外科公司），我的看法是这样的：</p><p>首先，我认可这是一家值得关注的优秀公司。它的技术领先性和市场地位是显而易见的。手术机器人这个领域，ISRG 拥有很强的护城河，这从它持续稳健的营收和利润增长可以看出。18.5% 的营收同比增长和 26.5% 的净利润同比增长，说明公司仍在快速成长。</p><p>不过，我也要提醒大家关注估值问题。目前 42 倍的市盈率（PE）和 7 倍的市净率（PB）都不算低。虽然公司基本面强劲，但这样的估值水平意味着市场已经给予它很高的预期。任何不及预期的表现都可能引发股价波动。</p><p>从我的投资哲学来看，我会问自己几个问题：</p><ul><li>这家公司是否在做对的事？答案是肯定的，它在通过技术创新改善医疗手术质量，这是很有社会价值的方向。</li><li>我是否真的理解这家公司？手术机器人是一个专业领域，需要一定的医疗行业知识。</li><li>十年后回头看，今天的估值是否合理？这需要我们思考医疗科技的发展趋势和市场竞争格局。</li></ul><p>我的建议是：</p><p>如果你已经持有 ISRG，并且看好其长期发展，可以继续持有，但要注意控制仓位，避免过度集中。对于考虑买入的投资者，我建议先深入了解这个行业的技术发展趋势和竞争格局，同时要评估自己的风险承受能力。</p><p>别忘了，投资中最重要的不是找到最好的公司，而是找到最适合自己的投资方式。不要因为市场情绪而做出仓促的决定，保持理性思考才是关键。</p><p>最后，我想强调一点：投资中最大的风险往往不是来自公司本身，而是来自投资者自身的判断失误。保持平常心，不被短期波动影响，才能做出更明智的选择。</p></div></div><div class="mreply"><div class="mh"><span class="who">巴菲特</span><span class="mscore">70</span></div><div class="md"><p>各位先生女士，很高兴在这里讨论ISRG这家公司。我先给出我的看法：我对ISRG持谨慎乐观的态度。</p><p>首先，这是一家令人印象深刻的优质企业。它的技术领先地位和市场地位非常稳固，这一点从它强劲的收入和利润增长中可以看出——收入同比增长18.5%，净利润增长26.5%。这种增长势头表明公司在其领域拥有强大的竞争优势。</p><p>然而，我必须指出，当前的估值水平让我有些犹豫。市盈率超过42倍，市净率接近7.3倍，这意味着投资者已经为这家公司支付了相当高的溢价。作为一个价值投资者，我始终在寻找以合理价格买入优质企业的机会，而目前的价格让我觉得安全边际不够充分。</p><p>现在，让我谈谈可能面临的风险：</p><p>首先，市场情绪的变化可能带来波动。我们都知道，市场先生有时会变得非常情绪化，而高估值股票往往对市场情绪的变化更加敏感。</p><p>其次，虽然公司目前拥有技术优势，但科技行业的变化非常迅速。新的竞争者或技术创新可能随时出现，挑战其市场地位。</p><p>基于以上分析，我的建议是：</p><p>如果您已经持有ISRG，并且买入价格较低，那么继续持有可能是合理的。但如果您正在考虑现在买入，我建议您谨慎行事，等待更好的买入时机。</p><p>最后，我想引用查理·芒格的一句话：&quot;在投资中，耐心是一种美德。&quot;在面对优质企业时，我们常常会感到购买的冲动，但只有在价格具有足够吸引力时，才是真正值得出手的时刻。</p><p>这就是我今天对ISRG的看法。谢谢大家的聆听。</p></div></div><div class="mreply"><div class="mh"><span class="who">达利欧</span><span class="mscore">75</span></div><div class="md"><p>各位同仁，我今天想谈谈关于ISRG（直觉外科公司）的看法。我对这个公司的整体评估是：它在技术层面和长期增长潜力上表现强劲，但同时也需要关注估值和市场波动的风险。</p><p>首先，从技术角度来看，ISRG在手术机器人领域拥有无可争议的领先地位。其技术优势和市场地位为公司的持续增长提供了坚实的基础。从数据上看，公司的营收同比增长18.5%，净利润同比增长26.5%，这表明其业务模式具有较强的盈利能力和增长潜力。此外，其ROE（净资产收益率）达到17.4%，也显示出公司良好的资本运用效率。</p><p>然而，我们不能忽视估值方面的挑战。目前，ISRG的市盈率（PE）约为42.9，市净率（PB）约为7.3，这些指标表明市场对其增长前景抱有很高的期望。在当前的市场环境下，这样的估值水平可能会带来一定的风险，尤其是在宏观经济环境出现波动时。</p><p>从周期角度来看，我们正处于一个债务周期的不确定性阶段，全球范围内的经济波动和市场情绪变化可能会对高估值股票产生较大影响。因此，尽管ISRG的基本面强劲，但我们仍需警惕市场波动带来的潜在风险。</p><p>基于以上分析，我建议：</p><ul><li><strong>关注长期价值</strong>：如果你是一个长期投资者，并且相信ISRG的技术优势和增长潜力，那么当前的波动可能是一个增持的机会。但要确保你的投资组合能够承受短期内的市场波动。</li></ul><ul><li><strong>分散风险</strong>：考虑到估值水平较高，建议不要将过多资金集中在这只股票上。可以考虑通过分散投资来降低单一股票带来的风险。</li></ul><ul><li><strong>密切关注市场环境</strong>：在当前的经济环境下，市场情绪变化较快。建议密切关注宏观经济指标和政策变化，以便及时调整投资策略。</li></ul><p>最后，我想强调的是，投资决策应基于对公司和市场的深入分析，而不是短期的市场波动。正如我常说的，&quot;Pain + Reflection = Progress&quot;，在投资过程中，我们需要在痛苦中反思，才能取得进步。希望大家在投资ISRG时，能够理性分析，谨慎决策。</p></div></div><div class="mreply"><div class="mh"><span class="who">林奇</span><span class="mscore">85</span></div><div class="md"><p>各位朋友，今天我们来聊聊 ISRG 这家公司，我的看法是：这是一家值得考虑的投资标的，但需要谨慎对待。</p><p>首先，ISRG 这家公司处于快速增长型类别。它在医疗机器人领域拥有领先的技术和市场地位，这一点从其强劲的财务表现可以看出——收入同比增长 18.5%，净利润增长 26.5%，这些数字都显示出公司正处于快速扩张阶段。作为投资者，我们喜欢看到这样的增长势头。</p><p>然而，估值方面需要引起重视。目前其市盈率（PE）约为 43，市净率（PB）约为 7.3，这些指标都处于较高水平。虽然公司的增长潜力巨大，但过高的估值意味着我们需要对未来增长有更高的预期才能支撑当前的股价。换句话说，市场已经对它的未来给予了很高的期望。</p><p>关于风险，我认为主要有两点需要注意：一是估值偏高带来的回调风险，二是医疗行业固有的监管和市场波动风险。尽管 ISRG 在技术上有优势，但任何行业政策的变化或市场竞争加剧都可能影响其发展轨迹。</p><p>基于以上分析，我的建议是：</p><ul><li>如果你已经在关注这家公司，建议先进行充分调研，特别是去了解其产品的实际应用场景和市场反馈。可以去拜访相关的医疗机构，看看他们的使用情况，这能帮助你更好地理解公司的竞争力。</li></ul><ul><li>对于新投资者来说，现在可能不是最好的买入时机。可以先将其加入观察名单，等待更好的入场时机，比如市场出现回调或公司发布新的利好消息时。</li></ul><ul><li>如果你决定投资，建议采用分批买入的方式，以降低市场波动带来的风险。同时，要做好长期持有的准备，因为医疗创新是一个需要时间积累的领域。</li></ul><p>记住，投资就像种树，我们需要耐心等待它成长，而不是急于求成。</p></div></div><div class="mreply"><div class="mh"><span class="who">芒格</span><span class="mscore">70</span></div><div class="md"><p>各位，这家公司的名字叫ISRG，代码也是ISRG。从我这里来看，这家公司有70分的投资价值——我称之为&quot;部分看好&quot;。让我来解释一下我的观点。</p><p>首先，这家公司的基本面是相当不错的。他们的技术处于行业领先地位，市场地位也很稳固。从数据上看，营收同比增长18.5%，净利润同比增长26.5%，净资产收益率达到17.4%。这些数字都表明，这是一家运营良好的企业。</p><p>然而，我也看到了一些令人担忧的地方。当前的市盈率是42.88倍，市净率是7.29倍。这两个指标都显示出估值可能已经偏高。投资界有句老话：&quot;树不会长到天上去&quot;。任何公司，无论其基本面多么强劲，如果估值过高，都可能面临回调的风险。</p><p>让我用逆向思维来考虑这个问题：如果这家公司失败了，可能会是什么原因？首先，过高的估值本身就是一种风险。其次，市场波动的风险也不容忽视。尽管这家公司有强大的技术优势，但任何行业都可能受到宏观经济环境变化的影响。</p><p>从激励机制的角度来看，我们需要关注管理层的决策。他们是否在进行过度扩张？是否在追求短期业绩而忽视了长期发展？这些问题都需要进一步研究。</p><p>对于行动建议，我的看法是：</p><ul><li>如果你已经持有这家公司的股票，可以考虑部分获利了结。毕竟，估值偏高是一个不容忽视的风险。</li><li>如果你正在考虑买入，我建议你等待更好的时机。市场波动可能会提供更好的买入点。</li><li>无论如何，保持对这家公司的持续关注。他们的技术优势是真实的，但估值风险也需要谨慎对待。</li></ul><p>最后，让我提醒大家，投资决策永远不能只看一面。我们既要看到机会，也要看到风险。正如我常说的：&quot;如果我知道自己死在哪里，我就永远不去那里&quot;。在投资中，识别风险并避开它们，往往比追求高回报更为重要。</p></div></div></div>
+<div class="panel"><h2>分析师报告<span class="sub">2 篇</span></h2><details open><summary>市场面分析</summary><div class="body"><div class="md"><h4>ISRG ISRG 市场面分析</h4><ul><li>红黑榜多空分数：多头 85 / 空头 20，分差 65。</li><li>当前价格：374.42。</li><li>当前交易评级：Buy。</li><li>值得加仓区间：363.13 - 378.10。</li><li>目标价格：419.28。</li><li>市场愿意给溢价的原因：价格表现强劲，上涨1.38%；技术领先，市场地位稳固。</li><li>当前主要压制因素：估值可能偏高；市场波动风险。</li></ul></div></div></details><details open><summary>基本面分析</summary><div class="body"><div class="md"><h4>ISRG ISRG 基本面分析</h4><ul><li>报告期：暂无。</li><li>PE(TTM)：42.89。</li><li>PB：7.29。</li><li>ROE：17.42%。</li><li>营收同比：18.50%。</li><li>归母净利润同比：26.50%。</li><li>核心判断：盈利能力处于可接受区间；收入仍在增长；利润端保持扩张。</li></ul></div></div></details></div>
+<div class="panel"><h2>研究与计划</h2>
+<details><summary>基本面摘要</summary><div class="body"><div class="md"><h3>核心财务快照</h3><ul><li>报告期: 数据缺失</li><li>当前股价: 374.42 元</li><li>总市值: 1341.45 亿元</li><li>PE (TTM): 42.89</li><li>PB: 7.29</li><li>PS (TTM): 数据缺失</li><li>营业总收入(报告期): 数据缺失 亿元</li><li>营收同比增长率: 18.50%</li><li>归母净利润(报告期): 数据缺失 亿元</li><li>归母净利润同比增长率: 26.50%</li><li>ROE (TTM/估算): 17.42%</li><li>资产负债率: 数据缺失</li><li>经营性现金流 / 归母净利润: 数据缺失</li></ul><h4>缺失字段</h4><ul><li>PS(TTM), 营业总收入, 归母净利润, 资产负债率, 经营性现金流与归母净利润比值</li></ul></div></div></details>
+<details><summary>研究计划</summary><div class="body"><div class="md"><h4>ISRG ISRG 研究摘要</h4><ul><li>红黑榜结论: Buy</li><li>多头/空头: 85/20</li><li>正向信号: ROE 17.42%；营收同比 18.50%；归母净利润同比 26.50%；PE(TTM) 42.88</li><li>榜单看多理由: 价格表现强劲，上涨1.38%；技术领先，市场地位稳固</li><li>榜单风险提示: 估值可能偏高；市场波动风险</li></ul></div></div></details>
+<details><summary>交易计划</summary><div class="body"><div class="md"><h4>ISRG ISRG 交易计划</h4><ul><li>评级: Buy</li><li>当前价格: 374.36</li><li>值得加仓区间: 363.13 - 378.10</li><li>目标价格: 419.28</li><li>止损位: 344.41</li><li>备注: 当前为缓存降级交易卡，后续若完整 TradingAgent 结果生成，将自动覆盖。</li></ul></div></div></details>
+<details><summary>交易决策</summary><div class="body"><div class="md"><p>Buy</p><p>ISRG ISRG 当前使用红黑榜缓存结果生成兜底交易卡。多头 85 / 空头 20，分差 65。当前尚未取得完整 TradingAgent 长文决策，但榜单分数、财务快照和大师观点已经足够生成基础交易建议。</p></div></div></details>
+</div>
+<div class="panel"><h2>多空逻辑</h2><div class="pts"><div class="h bull">看多逻辑</div><div class="md"><p>价格表现强劲，上涨1.38%</p><p>技术领先，市场地位稳固</p></div></div><div class="pts"><div class="h bear">看空逻辑</div><div class="md"><p>估值可能偏高</p><p>市场波动风险</p></div></div></div>
+<div class="panel"><h2>伯克希尔研究</h2><p><strong>ISRG是一家拥有强大护城河、长期增长前景清晰但估值偏高的医疗机器人公司，值得长期关注但需等待合理价格。</strong></p><p>伯克希尔综合评分：<strong>4.1</strong></p><div class="md"><p>{&quot;verdict&quot;: &quot;观望&quot;, &quot;conservative_tip&quot;: &quot;建议等待PE TTM降至40倍以下再考虑买入。&quot;, &quot;moderate_tip&quot;: &quot;可小仓位介入，PE TTM降至50倍以下加仓。&quot;, &quot;aggressive_tip&quot;: &quot;若看好长期增长，可逐步建仓，但需控制仓位。&quot;, &quot;catalysts_plus&quot;: [&quot;手术机器人市场增长超预期&quot;, &quot;竞争对手市场份额下降&quot;, &quot;新产品发布或技术突破&quot;], &quot;catalysts_minus&quot;: [&quot;估值进一步上升&quot;, &quot;竞争对手推出颠覆性产品&quot;, &quot;监管政策收紧&quot;]}</p></div></div>
+<div class="panel news"><h2>最新资讯</h2><div class="md"><p>整体情绪偏中性，利多消息3条，利空消息2条，中性消息5条。</p></div><div class="nitem"><div class="t">Is ISRG Stock Worth Buying as Growth Stays Strong but Risks Rise</div><div class="s">Yahoo Finance · 中性</div></div><div class="nitem"><div class="t">Why Johnson &amp; Johnson Is Sending Intuitive Surgical (ISRG) Stock Down Today</div><div class="s">Barchart.com · 利空</div></div><div class="nitem"><div class="t">Intuitive Surgical Stock (ISRG) Opinions on Recent Quarterly Results</div><div class="s">Quiver Quantitative · 中性</div></div><div class="nitem"><div class="t">Intuitive Surgical Inc Stock (ISRG) Moved Up by 5.70% on Aug 3: Facts Behind the Movement</div><div class="s">TradingKey · 利好</div></div><div class="nitem"><div class="t">Will Intuitive’s Drape Recall and Bylaw Shift Reshape Intuitive Surgical’s (ISRG) Risk Management Narrative?</div><div class="s">simplywall.st · 利空</div></div><div class="nitem"><div class="t">ISRG Stock: The Math Hidden In Its Price</div><div class="s">Trefis · 中性</div></div><div class="nitem"><div class="t">A Look at Intuitive Surgical Inc (ISRG) After 6.2% Gain -- GF Va</div><div class="s">GuruFocus · 利好</div></div><div class="nitem"><div class="t">QQQ is up 1.4% today, on ISRG stock price movement</div><div class="s">Quiver Quantitative · 中性</div></div></div>
+<footer>稳健理财Agent · 红黑榜每日归档 · 红榜 #8 · 仅供研究，不构成投资建议</footer>
+</div></body>
+</html>

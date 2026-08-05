@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TMUS(TMUS) 黑榜 2026-08-06</title>
+<style>
+:root{--red:#d8342c;--redbg:#fdecea;--green:#1a9e54;--ink:#1c2230;--muted:#6b7385;
+--line:#e7e9ef;--card:#fff;--bg:#f4f6fa;--chip:#eef1f6;--dark:#23262d;--darkbg:#ececef}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",
+"Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);
+line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 16px 64px}
+header.top{background:linear-gradient(135deg,#1c2230,#2c3550);color:#fff;border-radius:14px;
+padding:22px 24px;margin-bottom:20px;box-shadow:0 6px 24px rgba(20,26,46,.12)}
+header.top h1{margin:0 0 6px;font-size:24px;letter-spacing:.5px}
+header.top .sub{opacity:.85;font-size:13px}
+header.top .sub b{color:#ffd166;font-weight:600}
+nav.mkt{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;
+background:rgba(244,246,250,.92);backdrop-filter:blur(6px);padding:10px 0;margin-bottom:14px}
+nav.mkt a{text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);
+padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600}
+nav.mkt a:hover{border-color:var(--red);color:var(--red)}
+.summary{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.summary .chip{background:var(--card);border:1px solid var(--line);border-radius:10px;
+padding:8px 12px;font-size:12px;color:var(--muted)}
+.summary .chip b{color:var(--ink);font-size:14px;margin-left:4px}
+section.board{margin:26px 0}
+.board-title{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:19px}
+.board-title .dot{width:10px;height:10px;border-radius:50%}
+.board-title.red .dot{background:var(--red)}
+.board-title.black .dot{background:var(--dark)}
+.board-title small{color:var(--muted);font-weight:400;font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+position:relative;transition:box-shadow .15s}
+.card:hover{box-shadow:0 4px 18px rgba(20,26,46,.08)}
+.card.red{border-top:3px solid var(--red)}
+.card.black{border-top:3px solid var(--dark)}
+.rank{position:absolute;top:10px;right:12px;font-size:26px;font-weight:800;color:#eceff5}
+.card.red .rank{color:#fbdcD9}
+.nm{font-size:16px;font-weight:700}
+.nm .tk{color:var(--muted);font-weight:500;font-size:12px;margin-left:6px}
+.tag{display:inline-block;background:var(--chip);color:var(--muted);border-radius:6px;
+padding:1px 7px;font-size:11px;margin:6px 6px 0 0}
+.price-row{display:flex;align-items:baseline;gap:10px;margin:10px 0 4px}
+.price{font-size:24px;font-weight:800}
+.pct{font-size:14px;font-weight:700;padding:2px 8px;border-radius:8px}
+.up{color:var(--red)}.down{color:var(--green)}.flat{color:var(--muted)}
+.pct.up{background:var(--redbg)}.pct.down{background:#e2f4e9}.pct.flat{background:var(--chip)}
+.psrc{font-size:11px;color:var(--muted);margin-left:auto}
+.scores{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.scores span{background:var(--chip);border-radius:6px;padding:2px 8px;font-size:11px;color:var(--muted)}
+.scores span b{color:var(--ink)}
+.pts{font-size:12.5px;margin:8px 0 0}
+.pts .h{font-weight:700;font-size:12px;margin:6px 0 2px}
+.pts .h.bull{color:var(--red)}.pts .h.bear{color:var(--green)}
+.pts ul{margin:2px 0 4px;padding-left:18px;color:#3a4152}
+.pts li{margin:1px 0}
+.masters{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:11px;color:var(--muted)}
+.masters b{color:var(--ink)}
+.summ{font-size:12.5px;color:#3a4152;background:#fafbfd;border:1px solid var(--line);
+border-radius:8px;padding:8px 10px;margin-top:8px}
+.empty{color:var(--muted);background:var(--card);border:1px dashed var(--line);
+border-radius:10px;padding:18px;text-align:center}
+footer{margin-top:34px;color:var(--muted);font-size:12px;text-align:center;line-height:1.8}
+a.lnk{color:var(--red);text-decoration:none}
+/* ── detail page ── */
+.backbar{margin-bottom:14px;font-size:13px}
+.backbar a{color:var(--muted);text-decoration:none;margin-right:14px}
+.backbar a:hover{color:var(--red)}
+.badge{display:inline-block;border-radius:6px;padding:2px 10px;font-size:12px;font-weight:700;margin-right:8px}
+.badge.red{background:var(--red);color:#fff}.badge.black{background:var(--dark);color:#fff}
+.trade{display:flex;flex-wrap:wrap;gap:10px;background:linear-gradient(135deg,#2c3550,#1c2230);
+color:#fff;border-radius:12px;padding:16px 18px;margin:16px 0}
+.trade .cell{min-width:120px}
+.trade .k{font-size:11px;opacity:.75}
+.trade .v{font-size:18px;font-weight:800;margin-top:2px}
+.trade .v.buy{color:#7ee2a8}.trade .v.sell{color:#ff9d97}.trade .v.hold{color:#ffd166}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0}
+.mgrid .m{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.mgrid .m .k{font-size:11px;color:var(--muted)}
+.mgrid .m .v{font-size:16px;font-weight:700;margin-top:2px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.panel>h2{margin:0 0 12px;font-size:17px}
+.panel>h2 .sub{font-size:12px;color:var(--muted);font-weight:400;margin-left:8px}
+.mreply{border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;
+padding:12px 14px;margin:10px 0;background:#fff}
+.mreply .mh{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.mreply .mh .who{font-weight:700;font-size:14px}
+.mreply .mh .mscore{margin-left:auto;background:var(--chip);border-radius:6px;padding:1px 8px;font-size:12px;font-weight:700}
+.md h2,.md h3,.md h4,.md h5{margin:12px 0 6px;font-size:15px}
+.md p{margin:6px 0;font-size:13.5px;color:#2c3345}
+.md ul{margin:6px 0;padding-left:20px;font-size:13.5px;color:#2c3345}
+.md li{margin:3px 0}
+.md strong{color:var(--ink)}
+details{border:1px solid var(--line);border-radius:10px;background:#fff;margin:10px 0;padding:0}
+details>summary{cursor:pointer;padding:12px 16px;font-weight:700;font-size:14px;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary:before{content:"▸ ";color:var(--red)}
+details[open]>summary:before{content:"▾ "}
+details>.body{padding:0 16px 14px;border-top:1px dashed var(--line)}
+.ychip{display:inline-block;background:var(--chip);border-radius:8px;padding:4px 10px;font-size:12px;margin:3px 6px 3px 0}
+.ychip b{font-size:13px}
+.news .nitem{border-top:1px dashed var(--line);padding:8px 0;font-size:13px}
+.news .nitem .t{font-weight:600}
+.news .nitem .s{color:var(--muted);font-size:12px}
+/* ── root landing page ── */
+.hero{padding:30px 26px}
+.hero-kicker{color:#ffd166;font-size:12px;font-weight:700;letter-spacing:2px;
+text-transform:uppercase;margin-bottom:8px}
+.hero h1{font-size:30px;margin:0 0 10px}
+.day-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.day-card{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);
+border-radius:12px;padding:14px 16px;transition:all .15s}
+.day-card:hover{border-color:var(--red);box-shadow:0 4px 16px rgba(216,52,44,.12);transform:translateY(-2px)}
+.day-card .d{font-weight:800;font-size:15px;color:var(--ink);display:flex;align-items:center;gap:8px}
+.day-card .m{margin-top:8px;display:flex;gap:6px}
+.day-card .m span{background:var(--chip);color:var(--muted);border-radius:6px;
+padding:2px 8px;font-size:11px}
+.latest-badge{background:var(--red);color:#fff;border-radius:6px;padding:1px 7px;
+font-size:10px;font-weight:700}
+</style>
+</head>
+<body><div class="wrap">
+<div class="backbar"><a href="../index.html">← 总览</a><a href="../us.html">← 美股榜单</a></div>
+<header class="top">
+  <h1><span class="badge black">黑榜 #6</span>TMUS<span class="tk" style="opacity:.7;font-size:15px;font-weight:400;margin-left:8px">TMUS</span></h1>
+  <div class="sub">美股 ·  · 榜单日期 <b>2026-08-06</b> · 盘价采集 <b>2026-08-06 05:00:05</b></div>
+  <div class="price-row" style="margin-top:12px">
+    <span class="price" style="color:#fff">$173.46</span>
+    <span class="pct down">-2.12%</span>
+    <span class="psrc" style="color:rgba(255,255,255,.6)">实时</span>
+  </div>
+  <div class="scores" style="margin-top:10px">
+    <span>综合 <b>34.4</b></span>
+    <span>多头 <b>35</b></span>
+    <span>空头 <b>85</b></span>
+    <span>大师均值 <b>35</b></span>
+    <span>信号 <b>negative</b></span>
+  </div>
+</header>
+<div class="trade"><div class="cell"><div class="k">交易评级</div><span class="v hold">Reduce</span></div><div class="cell"><div class="k">加仓区间</div><span class="v">155.92 ~ 162.85</span></div><div class="cell"><div class="k">伯克希尔</div><span class="v">买入</span></div><div class="cell"><div class="k">伯克希尔分</div><span class="v">3.75</span></div></div>
+<div class="panel"><h2>财务指标</h2><div class="mgrid"><div class="m"><div class="k">市盈率 PE</div><div class="v">18.16</div></div><div class="m"><div class="k">市净率 PB</div><div class="v">3.31</div></div><div class="m"><div class="k">ROE</div><div class="v">18.0%</div></div><div class="m"><div class="k">总市值</div><div class="v">1861</div></div><div class="m"><div class="k">营收同比</div><div class="v">7.9%</div></div><div class="m"><div class="k">净利同比</div><div class="v">5.3%</div></div></div></div>
+<div class="panel"><h2>历史收益</h2><span class="ychip">近1月 <b class="down">-4.70%</b></span><span class="ychip">近6月 <b class="down">-14.18%</b></span><span class="ychip">近1年 <b class="down">-27.49%</b></span><span class="ychip">近5年 <b class="up">+22.06%</b></span></div>
+<div class="panel"><h2>大师圆桌<span class="sub">5 位</span></h2><div class="mreply"><div class="mh"><span class="who">段永平</span><span class="mscore">40</span></div><div class="md"><p>各位好，我来说说对TMUS的看法。</p><p>我的结论是：TMUS目前不是特别好的投资标的，建议谨慎观望。</p><p>理由有几点：</p><p>首先，虽然TMUS的用户基数在增长，5G发展也有潜力，这些都是值得肯定的积极因素。但是我们做投资不能只看增长，还要看价格和风险。现在TMUS的股价已经大幅下跌，市场竞争也在加剧，这些都需要我们警惕。</p><p>从估值来看，18倍左右的PE和3倍多的PB，对于一个竞争加剧的行业来说，并不算便宜。净利润增速只有5.3%，低于营收增速，说明盈利能力在承压。</p><p>这里我想特别提醒大家注意：</p><ul><li>不要因为看到用户增长就轻易下注，要想想这种增长能否持续，能否转化为利润。</li></ul><ul><li>在竞争加剧的环境下，企业往往会陷入价格战，这会进一步压缩利润空间。</li></ul><ul><li>5G虽然是未来趋势，但投资回报周期可能比预期的要长。</li></ul><p>我的建议是：</p><ul><li>如果你已经在持有TMUS，建议重新审视你的投资逻辑，看看当初买入的理由是否还成立。</li></ul><ul><li>如果你正在考虑买入，我建议你先等等，等市场给出更明确的信号。</li></ul><ul><li>重点关注公司如何应对竞争压力，以及5G业务的实际盈利能力。</li></ul><p>记住，投资要本分，不要被短期的增长迷惑，要看长期价值。如果一个公司不能持续为用户创造价值，最终也很难为股东创造价值。</p></div></div><div class="mreply"><div class="mh"><span class="who">巴菲特</span><span class="mscore">30</span></div><div class="md"><p>各位，很高兴今天能在这里聊聊我对TMUS的看法。首先，我得说，我对这只股票的态度是谨慎的。</p><p>让我先说说我的顾虑。TMUS目前的股价为173美元，市盈率约18倍，市净率超过3倍。作为一个价值投资者，我倾向于寻找那些价格合理甚至被低估的好生意，而TMUS的估值在我看来并不便宜。更重要的是，这家公司面临着激烈的市场竞争，这让我对它的长期盈利能力感到担忧。尽管5G发展带来了机会，但整个电信行业的竞争格局正在变得更加复杂。</p><p>当然，TMUS也有一些积极的方面。它的用户基数在增长，营收同比增长了7.9%，净利润也增长了5.3%。这些数字表明公司在当前环境下仍然能够保持一定的增长势头。此外，电信业务本身具有一定的稳定性，因为人们总是需要通信和网络服务。</p><p>然而，我必须强调，护城河的概念在这里显得尤为重要。TMUS能否在激烈的市场竞争中保持其优势？它能否继续提高用户粘性并抵御竞争对手的侵蚀？这些都是我需要认真考虑的问题。</p><p>基于以上分析，我建议采取以下行动：</p><p>首先，如果你已经持有TMUS，建议密切关注公司的基本面变化，特别是市场竞争态势和用户增长情况。如果发现护城河变窄的迹象，可能需要重新评估你的投资。</p><p>其次，如果你正在考虑买入，我建议你先等等。我更倾向于在价格更具吸引力的时候入场，而不是在估值较高且竞争加剧的时期。</p><p>最后，我想说的是，投资就像打棒球，你不需要每次都挥棒。现在可能不是挥棒的好时机。</p><p>如果查理·芒格在这里，他可能会补充说：&quot;投资就像经营果园，你需要耐心等待果实成熟，而不是急于采摘。&quot; 希望这句话能给大家一些启发。</p></div></div><div class="mreply"><div class="mh"><span class="who">达利欧</span><span class="mscore">45</span></div><div class="md"><p>各位同行，今天我们来谈谈 TMUS 的情况。我的观点是：目前市场对 TMUS 的情绪偏悲观，但基本面仍有支撑。</p><p>首先，TMUS 的用户基数增长和 5G 发展潜力是其主要的积极因素。用户基数的增长表明其市场份额仍在扩大，而 5G 的发展则为未来几年的收入增长提供了可能性。然而，市场对其大幅下跌和市场竞争加剧的担忧更为显著，这导致了其目前的悲观情绪。</p><p>从数据上看，TMUS 的市盈率（PE）为 18.14，市净率（PB）为 3.31，显示出市场对其未来增长仍有一定的预期，但其净利润增长率仅为 5.3%，低于其营收增长率 7.9%，这表明其盈利能力面临一定压力。净资产收益率（ROE）为 17.99%，虽然不算低，但在当前市场环境下，投资者对其增长前景的信心有所动摇。</p><p>我的判断是，TMUS 面临的挑战主要来自于市场竞争加剧和整体市场波动对其股价的影响。然而，其用户基数的增长和 5G 技术的潜力仍然为其提供了长期的增长动力。因此，我对其持部分看好的态度。</p><p>在风险方面，市场竞争加剧可能会进一步压缩其利润率，而整体市场的波动也可能对其股价产生负面影响。因此，我建议投资者在考虑投资 TMUS 时，应密切关注其用户增长和 5G 部署的进展，同时也要注意市场整体情绪的变化。</p><p>基于以上分析，我建议投资者可以采取以下行动：</p><ul><li>如果您已经持有 TMUS，建议保持耐心，关注其用户增长和 5G 部署的进展，同时设定一个合理的止损点以控制风险。</li><li>如果您正在考虑投资 TMUS，建议等待市场情绪稳定后再做决定，并密切关注其财报数据和市场动态。</li></ul><p>最后，我想强调的是，投资决策应基于对公司的深入分析和自身风险承受能力的评估，而不是单纯的市场情绪或短期波动。希望以上分析对大家有所帮助。</p></div></div><div class="mreply"><div class="mh"><span class="who">林奇</span><span class="mscore">35</span></div><div class="md"><p>各位，今天我们来聊聊TMUS这家公司。我先给出我的看法：现在不是买入TMUS的好时机。</p><p>首先，我们来看看TMUS的基本面。TMUS拥有不错的用户基数增长，并且5G的发展潜力也值得期待。这些都是它的优势。然而，市场竞争正在加剧，这对TMUS来说是一个不小的挑战。更重要的是，股价已经大幅下跌，这表明市场对公司的信心有所动摇。</p><p>从估值角度来看，TMUS的市盈率（PE）约为18倍，市净率（PB）约为3.3倍。对于一个增长潜力尚可的公司来说，这个估值不算特别高，但也不算便宜。考虑到市场的不确定性和竞争的加剧，这个估值并没有给我足够的信心。</p><p>再看看公司的财务表现，收入同比增长7.9%，净利润同比增长5.3%，净资产收益率（ROE）为17.99%。这些数据表明公司的盈利能力还算稳定，但增长势头并不强劲。</p><p>基于以上分析，我建议大家暂时观望。TMUS虽然有一些增长潜力，但目前面临的市场竞争和股价下跌风险不容忽视。如果你已经持有TMUS，建议密切关注公司的基本面变化和市场动态。如果你是打算新买入，我建议等到估值更有吸引力或者市场情绪好转时再考虑。</p><p>总的来说，TMUS是一家值得关注的5G概念股，但目前的市场环境和估值水平并不支持买入。我们需要耐心等待更好的时机。</p></div></div><div class="mreply"><div class="mh"><span class="who">芒格</span><span class="mscore">25</span></div><div class="md"><p>各位同仁，今天我们来谈谈TMUS这家公司。我的结论很明确：<strong>现在不是投资TMUS的好时机。</strong></p><p>首先，让我们从几个关键点来分析：</p><ul><li><strong>用户基数增长和5G发展潜力</strong>确实是TMUS的优势，但这些因素已经被市场充分定价。看看它的市盈率（PE）和市净率（PB），分别达到了18倍和3.3倍，这在电信行业中并不算便宜。</li></ul><ul><li><strong>大幅下跌和市场竞争加剧</strong>是更令人担忧的因素。TMUS的股价已经出现了显著的下行趋势，这表明市场对其未来增长的信心正在减弱。与此同时，电信行业的竞争正在加剧，T-Mobile不仅要面对Verizon和AT&amp;T的强势竞争，还要应对来自新兴运营商的挑战。这种环境下，利润率被压缩的风险很高。</li></ul><ul><li><strong>财务表现方面</strong>，虽然营收同比增长了7.9%，净利润同比增长了5.3%，但净资产收益率（ROE）仅为17.99%，这在当前的市场环境下并不突出。考虑到资本密集型的商业模式和不断上升的运营成本，TMUS的盈利能力面临压力。</li></ul><p>从逆向思维的角度来看，<strong>我们必须问自己：这家公司可能会因为什么而失败？</strong> 答案是显而易见的：激烈的市场竞争、不断上升的成本压力、以及可能的技术变革风险。如果5G的普及速度不如预期，或者竞争对手推出更具吸引力的服务，TMUS的增长故事可能会迅速逆转。</p><p><strong>激励机制方面</strong>，管理层有强烈的动机去追求市场份额，但这可能导致利润率下降。电信行业是一个典型的&quot;规模为王&quot;的市场，但过度关注规模扩张而忽视盈利能力，可能会让公司陷入困境。</p><p><strong>风险提示</strong>：考虑到当前的市场环境和竞争态势，TMUS面临的主要风险包括：1）价格战导致利润率下降；2）用户流失风险；3）资本支出压力增加。这些因素都可能导致股价进一步承压。</p><p><strong>行动建议</strong>：对于那些已经持有TMUS的投资者，我建议密切关注公司的财务表现和市场竞争态势。如果股价继续下跌且没有明显的反弹迹象，可能需要重新评估投资组合。对于那些考虑建仓的投资者，我建议暂时观望，等待更明确的市场信号。</p><p>最后，我要说的是，投资决策应该基于理性的分析，而不是对某一行业或公司的盲目乐观。我们必须时刻警惕那些可能让我们陷入困境的陷阱。</p></div></div></div>
+<div class="panel"><h2>分析师报告<span class="sub">2 篇</span></h2><details open><summary>市场面分析</summary><div class="body"><div class="md"><h4>TMUS TMUS 市场面分析</h4><ul><li>红黑榜多空分数：多头 35 / 空头 85，分差 -50。</li><li>当前价格：173.46。</li><li>当前交易评级：Reduce。</li><li>值得加仓区间：155.92 - 162.85。</li><li>风险控制位：152.45。</li><li>市场愿意给溢价的原因：用户基数增长；5G发展潜力。</li><li>当前主要压制因素：大幅下跌；市场竞争加剧。</li></ul></div></div></details><details open><summary>基本面分析</summary><div class="body"><div class="md"><h4>TMUS TMUS 基本面分析</h4><ul><li>报告期：暂无。</li><li>PE(TTM)：18.16。</li><li>PB：3.31。</li><li>ROE：17.99%。</li><li>营收同比：7.90%。</li><li>归母净利润同比：5.30%。</li><li>核心判断：盈利能力处于可接受区间；收入仍在增长；利润端保持扩张。</li></ul></div></div></details></div>
+<div class="panel"><h2>研究与计划</h2>
+<details><summary>基本面摘要</summary><div class="body"><div class="md"><h3>核心财务快照</h3><ul><li>报告期: 数据缺失</li><li>当前股价: 173.46 元</li><li>总市值: 1860.71 亿元</li><li>PE (TTM): 18.16</li><li>PB: 3.31</li><li>PS (TTM): 数据缺失</li><li>营业总收入(报告期): 数据缺失 亿元</li><li>营收同比增长率: 7.90%</li><li>归母净利润(报告期): 数据缺失 亿元</li><li>归母净利润同比增长率: 5.30%</li><li>ROE (TTM/估算): 17.99%</li><li>资产负债率: 数据缺失</li><li>经营性现金流 / 归母净利润: 数据缺失</li></ul><h4>缺失字段</h4><ul><li>PS(TTM), 营业总收入, 归母净利润, 资产负债率, 经营性现金流与归母净利润比值</li></ul></div></div></details>
+<details><summary>研究计划</summary><div class="body"><div class="md"><h4>TMUS TMUS 研究摘要</h4><ul><li>红黑榜结论: Reduce</li><li>多头/空头: 35/85</li><li>正向信号: ROE 17.99%；营收同比 7.90%；归母净利润同比 5.30%；PE(TTM) 18.14</li><li>榜单看多理由: 用户基数增长；5G发展潜力</li><li>榜单风险提示: 大幅下跌；市场竞争加剧</li></ul></div></div></details>
+<details><summary>交易计划</summary><div class="body"><div class="md"><h4>TMUS TMUS 交易计划</h4><ul><li>评级: Reduce</li><li>当前价格: 173.24</li><li>值得加仓区间: 155.92 - 162.85</li><li>目标价格: 164.58</li><li>止损位: 152.45</li><li>备注: 当前为缓存降级交易卡，后续若完整 TradingAgent 结果生成，将自动覆盖。</li></ul></div></div></details>
+<details><summary>交易决策</summary><div class="body"><div class="md"><p>Reduce</p><p>TMUS TMUS 当前使用红黑榜缓存结果生成兜底交易卡。多头 35 / 空头 85，分差 -50。当前尚未取得完整 TradingAgent 长文决策，但榜单分数、财务快照和大师观点已经足够生成基础交易建议。</p></div></div></details>
+</div>
+<div class="panel"><h2>多空逻辑</h2><div class="pts"><div class="h bull">看多逻辑</div><div class="md"><p>用户基数增长</p><p>5G发展潜力</p></div></div><div class="pts"><div class="h bear">看空逻辑</div><div class="md"><p>大幅下跌</p><p>市场竞争加剧</p></div></div></div>
+<div class="panel"><h2>伯克希尔研究</h2><p><strong>TMUS是一家具有强大护城河和长期增长潜力的电信公司，但需关注行业竞争和监管风险。</strong></p><p>伯克希尔综合评分：<strong>3.75</strong></p><div class="md"><p>{&quot;verdict&quot;: &quot;买入&quot;, &quot;conservative_tip&quot;: &quot;建议在PE TTM低于16倍时买入，目标价150美元。&quot;, &quot;moderate_tip&quot;: &quot;建议在PE TTM低于18倍时买入，目标价160美元。&quot;, &quot;aggressive_tip&quot;: &quot;建议在PE TTM低于20倍时买入，目标价170美元。&quot;, &quot;catalysts_plus&quot;: [&quot;5G网络建设加速&quot;, &quot;物联网需求增长&quot;, &quot;并购活动带来的协同效应&quot;], &quot;catalysts_minus&quot;: [&quot;价格战加剧&quot;, &quot;监管政策收紧&quot;, &quot;宏观经济衰退&quot;]}</p></div></div>
+<div class="panel news"><h2>最新资讯</h2><div class="md"><p>利空消息较多，共4条利空，2条利好，3条中性。</p></div><div class="nitem"><div class="t">SpaceX’s Starlink Threat Sends T, VZ, TMUS Stocks Lower Premarket – But Telecom CEOs Have Said Satellite Isn’t A Real Concern Yet</div><div class="s">Yahoo Finance · 利空</div></div><div class="nitem"><div class="t">T, VZ, TMUS Stocks Are Sliding Today — Is There A SpaceX Connection?</div><div class="s">Stocktwits · 利空</div></div><div class="nitem"><div class="t">Should Investors Buy TMUS or Wait for Better Risk-Reward Ahead?</div><div class="s">Zacks Investment Research · 中性</div></div><div class="nitem"><div class="t">T-Mobile Falls Despite Earnings Beat. CEO Shoots Down Expanded Starlink Deal.</div><div class="s">Investor&#x27;s Business Daily · 利空</div></div><div class="nitem"><div class="t">T Mobile (TMUS) Stock Looks Fairly Valued On Raised Cash Flow Outlook</div><div class="s">simplywall.st · 中性</div></div><div class="nitem"><div class="t">T-Mobile Will Offer Student Lines for $30/Month With AutoPay</div><div class="s">Stock Titan · 利好</div></div><div class="nitem"><div class="t">T, VZ, TMUS Stocks Drop After-Hours — SpaceX Targets Wireless Giants As COO Gwynne Shotwell Sees Room To Win ‘Their Customers’</div><div class="s">TradingView · 利空</div></div><div class="nitem"><div class="t">TMUS Raises Cash Flow Outlook After Another Strong Earnings Quarter</div><div class="s">Zacks Investment Research · 利好</div></div></div>
+<footer>稳健理财Agent · 红黑榜每日归档 · 黑榜 #6 · 仅供研究，不构成投资建议</footer>
+</div></body>
+</html>

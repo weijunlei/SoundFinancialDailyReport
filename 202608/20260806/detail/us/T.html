@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>T(T) 黑榜 2026-08-06</title>
+<style>
+:root{--red:#d8342c;--redbg:#fdecea;--green:#1a9e54;--ink:#1c2230;--muted:#6b7385;
+--line:#e7e9ef;--card:#fff;--bg:#f4f6fa;--chip:#eef1f6;--dark:#23262d;--darkbg:#ececef}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",
+"Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);
+line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 16px 64px}
+header.top{background:linear-gradient(135deg,#1c2230,#2c3550);color:#fff;border-radius:14px;
+padding:22px 24px;margin-bottom:20px;box-shadow:0 6px 24px rgba(20,26,46,.12)}
+header.top h1{margin:0 0 6px;font-size:24px;letter-spacing:.5px}
+header.top .sub{opacity:.85;font-size:13px}
+header.top .sub b{color:#ffd166;font-weight:600}
+nav.mkt{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;
+background:rgba(244,246,250,.92);backdrop-filter:blur(6px);padding:10px 0;margin-bottom:14px}
+nav.mkt a{text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);
+padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600}
+nav.mkt a:hover{border-color:var(--red);color:var(--red)}
+.summary{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.summary .chip{background:var(--card);border:1px solid var(--line);border-radius:10px;
+padding:8px 12px;font-size:12px;color:var(--muted)}
+.summary .chip b{color:var(--ink);font-size:14px;margin-left:4px}
+section.board{margin:26px 0}
+.board-title{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:19px}
+.board-title .dot{width:10px;height:10px;border-radius:50%}
+.board-title.red .dot{background:var(--red)}
+.board-title.black .dot{background:var(--dark)}
+.board-title small{color:var(--muted);font-weight:400;font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+position:relative;transition:box-shadow .15s}
+.card:hover{box-shadow:0 4px 18px rgba(20,26,46,.08)}
+.card.red{border-top:3px solid var(--red)}
+.card.black{border-top:3px solid var(--dark)}
+.rank{position:absolute;top:10px;right:12px;font-size:26px;font-weight:800;color:#eceff5}
+.card.red .rank{color:#fbdcD9}
+.nm{font-size:16px;font-weight:700}
+.nm .tk{color:var(--muted);font-weight:500;font-size:12px;margin-left:6px}
+.tag{display:inline-block;background:var(--chip);color:var(--muted);border-radius:6px;
+padding:1px 7px;font-size:11px;margin:6px 6px 0 0}
+.price-row{display:flex;align-items:baseline;gap:10px;margin:10px 0 4px}
+.price{font-size:24px;font-weight:800}
+.pct{font-size:14px;font-weight:700;padding:2px 8px;border-radius:8px}
+.up{color:var(--red)}.down{color:var(--green)}.flat{color:var(--muted)}
+.pct.up{background:var(--redbg)}.pct.down{background:#e2f4e9}.pct.flat{background:var(--chip)}
+.psrc{font-size:11px;color:var(--muted);margin-left:auto}
+.scores{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.scores span{background:var(--chip);border-radius:6px;padding:2px 8px;font-size:11px;color:var(--muted)}
+.scores span b{color:var(--ink)}
+.pts{font-size:12.5px;margin:8px 0 0}
+.pts .h{font-weight:700;font-size:12px;margin:6px 0 2px}
+.pts .h.bull{color:var(--red)}.pts .h.bear{color:var(--green)}
+.pts ul{margin:2px 0 4px;padding-left:18px;color:#3a4152}
+.pts li{margin:1px 0}
+.masters{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:11px;color:var(--muted)}
+.masters b{color:var(--ink)}
+.summ{font-size:12.5px;color:#3a4152;background:#fafbfd;border:1px solid var(--line);
+border-radius:8px;padding:8px 10px;margin-top:8px}
+.empty{color:var(--muted);background:var(--card);border:1px dashed var(--line);
+border-radius:10px;padding:18px;text-align:center}
+footer{margin-top:34px;color:var(--muted);font-size:12px;text-align:center;line-height:1.8}
+a.lnk{color:var(--red);text-decoration:none}
+/* ── detail page ── */
+.backbar{margin-bottom:14px;font-size:13px}
+.backbar a{color:var(--muted);text-decoration:none;margin-right:14px}
+.backbar a:hover{color:var(--red)}
+.badge{display:inline-block;border-radius:6px;padding:2px 10px;font-size:12px;font-weight:700;margin-right:8px}
+.badge.red{background:var(--red);color:#fff}.badge.black{background:var(--dark);color:#fff}
+.trade{display:flex;flex-wrap:wrap;gap:10px;background:linear-gradient(135deg,#2c3550,#1c2230);
+color:#fff;border-radius:12px;padding:16px 18px;margin:16px 0}
+.trade .cell{min-width:120px}
+.trade .k{font-size:11px;opacity:.75}
+.trade .v{font-size:18px;font-weight:800;margin-top:2px}
+.trade .v.buy{color:#7ee2a8}.trade .v.sell{color:#ff9d97}.trade .v.hold{color:#ffd166}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0}
+.mgrid .m{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.mgrid .m .k{font-size:11px;color:var(--muted)}
+.mgrid .m .v{font-size:16px;font-weight:700;margin-top:2px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.panel>h2{margin:0 0 12px;font-size:17px}
+.panel>h2 .sub{font-size:12px;color:var(--muted);font-weight:400;margin-left:8px}
+.mreply{border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;
+padding:12px 14px;margin:10px 0;background:#fff}
+.mreply .mh{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.mreply .mh .who{font-weight:700;font-size:14px}
+.mreply .mh .mscore{margin-left:auto;background:var(--chip);border-radius:6px;padding:1px 8px;font-size:12px;font-weight:700}
+.md h2,.md h3,.md h4,.md h5{margin:12px 0 6px;font-size:15px}
+.md p{margin:6px 0;font-size:13.5px;color:#2c3345}
+.md ul{margin:6px 0;padding-left:20px;font-size:13.5px;color:#2c3345}
+.md li{margin:3px 0}
+.md strong{color:var(--ink)}
+details{border:1px solid var(--line);border-radius:10px;background:#fff;margin:10px 0;padding:0}
+details>summary{cursor:pointer;padding:12px 16px;font-weight:700;font-size:14px;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary:before{content:"▸ ";color:var(--red)}
+details[open]>summary:before{content:"▾ "}
+details>.body{padding:0 16px 14px;border-top:1px dashed var(--line)}
+.ychip{display:inline-block;background:var(--chip);border-radius:8px;padding:4px 10px;font-size:12px;margin:3px 6px 3px 0}
+.ychip b{font-size:13px}
+.news .nitem{border-top:1px dashed var(--line);padding:8px 0;font-size:13px}
+.news .nitem .t{font-weight:600}
+.news .nitem .s{color:var(--muted);font-size:12px}
+/* ── root landing page ── */
+.hero{padding:30px 26px}
+.hero-kicker{color:#ffd166;font-size:12px;font-weight:700;letter-spacing:2px;
+text-transform:uppercase;margin-bottom:8px}
+.hero h1{font-size:30px;margin:0 0 10px}
+.day-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.day-card{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);
+border-radius:12px;padding:14px 16px;transition:all .15s}
+.day-card:hover{border-color:var(--red);box-shadow:0 4px 16px rgba(216,52,44,.12);transform:translateY(-2px)}
+.day-card .d{font-weight:800;font-size:15px;color:var(--ink);display:flex;align-items:center;gap:8px}
+.day-card .m{margin-top:8px;display:flex;gap:6px}
+.day-card .m span{background:var(--chip);color:var(--muted);border-radius:6px;
+padding:2px 8px;font-size:11px}
+.latest-badge{background:var(--red);color:#fff;border-radius:6px;padding:1px 7px;
+font-size:10px;font-weight:700}
+</style>
+</head>
+<body><div class="wrap">
+<div class="backbar"><a href="../index.html">← 总览</a><a href="../us.html">← 美股榜单</a></div>
+<header class="top">
+  <h1><span class="badge black">黑榜 #7</span>T<span class="tk" style="opacity:.7;font-size:15px;font-weight:400;margin-left:8px">T</span></h1>
+  <div class="sub">美股 ·  · 榜单日期 <b>2026-08-06</b> · 盘价采集 <b>2026-08-06 05:00:05</b></div>
+  <div class="price-row" style="margin-top:12px">
+    <span class="price" style="color:#fff">$23.06</span>
+    <span class="pct down">-1.37%</span>
+    <span class="psrc" style="color:rgba(255,255,255,.6)">实时</span>
+  </div>
+  <div class="scores" style="margin-top:10px">
+    <span>综合 <b>38.1</b></span>
+    <span>多头 <b>40</b></span>
+    <span>空头 <b>70</b></span>
+    <span>大师均值 <b>36</b></span>
+    <span>信号 <b>negative</b></span>
+  </div>
+</header>
+<div class="trade"><div class="cell"><div class="k">交易评级</div><span class="v hold">Reduce</span></div><div class="cell"><div class="k">加仓区间</div><span class="v">21.62 ~ 22.54</span></div><div class="cell"><div class="k">伯克希尔</div><span class="v">观望</span></div><div class="cell"><div class="k">伯克希尔分</div><span class="v">3.25</span></div></div>
+<div class="panel"><h2>财务指标</h2><div class="mgrid"><div class="m"><div class="k">市盈率 PE</div><div class="v">7.59</div></div><div class="m"><div class="k">市净率 PB</div><div class="v">1.43</div></div><div class="m"><div class="k">ROE</div><div class="v">18.3%</div></div><div class="m"><div class="k">总市值</div><div class="v">1576</div></div><div class="m"><div class="k">营收同比</div><div class="v">2.3%</div></div><div class="m"><div class="k">净利同比</div><div class="v">6.2%</div></div></div></div>
+<div class="panel"><h2>历史收益</h2><span class="ychip">近1月 <b class="up">+11.73%</b></span><span class="ychip">近6月 <b class="down">-15.80%</b></span><span class="ychip">近1年 <b class="down">-17.19%</b></span><span class="ychip">近5年 <b class="up">+8.97%</b></span></div>
+<div class="panel"><h2>大师圆桌<span class="sub">5 位</span></h2><div class="mreply"><div class="mh"><span class="who">段永平</span><span class="mscore">40</span></div><div class="md"><h4>发言内容：</h4><p>各位，今天我们讨论的这家公司（T），我个人的看法是：目前这可能不是一个特别好的投资机会，虽然它有一些吸引人的地方，但整体风险可能更大。</p><p>首先说吸引人的地方：</p><ul><li>这家公司的股息收益率看起来不错，这对追求稳定现金流的投资者来说是个亮点。</li><li>5G网络升级的潜力依然存在，如果能抓住这个机会，可能会带来新的增长点。</li></ul><p>但另一方面，我看到的主要风险是：</p><ul><li>股价持续下跌，这通常反映了市场对公司未来前景的担忧。</li><li>市场竞争在加剧，这可能会进一步压缩公司的利润空间。</li><li>虽然PE（市盈率）和PB（市净率）看起来不高，但考虑到行业竞争环境和公司增长放缓，这些指标可能并不能完全反映其真实价值。</li></ul><h4>行动建议：</h4><p>如果是我，我会先问自己几个问题：</p><ul><li>这家公司是否真的有足够的能力应对日益激烈的市场竞争？</li><li>5G网络升级带来的机会是否足以抵消其他业务的下滑？</li><li>当前的股息收益率是否足以弥补股价下跌带来的损失？</li></ul><h4>风险提示：</h4><p>我认为，在当前的市场环境下，这家公司的主要风险在于其增长乏力以及市场竞争加剧。如果这些问题得不到有效解决，即使股息收益率再高，也可能只是短期的安慰。</p><h4>总结：</h4><p>总的来说，这家公司可能更适合那些追求稳定收益且对短期股价波动不太敏感的投资者。但对于大多数追求长期增长的人来说，可能需要更谨慎地考虑。</p><h4>别错过的隐含约束：</h4><p>别因为股息收益率看起来不错，就忽略了公司基本面和市场环境的长期变化。投资决策还是要基于对公司和行业的深入理解，而不是单一的财务指标。</p></div></div><div class="mreply"><div class="mh"><span class="who">巴菲特</span><span class="mscore">35</span></div><div class="md"><h4>巴菲特视角的圆桌发言</h4><h5>结论：</h5><p>我对 T 公司持谨慎态度。公司的 5G 网络升级潜力是有吸引力的，但整体上我对其当前状况感到担忧。</p><h5>理由：</h5><p>首先，我注意到 T 公司目前的股息收益率看起来不错，这通常是吸引我的一个点。但深入分析后，我看到了一些令人担忧的信号。尽管公司拥有 5G 网络升级的潜力，这是未来增长的一个重要领域，但股价的持续下跌让我感到不安。通常情况下，我更关注的是公司的内在价值和长期竞争力，而不是短期的股价波动，但持续下跌的股价往往是一个警示信号。</p><p>此外，市场竞争的加剧是一个不容忽视的问题。在通信行业，竞争者如雨后春笋般涌现，这对 T 公司的市场份额和利润率构成了压力。尽管公司目前的市盈率（PE）和市净率（PB）看起来较低，但这并不足以让我感到安心。我更关心的是公司的长期护城河是否稳固，以及它能否在未来十年内保持其竞争力。</p><h5>风险/行动建议：</h5><ul><li><strong>护城河评估</strong>：我建议大家仔细评估 T 公司的护城河。5G 升级是一个机会，但能否转化为可持续的竞争优势是关键。问问自己，十年后这家公司是否还能在市场中占据有利位置？</li></ul><ul><li><strong>市场情绪 vs 内在价值</strong>：当前的市场情绪似乎对 T 公司不利，股价的持续下跌反映了这一点。但我们不能仅仅因为股价下跌就否定一家公司。关键是要判断这种下跌是市场过度反应，还是公司基本面真的在恶化。</li></ul><ul><li><strong>安全边际</strong>：如果考虑投资，我建议等待一个更有吸引力的价格。目前的价格可能还没有提供足够的安全边际。记住，我们的目标是花 4 毛钱买 1 块钱的东西，而不是在不确定的环境中贸然出手。</li></ul><ul><li><strong>长期持有 vs 短期波动</strong>：如果已经持有 T 公司股票，我建议重新审视当初买入的逻辑是否仍然成立。如果公司的基本面没有发生根本性变化，长期持有的策略可能是合适的。但如果有迹象表明竞争压力正在侵蚀其盈利能力，那么可能是时候重新评估你的投资组合了。</li></ul><h5>芒格的补充：</h5><p>查理可能会提醒我们，投资就像在果园里挑选最好的果树。我们不需要摘下每一颗果实，而是要耐心等待那些最甜美的果实成熟。对于 T 公司，我们需要更多的耐心和观察，确保它是我们想要的那颗果树。</p></div></div><div class="mreply"><div class="mh"><span class="who">达利欧</span><span class="mscore">30</span></div><div class="md"><p>各位，今天我们来讨论一下T公司的投资前景。我的结论是：目前对T公司的投资需要谨慎，虽然存在一些吸引点，但整体风险较高。</p><p>首先，我们来看支持投资的理由：</p><ul><li>T公司提供具有吸引力的股息收益率，这对于寻求稳定现金流的投资者来说是一个亮点。</li><li>公司在5G网络升级方面的潜力仍然存在，这可能成为未来增长的催化剂。</li></ul><p>然而，与这些正面因素相比，负面因素更为显著：</p><ul><li>股价持续下跌，反映出市场对公司未来前景的担忧。</li><li>市场竞争正在加剧，这可能会压缩利润率，并对公司的长期增长构成挑战。</li></ul><p>从估值角度来看，T公司的市盈率和市净率分别为7.6和1.4，显示出市场对其增长前景的谨慎态度。尽管营收同比增长2.3%，净利润同比增长6.2%，但这些增长数字并不足以抵消市场对行业竞争和整体经济环境的担忧。</p><p>基于以上分析，我认为当前市场环境对电信行业并不有利。T公司面临的挑战不仅仅是短期的市场波动，而是可能影响到其长期竞争力的结构性变化。</p><p>在风险方面，我们需要关注以下几点：</p><ul><li>市场竞争的加剧可能导致价格战，进一步侵蚀利润率。</li><li>宏观经济环境的不确定性可能影响公司的资本支出计划。</li></ul><p>行动建议上，我建议投资者：</p><ul><li>如果你持有T公司的股票，密切关注公司管理层对市场竞争的应对策略，以及他们在5G网络升级方面的具体进展。</li><li>对于考虑入场的投资者，建议等待更明确的信号，比如行业竞争格局的改善或公司盈利能力的提升。</li></ul><p>最后，记住在投资决策中保持极度开放和透明的原则，记录下你的决策逻辑和预期，并在未来进行复盘和调整。这将帮助你在复杂的市场环境中做出更明智的选择。</p></div></div><div class="mreply"><div class="mh"><span class="who">林奇</span><span class="mscore">45</span></div><div class="md"><p>各位好，今天我们来聊聊 T 公司。首先，我得说，这是一家让我有些纠结的公司。</p><p>先说我的结论：目前我持保留态度，不会轻易出手买入。虽然这只股票有一些吸引人的地方，但整体来看，风险因素不容忽视。</p><h4>为什么这么说？</h4><p>首先，这家公司的股息收益率确实很吸引人。对于那些追求稳定现金流的投资者来说，这无疑是一个亮点。此外，5G 网络升级的潜力也让人期待，这可能会在未来几年为公司带来新的增长动力。</p><p>然而，股价的持续下跌是一个明显的警示信号。当一只股票的价格不断走低时，通常意味着市场对其未来前景的担忧。此外，市场竞争的加剧也是一个不容忽视的风险因素。电信行业竞争本就激烈，而这种竞争可能会进一步压缩公司的利润率。</p><p>从估值角度来看，目前的市盈率（PE）约为 7.6，市净率（PB）约为 1.43。从历史水平来看，这些估值指标并不算高，甚至可以说有些偏低。但低估值并不总是买入的理由，尤其是在基本面存在不确定性的时候。</p><h4>风险在哪里？</h4><ul><li><strong>市场竞争加剧</strong>：电信行业的竞争只会越来越激烈，这可能会影响公司的市场份额和盈利能力。</li><li><strong>股价持续下跌</strong>：市场似乎对这家公司的未来并不乐观，这需要我们格外警惕。</li><li><strong>增长乏力</strong>：虽然 5G 带来了一些希望，但整体营收和净利润的增速并不算快。</li></ul><h4>我的建议</h4><p>如果你已经持有这只股票，我的建议是密切关注公司的基本面变化，特别是市场竞争情况和 5G 业务的进展。如果这两方面没有明显改善，可能需要考虑减仓。</p><p>如果你正在考虑买入，我建议你再等等，至少要看到一些明确的积极信号，比如市场份额的提升或 5G 业务的显著增长。记住，投资不是赌博，我们不需要急着入场。</p><p>总之，这是一家需要谨慎对待的公司。虽然有一些吸引人的地方，但风险因素同样不容忽视。希望大家在做决策时，能够充分考虑到这些因素。</p></div></div><div class="mreply"><div class="mh"><span class="who">芒格</span><span class="mscore">30</span></div><div class="md"><p>各位，今天我们来讨论一下 T 公司的情况。我的结论是：<strong>目前 T 公司不值得投资</strong>。让我解释原因。</p><p>首先，从逆向思维的角度来看，我们要问自己：什么因素可能导致这笔投资失败？目前有两个主要风险：</p><ul><li><strong>股价持续下跌的趋势</strong>。市场显然对 T 公司持悲观态度，股价走势反映了这一点。</li><li><strong>市场竞争加剧</strong>。电信行业正面临来自新进入者和现有竞争对手的更大压力，这可能会侵蚀其市场份额和利润率。</li></ul><p>尽管 T 公司有一些正面因素，比如：</p><ul><li>7.5 倍的市盈率看似便宜</li><li>5G 网络升级的潜在机会</li><li>18% 的净资产收益率看起来很有吸引力</li></ul><p>但这些优势被以下因素抵消了：</p><ul><li><strong>股息收益率虽然吸引人，但不足以弥补股价下跌的风险</strong>。在市场情绪低迷的情况下，股息可能会被削减。</li><li><strong>5G 网络升级的成本巨大</strong>，可能会对公司的自由现金流造成压力。</li></ul><p>从激励机制的角度来看，管理层可能会面临短期业绩压力，这可能导致他们在资本支出和股息政策上做出短视的决定。</p><p>从概率和赔率的角度分析，当前市场对电信行业的悲观情绪，加上公司自身面临的挑战，使得胜率较低。虽然市盈率低，但考虑到行业风险和竞争环境，赔率也不够吸引人。</p><p>因此，我的建议是：<strong>保持观望</strong>。在市场情绪好转或公司展现出明确的竞争优势之前，不宜贸然入场。</p><p>最后，我要提醒大家：<strong>如果知道自己死在哪里，就永远不去那里</strong>。在当前环境下，贸然投资 T 公司可能会让我们陷入困境。我们需要耐心等待更好的时机，或者寻找其他更有吸引力的机会。</p><p>记住，投资不是关于抓住每一个机会，而是关于明智地选择那些真正值得的机会。</p></div></div></div>
+<div class="panel"><h2>分析师报告<span class="sub">2 篇</span></h2><details open><summary>市场面分析</summary><div class="body"><div class="md"><h4>T T 市场面分析</h4><ul><li>红黑榜多空分数：多头 40 / 空头 70，分差 -30。</li><li>当前价格：23.00。</li><li>当前交易评级：Reduce。</li><li>值得加仓区间：21.62 - 22.54。</li><li>风险控制位：20.24。</li><li>市场愿意给溢价的原因：股息收益率吸引；5G网络升级潜力。</li><li>当前主要压制因素：股价持续下跌；市场竞争加剧。</li></ul></div></div></details><details open><summary>基本面分析</summary><div class="body"><div class="md"><h4>T T 基本面分析</h4><ul><li>报告期：暂无。</li><li>PE(TTM)：7.59。</li><li>PB：1.43。</li><li>ROE：18.34%。</li><li>营收同比：2.30%。</li><li>归母净利润同比：6.20%。</li><li>核心判断：盈利能力处于可接受区间；收入仍在增长；利润端保持扩张。</li></ul></div></div></details></div>
+<div class="panel"><h2>研究与计划</h2>
+<details><summary>基本面摘要</summary><div class="body"><div class="md"><h3>核心财务快照</h3><ul><li>报告期: 数据缺失</li><li>当前股价: 23.00 元</li><li>总市值: 1575.71 亿元</li><li>PE (TTM): 7.59</li><li>PB: 1.43</li><li>PS (TTM): 数据缺失</li><li>营业总收入(报告期): 数据缺失 亿元</li><li>营收同比增长率: 2.30%</li><li>归母净利润(报告期): 数据缺失 亿元</li><li>归母净利润同比增长率: 6.20%</li><li>ROE (TTM/估算): 18.34%</li><li>资产负债率: 数据缺失</li><li>经营性现金流 / 归母净利润: 数据缺失</li></ul><h4>缺失字段</h4><ul><li>PS(TTM), 营业总收入, 归母净利润, 资产负债率, 经营性现金流与归母净利润比值</li></ul></div></div></details>
+<details><summary>研究计划</summary><div class="body"><div class="md"><h4>T T 研究摘要</h4><ul><li>红黑榜结论: Reduce</li><li>多头/空头: 40/70</li><li>正向信号: ROE 18.34%；营收同比 2.30%；归母净利润同比 6.20%；PE(TTM) 7.59</li><li>榜单看多理由: 股息收益率吸引；5G网络升级潜力</li><li>榜单风险提示: 股价持续下跌；市场竞争加剧</li></ul></div></div></details>
+<details><summary>交易计划</summary><div class="body"><div class="md"><h4>T T 交易计划</h4><ul><li>评级: Reduce</li><li>当前价格: 23.00</li><li>值得加仓区间: 20.70 - 21.62</li><li>目标价格: 21.85</li><li>止损位: 20.24</li><li>备注: 当前为缓存降级交易卡，后续若完整 TradingAgent 结果生成，将自动覆盖。</li></ul></div></div></details>
+<details><summary>交易决策</summary><div class="body"><div class="md"><p>Reduce</p><p>T T 当前使用红黑榜缓存结果生成兜底交易卡。多头 40 / 空头 70，分差 -30。当前尚未取得完整 TradingAgent 长文决策，但榜单分数、财务快照和大师观点已经足够生成基础交易建议。</p></div></div></details>
+</div>
+<div class="panel"><h2>多空逻辑</h2><div class="pts"><div class="h bull">看多逻辑</div><div class="md"><p>股息收益率吸引</p><p>5G网络升级潜力</p></div></div><div class="pts"><div class="h bear">看空逻辑</div><div class="md"><p>股价持续下跌</p><p>市场竞争加剧</p></div></div></div>
+<div class="panel"><h2>伯克希尔研究</h2><p><strong>AT&amp;T是一家拥有稳定现金流和防御性业务的公司，但增长乏力且面临行业竞争加剧，需谨慎评估其长期价值。</strong></p><p>伯克希尔综合评分：<strong>3.25</strong></p><div class="md"><p>{&quot;verdict&quot;: &quot;观望&quot;, &quot;conservative_tip&quot;: &quot;建议在股价低于$14时买入，股息率超过7%时考虑增持。&quot;, &quot;moderate_tip&quot;: &quot;在$15-$16区间买入，目标是获得稳定股息收益。&quot;, &quot;aggressive_tip&quot;: &quot;在$14以下买入，目标是短期5G部署带来的增长机会。&quot;, &quot;catalysts_plus&quot;: [&quot;5G网络部署超预期。&quot;, &quot;自由现金流持续增长。&quot;, &quot;竞争对手出现重大失误。&quot;], &quot;catalysts_minus&quot;: [&quot;竞争加剧导致利润率下降。&quot;, &quot;监管政策变化增加成本。&quot;, &quot;技术变革导致市场份额流失。&quot;]}</p></div></div>
+<div class="panel news"><h2>最新资讯</h2><div class="md"><p>利空新闻占多数，对T股价短期影响偏负面。</p></div><div class="nitem"><div class="t">SpaceX says Starlink could capture AT&amp;T, Verizon, and T-Mobile customers</div><div class="s">businessinsider.com · 利空</div></div><div class="nitem"><div class="t">SpaceX is coming for T-Mobile, AT&amp;T and Verizon</div><div class="s">The Verge · 利空</div></div><div class="nitem"><div class="t">SpaceX Shouldn’t Risk Its Credibility on Mobile Phone Service</div><div class="s">Bloomberg · 中性</div></div><div class="nitem"><div class="t">Fauci’s lawyer fires back: ‘Aaron Rodgers doesn’t know what he’s talking about’ - The Athletic</div><div class="s">The New York Times · 中性</div></div><div class="nitem"><div class="t">‘If we don’t fight back, we don’t have a future’: the journalist taking on the ‘tech fascists’ of Silicon Valley</div><div class="s">The Guardian · 中性</div></div><div class="nitem"><div class="t">Progressives didn’t get the big election night they wanted</div><div class="s">Politico · 中性</div></div><div class="nitem"><div class="t">MLB trade deadline 2026: Biggest winners and losers</div><div class="s">ESPN · 中性</div></div><div class="nitem"><div class="t">One mistake Trump hasn’t made on Iran</div><div class="s">CNN · 中性</div></div></div>
+<footer>稳健理财Agent · 红黑榜每日归档 · 黑榜 #7 · 仅供研究，不构成投资建议</footer>
+</div></body>
+</html>
