@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BDX(BDX) 红榜 2026-08-07</title>
+<style>
+:root{--red:#d8342c;--redbg:#fdecea;--green:#1a9e54;--ink:#1c2230;--muted:#6b7385;
+--line:#e7e9ef;--card:#fff;--bg:#f4f6fa;--chip:#eef1f6;--dark:#23262d;--darkbg:#ececef}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",
+"Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);
+line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 16px 64px}
+header.top{background:linear-gradient(135deg,#1c2230,#2c3550);color:#fff;border-radius:14px;
+padding:22px 24px;margin-bottom:20px;box-shadow:0 6px 24px rgba(20,26,46,.12)}
+header.top h1{margin:0 0 6px;font-size:24px;letter-spacing:.5px}
+header.top .sub{opacity:.85;font-size:13px}
+header.top .sub b{color:#ffd166;font-weight:600}
+nav.mkt{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;
+background:rgba(244,246,250,.92);backdrop-filter:blur(6px);padding:10px 0;margin-bottom:14px}
+nav.mkt a{text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);
+padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600}
+nav.mkt a:hover{border-color:var(--red);color:var(--red)}
+.summary{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.summary .chip{background:var(--card);border:1px solid var(--line);border-radius:10px;
+padding:8px 12px;font-size:12px;color:var(--muted)}
+.summary .chip b{color:var(--ink);font-size:14px;margin-left:4px}
+section.board{margin:26px 0}
+.board-title{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:19px}
+.board-title .dot{width:10px;height:10px;border-radius:50%}
+.board-title.red .dot{background:var(--red)}
+.board-title.black .dot{background:var(--dark)}
+.board-title small{color:var(--muted);font-weight:400;font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+position:relative;transition:box-shadow .15s}
+.card:hover{box-shadow:0 4px 18px rgba(20,26,46,.08)}
+.card.red{border-top:3px solid var(--red)}
+.card.black{border-top:3px solid var(--dark)}
+.rank{position:absolute;top:10px;right:12px;font-size:26px;font-weight:800;color:#eceff5}
+.card.red .rank{color:#fbdcD9}
+.nm{font-size:16px;font-weight:700}
+.nm .tk{color:var(--muted);font-weight:500;font-size:12px;margin-left:6px}
+.tag{display:inline-block;background:var(--chip);color:var(--muted);border-radius:6px;
+padding:1px 7px;font-size:11px;margin:6px 6px 0 0}
+.price-row{display:flex;align-items:baseline;gap:10px;margin:10px 0 4px}
+.price{font-size:24px;font-weight:800}
+.pct{font-size:14px;font-weight:700;padding:2px 8px;border-radius:8px}
+.up{color:var(--red)}.down{color:var(--green)}.flat{color:var(--muted)}
+.pct.up{background:var(--redbg)}.pct.down{background:#e2f4e9}.pct.flat{background:var(--chip)}
+.psrc{font-size:11px;color:var(--muted);margin-left:auto}
+.scores{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.scores span{background:var(--chip);border-radius:6px;padding:2px 8px;font-size:11px;color:var(--muted)}
+.scores span b{color:var(--ink)}
+.pts{font-size:12.5px;margin:8px 0 0}
+.pts .h{font-weight:700;font-size:12px;margin:6px 0 2px}
+.pts .h.bull{color:var(--red)}.pts .h.bear{color:var(--green)}
+.pts ul{margin:2px 0 4px;padding-left:18px;color:#3a4152}
+.pts li{margin:1px 0}
+.masters{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:11px;color:var(--muted)}
+.masters b{color:var(--ink)}
+.summ{font-size:12.5px;color:#3a4152;background:#fafbfd;border:1px solid var(--line);
+border-radius:8px;padding:8px 10px;margin-top:8px}
+.empty{color:var(--muted);background:var(--card);border:1px dashed var(--line);
+border-radius:10px;padding:18px;text-align:center}
+footer{margin-top:34px;color:var(--muted);font-size:12px;text-align:center;line-height:1.8}
+a.lnk{color:var(--red);text-decoration:none}
+/* ── detail page ── */
+.backbar{margin-bottom:14px;font-size:13px}
+.backbar a{color:var(--muted);text-decoration:none;margin-right:14px}
+.backbar a:hover{color:var(--red)}
+.badge{display:inline-block;border-radius:6px;padding:2px 10px;font-size:12px;font-weight:700;margin-right:8px}
+.badge.red{background:var(--red);color:#fff}.badge.black{background:var(--dark);color:#fff}
+.trade{display:flex;flex-wrap:wrap;gap:10px;background:linear-gradient(135deg,#2c3550,#1c2230);
+color:#fff;border-radius:12px;padding:16px 18px;margin:16px 0}
+.trade .cell{min-width:120px}
+.trade .k{font-size:11px;opacity:.75}
+.trade .v{font-size:18px;font-weight:800;margin-top:2px}
+.trade .v.buy{color:#7ee2a8}.trade .v.sell{color:#ff9d97}.trade .v.hold{color:#ffd166}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0}
+.mgrid .m{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.mgrid .m .k{font-size:11px;color:var(--muted)}
+.mgrid .m .v{font-size:16px;font-weight:700;margin-top:2px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.panel>h2{margin:0 0 12px;font-size:17px}
+.panel>h2 .sub{font-size:12px;color:var(--muted);font-weight:400;margin-left:8px}
+.mreply{border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;
+padding:12px 14px;margin:10px 0;background:#fff}
+.mreply .mh{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.mreply .mh .who{font-weight:700;font-size:14px}
+.mreply .mh .mscore{margin-left:auto;background:var(--chip);border-radius:6px;padding:1px 8px;font-size:12px;font-weight:700}
+.md h2,.md h3,.md h4,.md h5{margin:12px 0 6px;font-size:15px}
+.md p{margin:6px 0;font-size:13.5px;color:#2c3345}
+.md ul{margin:6px 0;padding-left:20px;font-size:13.5px;color:#2c3345}
+.md li{margin:3px 0}
+.md strong{color:var(--ink)}
+details{border:1px solid var(--line);border-radius:10px;background:#fff;margin:10px 0;padding:0}
+details>summary{cursor:pointer;padding:12px 16px;font-weight:700;font-size:14px;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary:before{content:"▸ ";color:var(--red)}
+details[open]>summary:before{content:"▾ "}
+details>.body{padding:0 16px 14px;border-top:1px dashed var(--line)}
+.ychip{display:inline-block;background:var(--chip);border-radius:8px;padding:4px 10px;font-size:12px;margin:3px 6px 3px 0}
+.ychip b{font-size:13px}
+.news .nitem{border-top:1px dashed var(--line);padding:8px 0;font-size:13px}
+.news .nitem .t{font-weight:600}
+.news .nitem .s{color:var(--muted);font-size:12px}
+/* ── root landing page ── */
+.hero{padding:30px 26px}
+.hero-kicker{color:#ffd166;font-size:12px;font-weight:700;letter-spacing:2px;
+text-transform:uppercase;margin-bottom:8px}
+.hero h1{font-size:30px;margin:0 0 10px}
+.day-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.day-card{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);
+border-radius:12px;padding:14px 16px;transition:all .15s}
+.day-card:hover{border-color:var(--red);box-shadow:0 4px 16px rgba(216,52,44,.12);transform:translateY(-2px)}
+.day-card .d{font-weight:800;font-size:15px;color:var(--ink);display:flex;align-items:center;gap:8px}
+.day-card .m{margin-top:8px;display:flex;gap:6px}
+.day-card .m span{background:var(--chip);color:var(--muted);border-radius:6px;
+padding:2px 8px;font-size:11px}
+.latest-badge{background:var(--red);color:#fff;border-radius:6px;padding:1px 7px;
+font-size:10px;font-weight:700}
+</style>
+</head>
+<body><div class="wrap">
+<div class="backbar"><a href="../index.html">← 总览</a><a href="../us.html">← 美股榜单</a></div>
+<header class="top">
+  <h1><span class="badge red">红榜 #6</span>BDX<span class="tk" style="opacity:.7;font-size:15px;font-weight:400;margin-left:8px">BDX</span></h1>
+  <div class="sub">美股 ·  · 榜单日期 <b>2026-08-07</b> · 盘价采集 <b>2026-08-07 05:00:13</b></div>
+  <div class="price-row" style="margin-top:12px">
+    <span class="price" style="color:#fff">$177.07</span>
+    <span class="pct up">+3.76%</span>
+    <span class="psrc" style="color:rgba(255,255,255,.6)">实时</span>
+  </div>
+  <div class="scores" style="margin-top:10px">
+    <span>综合 <b>87.5</b></span>
+    <span>多头 <b>80</b></span>
+    <span>空头 <b>20</b></span>
+    <span>大师均值 <b>75</b></span>
+    <span>信号 <b>positive</b></span>
+  </div>
+</header>
+<div class="trade"><div class="cell"><div class="k">交易评级</div><span class="v buy">Buy</span></div><div class="cell"><div class="k">加仓区间</div><span class="v">171.76 ~ 178.84</span></div><div class="cell"><div class="k">目标价</div><span class="v">198.32</span></div><div class="cell"><div class="k">伯克希尔</div><span class="v">买入</span></div><div class="cell"><div class="k">伯克希尔分</div><span class="v">4.00</span></div></div>
+<div class="panel"><h2>财务指标</h2><div class="mgrid"><div class="m"><div class="k">市盈率 PE</div><div class="v">30.85</div></div><div class="m"><div class="k">市净率 PB</div><div class="v">2.02</div></div><div class="m"><div class="k">ROE</div><div class="v">6.7%</div></div><div class="m"><div class="k">总市值</div><div class="v">488</div></div><div class="m"><div class="k">营收同比</div><div class="v">5.2%</div></div></div></div>
+<div class="panel"><h2>历史收益</h2><span class="ychip">近1月 <b class="up">+13.29%</b></span><span class="ychip">近6月 <b class="up">+8.60%</b></span><span class="ychip">近1年 <b class="up">+20.01%</b></span><span class="ychip">近5年 <b class="down">-3.22%</b></span></div>
+<div class="panel"><h2>大师圆桌<span class="sub">5 位</span></h2><div class="mreply"><div class="mh"><span class="who">段永平</span><span class="mscore">72</span></div><div class="md"><h4>段永平的圆桌发言：关于 BDX 的看法</h4><p><strong>结论：</strong></p><p>BDX 是一家值得关注的医疗保健公司，但目前的价格可能已经反映了大部分的增长预期。</p><p><strong>理由：</strong></p><ul><li><strong>医疗保健行业的防御属性</strong>：BDX 所在的医疗保健行业具有较强的防御属性，在经济波动中通常表现较为稳定。这为投资者提供了一定的安全边际。</li><li><strong>股价表现强劲</strong>：从股价走势来看，BDX 近期表现强势，说明市场对其业务模式和发展前景有较高的认可。</li><li><strong>长期前景看好</strong>：医疗行业整体前景良好，随着人口老龄化和健康意识的提升，BDX 所在的细分市场有望持续增长。</li></ul><p><strong>风险/行动建议：</strong></p><ul><li><strong>估值偏高</strong>：当前 PE 约为 30 倍，相对于其 ROE 水平，估值略高。这意味着市场已经对其未来增长有较高的预期，未来股价可能面临回调压力。</li><li><strong>涨幅较大可能回调</strong>：近期股价上涨较多，投资者需要警惕短期回调的风险。如果市场情绪发生变化，可能会出现获利回吐的情况。</li><li><strong>长期持有的价值</strong>：如果你是一个长期投资者，并且相信医疗行业的长期增长潜力，那么 BDX 仍然是一个值得考虑的投资标的。但需要注意的是，买入时点很重要，当前可能不是最好的买入时机。</li></ul><p><strong>行动建议：</strong></p><ul><li><strong>观望为主</strong>：如果还没有买入，建议暂时观望，等待更好的买入时机。</li><li><strong>分批买入</strong>：如果非常看好 BDX 的长期前景，可以考虑分批买入，以降低短期波动带来的风险。</li><li><strong>关注基本面变化</strong>：持续关注 BDX 的基本面变化，特别是其营收增长和利润率的变化，以确保其长期增长逻辑没有发生变化。</li></ul><p><strong>别错过的隐含约束：</strong></p><p>不要因为短期的股价上涨而忽视长期的基本面分析。投资决策应该基于对公司的深入理解和长期价值的判断，而不是短期的市场情绪。</p></div></div><div class="mreply"><div class="mh"><span class="who">巴菲特</span><span class="mscore">78</span></div><div class="md"><p>各位朋友，今天我们来聊聊BDX这家公司。</p><p>首先，我得说，BDX是一家相当不错的公司。它身处医疗保健行业，这个领域本身就具有很强的防御属性。无论经济环境如何变化，人们对医疗服务的需求总是相对稳定的，这为BDX提供了很好的护城河。</p><p>从数据上看，BDX的股价表现相当强劲，过去一段时间一直处于上涨趋势。目前股价在177美元左右，市盈率约31倍，市净率2.02倍。从这些指标来看，市场对BDX的预期还是比较乐观的。而且，它的营收同比增长5.2%，虽然不算特别亮眼，但在当前环境下也算稳健。</p><p>然而，我们也要看到一些潜在的风险。首先，BDX的股价已经上涨了不少，这可能会带来回调的压力。其次，虽然医疗保健行业本身具有防御性，但BDX的估值并不算便宜。市盈率31倍，对于一家传统医疗企业来说，还是有些偏高的。</p><p>所以，我的看法是：</p><p>如果你已经持有BDX，并且是在一个合理的价格买入的，那么继续持有可能是明智的选择。医疗保健行业的长期前景依然看好，BDX的竞争优势也较为明显。</p><p>但如果你现在考虑买入，我建议你谨慎一些。考虑到当前的估值水平，你可能需要等待一个更好的价格再出手。毕竟，安全边际是我们投资时必须考虑的重要因素。</p><p>最后，我想提醒大家，投资就像打棒球，你不需要每次都挥棒。在市场情绪高涨的时候，保持耐心和定力尤为重要。如果BDX的价格出现回调，那可能才是更好的买入时机。</p><p>如果是芒格，他会补充说：&quot;投资就像经营果园，不要因为一时的天气变化而乱了阵脚。重要的是选择好树苗，然后耐心等待它们成长。&quot;</p></div></div><div class="mreply"><div class="mh"><span class="who">达利欧</span><span class="mscore">70</span></div><div class="md"><h4>发言</h4><p>各位同仁，今天我们讨论的是BDX这家公司。从我的角度来看，BDX目前处于一个相对有利的位置，但也有一些需要警惕的风险。</p><h5>结论</h5><p>我倾向于对BDX持部分看好的态度，主要基于其行业特性和近期表现。</p><h5>理由</h5><p>首先，BDX所在的医疗保健行业具有天然的防御属性。在经济波动或市场不确定性增加时，医疗保健行业的需求通常较为稳定，这为BDX提供了一个相对安全的经营环境。此外，BDX的股价近期表现强势，这反映了市场对其业务模式和增长潜力的认可。</p><p>其次，从估值角度来看，虽然BDX的市盈率（PE）为30.8，略高于市场平均水平，但其市净率（PB）为2.02，处于相对合理的区间。这表明市场对其资产质量和盈利能力有一定的信心。</p><h5>风险与行动建议</h5><p>然而，我们也需要注意到一些潜在的风险：</p><ul><li><strong>涨幅较大可能回调</strong>：BDX股价近期上涨较快，可能面临短期回调的压力。对于短期投资者来说，这可能是一个需要警惕的信号。</li><li><strong>估值略高</strong>：尽管PE和PB指标尚在合理范围内，但与历史数据相比，当前估值处于较高水平。如果市场情绪发生变化，可能导致估值回调。</li></ul><p>基于以上分析，我建议：</p><ul><li><strong>长期投资者</strong>：如果你是长期投资者，并且能够承受短期波动，可以考虑继续持有BDX，利用其防御属性来平衡投资组合的风险。</li><li><strong>短期投资者</strong>：对于短期投资者，建议密切关注市场动态，适时进行仓位调整，以规避潜在的回调风险。</li></ul><p>最后，我想强调的是，任何投资决策都应基于对自身风险承受能力的清晰认知，并结合整体投资组合的策略进行考量。希望大家在决策时能够保持冷静和理性。</p></div></div><div class="mreply"><div class="mh"><span class="who">林奇</span><span class="mscore">75</span></div><div class="md"><p>各位好，关于BDX这只股票，我的看法是：这是一只值得关注的医疗保健公司，但目前价格确实不便宜。</p><p>首先，BDX作为一家医疗保健公司，拥有不错的防御属性。医疗行业本身具有长期增长潜力，因为无论经济好坏，人们都需要医疗服务。而且从股价表现来看，它最近走势强劲，这反映了市场对这类防御性资产的青睐。</p><p>然而，我必须指出，目前BDX的估值已经偏高。市盈率PE达到30倍，对于一家医疗公司来说，这个估值水平已经不算便宜。虽然医疗行业可以享受一定的估值溢价，但这个价位买入需要谨慎。</p><p>再从风险角度来看：</p><ul><li>股价已经累积了较大涨幅，存在回调的可能性</li><li>估值偏高意味着安全边际不足</li><li>虽然医疗行业长期向好，但具体到BDX，还需要关注其核心产品的市场竞争力和研发管线</li></ul><p>基于以上分析，我建议：</p><ul><li>如果你已经在持有BDX，可以考虑部分获利了结，等待更好的买入时机</li><li>如果你打算买入，建议耐心等待股价回调，或者在出现明显的技术性回调后再考虑介入</li><li>密切关注公司基本面变化，特别是新产品研发和市场拓展情况</li></ul><p>记住，投资医疗股要像投资一门生意一样，关注长期价值而不是短期波动。虽然BDX是一家优质公司，但现在可能不是最好的买入时机。我们要做的是在合理的价格买入好公司，而不是为任何股票支付过高的价格。</p></div></div><div class="mreply"><div class="mh"><span class="who">芒格</span><span class="mscore">80</span></div><div class="md"><p>各位同仁，关于 BDX 这家公司，我有以下看法：</p><p>首先，我得说，这家公司值得一看。它在医疗保健领域有很强的地位，这个行业本身就具有很强的防御属性。在当前的市场环境下，医疗保健行业的稳定性是一个重要优势。此外，股价表现强势，这通常是市场对公司基本面认可的一个信号。</p><p>然而，我们不能只看优点。BDX 的估值已经不算便宜，市盈率达到了 30 倍左右，这在一定程度上反映了市场对其未来增长的预期。同时，股价的快速上涨也可能意味着短期内存在回调的风险。我们不能忽视这些潜在的风险。</p><p>从商业模式来看，BDX 确实有其独到之处。医疗保健行业本身就是一个长期稳定增长的领域，而 BDX 在其中占据了一席之地。这种稳定性在当前的经济环境下显得尤为珍贵。</p><p>接下来谈谈风险。短期内，股价可能因为涨幅过大而出现回调。此外，高估值意味着市场对其未来增长的预期很高，一旦业绩不达预期，可能会面临较大的调整压力。</p><p>基于以上分析，我的建议是：</p><ul><li>如果你已经在持有 BDX，可以继续持有，但需要密切关注其业绩表现和市场动态。</li><li>如果你正在考虑买入，建议等待一个更好的入场时机，比如在股价回调时。</li><li>无论如何，都要做好风险管理，不要因为看好其长期前景而忽视了短期的波动。</li></ul><p>最后，我想说，任何投资决策都要考虑自身的风险承受能力和投资目标。BDX 是一家好公司，但好公司也需要好价格。希望大家在决策时都能保持理性，避免被市场的短期波动所左右。</p></div></div></div>
+<div class="panel"><h2>分析师报告<span class="sub">2 篇</span></h2><details open><summary>市场面分析</summary><div class="body"><div class="md"><h4>BDX BDX 市场面分析</h4><ul><li>红黑榜多空分数：多头 80 / 空头 20，分差 60。</li><li>当前价格：177.07。</li><li>当前交易评级：Buy。</li><li>值得加仓区间：171.76 - 178.84。</li><li>目标价格：198.32。</li><li>市场愿意给溢价的原因：股价强势上涨；医疗保健防御属性。</li><li>当前主要压制因素：涨幅较大可能回调；估值略高。</li></ul></div></div></details><details open><summary>基本面分析</summary><div class="body"><div class="md"><h4>BDX BDX 基本面分析</h4><ul><li>报告期：暂无。</li><li>PE(TTM)：30.85。</li><li>PB：2.02。</li><li>ROE：6.67%。</li><li>营收同比：5.20%。</li><li>核心判断：收入仍在增长。</li></ul></div></div></details></div>
+<div class="panel"><h2>研究与计划</h2>
+<details><summary>基本面摘要</summary><div class="body"><div class="md"><h3>核心财务快照</h3><ul><li>报告期: 数据缺失</li><li>当前股价: 177.07 元</li><li>总市值: 487.90 亿元</li><li>PE (TTM): 30.85</li><li>PB: 2.02</li><li>PS (TTM): 数据缺失</li><li>营业总收入(报告期): 数据缺失 亿元</li><li>营收同比增长率: 5.20%</li><li>归母净利润(报告期): 数据缺失 亿元</li><li>归母净利润同比增长率: 数据缺失</li><li>ROE (TTM/估算): 6.67%</li><li>资产负债率: 数据缺失</li><li>经营性现金流 / 归母净利润: 数据缺失</li></ul><h4>缺失字段</h4><ul><li>PS(TTM), 营业总收入, 归母净利润, 归母净利润同比增长率, 资产负债率, 经营性现金流与归母净利润比值</li></ul></div></div></details>
+<details><summary>研究计划</summary><div class="body"><div class="md"><h4>BDX BDX 研究摘要</h4><ul><li>红黑榜结论: Buy</li><li>多头/空头: 80/20</li><li>正向信号: 营收同比 5.20%；PE(TTM) 30.85；PB 2.02</li><li>风险信号: ROE 6.67%</li><li>榜单看多理由: 股价强势上涨；医疗保健防御属性</li><li>榜单风险提示: 涨幅较大可能回调；估值略高</li></ul></div></div></details>
+<details><summary>交易计划</summary><div class="body"><div class="md"><h4>BDX BDX 交易计划</h4><ul><li>评级: Buy</li><li>当前价格: 177.07</li><li>值得加仓区间: 171.76 - 178.84</li><li>目标价格: 198.32</li><li>止损位: 162.90</li><li>备注: 当前为缓存降级交易卡，后续若完整 TradingAgent 结果生成，将自动覆盖。</li></ul></div></div></details>
+<details><summary>交易决策</summary><div class="body"><div class="md"><p>Buy</p><p>BDX BDX 当前使用红黑榜缓存结果生成兜底交易卡。多头 80 / 空头 20，分差 60。当前尚未取得完整 TradingAgent 长文决策，但榜单分数、财务快照和大师观点已经足够生成基础交易建议。</p></div></div></details>
+</div>
+<div class="panel"><h2>多空逻辑</h2><div class="pts"><div class="h bull">看多逻辑</div><div class="md"><p>股价强势上涨</p><p>医疗保健防御属性</p></div></div><div class="pts"><div class="h bear">看空逻辑</div><div class="md"><p>涨幅较大可能回调</p><p>估值略高</p></div></div></div>
+<div class="panel"><h2>伯克希尔研究</h2><p><strong>BDX是一家具有强大护城河、稳健财务和长期确定性的医疗设备与诊断公司，当前估值合理，适合长期投资者关注。</strong></p><p>伯克希尔综合评分：<strong>4.0</strong></p><div class="md"><p>{&quot;verdict&quot;: &quot;买入&quot;, &quot;conservative_tip&quot;: &quot;建议在PE TTM低于22倍时买入，目标价区间为250-270美元。&quot;, &quot;moderate_tip&quot;: &quot;建议在PE TTM低于24倍时买入，目标价区间为260-280美元。&quot;, &quot;aggressive_tip&quot;: &quot;建议在PE TTM低于20倍时买入，目标价区间为270-290美元。&quot;, &quot;catalysts_plus&quot;: [&quot;新产品或新市场拓展取得突破。&quot;, &quot;医疗行业政策利好。&quot;, &quot;盈利能力持续提升，利润率改善。&quot;], &quot;catalysts_minus&quot;: [&quot;重大医疗政策变化导致需求下降。&quot;, &quot;竞争加剧导致市场份额下降。&quot;, &quot;利润率因成本上升而下降。&quot;]}</p></div></div>
+<div class="panel news"><h2>最新资讯</h2><div class="md"><p>BDX整体情绪偏利好，共7条利多，3条中性，1条利空。</p></div><div class="nitem"><div class="t">BDX rises after third-quarter beat and higher 2026 profit outlook</div><div class="s">Quiver Quantitative · 利好</div></div><div class="nitem"><div class="t">Becton Dickinson (BDX) Q3 Earnings: Taking a Look at Key Metrics Versus Estimates</div><div class="s">finance.yahoo.com · 中性</div></div><div class="nitem"><div class="t">Becton, Dickinson and Company (BDX) Q3 2026 Earnings Call Transcript</div><div class="s">AlphaStreet · 中性</div></div><div class="nitem"><div class="t">BD Stock Up in Pre-Market Post Q3 Earnings &amp; Revenue Beat, Margins Down</div><div class="s">TradingView · 利好</div></div><div class="nitem"><div class="t">Is Becton Dickinson (BDX) Undervalued After Q3 Earnings Miss wit</div><div class="s">GuruFocus · 利空</div></div><div class="nitem"><div class="t">Becton, Dickinson and Company 2026 Q3 - Results - Earnings Call Presentation (NYSE:BDX) 2026-08-06</div><div class="s">Seeking Alpha · 中性</div></div><div class="nitem"><div class="t">(BDX) Becton Dickinson Expects Fiscal 2026 Adjusted EPS Range $12.62 to $12.72,vs. FactSet Est of $12.61</div><div class="s">marketscreener.com · 利好</div></div><div class="nitem"><div class="t">Becton Dickinson Signals Strong Growth Momentum By Raising Profit Outlook</div><div class="s">benzinga.com · 利好</div></div></div>
+<footer>稳健理财Agent · 红黑榜每日归档 · 红榜 #6 · 仅供研究，不构成投资建议</footer>
+</div></body>
+</html>

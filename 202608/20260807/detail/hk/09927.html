@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>赛力斯(09927) 黑榜 2026-08-07</title>
+<style>
+:root{--red:#d8342c;--redbg:#fdecea;--green:#1a9e54;--ink:#1c2230;--muted:#6b7385;
+--line:#e7e9ef;--card:#fff;--bg:#f4f6fa;--chip:#eef1f6;--dark:#23262d;--darkbg:#ececef}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",
+"Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);
+line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 16px 64px}
+header.top{background:linear-gradient(135deg,#1c2230,#2c3550);color:#fff;border-radius:14px;
+padding:22px 24px;margin-bottom:20px;box-shadow:0 6px 24px rgba(20,26,46,.12)}
+header.top h1{margin:0 0 6px;font-size:24px;letter-spacing:.5px}
+header.top .sub{opacity:.85;font-size:13px}
+header.top .sub b{color:#ffd166;font-weight:600}
+nav.mkt{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;
+background:rgba(244,246,250,.92);backdrop-filter:blur(6px);padding:10px 0;margin-bottom:14px}
+nav.mkt a{text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);
+padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600}
+nav.mkt a:hover{border-color:var(--red);color:var(--red)}
+.summary{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.summary .chip{background:var(--card);border:1px solid var(--line);border-radius:10px;
+padding:8px 12px;font-size:12px;color:var(--muted)}
+.summary .chip b{color:var(--ink);font-size:14px;margin-left:4px}
+section.board{margin:26px 0}
+.board-title{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:19px}
+.board-title .dot{width:10px;height:10px;border-radius:50%}
+.board-title.red .dot{background:var(--red)}
+.board-title.black .dot{background:var(--dark)}
+.board-title small{color:var(--muted);font-weight:400;font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+position:relative;transition:box-shadow .15s}
+.card:hover{box-shadow:0 4px 18px rgba(20,26,46,.08)}
+.card.red{border-top:3px solid var(--red)}
+.card.black{border-top:3px solid var(--dark)}
+.rank{position:absolute;top:10px;right:12px;font-size:26px;font-weight:800;color:#eceff5}
+.card.red .rank{color:#fbdcD9}
+.nm{font-size:16px;font-weight:700}
+.nm .tk{color:var(--muted);font-weight:500;font-size:12px;margin-left:6px}
+.tag{display:inline-block;background:var(--chip);color:var(--muted);border-radius:6px;
+padding:1px 7px;font-size:11px;margin:6px 6px 0 0}
+.price-row{display:flex;align-items:baseline;gap:10px;margin:10px 0 4px}
+.price{font-size:24px;font-weight:800}
+.pct{font-size:14px;font-weight:700;padding:2px 8px;border-radius:8px}
+.up{color:var(--red)}.down{color:var(--green)}.flat{color:var(--muted)}
+.pct.up{background:var(--redbg)}.pct.down{background:#e2f4e9}.pct.flat{background:var(--chip)}
+.psrc{font-size:11px;color:var(--muted);margin-left:auto}
+.scores{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.scores span{background:var(--chip);border-radius:6px;padding:2px 8px;font-size:11px;color:var(--muted)}
+.scores span b{color:var(--ink)}
+.pts{font-size:12.5px;margin:8px 0 0}
+.pts .h{font-weight:700;font-size:12px;margin:6px 0 2px}
+.pts .h.bull{color:var(--red)}.pts .h.bear{color:var(--green)}
+.pts ul{margin:2px 0 4px;padding-left:18px;color:#3a4152}
+.pts li{margin:1px 0}
+.masters{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:11px;color:var(--muted)}
+.masters b{color:var(--ink)}
+.summ{font-size:12.5px;color:#3a4152;background:#fafbfd;border:1px solid var(--line);
+border-radius:8px;padding:8px 10px;margin-top:8px}
+.empty{color:var(--muted);background:var(--card);border:1px dashed var(--line);
+border-radius:10px;padding:18px;text-align:center}
+footer{margin-top:34px;color:var(--muted);font-size:12px;text-align:center;line-height:1.8}
+a.lnk{color:var(--red);text-decoration:none}
+/* ── detail page ── */
+.backbar{margin-bottom:14px;font-size:13px}
+.backbar a{color:var(--muted);text-decoration:none;margin-right:14px}
+.backbar a:hover{color:var(--red)}
+.badge{display:inline-block;border-radius:6px;padding:2px 10px;font-size:12px;font-weight:700;margin-right:8px}
+.badge.red{background:var(--red);color:#fff}.badge.black{background:var(--dark);color:#fff}
+.trade{display:flex;flex-wrap:wrap;gap:10px;background:linear-gradient(135deg,#2c3550,#1c2230);
+color:#fff;border-radius:12px;padding:16px 18px;margin:16px 0}
+.trade .cell{min-width:120px}
+.trade .k{font-size:11px;opacity:.75}
+.trade .v{font-size:18px;font-weight:800;margin-top:2px}
+.trade .v.buy{color:#7ee2a8}.trade .v.sell{color:#ff9d97}.trade .v.hold{color:#ffd166}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0}
+.mgrid .m{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.mgrid .m .k{font-size:11px;color:var(--muted)}
+.mgrid .m .v{font-size:16px;font-weight:700;margin-top:2px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.panel>h2{margin:0 0 12px;font-size:17px}
+.panel>h2 .sub{font-size:12px;color:var(--muted);font-weight:400;margin-left:8px}
+.mreply{border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;
+padding:12px 14px;margin:10px 0;background:#fff}
+.mreply .mh{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.mreply .mh .who{font-weight:700;font-size:14px}
+.mreply .mh .mscore{margin-left:auto;background:var(--chip);border-radius:6px;padding:1px 8px;font-size:12px;font-weight:700}
+.md h2,.md h3,.md h4,.md h5{margin:12px 0 6px;font-size:15px}
+.md p{margin:6px 0;font-size:13.5px;color:#2c3345}
+.md ul{margin:6px 0;padding-left:20px;font-size:13.5px;color:#2c3345}
+.md li{margin:3px 0}
+.md strong{color:var(--ink)}
+details{border:1px solid var(--line);border-radius:10px;background:#fff;margin:10px 0;padding:0}
+details>summary{cursor:pointer;padding:12px 16px;font-weight:700;font-size:14px;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary:before{content:"▸ ";color:var(--red)}
+details[open]>summary:before{content:"▾ "}
+details>.body{padding:0 16px 14px;border-top:1px dashed var(--line)}
+.ychip{display:inline-block;background:var(--chip);border-radius:8px;padding:4px 10px;font-size:12px;margin:3px 6px 3px 0}
+.ychip b{font-size:13px}
+.news .nitem{border-top:1px dashed var(--line);padding:8px 0;font-size:13px}
+.news .nitem .t{font-weight:600}
+.news .nitem .s{color:var(--muted);font-size:12px}
+/* ── root landing page ── */
+.hero{padding:30px 26px}
+.hero-kicker{color:#ffd166;font-size:12px;font-weight:700;letter-spacing:2px;
+text-transform:uppercase;margin-bottom:8px}
+.hero h1{font-size:30px;margin:0 0 10px}
+.day-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.day-card{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);
+border-radius:12px;padding:14px 16px;transition:all .15s}
+.day-card:hover{border-color:var(--red);box-shadow:0 4px 16px rgba(216,52,44,.12);transform:translateY(-2px)}
+.day-card .d{font-weight:800;font-size:15px;color:var(--ink);display:flex;align-items:center;gap:8px}
+.day-card .m{margin-top:8px;display:flex;gap:6px}
+.day-card .m span{background:var(--chip);color:var(--muted);border-radius:6px;
+padding:2px 8px;font-size:11px}
+.latest-badge{background:var(--red);color:#fff;border-radius:6px;padding:1px 7px;
+font-size:10px;font-weight:700}
+</style>
+</head>
+<body><div class="wrap">
+<div class="backbar"><a href="../index.html">← 总览</a><a href="../hk.html">← 港股榜单</a></div>
+<header class="top">
+  <h1><span class="badge black">黑榜 #2</span>赛力斯<span class="tk" style="opacity:.7;font-size:15px;font-weight:400;margin-left:8px">09927</span></h1>
+  <div class="sub">港股 ·  · 榜单日期 <b>2026-08-07</b> · 盘价采集 <b>2026-08-07 05:00:13</b></div>
+  <div class="price-row" style="margin-top:12px">
+    <span class="price" style="color:#fff">HK$43.00</span>
+    <span class="pct down">-4.91%</span>
+    <span class="psrc" style="color:rgba(255,255,255,.6)">实时</span>
+  </div>
+  <div class="scores" style="margin-top:10px">
+    <span>综合 <b>26.9</b></span>
+    <span>多头 <b>40</b></span>
+    <span>空头 <b>80</b></span>
+    <span>大师均值 <b>30</b></span>
+    <span>信号 <b>negative</b></span>
+  </div>
+</header>
+<div class="trade"><div class="cell"><div class="k">交易评级</div><span class="v hold">Reduce</span></div><div class="cell"><div class="k">加仓区间</div><span class="v">38.70 ~ 40.42</span></div><div class="cell"><div class="k">伯克希尔</div><span class="v">观望</span></div><div class="cell"><div class="k">伯克希尔分</div><span class="v">2.75</span></div></div>
+<div class="panel"><h2>财务指标</h2><div class="mgrid"><div class="m"><div class="k">市盈率 PE</div><div class="v">11.28</div></div><div class="m"><div class="k">市净率 PB</div><div class="v">1.60</div></div><div class="m"><div class="k">ROE</div><div class="v">1.8%</div></div><div class="m"><div class="k">总市值</div><div class="v">749</div></div><div class="m"><div class="k">营收同比</div><div class="v">4.0%</div></div><div class="m"><div class="k">净利同比</div><div class="v">0.1%</div></div></div></div>
+<div class="panel"><h2>历史收益</h2><span class="ychip">近1月 <b class="down">-9.78%</b></span><span class="ychip">近6月 <b class="down">-55.11%</b></span><span class="ychip">近1年 <b class="down">-66.87%</b></span></div>
+<div class="panel"><h2>大师圆桌<span class="sub">5 位</span></h2><div class="mreply"><div class="mh"><span class="who">段永平</span><span class="mscore">30</span></div><div class="md"><p>各位好，关于赛力斯（09927），我的看法是这样的：</p><p>首先，我认为赛力斯目前可能不是最好的投资选择。主要原因是其竞争格局令人担忧。虽然新能源汽车行业整体前景不错，赛力斯也具备一定的技术创新能力，但这些优势似乎未能转化为足够的竞争力。当前股价大幅下跌，市场竞争激烈，这些因素都增加了投资的不确定性。</p><p>从财务数据来看，虽然市盈率（PE）不算高，约为11倍，但净资产收益率（ROE）仅为1.8%，净利润增长率也只有11%，这些都显示出公司盈利能力较弱。考虑到市场竞争加剧，这种状况可能在短期内难以改善。</p><p>我的建议是，在投资之前，需要更深入地了解赛力斯在行业中的具体定位，以及其能否在激烈的竞争中找到差异化优势。如果对公司的长期竞争力没有足够的信心，可能需要谨慎对待。</p><p>至于行动建议，如果已经持有赛力斯的股票，建议密切关注公司战略调整和市场反应。如果没有持仓，或许可以先观察一段时间，等待更明确的信号。</p><p>最后，我想提醒大家，投资决策不应只看短期数据，更要关注公司的长期竞争力和行业格局。希望大家在做决定时，能保持冷静和理性。</p></div></div><div class="mreply"><div class="mh"><span class="who">巴菲特</span><span class="mscore">25</span></div><div class="md"><p>各位朋友，今天我们来聊聊赛力斯这家公司。我的总体看法是，这家公司的商业模式目前看起来并不够稳定，让我感到有些担忧。</p><p>首先，新能源汽车行业确实是一个充满前景的领域，赛力斯也展现出了一定的技术创新能力，这两点是值得肯定的。然而，当我们深入分析这家公司时，会发现一些问题。首先，股价已经大幅下跌，这通常是一个警示信号。此外，市场竞争非常激烈，这对公司的盈利能力构成了压力。</p><p>从财务数据来看，赛力斯的市盈率（PE）为11.28，市净率（PB）为1.60，市销率（PS）为0.39，这些指标显示市场对公司的估值并不高。净资产收益率（ROE）仅为1.84%，净利润率也只有2.37%，这些都表明公司的盈利能力相对较弱。尽管营收同比增长了4%，但净利润的同比增长几乎可以忽略不计，这让我对公司的长期竞争力产生疑问。</p><p>在这种情况下，我建议大家要特别谨慎。如果你们正在考虑投资赛力斯，我建议你们先问自己几个问题：这家公司如何在未来几年内保持竞争力？它的技术创新能否转化为持续的盈利能力？市场竞争格局会如何演变？</p><p>风险方面，赛力斯面临的主要风险包括市场竞争加剧、技术更新换代带来的挑战以及盈利能力不足。如果这些问题得不到有效解决，公司的长期发展前景将受到严重影响。</p><p>行动建议上，我建议大家在投资前要仔细评估公司的基本面，特别是要关注其盈利能力的改善情况。如果没有明确的迹象表明公司能够扭转当前的盈利困境，那么保持观望可能是更为明智的选择。</p><p>最后，我想说的是，投资就像打棒球，你不需要每次都挥棒。对于赛力斯这样的公司，我们需要更多的耐心和观察，以确保我们做出的投资决策是经过深思熟虑的。</p><p>如果是芒格，他会补充说：&quot;在投资中，耐心和纪律是最重要的品质。我们不需要抓住每一个机会，而是要等待那些真正有把握的机会。&quot;</p></div></div><div class="mreply"><div class="mh"><span class="who">达利欧</span><span class="mscore">40</span></div><div class="md"><h4>圆桌发言：关于赛力斯（09927）的看法</h4><h5>结论</h5><p>我目前对赛力斯持谨慎态度。虽然新能源汽车行业前景广阔，但赛力斯面临的市场竞争和估值压力不容忽视。</p><h5>理由</h5><p>首先，从行业角度来看，新能源汽车无疑是未来发展的趋势，这一点为赛力斯提供了长期增长的可能性。公司在技术创新方面也展现出一定的竞争力，这是其优势所在。</p><p>然而，当我们深入分析赛力斯的现状时，会发现一些令人担忧的因素：</p><ul><li><strong>股价大幅下跌</strong>：这表明市场对公司当前的表现和未来预期存在较大分歧。股价的波动性增加，投资风险也随之上升。</li><li><strong>市场竞争激烈</strong>：新能源汽车行业虽然前景广阔，但竞争者众多，赛力斯能否在这样的环境中脱颖而出仍是一个未知数。</li><li><strong>估值偏高</strong>：尽管公司的市盈率（PE）为11.28，看起来并不算高，但考虑到其净资产收益率（ROE）仅为1.84%，以及净利润增长率仅为11.2%，当前的估值水平可能并不具备足够的安全边际。</li></ul><h5>风险/行动建议</h5><ul><li><strong>风险提示</strong>：</li><li>市场竞争加剧可能导致市场份额下降，进而影响盈利能力。</li><li>股价波动性较高，投资者需要做好心理准备，承受可能的短期损失。</li></ul><ul><li><strong>行动建议</strong>：</li><li>如果你已经在持有赛力斯的股票，建议密切关注公司的基本面变化，特别是其技术创新和市场拓展情况。同时，可以考虑设定止损点，以控制潜在的下行风险。</li><li>如果你正在考虑买入，建议等待更明确的信号，比如公司市场份额的提升或盈利能力的改善。当前阶段，观望可能是更明智的选择。</li></ul><h5>原则化收口</h5><p>在做出投资决策时，我们应当遵循“痛苦加反思等于进步”的原则。当前赛力斯的情况提醒我们，在面对不确定性时，保持谨慎和灵活性是至关重要的。建议将这次分析记录在决策日志中，以便未来回顾和反思。</p><p>总结来说，赛力斯虽然身处一个有前景的行业，但目前面临的挑战不容小觑。投资者需要根据自身的风险承受能力和投资目标，审慎做出决策。</p></div></div><div class="mreply"><div class="mh"><span class="who">林奇</span><span class="mscore">35</span></div><div class="md"><p>各位朋友，关于赛力斯这只股票，我来说说我的看法。</p><h4>结论：</h4><p>我目前对赛力斯持谨慎态度。虽然新能源汽车行业前景广阔，但赛力斯面临的挑战不容忽视。</p><h4>理由：</h4><p>首先，新能源汽车行业无疑是未来几年增长最快的领域之一。中国作为全球最大的汽车市场，电动化趋势不可逆转。从这个角度看，赛力斯所处的赛道确实很有吸引力。</p><p>然而，我们也要看到赛力斯目前面临的一些现实问题：</p><ul><li><strong>市场竞争异常激烈</strong>：不仅是传统车企在加速转型，特斯拉、比亚迪等领先企业已经占据了相当大的市场份额。赛力斯要想突围并不容易。</li></ul><ul><li><strong>财务表现平平</strong>：从数据来看，赛力斯的营收增长只有4%，净利润增长更是只有11%。对于一家处于高速发展行业的企业来说，这样的增速显然不够理想。</li></ul><ul><li><strong>股价大幅下跌</strong>：从市场表现来看，投资者似乎已经对赛力斯的未来产生了担忧。股价的下跌反映了市场信心的不足。</li></ul><h4>风险/行动建议：</h4><p>对于想要投资赛力斯的朋友，我建议大家要格外谨慎：</p><ul><li><strong>密切关注公司战略执行情况</strong>：赛力斯能否在竞争中脱颖而出，关键要看其技术创新能力和市场策略执行情况。如果公司能够推出具有竞争力的新产品，并有效降低成本，那么未来还有机会。</li></ul><ul><li><strong>耐心等待更明确的信号</strong>：目前来看，赛力斯的财务表现和市场表现都不够理想。建议投资者耐心等待公司业绩出现明显改善的迹象，比如营收和利润增速的提升。</li></ul><ul><li><strong>做好风险控制</strong>：如果决定投资，一定要控制好仓位，不要重仓单一股票。毕竟新能源汽车行业的竞争格局还远未明朗。</li></ul><p>总的来说，赛力斯所处的行业很有吸引力，但公司目前面临的挑战也不小。作为投资者，我们需要保持耐心，等待更明确的信号，同时做好风险管理。</p><p>记住，投资就像种地，要选好种子，更要耐心等待收获的季节。</p></div></div><div class="mreply"><div class="mh"><span class="who">芒格</span><span class="mscore">20</span></div><div class="md"><h4>结论：</h4><p>赛力斯目前的投资价值并不明显，我建议谨慎对待。</p><h4>理由：</h4><p>首先，让我们从逆向思维的角度来看。赛力斯面临的主要风险显而易见：</p><ul><li><strong>股价大幅下跌</strong>：这表明市场对其未来预期正在迅速恶化。股价下跌往往反映的是对未来盈利能力的担忧，而不是短期波动。</li></ul><ul><li><strong>市场竞争激烈</strong>：新能源汽车行业虽然前景广阔，但竞争者众多。赛力斯能否在这样的环境中脱颖而出，需要打一个很大的问号。</li></ul><ul><li><strong>财务指标表现平平</strong>：从提供的财务数据来看，赛力斯的 ROE（净资产收益率）仅为 1.84%，净利润同比增长仅为 0.11%。这些数字并不能支撑其当前的市场估值。</li></ul><p>其次，从激励机制的角度来看，赛力斯需要面对的是整个行业都在争夺市场份额的压力。这种环境下，企业可能会采取激进的策略来抢占市场，而这往往会导致利润率下降和现金流紧张。</p><p>从多元心智模型的角度来看，赛力斯的技术创新能力是一个亮点，但这不足以抵消其在财务和市场方面的劣势。物理学中有一个概念叫做&quot;熵增&quot;，即系统会自发地走向无序。在竞争激烈的市场中，赛力斯需要付出巨大的努力才能维持其市场地位。</p><h4>风险/行动建议：</h4><ul><li><strong>风险</strong>：赛力斯面临的主要风险是市场竞争和盈利能力不足。如果不能有效应对这些挑战，其股价可能会进一步下跌。</li></ul><ul><li><strong>行动建议</strong>：对于投资者来说，当前最重要的是保持耐心，等待更明确的信号。如果赛力斯能够在未来几个季度中展示出更强的盈利能力和市场竞争力，届时再考虑入场也不迟。</li></ul><ul><li><strong>心理陷阱提醒</strong>：不要被&quot;抄底&quot;的心态所迷惑。市场的底部往往比我们预期的要低，而且底部的时间比我们预期的要长。</li></ul><p>总之，赛力斯目前的情况并不符合我投资的标准。正如我常说的：&quot;如果我知道自己死在哪里，我就永远不去那里。&quot; 在没有看到更明确的积极信号之前，我建议保持观望。</p></div></div></div>
+<div class="panel"><h2>分析师报告<span class="sub">2 篇</span></h2><details open><summary>市场面分析</summary><div class="body"><div class="md"><h4>09927 赛力斯 市场面分析</h4><ul><li>红黑榜多空分数：多头 40 / 空头 80，分差 -40。</li><li>当前价格：43.00。</li><li>当前交易评级：Reduce。</li><li>值得加仓区间：38.70 - 40.42。</li><li>风险控制位：37.84。</li><li>市场愿意给溢价的原因：新能源汽车行业前景；技术创新能力。</li><li>当前主要压制因素：股价大幅下跌；市场竞争激烈。</li></ul></div></div></details><details open><summary>基本面分析</summary><div class="body"><div class="md"><h4>09927 赛力斯 基本面分析</h4><ul><li>报告期：暂无。</li><li>PE(TTM)：11.28。</li><li>PB：1.60。</li><li>PS(TTM)：0.39。</li><li>ROE：1.84%。</li><li>营收同比：4.00%。</li><li>归母净利润同比：0.11%。</li><li>核心判断：收入仍在增长；利润端保持扩张。</li></ul></div></div></details></div>
+<div class="panel"><h2>研究与计划</h2>
+<details><summary>基本面摘要</summary><div class="body"><div class="md"><h3>核心财务快照</h3><ul><li>报告期: 数据缺失</li><li>当前股价: 43.00 元</li><li>总市值: 749.05 亿元</li><li>PE (TTM): 11.28</li><li>PB: 1.60</li><li>PS (TTM): 0.39</li><li>营业总收入(报告期): 数据缺失 亿元</li><li>营收同比增长率: 4.00%</li><li>归母净利润(报告期): 数据缺失 亿元</li><li>归母净利润同比增长率: 0.11%</li><li>ROE (TTM/估算): 1.84%</li><li>资产负债率: 数据缺失</li><li>经营性现金流 / 归母净利润: 数据缺失</li></ul><h4>缺失字段</h4><ul><li>营业总收入, 归母净利润, 资产负债率, 经营性现金流与归母净利润比值</li></ul></div></div></details>
+<details><summary>研究计划</summary><div class="body"><div class="md"><h4>09927 赛力斯 研究摘要</h4><ul><li>红黑榜结论: Reduce</li><li>多头/空头: 40/80</li><li>正向信号: 营收同比 4.00%；归母净利润同比 0.11%；PE(TTM) 11.28；PB 1.60</li><li>风险信号: ROE 1.84%</li><li>榜单看多理由: 新能源汽车行业前景；技术创新能力</li><li>榜单风险提示: 股价大幅下跌；市场竞争激烈</li></ul></div></div></details>
+<details><summary>交易计划</summary><div class="body"><div class="md"><h4>09927 赛力斯 交易计划</h4><ul><li>评级: Reduce</li><li>当前价格: 43.00</li><li>值得加仓区间: 38.70 - 40.42</li><li>目标价格: 40.85</li><li>止损位: 37.84</li><li>备注: 当前为缓存降级交易卡，后续若完整 TradingAgent 结果生成，将自动覆盖。</li></ul></div></div></details>
+<details><summary>交易决策</summary><div class="body"><div class="md"><p>Reduce</p><p>09927 赛力斯 当前使用红黑榜缓存结果生成兜底交易卡。多头 40 / 空头 80，分差 -40。当前尚未取得完整 TradingAgent 长文决策，但榜单分数、财务快照和大师观点已经足够生成基础交易建议。</p></div></div></details>
+</div>
+<div class="panel"><h2>多空逻辑</h2><div class="pts"><div class="h bull">看多逻辑</div><div class="md"><p>新能源汽车行业前景</p><p>技术创新能力</p></div></div><div class="pts"><div class="h bear">看空逻辑</div><div class="md"><p>股价大幅下跌</p><p>市场竞争激烈</p></div></div></div>
+<div class="panel"><h2>伯克希尔研究</h2><p><strong>赛力斯是一家处于转型期的智能电动汽车公司，其商业模式具备一定潜力，但面临竞争压力和盈利挑战，需进一步观察其战略执行和市场需求验证。</strong></p><p>伯克希尔综合评分：<strong>2.75</strong></p><div class="md"><p>{&quot;verdict&quot;: &quot;观望&quot;, &quot;conservative_tip&quot;: &quot;建议等待盈利能力改善和市场份额提升后再考虑投资，当前价格区间偏高。&quot;, &quot;moderate_tip&quot;: &quot;可小规模建仓，关注未来几个季度的财务表现和市场份额变化。&quot;, &quot;aggressive_tip&quot;: &quot;若对新能源汽车行业有强烈信心，可逢低买入，但需做好长期持有的准备。&quot;, &quot;catalysts_plus&quot;: [&quot;与华为合作深化&quot;, &quot;毛利率改善&quot;, &quot;市场份额提升&quot;], &quot;catalysts_minus&quot;: [&quot;持续亏损&quot;, &quot;市场竞争加剧&quot;, &quot;现金流恶化&quot;]}</p></div></div>
+<div class="panel news"><h2>最新资讯</h2><div class="md"><p>整体情绪偏利好，共3条利多，1条利空，2条中性。</p></div><div class="nitem"><div class="t">Saidou, Whose &#x27;Relationship&#x27; Was Denied by ByteDance, Is Coming</div><div class="s">Gasgoo · 中性</div></div><div class="nitem"><div class="t">The &quot;Shenzhen Solution&quot; to New Energy Vehicle Insurance</div><div class="s">Gasgoo · 中性</div></div><div class="nitem"><div class="t">Huawei’s EV Partner Seres Is Said to Consider Hong Kong Listing</div><div class="s">Bloomberg.com · 利好</div></div><div class="nitem"><div class="t">10 Chinese companies to watch – and what they reveal about China’s economy</div><div class="s">The World Economic Forum · 中性</div></div><div class="nitem"><div class="t">Explore the New Energy Vehicle Industry in China for 2024</div><div class="s">imd.org · 中性</div></div><div class="nitem"><div class="t">赛力斯(09927.HK)7月13日耗资1.45亿元回购263万股A股</div><div class="s">TradingView · 利好</div></div><div class="nitem"><div class="t">Jinkang SERES SF7’s patent image exposed with predicted price starting RMB 400,000</div><div class="s">Gasgoo · 利好</div></div></div>
+<footer>稳健理财Agent · 红黑榜每日归档 · 黑榜 #2 · 仅供研究，不构成投资建议</footer>
+</div></body>
+</html>
