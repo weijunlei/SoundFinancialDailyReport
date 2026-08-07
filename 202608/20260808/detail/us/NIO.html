@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NIO(NIO) 黑榜 2026-08-08</title>
+<style>
+:root{--red:#d8342c;--redbg:#fdecea;--green:#1a9e54;--ink:#1c2230;--muted:#6b7385;
+--line:#e7e9ef;--card:#fff;--bg:#f4f6fa;--chip:#eef1f6;--dark:#23262d;--darkbg:#ececef}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",
+"Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);
+line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 16px 64px}
+header.top{background:linear-gradient(135deg,#1c2230,#2c3550);color:#fff;border-radius:14px;
+padding:22px 24px;margin-bottom:20px;box-shadow:0 6px 24px rgba(20,26,46,.12)}
+header.top h1{margin:0 0 6px;font-size:24px;letter-spacing:.5px}
+header.top .sub{opacity:.85;font-size:13px}
+header.top .sub b{color:#ffd166;font-weight:600}
+nav.mkt{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;
+background:rgba(244,246,250,.92);backdrop-filter:blur(6px);padding:10px 0;margin-bottom:14px}
+nav.mkt a{text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);
+padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600}
+nav.mkt a:hover{border-color:var(--red);color:var(--red)}
+.summary{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.summary .chip{background:var(--card);border:1px solid var(--line);border-radius:10px;
+padding:8px 12px;font-size:12px;color:var(--muted)}
+.summary .chip b{color:var(--ink);font-size:14px;margin-left:4px}
+section.board{margin:26px 0}
+.board-title{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:19px}
+.board-title .dot{width:10px;height:10px;border-radius:50%}
+.board-title.red .dot{background:var(--red)}
+.board-title.black .dot{background:var(--dark)}
+.board-title small{color:var(--muted);font-weight:400;font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+position:relative;transition:box-shadow .15s}
+.card:hover{box-shadow:0 4px 18px rgba(20,26,46,.08)}
+.card.red{border-top:3px solid var(--red)}
+.card.black{border-top:3px solid var(--dark)}
+.rank{position:absolute;top:10px;right:12px;font-size:26px;font-weight:800;color:#eceff5}
+.card.red .rank{color:#fbdcD9}
+.nm{font-size:16px;font-weight:700}
+.nm .tk{color:var(--muted);font-weight:500;font-size:12px;margin-left:6px}
+.tag{display:inline-block;background:var(--chip);color:var(--muted);border-radius:6px;
+padding:1px 7px;font-size:11px;margin:6px 6px 0 0}
+.price-row{display:flex;align-items:baseline;gap:10px;margin:10px 0 4px}
+.price{font-size:24px;font-weight:800}
+.pct{font-size:14px;font-weight:700;padding:2px 8px;border-radius:8px}
+.up{color:var(--red)}.down{color:var(--green)}.flat{color:var(--muted)}
+.pct.up{background:var(--redbg)}.pct.down{background:#e2f4e9}.pct.flat{background:var(--chip)}
+.psrc{font-size:11px;color:var(--muted);margin-left:auto}
+.scores{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.scores span{background:var(--chip);border-radius:6px;padding:2px 8px;font-size:11px;color:var(--muted)}
+.scores span b{color:var(--ink)}
+.pts{font-size:12.5px;margin:8px 0 0}
+.pts .h{font-weight:700;font-size:12px;margin:6px 0 2px}
+.pts .h.bull{color:var(--red)}.pts .h.bear{color:var(--green)}
+.pts ul{margin:2px 0 4px;padding-left:18px;color:#3a4152}
+.pts li{margin:1px 0}
+.masters{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:11px;color:var(--muted)}
+.masters b{color:var(--ink)}
+.summ{font-size:12.5px;color:#3a4152;background:#fafbfd;border:1px solid var(--line);
+border-radius:8px;padding:8px 10px;margin-top:8px}
+.empty{color:var(--muted);background:var(--card);border:1px dashed var(--line);
+border-radius:10px;padding:18px;text-align:center}
+footer{margin-top:34px;color:var(--muted);font-size:12px;text-align:center;line-height:1.8}
+a.lnk{color:var(--red);text-decoration:none}
+/* ── detail page ── */
+.backbar{margin-bottom:14px;font-size:13px}
+.backbar a{color:var(--muted);text-decoration:none;margin-right:14px}
+.backbar a:hover{color:var(--red)}
+.badge{display:inline-block;border-radius:6px;padding:2px 10px;font-size:12px;font-weight:700;margin-right:8px}
+.badge.red{background:var(--red);color:#fff}.badge.black{background:var(--dark);color:#fff}
+.trade{display:flex;flex-wrap:wrap;gap:10px;background:linear-gradient(135deg,#2c3550,#1c2230);
+color:#fff;border-radius:12px;padding:16px 18px;margin:16px 0}
+.trade .cell{min-width:120px}
+.trade .k{font-size:11px;opacity:.75}
+.trade .v{font-size:18px;font-weight:800;margin-top:2px}
+.trade .v.buy{color:#7ee2a8}.trade .v.sell{color:#ff9d97}.trade .v.hold{color:#ffd166}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0}
+.mgrid .m{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.mgrid .m .k{font-size:11px;color:var(--muted)}
+.mgrid .m .v{font-size:16px;font-weight:700;margin-top:2px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.panel>h2{margin:0 0 12px;font-size:17px}
+.panel>h2 .sub{font-size:12px;color:var(--muted);font-weight:400;margin-left:8px}
+.mreply{border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;
+padding:12px 14px;margin:10px 0;background:#fff}
+.mreply .mh{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.mreply .mh .who{font-weight:700;font-size:14px}
+.mreply .mh .mscore{margin-left:auto;background:var(--chip);border-radius:6px;padding:1px 8px;font-size:12px;font-weight:700}
+.md h2,.md h3,.md h4,.md h5{margin:12px 0 6px;font-size:15px}
+.md p{margin:6px 0;font-size:13.5px;color:#2c3345}
+.md ul{margin:6px 0;padding-left:20px;font-size:13.5px;color:#2c3345}
+.md li{margin:3px 0}
+.md strong{color:var(--ink)}
+details{border:1px solid var(--line);border-radius:10px;background:#fff;margin:10px 0;padding:0}
+details>summary{cursor:pointer;padding:12px 16px;font-weight:700;font-size:14px;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary:before{content:"▸ ";color:var(--red)}
+details[open]>summary:before{content:"▾ "}
+details>.body{padding:0 16px 14px;border-top:1px dashed var(--line)}
+.ychip{display:inline-block;background:var(--chip);border-radius:8px;padding:4px 10px;font-size:12px;margin:3px 6px 3px 0}
+.ychip b{font-size:13px}
+.news .nitem{border-top:1px dashed var(--line);padding:8px 0;font-size:13px}
+.news .nitem .t{font-weight:600}
+.news .nitem .s{color:var(--muted);font-size:12px}
+/* ── root landing page ── */
+.hero{padding:30px 26px}
+.hero-kicker{color:#ffd166;font-size:12px;font-weight:700;letter-spacing:2px;
+text-transform:uppercase;margin-bottom:8px}
+.hero h1{font-size:30px;margin:0 0 10px}
+.day-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.day-card{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);
+border-radius:12px;padding:14px 16px;transition:all .15s}
+.day-card:hover{border-color:var(--red);box-shadow:0 4px 16px rgba(216,52,44,.12);transform:translateY(-2px)}
+.day-card .d{font-weight:800;font-size:15px;color:var(--ink);display:flex;align-items:center;gap:8px}
+.day-card .m{margin-top:8px;display:flex;gap:6px}
+.day-card .m span{background:var(--chip);color:var(--muted);border-radius:6px;
+padding:2px 8px;font-size:11px}
+.latest-badge{background:var(--red);color:#fff;border-radius:6px;padding:1px 7px;
+font-size:10px;font-weight:700}
+</style>
+</head>
+<body><div class="wrap">
+<div class="backbar"><a href="../index.html">← 总览</a><a href="../us.html">← 美股榜单</a></div>
+<header class="top">
+  <h1><span class="badge black">黑榜 #6</span>NIO<span class="tk" style="opacity:.7;font-size:15px;font-weight:400;margin-left:8px">NIO</span></h1>
+  <div class="sub">美股 ·  · 榜单日期 <b>2026-08-08</b> · 盘价采集 <b>2026-08-08 05:00:44</b></div>
+  <div class="price-row" style="margin-top:12px">
+    <span class="price" style="color:#fff">$4.74</span>
+    <span class="pct up">+3.04%</span>
+    <span class="psrc" style="color:rgba(255,255,255,.6)">实时</span>
+  </div>
+  <div class="scores" style="margin-top:10px">
+    <span>综合 <b>30.0</b></span>
+    <span>多头 <b>35</b></span>
+    <span>空头 <b>75</b></span>
+    <span>大师均值 <b>35</b></span>
+    <span>信号 <b>negative</b></span>
+  </div>
+</header>
+<div class="trade"><div class="cell"><div class="k">交易评级</div><span class="v hold">Reduce</span></div><div class="cell"><div class="k">加仓区间</div><span class="v">4.27 ~ 4.46</span></div><div class="cell"><div class="k">伯克希尔</div><span class="v">观望</span></div><div class="cell"><div class="k">伯克希尔分</div><span class="v">3.00</span></div></div>
+<div class="panel"><h2>财务指标</h2><div class="mgrid"><div class="m"><div class="k">市盈率 PE</div><div class="v">27.25</div></div><div class="m"><div class="k">市净率 PB</div><div class="v">18.30</div></div><div class="m"><div class="k">ROE</div><div class="v">-84.0%</div></div><div class="m"><div class="k">总市值</div><div class="v">119</div></div><div class="m"><div class="k">营收同比</div><div class="v">112.2%</div></div></div></div>
+<div class="panel"><h2>历史收益</h2><span class="ychip">近1月 <b class="down">-3.27%</b></span><span class="ychip">近6月 <b class="down">-3.07%</b></span><span class="ychip">近1年 <b class="down">-2.07%</b></span><span class="ychip">近5年 <b class="down">-89.52%</b></span></div>
+<div class="panel"><h2>大师圆桌<span class="sub">5 位</span></h2><div class="mreply"><div class="mh"><span class="who">段永平</span><span class="mscore">40</span></div><div class="md"><p>各位同仁，关于NIO，我想先给出我的基本判断：<strong>目前我对NIO持谨慎态度</strong>。</p><p>首先，中国电动车市场的确有很大的发展潜力，这是NIO的一个优势。中国市场对新能源汽车的需求持续增长，这是毋庸置疑的长期趋势。</p><p>但同时，我们也必须看到几个重要问题：</p><ul><li><strong>市场竞争非常激烈</strong>。特斯拉、比亚迪等国内外厂商都在积极布局，NIO面临的竞争压力非常大。在这样一个高度竞争的市场中，NIO能否持续保持差异化优势是一个很大的挑战。</li></ul><ul><li><strong>估值偏高</strong>。从市盈率（PE）和市净率（PB）来看，NIO的估值都处于较高水平。虽然公司营收增长迅速，但目前仍处于亏损状态，净资产收益率（ROE）为负数。这表明公司目前还在投入期，盈利能力有待验证。</li></ul><ul><li><strong>价格波动风险</strong>。当前股价在4.7美元左右徘徊，这个价位可能反映了市场对电动车行业的整体担忧。如果行业整体增长不及预期，股价可能会面临更大的下行压力。</li></ul><p><strong>我的建议是：</strong></p><p>如果你是长期投资者，并且对中国电动车市场有坚定的信心，可以考虑小规模参与，但要做好承受短期波动的准备。同时，要密切关注NIO的盈利能力改善情况，以及市场竞争格局的变化。</p><p><strong>别忘了：</strong></p><p>投资电动车行业，不能只看中国市场潜力，更要关注公司的核心竞争力和盈利能力。在市场热情高涨的时候，保持冷静和克制尤为重要。</p><p>这段发言仅供参考，最终决策还是要根据你自己的风险承受能力和投资目标来定。</p></div></div><div class="mreply"><div class="mh"><span class="who">巴菲特</span><span class="mscore">30</span></div><div class="md"><p>各位朋友，今天我们来聊聊NIO这家公司。</p><p>首先，我得说，我不太看好这家公司。虽然中国电动车市场确实有很大的潜力，这是NIO的一个亮点。但在我看来，这家公司目前面临的问题比机会更多。</p><p>首先，从估值来看，NIO的市盈率高达27倍，市净率更是达到了18倍。这样的估值水平，在我看来是偏高的。我们投资股票，就像买农场一样，要考虑用合理的价格买下好的生意。而现在NIO的价格，似乎并没有给我足够的安全边际。</p><p>其次，市场竞争是一个巨大的挑战。中国电动车市场竞争异常激烈，不仅有本土品牌的竞争，还有来自国际巨头的压力。NIO虽然有一定的品牌认知度，但在这样一个环境中，要持续保持竞争优势并不容易。</p><p>再者，从财务数据来看，虽然营收同比增长了112%，但净资产收益率为-83.96%，这表明公司在盈利能力方面还有很长的路要走。</p><p>基于以上分析，我建议投资者要谨慎。如果你要投资NIO，至少要问自己几个问题：这家公司十年后还能不能保持现在的市场份额？它的盈利能力能否持续改善？现在的价格是否真的物有所值？</p><p>如果是我，我会选择等待，等到市场给出更好的价格，或者等到公司的盈利能力有更明显的改善。正如我常说的，投资就像打棒球，你不需要每次都挥棒，要等待那个最甜的机会。</p><p>如果查理·芒格在这里，他可能会补充说，投资就像挑选好果子，要耐心等待最好的时机，而不是在市场狂热时随波逐流。</p></div></div><div class="mreply"><div class="mh"><span class="who">达利欧</span><span class="mscore">35</span></div><div class="md"><p>各位同仁，今天我们来谈谈蔚来汽车（NIO）。我的结论是：目前对蔚来保持谨慎乐观的态度，短期内建议观望。</p><p>首先，中国电动车市场确实拥有巨大的潜力，这是蔚来的一大优势。随着中国对新能源车的政策支持力度加大，以及消费者对环保和智能汽车的需求增加，蔚来作为中国电动车市场的领先者之一，有机会从中受益。</p><p>然而，从财务和市场的角度来看，蔚来目前面临一些挑战。当前股价虽然较低，但市盈率（PE）和市净率（PB）都处于较高水平，分别为27.25和18.30，表明市场对其未来增长有较高预期，但同时也意味着风险较大。此外，净资产收益率（ROE）为-83.96%，显示出公司目前盈利能力较弱。</p><p>市场竞争是另一个重要的风险因素。电动车行业的竞争日益激烈，不仅有特斯拉这样的国际巨头，还有比亚迪、小鹏等国内强劲对手。蔚来需要在技术创新、品牌建设和成本控制方面持续发力，才能在竞争中保持优势。</p><p>基于以上分析，我建议：</p><ul><li>对于短期投资者，目前不是入场的好时机。市场情绪波动较大，短期内股价可能继续承压。</li><li>对于长期投资者，可以持续关注蔚来的发展，特别是其在技术创新和市场拓展方面的进展。如果公司能够在未来几年内实现盈利能力的提升，并且在中国电动车市场中保持领先地位，那么现在可能是逐步建仓的好时机。</li></ul><p>最后，我想强调一点：投资决策需要基于对公司和行业的深入研究，以及对自身风险承受能力的清晰认知。我们要把投资看作一个长期的过程，而不是短期的投机行为。希望大家在做出决策时，能够保持冷静和理性。</p><p>谢谢大家。</p></div></div><div class="mreply"><div class="mh"><span class="who">林奇</span><span class="mscore">45</span></div><div class="md"><p>各位朋友，关于NIO这只股票，我的看法是：目前持谨慎态度，但保持观察。</p><p>先说我的理由。NIO身处中国电动车市场，这确实是一个充满潜力的赛道，增速非常快，这是它最大的优势所在。但同时我们也要看到几个关键问题：</p><ul><li>当前估值偏高 - 市盈率高达27倍，市净率更是接近18倍。对于一家仍在亏损的企业来说，这样的估值水平需要非常强劲的增长来支撑。</li></ul><ul><li>市场竞争异常激烈 - 中国电动车市场虽然增长迅速，但参与者众多，特斯拉、比亚迪等强劲对手都在积极抢占市场份额。</li></ul><ul><li>盈利能力堪忧 - 从净资产收益率(ROE)来看，目前处于-84%的水平，说明公司还在大量烧钱阶段。</li></ul><p>基于这些观察，我建议采取以下行动：</p><ul><li>如果你已经持有NIO，建议密切关注公司能否在接下来的几个季度里展现出清晰的盈利路径。特别要关注毛利率是否能够持续改善。</li></ul><ul><li>对于想要买入的投资者，我建议先等等。最好等到公司公布下一份财报，看看毛利率和亏损情况是否有实质性改善。</li></ul><ul><li>密切关注行业竞争格局的变化。如果有更多传统车企或新势力加入竞争，可能会进一步加剧价格战，这对NIO的利润率会构成更大压力。</li></ul><p>记住，投资股票就是投资生意。我们要看这家公司能否持续创造现金流，而不仅仅是追逐市场热点。在电动车这个竞争激烈的领域，最终能胜出的很可能是那些能够有效控制成本、保持技术领先的企业。</p><p>所以我的建议是：保持关注，但不要急于出手。等公司证明自己能够持续改善盈利能力后，再考虑是否买入可能会更加稳妥。</p></div></div><div class="mreply"><div class="mh"><span class="who">芒格</span><span class="mscore">25</span></div><div class="md"><p>各位同行，今天我们来谈谈蔚来（NIO）。我的结论很明确：我不认为现在是一个值得大举投资蔚来的时机。</p><p>首先，让我们看看支持投资蔚来的理由。中国电动车市场无疑是一个充满潜力的领域，蔚来作为其中的参与者，确实有可能受益于这一趋势。这是支持它的一方面。</p><p>然而，当我们反过来想，考虑可能导致投资失败的因素时，情况就不那么乐观了。蔚来目前面临的主要问题有几点：</p><p>第一，价格问题。当前股价4.74美元看似较低，但考虑到其市净率高达18.3，这是一个相当高的水平。这意味着市场已经给予它极高的预期，而这种预期能否实现存在很大不确定性。</p><p>第二，竞争格局。电动车市场竞争异常激烈，不仅有特斯拉这样的国际巨头，还有比亚迪、小鹏等本土强劲对手。蔚来要在这个环境中突围，难度可想而知。</p><p>第三，财务表现。虽然营收同比增长112.2%看似亮眼，但其净资产收益率（ROE）为-83.96%，这表明公司目前还在大量烧钱阶段，盈利能力堪忧。</p><p>从激励机制来看，管理层有强烈的动机去追求市场份额和增长，但这种追求是否会导致过度扩张和效率低下，值得深思。</p><p>基于以上分析，我建议采取谨慎态度。如果一定要参与，可以考虑以下行动：</p><ul><li>严格控制仓位，不要超过总投资组合的5%。</li><li>密切关注公司现金流状况和毛利率变化，这是判断其能否持续经营的关键指标。</li><li>做好止损准备，一旦股价跌破4美元，可能需要重新评估投资逻辑。</li></ul><p>最后，我想说，投资就像打牌，我们永远要问自己：&quot;我可能错在哪里？&quot;在蔚来的案例中，最大的风险在于竞争格局恶化，以及公司未能实现预期的规模效应。如果这两个因素同时发生，可能会对投资造成重大损失。</p></div></div></div>
+<div class="panel"><h2>分析师报告<span class="sub">2 篇</span></h2><details open><summary>市场面分析</summary><div class="body"><div class="md"><h4>NIO NIO 市场面分析</h4><ul><li>红黑榜多空分数：多头 35 / 空头 75，分差 -40。</li><li>当前价格：4.74。</li><li>当前交易评级：Reduce。</li><li>值得加仓区间：4.27 - 4.46。</li><li>风险控制位：4.17。</li><li>市场愿意给溢价的原因：中国电动车市场潜力。</li><li>当前主要压制因素：4.59价格较低；市场竞争激烈。</li></ul></div></div></details><details open><summary>基本面分析</summary><div class="body"><div class="md"><h4>NIO NIO 基本面分析</h4><ul><li>报告期：暂无。</li><li>PE(TTM)：27.25。</li><li>PB：18.30。</li><li>ROE：-83.96%。</li><li>营收同比：112.20%。</li><li>核心判断：收入仍在增长。</li></ul></div></div></details></div>
+<div class="panel"><h2>研究与计划</h2>
+<details><summary>基本面摘要</summary><div class="body"><div class="md"><h3>核心财务快照</h3><ul><li>报告期: 数据缺失</li><li>当前股价: 4.74 元</li><li>总市值: 118.77 亿元</li><li>PE (TTM): 27.25</li><li>PB: 18.30</li><li>PS (TTM): 数据缺失</li><li>营业总收入(报告期): 数据缺失 亿元</li><li>营收同比增长率: 112.20%</li><li>归母净利润(报告期): 数据缺失 亿元</li><li>归母净利润同比增长率: 数据缺失</li><li>ROE (TTM/估算): -83.96%</li><li>资产负债率: 数据缺失</li><li>经营性现金流 / 归母净利润: 数据缺失</li></ul><h4>缺失字段</h4><ul><li>PS(TTM), 营业总收入, 归母净利润, 归母净利润同比增长率, 资产负债率, 经营性现金流与归母净利润比值</li></ul></div></div></details>
+<details><summary>研究计划</summary><div class="body"><div class="md"><h4>NIO NIO 研究摘要</h4><ul><li>红黑榜结论: Reduce</li><li>多头/空头: 35/75</li><li>正向信号: 营收同比 112.20%；PE(TTM) 27.25；PB 18.30</li><li>风险信号: ROE -83.96%</li><li>榜单看多理由: 中国电动车市场潜力</li><li>榜单风险提示: 4.59价格较低；市场竞争激烈</li></ul></div></div></details>
+<details><summary>交易计划</summary><div class="body"><div class="md"><h4>NIO NIO 交易计划</h4><ul><li>评级: Reduce</li><li>当前价格: 4.74</li><li>值得加仓区间: 4.27 - 4.46</li><li>目标价格: 4.50</li><li>止损位: 4.17</li><li>备注: 当前为缓存降级交易卡，后续若完整 TradingAgent 结果生成，将自动覆盖。</li></ul></div></div></details>
+<details><summary>交易决策</summary><div class="body"><div class="md"><p>Reduce</p><p>NIO NIO 当前使用红黑榜缓存结果生成兜底交易卡。多头 35 / 空头 75，分差 -40。当前尚未取得完整 TradingAgent 长文决策，但榜单分数、财务快照和大师观点已经足够生成基础交易建议。</p></div></div></details>
+</div>
+<div class="panel"><h2>多空逻辑</h2><div class="pts"><div class="h bull">看多逻辑</div><div class="md"><p>中国电动车市场潜力</p></div></div><div class="pts"><div class="h bear">看空逻辑</div><div class="md"><p>4.59价格较低</p><p>市场竞争激烈</p></div></div></div>
+<div class="panel"><h2>伯克希尔研究</h2><p><strong>NIO是一家具有高成长潜力但面临激烈竞争和盈利压力的电动车公司，当前估值偏高，需谨慎观察其长期竞争力。</strong></p><p>伯克希尔综合评分：<strong>3.0</strong></p><div class="md"><p>{&quot;verdict&quot;: &quot;观望&quot;, &quot;conservative_tip&quot;: &quot;建议等待更明确的盈利信号，当前价格偏高。&quot;, &quot;moderate_tip&quot;: &quot;可小仓位参与，关注换电模式进展及毛利率改善情况。&quot;, &quot;aggressive_tip&quot;: &quot;若电动车市场增长超预期且NIO市场份额提升，可考虑增持。&quot;, &quot;catalysts_plus&quot;: [&quot;换电模式获得政策大力支持&quot;, &quot;毛利率持续改善&quot;, &quot;高端市场份额提升&quot;], &quot;catalysts_minus&quot;: [&quot;政策补贴退坡&quot;, &quot;竞争加剧导致毛利率下降&quot;, &quot;自由现金流持续恶化&quot;]}</p></div></div>
+<div class="panel news"><h2>最新资讯</h2><div class="md"><p>利多新闻6条，利空新闻1条，中性新闻4条，整体情绪偏利好。</p></div><div class="nitem"><div class="t">Nio launches first fifth-gen swap stations in 7 cities, opening network to Firefly</div><div class="s">CnEVPost · 利好</div></div><div class="nitem"><div class="t">NIO Inc. (NIO) Suffers a Larger Drop Than the General Market: Key Insights</div><div class="s">Yahoo Finance · 利空</div></div><div class="nitem"><div class="t">Citigroup Returns to Nio Buying, Quadruples XPeng Stake in Q2 Filing</div><div class="s">eletric-vehicles.com · 利好</div></div><div class="nitem"><div class="t">Basketball Superstar Yao Ming Receives His NIO ES9</div><div class="s">CleanTechnica · 中性</div></div><div class="nitem"><div class="t">Nio Hit Record Vehicle Deliveries in July. This Could Be a Real Turning Point for NIO Stock.</div><div class="s">Barchart.com · 利好</div></div><div class="nitem"><div class="t">Strong El Nio Threatens 49 Million More With Severe Hunger, Warns WFP</div><div class="s">NDTV · 中性</div></div><div class="nitem"><div class="t">Nio’s Hottest SUV Still Has A Waiting List – And Even NBA Legend Yao Ming Had To Wait 2 Months For It</div><div class="s">Stocktwits · 利好</div></div><div class="nitem"><div class="t">Nio&#x27;s 120-kWh battery pack still in the works, will fit all models</div><div class="s">CnEVPost · 中性</div></div></div>
+<footer>稳健理财Agent · 红黑榜每日归档 · 黑榜 #6 · 仅供研究，不构成投资建议</footer>
+</div></body>
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ARKK(ARKK) 黑榜 2026-08-08</title>
+<style>
+:root{--red:#d8342c;--redbg:#fdecea;--green:#1a9e54;--ink:#1c2230;--muted:#6b7385;
+--line:#e7e9ef;--card:#fff;--bg:#f4f6fa;--chip:#eef1f6;--dark:#23262d;--darkbg:#ececef}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",
+"Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);
+line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 16px 64px}
+header.top{background:linear-gradient(135deg,#1c2230,#2c3550);color:#fff;border-radius:14px;
+padding:22px 24px;margin-bottom:20px;box-shadow:0 6px 24px rgba(20,26,46,.12)}
+header.top h1{margin:0 0 6px;font-size:24px;letter-spacing:.5px}
+header.top .sub{opacity:.85;font-size:13px}
+header.top .sub b{color:#ffd166;font-weight:600}
+nav.mkt{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;
+background:rgba(244,246,250,.92);backdrop-filter:blur(6px);padding:10px 0;margin-bottom:14px}
+nav.mkt a{text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);
+padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600}
+nav.mkt a:hover{border-color:var(--red);color:var(--red)}
+.summary{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.summary .chip{background:var(--card);border:1px solid var(--line);border-radius:10px;
+padding:8px 12px;font-size:12px;color:var(--muted)}
+.summary .chip b{color:var(--ink);font-size:14px;margin-left:4px}
+section.board{margin:26px 0}
+.board-title{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:19px}
+.board-title .dot{width:10px;height:10px;border-radius:50%}
+.board-title.red .dot{background:var(--red)}
+.board-title.black .dot{background:var(--dark)}
+.board-title small{color:var(--muted);font-weight:400;font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+position:relative;transition:box-shadow .15s}
+.card:hover{box-shadow:0 4px 18px rgba(20,26,46,.08)}
+.card.red{border-top:3px solid var(--red)}
+.card.black{border-top:3px solid var(--dark)}
+.rank{position:absolute;top:10px;right:12px;font-size:26px;font-weight:800;color:#eceff5}
+.card.red .rank{color:#fbdcD9}
+.nm{font-size:16px;font-weight:700}
+.nm .tk{color:var(--muted);font-weight:500;font-size:12px;margin-left:6px}
+.tag{display:inline-block;background:var(--chip);color:var(--muted);border-radius:6px;
+padding:1px 7px;font-size:11px;margin:6px 6px 0 0}
+.price-row{display:flex;align-items:baseline;gap:10px;margin:10px 0 4px}
+.price{font-size:24px;font-weight:800}
+.pct{font-size:14px;font-weight:700;padding:2px 8px;border-radius:8px}
+.up{color:var(--red)}.down{color:var(--green)}.flat{color:var(--muted)}
+.pct.up{background:var(--redbg)}.pct.down{background:#e2f4e9}.pct.flat{background:var(--chip)}
+.psrc{font-size:11px;color:var(--muted);margin-left:auto}
+.scores{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.scores span{background:var(--chip);border-radius:6px;padding:2px 8px;font-size:11px;color:var(--muted)}
+.scores span b{color:var(--ink)}
+.pts{font-size:12.5px;margin:8px 0 0}
+.pts .h{font-weight:700;font-size:12px;margin:6px 0 2px}
+.pts .h.bull{color:var(--red)}.pts .h.bear{color:var(--green)}
+.pts ul{margin:2px 0 4px;padding-left:18px;color:#3a4152}
+.pts li{margin:1px 0}
+.masters{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:11px;color:var(--muted)}
+.masters b{color:var(--ink)}
+.summ{font-size:12.5px;color:#3a4152;background:#fafbfd;border:1px solid var(--line);
+border-radius:8px;padding:8px 10px;margin-top:8px}
+.empty{color:var(--muted);background:var(--card);border:1px dashed var(--line);
+border-radius:10px;padding:18px;text-align:center}
+footer{margin-top:34px;color:var(--muted);font-size:12px;text-align:center;line-height:1.8}
+a.lnk{color:var(--red);text-decoration:none}
+/* ── detail page ── */
+.backbar{margin-bottom:14px;font-size:13px}
+.backbar a{color:var(--muted);text-decoration:none;margin-right:14px}
+.backbar a:hover{color:var(--red)}
+.badge{display:inline-block;border-radius:6px;padding:2px 10px;font-size:12px;font-weight:700;margin-right:8px}
+.badge.red{background:var(--red);color:#fff}.badge.black{background:var(--dark);color:#fff}
+.trade{display:flex;flex-wrap:wrap;gap:10px;background:linear-gradient(135deg,#2c3550,#1c2230);
+color:#fff;border-radius:12px;padding:16px 18px;margin:16px 0}
+.trade .cell{min-width:120px}
+.trade .k{font-size:11px;opacity:.75}
+.trade .v{font-size:18px;font-weight:800;margin-top:2px}
+.trade .v.buy{color:#7ee2a8}.trade .v.sell{color:#ff9d97}.trade .v.hold{color:#ffd166}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0}
+.mgrid .m{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.mgrid .m .k{font-size:11px;color:var(--muted)}
+.mgrid .m .v{font-size:16px;font-weight:700;margin-top:2px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.panel>h2{margin:0 0 12px;font-size:17px}
+.panel>h2 .sub{font-size:12px;color:var(--muted);font-weight:400;margin-left:8px}
+.mreply{border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;
+padding:12px 14px;margin:10px 0;background:#fff}
+.mreply .mh{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.mreply .mh .who{font-weight:700;font-size:14px}
+.mreply .mh .mscore{margin-left:auto;background:var(--chip);border-radius:6px;padding:1px 8px;font-size:12px;font-weight:700}
+.md h2,.md h3,.md h4,.md h5{margin:12px 0 6px;font-size:15px}
+.md p{margin:6px 0;font-size:13.5px;color:#2c3345}
+.md ul{margin:6px 0;padding-left:20px;font-size:13.5px;color:#2c3345}
+.md li{margin:3px 0}
+.md strong{color:var(--ink)}
+details{border:1px solid var(--line);border-radius:10px;background:#fff;margin:10px 0;padding:0}
+details>summary{cursor:pointer;padding:12px 16px;font-weight:700;font-size:14px;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary:before{content:"▸ ";color:var(--red)}
+details[open]>summary:before{content:"▾ "}
+details>.body{padding:0 16px 14px;border-top:1px dashed var(--line)}
+.ychip{display:inline-block;background:var(--chip);border-radius:8px;padding:4px 10px;font-size:12px;margin:3px 6px 3px 0}
+.ychip b{font-size:13px}
+.news .nitem{border-top:1px dashed var(--line);padding:8px 0;font-size:13px}
+.news .nitem .t{font-weight:600}
+.news .nitem .s{color:var(--muted);font-size:12px}
+/* ── root landing page ── */
+.hero{padding:30px 26px}
+.hero-kicker{color:#ffd166;font-size:12px;font-weight:700;letter-spacing:2px;
+text-transform:uppercase;margin-bottom:8px}
+.hero h1{font-size:30px;margin:0 0 10px}
+.day-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.day-card{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);
+border-radius:12px;padding:14px 16px;transition:all .15s}
+.day-card:hover{border-color:var(--red);box-shadow:0 4px 16px rgba(216,52,44,.12);transform:translateY(-2px)}
+.day-card .d{font-weight:800;font-size:15px;color:var(--ink);display:flex;align-items:center;gap:8px}
+.day-card .m{margin-top:8px;display:flex;gap:6px}
+.day-card .m span{background:var(--chip);color:var(--muted);border-radius:6px;
+padding:2px 8px;font-size:11px}
+.latest-badge{background:var(--red);color:#fff;border-radius:6px;padding:1px 7px;
+font-size:10px;font-weight:700}
+</style>
+</head>
+<body><div class="wrap">
+<div class="backbar"><a href="../index.html">← 总览</a><a href="../us.html">← 美股榜单</a></div>
+<header class="top">
+  <h1><span class="badge black">黑榜 #5</span>ARKK<span class="tk" style="opacity:.7;font-size:15px;font-weight:400;margin-left:8px">ARKK</span></h1>
+  <div class="sub">美股 ·  · 榜单日期 <b>2026-08-08</b> · 盘价采集 <b>2026-08-08 05:00:44</b></div>
+  <div class="price-row" style="margin-top:12px">
+    <span class="price" style="color:#fff">$79.43</span>
+    <span class="pct up">+4.89%</span>
+    <span class="psrc" style="color:rgba(255,255,255,.6)">实时</span>
+  </div>
+  <div class="scores" style="margin-top:10px">
+    <span>综合 <b>24.4</b></span>
+    <span>多头 <b>40</b></span>
+    <span>空头 <b>85</b></span>
+    <span>大师均值 <b>33</b></span>
+    <span>信号 <b>negative</b></span>
+  </div>
+</header>
+<div class="trade"><div class="cell"><div class="k">交易评级</div><span class="v hold">Reduce</span></div><div class="cell"><div class="k">加仓区间</div><span class="v">71.49 ~ 74.66</span></div><div class="cell"><div class="k">伯克希尔</div><span class="v">观望</span></div><div class="cell"><div class="k">伯克希尔分</div><span class="v">2.75</span></div></div>
+<div class="panel"><h2>财务指标</h2><div class="mgrid"><div class="m"><div class="k">市盈率 PE</div><div class="v">51.27</div></div></div></div>
+<div class="panel"><h2>历史收益</h2><span class="ychip">近1月 <b class="down">-0.91%</b></span><span class="ychip">近6月 <b class="up">+9.65%</b></span><span class="ychip">近1年 <b class="up">+6.25%</b></span><span class="ychip">近5年 <b class="down">-36.30%</b></span></div>
+<div class="panel"><h2>大师圆桌<span class="sub">5 位</span></h2><div class="mreply"><div class="mh"><span class="who">段永平</span><span class="mscore">30</span></div><div class="md"><p>各位好，今天我们来讨论一下 ARKK 这只基金。从我的角度出发，我的结论是：<strong>这只基金可能不太符合我个人的投资理念</strong>。</p><p>首先，我们来看看这只基金的定位。它主要投资于创新科技领域，这确实是一个长期来看非常有潜力的方向。科技的发展往往会带来巨大的社会变革和投资机会，这是毫无疑问的。而且，高风险往往伴随着高回报，这也是很多投资者被吸引的原因。</p><p>然而，我更关注的是投资的本质——<strong>买股票就是买公司的一部分</strong>。从这个角度来看，ARKK 的估值让我有些担忧。目前的市盈率已经超过 50 倍，这意味着市场对它的预期非常高。任何小的波动或者不及预期的表现，都可能对股价产生较大的影响。</p><p>再者，ARKK 对市场波动的敏感性也是一个需要考虑的风险因素。高科技行业本身就充满不确定性，而 ARKK 的投资组合又相对集中，这使得它在市场波动中可能会面临更大的风险。</p><p>基于以上分析，我个人的建议是：</p><ul><li><strong>如果你是一个风险承受能力较低的投资者</strong>，可能需要谨慎考虑是否要投资 ARKK。高估值和高波动性意味着你需要有足够的心理准备和资金实力来应对可能的市场波动。</li></ul><ul><li><strong>如果你对科技行业有深入的理解，并且愿意承担较高的风险</strong>，那么 ARKK 可能是一个值得关注的投资标的。但即便如此，我也建议你仔细研究它的投资组合和基金经理的管理风格，确保它符合你的长期投资目标。</li></ul><p>最后，我想强调的是，<strong>投资决策应该基于对公司的深入理解，而不是短期的市场热点</strong>。无论市场如何变化，我们都应该坚持自己的投资原则，不被短期的波动所左右。希望大家在投资过程中都能保持冷静，做出理性的决策。</p></div></div><div class="mreply"><div class="mh"><span class="who">巴菲特</span><span class="mscore">20</span></div><div class="md"><p>各位朋友，我来说说对 ARKK 的看法。</p><p>首先，我得说这只基金不太适合我。理由很简单：它持有的资产大部分属于高波动性的创新科技领域，这超出了我的能力圈。我更偏好那些商业模式简单、护城河深厚的公司，而不是那些依赖未来创新预期的高风险标的。</p><p>从估值角度来看，目前 ARKK 的市盈率超过 51 倍，这意味着投资者对未来的增长预期相当高。但我要提醒大家，高估值意味着容错空间很小。市场情绪稍有波动，或者科技行业的创新步伐放缓，都可能对基金净值造成重大影响。</p><p>让我分享一些思考角度：</p><ul><li>你能否清楚说明这只基金持有的公司如何创造持续竞争优势？要知道，科技行业的竞争格局瞬息万变，今天的领先者很可能几年后就落后了。</li></ul><ul><li>你是否愿意承受高达 30% 甚至 50% 的短期回撤？根据历史表现，这类创新科技基金往往伴随着巨大的波动性。</li></ul><ul><li>你是否做好了持有 5-10 年的准备，并且相信这些创新企业能够持续创造价值？要知道，科技行业的颠覆性变革往往需要较长时间才能体现价值。</li></ul><p>如果你决定投资，我建议：</p><p>首先，只用你可以完全承受损失的资金来参与。这类投资不适合作为核心资产配置。</p><p>其次，定期审视你的投资逻辑。如果发现当初看好的创新趋势未能实现，要及时调整策略。</p><p>最后，记住市场先生是反复无常的。不要因为短期的价格波动而做出仓促的决定。</p><p>如果是芒格，他可能会补充说：&quot;投资就像经营果园，你得挑选那些能结出果实的树，而不是那些看起来最时髦的品种。&quot;</p></div></div><div class="mreply"><div class="mh"><span class="who">达利欧</span><span class="mscore">40</span></div><div class="md"><p>各位同仁，今天我们来讨论一下ARKK这只基金。</p><h4>结论</h4><p>我认为ARKK目前处于一个<strong>高风险但潜在回报可观</strong>的位置。我的立场是<strong>部分看好</strong>，但需要非常谨慎地对待。</p><h4>理由</h4><p>首先，ARKK专注于创新科技领域，这符合我一直以来强调的<strong>长期趋势投资</strong>理念。科技创新是推动经济增长的重要动力，从这个角度看，ARKK确实抓住了未来发展的方向。</p><p>然而，ARKK目前面临两个主要问题：</p><ul><li><strong>估值过高</strong>：当前市盈率超过51倍，远高于市场平均水平。这种高估值意味着市场已经对未来的增长预期打入了很高的溢价。</li><li><strong>市场波动敏感</strong>：ARKK的持仓集中在高成长性但高波动的股票上，这使得基金本身对市场情绪和宏观环境的变化非常敏感。</li></ul><h4>风险/行动建议</h4><p>基于以上分析，我建议采取以下策略：</p><ul><li><strong>控制仓位</strong>：如果考虑投资ARKK，建议将其作为投资组合中的一小部分，而不是主要持仓。这样可以在享受潜在高回报的同时，控制整体风险。</li><li><strong>关注宏观环境</strong>：由于ARKK对市场波动敏感，投资者需要密切关注宏观经济指标和货币政策变化。在利率上升或市场情绪转向悲观时，ARKK可能会面临更大的下行压力。</li><li><strong>长期视角</strong>：如果决定投资ARKK，需要有足够的耐心和长期视角。科技创新是一个长期趋势，但短期内可能会经历较大的波动和调整。</li></ul><h4>总结</h4><p>ARKK是一个典型的<strong>高风险高回报</strong>的投资标的。对于那些能够承受波动并有长期投资视野的投资者来说，它可能是一个值得考虑的选择。但对于风险承受能力较低或需要稳定回报的投资者，我建议谨慎对待。</p><p>记住，投资决策应该基于对自身风险承受能力的清晰认识，以及对市场周期的深刻理解。正如我常说的，&quot;Pain + Reflection = Progress&quot;，在做出决策前，务必充分反思和评估。</p></div></div><div class="mreply"><div class="mh"><span class="who">林奇</span><span class="mscore">50</span></div><div class="md"><p>各位朋友，今天我们来聊聊 ARKK 这只 ETF。作为彼得·林奇风格的投资者，我首先会关注这只基金的本质——它投资于创新科技领域，涵盖了众多高成长性的公司。这确实是一个充满潜力的方向，因为科技变革往往是推动经济发展的重要动力。</p><h4>结论：</h4><p>我认为 ARKK 是一只高风险高回报的基金，目前的估值水平让我感到有些担忧。</p><h4>理由：</h4><ul><li><strong>创新科技主题的长期潜力</strong>：ARKK 投资的公司大多处于科技前沿领域，这些领域确实有可能在未来几年甚至几十年内改变世界。正如我常说的，&quot;买你懂的&quot;，虽然我们可能不完全理解这些前沿技术，但它们确实代表了未来趋势。</li></ul><ul><li><strong>高风险高回报</strong>：这只基金的特点是高风险高回报。它的投资组合中包含了大量尚未盈利但增长迅速的公司，这与我在麦哲伦基金时期投资的一些快速增长型公司类似。</li></ul><ul><li><strong>估值过高</strong>：然而，目前的估值水平让我感到担忧。PE 高达 51 倍，这表明市场已经对未来的增长预期给予了很高的定价。在我的投资生涯中，我见过太多因为过高估值而最终让投资者失望的例子。</li></ul><ul><li><strong>市场波动敏感</strong>：ARKK 对市场波动非常敏感。在市场动荡时期，这类高成长性、高估值的投资往往首当其冲受到影响。</li></ul><h4>风险/行动建议：</h4><ul><li><strong>风险提示</strong>：如果你已经持有 ARKK，需要做好承受大幅波动的心理准备。这类投资不适合风险承受能力较低的投资者。</li></ul><ul><li><strong>估值考量</strong>：对于想要买入的投资者，我建议谨慎考虑当前的估值水平。虽然科技创新的长期前景令人兴奋，但过高的估值可能已经透支了未来多年的增长预期。</li></ul><ul><li><strong>仓位控制</strong>：如果你决定投资 ARKK，我建议将仓位控制在总投资组合的一个较小比例，比如 5-10%。这样既可以享受潜在的上涨收益，又不会因为可能的下跌而过度影响整体投资组合。</li></ul><ul><li><strong>定期审视</strong>：无论是否持有，都应该定期审视 ARKK 的表现和持仓变化。市场环境在不断变化，基金的投资策略和持仓也需要相应调整。</li></ul><p>总之，ARKK 是一只充满机会但也充满挑战的基金。它适合那些能够承受高风险、并且对科技领域有长期信心的投资者。但对于大多数投资者来说，在当前估值水平下，我建议保持谨慎。</p></div></div><div class="mreply"><div class="mh"><span class="who">芒格</span><span class="mscore">25</span></div><div class="md"><p>各位同仁，我今天想谈谈 ARKK 这只基金。在我看来，这只基金目前的投资价值并不高，甚至可以说风险极高。</p><p>首先，从逆向思维的角度来看，我们得先问自己：&quot;投资这只基金可能会怎么死掉？&quot; 答案是显而易见的：估值过高、市场波动敏感，这些都是可能导致投资失败的关键因素。当前的市盈率高达 51 倍，而市净率等指标也缺乏吸引力，这表明市场已经对这只基金的未来增长给予了极高的预期。任何不及预期的表现都可能导致股价大幅回调。</p><p>其次，从激励机制的角度来看，ARKK 的基金经理 Cathie Wood 无疑是一个非常有魅力的领导者，她的创新科技主题也确实抓住了很多人的眼球。然而，正是这种对&quot;创新&quot;的过度追捧，可能会扭曲投资者的行为，让他们忽视了潜在的风险。</p><p>再者，从多元心智模型的角度来看，我们不能仅仅因为这只基金标榜&quot;创新&quot;就盲目乐观。物理学告诉我们，任何过度的波动最终都会回归均值；经济学则提醒我们，高估值往往意味着高风险。创新科技确实有长期潜力，但这种潜力已经被市场充分、甚至过度定价了。</p><p>从概率与赔率的角度来看，目前投资 ARKK 的胜率较低，而赔率也不够吸引人。即便未来科技行业继续发展，ARKK 也未必能跑赢大盘，因为它的估值已经透支了太多未来的增长。</p><p>最后，我想提醒大家，心理学陷阱在这类投资中尤为危险。从众心理、过度自信、确认偏误，这些都可能让我们对 ARKK 的风险视而不见。</p><p>综上所述，我的建议是：对于 ARKK 这只基金，谨慎为上。如果你已经持有，建议重新评估你的风险承受能力；如果你正在考虑买入，我建议你三思而后行。投资中最重要的不是追逐热点，而是保持理性和纪律。正如我常说的：&quot;如果我知道自己死在哪里，我就永远不去那里。&quot;</p></div></div></div>
+<div class="panel"><h2>分析师报告<span class="sub">2 篇</span></h2><details open><summary>市场面分析</summary><div class="body"><div class="md"><h4>ARKK ARKK 市场面分析</h4><ul><li>红黑榜多空分数：多头 40 / 空头 85，分差 -45。</li><li>当前价格：79.43。</li><li>当前交易评级：Reduce。</li><li>值得加仓区间：71.49 - 74.66。</li><li>风险控制位：69.90。</li><li>市场愿意给溢价的原因：创新科技主题长期潜力；高风险高回报。</li><li>当前主要压制因素：估值过高；市场波动敏感。</li></ul></div></div></details><details open><summary>基本面分析</summary><div class="body"><div class="md"><h4>ARKK ARKK 基本面分析</h4><ul><li>报告期：暂无。</li><li>PE(TTM)：51.27。</li></ul></div></div></details></div>
+<div class="panel"><h2>研究与计划</h2>
+<details><summary>基本面摘要</summary><div class="body"><div class="md"><h3>核心财务快照</h3><ul><li>报告期: 数据缺失</li><li>当前股价: 79.43 元</li><li>总市值: 数据缺失 亿元</li><li>PE (TTM): 51.27</li><li>PB: 数据缺失</li><li>PS (TTM): 数据缺失</li><li>营业总收入(报告期): 数据缺失 亿元</li><li>营收同比增长率: 数据缺失</li><li>归母净利润(报告期): 数据缺失 亿元</li><li>归母净利润同比增长率: 数据缺失</li><li>ROE (TTM/估算): 数据缺失</li><li>资产负债率: 数据缺失</li><li>经营性现金流 / 归母净利润: 数据缺失</li></ul><h4>缺失字段</h4><ul><li>总市值, PB, PS(TTM), 营业总收入, 营收同比增长率, 归母净利润, 归母净利润同比增长率, ROE, 资产负债率, 经营性现金流与归母净利润比值</li></ul></div></div></details>
+<details><summary>研究计划</summary><div class="body"><div class="md"><h4>ARKK ARKK 研究摘要</h4><ul><li>红黑榜结论: Reduce</li><li>多头/空头: 40/85</li><li>正向信号: PE(TTM) 51.27</li><li>榜单看多理由: 创新科技主题长期潜力；高风险高回报</li><li>榜单风险提示: 估值过高；市场波动敏感</li></ul></div></div></details>
+<details><summary>交易计划</summary><div class="body"><div class="md"><h4>ARKK ARKK 交易计划</h4><ul><li>评级: Reduce</li><li>当前价格: 79.43</li><li>值得加仓区间: 71.49 - 74.66</li><li>目标价格: 75.46</li><li>止损位: 69.90</li><li>备注: 当前为缓存降级交易卡，后续若完整 TradingAgent 结果生成，将自动覆盖。</li></ul></div></div></details>
+<details><summary>交易决策</summary><div class="body"><div class="md"><p>Reduce</p><p>ARKK ARKK 当前使用红黑榜缓存结果生成兜底交易卡。多头 40 / 空头 85，分差 -45。当前尚未取得完整 TradingAgent 长文决策，但榜单分数、财务快照和大师观点已经足够生成基础交易建议。</p></div></div></details>
+</div>
+<div class="panel"><h2>多空逻辑</h2><div class="pts"><div class="h bull">看多逻辑</div><div class="md"><p>创新科技主题长期潜力</p><p>高风险高回报</p></div></div><div class="pts"><div class="h bear">看空逻辑</div><div class="md"><p>估值过高</p><p>市场波动敏感</p></div></div></div>
+<div class="panel"><h2>伯克希尔研究</h2><p><strong>ARKK作为主动型ETF，其投资价值取决于其持仓组合的长期前景，但当前估值较高且市场波动性较大，需谨慎评估。</strong></p><p>伯克希尔综合评分：<strong>2.75</strong></p><div class="md"><p>{&quot;verdict&quot;: &quot;观望&quot;, &quot;conservative_tip&quot;: &quot;建议等待估值回调至PE TTM 30倍以下再考虑入场。&quot;, &quot;moderate_tip&quot;: &quot;可小规模配置，但需密切关注市场波动和基金表现。&quot;, &quot;aggressive_tip&quot;: &quot;若对创新领域有强烈信心，可考虑在回调时逐步加仓，但需控制仓位。&quot;, &quot;catalysts_plus&quot;: [&quot;市场情绪回暖，创新领域投资热度上升。&quot;, &quot;基金持仓组合中某项技术取得重大突破。&quot;, &quot;宏观经济环境改善，风险偏好上升。&quot;], &quot;catalysts_minus&quot;: [&quot;市场泡沫破裂，创新领域投资热度下降。&quot;, &quot;基金表现持续不佳，投资者信心受挫。&quot;, &quot;监管政策变化对科技行业产生负面影响。&quot;]}</p></div></div>
+<div class="panel news"><h2>最新资讯</h2><div class="md"><p>利空新闻占多数，ARKK近期面临较大压力。</p></div><div class="nitem"><div class="t">Cathie Wood’s Flagship Ark Fund Just Logged Its Worst Quarter In Over A Year — One Mega-Cap Stock Is Largely To Blame</div><div class="s">Stocktwits · 利空</div></div><div class="nitem"><div class="t">ARKK Aug 2026 69.000 call (ARKK260814C00069000) Stock Price, News, Quote &amp; History</div><div class="s">Yahoo! Finance Canada · 中性</div></div><div class="nitem"><div class="t">Alana Hadid Shows Her Love for Copenhagen Through New Arkk Sneaker Collab</div><div class="s">WWD · 中性</div></div><div class="nitem"><div class="t">ARKK: Underwhelming Results To Continue In 2026 (BATS:ARKK)</div><div class="s">Seeking Alpha · 利空</div></div><div class="nitem"><div class="t">ARK Innovation ETF (Dinari Tokenized ETF) (ARKK) Price, MarketCap, Charts and Fundamentals Info</div><div class="s">BeInCrypto · 中性</div></div><div class="nitem"><div class="t">ARK Innovation ETF Sell-Off Deepens as Outflows Accelerate</div><div class="s">webull.com · 利空</div></div><div class="nitem"><div class="t">Cathie Wood&#x27;s Ark Invest Makes SpaceX, Circle Top Holdings After Latest Buying Spree</div><div class="s">Decrypt · 利好</div></div><div class="nitem"><div class="t">ARKK Jan 2028 94.000 put (ARKK280121P00094000) stock price, news, quote and history</div><div class="s">Yahoo Finance UK · 中性</div></div></div>
+<footer>稳健理财Agent · 红黑榜每日归档 · 黑榜 #5 · 仅供研究，不构成投资建议</footer>
+</div></body>
+</html>

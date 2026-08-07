@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>哔哩哔哩-W(09626) 黑榜 2026-08-08</title>
+<style>
+:root{--red:#d8342c;--redbg:#fdecea;--green:#1a9e54;--ink:#1c2230;--muted:#6b7385;
+--line:#e7e9ef;--card:#fff;--bg:#f4f6fa;--chip:#eef1f6;--dark:#23262d;--darkbg:#ececef}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",
+"Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);
+line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 16px 64px}
+header.top{background:linear-gradient(135deg,#1c2230,#2c3550);color:#fff;border-radius:14px;
+padding:22px 24px;margin-bottom:20px;box-shadow:0 6px 24px rgba(20,26,46,.12)}
+header.top h1{margin:0 0 6px;font-size:24px;letter-spacing:.5px}
+header.top .sub{opacity:.85;font-size:13px}
+header.top .sub b{color:#ffd166;font-weight:600}
+nav.mkt{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;
+background:rgba(244,246,250,.92);backdrop-filter:blur(6px);padding:10px 0;margin-bottom:14px}
+nav.mkt a{text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);
+padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600}
+nav.mkt a:hover{border-color:var(--red);color:var(--red)}
+.summary{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.summary .chip{background:var(--card);border:1px solid var(--line);border-radius:10px;
+padding:8px 12px;font-size:12px;color:var(--muted)}
+.summary .chip b{color:var(--ink);font-size:14px;margin-left:4px}
+section.board{margin:26px 0}
+.board-title{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:19px}
+.board-title .dot{width:10px;height:10px;border-radius:50%}
+.board-title.red .dot{background:var(--red)}
+.board-title.black .dot{background:var(--dark)}
+.board-title small{color:var(--muted);font-weight:400;font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+position:relative;transition:box-shadow .15s}
+.card:hover{box-shadow:0 4px 18px rgba(20,26,46,.08)}
+.card.red{border-top:3px solid var(--red)}
+.card.black{border-top:3px solid var(--dark)}
+.rank{position:absolute;top:10px;right:12px;font-size:26px;font-weight:800;color:#eceff5}
+.card.red .rank{color:#fbdcD9}
+.nm{font-size:16px;font-weight:700}
+.nm .tk{color:var(--muted);font-weight:500;font-size:12px;margin-left:6px}
+.tag{display:inline-block;background:var(--chip);color:var(--muted);border-radius:6px;
+padding:1px 7px;font-size:11px;margin:6px 6px 0 0}
+.price-row{display:flex;align-items:baseline;gap:10px;margin:10px 0 4px}
+.price{font-size:24px;font-weight:800}
+.pct{font-size:14px;font-weight:700;padding:2px 8px;border-radius:8px}
+.up{color:var(--red)}.down{color:var(--green)}.flat{color:var(--muted)}
+.pct.up{background:var(--redbg)}.pct.down{background:#e2f4e9}.pct.flat{background:var(--chip)}
+.psrc{font-size:11px;color:var(--muted);margin-left:auto}
+.scores{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.scores span{background:var(--chip);border-radius:6px;padding:2px 8px;font-size:11px;color:var(--muted)}
+.scores span b{color:var(--ink)}
+.pts{font-size:12.5px;margin:8px 0 0}
+.pts .h{font-weight:700;font-size:12px;margin:6px 0 2px}
+.pts .h.bull{color:var(--red)}.pts .h.bear{color:var(--green)}
+.pts ul{margin:2px 0 4px;padding-left:18px;color:#3a4152}
+.pts li{margin:1px 0}
+.masters{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:11px;color:var(--muted)}
+.masters b{color:var(--ink)}
+.summ{font-size:12.5px;color:#3a4152;background:#fafbfd;border:1px solid var(--line);
+border-radius:8px;padding:8px 10px;margin-top:8px}
+.empty{color:var(--muted);background:var(--card);border:1px dashed var(--line);
+border-radius:10px;padding:18px;text-align:center}
+footer{margin-top:34px;color:var(--muted);font-size:12px;text-align:center;line-height:1.8}
+a.lnk{color:var(--red);text-decoration:none}
+/* ── detail page ── */
+.backbar{margin-bottom:14px;font-size:13px}
+.backbar a{color:var(--muted);text-decoration:none;margin-right:14px}
+.backbar a:hover{color:var(--red)}
+.badge{display:inline-block;border-radius:6px;padding:2px 10px;font-size:12px;font-weight:700;margin-right:8px}
+.badge.red{background:var(--red);color:#fff}.badge.black{background:var(--dark);color:#fff}
+.trade{display:flex;flex-wrap:wrap;gap:10px;background:linear-gradient(135deg,#2c3550,#1c2230);
+color:#fff;border-radius:12px;padding:16px 18px;margin:16px 0}
+.trade .cell{min-width:120px}
+.trade .k{font-size:11px;opacity:.75}
+.trade .v{font-size:18px;font-weight:800;margin-top:2px}
+.trade .v.buy{color:#7ee2a8}.trade .v.sell{color:#ff9d97}.trade .v.hold{color:#ffd166}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0}
+.mgrid .m{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.mgrid .m .k{font-size:11px;color:var(--muted)}
+.mgrid .m .v{font-size:16px;font-weight:700;margin-top:2px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.panel>h2{margin:0 0 12px;font-size:17px}
+.panel>h2 .sub{font-size:12px;color:var(--muted);font-weight:400;margin-left:8px}
+.mreply{border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;
+padding:12px 14px;margin:10px 0;background:#fff}
+.mreply .mh{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.mreply .mh .who{font-weight:700;font-size:14px}
+.mreply .mh .mscore{margin-left:auto;background:var(--chip);border-radius:6px;padding:1px 8px;font-size:12px;font-weight:700}
+.md h2,.md h3,.md h4,.md h5{margin:12px 0 6px;font-size:15px}
+.md p{margin:6px 0;font-size:13.5px;color:#2c3345}
+.md ul{margin:6px 0;padding-left:20px;font-size:13.5px;color:#2c3345}
+.md li{margin:3px 0}
+.md strong{color:var(--ink)}
+details{border:1px solid var(--line);border-radius:10px;background:#fff;margin:10px 0;padding:0}
+details>summary{cursor:pointer;padding:12px 16px;font-weight:700;font-size:14px;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary:before{content:"▸ ";color:var(--red)}
+details[open]>summary:before{content:"▾ "}
+details>.body{padding:0 16px 14px;border-top:1px dashed var(--line)}
+.ychip{display:inline-block;background:var(--chip);border-radius:8px;padding:4px 10px;font-size:12px;margin:3px 6px 3px 0}
+.ychip b{font-size:13px}
+.news .nitem{border-top:1px dashed var(--line);padding:8px 0;font-size:13px}
+.news .nitem .t{font-weight:600}
+.news .nitem .s{color:var(--muted);font-size:12px}
+/* ── root landing page ── */
+.hero{padding:30px 26px}
+.hero-kicker{color:#ffd166;font-size:12px;font-weight:700;letter-spacing:2px;
+text-transform:uppercase;margin-bottom:8px}
+.hero h1{font-size:30px;margin:0 0 10px}
+.day-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.day-card{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);
+border-radius:12px;padding:14px 16px;transition:all .15s}
+.day-card:hover{border-color:var(--red);box-shadow:0 4px 16px rgba(216,52,44,.12);transform:translateY(-2px)}
+.day-card .d{font-weight:800;font-size:15px;color:var(--ink);display:flex;align-items:center;gap:8px}
+.day-card .m{margin-top:8px;display:flex;gap:6px}
+.day-card .m span{background:var(--chip);color:var(--muted);border-radius:6px;
+padding:2px 8px;font-size:11px}
+.latest-badge{background:var(--red);color:#fff;border-radius:6px;padding:1px 7px;
+font-size:10px;font-weight:700}
+</style>
+</head>
+<body><div class="wrap">
+<div class="backbar"><a href="../index.html">← 总览</a><a href="../hk.html">← 港股榜单</a></div>
+<header class="top">
+  <h1><span class="badge black">黑榜 #4</span>哔哩哔哩-W<span class="tk" style="opacity:.7;font-size:15px;font-weight:400;margin-left:8px">09626</span></h1>
+  <div class="sub">港股 ·  · 榜单日期 <b>2026-08-08</b> · 盘价采集 <b>2026-08-08 05:00:44</b></div>
+  <div class="price-row" style="margin-top:12px">
+    <span class="price" style="color:#fff">HK$144.50</span>
+    <span class="pct down">-1.90%</span>
+    <span class="psrc" style="color:rgba(255,255,255,.6)">实时</span>
+  </div>
+  <div class="scores" style="margin-top:10px">
+    <span>综合 <b>36.2</b></span>
+    <span>多头 <b>40</b></span>
+    <span>空头 <b>80</b></span>
+    <span>大师均值 <b>35</b></span>
+    <span>信号 <b>negative</b></span>
+  </div>
+</header>
+<div class="trade"><div class="cell"><div class="k">交易评级</div><span class="v hold">Reduce</span></div><div class="cell"><div class="k">加仓区间</div><span class="v">135.83 ~ 141.61</span></div><div class="cell"><div class="k">伯克希尔</div><span class="v">观望</span></div><div class="cell"><div class="k">伯克希尔分</div><span class="v">3.50</span></div></div>
+<div class="panel"><h2>财务指标</h2><div class="mgrid"><div class="m"><div class="k">市盈率 PE</div><div class="v">39.15</div></div><div class="m"><div class="k">市净率 PB</div><div class="v">3.47</div></div><div class="m"><div class="k">ROE</div><div class="v">1.3%</div></div><div class="m"><div class="k">总市值</div><div class="v">614</div></div><div class="m"><div class="k">营收同比</div><div class="v">1.5%</div></div><div class="m"><div class="k">净利同比</div><div class="v">18.3%</div></div></div></div>
+<div class="panel"><h2>历史收益</h2><span class="ychip">近1月 <b class="up">+3.81%</b></span><span class="ychip">近6月 <b class="down">-39.64%</b></span><span class="ychip">近1年 <b class="down">-23.14%</b></span></div>
+<div class="panel"><h2>大师圆桌<span class="sub">5 位</span></h2><div class="mreply"><div class="mh"><span class="who">段永平</span><span class="mscore">45</span></div><div class="md"><p>首先，我认为哔哩哔哩这家公司值得持续关注，但目前可能不适合大规模投入。</p><p>哔哩哔哩拥有庞大的用户基础，这确实是它的一大优势。作为一家以年轻人为主要用户群体的平台，它在内容创作和社区运营方面有独特的竞争力。这种用户粘性和社区氛围是很多其他平台难以复制的。</p><p>不过，我有一些担忧。首先是监管风险。中国互联网行业的监管环境越来越严格，这对于所有相关公司来说都是需要认真对待的挑战。哔哩哔哩作为一家内容平台，在这方面的压力可能会更大。其次，从估值角度来看，目前的市盈率接近40倍，相对于公司的盈利能力来说，这个估值水平并不低。</p><p>在投资决策上，我建议大家要保持谨慎。如果你是长期投资者，并且对公司的长期发展有信心，可以考虑小规模参与，但要做好承受短期波动的准备。对于已经持有的投资者，我建议密切关注监管政策的变化，以及公司如何应对这些挑战。</p><p>最后，我想强调的是，投资决策应该基于对公司长期价值的判断，而不是短期的股价波动。哔哩哔哩的用户基础和社区生态是其核心竞争力，但如何在监管环境下保持增长，将是它面临的最大考验。</p><p>别错过的隐含约束：不要因为短期的股价下跌而忽视了长期的基本面变化。</p></div></div><div class="mreply"><div class="mh"><span class="who">巴菲特</span><span class="mscore">30</span></div><div class="md"><p>各位朋友，今天我们来聊聊哔哩哔哩这家公司。</p><p>首先，我的结论是：我对哔哩哔哩持谨慎态度。这家公司所处的互联网行业确实有长期潜力，用户基础也相当广泛，这些都是值得肯定的亮点。但从投资的角度来看，我更关注的是风险因素。</p><p>让我解释一下我的看法。</p><p>首先，哔哩哔哩面临较高的监管风险。互联网行业近年来受到越来越严格的监管，这给公司的未来发展带来了很大的不确定性。作为投资者，我一向对高监管风险的公司持谨慎态度，因为监管政策的变化可能会对公司的商业模式产生重大影响。</p><p>其次，从估值来看，哔哩哔哩的市盈率高达39倍，市净率也超过3倍。这样的估值水平让我很难找到足够的安全边际。即使公司拥有良好的增长潜力，但在当前价格下，我很难说服自己这是一笔划算的交易。</p><p>再者，公司的盈利能力也让我有些担忧。虽然营收增长还算稳定，但净利润率仅为2.7%，净资产收益率更是只有1.34%。这表明公司在将收入转化为利润方面还有很长的路要走。</p><p>基于以上分析，我的建议是：</p><p>如果你已经持有哔哩哔哩的股票，我建议你密切关注公司的基本面变化，特别是监管环境的变化。如果监管风险加剧，或者公司的盈利能力没有明显改善，那么可能需要考虑减仓。</p><p>如果你正在考虑买入，我建议你先问问自己：这家公司是否在你的能力圈范围内？你是否能够准确评估其监管风险和长期竞争力？同时，也要考虑当前的价格是否提供了足够的安全边际。</p><p>最后，我想引用一句我常说的话：&quot;时间是伟大生意的朋友，是烂生意的敌人。&quot; 对于哔哩哔哩这样的公司，我们需要更多的时间来观察其商业模式能否经受住监管环境的考验。</p><p>如果查理·芒格在这里，他会补充说：&quot;投资就像经营果园，你要选择那些能够长期结出果实的树，而不是那些看起来一时繁茂但根基不稳的树。&quot; 在这里，我想我们都需要更仔细地审视哔哩哔哩的根基是否稳固。</p></div></div><div class="mreply"><div class="mh"><span class="who">达利欧</span><span class="mscore">40</span></div><div class="md"><p>各位朋友，关于哔哩哔哩-W（09626），我先给出我的结论：<strong>我对其持谨慎态度，建议观望为主。</strong></p><h4>理由分析：</h4><p>首先，从行业角度来看，哔哩哔哩所处的互联网行业确实具有长期潜力，尤其是其作为中国年轻一代的重要内容平台，用户基础广泛且粘性较高。这是我认可的积极因素。</p><p>然而，当我们把目光转向更具体的财务和风险层面时，会发现一些值得警惕的信号：</p><ul><li><strong>估值偏高</strong>：目前其市盈率（PE）接近40倍，远高于市场平均水平。这表明市场对其增长预期很高，但同时也意味着股价对负面消息的敏感度较高。</li></ul><ul><li><strong>盈利能力不足</strong>：净资产收益率（ROE）仅为1.34%，这说明公司利用股东权益创造利润的能力较弱。净利润率也只有2.7%，反映出其盈利能力存在较大挑战。</li></ul><ul><li><strong>监管风险</strong>：这是当前我最担忧的因素。中国政府对互联网行业的监管力度持续加强，这不仅影响公司的短期业绩，更可能改变其长期发展路径。</li></ul><ul><li><strong>市场表现疲软</strong>：近期股价下跌1.9%，这可能反映了市场对其未来前景的担忧。</li></ul><h4>风险/行动建议：</h4><ul><li><strong>短期风险大于机会</strong>：考虑到估值压力和监管环境的不确定性，我认为短期内股价可能面临进一步下行压力。</li></ul><ul><li><strong>观望为主</strong>：对于想要建仓的投资者，我建议等待更明确的信号，比如监管环境明朗化或公司盈利能力出现实质性改善。</li></ul><ul><li><strong>关注用户增长和变现能力</strong>：长期来看，哔哩哔哩能否维持用户增长并有效提升变现能力将是关键。如果这两点能够持续改善，可能会带来投资机会。</li></ul><h4>原则化总结：</h4><p>在这类投资决策中，我遵循的原则是：<strong>在不确定性较高的情况下，宁可错过机会，也不要承担不必要的风险。</strong> 这意味着在看到更清晰的趋势之前，保持耐心和谨慎是更明智的选择。</p><p>建议各位将这个案例记录在决策日志中，并持续关注监管政策的变化以及公司基本面的改善情况。这将帮助我们在未来做出更明智的投资决策。</p></div></div><div class="mreply"><div class="mh"><span class="who">林奇</span><span class="mscore">35</span></div><div class="md"><h4>哔哩哔哩-W（09626）投资观点</h4><p><strong>结论</strong>：我目前对哔哩哔哩持观望态度，建议大家谨慎考虑。</p><h4>理由</h4><p>首先，哔哩哔哩作为一家互联网公司，拥有庞大的用户基础和长期的增长潜力，这是不容忽视的优势。然而，从估值角度来看，目前的市盈率（PE）高达39倍，相较于其盈利能力和行业平均水平，显得有些偏高。尽管公司的用户增长和营收表现尚可，但净利润率仅为2.7%，这表明其盈利能力还有待提高。</p><p>其次，股价在过去一段时间内表现疲软，下跌了1.9%，这可能反映出市场对其未来增长的担忧。此外，哔哩哔哩面临的监管风险也不容忽视，这在一定程度上增加了投资的不确定性。</p><h4>风险/行动建议</h4><ul><li><strong>估值风险</strong>：当前的估值水平较高，投资者需要谨慎对待。如果你是长期投资者，并且对公司未来增长有信心，可以考虑分批建仓，但不要急于重仓。</li></ul><ul><li><strong>监管风险</strong>：互联网行业面临的监管环境变化较快，建议密切关注相关政策动向。如果监管风险加剧，可能会对公司的盈利能力产生负面影响。</li></ul><ul><li><strong>盈利能力</strong>：关注公司未来几个季度的盈利表现，特别是净利润率的提升情况。如果盈利能力没有显著改善，可能会影响其长期增长潜力。</li></ul><ul><li><strong>用户增长</strong>：尽管用户基础广泛，但需要观察用户活跃度和粘性是否能够持续增长。这将是公司未来发展的关键。</li></ul><p>总之，哔哩哔哩是一家具有潜力的公司，但在当前的市场环境下，投资者需要保持谨慎。建议大家在投资前，仔细评估自身的风险承受能力，并做好长期持有的准备。</p></div></div><div class="mreply"><div class="mh"><span class="who">芒格</span><span class="mscore">25</span></div><div class="md"><p>各位同仁，我谈谈对哔哩哔哩的看法。</p><p>首先，我必须说，我对这家公司持保留态度。诚然，它身处互联网行业，有长期增长潜力，用户基础也颇为广泛，这是它值得关注的亮点。然而，我更倾向于关注那些让它可能失败的原因。</p><p>第一，盈利能力堪忧。看看它的财务指标：市销率1.78，市盈率39倍，而净资产收益率仅有1.34%。这些数字告诉我，这家公司目前赚取的利润与其估值完全不匹配。互联网公司常以用户增长为先，但长期来看，如果不能将用户基数转化为实实在在的盈利能力，股价迟早会回归基本面。</p><p>第二，监管风险不容忽视。在中国，互联网行业面临的监管环境日益严格。哔哩哔哩的业务模式决定了它必须小心翼翼地平衡内容创作与合规性。任何监管上的风吹草动，都可能对其股价造成巨大冲击。</p><p>第三，市场表现疲软。最近股价下跌1.9%，这并非偶然，而是市场对其未来盈利能力的担忧体现。当一家公司估值过高，而盈利能力又未能跟上时，投资者往往会失去耐心。</p><p>基于以上分析，我的建议是：保持谨慎。如果一定要投资，请确保你的投资组合中，这部分仓位占比很小，并且做好长期持有的准备。毕竟，互联网行业的潜力是真实的，但哔哩哔哩能否将潜力转化为持续盈利能力，仍需时间验证。</p><p>最后，提醒大家，永远不要忽视激励机制。问问自己：谁从这家公司的高估值中获益最大？是公司管理层，还是长期投资者？这个问题能帮助你更清晰地看清现实。</p><p>记住，如果我知道自己死在哪里，我就永远不去那里。投资的第一要务，是确保自己不会因为一时冲动而陷入困境。</p></div></div></div>
+<div class="panel"><h2>分析师报告<span class="sub">2 篇</span></h2><details open><summary>市场面分析</summary><div class="body"><div class="md"><h4>09626 哔哩哔哩-W 市场面分析</h4><ul><li>红黑榜多空分数：多头 40 / 空头 80，分差 -40。</li><li>当前价格：144.50。</li><li>当前交易评级：Reduce。</li><li>值得加仓区间：135.83 - 141.61。</li><li>风险控制位：127.16。</li><li>市场愿意给溢价的原因：互联网行业长期潜力；用户基础广泛。</li><li>当前主要压制因素：股价下跌1.9%，表现疲软；监管风险较高。</li></ul></div></div></details><details open><summary>基本面分析</summary><div class="body"><div class="md"><h4>09626 哔哩哔哩-W 基本面分析</h4><ul><li>报告期：暂无。</li><li>PE(TTM)：39.15。</li><li>PB：3.47。</li><li>PS(TTM)：1.78。</li><li>ROE：1.34%。</li><li>营收同比：1.54%。</li><li>归母净利润同比：18.34%。</li><li>核心判断：收入仍在增长；利润端保持扩张。</li></ul></div></div></details></div>
+<div class="panel"><h2>研究与计划</h2>
+<details><summary>基本面摘要</summary><div class="body"><div class="md"><h3>核心财务快照</h3><ul><li>报告期: 数据缺失</li><li>当前股价: 144.50 元</li><li>总市值: 614.17 亿元</li><li>PE (TTM): 39.15</li><li>PB: 3.47</li><li>PS (TTM): 1.78</li><li>营业总收入(报告期): 数据缺失 亿元</li><li>营收同比增长率: 1.54%</li><li>归母净利润(报告期): 数据缺失 亿元</li><li>归母净利润同比增长率: 18.34%</li><li>ROE (TTM/估算): 1.34%</li><li>资产负债率: 数据缺失</li><li>经营性现金流 / 归母净利润: 数据缺失</li></ul><h4>缺失字段</h4><ul><li>营业总收入, 归母净利润, 资产负债率, 经营性现金流与归母净利润比值</li></ul></div></div></details>
+<details><summary>研究计划</summary><div class="body"><div class="md"><h4>09626 哔哩哔哩-W 研究摘要</h4><ul><li>红黑榜结论: Reduce</li><li>多头/空头: 40/80</li><li>正向信号: 营收同比 1.54%；归母净利润同比 18.34%；PE(TTM) 39.15；PB 3.47</li><li>风险信号: ROE 1.34%</li><li>榜单看多理由: 互联网行业长期潜力；用户基础广泛</li><li>榜单风险提示: 股价下跌1.9%，表现疲软；监管风险较高</li></ul></div></div></details>
+<details><summary>交易计划</summary><div class="body"><div class="md"><h4>09626 哔哩哔哩-W 交易计划</h4><ul><li>评级: Reduce</li><li>当前价格: 144.50</li><li>值得加仓区间: 130.05 - 135.83</li><li>目标价格: 137.28</li><li>止损位: 127.16</li><li>备注: 当前为缓存降级交易卡，后续若完整 TradingAgent 结果生成，将自动覆盖。</li></ul></div></div></details>
+<details><summary>交易决策</summary><div class="body"><div class="md"><p>Reduce</p><p>09626 哔哩哔哩-W 当前使用红黑榜缓存结果生成兜底交易卡。多头 40 / 空头 80，分差 -40。当前尚未取得完整 TradingAgent 长文决策，但榜单分数、财务快照和大师观点已经足够生成基础交易建议。</p></div></div></details>
+</div>
+<div class="panel"><h2>多空逻辑</h2><div class="pts"><div class="h bull">看多逻辑</div><div class="md"><p>互联网行业长期潜力</p><p>用户基础广泛</p></div></div><div class="pts"><div class="h bear">看空逻辑</div><div class="md"><p>股价下跌1.9%，表现疲软</p><p>监管风险较高</p></div></div></div>
+<div class="panel"><h2>伯克希尔研究</h2><p><strong>哔哩哔哩具备独特的社区生态与用户粘性，但面临盈利压力与竞争挑战，需关注长期变现能力与监管风险。</strong></p><p>伯克希尔综合评分：<strong>3.5</strong></p><div class="md"><p>{&quot;verdict&quot;: &quot;观望&quot;, &quot;conservative_tip&quot;: &quot;建议等待估值回调至PS 4-5倍区间再考虑买入。&quot;, &quot;moderate_tip&quot;: &quot;若营收增速回升且亏损收窄，可小仓位介入。&quot;, &quot;aggressive_tip&quot;: &quot;对长期投资者而言，当前价格可小仓位布局，但需密切关注盈利改善与竞争格局变化。&quot;, &quot;catalysts_plus&quot;: [&quot;用户增长超预期&quot;, &quot;盈利能力改善，亏损收窄&quot;, &quot;政策环境趋稳&quot;], &quot;catalysts_minus&quot;: [&quot;用户增长放缓&quot;, &quot;政策监管加强&quot;, &quot;竞争加剧导致市场份额下降&quot;]}</p></div></div>
+<div class="panel news"><h2>最新资讯</h2><div class="md"><p>整体情绪偏利好，共7条利多，1条利空，3条中性。</p></div><div class="nitem"><div class="t">CICC: Maintains Bilibili-W (09626) at Outperform rating with a target price of HK$194</div><div class="s">Moomoo · 利好</div></div><div class="nitem"><div class="t">Bilibili-W (9626.HK): A rare young‑culture community with continuously unlocking commercialization potential.</div><div class="s">富途牛牛 · 利好</div></div><div class="nitem"><div class="t">Bilibili Gaming vs Top Esports Prediction &amp; Betting Tip | LoL</div><div class="s">EGamersWorld · 中性</div></div><div class="nitem"><div class="t">Goldman Sachs&#x27; Long Position In Bilibili-W Increases To 9.17% On July 15 From 3.96% - HKEX</div><div class="s">TradingView · 利好</div></div><div class="nitem"><div class="t">BILIBILI-W Video Podcast Content Single-Day Viewing Time Exceeds 100M Minutes</div><div class="s">AAStock · 利好</div></div><div class="nitem"><div class="t">400,000 Visitors Flock In Over Three Days: Bilibili World Is More Than Just an Otaku Celebration</div><div class="s">Moomoo · 利好</div></div><div class="nitem"><div class="t">Hong Kong Stock Rating Summary: Guotou Securities initiates Bilibili with a Buy-A rating.</div><div class="s">富途牛牛 · 利好</div></div><div class="nitem"><div class="t">Bilibili-W rose after the company recently announced a $300 million share repurchase program, representing approximately 4.5% of its market capitalization.</div><div class="s">Moomoo · 利好</div></div></div>
+<footer>稳健理财Agent · 红黑榜每日归档 · 黑榜 #4 · 仅供研究，不构成投资建议</footer>
+</div></body>
+</html>

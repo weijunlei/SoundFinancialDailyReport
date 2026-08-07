@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>领益智造(01688) 黑榜 2026-08-08</title>
+<style>
+:root{--red:#d8342c;--redbg:#fdecea;--green:#1a9e54;--ink:#1c2230;--muted:#6b7385;
+--line:#e7e9ef;--card:#fff;--bg:#f4f6fa;--chip:#eef1f6;--dark:#23262d;--darkbg:#ececef}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",
+"Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);
+line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 16px 64px}
+header.top{background:linear-gradient(135deg,#1c2230,#2c3550);color:#fff;border-radius:14px;
+padding:22px 24px;margin-bottom:20px;box-shadow:0 6px 24px rgba(20,26,46,.12)}
+header.top h1{margin:0 0 6px;font-size:24px;letter-spacing:.5px}
+header.top .sub{opacity:.85;font-size:13px}
+header.top .sub b{color:#ffd166;font-weight:600}
+nav.mkt{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;
+background:rgba(244,246,250,.92);backdrop-filter:blur(6px);padding:10px 0;margin-bottom:14px}
+nav.mkt a{text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);
+padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600}
+nav.mkt a:hover{border-color:var(--red);color:var(--red)}
+.summary{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.summary .chip{background:var(--card);border:1px solid var(--line);border-radius:10px;
+padding:8px 12px;font-size:12px;color:var(--muted)}
+.summary .chip b{color:var(--ink);font-size:14px;margin-left:4px}
+section.board{margin:26px 0}
+.board-title{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:19px}
+.board-title .dot{width:10px;height:10px;border-radius:50%}
+.board-title.red .dot{background:var(--red)}
+.board-title.black .dot{background:var(--dark)}
+.board-title small{color:var(--muted);font-weight:400;font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+position:relative;transition:box-shadow .15s}
+.card:hover{box-shadow:0 4px 18px rgba(20,26,46,.08)}
+.card.red{border-top:3px solid var(--red)}
+.card.black{border-top:3px solid var(--dark)}
+.rank{position:absolute;top:10px;right:12px;font-size:26px;font-weight:800;color:#eceff5}
+.card.red .rank{color:#fbdcD9}
+.nm{font-size:16px;font-weight:700}
+.nm .tk{color:var(--muted);font-weight:500;font-size:12px;margin-left:6px}
+.tag{display:inline-block;background:var(--chip);color:var(--muted);border-radius:6px;
+padding:1px 7px;font-size:11px;margin:6px 6px 0 0}
+.price-row{display:flex;align-items:baseline;gap:10px;margin:10px 0 4px}
+.price{font-size:24px;font-weight:800}
+.pct{font-size:14px;font-weight:700;padding:2px 8px;border-radius:8px}
+.up{color:var(--red)}.down{color:var(--green)}.flat{color:var(--muted)}
+.pct.up{background:var(--redbg)}.pct.down{background:#e2f4e9}.pct.flat{background:var(--chip)}
+.psrc{font-size:11px;color:var(--muted);margin-left:auto}
+.scores{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.scores span{background:var(--chip);border-radius:6px;padding:2px 8px;font-size:11px;color:var(--muted)}
+.scores span b{color:var(--ink)}
+.pts{font-size:12.5px;margin:8px 0 0}
+.pts .h{font-weight:700;font-size:12px;margin:6px 0 2px}
+.pts .h.bull{color:var(--red)}.pts .h.bear{color:var(--green)}
+.pts ul{margin:2px 0 4px;padding-left:18px;color:#3a4152}
+.pts li{margin:1px 0}
+.masters{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:11px;color:var(--muted)}
+.masters b{color:var(--ink)}
+.summ{font-size:12.5px;color:#3a4152;background:#fafbfd;border:1px solid var(--line);
+border-radius:8px;padding:8px 10px;margin-top:8px}
+.empty{color:var(--muted);background:var(--card);border:1px dashed var(--line);
+border-radius:10px;padding:18px;text-align:center}
+footer{margin-top:34px;color:var(--muted);font-size:12px;text-align:center;line-height:1.8}
+a.lnk{color:var(--red);text-decoration:none}
+/* ── detail page ── */
+.backbar{margin-bottom:14px;font-size:13px}
+.backbar a{color:var(--muted);text-decoration:none;margin-right:14px}
+.backbar a:hover{color:var(--red)}
+.badge{display:inline-block;border-radius:6px;padding:2px 10px;font-size:12px;font-weight:700;margin-right:8px}
+.badge.red{background:var(--red);color:#fff}.badge.black{background:var(--dark);color:#fff}
+.trade{display:flex;flex-wrap:wrap;gap:10px;background:linear-gradient(135deg,#2c3550,#1c2230);
+color:#fff;border-radius:12px;padding:16px 18px;margin:16px 0}
+.trade .cell{min-width:120px}
+.trade .k{font-size:11px;opacity:.75}
+.trade .v{font-size:18px;font-weight:800;margin-top:2px}
+.trade .v.buy{color:#7ee2a8}.trade .v.sell{color:#ff9d97}.trade .v.hold{color:#ffd166}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0}
+.mgrid .m{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.mgrid .m .k{font-size:11px;color:var(--muted)}
+.mgrid .m .v{font-size:16px;font-weight:700;margin-top:2px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.panel>h2{margin:0 0 12px;font-size:17px}
+.panel>h2 .sub{font-size:12px;color:var(--muted);font-weight:400;margin-left:8px}
+.mreply{border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;
+padding:12px 14px;margin:10px 0;background:#fff}
+.mreply .mh{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.mreply .mh .who{font-weight:700;font-size:14px}
+.mreply .mh .mscore{margin-left:auto;background:var(--chip);border-radius:6px;padding:1px 8px;font-size:12px;font-weight:700}
+.md h2,.md h3,.md h4,.md h5{margin:12px 0 6px;font-size:15px}
+.md p{margin:6px 0;font-size:13.5px;color:#2c3345}
+.md ul{margin:6px 0;padding-left:20px;font-size:13.5px;color:#2c3345}
+.md li{margin:3px 0}
+.md strong{color:var(--ink)}
+details{border:1px solid var(--line);border-radius:10px;background:#fff;margin:10px 0;padding:0}
+details>summary{cursor:pointer;padding:12px 16px;font-weight:700;font-size:14px;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary:before{content:"▸ ";color:var(--red)}
+details[open]>summary:before{content:"▾ "}
+details>.body{padding:0 16px 14px;border-top:1px dashed var(--line)}
+.ychip{display:inline-block;background:var(--chip);border-radius:8px;padding:4px 10px;font-size:12px;margin:3px 6px 3px 0}
+.ychip b{font-size:13px}
+.news .nitem{border-top:1px dashed var(--line);padding:8px 0;font-size:13px}
+.news .nitem .t{font-weight:600}
+.news .nitem .s{color:var(--muted);font-size:12px}
+/* ── root landing page ── */
+.hero{padding:30px 26px}
+.hero-kicker{color:#ffd166;font-size:12px;font-weight:700;letter-spacing:2px;
+text-transform:uppercase;margin-bottom:8px}
+.hero h1{font-size:30px;margin:0 0 10px}
+.day-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.day-card{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);
+border-radius:12px;padding:14px 16px;transition:all .15s}
+.day-card:hover{border-color:var(--red);box-shadow:0 4px 16px rgba(216,52,44,.12);transform:translateY(-2px)}
+.day-card .d{font-weight:800;font-size:15px;color:var(--ink);display:flex;align-items:center;gap:8px}
+.day-card .m{margin-top:8px;display:flex;gap:6px}
+.day-card .m span{background:var(--chip);color:var(--muted);border-radius:6px;
+padding:2px 8px;font-size:11px}
+.latest-badge{background:var(--red);color:#fff;border-radius:6px;padding:1px 7px;
+font-size:10px;font-weight:700}
+</style>
+</head>
+<body><div class="wrap">
+<div class="backbar"><a href="../index.html">← 总览</a><a href="../hk.html">← 港股榜单</a></div>
+<header class="top">
+  <h1><span class="badge black">黑榜 #7</span>领益智造<span class="tk" style="opacity:.7;font-size:15px;font-weight:400;margin-left:8px">01688</span></h1>
+  <div class="sub">港股 ·  · 榜单日期 <b>2026-08-08</b> · 盘价采集 <b>2026-08-08 05:00:44</b></div>
+  <div class="price-row" style="margin-top:12px">
+    <span class="price" style="color:#fff">HK$6.21</span>
+    <span class="pct down">-1.58%</span>
+    <span class="psrc" style="color:rgba(255,255,255,.6)">实时</span>
+  </div>
+  <div class="scores" style="margin-top:10px">
+    <span>综合 <b>41.2</b></span>
+    <span>多头 <b>45</b></span>
+    <span>空头 <b>75</b></span>
+    <span>大师均值 <b>36</b></span>
+    <span>信号 <b>negative</b></span>
+  </div>
+</header>
+<div class="trade"><div class="cell"><div class="k">交易评级</div><span class="v hold">Reduce</span></div><div class="cell"><div class="k">加仓区间</div><span class="v">5.84 ~ 6.09</span></div><div class="cell"><div class="k">伯克希尔</div><span class="v">观望</span></div><div class="cell"><div class="k">伯克希尔分</div><span class="v">3.50</span></div></div>
+<div class="panel"><h2>财务指标</h2><div class="mgrid"><div class="m"><div class="k">市盈率 PE</div><div class="v">21.35</div></div><div class="m"><div class="k">市净率 PB</div><div class="v">1.83</div></div><div class="m"><div class="k">ROE</div><div class="v">1.6%</div></div><div class="m"><div class="k">总市值</div><div class="v">505</div></div><div class="m"><div class="k">营收同比</div><div class="v">2.2%</div></div><div class="m"><div class="k">净利同比</div><div class="v">-7.6%</div></div></div></div>
+<div class="panel"><h2>历史收益</h2><span class="ychip">近1月 <b class="down">-20.18%</b></span><span class="ychip">近6月 <b class="down">-36.05%</b></span><span class="ychip">近1年 <b class="down">-36.05%</b></span></div>
+<div class="panel"><h2>大师圆桌<span class="sub">5 位</span></h2><div class="mreply"><div class="mh"><span class="who">段永平</span><span class="mscore">40</span></div><div class="md"><p>对于领益智造这家公司，我谈几点看法：</p><p>首先，这是一家制造业企业，从基本面来看，有一定的潜力，但同时风险也较为明显。目前的市值为500多亿，制造业作为基础需求行业，有其长期存在的价值。</p><p>但从估值角度来看，21倍的市盈率、1.8倍的市净率，显示出市场对其有一定预期。然而，从财务数据来看，收入同比增长仅2.23%，净利润同比下降7.58%，这样的表现并不理想。净资产收益率（ROE）只有1.62%，说明公司的盈利能力较弱。</p><p>关于是否投资，我建议大家要谨慎考虑：</p><ul><li>制造业确实有长期需求，但行业竞争激烈，公司需要展现出更强的竞争力才能脱颖而出。</li></ul><ul><li>目前股价表现疲软，下跌1.58%，流动性风险较高，这需要特别关注。</li></ul><ul><li>对于这类市值较小的公司，虽然有成长空间，但也伴随着更大的不确定性。</li></ul><p>如果一定要给建议，我会说：</p><p>要投资这家公司，需要对其商业模式有更深入的理解，特别是要关注其未来的盈利能力和市场份额的变化。同时，要做好风险管理，因为这类公司的波动性往往较大。</p><p>最后，我想提醒大家，不要因为看似便宜就轻易做出投资决定。投资的关键在于理解公司真正的价值，以及它是否能持续创造价值。如果对这家公司的未来发展没有足够的信心，可能需要重新评估投资决策。</p><p>记住：投资不是投机，要看长远，而不是短期波动。</p></div></div><div class="mreply"><div class="mh"><span class="who">巴菲特</span><span class="mscore">35</span></div><div class="md"><h4>巴菲特视角看领益智造</h4><h5><strong>结论</strong>：</h5><p>领益智造目前不是我感兴趣的标的。</p><h5><strong>理由</strong>：</h5><ul><li><strong>护城河分析</strong>：制造业是一个竞争激烈的领域，领益智造并没有展现出让我信服的可持续竞争优势。制造业企业需要不断投入资本来维持运营，这使得其盈利能力的持续性存疑。</li><li><strong>安全边际不足</strong>：当前市盈率（PE）约为21倍，对于一个制造业公司来说，这个估值并不算低。更重要的是，其净资产收益率（ROE）仅为1.6%，这表明公司利用股东资本创造利润的能力较弱。</li><li><strong>流动性风险</strong>：从市场表现来看，股价下跌1.58%，且流动性风险较高。对于我这种偏好&quot;现金是氧气&quot;的投资者来说，流动性不足是一个重要的警示信号。</li></ul><h5><strong>风险/行动建议</strong>：</h5><ul><li><strong>风险提示</strong>：制造业受宏观经济环境影响较大，如果全球经济出现波动，制造业公司可能会面临更大的经营压力。此外，流动性不足可能导致股价波动加剧。</li><li><strong>行动建议</strong>：如果你已经在关注这家公司，建议你仔细评估其长期盈利能力和管理层的经营能力。对于我来说，我会选择继续观察，等待更明确的信号出现。</li></ul><h5><strong>如果是芒格，会补充什么</strong>：</h5><p>查理可能会用他的&quot;逆向思维&quot;来提醒大家：在投资中，我们不仅要寻找好的机会，更要避免明显的陷阱。领益智造目前面临的挑战大于机遇，或许我们应该把注意力放在那些更符合我们投资理念的公司上。</p></div></div><div class="mreply"><div class="mh"><span class="who">达利欧</span><span class="mscore">30</span></div><div class="md"><p>各位同仁，今天我们来讨论一下领益智造（01688）的投资价值。首先，我必须给出我的结论：在当前环境下，我对领益智造持谨慎态度。</p><h4>理由</h4><p>从达利欧的原则化视角来看，领益智造面临几个关键问题：</p><ul><li><strong>短期债务周期压力</strong>：领益智造的营收同比增长仅为2.23%，而净利润同比下降了7.59%。这表明公司盈利能力在当前经济环境下承受压力，反映出短期债务周期中的典型特征，即收入增长无法跟上成本上升的速度。</li></ul><ul><li><strong>市场波动影响大</strong>：当前市场对制造业基础需求的支持是一个正面因素，但领益智造的股价在过去一段时间内表现疲软，下跌了1.58%。这表明市场对其未来增长预期并不乐观。</li></ul><ul><li><strong>流动性风险</strong>：领益智造的市值较小，虽然这可能意味着成长潜力，但也带来了较高的流动性风险。在市场波动加剧的情况下，小市值公司往往更容易受到资金流动的影响。</li></ul><h4>风险与行动建议</h4><ul><li><strong>风险</strong>：</li><li><strong>盈利能力持续下滑</strong>：如果全球经济环境进一步恶化，领益智造的盈利能力可能继续承压。</li><li><strong>市场情绪波动</strong>：小市值公司对市场情绪的敏感度较高，任何负面消息都可能导致股价大幅波动。</li></ul><ul><li><strong>行动建议</strong>：</li><li><strong>观望为主</strong>：在当前环境下，建议投资者保持观望，等待更明确的信号。如果公司能够在未来几个季度内改善盈利能力，可能会有更好的投资机会。</li><li><strong>关注现金流</strong>：密切关注公司的现金流状况和债务水平，确保其能够在经济波动中保持稳健。</li><li><strong>分散投资</strong>：如果决定投资，建议将投资分散到多个行业和公司，以降低单一投资的风险。</li></ul><h4>原则化收口</h4><p>基于以上分析，我建议将以下原则纳入决策日志：在经济环境不确定的情况下，优先考虑公司的盈利能力和流动性状况，避免因市场波动而做出仓促决策。</p><p>希望这些分析对大家有所帮助，我们继续关注领益智造的进一步发展。</p></div></div><div class="mreply"><div class="mh"><span class="who">林奇</span><span class="mscore">50</span></div><div class="md"><p>各位朋友，今天我们来聊聊领益智造（01688.HK）。我的观点是：这只股票目前处于一个&quot;有潜力但风险较高&quot;的状态，需要谨慎对待。</p><p>首先，从公司业务来看，领益智造属于制造业领域，这是一个具有基础需求支撑的行业。公司市值约500亿港币，规模不算太大，这意味着一旦抓住机会，可能会有不错的成长空间。</p><p>然而，当我们深入分析财务数据时，会发现一些令人担忧的迹象。目前的市盈率（PE）超过21倍，对于一家制造业公司来说，这个估值并不算便宜。更令人担忧的是，公司的净利润同比下降了7.6%，而营收增长仅为2.2%，显示出盈利能力正在承压。此外，净资产收益率（ROE）仅为1.6%，这对于投资者来说是一个警示信号。</p><p>在股价表现方面，过去一段时间领益智造的股价表现疲软，今天又下跌了1.58%，这反映出市场对其未来前景的担忧。同时，流动性风险较高也是一个需要关注的问题。</p><p>基于以上分析，我给这只股票的打分是50分，属于&quot;部分看好&quot;但需要高度谨慎的范畴。如果你已经持有这只股票，我建议你要密切关注以下几点：</p><ul><li>密切关注公司的盈利能力变化，特别是净利润的改善情况。如果净利润持续下滑，可能需要考虑止损。</li><li>关注公司是否有新的增长点或业务转型计划，这可能是未来股价上涨的关键。</li><li>注意市场流动性的变化，如果流动性进一步恶化，可能需要提前做好风险控制。</li></ul><p>总的来说，领益智造是一家有潜力的公司，但目前面临较大的挑战。作为投资者，我们需要保持警惕，做好风险控制，而不是盲目乐观。如果你能承受一定的风险，并且愿意长期持有，可以考虑小仓位参与，但一定要做好止损准备。</p></div></div><div class="mreply"><div class="mh"><span class="who">芒格</span><span class="mscore">25</span></div><div class="md"><p>各位，我今天要谈的是领益智造这家公司，代码01688。</p><p>首先，我必须直言不讳：我不看好这家公司。</p><p>理由很简单：尽管它处于制造业这个基础需求行业，但它的商业模式不够稳健。这体现在几个关键指标上——净利润同比下降了7.59%，而净资产收益率（ROE）仅为1.62%。这些数字表明，公司在创造股东价值方面表现不佳。此外，其市盈率高达21倍，对于这样一家盈利能力下滑的公司来说，估值明显偏高。</p><p>再者，公司股价近期下跌了1.58%，且流动性风险较高。这让我想起一句老话：&quot;如果你知道自己会死在哪里，就永远不要去那里。&quot;在当前的市场环境下，投资于流动性差且盈利能力下降的公司，无异于自寻死路。</p><p>当然，有人可能会说，这家公司的市值较小，可能具有成长性。但我要提醒大家，成长性不是凭空而来的，它需要坚实的基础和稳健的盈利能力作为支撑。而领益智造目前显然缺乏这些要素。</p><p>基于以上分析，我的建议是：</p><ul><li>如果你已经持有这只股票，建议重新评估你的投资逻辑，考虑减持或清仓。</li><li>如果你正在考虑买入，请三思而后行。记住，机会成本是投资中最重要的概念之一——把资金投入到更有前景的公司，可能会带来更好的回报。</li></ul><p>最后，我要说的是，投资中最重要的不是抓住每一个机会，而是避免犯下致命的错误。领益智造目前来看，潜在风险远大于潜在收益。希望大家都能做出明智的决策。</p></div></div></div>
+<div class="panel"><h2>分析师报告<span class="sub">2 篇</span></h2><details open><summary>市场面分析</summary><div class="body"><div class="md"><h4>01688 领益智造 市场面分析</h4><ul><li>红黑榜多空分数：多头 45 / 空头 75，分差 -30。</li><li>当前价格：6.21。</li><li>当前交易评级：Reduce。</li><li>值得加仓区间：5.84 - 6.09。</li><li>风险控制位：5.47。</li><li>市场愿意给溢价的原因：制造业基础需求；市值较小，可能具有成长性。</li><li>当前主要压制因素：股价下跌1.58%，表现疲软；流动性风险较高。</li></ul></div></div></details><details open><summary>基本面分析</summary><div class="body"><div class="md"><h4>01688 领益智造 基本面分析</h4><ul><li>报告期：暂无。</li><li>PE(TTM)：21.35。</li><li>PB：1.83。</li><li>PS(TTM)：0.86。</li><li>ROE：1.62%。</li><li>营收同比：2.23%。</li><li>归母净利润同比：-7.59%。</li><li>核心判断：收入仍在增长。</li></ul></div></div></details></div>
+<div class="panel"><h2>研究与计划</h2>
+<details><summary>基本面摘要</summary><div class="body"><div class="md"><h3>核心财务快照</h3><ul><li>报告期: 数据缺失</li><li>当前股价: 6.21 元</li><li>总市值: 504.68 亿元</li><li>PE (TTM): 21.35</li><li>PB: 1.83</li><li>PS (TTM): 0.86</li><li>营业总收入(报告期): 数据缺失 亿元</li><li>营收同比增长率: 2.23%</li><li>归母净利润(报告期): 数据缺失 亿元</li><li>归母净利润同比增长率: -7.59%</li><li>ROE (TTM/估算): 1.62%</li><li>资产负债率: 数据缺失</li><li>经营性现金流 / 归母净利润: 数据缺失</li></ul><h4>缺失字段</h4><ul><li>营业总收入, 归母净利润, 资产负债率, 经营性现金流与归母净利润比值</li></ul></div></div></details>
+<details><summary>研究计划</summary><div class="body"><div class="md"><h4>01688 领益智造 研究摘要</h4><ul><li>红黑榜结论: Reduce</li><li>多头/空头: 45/75</li><li>正向信号: 营收同比 2.23%；PE(TTM) 21.35；PB 1.83</li><li>风险信号: ROE 1.62%；归母净利润同比 -7.59%</li><li>榜单看多理由: 制造业基础需求；市值较小，可能具有成长性</li><li>榜单风险提示: 股价下跌1.58%，表现疲软；流动性风险较高</li></ul></div></div></details>
+<details><summary>交易计划</summary><div class="body"><div class="md"><h4>01688 领益智造 交易计划</h4><ul><li>评级: Reduce</li><li>当前价格: 6.21</li><li>值得加仓区间: 5.59 - 5.84</li><li>目标价格: 5.90</li><li>止损位: 5.47</li><li>备注: 当前为缓存降级交易卡，后续若完整 TradingAgent 结果生成，将自动覆盖。</li></ul></div></div></details>
+<details><summary>交易决策</summary><div class="body"><div class="md"><p>Reduce</p><p>01688 领益智造 当前使用红黑榜缓存结果生成兜底交易卡。多头 45 / 空头 75，分差 -30。当前尚未取得完整 TradingAgent 长文决策，但榜单分数、财务快照和大师观点已经足够生成基础交易建议。</p></div></div></details>
+</div>
+<div class="panel"><h2>多空逻辑</h2><div class="pts"><div class="h bull">看多逻辑</div><div class="md"><p>制造业基础需求</p><p>市值较小，可能具有成长性</p></div></div><div class="pts"><div class="h bear">看空逻辑</div><div class="md"><p>股价下跌1.58%，表现疲软</p><p>流动性风险较高</p></div></div></div>
+<div class="panel"><h2>伯克希尔研究</h2><p><strong>领益智造作为精密制造领域的领先企业，具备一定的护城河，但行业竞争加剧和盈利能力波动需重点关注。</strong></p><p>伯克希尔综合评分：<strong>3.5</strong></p><div class="md"><p>{&quot;verdict&quot;: &quot;观望&quot;, &quot;conservative_tip&quot;: &quot;建议观望，当前价格偏高，等待PE降至15倍以下&quot;, &quot;moderate_tip&quot;: &quot;可轻仓买入，PE降至18倍以下逐步加仓&quot;, &quot;aggressive_tip&quot;: &quot;激进型投资者可小仓位介入，但需密切关注行业竞争和盈利能力&quot;, &quot;catalysts_plus&quot;: [&quot;毛利率提升&quot;, &quot;新业务领域取得突破&quot;, &quot;大客户订单增加&quot;], &quot;catalysts_minus&quot;: [&quot;毛利率持续下降&quot;, &quot;大客户流失&quot;, &quot;原材料价格大幅上涨&quot;]}</p></div></div>
+<div class="panel news"><h2>最新资讯</h2><div class="md"><p>整体情绪偏利好，共2条利好，1条中性，0条利空。</p></div><div class="nitem"><div class="t">Guangdong humanoid robots sprint to victory at Beijing world games</div><div class="s">chinadailyhk · 中性</div></div><div class="nitem"><div class="t">Daily Brief China: Continental Aerospace Technologies, Lingyi iTech, Lonking, China Ruyi, SG Micro , Iron Ore, Kingsoft, SENASIC Electronics Technology Co Ltd, Shanghai Bao Pharmaceuticals and more</div><div class="s">Smartkarma · 中性</div></div><div class="nitem"><div class="t">Behind Honor&#x27;s Robot Marathon: 7 Chinese Suppliers Powering the &#x27;Lightning&#x27; Robot</div><div class="s">Pandaily · 利好</div></div><div class="nitem"><div class="t">登上新闻联播！别家液冷炒概念，领益液冷车间日夜赶工发海外</div><div class="s">Tiger Brokers · 利好</div></div></div>
+<footer>稳健理财Agent · 红黑榜每日归档 · 黑榜 #7 · 仅供研究，不构成投资建议</footer>
+</div></body>
+</html>
