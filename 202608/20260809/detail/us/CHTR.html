@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CHTR(CHTR) 黑榜 2026-08-09</title>
+<style>
+:root{--red:#d8342c;--redbg:#fdecea;--green:#1a9e54;--ink:#1c2230;--muted:#6b7385;
+--line:#e7e9ef;--card:#fff;--bg:#f4f6fa;--chip:#eef1f6;--dark:#23262d;--darkbg:#ececef}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",
+"Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);
+line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 16px 64px}
+header.top{background:linear-gradient(135deg,#1c2230,#2c3550);color:#fff;border-radius:14px;
+padding:22px 24px;margin-bottom:20px;box-shadow:0 6px 24px rgba(20,26,46,.12)}
+header.top h1{margin:0 0 6px;font-size:24px;letter-spacing:.5px}
+header.top .sub{opacity:.85;font-size:13px}
+header.top .sub b{color:#ffd166;font-weight:600}
+nav.mkt{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;
+background:rgba(244,246,250,.92);backdrop-filter:blur(6px);padding:10px 0;margin-bottom:14px}
+nav.mkt a{text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);
+padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600}
+nav.mkt a:hover{border-color:var(--red);color:var(--red)}
+.summary{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.summary .chip{background:var(--card);border:1px solid var(--line);border-radius:10px;
+padding:8px 12px;font-size:12px;color:var(--muted)}
+.summary .chip b{color:var(--ink);font-size:14px;margin-left:4px}
+section.board{margin:26px 0}
+.board-title{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:19px}
+.board-title .dot{width:10px;height:10px;border-radius:50%}
+.board-title.red .dot{background:var(--red)}
+.board-title.black .dot{background:var(--dark)}
+.board-title small{color:var(--muted);font-weight:400;font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+position:relative;transition:box-shadow .15s}
+.card:hover{box-shadow:0 4px 18px rgba(20,26,46,.08)}
+.card.red{border-top:3px solid var(--red)}
+.card.black{border-top:3px solid var(--dark)}
+.rank{position:absolute;top:10px;right:12px;font-size:26px;font-weight:800;color:#eceff5}
+.card.red .rank{color:#fbdcD9}
+.nm{font-size:16px;font-weight:700}
+.nm .tk{color:var(--muted);font-weight:500;font-size:12px;margin-left:6px}
+.tag{display:inline-block;background:var(--chip);color:var(--muted);border-radius:6px;
+padding:1px 7px;font-size:11px;margin:6px 6px 0 0}
+.price-row{display:flex;align-items:baseline;gap:10px;margin:10px 0 4px}
+.price{font-size:24px;font-weight:800}
+.pct{font-size:14px;font-weight:700;padding:2px 8px;border-radius:8px}
+.up{color:var(--red)}.down{color:var(--green)}.flat{color:var(--muted)}
+.pct.up{background:var(--redbg)}.pct.down{background:#e2f4e9}.pct.flat{background:var(--chip)}
+.psrc{font-size:11px;color:var(--muted);margin-left:auto}
+.scores{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.scores span{background:var(--chip);border-radius:6px;padding:2px 8px;font-size:11px;color:var(--muted)}
+.scores span b{color:var(--ink)}
+.pts{font-size:12.5px;margin:8px 0 0}
+.pts .h{font-weight:700;font-size:12px;margin:6px 0 2px}
+.pts .h.bull{color:var(--red)}.pts .h.bear{color:var(--green)}
+.pts ul{margin:2px 0 4px;padding-left:18px;color:#3a4152}
+.pts li{margin:1px 0}
+.masters{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:11px;color:var(--muted)}
+.masters b{color:var(--ink)}
+.summ{font-size:12.5px;color:#3a4152;background:#fafbfd;border:1px solid var(--line);
+border-radius:8px;padding:8px 10px;margin-top:8px}
+.empty{color:var(--muted);background:var(--card);border:1px dashed var(--line);
+border-radius:10px;padding:18px;text-align:center}
+footer{margin-top:34px;color:var(--muted);font-size:12px;text-align:center;line-height:1.8}
+a.lnk{color:var(--red);text-decoration:none}
+/* ── detail page ── */
+.backbar{margin-bottom:14px;font-size:13px}
+.backbar a{color:var(--muted);text-decoration:none;margin-right:14px}
+.backbar a:hover{color:var(--red)}
+.badge{display:inline-block;border-radius:6px;padding:2px 10px;font-size:12px;font-weight:700;margin-right:8px}
+.badge.red{background:var(--red);color:#fff}.badge.black{background:var(--dark);color:#fff}
+.trade{display:flex;flex-wrap:wrap;gap:10px;background:linear-gradient(135deg,#2c3550,#1c2230);
+color:#fff;border-radius:12px;padding:16px 18px;margin:16px 0}
+.trade .cell{min-width:120px}
+.trade .k{font-size:11px;opacity:.75}
+.trade .v{font-size:18px;font-weight:800;margin-top:2px}
+.trade .v.buy{color:#7ee2a8}.trade .v.sell{color:#ff9d97}.trade .v.hold{color:#ffd166}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0}
+.mgrid .m{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.mgrid .m .k{font-size:11px;color:var(--muted)}
+.mgrid .m .v{font-size:16px;font-weight:700;margin-top:2px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.panel>h2{margin:0 0 12px;font-size:17px}
+.panel>h2 .sub{font-size:12px;color:var(--muted);font-weight:400;margin-left:8px}
+.mreply{border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;
+padding:12px 14px;margin:10px 0;background:#fff}
+.mreply .mh{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.mreply .mh .who{font-weight:700;font-size:14px}
+.mreply .mh .mscore{margin-left:auto;background:var(--chip);border-radius:6px;padding:1px 8px;font-size:12px;font-weight:700}
+.md h2,.md h3,.md h4,.md h5{margin:12px 0 6px;font-size:15px}
+.md p{margin:6px 0;font-size:13.5px;color:#2c3345}
+.md ul{margin:6px 0;padding-left:20px;font-size:13.5px;color:#2c3345}
+.md li{margin:3px 0}
+.md strong{color:var(--ink)}
+details{border:1px solid var(--line);border-radius:10px;background:#fff;margin:10px 0;padding:0}
+details>summary{cursor:pointer;padding:12px 16px;font-weight:700;font-size:14px;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary:before{content:"▸ ";color:var(--red)}
+details[open]>summary:before{content:"▾ "}
+details>.body{padding:0 16px 14px;border-top:1px dashed var(--line)}
+.ychip{display:inline-block;background:var(--chip);border-radius:8px;padding:4px 10px;font-size:12px;margin:3px 6px 3px 0}
+.ychip b{font-size:13px}
+.news .nitem{border-top:1px dashed var(--line);padding:8px 0;font-size:13px}
+.news .nitem .t{font-weight:600}
+.news .nitem .s{color:var(--muted);font-size:12px}
+/* ── root landing page ── */
+.hero{padding:30px 26px}
+.hero-kicker{color:#ffd166;font-size:12px;font-weight:700;letter-spacing:2px;
+text-transform:uppercase;margin-bottom:8px}
+.hero h1{font-size:30px;margin:0 0 10px}
+.day-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.day-card{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);
+border-radius:12px;padding:14px 16px;transition:all .15s}
+.day-card:hover{border-color:var(--red);box-shadow:0 4px 16px rgba(216,52,44,.12);transform:translateY(-2px)}
+.day-card .d{font-weight:800;font-size:15px;color:var(--ink);display:flex;align-items:center;gap:8px}
+.day-card .m{margin-top:8px;display:flex;gap:6px}
+.day-card .m span{background:var(--chip);color:var(--muted);border-radius:6px;
+padding:2px 8px;font-size:11px}
+.latest-badge{background:var(--red);color:#fff;border-radius:6px;padding:1px 7px;
+font-size:10px;font-weight:700}
+</style>
+</head>
+<body><div class="wrap">
+<div class="backbar"><a href="../index.html">← 总览</a><a href="../us.html">← 美股榜单</a></div>
+<header class="top">
+  <h1><span class="badge black">黑榜 #8</span>CHTR<span class="tk" style="opacity:.7;font-size:15px;font-weight:400;margin-left:8px">CHTR</span></h1>
+  <div class="sub">美股 ·  · 榜单日期 <b>2026-08-09</b> · 盘价采集 <b>2026-08-09 05:00:13</b></div>
+  <div class="price-row" style="margin-top:12px">
+    <span class="price" style="color:#fff">$152.57</span>
+    <span class="pct down">-3.09%</span>
+    <span class="psrc" style="color:rgba(255,255,255,.6)">实时</span>
+  </div>
+  <div class="scores" style="margin-top:10px">
+    <span>综合 <b>41.2</b></span>
+    <span>多头 <b>40</b></span>
+    <span>空头 <b>70</b></span>
+    <span>大师均值 <b>40</b></span>
+    <span>信号 <b>negative</b></span>
+  </div>
+</header>
+<div class="trade"><div class="cell"><div class="k">交易评级</div><span class="v hold">Reduce</span></div><div class="cell"><div class="k">加仓区间</div><span class="v">143.42 ~ 149.52</span></div><div class="cell"><div class="k">伯克希尔</div><span class="v">观望</span></div><div class="cell"><div class="k">伯克希尔分</div><span class="v">3.50</span></div></div>
+<div class="panel"><h2>财务指标</h2><div class="mgrid"><div class="m"><div class="k">市盈率 PE</div><div class="v">3.97</div></div><div class="m"><div class="k">市净率 PB</div><div class="v">1.07</div></div><div class="m"><div class="k">ROE</div><div class="v">27.2%</div></div><div class="m"><div class="k">总市值</div><div class="v">206</div></div><div class="m"><div class="k">营收同比</div><div class="v">-170.0%</div></div><div class="m"><div class="k">净利同比</div><div class="v">16.1%</div></div></div></div>
+<div class="panel"><h2>历史收益</h2><span class="ychip">近1月 <b class="up">+14.25%</b></span><span class="ychip">近6月 <b class="down">-35.96%</b></span><span class="ychip">近1年 <b class="down">-40.53%</b></span><span class="ychip">近5年 <b class="down">-80.07%</b></span></div>
+<div class="panel"><h2>大师圆桌<span class="sub">5 位</span></h2><div class="mreply"><div class="mh"><span class="who">段永平</span><span class="mscore">35</span></div><div class="md"><p>各位朋友，今天我们来聊聊CHTR这家公司。我的看法可能比较直接：这不是一个我会考虑投资的机会。</p><h4>结论</h4><p>我不看好CHTR的投资价值，主要原因是它所在的传统媒体业务模式正在快速衰退。</p><h4>理由</h4><ul><li><strong>有线电视业务持续下滑</strong>：从数据来看，CHTR的有线电视业务正在经历明显的衰退。虽然公司试图转型，但这个过程充满挑战。</li></ul><ul><li><strong>市场竞争激烈</strong>：在流媒体和其他新兴内容平台的冲击下，CHTR面临巨大的竞争压力。这种竞争不是短期现象，而是行业结构性变化。</li></ul><ul><li><strong>估值看似诱人，但存在误导性</strong>：虽然CHTR的PE和PB看起来很低，但低估值往往反映了市场对未来的悲观预期。在一个正在萎缩的市场里，低估值可能意味着价值陷阱。</li></ul><h4>风险/行动建议</h4><ul><li><strong>不要被低估值迷惑</strong>：低PE和PB在这种情况下可能只是反映了公司基本面的恶化，而不是投资机会。</li></ul><ul><li><strong>关注转型风险</strong>：如果考虑投资，需要深入分析公司转型战略的可行性，以及管理层是否有能力带领公司度过转型期。</li></ul><ul><li><strong>长期视角</strong>：问问自己，十年后CHTR会是什么样子？如果答案不清晰，那么现在可能不是投资的好时机。</li></ul><h4>总结</h4><p>投资要关注的是企业的长期价值创造能力，而不是短期的价格波动。在CHTR的例子中，我看到的是传统业务的持续衰退，而不是令人信服的转型路径。除非有充分的证据表明公司能找到新的增长点，否则我会选择观望。</p><p>记住，投资不是赌博。我们要做的是找到那些真正创造价值的企业，而不是在不确定中寻找机会。</p></div></div><div class="mreply"><div class="mh"><span class="who">巴菲特</span><span class="mscore">50</span></div><div class="md"><p>各位朋友，今天我们来聊聊CHTR这家公司。</p><p>首先，我得说，这家公司让我有些纠结。让我先给出我的初步看法：我认为CHTR目前处于一个值得关注的阶段，但绝不是无脑买入的时机。</p><h4>理由：</h4><p>从好的方面来看，CHTR的宽带业务确实有长期增长潜力。我们都知道，随着数字化进程的推进，宽带服务已经成为人们生活中不可或缺的一部分。CHTR在这个领域有一定的市场份额和稳定的用户基础。此外，目前股价的下跌也为投资者提供了一定的安全边际。从估值角度来看，3.97倍的市盈率（PE）和1.07倍的市净率（PB）都显示出市场对这只股票的悲观情绪。</p><p>然而，我们也不能忽视一些明显的风险。首先，有线电视业务的持续下滑是一个不争的事实。随着流媒体服务的兴起，传统有线电视的市场份额正在被逐步蚕食。其次，CHTR面临着激烈的市场竞争，不仅来自传统的电信公司，还有新兴的科技巨头。这些竞争对手拥有强大的资金和技术实力，可能会进一步挤压CHTR的市场空间。</p><h4>风险/行动建议：</h4><ul><li><strong>关注宽带业务的增长</strong>：如果CHTR能够持续扩大其在宽带业务的市场份额，并且有效控制成本，那么这将是其未来增长的主要驱动力。我们需要密切关注这方面的数据。</li></ul><ul><li><strong>有线电视业务的转型</strong>：CHTR需要找到一条有效的转型路径，以应对有线电视业务的下滑。这可能包括开发新的内容服务或与其他媒体公司合作。如果管理层能够在这方面取得突破，将是一个积极的信号。</li></ul><ul><li><strong>市场竞争的应对策略</strong>：投资者需要密切关注CHTR在应对市场竞争方面的策略和执行情况。如果公司能够通过创新和差异化服务来保持竞争力，那么其长期前景可能会更加光明。</li></ul><ul><li><strong>安全边际</strong>：考虑到目前的市场情绪和估值水平，如果投资者决定买入CHTR，建议分批买入，以降低风险。同时，要做好长期持有的准备，因为转型和增长都需要时间。</li></ul><h4>总结：</h4><p>CHTR目前处于一个充满挑战的时期，但也蕴含着一定的机会。对于那些愿意承担风险并有耐心的投资者来说，这可能是一个值得关注的标的。但请记住，投资就像打棒球，你不需要每次都挥棒。在做出最终决定之前，务必仔细评估自己的风险承受能力和投资目标。</p><p>如果查理·芒格在这里，他可能会补充说：&quot;投资就像经营果园，你需要耐心等待果树的成长，而不是急于摘取未成熟的果实。&quot;</p></div></div><div class="mreply"><div class="mh"><span class="who">达利欧</span><span class="mscore">40</span></div><div class="md"><p>各位同仁，我今天想谈谈我对CHTR这只股票的看法。我先给出我的结论：<strong>CHTR目前处于一个充满挑战的转型期，我对其持谨慎态度。</strong></p><h4>理由分析</h4><p>首先，我们来看一下CHTR的现状。从数据上看，CHTR的估值指标非常低，市盈率（PE）只有3.97，市净率（PB）也只有1.07，这表明市场对其未来增长预期非常悲观。然而，单纯的低估值并不能构成买入理由。我们需要深入分析其业务构成：</p><ul><li><strong>宽带业务的长期潜力</strong>：CHTR的宽带业务确实有一定的增长空间，尤其是在当前数字化转型加速的背景下。然而，这一领域的竞争也异常激烈，不仅有传统的电信运营商，还有新兴的科技公司参与角逐。</li></ul><ul><li><strong>有线电视业务的持续下滑</strong>：这是CHTR面临的最大挑战。随着消费者转向流媒体服务，传统的付费电视业务正在快速萎缩。尽管公司正在努力转型，但转型过程充满不确定性。</li></ul><ul><li><strong>市场竞争压力</strong>：CHTR面临的竞争不仅来自同行，还包括科技巨头如亚马逊、谷歌等。这些公司拥有强大的技术和资金实力，正在不断蚕食传统运营商的市场份额。</li></ul><h4>风险与行动建议</h4><p>基于以上分析，我认为CHTR目前面临的主要风险可以归纳为以下几点：</p><ul><li><strong>转型风险</strong>：公司能否成功从传统有线电视业务转型为以宽带和流媒体为核心的业务模式，存在很大不确定性。转型需要大量的资金投入和时间，而市场留给CHTR的时间并不多。</li></ul><ul><li><strong>市场竞争风险</strong>：在激烈的市场竞争中，CHTR能否保持其市场份额和盈利能力，是一个巨大的挑战。</li></ul><ul><li><strong>宏观经济风险</strong>：如果全球经济出现衰退，消费者可能会削减非必要开支，这对CHTR的收入将产生负面影响。</li></ul><p>因此，我的建议是：</p><ul><li><strong>对于长期投资者</strong>：如果CHTR能够成功转型，那么当前的低估值可能是一个买入机会。但前提是你要有足够的耐心，并且能够承受转型过程中的波动。我建议在做出投资决策前，仔细评估公司的转型计划和市场反应。</li></ul><ul><li><strong>对于短期投资者</strong>：目前的市场环境对CHTR并不友好，建议保持观望，等待更明确的信号出现。</li></ul><p>最后，我想强调的是，投资决策应该基于对公司和行业的深入理解，而不是单纯的估值指标。CHTR的转型之路充满挑战，我们需要密切关注其进展和市场反应。</p></div></div><div class="mreply"><div class="mh"><span class="who">林奇</span><span class="mscore">30</span></div><div class="md"><h4>圆桌发言：关于 CHTR 的投资观点</h4><h5>结论：</h5><p>我对 CHTR 的投资持谨慎态度，目前不建议重仓买入。</p><h5>理由：</h5><p>首先，CHTR 的有线电视业务正在持续下滑，这是行业大趋势，难以逆转。尽管宽带业务仍有长期增长潜力，但整体来看，公司正处于转型期，面临较大的不确定性。</p><p>其次，从估值角度来看，CHTR 的市盈率（PE）仅为 3.97 倍，市净率（PB）为 1.07 倍，估值看似非常低。但低估值并不一定意味着好的投资机会，尤其是在公司基本面面临挑战的情况下。</p><p>此外，市场竞争激烈也是一大风险。CHTR 不仅要应对传统竞争对手，还要面对来自科技巨头和新进入者的挑战，这使得其市场份额和盈利能力面临压力。</p><h5>风险/行动建议：</h5><ul><li><strong>转型风险</strong>：CHTR 正在努力转型，但转型能否成功存在不确定性。投资者需要密切关注其转型进展和成效。</li></ul><ul><li><strong>市场竞争</strong>：公司面临激烈的市场竞争，这可能会进一步压缩其利润率。投资者需要评估公司在市场中的竞争力和应对策略。</li></ul><ul><li><strong>行动建议</strong>：如果你已经持有 CHTR，建议密切关注公司基本面的变化，特别是转型进展和市场竞争情况。如果没有持有，建议暂时观望，等待更明确的信号。</li></ul><p>总的来说，CHTR 目前处于一个艰难的转型期，虽然估值看似诱人，但风险也不容忽视。对于这类公司，我更倾向于保持谨慎，等待更清晰的趋势出现后再做决定。</p></div></div><div class="mreply"><div class="mh"><span class="who">芒格</span><span class="mscore">45</span></div><div class="md"><p>各位同仁，我今天想谈谈对CHTR这家公司的看法。我的结论是：对于这家公司，我持保留态度。</p><p>让我们先从逆向思维的角度考虑——CHTR可能失败的原因：</p><ul><li>有线电视业务正以惊人的速度衰退，这是他们目前最大的拖累。</li><li>宽带市场竞争异常激烈，利润率面临持续压缩压力。</li><li>管理层似乎还没有找到令人信服的转型策略。</li></ul><p>现在，让我们看看激励机制。CHTR的管理层薪酬与股价表现挂钩，这可能导致他们在面对困境时采取过于激进的财务操作，而不是从根本上解决问题。这种激励结构令人担忧。</p><p>虽然该公司股价看起来很便宜，市盈率只有3.97，市净率1.07，但我们要记住，便宜的股票可能变得更便宜。宽带业务虽然有增长潜力，但这不足以抵消传统业务的下滑。</p><p>从概率与赔率的角度分析：</p><ul><li>宽带业务的增长潜力提供了上行空间，但竞争格局使其难以获得超额回报。</li><li>有线电视业务的持续下滑带来了显著的下行风险。</li></ul><p>因此，我建议：</p><ul><li>如果你持有CHTR，要密切关注其转型进展，特别是宽带业务的增长能否抵消传统业务的损失。</li><li>对于考虑建仓的投资者，我建议等待更明确的转型信号。现在买入可能是在接一把正在下落的刀。</li></ul><p>最后，我必须提醒自己：我可能错在哪里？</p><p>我可能低估了管理层找到新增长点的能力，或者高估了传统业务的衰退速度。但无论如何，在看到更清晰的转型路径之前，我倾向于保持谨慎。</p><p>记住：&quot;如果我知道自己死在哪里，我就永远不去那里。&quot;在CHTR这个案例中，传统业务的衰退和激烈的市场竞争正是我们需要警惕的&quot;死亡之地&quot;。</p></div></div></div>
+<div class="panel"><h2>分析师报告<span class="sub">2 篇</span></h2><details open><summary>市场面分析</summary><div class="body"><div class="md"><h4>CHTR CHTR 市场面分析</h4><ul><li>红黑榜多空分数：多头 40 / 空头 70，分差 -30。</li><li>当前价格：152.57。</li><li>当前交易评级：Reduce。</li><li>值得加仓区间：143.42 - 149.52。</li><li>风险控制位：134.26。</li><li>市场愿意给溢价的原因：宽带业务长期增长潜力；股价下跌提供买入机会。</li><li>当前主要压制因素：有线电视业务持续下滑；面临激烈市场竞争。</li></ul></div></div></details><details open><summary>基本面分析</summary><div class="body"><div class="md"><h4>CHTR CHTR 基本面分析</h4><ul><li>报告期：暂无。</li><li>PE(TTM)：3.97。</li><li>PB：1.07。</li><li>ROE：27.20%。</li><li>营收同比：-170.00%。</li><li>归母净利润同比：16.10%。</li><li>核心判断：盈利能力处于可接受区间；利润端保持扩张。</li></ul></div></div></details></div>
+<div class="panel"><h2>研究与计划</h2>
+<details><summary>基本面摘要</summary><div class="body"><div class="md"><h3>核心财务快照</h3><ul><li>报告期: 数据缺失</li><li>当前股价: 152.57 元</li><li>总市值: 205.63 亿元</li><li>PE (TTM): 3.97</li><li>PB: 1.07</li><li>PS (TTM): 数据缺失</li><li>营业总收入(报告期): 数据缺失 亿元</li><li>营收同比增长率: -170.00%</li><li>归母净利润(报告期): 数据缺失 亿元</li><li>归母净利润同比增长率: 16.10%</li><li>ROE (TTM/估算): 27.20%</li><li>资产负债率: 数据缺失</li><li>经营性现金流 / 归母净利润: 数据缺失</li></ul><h4>缺失字段</h4><ul><li>PS(TTM), 营业总收入, 归母净利润, 资产负债率, 经营性现金流与归母净利润比值</li></ul></div></div></details>
+<details><summary>研究计划</summary><div class="body"><div class="md"><h4>CHTR CHTR 研究摘要</h4><ul><li>红黑榜结论: Reduce</li><li>多头/空头: 40/70</li><li>正向信号: ROE 27.20%；归母净利润同比 16.10%；PE(TTM) 3.97；PB 1.07</li><li>风险信号: 营收同比 -170.00%</li><li>榜单看多理由: 宽带业务长期增长潜力；股价下跌提供买入机会</li><li>榜单风险提示: 有线电视业务持续下滑；面临激烈市场竞争</li></ul></div></div></details>
+<details><summary>交易计划</summary><div class="body"><div class="md"><h4>CHTR CHTR 交易计划</h4><ul><li>评级: Reduce</li><li>当前价格: 152.57</li><li>值得加仓区间: 137.31 - 143.42</li><li>目标价格: 144.94</li><li>止损位: 134.26</li><li>备注: 当前为缓存降级交易卡，后续若完整 TradingAgent 结果生成，将自动覆盖。</li></ul></div></div></details>
+<details><summary>交易决策</summary><div class="body"><div class="md"><p>Reduce</p><p>CHTR CHTR 当前使用红黑榜缓存结果生成兜底交易卡。多头 40 / 空头 70，分差 -30。当前尚未取得完整 TradingAgent 长文决策，但榜单分数、财务快照和大师观点已经足够生成基础交易建议。</p></div></div></details>
+</div>
+<div class="panel"><h2>多空逻辑</h2><div class="pts"><div class="h bull">看多逻辑</div><div class="md"><p>宽带业务长期增长潜力</p><p>股价下跌提供买入机会</p></div></div><div class="pts"><div class="h bear">看空逻辑</div><div class="md"><p>有线电视业务持续下滑</p><p>面临激烈市场竞争</p></div></div></div>
+<div class="panel"><h2>伯克希尔研究</h2><p><strong>CHTR是一家具有稳定护城河和长期增长潜力的公司，但面临行业竞争加剧和监管风险，当前估值合理但需关注风险点。</strong></p><p>伯克希尔综合评分：<strong>3.5</strong></p><div class="md"><p>{&quot;verdict&quot;: &quot;观望&quot;, &quot;conservative_tip&quot;: &quot;建议观望，等待更优估值或行业格局明朗化。&quot;, &quot;moderate_tip&quot;: &quot;若股价回调至300美元以下，可考虑小仓位介入。&quot;, &quot;aggressive_tip&quot;: &quot;若对宽带市场长期增长有信心，可逢低买入，但需控制仓位。&quot;, &quot;catalysts_plus&quot;: [&quot;宽带市场份额提升&quot;, &quot;自由现金流持续增长&quot;, &quot;政策环境稳定&quot;], &quot;catalysts_minus&quot;: [&quot;流媒体竞争加剧&quot;, &quot;宽带价格管制政策出台&quot;, &quot;技术变革（如5G普及）&quot;]}</p></div></div>
+<div class="panel news"><h2>最新资讯</h2><div class="md"><p>整体情绪偏负面，利空新闻占多数，共5条利空，3条利好，3条中性。</p></div><div class="nitem"><div class="t">CHTR Stock Edges Higher As $1.4M Insider Buy Stokes Retail Interest</div><div class="s">Stocktwits · 利好</div></div><div class="nitem"><div class="t">Pacer Advisors Inc. Sells 7,480 Shares of Charter Communications, Inc. $CHTR</div><div class="s">MarketBeat · 利空</div></div><div class="nitem"><div class="t">CHTR Jun 2027 175.000 put (CHTR270617P00175000) stock historical prices and data</div><div class="s">Yahoo Finance Australia · 中性</div></div><div class="nitem"><div class="t">A Look at Charter Communications Inc (CHTR) After 3.1% Decline -- GF Value $378.31 vs Price $152.57</div><div class="s">GuruFocus · 利空</div></div><div class="nitem"><div class="t">Charter (CHTR) Is Up 5.5% After EPS Rises On Buybacks And New Debt Moves – What Changes?</div><div class="s">simplywall.st · 利好</div></div><div class="nitem"><div class="t">Charter Communications Falls as Broadband Losses, Debt Work, and Merger Timing Stay in Focus</div><div class="s">Quiver Quantitative · 利空</div></div><div class="nitem"><div class="t">Charter Announces Results Of Early Tenders In Debt Exchange Offers And Amendment And Upsize of Debt Exchange Offers</div><div class="s">PR Newswire · 中性</div></div><div class="nitem"><div class="t">Charter Communications shares pressured by loss of internet/video customers (CHTR:NASDAQ)</div><div class="s">Seeking Alpha · 利空</div></div></div>
+<footer>稳健理财Agent · 红黑榜每日归档 · 黑榜 #8 · 仅供研究，不构成投资建议</footer>
+</div></body>
+</html>

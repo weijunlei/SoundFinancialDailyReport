@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MDLZ(MDLZ) 黑榜 2026-08-09</title>
+<style>
+:root{--red:#d8342c;--redbg:#fdecea;--green:#1a9e54;--ink:#1c2230;--muted:#6b7385;
+--line:#e7e9ef;--card:#fff;--bg:#f4f6fa;--chip:#eef1f6;--dark:#23262d;--darkbg:#ececef}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",
+"Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);
+line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 16px 64px}
+header.top{background:linear-gradient(135deg,#1c2230,#2c3550);color:#fff;border-radius:14px;
+padding:22px 24px;margin-bottom:20px;box-shadow:0 6px 24px rgba(20,26,46,.12)}
+header.top h1{margin:0 0 6px;font-size:24px;letter-spacing:.5px}
+header.top .sub{opacity:.85;font-size:13px}
+header.top .sub b{color:#ffd166;font-weight:600}
+nav.mkt{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;
+background:rgba(244,246,250,.92);backdrop-filter:blur(6px);padding:10px 0;margin-bottom:14px}
+nav.mkt a{text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);
+padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600}
+nav.mkt a:hover{border-color:var(--red);color:var(--red)}
+.summary{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.summary .chip{background:var(--card);border:1px solid var(--line);border-radius:10px;
+padding:8px 12px;font-size:12px;color:var(--muted)}
+.summary .chip b{color:var(--ink);font-size:14px;margin-left:4px}
+section.board{margin:26px 0}
+.board-title{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:19px}
+.board-title .dot{width:10px;height:10px;border-radius:50%}
+.board-title.red .dot{background:var(--red)}
+.board-title.black .dot{background:var(--dark)}
+.board-title small{color:var(--muted);font-weight:400;font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+position:relative;transition:box-shadow .15s}
+.card:hover{box-shadow:0 4px 18px rgba(20,26,46,.08)}
+.card.red{border-top:3px solid var(--red)}
+.card.black{border-top:3px solid var(--dark)}
+.rank{position:absolute;top:10px;right:12px;font-size:26px;font-weight:800;color:#eceff5}
+.card.red .rank{color:#fbdcD9}
+.nm{font-size:16px;font-weight:700}
+.nm .tk{color:var(--muted);font-weight:500;font-size:12px;margin-left:6px}
+.tag{display:inline-block;background:var(--chip);color:var(--muted);border-radius:6px;
+padding:1px 7px;font-size:11px;margin:6px 6px 0 0}
+.price-row{display:flex;align-items:baseline;gap:10px;margin:10px 0 4px}
+.price{font-size:24px;font-weight:800}
+.pct{font-size:14px;font-weight:700;padding:2px 8px;border-radius:8px}
+.up{color:var(--red)}.down{color:var(--green)}.flat{color:var(--muted)}
+.pct.up{background:var(--redbg)}.pct.down{background:#e2f4e9}.pct.flat{background:var(--chip)}
+.psrc{font-size:11px;color:var(--muted);margin-left:auto}
+.scores{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.scores span{background:var(--chip);border-radius:6px;padding:2px 8px;font-size:11px;color:var(--muted)}
+.scores span b{color:var(--ink)}
+.pts{font-size:12.5px;margin:8px 0 0}
+.pts .h{font-weight:700;font-size:12px;margin:6px 0 2px}
+.pts .h.bull{color:var(--red)}.pts .h.bear{color:var(--green)}
+.pts ul{margin:2px 0 4px;padding-left:18px;color:#3a4152}
+.pts li{margin:1px 0}
+.masters{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:11px;color:var(--muted)}
+.masters b{color:var(--ink)}
+.summ{font-size:12.5px;color:#3a4152;background:#fafbfd;border:1px solid var(--line);
+border-radius:8px;padding:8px 10px;margin-top:8px}
+.empty{color:var(--muted);background:var(--card);border:1px dashed var(--line);
+border-radius:10px;padding:18px;text-align:center}
+footer{margin-top:34px;color:var(--muted);font-size:12px;text-align:center;line-height:1.8}
+a.lnk{color:var(--red);text-decoration:none}
+/* ── detail page ── */
+.backbar{margin-bottom:14px;font-size:13px}
+.backbar a{color:var(--muted);text-decoration:none;margin-right:14px}
+.backbar a:hover{color:var(--red)}
+.badge{display:inline-block;border-radius:6px;padding:2px 10px;font-size:12px;font-weight:700;margin-right:8px}
+.badge.red{background:var(--red);color:#fff}.badge.black{background:var(--dark);color:#fff}
+.trade{display:flex;flex-wrap:wrap;gap:10px;background:linear-gradient(135deg,#2c3550,#1c2230);
+color:#fff;border-radius:12px;padding:16px 18px;margin:16px 0}
+.trade .cell{min-width:120px}
+.trade .k{font-size:11px;opacity:.75}
+.trade .v{font-size:18px;font-weight:800;margin-top:2px}
+.trade .v.buy{color:#7ee2a8}.trade .v.sell{color:#ff9d97}.trade .v.hold{color:#ffd166}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0}
+.mgrid .m{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.mgrid .m .k{font-size:11px;color:var(--muted)}
+.mgrid .m .v{font-size:16px;font-weight:700;margin-top:2px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.panel>h2{margin:0 0 12px;font-size:17px}
+.panel>h2 .sub{font-size:12px;color:var(--muted);font-weight:400;margin-left:8px}
+.mreply{border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;
+padding:12px 14px;margin:10px 0;background:#fff}
+.mreply .mh{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.mreply .mh .who{font-weight:700;font-size:14px}
+.mreply .mh .mscore{margin-left:auto;background:var(--chip);border-radius:6px;padding:1px 8px;font-size:12px;font-weight:700}
+.md h2,.md h3,.md h4,.md h5{margin:12px 0 6px;font-size:15px}
+.md p{margin:6px 0;font-size:13.5px;color:#2c3345}
+.md ul{margin:6px 0;padding-left:20px;font-size:13.5px;color:#2c3345}
+.md li{margin:3px 0}
+.md strong{color:var(--ink)}
+details{border:1px solid var(--line);border-radius:10px;background:#fff;margin:10px 0;padding:0}
+details>summary{cursor:pointer;padding:12px 16px;font-weight:700;font-size:14px;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary:before{content:"▸ ";color:var(--red)}
+details[open]>summary:before{content:"▾ "}
+details>.body{padding:0 16px 14px;border-top:1px dashed var(--line)}
+.ychip{display:inline-block;background:var(--chip);border-radius:8px;padding:4px 10px;font-size:12px;margin:3px 6px 3px 0}
+.ychip b{font-size:13px}
+.news .nitem{border-top:1px dashed var(--line);padding:8px 0;font-size:13px}
+.news .nitem .t{font-weight:600}
+.news .nitem .s{color:var(--muted);font-size:12px}
+/* ── root landing page ── */
+.hero{padding:30px 26px}
+.hero-kicker{color:#ffd166;font-size:12px;font-weight:700;letter-spacing:2px;
+text-transform:uppercase;margin-bottom:8px}
+.hero h1{font-size:30px;margin:0 0 10px}
+.day-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.day-card{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);
+border-radius:12px;padding:14px 16px;transition:all .15s}
+.day-card:hover{border-color:var(--red);box-shadow:0 4px 16px rgba(216,52,44,.12);transform:translateY(-2px)}
+.day-card .d{font-weight:800;font-size:15px;color:var(--ink);display:flex;align-items:center;gap:8px}
+.day-card .m{margin-top:8px;display:flex;gap:6px}
+.day-card .m span{background:var(--chip);color:var(--muted);border-radius:6px;
+padding:2px 8px;font-size:11px}
+.latest-badge{background:var(--red);color:#fff;border-radius:6px;padding:1px 7px;
+font-size:10px;font-weight:700}
+</style>
+</head>
+<body><div class="wrap">
+<div class="backbar"><a href="../index.html">← 总览</a><a href="../us.html">← 美股榜单</a></div>
+<header class="top">
+  <h1><span class="badge black">黑榜 #7</span>MDLZ<span class="tk" style="opacity:.7;font-size:15px;font-weight:400;margin-left:8px">MDLZ</span></h1>
+  <div class="sub">美股 ·  · 榜单日期 <b>2026-08-09</b> · 盘价采集 <b>2026-08-09 05:00:13</b></div>
+  <div class="price-row" style="margin-top:12px">
+    <span class="price" style="color:#fff">$62.61</span>
+    <span class="pct down">-0.22%</span>
+    <span class="psrc" style="color:rgba(255,255,255,.6)">实时</span>
+  </div>
+  <div class="scores" style="margin-top:10px">
+    <span>综合 <b>41.2</b></span>
+    <span>多头 <b>35</b></span>
+    <span>空头 <b>75</b></span>
+    <span>大师均值 <b>40</b></span>
+    <span>信号 <b>negative</b></span>
+  </div>
+</header>
+<div class="trade"><div class="cell"><div class="k">交易评级</div><span class="v hold">Reduce</span></div><div class="cell"><div class="k">加仓区间</div><span class="v">58.85 ~ 61.36</span></div><div class="cell"><div class="k">伯克希尔</div><span class="v">买入</span></div><div class="cell"><div class="k">伯克希尔分</div><span class="v">3.90</span></div></div>
+<div class="panel"><h2>财务指标</h2><div class="mgrid"><div class="m"><div class="k">市盈率 PE</div><div class="v">38.41</div></div><div class="m"><div class="k">市净率 PB</div><div class="v">3.01</div></div><div class="m"><div class="k">ROE</div><div class="v">13.3%</div></div><div class="m"><div class="k">总市值</div><div class="v">804</div></div><div class="m"><div class="k">营收同比</div><div class="v">4.1%</div></div><div class="m"><div class="k">净利同比</div><div class="v">144.9%</div></div></div></div>
+<div class="panel"><h2>历史收益</h2><span class="ychip">近1月 <b class="up">+5.26%</b></span><span class="ychip">近6月 <b class="up">+3.10%</b></span><span class="ychip">近1年 <b class="up">+1.26%</b></span><span class="ychip">近5年 <b class="up">+0.95%</b></span></div>
+<div class="panel"><h2>大师圆桌<span class="sub">5 位</span></h2><div class="mreply"><div class="mh"><span class="who">段永平</span><span class="mscore">40</span></div><div class="md"><p>各位好，我来说说对 MDLZ 这家公司的看法。</p><p>首先，我认同 MDLZ 在消费品行业的稳定性，以及其品牌组合的实力，这是它的优势所在。作为一家食品和饮料公司，MDLZ 拥有多个知名国际品牌，这在一定程度上为其提供了市场竞争力和抗风险能力。</p><p>然而，从目前的数据来看，我持谨慎态度。尽管营收同比增长 4.1%，净利润同比增长 144.9%，但这可能受到一次性因素影响。更重要的是，其市盈率高达 38 倍，远高于市场平均水平，而市净率也达到 3 倍，这表明市场对其未来增长有较高的预期。</p><p>让我担忧的主要是成本压力。这不仅影响其盈利能力，也让我对其长期竞争力产生疑问。在当前全球经济环境下，消费品公司普遍面临原材料价格上涨和供应链挑战，MDLZ 也不例外。</p><p>基于以上分析，我的看法是：</p><ul><li>消费品行业的稳定性是 MDLZ 的优势，但不足以支撑其当前的高估值。</li><li>成本压力是一个需要持续关注的风险点，这可能会影响其未来的盈利能力。</li></ul><p>对于投资者，我的建议是：</p><ul><li>如果你已经在持有 MDLZ，建议密切关注其成本控制和盈利能力的变化。</li><li>如果你正在考虑买入，我建议你再观察一段时间，等待更明确的信号。</li></ul><p>最后，我想提醒大家，投资决策要基于长期视角，而不是短期的市场波动。消费品行业虽然稳定，但也需要面对不断变化的市场环境和消费者偏好。希望大家在做决策时，能够保持冷静和理性。</p></div></div><div class="mreply"><div class="mh"><span class="who">巴菲特</span><span class="mscore">45</span></div><div class="md"><p>各位朋友，关于MDLZ这家公司，我来说几句。</p><p>首先，我得承认我对这家公司的了解还不足以让我做出一个完全肯定的判断。不过，基于现有的信息，我可以给出一些初步的看法。</p><h4>结论</h4><p>我目前对MDLZ持谨慎态度。虽然它在消费品行业有一定的稳定性，品牌组合也颇具实力，但当前的估值水平让我感到有些犹豫。</p><h4>理由</h4><ul><li><strong>品牌实力</strong>：MDLZ拥有一些知名的消费品牌，这在一定程度上为其提供了护城河。消费品行业的稳定性是众所周知的，尤其是在经济波动时，这些品牌往往能保持相对稳定的收入。</li><li><strong>估值问题</strong>：然而，当前的估值让我有些担忧。38倍的市盈率（PE）对于一家消费品公司来说并不算便宜。尽管其净利润同比增长了144.9%，但这种增长是否可持续需要打个问号。</li><li><strong>成本压力</strong>：从分析中可以看到，成本压力是一个明显的负面因素。在当前的经济环境下，原料成本和运营成本的上升可能会对其利润率造成压力。</li></ul><h4>风险/行动建议</h4><ul><li><strong>长期持有风险</strong>：如果你考虑长期持有，需要密切关注其品牌护城河的持续性和成本控制能力。如果这些方面出现问题，可能会影响其长期盈利能力。</li><li><strong>买入时机</strong>：就目前的价格而言，我建议再观察一段时间，等待更好的买入时机。除非你对这家公司有深入的了解，并且对其长期前景有强烈的信心，否则现在可能不是最好的入场时机。</li><li><strong>关注基本面变化</strong>：继续关注其营收和净利润的增长情况，以及成本控制措施的实施效果。如果这些指标能够持续改善，可能会增加其投资吸引力。</li></ul><h4>芒格的补充</h4><p>查理·芒格可能会补充说，投资就像在果园里摘果子，你不需要摘下每一颗果子。你要等待那颗最甜、最成熟的果子掉到你的手里。当前MDLZ的估值可能还不足以让我们心动，我们需要更多的耐心和观察。</p><p>总之，MDLZ是一家值得关注的公司，但在做出投资决策之前，我们需要更多的信息和更深入的分析。希望这些看法对你们有所帮助。</p></div></div><div class="mreply"><div class="mh"><span class="who">达利欧</span><span class="mscore">30</span></div><div class="md"><p>各位同行，今天我们来讨论一下MDLZ这家公司，我的看法是：现在不是一个特别理想的入场时机。</p><p>首先，MDLZ作为一家消费品公司，确实拥有一些值得肯定的特质。它身处一个相对稳定的行业，旗下拥有多个知名品牌，这为它提供了较强的抗周期性基础。从基本面来看，尽管营收同比增长只有4.1%，但净利润同比增长高达144.9%，这显示出公司在成本控制和运营效率方面有一定的优势。</p><p>然而，我必须指出，目前MDLZ面临一些显著的挑战：</p><ul><li>当前价格已经反映了相当一部分乐观预期，市盈率高达38倍，估值偏高。</li><li>近期股价出现了-0.22%的下跌，这虽然看似微小，但结合整体市场环境，可能预示着投资者信心的微妙变化。</li><li>更重要的是，成本压力正在显现。在当前全球通胀环境下，消费品公司普遍面临原材料和物流成本上升的压力，这可能会在未来几个季度侵蚀利润率。</li></ul><p>从周期角度来看，我们正处于一个债务周期的重要转折点。短期内，市场可能会继续受到货币政策收紧和经济增长放缓的影响。这种环境下，高估值股票往往面临更大的下行风险。</p><p>基于以上分析，我建议采取以下行动：</p><ul><li>如果你目前持有MDLZ，建议密切监控成本趋势和利润率变化，同时考虑部分获利了结。</li><li>如果你正在考虑建仓，建议等待更明确的信号，比如成本压力缓解的迹象，或者估值回调到更具吸引力的水平。</li><li>无论做出何种决策，都要保持高度的流动性，以便在市场波动加剧时能够灵活应对。</li></ul><p>最后，我想强调一个原则：在投资决策中，要始终关注风险收益比，而不是单纯追求增长。当市场环境充满不确定性时，保守的策略往往是最明智的选择。</p></div></div><div class="mreply"><div class="mh"><span class="who">林奇</span><span class="mscore">35</span></div><div class="md"><p>各位好，今天我们来聊聊 MDLZ 这家公司。我的初步结论是：现在不是买入的好时机，但可以持续关注。</p><p>首先，MDLZ 作为一家消费品公司，拥有一些非常强大的品牌组合，这是它的核心优势。消费品行业本身就具有相当的稳定性，而 MDLZ 的品牌实力让它在市场上占据了一席之地。这种稳定性是值得肯定的，也是我看好它的一个方面。</p><p>然而，从估值角度来看，目前的市盈率（PE）高达 38 倍，这对我来说有些过高了。尽管公司最近一个季度的净利润同比增长了 144.9%，但这种高增长是否可持续是一个问号。我们不能仅仅因为一次的高增长就忽视估值过高的风险。</p><p>此外，成本压力是一个不容忽视的问题。MDLZ 面临的成本上升可能会侵蚀其利润率，尤其是在当前全球经济环境下，这种压力可能会持续一段时间。</p><p>从投资的角度来看，我建议大家保持谨慎。如果你是长期投资者，并且对消费品行业有深入的了解，可以考虑在估值更合理的时候介入。但就目前而言，我建议大家先观望，等待更好的买入时机。</p><p>最后，我想提醒大家，投资消费品公司需要关注其品牌实力和市场需求的变化。虽然 MDLZ 的品牌组合是其优势，但也要注意市场趋势和消费者偏好的变化，这些都是潜在的风险因素。</p><p>总之，MDLZ 是一家值得关注的优质公司，但目前估值过高，建议大家耐心等待更好的买入机会。</p></div></div><div class="mreply"><div class="mh"><span class="who">芒格</span><span class="mscore">50</span></div><div class="md"><p>各位，今天我们来谈谈 MDLZ 这家公司。我的结论是：MDLZ 是一家商业模式稳定但目前面临挑战的公司，我对其持中性偏谨慎的态度。</p><p>首先，MDLZ 拥有强大的品牌组合和消费品行业的稳定性优势，这是其长期发展的基石。作为一家食品和饮料巨头，MDLZ 旗下的奥利奥、Milka 等品牌在全球市场都占据重要地位，这种品牌实力为其提供了抵御市场波动的能力。</p><p>然而，我们不能忽视当前的成本压力和盈利能力下降的问题。数据显示，其净利润同比大幅增长 144.9%，但这主要是由于去年同期基数较低所致。38.4 倍的市盈率（PE）对于一家消费品公司来说偏高，尤其是在当前成本压力持续存在的情况下。此外，0.22% 的价格下跌虽然看似不大，但结合其他因素来看，反映出市场对其短期前景的担忧。</p><p>从激励机制的角度来看，MDLZ 的管理层有动力通过提价和削减成本来应对利润压力。然而，这种策略可能会影响其市场份额和品牌价值，需要谨慎平衡。</p><p>在投资决策上，我建议采取以下行动：</p><ul><li>密切关注成本控制措施的实施效果，以及其对市场份额的影响。如果成本压力持续且无法有效转嫁给消费者，可能会进一步侵蚀利润率。</li></ul><ul><li>考虑在更合理的估值水平上建立仓位。目前的市盈率偏高，等待更好的入场时机可能更为明智。</li></ul><ul><li>关注新兴市场的增长机会。MDLZ 在发展中国家市场的表现可能会成为其未来增长的重要驱动力。</li></ul><p>最后，我要提醒大家，投资决策不能只看短期波动。MDLZ 的品牌实力和行业地位是其长期价值的基础，但当前的成本压力和估值水平需要我们保持警惕。正如我常说的：&quot;如果我知道自己死在哪里，我就永远不去那里。&quot; 在这里，我们要避免被短期的高增长数字迷惑，而忽视了潜在的风险。</p><p>这就是我今天的看法。谢谢各位。</p></div></div></div>
+<div class="panel"><h2>分析师报告<span class="sub">2 篇</span></h2><details open><summary>市场面分析</summary><div class="body"><div class="md"><h4>MDLZ MDLZ 市场面分析</h4><ul><li>红黑榜多空分数：多头 35 / 空头 75，分差 -40。</li><li>当前价格：62.61。</li><li>当前交易评级：Reduce。</li><li>值得加仓区间：58.85 - 61.36。</li><li>风险控制位：55.10。</li><li>市场愿意给溢价的原因：消费品行业稳定性；品牌组合实力。</li><li>当前主要压制因素：-0.22%的价格下跌；成本压力。</li></ul></div></div></details><details open><summary>基本面分析</summary><div class="body"><div class="md"><h4>MDLZ MDLZ 基本面分析</h4><ul><li>报告期：暂无。</li><li>PE(TTM)：38.41。</li><li>PB：3.01。</li><li>ROE：13.34%。</li><li>营收同比：4.10%。</li><li>归母净利润同比：144.90%。</li><li>核心判断：盈利能力处于可接受区间；收入仍在增长；利润端保持扩张。</li></ul></div></div></details></div>
+<div class="panel"><h2>研究与计划</h2>
+<details><summary>基本面摘要</summary><div class="body"><div class="md"><h3>核心财务快照</h3><ul><li>报告期: 数据缺失</li><li>当前股价: 62.61 元</li><li>总市值: 803.69 亿元</li><li>PE (TTM): 38.41</li><li>PB: 3.01</li><li>PS (TTM): 数据缺失</li><li>营业总收入(报告期): 数据缺失 亿元</li><li>营收同比增长率: 4.10%</li><li>归母净利润(报告期): 数据缺失 亿元</li><li>归母净利润同比增长率: 144.90%</li><li>ROE (TTM/估算): 13.34%</li><li>资产负债率: 数据缺失</li><li>经营性现金流 / 归母净利润: 数据缺失</li></ul><h4>缺失字段</h4><ul><li>PS(TTM), 营业总收入, 归母净利润, 资产负债率, 经营性现金流与归母净利润比值</li></ul></div></div></details>
+<details><summary>研究计划</summary><div class="body"><div class="md"><h4>MDLZ MDLZ 研究摘要</h4><ul><li>红黑榜结论: Reduce</li><li>多头/空头: 35/75</li><li>正向信号: ROE 13.34%；营收同比 4.10%；归母净利润同比 144.90%；PE(TTM) 38.41</li><li>榜单看多理由: 消费品行业稳定性；品牌组合实力</li><li>榜单风险提示: -0.22%的价格下跌；成本压力</li></ul></div></div></details>
+<details><summary>交易计划</summary><div class="body"><div class="md"><h4>MDLZ MDLZ 交易计划</h4><ul><li>评级: Reduce</li><li>当前价格: 62.61</li><li>值得加仓区间: 56.35 - 58.85</li><li>目标价格: 59.48</li><li>止损位: 55.10</li><li>备注: 当前为缓存降级交易卡，后续若完整 TradingAgent 结果生成，将自动覆盖。</li></ul></div></div></details>
+<details><summary>交易决策</summary><div class="body"><div class="md"><p>Reduce</p><p>MDLZ MDLZ 当前使用红黑榜缓存结果生成兜底交易卡。多头 35 / 空头 75，分差 -40。当前尚未取得完整 TradingAgent 长文决策，但榜单分数、财务快照和大师观点已经足够生成基础交易建议。</p></div></div></details>
+</div>
+<div class="panel"><h2>多空逻辑</h2><div class="pts"><div class="h bull">看多逻辑</div><div class="md"><p>消费品行业稳定性</p><p>品牌组合实力</p></div></div><div class="pts"><div class="h bear">看空逻辑</div><div class="md"><p>-0.22%的价格下跌</p><p>成本压力</p></div></div></div>
+<div class="panel"><h2>伯克希尔研究</h2><p><strong>MDLZ是一家拥有强大品牌护城河和稳健财务表现的全球零食巨头，当前估值合理，值得长期关注。</strong></p><p>伯克希尔综合评分：<strong>3.9</strong></p><div class="md"><p>{&quot;verdict&quot;: &quot;买入&quot;, &quot;conservative_tip&quot;: &quot;建议在PE低于20倍时买入，目标价75美元。&quot;, &quot;moderate_tip&quot;: &quot;建议在PE低于22倍时买入，目标价80美元。&quot;, &quot;aggressive_tip&quot;: &quot;建议在PE低于24倍时买入，目标价85美元。&quot;, &quot;catalysts_plus&quot;: [&quot;健康零食产品线销售超预期。&quot;, &quot;新兴市场收入增长加速。&quot;, &quot;原材料价格回落提升利润率。&quot;], &quot;catalysts_minus&quot;: [&quot;健康化趋势对传统零食冲击加剧。&quot;, &quot;原材料价格大幅上涨。&quot;, &quot;全球经济衰退导致消费需求下降。&quot;]}</p></div></div>
+<div class="panel news"><h2>最新资讯</h2><div class="md"><p>MDLZ整体情绪偏利好，共6条利多，2条利空，3条中性。</p></div><div class="nitem"><div class="t">Mondelez International, Inc. $MDLZ Shares Bought by PensionDanmark Pensionsforsikringsaktieselskab</div><div class="s">marketbeat.com · 利好</div></div><div class="nitem"><div class="t">Mondelez’s (MDLZ) Earnings Beat May Matter Less Than Its 2027 Growth Bet</div><div class="s">finance.yahoo.com · 中性</div></div><div class="nitem"><div class="t">Mondelez International (MDLZ) Stays In Focus As Earnings Strength Meets An Undervalued View</div><div class="s">simplywall.st · 利好</div></div><div class="nitem"><div class="t">Czech National Bank Raises Stake in Mondelez International, Inc. $MDLZ</div><div class="s">marketbeat.com · 利好</div></div><div class="nitem"><div class="t">5 Revealing Analyst Questions From Mondelez’s Q2 Earnings Call</div><div class="s">StockStory · 中性</div></div><div class="nitem"><div class="t">Mondelez (MDLZ) Reliance on International Sales: What Investors Need to Know</div><div class="s">finance.yahoo.com · 中性</div></div><div class="nitem"><div class="t">Mondelez International, Inc. (MDLZ) Stock Forecasts</div><div class="s">finance.yahoo.com · 中性</div></div><div class="nitem"><div class="t">Lazard Asset Management LLC Trims Holdings in Mondelez International, Inc. $MDLZ</div><div class="s">marketbeat.com · 利空</div></div></div>
+<footer>稳健理财Agent · 红黑榜每日归档 · 黑榜 #7 · 仅供研究，不构成投资建议</footer>
+</div></body>
+</html>

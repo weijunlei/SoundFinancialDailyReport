@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>OIH(OIH) 黑榜 2026-08-09</title>
+<style>
+:root{--red:#d8342c;--redbg:#fdecea;--green:#1a9e54;--ink:#1c2230;--muted:#6b7385;
+--line:#e7e9ef;--card:#fff;--bg:#f4f6fa;--chip:#eef1f6;--dark:#23262d;--darkbg:#ececef}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",
+"Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);
+line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 16px 64px}
+header.top{background:linear-gradient(135deg,#1c2230,#2c3550);color:#fff;border-radius:14px;
+padding:22px 24px;margin-bottom:20px;box-shadow:0 6px 24px rgba(20,26,46,.12)}
+header.top h1{margin:0 0 6px;font-size:24px;letter-spacing:.5px}
+header.top .sub{opacity:.85;font-size:13px}
+header.top .sub b{color:#ffd166;font-weight:600}
+nav.mkt{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;
+background:rgba(244,246,250,.92);backdrop-filter:blur(6px);padding:10px 0;margin-bottom:14px}
+nav.mkt a{text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);
+padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600}
+nav.mkt a:hover{border-color:var(--red);color:var(--red)}
+.summary{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.summary .chip{background:var(--card);border:1px solid var(--line);border-radius:10px;
+padding:8px 12px;font-size:12px;color:var(--muted)}
+.summary .chip b{color:var(--ink);font-size:14px;margin-left:4px}
+section.board{margin:26px 0}
+.board-title{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:19px}
+.board-title .dot{width:10px;height:10px;border-radius:50%}
+.board-title.red .dot{background:var(--red)}
+.board-title.black .dot{background:var(--dark)}
+.board-title small{color:var(--muted);font-weight:400;font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+position:relative;transition:box-shadow .15s}
+.card:hover{box-shadow:0 4px 18px rgba(20,26,46,.08)}
+.card.red{border-top:3px solid var(--red)}
+.card.black{border-top:3px solid var(--dark)}
+.rank{position:absolute;top:10px;right:12px;font-size:26px;font-weight:800;color:#eceff5}
+.card.red .rank{color:#fbdcD9}
+.nm{font-size:16px;font-weight:700}
+.nm .tk{color:var(--muted);font-weight:500;font-size:12px;margin-left:6px}
+.tag{display:inline-block;background:var(--chip);color:var(--muted);border-radius:6px;
+padding:1px 7px;font-size:11px;margin:6px 6px 0 0}
+.price-row{display:flex;align-items:baseline;gap:10px;margin:10px 0 4px}
+.price{font-size:24px;font-weight:800}
+.pct{font-size:14px;font-weight:700;padding:2px 8px;border-radius:8px}
+.up{color:var(--red)}.down{color:var(--green)}.flat{color:var(--muted)}
+.pct.up{background:var(--redbg)}.pct.down{background:#e2f4e9}.pct.flat{background:var(--chip)}
+.psrc{font-size:11px;color:var(--muted);margin-left:auto}
+.scores{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.scores span{background:var(--chip);border-radius:6px;padding:2px 8px;font-size:11px;color:var(--muted)}
+.scores span b{color:var(--ink)}
+.pts{font-size:12.5px;margin:8px 0 0}
+.pts .h{font-weight:700;font-size:12px;margin:6px 0 2px}
+.pts .h.bull{color:var(--red)}.pts .h.bear{color:var(--green)}
+.pts ul{margin:2px 0 4px;padding-left:18px;color:#3a4152}
+.pts li{margin:1px 0}
+.masters{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:11px;color:var(--muted)}
+.masters b{color:var(--ink)}
+.summ{font-size:12.5px;color:#3a4152;background:#fafbfd;border:1px solid var(--line);
+border-radius:8px;padding:8px 10px;margin-top:8px}
+.empty{color:var(--muted);background:var(--card);border:1px dashed var(--line);
+border-radius:10px;padding:18px;text-align:center}
+footer{margin-top:34px;color:var(--muted);font-size:12px;text-align:center;line-height:1.8}
+a.lnk{color:var(--red);text-decoration:none}
+/* ── detail page ── */
+.backbar{margin-bottom:14px;font-size:13px}
+.backbar a{color:var(--muted);text-decoration:none;margin-right:14px}
+.backbar a:hover{color:var(--red)}
+.badge{display:inline-block;border-radius:6px;padding:2px 10px;font-size:12px;font-weight:700;margin-right:8px}
+.badge.red{background:var(--red);color:#fff}.badge.black{background:var(--dark);color:#fff}
+.trade{display:flex;flex-wrap:wrap;gap:10px;background:linear-gradient(135deg,#2c3550,#1c2230);
+color:#fff;border-radius:12px;padding:16px 18px;margin:16px 0}
+.trade .cell{min-width:120px}
+.trade .k{font-size:11px;opacity:.75}
+.trade .v{font-size:18px;font-weight:800;margin-top:2px}
+.trade .v.buy{color:#7ee2a8}.trade .v.sell{color:#ff9d97}.trade .v.hold{color:#ffd166}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0}
+.mgrid .m{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.mgrid .m .k{font-size:11px;color:var(--muted)}
+.mgrid .m .v{font-size:16px;font-weight:700;margin-top:2px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.panel>h2{margin:0 0 12px;font-size:17px}
+.panel>h2 .sub{font-size:12px;color:var(--muted);font-weight:400;margin-left:8px}
+.mreply{border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;
+padding:12px 14px;margin:10px 0;background:#fff}
+.mreply .mh{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.mreply .mh .who{font-weight:700;font-size:14px}
+.mreply .mh .mscore{margin-left:auto;background:var(--chip);border-radius:6px;padding:1px 8px;font-size:12px;font-weight:700}
+.md h2,.md h3,.md h4,.md h5{margin:12px 0 6px;font-size:15px}
+.md p{margin:6px 0;font-size:13.5px;color:#2c3345}
+.md ul{margin:6px 0;padding-left:20px;font-size:13.5px;color:#2c3345}
+.md li{margin:3px 0}
+.md strong{color:var(--ink)}
+details{border:1px solid var(--line);border-radius:10px;background:#fff;margin:10px 0;padding:0}
+details>summary{cursor:pointer;padding:12px 16px;font-weight:700;font-size:14px;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary:before{content:"▸ ";color:var(--red)}
+details[open]>summary:before{content:"▾ "}
+details>.body{padding:0 16px 14px;border-top:1px dashed var(--line)}
+.ychip{display:inline-block;background:var(--chip);border-radius:8px;padding:4px 10px;font-size:12px;margin:3px 6px 3px 0}
+.ychip b{font-size:13px}
+.news .nitem{border-top:1px dashed var(--line);padding:8px 0;font-size:13px}
+.news .nitem .t{font-weight:600}
+.news .nitem .s{color:var(--muted);font-size:12px}
+/* ── root landing page ── */
+.hero{padding:30px 26px}
+.hero-kicker{color:#ffd166;font-size:12px;font-weight:700;letter-spacing:2px;
+text-transform:uppercase;margin-bottom:8px}
+.hero h1{font-size:30px;margin:0 0 10px}
+.day-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.day-card{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);
+border-radius:12px;padding:14px 16px;transition:all .15s}
+.day-card:hover{border-color:var(--red);box-shadow:0 4px 16px rgba(216,52,44,.12);transform:translateY(-2px)}
+.day-card .d{font-weight:800;font-size:15px;color:var(--ink);display:flex;align-items:center;gap:8px}
+.day-card .m{margin-top:8px;display:flex;gap:6px}
+.day-card .m span{background:var(--chip);color:var(--muted);border-radius:6px;
+padding:2px 8px;font-size:11px}
+.latest-badge{background:var(--red);color:#fff;border-radius:6px;padding:1px 7px;
+font-size:10px;font-weight:700}
+</style>
+</head>
+<body><div class="wrap">
+<div class="backbar"><a href="../index.html">← 总览</a><a href="../us.html">← 美股榜单</a></div>
+<header class="top">
+  <h1><span class="badge black">黑榜 #3</span>OIH<span class="tk" style="opacity:.7;font-size:15px;font-weight:400;margin-left:8px">OIH</span></h1>
+  <div class="sub">美股 ·  · 榜单日期 <b>2026-08-09</b> · 盘价采集 <b>2026-08-09 05:00:13</b></div>
+  <div class="price-row" style="margin-top:12px">
+    <span class="price" style="color:#fff">$388.28</span>
+    <span class="pct down">-0.97%</span>
+    <span class="psrc" style="color:rgba(255,255,255,.6)">实时</span>
+  </div>
+  <div class="scores" style="margin-top:10px">
+    <span>综合 <b>33.1</b></span>
+    <span>多头 <b>35</b></span>
+    <span>空头 <b>75</b></span>
+    <span>大师均值 <b>40</b></span>
+    <span>信号 <b>negative</b></span>
+  </div>
+</header>
+<div class="trade"><div class="cell"><div class="k">交易评级</div><span class="v hold">Reduce</span></div><div class="cell"><div class="k">加仓区间</div><span class="v">349.45 ~ 364.98</span></div><div class="cell"><div class="k">伯克希尔</div><span class="v">观望</span></div><div class="cell"><div class="k">伯克希尔分</div><span class="v">3.25</span></div></div>
+<div class="panel"><h2>财务指标</h2><div class="mgrid"><div class="m"><div class="k">市盈率 PE</div><div class="v">20.24</div></div></div></div>
+<div class="panel"><h2>历史收益</h2><span class="ychip">近1月 <b class="up">+2.77%</b></span><span class="ychip">近6月 <b class="up">+3.81%</b></span><span class="ychip">近1年 <b class="up">+63.48%</b></span><span class="ychip">近5年 <b class="up">+112.15%</b></span></div>
+<div class="panel"><h2>大师圆桌<span class="sub">5 位</span></h2><div class="mreply"><div class="mh"><span class="who">段永平</span><span class="mscore">40</span></div><div class="md"><p>各位好，关于 OIH，我来说几句。</p><p>首先，我的看法是：<strong>现在不是买入 OIH 的好时机</strong>。虽然能源行业确实有长期潜力，但 OIH 目前面临较大的短期波动风险。</p><p>理由有几点：</p><ul><li><strong>行业特性</strong>：OIH 作为一只油气服务 ETF，其表现与油价高度相关。而当前油价波动较大，这增加了投资的不确定性。</li></ul><ul><li><strong>价格表现</strong>：从近期走势来看，OIH 出现了 0.97% 的下跌，这表明市场情绪可能正在转向谨慎。</li></ul><ul><li><strong>估值角度</strong>：20 倍的市盈率不算便宜，在当前波动环境下，这个估值水平缺乏足够的安全边际。</li></ul><p>关于风险，我认为主要有两方面：</p><ul><li><strong>油价持续波动</strong>：如果油价继续下跌，OIH 的表现可能会受到更大影响。</li><li><strong>宏观经济风险</strong>：全球经济增速放缓也可能影响能源需求，进而影响 OIH 的基本面。</li></ul><p>基于以上分析，我的建议是：</p><p><strong>如果一定要投资能源行业，可以考虑等待更好的时机，或者选择那些受油价波动影响较小的优质能源公司</strong>。投资要本分，不要因为短期可能出现的反弹而忽视了长期的风险。</p><p>另外，我想提醒大家：<strong>不要把&quot;看似便宜&quot;当成&quot;本分&quot;</strong>。投资决策应该基于对公司的深入理解，而不是单纯的价格波动。</p><p>希望这些思考对大家有所帮助。谢谢。</p></div></div><div class="mreply"><div class="mh"><span class="who">巴菲特</span><span class="mscore">30</span></div><div class="md"><p>各位好，关于OIH这只基金，我来说几句。</p><p>首先，我的结论是：对于伯克希尔来说，这不是一个合适的投资标的。原因很简单：它与我的核心投资理念不符。</p><p>OIH是一只专注于能源行业的基金，这本身并不是问题。但我注意到几个关键点：</p><ul><li>这只基金的价格近期下跌了0.97%，而且从估值角度看，20.24倍的市盈率对于一个受大宗商品价格影响如此之大的行业来说，并不算便宜。</li></ul><ul><li>更重要的是，能源行业，特别是像OIH这样的基金，高度依赖于油价的走势。而油价是出了名的难以预测，它受到地缘政治、供需关系、OPEC政策等多重因素影响。作为一个价值投资者，我更倾向于投资那些商业模式清晰、竞争优势持久的企业，而不是把命运寄托在难以预测的大宗商品价格上。</li></ul><ul><li>从风险角度来看，这只基金似乎缺乏足够宽的护城河来抵御油价的波动。它更像是一个对油价趋势的押注，而不是一个具有可持续竞争优势的投资标的。</li></ul><p>基于以上分析，我建议：</p><p>如果你一定要投资这类标的，请务必做好以下准备：</p><ul><li>仔细评估你对油价走势的判断能力。如果你没有特别的洞察力或信息优势，最好谨慎对待。</li></ul><ul><li>考虑将这类投资限制在你投资组合中一个很小的比例。毕竟，在投资中，知道自己不懂什么，往往比自以为懂什么更重要。</li></ul><ul><li>做好承担更大波动性的心理准备。这类投资可能会给你带来刺激的体验，但未必能带来稳定的回报。</li></ul><p>最后，我想说的是，投资就像打棒球，你不需要每次都挥棒。最重要的是，只在最有把握的时候出手。</p><p>如果查理在这里，他可能会补充说：&quot;投资就像打理一个果园，你需要选择那些能长期结出好果子的树，而不是那些靠天吃饭的品种。&quot;</p></div></div><div class="mreply"><div class="mh"><span class="who">达利欧</span><span class="mscore">50</span></div><div class="md"><h4>发言内容：</h4><p>各位同仁，关于 OIH（VanEck Oil Services ETF），我的观点是：目前来看，它处于一个相对复杂且偏负面的环境中，但仍有对冲价值。</p><p><strong>首先，我的核心判断是：OIH 在当前环境下面临较大压力，但并非完全不可投资。</strong></p><p><strong>理由如下：</strong></p><ul><li><strong>能源行业敞口</strong>：OIH 作为一只专注于油气服务的 ETF，其表现与能源行业的整体趋势密切相关。当前能源市场面临诸多不确定性，包括地缘政治风险和全球需求波动，这使得 OIH 的前景充满挑战。</li></ul><ul><li><strong>油价波动影响</strong>：近期油价波动对 OIH 产生了显著影响。油价下跌导致市场对油气服务的需求预期下降，这对 OIH 的股价构成了压力。</li></ul><ul><li><strong>价格表现</strong>：从价格走势来看，OIH 在过去一段时间内表现不佳，下跌了 0.97%。这表明市场情绪较为悲观，投资者对其未来预期持谨慎态度。</li></ul><ul><li><strong>估值水平</strong>：当前市盈率为 20.24 倍，虽然不算过高，但在当前市场环境下，这一估值水平也缺乏足够的吸引力。</li></ul><p><strong>然而，OIH 仍具有一定的对冲价值：</strong></p><ul><li><strong>长期视角</strong>：从长期来看，能源行业仍然是全球经济的重要组成部分。尽管短期面临挑战，但油气服务领域仍有其独特的投资价值，尤其是在全球经济逐步复苏的背景下。</li></ul><ul><li><strong>对冲作用</strong>：对于投资组合而言，OIH 可以作为对冲工具，在能源价格上涨时提供一定的保护。</li></ul><p><strong>风险与建议：</strong></p><ul><li><strong>主要风险</strong>：油价波动、地缘政治风险以及全球经济放缓对能源需求的影响是主要风险因素。</li></ul><ul><li><strong>行动建议</strong>：如果投资者持有 OIH，建议密切关注油价走势和全球经济数据，适时调整仓位。对于风险承受能力较低的投资者，可以考虑减少对 OIH 的配置，转向更为稳健的投资标的。</li></ul><ul><li><strong>对冲策略</strong>：对于希望对冲能源风险的投资者，可以考虑在投资组合中适度配置 OIH，但需控制好仓位比例，以避免过度暴露于能源行业的波动。</li></ul><p><strong>总结原则</strong>：在投资决策中，要保持极度开放和透明的态度，理性评估风险与收益，避免情绪化决策。记录每一次决策的过程和理由，以便在市场变化时进行复盘和调整。</p><p>希望以上分析对大家有所帮助。谢谢。</p></div></div><div class="mreply"><div class="mh"><span class="who">林奇</span><span class="mscore">45</span></div><div class="md"><p>各位朋友，今天我们来聊聊 OIH（VanEck Vectors Oil Services ETF）这只基金。</p><h4>结论</h4><p>我给它的综合评分是 45 分，态度是谨慎观望。</p><h4>理由</h4><p>首先，OIH 作为一只专注于油气服务行业的 ETF，它直接暴露于能源行业的周期性波动中。能源行业大家都知道，是一个典型的周期型行业，受宏观经济、油价、地缘政治等多重因素影响。</p><p>从估值角度来看，目前 OIH 的市盈率（PE）在 20 倍左右，这个估值水平对于一个周期性行业来说并不算便宜。我们需要明白，油气服务行业的基本面与油价高度相关，而近期油价波动较大，这对 OIH 的表现构成了直接压力。</p><p>此外，从市场表现来看，OIH 的价格近期出现了下跌趋势，这反映了市场对能源行业前景的担忧。</p><h4>风险/行动建议</h4><ul><li><strong>周期性风险</strong>：油气服务行业是典型的周期型行业，投资者需要做好心理准备，迎接可能出现的剧烈波动。如果你打算投资 OIH，务必控制好仓位，不要重仓。</li></ul><ul><li><strong>油价波动</strong>：油价是影响 OIH 表现的关键因素。如果你对油价走势没有明确的判断，建议先观望。</li></ul><ul><li><strong>长期持有 vs 短期交易</strong>：如果你想投资 OIH，我建议你把它当作周期型投资来对待。在行业低谷时买入，在行业高峰时卖出，而不是长期持有不动。</li></ul><ul><li><strong>分散投资</strong>：由于 OIH 的行业集中度很高，建议将其作为投资组合的一部分，而不是唯一的投资标的。</li></ul><p>总的来说，如果你对能源行业有深入的了解，并且能够承受周期波动，可以考虑在合适的时机小仓位介入。但对于大多数投资者来说，观望可能是更明智的选择。</p><p>记住，投资不是赌博，我们要的是稳健的回报，而不是冒险的刺激。</p></div></div><div class="mreply"><div class="mh"><span class="who">芒格</span><span class="mscore">35</span></div><div class="md"><p>各位先生女士，关于OIH这只ETF，我得说我的看法并不乐观。</p><p>首先，OIH作为一只能源服务行业的ETF，其基本面确实与能源行业密切相关。但我们必须面对现实：当前它的估值并不吸引人，市盈率高达20倍，而价格在过去一段时间持续承压，下跌了将近1%。这让我想起一句老话：&quot;如果我知道自己死在哪里，我就永远不去那里&quot;。在我看来，OIH正走在一条充满风险的道路上。</p><p>让我解释一下我的思考过程：</p><ul><li>能源行业确实有其周期性机会，但OIH的估值水平让我感到不安。20倍的市盈率对于这样一个周期性行业来说，显得过于乐观。</li></ul><ul><li>更重要的是，油价波动对这类ETF的影响是直接而显著的。我们都知道，能源价格受到地缘政治、供需关系等多重因素影响，波动性极高。这种不确定性让我不得不谨慎对待。</li></ul><ul><li>从投资组合的角度来看，OIH并不能提供足够的风险补偿。它的下行风险似乎远大于上行潜力。</li></ul><p>基于以上分析，我的建议是：</p><p>首先，要认识到能源行业的周期性特征，不要被短期价格波动所迷惑。如果一定要参与这个领域，建议寻找那些估值更合理、风险更可控的投资标的。</p><p>其次，要严格控制仓位。不要因为看好某个行业就过度暴露于单一风险之下。记住，投资的第一要务是保存资本，而不是追求最大回报。</p><p>最后，要时刻关注油价走势和地缘政治变化。这些因素对OIH的影响是决定性的。</p><p>我能错在哪里？也许我对油价的悲观预期过于保守，或者对能源行业的复苏速度估计不足。但即便如此，我仍然认为，在当前的价格和估值水平下，OIH并不是一个值得重仓的投资标的。</p></div></div></div>
+<div class="panel"><h2>分析师报告<span class="sub">2 篇</span></h2><details open><summary>市场面分析</summary><div class="body"><div class="md"><h4>OIH OIH 市场面分析</h4><ul><li>红黑榜多空分数：多头 35 / 空头 75，分差 -40。</li><li>当前价格：388.28。</li><li>当前交易评级：Reduce。</li><li>值得加仓区间：349.45 - 364.98。</li><li>风险控制位：341.69。</li><li>市场愿意给溢价的原因：能源行业敞口；市值数据未提供。</li><li>当前主要压制因素：价格下跌(-0.97%)；油价波动影响。</li></ul></div></div></details><details open><summary>基本面分析</summary><div class="body"><div class="md"><h4>OIH OIH 基本面分析</h4><ul><li>报告期：暂无。</li><li>PE(TTM)：20.24。</li></ul></div></div></details></div>
+<div class="panel"><h2>研究与计划</h2>
+<details><summary>基本面摘要</summary><div class="body"><div class="md"><h3>核心财务快照</h3><ul><li>报告期: 数据缺失</li><li>当前股价: 388.28 元</li><li>总市值: 数据缺失 亿元</li><li>PE (TTM): 20.24</li><li>PB: 数据缺失</li><li>PS (TTM): 数据缺失</li><li>营业总收入(报告期): 数据缺失 亿元</li><li>营收同比增长率: 数据缺失</li><li>归母净利润(报告期): 数据缺失 亿元</li><li>归母净利润同比增长率: 数据缺失</li><li>ROE (TTM/估算): 数据缺失</li><li>资产负债率: 数据缺失</li><li>经营性现金流 / 归母净利润: 数据缺失</li></ul><h4>缺失字段</h4><ul><li>总市值, PB, PS(TTM), 营业总收入, 营收同比增长率, 归母净利润, 归母净利润同比增长率, ROE, 资产负债率, 经营性现金流与归母净利润比值</li></ul></div></div></details>
+<details><summary>研究计划</summary><div class="body"><div class="md"><h4>OIH OIH 研究摘要</h4><ul><li>红黑榜结论: Reduce</li><li>多头/空头: 35/75</li><li>正向信号: PE(TTM) 20.24</li><li>榜单看多理由: 能源行业敞口；市值数据未提供</li><li>榜单风险提示: 价格下跌(-0.97%)；油价波动影响</li></ul></div></div></details>
+<details><summary>交易计划</summary><div class="body"><div class="md"><h4>OIH OIH 交易计划</h4><ul><li>评级: Reduce</li><li>当前价格: 388.28</li><li>值得加仓区间: 349.45 - 364.98</li><li>目标价格: 368.87</li><li>止损位: 341.69</li><li>备注: 当前为缓存降级交易卡，后续若完整 TradingAgent 结果生成，将自动覆盖。</li></ul></div></div></details>
+<details><summary>交易决策</summary><div class="body"><div class="md"><p>Reduce</p><p>OIH OIH 当前使用红黑榜缓存结果生成兜底交易卡。多头 35 / 空头 75，分差 -40。当前尚未取得完整 TradingAgent 长文决策，但榜单分数、财务快照和大师观点已经足够生成基础交易建议。</p></div></div></details>
+</div>
+<div class="panel"><h2>多空逻辑</h2><div class="pts"><div class="h bull">看多逻辑</div><div class="md"><p>能源行业敞口</p><p>市值数据未提供</p></div></div><div class="pts"><div class="h bear">看空逻辑</div><div class="md"><p>价格下跌(-0.97%)</p><p>油价波动影响</p></div></div></div>
+<div class="panel"><h2>伯克希尔研究</h2><p><strong>OIH作为能源服务行业ETF，在当前能源转型背景下具备周期性机会，但长期面临结构性挑战。</strong></p><p>伯克希尔综合评分：<strong>3.25</strong></p><div class="md"><p>{&quot;verdict&quot;: &quot;观望&quot;, &quot;conservative_tip&quot;: &quot;建议在能源价格明显反弹或政策风险减弱时再考虑入场，当前观望。&quot;, &quot;moderate_tip&quot;: &quot;可小仓位配置作为对冲，但需密切关注能源行业政策变化。&quot;, &quot;aggressive_tip&quot;: &quot;不建议激进投资，长期风险较高。&quot;, &quot;catalysts_plus&quot;: [&quot;能源价格大幅上涨&quot;, &quot;全球能源需求超预期增长&quot;, &quot;政策对传统能源支持力度加大&quot;], &quot;catalysts_minus&quot;: [&quot;可再生能源技术突破&quot;, &quot;环保政策趋严&quot;, &quot;能源服务行业利润率持续下滑&quot;]}</p></div></div>
+<div class="panel news"><h2>最新资讯</h2><div class="md"><p>整体情绪偏多，7条利好，4条中性，0条利空。</p></div><div class="nitem"><div class="t">OIH News | VANECK OIL SERVICES ETF (NYSEARCA:OIH)</div><div class="s">ChartMill · 中性</div></div><div class="nitem"><div class="t">Liquidity Mapping Around (OIH) Price Events</div><div class="s">Stock Traders Daily · 中性</div></div><div class="nitem"><div class="t">OIH Jan 2028 540.000 call (OIH280121C00540000) stock price, news, quote and history</div><div class="s">Yahoo Finance Australia · 中性</div></div><div class="nitem"><div class="t">Trade Tracker: Joe Terranova sells the OIH and buys Petrobras and Canadian Natural Resources</div><div class="s">cnbc.com · 利空</div></div><div class="nitem"><div class="t">Vote Yes On Article 11 To Continue The OIH Staff&#x27;s Diamond In The Rough Care</div><div class="s">Nantucket Current · 中性</div></div><div class="nitem"><div class="t">Oil Services Are on the Edge and OIH Could Be the Most Explosive Energy ETF This Week</div><div class="s">24/7 Wall St. · 利好</div></div><div class="nitem"><div class="t">OIH ETF Profile: Dividends, Returns (BOATS:OIH)</div><div class="s">TradingView · 中性</div></div><div class="nitem"><div class="t">Oil Services ETF (OIH) Hits 52-Week High: More Strength Ahead?</div><div class="s">Zacks Investment Research · 利好</div></div></div>
+<footer>稳健理财Agent · 红黑榜每日归档 · 黑榜 #3 · 仅供研究，不构成投资建议</footer>
+</div></body>
+</html>

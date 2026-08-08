@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ABNB(ABNB) 红榜 2026-08-09</title>
+<style>
+:root{--red:#d8342c;--redbg:#fdecea;--green:#1a9e54;--ink:#1c2230;--muted:#6b7385;
+--line:#e7e9ef;--card:#fff;--bg:#f4f6fa;--chip:#eef1f6;--dark:#23262d;--darkbg:#ececef}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",
+"Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);
+line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 16px 64px}
+header.top{background:linear-gradient(135deg,#1c2230,#2c3550);color:#fff;border-radius:14px;
+padding:22px 24px;margin-bottom:20px;box-shadow:0 6px 24px rgba(20,26,46,.12)}
+header.top h1{margin:0 0 6px;font-size:24px;letter-spacing:.5px}
+header.top .sub{opacity:.85;font-size:13px}
+header.top .sub b{color:#ffd166;font-weight:600}
+nav.mkt{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;
+background:rgba(244,246,250,.92);backdrop-filter:blur(6px);padding:10px 0;margin-bottom:14px}
+nav.mkt a{text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);
+padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600}
+nav.mkt a:hover{border-color:var(--red);color:var(--red)}
+.summary{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.summary .chip{background:var(--card);border:1px solid var(--line);border-radius:10px;
+padding:8px 12px;font-size:12px;color:var(--muted)}
+.summary .chip b{color:var(--ink);font-size:14px;margin-left:4px}
+section.board{margin:26px 0}
+.board-title{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:19px}
+.board-title .dot{width:10px;height:10px;border-radius:50%}
+.board-title.red .dot{background:var(--red)}
+.board-title.black .dot{background:var(--dark)}
+.board-title small{color:var(--muted);font-weight:400;font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+position:relative;transition:box-shadow .15s}
+.card:hover{box-shadow:0 4px 18px rgba(20,26,46,.08)}
+.card.red{border-top:3px solid var(--red)}
+.card.black{border-top:3px solid var(--dark)}
+.rank{position:absolute;top:10px;right:12px;font-size:26px;font-weight:800;color:#eceff5}
+.card.red .rank{color:#fbdcD9}
+.nm{font-size:16px;font-weight:700}
+.nm .tk{color:var(--muted);font-weight:500;font-size:12px;margin-left:6px}
+.tag{display:inline-block;background:var(--chip);color:var(--muted);border-radius:6px;
+padding:1px 7px;font-size:11px;margin:6px 6px 0 0}
+.price-row{display:flex;align-items:baseline;gap:10px;margin:10px 0 4px}
+.price{font-size:24px;font-weight:800}
+.pct{font-size:14px;font-weight:700;padding:2px 8px;border-radius:8px}
+.up{color:var(--red)}.down{color:var(--green)}.flat{color:var(--muted)}
+.pct.up{background:var(--redbg)}.pct.down{background:#e2f4e9}.pct.flat{background:var(--chip)}
+.psrc{font-size:11px;color:var(--muted);margin-left:auto}
+.scores{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.scores span{background:var(--chip);border-radius:6px;padding:2px 8px;font-size:11px;color:var(--muted)}
+.scores span b{color:var(--ink)}
+.pts{font-size:12.5px;margin:8px 0 0}
+.pts .h{font-weight:700;font-size:12px;margin:6px 0 2px}
+.pts .h.bull{color:var(--red)}.pts .h.bear{color:var(--green)}
+.pts ul{margin:2px 0 4px;padding-left:18px;color:#3a4152}
+.pts li{margin:1px 0}
+.masters{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:11px;color:var(--muted)}
+.masters b{color:var(--ink)}
+.summ{font-size:12.5px;color:#3a4152;background:#fafbfd;border:1px solid var(--line);
+border-radius:8px;padding:8px 10px;margin-top:8px}
+.empty{color:var(--muted);background:var(--card);border:1px dashed var(--line);
+border-radius:10px;padding:18px;text-align:center}
+footer{margin-top:34px;color:var(--muted);font-size:12px;text-align:center;line-height:1.8}
+a.lnk{color:var(--red);text-decoration:none}
+/* ── detail page ── */
+.backbar{margin-bottom:14px;font-size:13px}
+.backbar a{color:var(--muted);text-decoration:none;margin-right:14px}
+.backbar a:hover{color:var(--red)}
+.badge{display:inline-block;border-radius:6px;padding:2px 10px;font-size:12px;font-weight:700;margin-right:8px}
+.badge.red{background:var(--red);color:#fff}.badge.black{background:var(--dark);color:#fff}
+.trade{display:flex;flex-wrap:wrap;gap:10px;background:linear-gradient(135deg,#2c3550,#1c2230);
+color:#fff;border-radius:12px;padding:16px 18px;margin:16px 0}
+.trade .cell{min-width:120px}
+.trade .k{font-size:11px;opacity:.75}
+.trade .v{font-size:18px;font-weight:800;margin-top:2px}
+.trade .v.buy{color:#7ee2a8}.trade .v.sell{color:#ff9d97}.trade .v.hold{color:#ffd166}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0}
+.mgrid .m{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.mgrid .m .k{font-size:11px;color:var(--muted)}
+.mgrid .m .v{font-size:16px;font-weight:700;margin-top:2px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.panel>h2{margin:0 0 12px;font-size:17px}
+.panel>h2 .sub{font-size:12px;color:var(--muted);font-weight:400;margin-left:8px}
+.mreply{border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;
+padding:12px 14px;margin:10px 0;background:#fff}
+.mreply .mh{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.mreply .mh .who{font-weight:700;font-size:14px}
+.mreply .mh .mscore{margin-left:auto;background:var(--chip);border-radius:6px;padding:1px 8px;font-size:12px;font-weight:700}
+.md h2,.md h3,.md h4,.md h5{margin:12px 0 6px;font-size:15px}
+.md p{margin:6px 0;font-size:13.5px;color:#2c3345}
+.md ul{margin:6px 0;padding-left:20px;font-size:13.5px;color:#2c3345}
+.md li{margin:3px 0}
+.md strong{color:var(--ink)}
+details{border:1px solid var(--line);border-radius:10px;background:#fff;margin:10px 0;padding:0}
+details>summary{cursor:pointer;padding:12px 16px;font-weight:700;font-size:14px;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary:before{content:"▸ ";color:var(--red)}
+details[open]>summary:before{content:"▾ "}
+details>.body{padding:0 16px 14px;border-top:1px dashed var(--line)}
+.ychip{display:inline-block;background:var(--chip);border-radius:8px;padding:4px 10px;font-size:12px;margin:3px 6px 3px 0}
+.ychip b{font-size:13px}
+.news .nitem{border-top:1px dashed var(--line);padding:8px 0;font-size:13px}
+.news .nitem .t{font-weight:600}
+.news .nitem .s{color:var(--muted);font-size:12px}
+/* ── root landing page ── */
+.hero{padding:30px 26px}
+.hero-kicker{color:#ffd166;font-size:12px;font-weight:700;letter-spacing:2px;
+text-transform:uppercase;margin-bottom:8px}
+.hero h1{font-size:30px;margin:0 0 10px}
+.day-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.day-card{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);
+border-radius:12px;padding:14px 16px;transition:all .15s}
+.day-card:hover{border-color:var(--red);box-shadow:0 4px 16px rgba(216,52,44,.12);transform:translateY(-2px)}
+.day-card .d{font-weight:800;font-size:15px;color:var(--ink);display:flex;align-items:center;gap:8px}
+.day-card .m{margin-top:8px;display:flex;gap:6px}
+.day-card .m span{background:var(--chip);color:var(--muted);border-radius:6px;
+padding:2px 8px;font-size:11px}
+.latest-badge{background:var(--red);color:#fff;border-radius:6px;padding:1px 7px;
+font-size:10px;font-weight:700}
+</style>
+</head>
+<body><div class="wrap">
+<div class="backbar"><a href="../index.html">← 总览</a><a href="../us.html">← 美股榜单</a></div>
+<header class="top">
+  <h1><span class="badge red">红榜 #8</span>ABNB<span class="tk" style="opacity:.7;font-size:15px;font-weight:400;margin-left:8px">ABNB</span></h1>
+  <div class="sub">美股 ·  · 榜单日期 <b>2026-08-09</b> · 盘价采集 <b>2026-08-09 05:00:13</b></div>
+  <div class="price-row" style="margin-top:12px">
+    <span class="price" style="color:#fff">$178.07</span>
+    <span class="pct up">+17.43%</span>
+    <span class="psrc" style="color:rgba(255,255,255,.6)">实时</span>
+  </div>
+  <div class="scores" style="margin-top:10px">
+    <span>综合 <b>85.9</b></span>
+    <span>多头 <b>85</b></span>
+    <span>空头 <b>30</b></span>
+    <span>大师均值 <b>70</b></span>
+    <span>信号 <b>positive</b></span>
+  </div>
+</header>
+<div class="trade"><div class="cell"><div class="k">交易评级</div><span class="v buy">Buy</span></div><div class="cell"><div class="k">加仓区间</div><span class="v">172.73 ~ 179.85</span></div><div class="cell"><div class="k">目标价</div><span class="v">199.44</span></div><div class="cell"><div class="k">伯克希尔</div><span class="v">观望</span></div><div class="cell"><div class="k">伯克希尔分</div><span class="v">3.88</span></div></div>
+<div class="panel"><h2>财务指标</h2><div class="mgrid"><div class="m"><div class="k">市盈率 PE</div><div class="v">40.66</div></div><div class="m"><div class="k">市净率 PB</div><div class="v">13.47</div></div><div class="m"><div class="k">ROE</div><div class="v">34.5%</div></div><div class="m"><div class="k">总市值</div><div class="v">1066</div></div><div class="m"><div class="k">营收同比</div><div class="v">16.5%</div></div><div class="m"><div class="k">净利同比</div><div class="v">33.4%</div></div></div></div>
+<div class="panel"><h2>历史收益</h2><span class="ychip">近1月 <b class="up">+24.57%</b></span><span class="ychip">近6月 <b class="up">+46.79%</b></span><span class="ychip">近1年 <b class="up">+47.14%</b></span><span class="ychip">近5年 <b class="up">+19.16%</b></span></div>
+<div class="panel"><h2>大师圆桌<span class="sub">5 位</span></h2><div class="mreply"><div class="mh"><span class="who">段永平</span><span class="mscore">80</span></div><div class="md"><h4>圆桌发言：关于 Airbnb (ABNB) 的看法</h4><p><strong>结论：</strong></p><p>我目前对 Airbnb (ABNB) 的看法是偏正面的，但需要谨慎对待其估值水平。</p><p><strong>理由：</strong></p><ul><li><strong>旅游行业的复苏趋势</strong>：从数据和市场情绪来看，旅游行业正在强劲复苏，这为 Airbnb 提供了良好的发展环境。用户对个性化、灵活住宿的需求在增加，这正是 Airbnb 的优势所在。</li></ul><ul><li><strong>公司基本面表现</strong>：从财务数据看，Airbnb 的营收同比增长 16.5%，净利润同比增长 33.4%，这显示出公司良好的盈利能力和增长潜力。此外，34.5% 的净资产收益率 (ROE) 也表明公司运营效率较高。</li></ul><ul><li><strong>市场预期</strong>：当前市场对 Airbnb 的乐观预期主要基于旅游行业的持续复苏，以及 Airbnb 在全球市场的领导地位。</li></ul><p><strong>风险/行动建议：</strong></p><ul><li><strong>估值偏高</strong>：目前 Airbnb 的市盈率 (PE) 为 40.65，市净率 (PB) 为 13.47，估值水平较高。这意味着市场已经对未来的增长预期打入了很高的溢价。如果未来增长不及预期，股价可能会面临回调压力。</li></ul><ul><li><strong>经济衰退风险</strong>：虽然旅游行业整体复苏，但全球经济的不确定性仍然存在。如果出现经济衰退，旅游需求可能会受到负面影响，进而影响 Airbnb 的业绩。</li></ul><ul><li><strong>建议行动</strong>：如果已经持有 Airbnb 的股票，可以考虑继续持有，但需要密切关注公司的业绩增长是否能够支撑当前的估值水平。如果还没有买入，建议等待更合适的时机，或者分批买入以分散风险。</li></ul><p><strong>长期视角：</strong></p><p>从长期来看，Airbnb 的商业模式具有创新性和可持续性。随着全球旅游市场的持续增长，Airbnb 有望继续扩大其市场份额。但投资者也需要保持耐心，关注公司如何应对市场竞争和宏观经济变化。</p><p><strong>别错过的隐含约束：</strong></p><p>别因为短期的股价波动而忽视了长期的价值创造。投资需要耐心和定力，尤其是在市场情绪高涨的时候。</p></div></div><div class="mreply"><div class="mh"><span class="who">巴菲特</span><span class="mscore">55</span></div><div class="md"><p>各位朋友，今天我们来聊聊ABNB这家公司。</p><p>首先，我得说ABNB是一家挺有意思的企业，它抓住了人们对于独特住宿体验的需求，这种商业模式确实有它的独到之处。它不像传统酒店那样拥有大量固定资产，而是通过平台模式连接房东和房客，这种轻资产模式带来了较高的资本回报率，净资产收益率（ROE）达到了34.5%，这是个不错的数字。</p><p>但话说回来，投资不能只看过去的表现。我们得问问自己，这家公司未来十年还能不能保持这样的增长？在我看来，有几个风险点需要注意：</p><p>首先，目前的估值水平让我有些担忧。市盈率（PE）达到了40倍，市净率（PB）更是高达13倍。这样的估值意味着市场已经对未来的增长给予了很高的预期。如果经济出现衰退，或者旅游需求不如预期，那么这种高估值可能会面临较大的调整压力。</p><p>其次，虽然旅游市场正在复苏，但我们不能忽视宏观经济环境的影响。经济衰退可能会让人们减少旅行支出，这对ABNB的业务模式会带来直接冲击。</p><p>所以我的建议是：</p><ul><li>如果你已经在持有ABNB的股票，建议密切关注公司的基本面变化，特别是旅游市场的复苏情况和公司的盈利能力。</li></ul><ul><li>对于考虑买入的投资者，我建议要更加谨慎。现在的价格可能已经反映了大部分的乐观预期，除非你能找到足够的安全边际，否则不妨再等等看。</li></ul><ul><li>记住，投资就像打棒球，你不需要每次都挥棒。现在可能不是挥棒的最佳时机。</li></ul><p>最后，我想说的是，投资决策最终还是要回到自己的能力圈。如果你对旅游行业有深入的理解，并且相信ABNB能够持续保持竞争优势，那么也许可以找到合适的时机介入。但对于大多数投资者来说，现在可能需要更多的耐心。</p><p>如果是芒格，他会怎么想呢？他可能会说：&quot;投资就像在果园里摘果子，要等到果实熟透了再摘，不要急着去摘那些还青涩的果子。&quot;</p></div></div><div class="mreply"><div class="mh"><span class="who">达利欧</span><span class="mscore">70</span></div><div class="md"><h4>结论</h4><p>我认为 Airbnb (ABNB) 在当前阶段是一个值得关注的机会，但需要谨慎评估其估值水平和潜在风险。</p><h4>理由</h4><ul><li><strong>经济复苏周期中的机会</strong>：</li></ul><p>   Airbnb 所在的旅游行业正处于强劲复苏阶段。近期股价上涨 17.43% 反映了市场对旅游需求反弹的乐观预期。从宏观角度看，全球经济正在从疫情中逐步恢复，消费者对旅行和体验类服务的需求正在回升，这为 Airbnb 提供了良好的增长环境。</p><ul><li><strong>强劲的财务表现</strong>：</li></ul><p>   Airbnb 的营收同比增长 16.5%，净利润同比增长 33.4%，净资产收益率 (ROE) 高达 34.54%。这些数据表明公司在盈利能力方面表现强劲，并且正在有效地利用股东资本。</p><ul><li><strong>市场情绪和估值</strong>：</li></ul><p>   尽管基本面强劲，但 Airbnb 的市盈率 (PE) 为 40.66，市净率 (PB) 为 13.47，估值水平相对较高。这表明市场已经对未来的增长预期进行了相当程度的定价。</p><h4>风险/行动建议</h4><ul><li><strong>估值风险</strong>：</li></ul><p>   高估值意味着市场对 Airbnb 的增长预期很高。如果未来增长不及预期，股价可能会面临回调压力。因此，投资者需要密切关注公司的业绩指引和实际表现。</p><ul><li><strong>经济衰退风险</strong>：</li></ul><p>   如果全球经济陷入衰退，旅游需求可能会受到负面影响，从而影响 Airbnb 的业务表现。建议投资者关注全球经济数据，特别是与消费者支出和旅行相关的指标。</p><ul><li><strong>竞争压力</strong>：</li></ul><p>   旅游行业的竞争非常激烈，Airbnb 需要持续创新和提升用户体验以保持竞争优势。建议关注公司在新产品开发和市场拓展方面的举措。</p><h4>行动建议</h4><ul><li><strong>适度配置</strong>：</li></ul><p>   对于风险承受能力较强的投资者，可以考虑在投资组合中适度配置 Airbnb，但应控制好仓位，以应对潜在的市场波动。</p><ul><li><strong>密切关注基本面</strong>：</li></ul><p>   定期跟踪公司的财务报告和运营数据，特别是与收入增长、利润率以及市场份额相关的指标。</p><ul><li><strong>保持灵活性</strong>：</li></ul><p>   在当前高估值环境下，投资者应保持灵活性，准备好根据市场变化调整投资策略。</p><h4>原则化收口</h4><p>在投资决策中，我们应始终遵循&quot;风险-收益平衡&quot;的原则。对于 Airbnb 这样的高增长、高估值公司，我们需要平衡其增长潜力与估值风险。正如我常说的，&quot;Pain + Reflection = Progress&quot;，在投资过程中，我们需要不断反思和调整，以应对市场的不确定性。</p></div></div><div class="mreply"><div class="mh"><span class="who">林奇</span><span class="mscore">85</span></div><div class="md"><p>各位朋友，今天我们来聊聊ABNB（爱彼迎），这家公司我给它85分的高分，属于值得关注的投资对象。</p><p>首先，爱彼迎所处的旅游行业正在经历强劲复苏，这从它股价今年上涨17.43%就可见一斑。疫情后，人们对旅行的需求报复性反弹，而爱彼迎作为共享住宿领域的龙头，业绩表现相当亮眼，收入同比增长16.5%，净利润更是大幅增长了33.4%。</p><p>然而，我必须提醒大家，这家公司的估值并不便宜。当前40.66倍的市盈率（PE）和13.47倍的市净率（PB）都处于较高水平。这意味着市场已经对它的增长前景给出了相当乐观的预期。</p><p>从投资的角度来看，爱彼迎符合我所说的&quot;快速增长型&quot;公司特征。它正处于行业扩张期，并且拥有明显的竞争优势。但同时，我们也要警惕高估值带来的风险。如果经济出现衰退迹象，或者旅游业复苏不及预期，股价可能会面临较大回调压力。</p><p>我的建议是：</p><ul><li>如果你已经在关注旅游行业的复苏机会，爱彼迎确实是一个值得考虑的投资标的。但要注意控制仓位，不要重仓押注。</li><li>对于已经持有的投资者，建议密切关注公司财报和行业数据。如果发现增长势头放缓，或者宏观经济环境恶化，可能需要考虑适当减仓。</li><li>记住，投资这类高增长公司，最重要的是保持耐心和定力。不要被短期波动影响判断，要着眼于公司的长期发展。</li></ul><p>总的来说，爱彼迎是一个很有吸引力的投资机会，但也要时刻保持警惕，做好风险管理。</p></div></div><div class="mreply"><div class="mh"><span class="who">芒格</span><span class="mscore">60</span></div><div class="md"><p>各位同仁，今天我们来讨论一下ABNB这家公司。我的结论是：ABNB是一家值得关注的公司，但目前的价格可能已经包含了过于乐观的预期。</p><p>首先，我们来看看支持ABNB的论点。ABNB在过去一段时间里表现出强劲的价格上涨，涨幅达到17.43%，这反映了市场对旅游行业复苏的乐观预期。从基本面来看，公司的营收同比增长了16.5%，净利润同比增长了33.4%，净资产收益率（ROE）也达到了34.542%，这些数据都显示出公司强劲的增长势头和盈利能力。</p><p>然而，我们不能忽视一些潜在的风险。首先，ABNB的估值可能偏高。当前市盈率为40.65525，市净率为13.470762，这些指标都显示出市场对公司的未来增长抱有很高的期望。如果这些预期未能实现，股价可能会面临调整压力。其次，经济衰退的风险依然存在，这可能会对旅游需求产生负面影响，进而影响公司的业绩。</p><p>在考虑这些因素后，我认为ABNB值得关注的理由在于其强劲的增长潜力和市场对旅游复苏的乐观预期。然而，我们需要警惕的是，估值泡沫可能已经形成。如果市场情绪发生变化，或者经济环境恶化，股价可能会出现大幅波动。</p><p>因此，我的建议是：如果你已经持有ABNB，可以考虑在适当的价位进行部分获利了结，以降低风险。如果你正在考虑买入，建议等待更合适的买入时机，或者分批买入以分散风险。同时，密切关注旅游行业的复苏情况和全球经济环境的变化，以便及时调整投资策略。</p><p>最后，我要提醒大家，投资决策不应仅仅基于短期的价格走势，而应综合考虑公司的基本面、市场环境和自身的风险承受能力。正如我常说的，&quot;如果我知道自己死在哪里，我就永远不去那里&quot;。在投资中，识别并避开那些可能导致失败的因素，才是长期成功的关键。</p></div></div></div>
+<div class="panel"><h2>分析师报告<span class="sub">2 篇</span></h2><details open><summary>市场面分析</summary><div class="body"><div class="md"><h4>ABNB ABNB 市场面分析</h4><ul><li>红黑榜多空分数：多头 85 / 空头 30，分差 55。</li><li>当前价格：178.07。</li><li>当前交易评级：Buy。</li><li>值得加仓区间：172.73 - 179.85。</li><li>目标价格：199.44。</li><li>市场愿意给溢价的原因：强劲的价格上涨(17.43%)；市场对旅游复苏的乐观预期。</li><li>当前主要压制因素：估值可能偏高；经济衰退影响旅游需求。</li></ul></div></div></details><details open><summary>基本面分析</summary><div class="body"><div class="md"><h4>ABNB ABNB 基本面分析</h4><ul><li>报告期：暂无。</li><li>PE(TTM)：40.66。</li><li>PB：13.47。</li><li>ROE：34.54%。</li><li>营收同比：16.50%。</li><li>归母净利润同比：33.40%。</li><li>核心判断：盈利能力处于可接受区间；收入仍在增长；利润端保持扩张。</li></ul></div></div></details></div>
+<div class="panel"><h2>研究与计划</h2>
+<details><summary>基本面摘要</summary><div class="body"><div class="md"><h3>核心财务快照</h3><ul><li>报告期: 数据缺失</li><li>当前股价: 178.07 元</li><li>总市值: 1066.26 亿元</li><li>PE (TTM): 40.66</li><li>PB: 13.47</li><li>PS (TTM): 数据缺失</li><li>营业总收入(报告期): 数据缺失 亿元</li><li>营收同比增长率: 16.50%</li><li>归母净利润(报告期): 数据缺失 亿元</li><li>归母净利润同比增长率: 33.40%</li><li>ROE (TTM/估算): 34.54%</li><li>资产负债率: 数据缺失</li><li>经营性现金流 / 归母净利润: 数据缺失</li></ul><h4>缺失字段</h4><ul><li>PS(TTM), 营业总收入, 归母净利润, 资产负债率, 经营性现金流与归母净利润比值</li></ul></div></div></details>
+<details><summary>研究计划</summary><div class="body"><div class="md"><h4>ABNB ABNB 研究摘要</h4><ul><li>红黑榜结论: Buy</li><li>多头/空头: 85/30</li><li>正向信号: ROE 34.54%；营收同比 16.50%；归母净利润同比 33.40%；PE(TTM) 40.66</li><li>榜单看多理由: 强劲的价格上涨(17.43%)；市场对旅游复苏的乐观预期</li><li>榜单风险提示: 估值可能偏高；经济衰退影响旅游需求</li></ul></div></div></details>
+<details><summary>交易计划</summary><div class="body"><div class="md"><h4>ABNB ABNB 交易计划</h4><ul><li>评级: Buy</li><li>当前价格: 178.07</li><li>值得加仓区间: 172.73 - 179.85</li><li>目标价格: 199.44</li><li>止损位: 163.82</li><li>备注: 当前为缓存降级交易卡，后续若完整 TradingAgent 结果生成，将自动覆盖。</li></ul></div></div></details>
+<details><summary>交易决策</summary><div class="body"><div class="md"><p>Buy</p><p>ABNB ABNB 当前使用红黑榜缓存结果生成兜底交易卡。多头 85 / 空头 30，分差 55。当前尚未取得完整 TradingAgent 长文决策，但榜单分数、财务快照和大师观点已经足够生成基础交易建议。</p></div></div></details>
+</div>
+<div class="panel"><h2>多空逻辑</h2><div class="pts"><div class="h bull">看多逻辑</div><div class="md"><p>强劲的价格上涨(17.43%)</p><p>市场对旅游复苏的乐观预期</p></div></div><div class="pts"><div class="h bear">看空逻辑</div><div class="md"><p>估值可能偏高</p><p>经济衰退影响旅游需求</p></div></div></div>
+<div class="panel"><h2>伯克希尔研究</h2><p><strong>Airbnb是一家具有强大网络效应和差异化商业模式的企业，但面临监管风险和行业竞争加剧的挑战，当前估值合理但需关注长期增长潜力。</strong></p><p>伯克希尔综合评分：<strong>3.875</strong></p><div class="md"><p>{&quot;verdict&quot;: &quot;观望&quot;, &quot;conservative_tip&quot;: &quot;建议在PE TTM低于30倍时买入。&quot;, &quot;moderate_tip&quot;: &quot;建议在PE TTM低于35倍时买入。&quot;, &quot;aggressive_tip&quot;: &quot;建议在PE TTM低于40倍时买入。&quot;, &quot;catalysts_plus&quot;: [&quot;短租市场持续增长。&quot;, &quot;公司推出创新产品或服务。&quot;, &quot;监管环境改善。&quot;], &quot;catalysts_minus&quot;: [&quot;监管政策收紧。&quot;, &quot;竞争加剧导致市场份额下降。&quot;, &quot;全球经济衰退影响旅行需求。&quot;]}</p></div></div>
+<div class="panel news"><h2>最新资讯</h2><div class="md"><p>共11条新闻，10条利多，1条中性，整体情绪极度乐观。</p></div><div class="nitem"><div class="t">Airbnb stock soars 9% on earnings and revenue beat, strong guidance for third quarter</div><div class="s">CNBC · 中性</div></div><div class="nitem"><div class="t">Airbnb Stock Rallies On Earnings Beat. AI Paying Off, Says CEO.</div><div class="s">Investor&#x27;s Business Daily · 中性</div></div><div class="nitem"><div class="t">ABNB Stock Soars 11% After-Hours — Airbnb Raises 2026 Outlook Again On Strong Travel Demand</div><div class="s">Yahoo Finance · 中性</div></div><div class="nitem"><div class="t">Airbnb tops forecasts on strong travel demand; shares rise (ABNB:NASDAQ)</div><div class="s">Seeking Alpha · 中性</div></div><div class="nitem"><div class="t">Airbnb Stock Soars 17% as Brian Chesky Bets Big on AI - Airbnb (NASDAQ:ABNB)</div><div class="s">Benzinga · 中性</div></div><div class="nitem"><div class="t">ABNB Stock Eyes A 19-Month High — Wall Street Turns Bullish, Cites Expanding Growth Drivers Including AI-Powered Products</div><div class="s">Yahoo Finance · 中性</div></div><div class="nitem"><div class="t">Biggest stock movers Friday: TTD, ABNB, and more</div><div class="s">Seeking Alpha · 中性</div></div><div class="nitem"><div class="t">Analysts Offer Insights on Consumer Cyclical Companies: Tesla (TSLA), Airbnb (ABNB) and Installed Building Products (IBP)</div><div class="s">The Globe and Mail · 中性</div></div></div>
+<footer>稳健理财Agent · 红黑榜每日归档 · 红榜 #8 · 仅供研究，不构成投资建议</footer>
+</div></body>
+</html>
