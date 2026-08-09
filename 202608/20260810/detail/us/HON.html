@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HON(HON) 红榜 2026-08-10</title>
+<style>
+:root{--red:#d8342c;--redbg:#fdecea;--green:#1a9e54;--ink:#1c2230;--muted:#6b7385;
+--line:#e7e9ef;--card:#fff;--bg:#f4f6fa;--chip:#eef1f6;--dark:#23262d;--darkbg:#ececef}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",
+"Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);
+line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 16px 64px}
+header.top{background:linear-gradient(135deg,#1c2230,#2c3550);color:#fff;border-radius:14px;
+padding:22px 24px;margin-bottom:20px;box-shadow:0 6px 24px rgba(20,26,46,.12)}
+header.top h1{margin:0 0 6px;font-size:24px;letter-spacing:.5px}
+header.top .sub{opacity:.85;font-size:13px}
+header.top .sub b{color:#ffd166;font-weight:600}
+nav.mkt{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;
+background:rgba(244,246,250,.92);backdrop-filter:blur(6px);padding:10px 0;margin-bottom:14px}
+nav.mkt a{text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);
+padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600}
+nav.mkt a:hover{border-color:var(--red);color:var(--red)}
+.summary{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.summary .chip{background:var(--card);border:1px solid var(--line);border-radius:10px;
+padding:8px 12px;font-size:12px;color:var(--muted)}
+.summary .chip b{color:var(--ink);font-size:14px;margin-left:4px}
+section.board{margin:26px 0}
+.board-title{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:19px}
+.board-title .dot{width:10px;height:10px;border-radius:50%}
+.board-title.red .dot{background:var(--red)}
+.board-title.black .dot{background:var(--dark)}
+.board-title small{color:var(--muted);font-weight:400;font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+position:relative;transition:box-shadow .15s}
+.card:hover{box-shadow:0 4px 18px rgba(20,26,46,.08)}
+.card.red{border-top:3px solid var(--red)}
+.card.black{border-top:3px solid var(--dark)}
+.rank{position:absolute;top:10px;right:12px;font-size:26px;font-weight:800;color:#eceff5}
+.card.red .rank{color:#fbdcD9}
+.nm{font-size:16px;font-weight:700}
+.nm .tk{color:var(--muted);font-weight:500;font-size:12px;margin-left:6px}
+.tag{display:inline-block;background:var(--chip);color:var(--muted);border-radius:6px;
+padding:1px 7px;font-size:11px;margin:6px 6px 0 0}
+.price-row{display:flex;align-items:baseline;gap:10px;margin:10px 0 4px}
+.price{font-size:24px;font-weight:800}
+.pct{font-size:14px;font-weight:700;padding:2px 8px;border-radius:8px}
+.up{color:var(--red)}.down{color:var(--green)}.flat{color:var(--muted)}
+.pct.up{background:var(--redbg)}.pct.down{background:#e2f4e9}.pct.flat{background:var(--chip)}
+.psrc{font-size:11px;color:var(--muted);margin-left:auto}
+.scores{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.scores span{background:var(--chip);border-radius:6px;padding:2px 8px;font-size:11px;color:var(--muted)}
+.scores span b{color:var(--ink)}
+.pts{font-size:12.5px;margin:8px 0 0}
+.pts .h{font-weight:700;font-size:12px;margin:6px 0 2px}
+.pts .h.bull{color:var(--red)}.pts .h.bear{color:var(--green)}
+.pts ul{margin:2px 0 4px;padding-left:18px;color:#3a4152}
+.pts li{margin:1px 0}
+.masters{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:11px;color:var(--muted)}
+.masters b{color:var(--ink)}
+.summ{font-size:12.5px;color:#3a4152;background:#fafbfd;border:1px solid var(--line);
+border-radius:8px;padding:8px 10px;margin-top:8px}
+.empty{color:var(--muted);background:var(--card);border:1px dashed var(--line);
+border-radius:10px;padding:18px;text-align:center}
+footer{margin-top:34px;color:var(--muted);font-size:12px;text-align:center;line-height:1.8}
+a.lnk{color:var(--red);text-decoration:none}
+/* ── detail page ── */
+.backbar{margin-bottom:14px;font-size:13px}
+.backbar a{color:var(--muted);text-decoration:none;margin-right:14px}
+.backbar a:hover{color:var(--red)}
+.badge{display:inline-block;border-radius:6px;padding:2px 10px;font-size:12px;font-weight:700;margin-right:8px}
+.badge.red{background:var(--red);color:#fff}.badge.black{background:var(--dark);color:#fff}
+.trade{display:flex;flex-wrap:wrap;gap:10px;background:linear-gradient(135deg,#2c3550,#1c2230);
+color:#fff;border-radius:12px;padding:16px 18px;margin:16px 0}
+.trade .cell{min-width:120px}
+.trade .k{font-size:11px;opacity:.75}
+.trade .v{font-size:18px;font-weight:800;margin-top:2px}
+.trade .v.buy{color:#7ee2a8}.trade .v.sell{color:#ff9d97}.trade .v.hold{color:#ffd166}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0}
+.mgrid .m{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.mgrid .m .k{font-size:11px;color:var(--muted)}
+.mgrid .m .v{font-size:16px;font-weight:700;margin-top:2px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.panel>h2{margin:0 0 12px;font-size:17px}
+.panel>h2 .sub{font-size:12px;color:var(--muted);font-weight:400;margin-left:8px}
+.mreply{border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;
+padding:12px 14px;margin:10px 0;background:#fff}
+.mreply .mh{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.mreply .mh .who{font-weight:700;font-size:14px}
+.mreply .mh .mscore{margin-left:auto;background:var(--chip);border-radius:6px;padding:1px 8px;font-size:12px;font-weight:700}
+.md h2,.md h3,.md h4,.md h5{margin:12px 0 6px;font-size:15px}
+.md p{margin:6px 0;font-size:13.5px;color:#2c3345}
+.md ul{margin:6px 0;padding-left:20px;font-size:13.5px;color:#2c3345}
+.md li{margin:3px 0}
+.md strong{color:var(--ink)}
+details{border:1px solid var(--line);border-radius:10px;background:#fff;margin:10px 0;padding:0}
+details>summary{cursor:pointer;padding:12px 16px;font-weight:700;font-size:14px;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary:before{content:"▸ ";color:var(--red)}
+details[open]>summary:before{content:"▾ "}
+details>.body{padding:0 16px 14px;border-top:1px dashed var(--line)}
+.ychip{display:inline-block;background:var(--chip);border-radius:8px;padding:4px 10px;font-size:12px;margin:3px 6px 3px 0}
+.ychip b{font-size:13px}
+.news .nitem{border-top:1px dashed var(--line);padding:8px 0;font-size:13px}
+.news .nitem .t{font-weight:600}
+.news .nitem .s{color:var(--muted);font-size:12px}
+/* ── root landing page ── */
+.hero{padding:30px 26px}
+.hero-kicker{color:#ffd166;font-size:12px;font-weight:700;letter-spacing:2px;
+text-transform:uppercase;margin-bottom:8px}
+.hero h1{font-size:30px;margin:0 0 10px}
+.day-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.day-card{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);
+border-radius:12px;padding:14px 16px;transition:all .15s}
+.day-card:hover{border-color:var(--red);box-shadow:0 4px 16px rgba(216,52,44,.12);transform:translateY(-2px)}
+.day-card .d{font-weight:800;font-size:15px;color:var(--ink);display:flex;align-items:center;gap:8px}
+.day-card .m{margin-top:8px;display:flex;gap:6px}
+.day-card .m span{background:var(--chip);color:var(--muted);border-radius:6px;
+padding:2px 8px;font-size:11px}
+.latest-badge{background:var(--red);color:#fff;border-radius:6px;padding:1px 7px;
+font-size:10px;font-weight:700}
+</style>
+</head>
+<body><div class="wrap">
+<div class="backbar"><a href="../index.html">← 总览</a><a href="../us.html">← 美股榜单</a></div>
+<header class="top">
+  <h1><span class="badge red">红榜 #2</span>HON<span class="tk" style="opacity:.7;font-size:15px;font-weight:400;margin-left:8px">HON</span></h1>
+  <div class="sub">美股 ·  · 榜单日期 <b>2026-08-10</b> · 盘价采集 <b>2026-08-10 05:00:50</b></div>
+  <div class="price-row" style="margin-top:12px">
+    <span class="price" style="color:#fff">$246.21</span>
+    <span class="pct up">+2.27%</span>
+    <span class="psrc" style="color:rgba(255,255,255,.6)">实时</span>
+  </div>
+  <div class="scores" style="margin-top:10px">
+    <span>综合 <b>90.6</b></span>
+    <span>多头 <b>85</b></span>
+    <span>空头 <b>15</b></span>
+    <span>大师均值 <b>74</b></span>
+    <span>信号 <b>positive</b></span>
+  </div>
+</header>
+<div class="trade"><div class="cell"><div class="k">交易评级</div><span class="v buy">Buy</span></div><div class="cell"><div class="k">加仓区间</div><span class="v">238.82 ~ 248.67</span></div><div class="cell"><div class="k">目标价</div><span class="v">275.76</span></div><div class="cell"><div class="k">伯克希尔</div><span class="v">买入</span></div><div class="cell"><div class="k">伯克希尔分</div><span class="v">4.25</span></div></div>
+<div class="panel"><h2>财务指标</h2><div class="mgrid"><div class="m"><div class="k">市盈率 PE</div><div class="v">9.47</div></div><div class="m"><div class="k">市净率 PB</div><div class="v">4.21</div></div><div class="m"><div class="k">ROE</div><div class="v">46.6%</div></div><div class="m"><div class="k">总市值</div><div class="v">780</div></div><div class="m"><div class="k">营收同比</div><div class="v">4.3%</div></div><div class="m"><div class="k">净利同比</div><div class="v">263.9%</div></div></div></div>
+<div class="panel"><h2>历史收益</h2><span class="ychip">近1月 <b class="up">+11.73%</b></span><span class="ychip">近6月 <b class="down">-2.12%</b></span><span class="ychip">近1年 <b class="up">+15.15%</b></span><span class="ychip">近5年 <b class="up">+9.14%</b></span></div>
+<div class="panel"><h2>大师圆桌<span class="sub">5 位</span></h2><div class="mreply"><div class="mh"><span class="who">段永平</span><span class="mscore">75</span></div><div class="md"><p>各位好，关于霍尼韦尔（HON），我的看法是这样的：</p><p>首先，我认同这是一家稳健的公司。作为一家多元化工业集团，它在市场上拥有稳固的地位，这是值得肯定的。从一些关键指标来看，比如市盈率9.47和市净率4.21，虽然不算特别便宜，但也显示出一定的价值基础。</p><p>不过，我有几个观察和思考想和大家分享：</p><ul><li>这家公司目前的上涨势头确实明显，但这是否意味着它还有很大的增长空间？我对此持保留态度。从估值角度看，9倍多的市盈率虽然不算高，但考虑到工业部门在经济下行周期中可能面临的压力，这个估值可能已经反映了大部分的增长预期。</li></ul><ul><li>霍尼韦尔的产品线虽然多元化，但工业部门的整体表现与宏观经济环境密切相关。如果全球经济出现波动，这可能会对其业务产生负面影响。</li></ul><ul><li>从投资的角度，我更看重的是&quot;做对的事&quot;。霍尼韦尔在执行层面上可能做得不错，但作为投资者，我们需要考虑的是它是否还有足够的增长潜力来支撑其估值。</li></ul><p>关于风险，我认为主要来自两个方面：一是经济下行对工业部门的影响，二是当前估值水平可能已经反映了大部分利好因素。</p><p>如果是我，我会采取以下行动：</p><p>首先，我会仔细评估自己对工业部门的整体看法。如果认为经济环境将持续承压，那么对这类公司的投资需要更加谨慎。</p><p>其次，我会关注公司的长期战略，看看它是否在新兴领域有足够的布局和投入，比如可持续发展和数字化转型。这些领域可能是未来增长的关键。</p><p>最后，我会保持耐心，等待更好的买入时机。除非有明确的证据表明公司找到了新的增长点，否则我不会因为短期的价格波动而急于做出投资决策。</p><p>记住，投资中最重要的是&quot;做对的事&quot;，而不是追求短期的价格波动。希望这些思考对大家有所帮助。</p></div></div><div class="mreply"><div class="mh"><span class="who">巴菲特</span><span class="mscore">80</span></div><div class="md"><p>各位朋友，今天我们来聊聊霍尼韦尔（HON）。我先给出我的看法：我认为这是一笔相当不错的投资，但需要谨慎考虑。</p><p>首先，霍尼韦尔是一家多元化的工业集团，业务涵盖航空航天、建筑技术、特种材料等多个领域。这种多元化让它在市场上拥有稳固的地位，能够抵御单一行业波动带来的风险。从财务数据来看，它的市盈率（PE）约为9.5，市净率（PB）约为4.2，估值并不算高，尤其是考虑到其净资产收益率（ROE）高达46.6%，这显示出公司强大的盈利能力。</p><p>然而，我们也需要看到一些潜在的风险。当前全球经济面临下行压力，工业部门可能会受到冲击。此外，尽管霍尼韦尔的估值不算高，但市场已经给予它相当的价格上涨，这可能会限制其短期内的上行空间。</p><p>那么，我们该如何行动呢？我建议大家在投资霍尼韦尔时，要保持冷静和耐心。如果你是长期投资者，并且相信这家公司的长期竞争力，那么当前的估值水平提供了一个相对安全的价格。如果经济环境恶化导致股价下跌，这可能是一个加仓的好机会。</p><p>最后，我想引用我常说的一个观点：投资就像打棒球，你不需要每次都挥棒。只有当球进入你最擅长的击球区域时，才值得出手。对于霍尼韦尔来说，现在可能是一个不错的击球时机，但前提是你要有足够的耐心和定力。</p><p>正如我的老朋友查理·芒格常说的，投资需要的是理性，而不是情绪。希望大家在做出决策时，都能保持清醒的头脑。</p></div></div><div class="mreply"><div class="mh"><span class="who">达利欧</span><span class="mscore">70</span></div><div class="md"><p>各位同仁，今天我们来讨论一下霍尼韦尔（HON）的投资前景。我的结论是：霍尼韦尔目前是一个具有吸引力的投资标的，但需要谨慎考虑宏观经济环境的影响。</p><p>首先，从公司基本面来看，霍尼韦尔作为一家多元化工业集团，其市场地位非常稳固。它的多元化业务组合使其能够在不同经济环境下保持相对的稳定性。此外，近期股价的显著上涨也显示出市场对其未来增长的强劲预期。从估值角度来看，当前市盈率（PE）为9.47，市净率（PB）为4.21，相较于其盈利能力和净资产价值，估值并不算过高。</p><p>然而，我们也必须关注潜在的风险因素。当前全球经济处于下行周期，工业部门可能会受到负面影响，这可能会对霍尼韦尔的业务产生一定的压力。此外，尽管当前估值不算过高，但相对于其历史水平，仍然处于较高位置，这可能会限制其未来的上行空间。</p><p>基于以上分析，我建议采取以下行动：</p><ul><li><strong>保持适度仓位</strong>：鉴于霍尼韦尔的多元化业务和稳固的市场地位，可以考虑将其作为投资组合的一部分，但不宜过度集中。</li></ul><ul><li><strong>密切关注宏观经济指标</strong>：特别是工业生产和全球贸易数据，这些指标的变化可能会对霍尼韦尔的业绩产生直接影响。</li></ul><ul><li><strong>设定止损点</strong>：在经济下行风险加剧的情况下，设定合理的止损点以控制潜在损失是明智之举。</li></ul><ul><li><strong>长期视角</strong>：如果投资者能够承受短期波动，从长期来看，霍尼韦尔的多样化业务和创新能力可能会带来可观的回报。</li></ul><p>总之，霍尼韦尔是一个值得关注的投资标的，但在当前经济环境下，保持谨慎和灵活的投资策略是至关重要的。正如我常说的，优秀的投资决策需要我们在极度开放和透明的基础上，结合历史经验和现实数据，做出理性的判断。</p></div></div><div class="mreply"><div class="mh"><span class="who">林奇</span><span class="mscore">65</span></div><div class="md"><p>各位，今天我们来聊聊霍尼韦尔（HON）。首先，我的结论是：霍尼韦尔是一家不错的公司，但目前可能不是最好的选择。</p><h4>理由</h4><p>霍尼韦尔是一家多元化经营的工业集团，市场地位非常稳固。它的业务范围广泛，从航空航天到建筑技术都有涉及，这使得它在经济波动中具备一定的抗风险能力。此外，最近的价格上涨也显示出市场对这只股票的看涨势头。</p><p>从估值角度来看，霍尼韦尔的市盈率（PE）约为9.5，市净率（PB）约为4.2。对于一家工业公司来说，这样的估值并不算高，尤其是考虑到它46.6%的净资产收益率（ROE），显示出公司有较强的盈利能力。</p><h4>风险</h4><p>然而，我们也要看到一些潜在的风险。首先，全球经济下行可能会对工业部门造成压力，霍尼韦尔的业务也可能受到影响。其次，尽管目前的估值不算高，但考虑到工业股的特性，市场可能已经充分反映了它的价值，进一步上涨的空间可能有限。</p><h4>行动建议</h4><p>如果你是长期投资者，并且对工业股有深入的了解，那么霍尼韦尔可以作为一个稳健的选择。但如果你更倾向于寻找增长更快的公司，或者你对工业股不太熟悉，那么可能需要再考虑一下。</p><p>我的建议是，如果你已经持有霍尼韦尔，可以继续持有，但不要期望它能在短期内带来巨大的回报。如果你正在考虑买入，建议先观察一段时间，看看全球经济形势的变化，以及霍尼韦尔在应对这些挑战时的表现。</p><p>总之，霍尼韦尔是一家稳健的公司，但工业股的特性决定了它可能不会成为你投资组合中的明星。</p></div></div><div class="mreply"><div class="mh"><span class="who">芒格</span><span class="mscore">80</span></div><div class="md"><p>各位同仁，今天我们来谈谈霍尼韦尔（HON）。我的结论是：霍尼韦尔是一家值得关注的优质公司，但当前价格已经反映了其价值，投资决策需要谨慎。</p><p>首先，霍尼韦尔是一家多元化工业集团，其市场地位非常稳固，业务涵盖航空航天、建筑技术、安全与生产力解决方案等多个领域。这种多元化的商业模式使其能够抵御单一行业波动带来的风险。从财务数据来看，其营收同比增长4.3%，净利润同比增长263.9%，净资产收益率（ROE）高达46.577%，这些指标都显示出公司强大的盈利能力和经营效率。</p><p>然而，我们也必须看到一些潜在的风险。当前全球经济下行压力加大，工业部门可能会受到冲击。此外，霍尼韦尔的市盈率（PE）为9.469616，市净率（PB）为4.209653，虽然不算过高，但在当前市场环境下，这样的估值水平可能会限制其进一步的上行空间。</p><p>从激励机制的角度来看，霍尼韦尔的多元化业务模式和管理层激励机制有助于其长期稳定发展。公司管理层在多个领域都有丰富的经验，并且其薪酬结构与公司长期业绩挂钩，这有助于避免短期行为。</p><p>在投资建议方面，我建议投资者在考虑霍尼韦尔时，要特别关注以下几点：</p><ul><li><strong>经济环境的变化</strong>：全球经济下行压力可能会对工业部门产生负面影响，投资者需要密切关注宏观经济指标的变化。</li><li><strong>估值水平</strong>：虽然霍尼韦尔的估值不算过高，但在当前市场环境下，投资者需要谨慎评估其上行空间。</li><li><strong>长期持有价值</strong>：霍尼韦尔的多元化业务模式和管理层激励机制使其具有长期投资价值，但短期内的波动可能难以避免。</li></ul><p>最后，我要提醒大家，投资决策不应仅仅基于短期的市场表现，而应更多地关注公司的长期基本面和竞争优势。正如我常说的，“如果我知道自己死在哪里，我就永远不去那里”。在投资霍尼韦尔时，我们要避开那些可能导致失败的风险因素，谨慎评估其长期价值。</p></div></div></div>
+<div class="panel"><h2>分析师报告<span class="sub">2 篇</span></h2><details open><summary>市场面分析</summary><div class="body"><div class="md"><h4>HON HON 市场面分析</h4><ul><li>红黑榜多空分数：多头 85 / 空头 15，分差 70。</li><li>当前价格：246.21。</li><li>当前交易评级：Buy。</li><li>值得加仓区间：238.82 - 248.67。</li><li>目标价格：275.76。</li><li>市场愿意给溢价的原因：多元化工业集团，市场地位稳固；显著的价格上涨显示看涨势头。</li><li>当前主要压制因素：经济下行可能影响工业部门；高估值可能限制上行空间。</li></ul></div></div></details><details open><summary>基本面分析</summary><div class="body"><div class="md"><h4>HON HON 基本面分析</h4><ul><li>报告期：暂无。</li><li>PE(TTM)：9.47。</li><li>PB：4.21。</li><li>ROE：46.58%。</li><li>营收同比：4.30%。</li><li>归母净利润同比：263.90%。</li><li>核心判断：盈利能力处于可接受区间；收入仍在增长；利润端保持扩张。</li></ul></div></div></details></div>
+<div class="panel"><h2>研究与计划</h2>
+<details><summary>基本面摘要</summary><div class="body"><div class="md"><h3>核心财务快照</h3><ul><li>报告期: 数据缺失</li><li>当前股价: 246.21 元</li><li>总市值: 780.34 亿元</li><li>PE (TTM): 9.47</li><li>PB: 4.21</li><li>PS (TTM): 数据缺失</li><li>营业总收入(报告期): 数据缺失 亿元</li><li>营收同比增长率: 4.30%</li><li>归母净利润(报告期): 数据缺失 亿元</li><li>归母净利润同比增长率: 263.90%</li><li>ROE (TTM/估算): 46.58%</li><li>资产负债率: 数据缺失</li><li>经营性现金流 / 归母净利润: 数据缺失</li></ul><h4>缺失字段</h4><ul><li>PS(TTM), 营业总收入, 归母净利润, 资产负债率, 经营性现金流与归母净利润比值</li></ul></div></div></details>
+<details><summary>研究计划</summary><div class="body"><div class="md"><h4>HON HON 研究摘要</h4><ul><li>红黑榜结论: Buy</li><li>多头/空头: 85/15</li><li>正向信号: ROE 46.58%；营收同比 4.30%；归母净利润同比 263.90%；PE(TTM) 9.47</li><li>榜单看多理由: 多元化工业集团，市场地位稳固；显著的价格上涨显示看涨势头</li><li>榜单风险提示: 经济下行可能影响工业部门；高估值可能限制上行空间</li></ul></div></div></details>
+<details><summary>交易计划</summary><div class="body"><div class="md"><h4>HON HON 交易计划</h4><ul><li>评级: Buy</li><li>当前价格: 246.21</li><li>值得加仓区间: 238.82 - 248.67</li><li>目标价格: 275.76</li><li>止损位: 226.51</li><li>备注: 当前为缓存降级交易卡，后续若完整 TradingAgent 结果生成，将自动覆盖。</li></ul></div></div></details>
+<details><summary>交易决策</summary><div class="body"><div class="md"><p>Buy</p><p>HON HON 当前使用红黑榜缓存结果生成兜底交易卡。多头 85 / 空头 15，分差 70。当前尚未取得完整 TradingAgent 长文决策，但榜单分数、财务快照和大师观点已经足够生成基础交易建议。</p></div></div></details>
+</div>
+<div class="panel"><h2>多空逻辑</h2><div class="pts"><div class="h bull">看多逻辑</div><div class="md"><p>多元化工业集团，市场地位稳固</p><p>显著的价格上涨显示看涨势头</p></div></div><div class="pts"><div class="h bear">看空逻辑</div><div class="md"><p>经济下行可能影响工业部门</p><p>高估值可能限制上行空间</p></div></div></div>
+<div class="panel"><h2>伯克希尔研究</h2><p><strong>霍尼韦尔是一家拥有强大护城河、稳健财务和长期增长潜力的工业科技巨头，当前估值合理，具备投资价值。</strong></p><p>伯克希尔综合评分：<strong>4.25</strong></p><div class="md"><p>{&quot;verdict&quot;: &quot;买入&quot;, &quot;conservative_tip&quot;: &quot;建议在PE TTM低于20倍时买入，目标价220美元。&quot;, &quot;moderate_tip&quot;: &quot;建议在PE TTM低于22倍时买入，目标价240美元。&quot;, &quot;aggressive_tip&quot;: &quot;建议在PE TTM低于25倍时买入，目标价260美元。&quot;, &quot;catalysts_plus&quot;: [&quot;航空航天业务订单增长&quot;, &quot;工业自动化需求上升&quot;, &quot;自由现金流持续增长&quot;], &quot;catalysts_minus&quot;: [&quot;全球经济衰退&quot;, &quot;原材料价格大幅上涨&quot;, &quot;地缘政治冲突加剧&quot;]}</p></div></div>
+<div class="panel news"><h2>最新资讯</h2><div class="md"><p>HON相关新闻中利多3条，利空1条，中性7条，整体情绪偏中性。</p></div><div class="nitem"><div class="t">Honeywell (HON) Stock Trades Below Fair Value Despite Mixed Checks</div><div class="s">Yahoo Finance · 中性</div></div><div class="nitem"><div class="t">HON Stock Jumps After Its Quantum Computing Subsidiary Files For IPO</div><div class="s">stocktwits.com · 利好</div></div><div class="nitem"><div class="t">Leadership Starts with Everyday Choices – Hon. Dr. Sebastian Sandaare Tells UWESU</div><div class="s">Modern Ghana · 中性</div></div><div class="nitem"><div class="t">Honeywell International (HON) Draws Fresh Scrutiny, Is The Stock Cheap Or Pricey?</div><div class="s">simplywall.st · 中性</div></div><div class="nitem"><div class="t">AI demand and iPhone cycle power Hon Hai’s strong 2026 performance, yet 2027 risks loom: Analyst</div><div class="s">CNBC · 中性</div></div><div class="nitem"><div class="t">Nvidia Partner Hon Hai’s Sales Rise 54% on Strong AI Demand</div><div class="s">Bloomberg.com · 中性</div></div><div class="nitem"><div class="t">(HON) as a Liquidity Pulse for Institutional Tactics</div><div class="s">Stock Traders Daily · 中性</div></div><div class="nitem"><div class="t">REMARKS: Chair of the Forum Foreign Ministers Meeting, Hon. Rick Houenipwela, Minister of Foreign Affairs and External Trade, Solomon Islands</div><div class="s">Pacific Islands Forum Secretariat · 中性</div></div></div>
+<footer>稳健理财Agent · 红黑榜每日归档 · 红榜 #2 · 仅供研究，不构成投资建议</footer>
+</div></body>
+</html>

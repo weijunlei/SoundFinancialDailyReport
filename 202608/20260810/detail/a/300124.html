@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>汇川技术(300124) 红榜 2026-08-10</title>
+<style>
+:root{--red:#d8342c;--redbg:#fdecea;--green:#1a9e54;--ink:#1c2230;--muted:#6b7385;
+--line:#e7e9ef;--card:#fff;--bg:#f4f6fa;--chip:#eef1f6;--dark:#23262d;--darkbg:#ececef}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",
+"Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);
+line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 16px 64px}
+header.top{background:linear-gradient(135deg,#1c2230,#2c3550);color:#fff;border-radius:14px;
+padding:22px 24px;margin-bottom:20px;box-shadow:0 6px 24px rgba(20,26,46,.12)}
+header.top h1{margin:0 0 6px;font-size:24px;letter-spacing:.5px}
+header.top .sub{opacity:.85;font-size:13px}
+header.top .sub b{color:#ffd166;font-weight:600}
+nav.mkt{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;
+background:rgba(244,246,250,.92);backdrop-filter:blur(6px);padding:10px 0;margin-bottom:14px}
+nav.mkt a{text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);
+padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600}
+nav.mkt a:hover{border-color:var(--red);color:var(--red)}
+.summary{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.summary .chip{background:var(--card);border:1px solid var(--line);border-radius:10px;
+padding:8px 12px;font-size:12px;color:var(--muted)}
+.summary .chip b{color:var(--ink);font-size:14px;margin-left:4px}
+section.board{margin:26px 0}
+.board-title{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:19px}
+.board-title .dot{width:10px;height:10px;border-radius:50%}
+.board-title.red .dot{background:var(--red)}
+.board-title.black .dot{background:var(--dark)}
+.board-title small{color:var(--muted);font-weight:400;font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+position:relative;transition:box-shadow .15s}
+.card:hover{box-shadow:0 4px 18px rgba(20,26,46,.08)}
+.card.red{border-top:3px solid var(--red)}
+.card.black{border-top:3px solid var(--dark)}
+.rank{position:absolute;top:10px;right:12px;font-size:26px;font-weight:800;color:#eceff5}
+.card.red .rank{color:#fbdcD9}
+.nm{font-size:16px;font-weight:700}
+.nm .tk{color:var(--muted);font-weight:500;font-size:12px;margin-left:6px}
+.tag{display:inline-block;background:var(--chip);color:var(--muted);border-radius:6px;
+padding:1px 7px;font-size:11px;margin:6px 6px 0 0}
+.price-row{display:flex;align-items:baseline;gap:10px;margin:10px 0 4px}
+.price{font-size:24px;font-weight:800}
+.pct{font-size:14px;font-weight:700;padding:2px 8px;border-radius:8px}
+.up{color:var(--red)}.down{color:var(--green)}.flat{color:var(--muted)}
+.pct.up{background:var(--redbg)}.pct.down{background:#e2f4e9}.pct.flat{background:var(--chip)}
+.psrc{font-size:11px;color:var(--muted);margin-left:auto}
+.scores{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.scores span{background:var(--chip);border-radius:6px;padding:2px 8px;font-size:11px;color:var(--muted)}
+.scores span b{color:var(--ink)}
+.pts{font-size:12.5px;margin:8px 0 0}
+.pts .h{font-weight:700;font-size:12px;margin:6px 0 2px}
+.pts .h.bull{color:var(--red)}.pts .h.bear{color:var(--green)}
+.pts ul{margin:2px 0 4px;padding-left:18px;color:#3a4152}
+.pts li{margin:1px 0}
+.masters{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:11px;color:var(--muted)}
+.masters b{color:var(--ink)}
+.summ{font-size:12.5px;color:#3a4152;background:#fafbfd;border:1px solid var(--line);
+border-radius:8px;padding:8px 10px;margin-top:8px}
+.empty{color:var(--muted);background:var(--card);border:1px dashed var(--line);
+border-radius:10px;padding:18px;text-align:center}
+footer{margin-top:34px;color:var(--muted);font-size:12px;text-align:center;line-height:1.8}
+a.lnk{color:var(--red);text-decoration:none}
+/* ── detail page ── */
+.backbar{margin-bottom:14px;font-size:13px}
+.backbar a{color:var(--muted);text-decoration:none;margin-right:14px}
+.backbar a:hover{color:var(--red)}
+.badge{display:inline-block;border-radius:6px;padding:2px 10px;font-size:12px;font-weight:700;margin-right:8px}
+.badge.red{background:var(--red);color:#fff}.badge.black{background:var(--dark);color:#fff}
+.trade{display:flex;flex-wrap:wrap;gap:10px;background:linear-gradient(135deg,#2c3550,#1c2230);
+color:#fff;border-radius:12px;padding:16px 18px;margin:16px 0}
+.trade .cell{min-width:120px}
+.trade .k{font-size:11px;opacity:.75}
+.trade .v{font-size:18px;font-weight:800;margin-top:2px}
+.trade .v.buy{color:#7ee2a8}.trade .v.sell{color:#ff9d97}.trade .v.hold{color:#ffd166}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0}
+.mgrid .m{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.mgrid .m .k{font-size:11px;color:var(--muted)}
+.mgrid .m .v{font-size:16px;font-weight:700;margin-top:2px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.panel>h2{margin:0 0 12px;font-size:17px}
+.panel>h2 .sub{font-size:12px;color:var(--muted);font-weight:400;margin-left:8px}
+.mreply{border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;
+padding:12px 14px;margin:10px 0;background:#fff}
+.mreply .mh{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.mreply .mh .who{font-weight:700;font-size:14px}
+.mreply .mh .mscore{margin-left:auto;background:var(--chip);border-radius:6px;padding:1px 8px;font-size:12px;font-weight:700}
+.md h2,.md h3,.md h4,.md h5{margin:12px 0 6px;font-size:15px}
+.md p{margin:6px 0;font-size:13.5px;color:#2c3345}
+.md ul{margin:6px 0;padding-left:20px;font-size:13.5px;color:#2c3345}
+.md li{margin:3px 0}
+.md strong{color:var(--ink)}
+details{border:1px solid var(--line);border-radius:10px;background:#fff;margin:10px 0;padding:0}
+details>summary{cursor:pointer;padding:12px 16px;font-weight:700;font-size:14px;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary:before{content:"▸ ";color:var(--red)}
+details[open]>summary:before{content:"▾ "}
+details>.body{padding:0 16px 14px;border-top:1px dashed var(--line)}
+.ychip{display:inline-block;background:var(--chip);border-radius:8px;padding:4px 10px;font-size:12px;margin:3px 6px 3px 0}
+.ychip b{font-size:13px}
+.news .nitem{border-top:1px dashed var(--line);padding:8px 0;font-size:13px}
+.news .nitem .t{font-weight:600}
+.news .nitem .s{color:var(--muted);font-size:12px}
+/* ── root landing page ── */
+.hero{padding:30px 26px}
+.hero-kicker{color:#ffd166;font-size:12px;font-weight:700;letter-spacing:2px;
+text-transform:uppercase;margin-bottom:8px}
+.hero h1{font-size:30px;margin:0 0 10px}
+.day-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.day-card{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);
+border-radius:12px;padding:14px 16px;transition:all .15s}
+.day-card:hover{border-color:var(--red);box-shadow:0 4px 16px rgba(216,52,44,.12);transform:translateY(-2px)}
+.day-card .d{font-weight:800;font-size:15px;color:var(--ink);display:flex;align-items:center;gap:8px}
+.day-card .m{margin-top:8px;display:flex;gap:6px}
+.day-card .m span{background:var(--chip);color:var(--muted);border-radius:6px;
+padding:2px 8px;font-size:11px}
+.latest-badge{background:var(--red);color:#fff;border-radius:6px;padding:1px 7px;
+font-size:10px;font-weight:700}
+</style>
+</head>
+<body><div class="wrap">
+<div class="backbar"><a href="../index.html">← 总览</a><a href="../a.html">← A股榜单</a></div>
+<header class="top">
+  <h1><span class="badge red">红榜 #5</span>汇川技术<span class="tk" style="opacity:.7;font-size:15px;font-weight:400;margin-left:8px">300124</span></h1>
+  <div class="sub">A股 ·  · 榜单日期 <b>2026-08-10</b> · 盘价采集 <b>2026-08-10 05:00:50</b></div>
+  <div class="price-row" style="margin-top:12px">
+    <span class="price" style="color:#fff">¥64.60</span>
+    <span class="pct up">+1.91%</span>
+    <span class="psrc" style="color:rgba(255,255,255,.6)">实时</span>
+  </div>
+  <div class="scores" style="margin-top:10px">
+    <span>综合 <b>91.2</b></span>
+    <span>多头 <b>85</b></span>
+    <span>空头 <b>40</b></span>
+    <span>大师均值 <b>75</b></span>
+    <span>信号 <b>positive</b></span>
+  </div>
+</header>
+<div class="trade"><div class="cell"><div class="k">交易评级</div><span class="v buy">Buy</span></div><div class="cell"><div class="k">加仓区间</div><span class="v">62.66 ~ 65.25</span></div><div class="cell"><div class="k">目标价</div><span class="v">72.35</span></div><div class="cell"><div class="k">伯克希尔</div><span class="v">买入</span></div><div class="cell"><div class="k">伯克希尔分</div><span class="v">4.50</span></div></div>
+<div class="panel"><h2>财务指标</h2><div class="mgrid"><div class="m"><div class="k">市盈率 PE</div><div class="v">36.90</div></div><div class="m"><div class="k">市净率 PB</div><div class="v">4.99</div></div><div class="m"><div class="k">ROE</div><div class="v">13.2%</div></div><div class="m"><div class="k">总市值</div><div class="v">1749</div></div><div class="m"><div class="k">资产负债率</div><div class="v">45.6%</div></div><div class="m"><div class="k">营收(最新)</div><div class="v">101.43亿</div></div><div class="m"><div class="k">营收同比</div><div class="v">13.0%</div></div><div class="m"><div class="k">净利(最新)</div><div class="v">10.13亿</div></div><div class="m"><div class="k">净利同比</div><div class="v">-23.4%</div></div><div class="m"><div class="k">报告期</div><div class="v">2026-03-31</div></div></div></div>
+
+<div class="panel"><h2>大师圆桌<span class="sub">5 位</span></h2><div class="mreply"><div class="mh"><span class="who">段永平</span><span class="mscore">80</span></div><div class="md"><h4>段永平圆桌发言：</h4><p>关于汇川技术，我谈谈我的看法。</p><p>首先，<strong>汇川技术是一家值得关注的工业自动化企业</strong>。它作为国内工业自动化领域的龙头，在新能源车业务上的增长也展现出了潜力。这两点是我比较看好的地方。</p><p>从数据上看，公司的营收表现不错，同比增长了约13%。虽然净利润同比有所下降，但这可能与原材料成本上涨有关。目前36.9倍的市盈率不算低，但考虑到其行业地位和成长性，这个估值水平也并非完全不合理。</p><p>然而，我也要提醒大家关注几个风险点：</p><ul><li><strong>原材料成本压力</strong>：这可能会持续影响公司的利润率，需要密切关注成本控制能力。</li><li><strong>市场竞争加剧</strong>：工业自动化领域的竞争越来越激烈，这可能会影响公司的市场份额和定价能力。</li><li><strong>估值水平</strong>：虽然公司基本面不错，但当前估值并不算便宜，投资者需要考虑长期持有的回报预期。</li></ul><p><strong>我的建议是：</strong></p><p>如果你看好工业自动化和新能源车领域的发展，并且愿意承担一定的短期波动，那么汇川技术可能是一个值得考虑的投资标的。但要注意的是，现阶段买入需要做好长期持有的准备，因为短期内可能会面临成本压力和市场竞争的挑战。</p><p><strong>最后，我想强调一点：投资要本分，不要被短期波动影响判断</strong>。如果你对公司的长期发展有信心，并且能够理解其商业模式，那么在合适的估值水平下买入并耐心持有，可能会带来不错的回报。但如果你对行业趋势或公司竞争力没有足够的把握，那么最好还是先观察一段时间。</p><p>记住，<strong>投资不是比谁跑得快，而是比谁看得准、拿得稳</strong>。</p></div></div><div class="mreply"><div class="mh"><span class="who">巴菲特</span><span class="mscore">70</span></div><div class="md"><p>各位朋友，关于汇川技术这家公司，我来说几句。</p><p>首先，这是一家让我有点兴趣的公司。作为工业自动化领域的龙头企业，汇川技术在新能源车业务方面的增长也值得关注。这两点构成了它主要的护城河和增长潜力。</p><p>但我得说，价格方面让我有些犹豫。目前它的市盈率超过36倍，市净率接近5倍，对我来说，这个价格并不算便宜。我们得问问自己：以这个价格买入，是否留有足够的安全边际？考虑到原材料成本上升和市场环境日益激烈的挑战，我不确定这个价格是否足够公道。</p><p>这里有几个问题我想请大家思考：</p><ul><li>十年后，汇川技术还能保持今天的市场地位吗？它的竞争优势能否持续？</li></ul><ul><li>当下的估值水平，是否已经充分反映了未来的增长预期？</li></ul><ul><li>在竞争加剧和成本上升的双重压力下，公司能否维持现有的盈利能力？</li></ul><p>我的建议是：</p><p>如果你已经持有汇川技术，建议密切关注公司如何应对成本压力和市场竞争。如果管理层能够有效控制成本并保持技术创新，那么可以继续持有。但如果这些问题得不到解决，可能需要重新评估。</p><p>对于考虑买入的人来说，我建议再等等。除非你能确定当前价格已经充分反映了所有风险，否则最好保持耐心。投资就像打棒球，你不需要每次都挥棒。</p><p>最后，我想说，这是一家值得持续关注的公司。如果未来估值回到更合理的水平，我会再次考虑它。正如查理（芒格）常说的，投资就像在果园里摘果子，你得等到果子熟透了再摘。</p></div></div><div class="mreply"><div class="mh"><span class="who">达利欧</span><span class="mscore">75</span></div><div class="md"><p>关于汇川技术，我将从几个方面来分享我的看法。</p><p>首先，汇川技术作为中国工业自动化领域的龙头企业，其基本面依然强劲，尤其是在新能源车业务上的增长表现亮眼。这是支持其高估值的重要原因之一。公司的营收保持了两位数的增长，尽管净利润有所下降，但整体来看，其市场地位和业务布局依然具有吸引力。</p><p>然而，我们也需要看到一些潜在的风险因素：</p><ul><li>原材料成本压力：这是当前影响公司利润率的主要问题。汇川技术所处的制造业对原材料价格非常敏感，而近期大宗商品价格波动对其成本控制构成挑战。</li></ul><ul><li>市场竞争加剧：随着更多企业进入工业自动化和新能源车领域，汇川技术面临着日益激烈的竞争环境。这可能会对其市场份额和定价能力产生影响。</li></ul><ul><li>估值水平：目前公司市盈率为36.9倍，显著高于市场平均水平。这种高估值要求公司持续保持强劲的业绩增长，否则可能会面临估值回调的压力。</li></ul><p>基于以上分析，我建议采取以下行动：</p><ul><li>密切关注原材料价格走势和公司成本控制措施。如果原材料价格持续上涨，可能会对公司利润率造成更大压力。</li></ul><ul><li>评估公司在新能源车领域的竞争优势和市场份额变化。这将是未来几年影响其估值的关键因素。</li></ul><ul><li>考虑采用分批建仓或分阶段投资的策略，以应对可能出现的估值波动。</li></ul><p>最后，我建议将以下原则纳入决策日志：在一个充满不确定性的市场中，保持耐心和纪律性至关重要。不要被短期的市场波动所左右，而要专注于公司的长期基本面和竞争优势。</p><p>记住，投资决策应该基于对周期位置的判断和对公司长期价值的评估，而不是对短期价格走势的预测。</p></div></div><div class="mreply"><div class="mh"><span class="who">林奇</span><span class="mscore">85</span></div><div class="md"><p>各位好，今天我们讨论的是汇川技术（300124）。我的结论是：这是一只值得关注的股票，但目前估值偏高，需要谨慎对待。</p><h4>理由</h4><p>首先，汇川技术是工业自动化领域的龙头企业，这一点非常吸引人。工业自动化是一个长期增长的市场，随着制造业的不断升级和智能化转型，这个领域的需求会持续增长。此外，汇川技术在新能源车业务上的增长也非常强劲。新能源车是未来几年的大趋势，而汇川技术在这个领域已经占据了重要地位，这为其未来的增长提供了有力的支撑。</p><p>然而，我们也需要看到一些风险点。目前，汇川技术面临原材料成本上升的压力，这对公司的利润率构成了一定的挑战。同时，市场竞争也在加剧，这可能会影响公司的市场份额和定价能力。此外，从财务数据来看，尽管营收同比增长了约13%，但净利润却下降了23%，这表明公司在成本控制和盈利能力方面面临一定的压力。</p><h4>估值分析</h4><p>当前汇川技术的市盈率为36.9倍，市净率为4.99倍，市销率为3.78倍。这些估值指标都处于相对较高的水平。对于一家工业自动化公司来说，这样的估值水平需要公司保持强劲的盈利增长才能支撑得住。</p><h4>风险与行动建议</h4><ul><li><strong>原材料成本压力</strong>：需要密切关注原材料价格的走势，以及公司是否有能力将成本上涨的压力转嫁给客户。</li><li><strong>市场竞争加剧</strong>：需要评估公司在市场竞争中的地位，以及其产品和技术是否具有足够的竞争力。</li><li><strong>估值偏高</strong>：目前的价格已经反映了市场对公司未来增长的预期。如果要买入，建议等待更好的入场时机，或者分批买入以分散风险。</li></ul><h4>具体行动</h4><p>如果你是长期投资者，并且看好工业自动化和新能源车的发展趋势，可以考虑在股价回调时逐步买入。但要记住，买入时要做好长期持有的准备，并且要密切关注公司基本面的变化。</p><p>总之，汇川技术是一只值得关注的股票，但目前估值偏高，需要谨慎对待。希望大家在做投资决策时，能够结合自身的风险承受能力和投资目标，做出理性的选择。</p></div></div><div class="mreply"><div class="mh"><span class="who">芒格</span><span class="mscore">65</span></div><div class="md"><p>各位同仁，今天我们来讨论一下汇川技术这家公司。我的看法是：汇川技术是一家在工业自动化领域具有显著优势的企业，但同时也面临着一些不容忽视的挑战。</p><p>首先，汇川技术的优势在于其作为工业自动化龙头的地位，以及在新能源车业务方面的增长潜力。这两点为公司的长期发展提供了坚实的基础。然而，正如我常说的，&quot;如果我知道自己死在哪里，我就永远不去那里&quot;，我们必须正视公司面临的挑战。</p><p>原材料成本压力和市场竞争加剧是汇川技术当前面临的两大主要风险。原材料成本的上升会直接侵蚀公司的利润率，而市场竞争的加剧则可能影响其市场份额和定价能力。这些因素都可能导致公司未来业绩的波动。</p><p>从估值角度来看，汇川技术的市盈率为36.9倍，市净率为4.99倍，估值并不便宜。虽然公司营收同比增长了约13%，但净利润却下降了23.4%，这表明成本压力已经开始影响公司的盈利能力。</p><p>基于以上分析，我的建议是：</p><ul><li><strong>密切关注成本控制措施</strong>：投资者应密切关注汇川技术在应对原材料成本上升方面的具体措施。如果公司能够有效控制成本，那么其盈利能力有望得到改善。</li></ul><ul><li><strong>评估市场竞争策略</strong>：了解汇川技术在面对市场竞争时的具体策略，包括产品创新和市场拓展计划。这将有助于判断公司能否在激烈的市场竞争中保持其领先地位。</li></ul><ul><li><strong>保持适度仓位</strong>：考虑到当前估值和风险因素，建议投资者保持适度仓位，不要过度集中投资于单一股票。</li></ul><p>最后，我要提醒大家，任何投资决策都应基于充分的分析和理性的判断，而不是情绪化的冲动。正如我常说的，&quot;不行动往往优于错误行动&quot;。在做出投资决策之前，请确保你已经全面考虑了所有可能的风险和机会。</p><p>我能错在哪？我可能低估了汇川技术在新能源车业务方面的增长潜力，或者高估了市场竞争对其造成的长期影响。投资者应根据自己的风险承受能力和投资目标，灵活调整投资策略。</p></div></div></div>
+<div class="panel"><h2>分析师报告<span class="sub">2 篇</span></h2><details open><summary>市场面分析</summary><div class="body"><div class="md"><h4>300124 汇川技术 市场面分析</h4><ul><li>红黑榜多空分数：多头 85 / 空头 40，分差 45。</li><li>当前价格：64.60。</li><li>当前交易评级：Buy。</li><li>值得加仓区间：62.66 - 65.25。</li><li>目标价格：72.35。</li><li>市场愿意给溢价的原因：工业自动化龙头；新能源车业务增长。</li><li>当前主要压制因素：原材料成本压力；市场竞争加剧。</li></ul></div></div></details><details open><summary>基本面分析</summary><div class="body"><div class="md"><h4>300124 汇川技术 基本面分析</h4><ul><li>报告期：2026-03-31。</li><li>PE(TTM)：36.90。</li><li>PB：4.99。</li><li>PS(TTM)：3.78。</li><li>ROE：13.22%。</li><li>营收同比：12.98%。</li><li>归母净利润同比：-23.39%。</li><li>资产负债率：45.55%。</li><li>经营现金流/净利润：0.09。</li><li>核心判断：盈利能力处于可接受区间；收入仍在增长。</li></ul></div></div></details></div>
+<div class="panel"><h2>研究与计划</h2>
+<details><summary>基本面摘要</summary><div class="body"><div class="md"><h3>核心财务快照</h3><ul><li>报告期: 2026-03-31</li><li>当前股价: 64.60 元</li><li>总市值: 1749.11 亿元</li><li>PE (TTM): 36.90</li><li>PB: 4.99</li><li>PS (TTM): 3.78</li><li>营业总收入(报告期): 101.43 亿元</li><li>营收同比增长率: 12.98%</li><li>归母净利润(报告期): 10.13 亿元</li><li>归母净利润同比增长率: -23.39%</li><li>ROE (TTM/估算): 13.22%</li><li>资产负债率: 45.55%</li><li>经营性现金流 / 归母净利润: 0.09</li></ul></div></div></details>
+<details><summary>研究计划</summary><div class="body"><div class="md"><h4>300124 汇川技术 研究摘要</h4><ul><li>红黑榜结论: Buy</li><li>多头/空头: 85/40</li><li>正向信号: ROE 13.22%；营收同比 12.98%；PE(TTM) 36.90；PB 4.99</li><li>风险信号: 归母净利润同比 -23.39%</li><li>榜单看多理由: 工业自动化龙头；新能源车业务增长</li><li>榜单风险提示: 原材料成本压力；市场竞争加剧</li></ul></div></div></details>
+<details><summary>交易计划</summary><div class="body"><div class="md"><h4>300124 汇川技术 交易计划</h4><ul><li>评级: Buy</li><li>当前价格: 64.60</li><li>值得加仓区间: 62.66 - 65.25</li><li>目标价格: 72.35</li><li>止损位: 59.43</li><li>备注: 当前为缓存降级交易卡，后续若完整 TradingAgent 结果生成，将自动覆盖。</li></ul></div></div></details>
+<details><summary>交易决策</summary><div class="body"><div class="md"><p>Buy</p><p>300124 汇川技术 当前使用红黑榜缓存结果生成兜底交易卡。多头 85 / 空头 40，分差 45。当前尚未取得完整 TradingAgent 长文决策，但榜单分数、财务快照和大师观点已经足够生成基础交易建议。</p></div></div></details>
+</div>
+<div class="panel"><h2>多空逻辑</h2><div class="pts"><div class="h bull">看多逻辑</div><div class="md"><p>工业自动化龙头</p><p>新能源车业务增长</p></div></div><div class="pts"><div class="h bear">看空逻辑</div><div class="md"><p>原材料成本压力</p><p>市场竞争加剧</p></div></div></div>
+<div class="panel"><h2>伯克希尔研究</h2><p><strong>汇川技术是一家具备强大技术壁垒和长期增长潜力的工业自动化龙头，值得重点关注。</strong></p><p>伯克希尔综合评分：<strong>4.5</strong></p><div class="md"><p>{&quot;verdict&quot;: &quot;买入&quot;, &quot;conservative_tip&quot;: &quot;建议在PE TTM 35倍以下逐步建仓。&quot;, &quot;moderate_tip&quot;: &quot;建议在PE TTM 40倍以下分批买入。&quot;, &quot;aggressive_tip&quot;: &quot;建议在PE TTM 45倍以下积极买入。&quot;, &quot;catalysts_plus&quot;: [&quot;工业自动化市场渗透率超预期提升。&quot;, &quot;新能源车电驱系统业务超预期增长。&quot;, &quot;公司推出突破性新产品或技术。&quot;], &quot;catalysts_minus&quot;: [&quot;原材料价格大幅上涨。&quot;, &quot;行业竞争加剧，市场份额下降。&quot;, &quot;政策变化对新能源车业务产生不利影响。&quot;]}</p></div></div>
+<div class="panel news"><h2>最新资讯</h2><div class="md"><p>共11条新闻，9条利多，2条中性，无利空。</p></div><div class="nitem"><div class="t">8只个股大宗交易超5000万元</div><div class="s">证券时报网 · 中性</div></div><div class="nitem"><div class="t">海外机构调研股名单 东鹏饮料最受关注</div><div class="s">证券时报网 · 中性</div></div><div class="nitem"><div class="t">机械设备行业今日涨3.20%，主力资金净流入47.01亿元</div><div class="s">证券时报网 · 中性</div></div><div class="nitem"><div class="t">62家公司获海外机构调研</div><div class="s">证券时报网 · 中性</div></div><div class="nitem"><div class="t">创业板最新筹码集中股名单（附股）</div><div class="s">证券时报网 · 中性</div></div><div class="nitem"><div class="t">24只创业板股最新筹码趋向集中</div><div class="s">证券时报网 · 中性</div></div><div class="nitem"><div class="t">61家公司获海外机构调研</div><div class="s">证券时报网 · 中性</div></div><div class="nitem"><div class="t">53只创业板股最新筹码趋向集中</div><div class="s">证券时报网 · 中性</div></div></div>
+<footer>稳健理财Agent · 红黑榜每日归档 · 红榜 #5 · 仅供研究，不构成投资建议</footer>
+</div></body>
+</html>

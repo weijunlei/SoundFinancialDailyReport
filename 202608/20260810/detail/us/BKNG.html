@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BKNG(BKNG) 红榜 2026-08-10</title>
+<style>
+:root{--red:#d8342c;--redbg:#fdecea;--green:#1a9e54;--ink:#1c2230;--muted:#6b7385;
+--line:#e7e9ef;--card:#fff;--bg:#f4f6fa;--chip:#eef1f6;--dark:#23262d;--darkbg:#ececef}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",
+"Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);
+line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 16px 64px}
+header.top{background:linear-gradient(135deg,#1c2230,#2c3550);color:#fff;border-radius:14px;
+padding:22px 24px;margin-bottom:20px;box-shadow:0 6px 24px rgba(20,26,46,.12)}
+header.top h1{margin:0 0 6px;font-size:24px;letter-spacing:.5px}
+header.top .sub{opacity:.85;font-size:13px}
+header.top .sub b{color:#ffd166;font-weight:600}
+nav.mkt{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;
+background:rgba(244,246,250,.92);backdrop-filter:blur(6px);padding:10px 0;margin-bottom:14px}
+nav.mkt a{text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);
+padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600}
+nav.mkt a:hover{border-color:var(--red);color:var(--red)}
+.summary{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.summary .chip{background:var(--card);border:1px solid var(--line);border-radius:10px;
+padding:8px 12px;font-size:12px;color:var(--muted)}
+.summary .chip b{color:var(--ink);font-size:14px;margin-left:4px}
+section.board{margin:26px 0}
+.board-title{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:19px}
+.board-title .dot{width:10px;height:10px;border-radius:50%}
+.board-title.red .dot{background:var(--red)}
+.board-title.black .dot{background:var(--dark)}
+.board-title small{color:var(--muted);font-weight:400;font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+position:relative;transition:box-shadow .15s}
+.card:hover{box-shadow:0 4px 18px rgba(20,26,46,.08)}
+.card.red{border-top:3px solid var(--red)}
+.card.black{border-top:3px solid var(--dark)}
+.rank{position:absolute;top:10px;right:12px;font-size:26px;font-weight:800;color:#eceff5}
+.card.red .rank{color:#fbdcD9}
+.nm{font-size:16px;font-weight:700}
+.nm .tk{color:var(--muted);font-weight:500;font-size:12px;margin-left:6px}
+.tag{display:inline-block;background:var(--chip);color:var(--muted);border-radius:6px;
+padding:1px 7px;font-size:11px;margin:6px 6px 0 0}
+.price-row{display:flex;align-items:baseline;gap:10px;margin:10px 0 4px}
+.price{font-size:24px;font-weight:800}
+.pct{font-size:14px;font-weight:700;padding:2px 8px;border-radius:8px}
+.up{color:var(--red)}.down{color:var(--green)}.flat{color:var(--muted)}
+.pct.up{background:var(--redbg)}.pct.down{background:#e2f4e9}.pct.flat{background:var(--chip)}
+.psrc{font-size:11px;color:var(--muted);margin-left:auto}
+.scores{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.scores span{background:var(--chip);border-radius:6px;padding:2px 8px;font-size:11px;color:var(--muted)}
+.scores span b{color:var(--ink)}
+.pts{font-size:12.5px;margin:8px 0 0}
+.pts .h{font-weight:700;font-size:12px;margin:6px 0 2px}
+.pts .h.bull{color:var(--red)}.pts .h.bear{color:var(--green)}
+.pts ul{margin:2px 0 4px;padding-left:18px;color:#3a4152}
+.pts li{margin:1px 0}
+.masters{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:11px;color:var(--muted)}
+.masters b{color:var(--ink)}
+.summ{font-size:12.5px;color:#3a4152;background:#fafbfd;border:1px solid var(--line);
+border-radius:8px;padding:8px 10px;margin-top:8px}
+.empty{color:var(--muted);background:var(--card);border:1px dashed var(--line);
+border-radius:10px;padding:18px;text-align:center}
+footer{margin-top:34px;color:var(--muted);font-size:12px;text-align:center;line-height:1.8}
+a.lnk{color:var(--red);text-decoration:none}
+/* ── detail page ── */
+.backbar{margin-bottom:14px;font-size:13px}
+.backbar a{color:var(--muted);text-decoration:none;margin-right:14px}
+.backbar a:hover{color:var(--red)}
+.badge{display:inline-block;border-radius:6px;padding:2px 10px;font-size:12px;font-weight:700;margin-right:8px}
+.badge.red{background:var(--red);color:#fff}.badge.black{background:var(--dark);color:#fff}
+.trade{display:flex;flex-wrap:wrap;gap:10px;background:linear-gradient(135deg,#2c3550,#1c2230);
+color:#fff;border-radius:12px;padding:16px 18px;margin:16px 0}
+.trade .cell{min-width:120px}
+.trade .k{font-size:11px;opacity:.75}
+.trade .v{font-size:18px;font-weight:800;margin-top:2px}
+.trade .v.buy{color:#7ee2a8}.trade .v.sell{color:#ff9d97}.trade .v.hold{color:#ffd166}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0}
+.mgrid .m{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.mgrid .m .k{font-size:11px;color:var(--muted)}
+.mgrid .m .v{font-size:16px;font-weight:700;margin-top:2px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.panel>h2{margin:0 0 12px;font-size:17px}
+.panel>h2 .sub{font-size:12px;color:var(--muted);font-weight:400;margin-left:8px}
+.mreply{border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;
+padding:12px 14px;margin:10px 0;background:#fff}
+.mreply .mh{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.mreply .mh .who{font-weight:700;font-size:14px}
+.mreply .mh .mscore{margin-left:auto;background:var(--chip);border-radius:6px;padding:1px 8px;font-size:12px;font-weight:700}
+.md h2,.md h3,.md h4,.md h5{margin:12px 0 6px;font-size:15px}
+.md p{margin:6px 0;font-size:13.5px;color:#2c3345}
+.md ul{margin:6px 0;padding-left:20px;font-size:13.5px;color:#2c3345}
+.md li{margin:3px 0}
+.md strong{color:var(--ink)}
+details{border:1px solid var(--line);border-radius:10px;background:#fff;margin:10px 0;padding:0}
+details>summary{cursor:pointer;padding:12px 16px;font-weight:700;font-size:14px;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary:before{content:"▸ ";color:var(--red)}
+details[open]>summary:before{content:"▾ "}
+details>.body{padding:0 16px 14px;border-top:1px dashed var(--line)}
+.ychip{display:inline-block;background:var(--chip);border-radius:8px;padding:4px 10px;font-size:12px;margin:3px 6px 3px 0}
+.ychip b{font-size:13px}
+.news .nitem{border-top:1px dashed var(--line);padding:8px 0;font-size:13px}
+.news .nitem .t{font-weight:600}
+.news .nitem .s{color:var(--muted);font-size:12px}
+/* ── root landing page ── */
+.hero{padding:30px 26px}
+.hero-kicker{color:#ffd166;font-size:12px;font-weight:700;letter-spacing:2px;
+text-transform:uppercase;margin-bottom:8px}
+.hero h1{font-size:30px;margin:0 0 10px}
+.day-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.day-card{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);
+border-radius:12px;padding:14px 16px;transition:all .15s}
+.day-card:hover{border-color:var(--red);box-shadow:0 4px 16px rgba(216,52,44,.12);transform:translateY(-2px)}
+.day-card .d{font-weight:800;font-size:15px;color:var(--ink);display:flex;align-items:center;gap:8px}
+.day-card .m{margin-top:8px;display:flex;gap:6px}
+.day-card .m span{background:var(--chip);color:var(--muted);border-radius:6px;
+padding:2px 8px;font-size:11px}
+.latest-badge{background:var(--red);color:#fff;border-radius:6px;padding:1px 7px;
+font-size:10px;font-weight:700}
+</style>
+</head>
+<body><div class="wrap">
+<div class="backbar"><a href="../index.html">← 总览</a><a href="../us.html">← 美股榜单</a></div>
+<header class="top">
+  <h1><span class="badge red">红榜 #10</span>BKNG<span class="tk" style="opacity:.7;font-size:15px;font-weight:400;margin-left:8px">BKNG</span></h1>
+  <div class="sub">美股 ·  · 榜单日期 <b>2026-08-10</b> · 盘价采集 <b>2026-08-10 05:00:50</b></div>
+  <div class="price-row" style="margin-top:12px">
+    <span class="price" style="color:#fff">$214.42</span>
+    <span class="pct up">+3.39%</span>
+    <span class="psrc" style="color:rgba(255,255,255,.6)">实时</span>
+  </div>
+  <div class="scores" style="margin-top:10px">
+    <span>综合 <b>84.4</b></span>
+    <span>多头 <b>85</b></span>
+    <span>空头 <b>20</b></span>
+    <span>大师均值 <b>67</b></span>
+    <span>信号 <b>positive</b></span>
+  </div>
+</header>
+<div class="trade"><div class="cell"><div class="k">交易评级</div><span class="v buy">Buy</span></div><div class="cell"><div class="k">加仓区间</div><span class="v">207.99 ~ 216.56</span></div><div class="cell"><div class="k">目标价</div><span class="v">240.15</span></div><div class="cell"><div class="k">伯克希尔</div><span class="v">买入</span></div><div class="cell"><div class="k">伯克希尔分</div><span class="v">3.75</span></div></div>
+<div class="panel"><h2>财务指标</h2><div class="mgrid"><div class="m"><div class="k">市盈率 PE</div><div class="v">23.80</div></div><div class="m"><div class="k">市净率 PB</div><div class="v">-15.07</div></div><div class="m"><div class="k">总市值</div><div class="v">1661</div></div><div class="m"><div class="k">营收同比</div><div class="v">8.1%</div></div><div class="m"><div class="k">净利同比</div><div class="v">130.0%</div></div></div></div>
+<div class="panel"><h2>历史收益</h2><span class="ychip">近1月 <b class="up">+23.02%</b></span><span class="ychip">近6月 <b class="up">+26.51%</b></span><span class="ychip">近1年 <b class="down">-0.84%</b></span><span class="ychip">近5年 <b class="up">+148.43%</b></span></div>
+<div class="panel"><h2>大师圆桌<span class="sub">5 位</span></h2><div class="mreply"><div class="mh"><span class="who">段永平</span><span class="mscore">75</span></div><div class="md"><h4>发言</h4><p>我认为BKNG这家公司目前值得<strong>谨慎关注</strong>，但不适合盲目跟进。</p><p>首先，从基本面来看，BKNG确实展现出了一些积极信号。旅游行业的复苏预期是明确的，这为公司的长期发展提供了支撑。而且最近股价上涨了3.39%，说明市场对它的预期也在回暖。从财务数据看，营收同比增长8.1%，净利润更是大幅增长了130%，显示出强劲的盈利能力。</p><p>不过，我有几个担忧：</p><ul><li><strong>估值问题</strong>：当前23.8倍的PE并不算低，考虑到经济环境的不确定性，这个估值可能已经反映了大部分复苏预期。</li><li><strong>经济衰退风险</strong>：如果全球经济进入衰退期，旅游需求可能会受到冲击，这会直接影响BKNG的业务表现。</li><li><strong>市场情绪波动</strong>：近期股价上涨可能包含一定的情绪因素，需要警惕市场情绪的突然转向。</li></ul><h4>行动建议</h4><p>如果是我，我会采取以下策略：</p><ul><li><strong>耐心等待</strong>：不要急于进场，可以先观察一段时间，看看市场情绪和公司基本面是否能够持续。</li><li><strong>分批建仓</strong>：如果确实看好公司的长期发展，可以考虑分批建仓，而不是一次性买入。</li><li><strong>关注经济数据</strong>：特别要关注全球经济数据和旅游行业相关指标，以便及时调整投资策略。</li></ul><h4>风险提示</h4><p>投资BKNG需要注意的是，估值偏高和经济衰退风险是当前最大的不确定性因素。如果市场情绪转向，这些风险可能会被放大。因此，建议大家在投资时要保持理性，不要被短期的上涨冲昏头脑。</p><p>总之，BKNG是一家值得关注的公司，但投资决策需要谨慎，要充分考虑各种风险因素。</p></div></div><div class="mreply"><div class="mh"><span class="who">巴菲特</span><span class="mscore">60</span></div><div class="md"><p>各位朋友，今天我们来聊聊BKNG这家公司。让我先说结论：我认为BKNG是一家有吸引力的公司，但目前的价格让我有些犹豫。</p><p>首先，这家公司的商业模式是相当强大的。作为全球领先的在线旅游平台，BKNG拥有强大的品牌和网络效应。它的业务模式能够持续产生现金流，这在旅游行业中是非常难得的。旅游行业的复苏预期也为这家公司提供了增长动力。从刚才提供的数据来看，营收同比增长8.1%，净利润更是增长了130%，这显示了公司强劲的盈利能力。</p><p>然而，我必须指出，目前的估值水平让我有些担忧。23.8倍的市盈率并不算便宜，尤其是在当前经济环境下，我们不能忽视经济衰退对旅游需求的影响。历史经验告诉我们，旅游行业对经济周期非常敏感。如果经济出现下滑，旅游支出往往是消费者最先削减的开支之一。</p><p>基于以上分析，我建议采取以下行动：</p><ul><li>如果你已经在持有BKNG的股票，建议密切关注经济数据和公司财报。如果经济出现衰退迹象，可能需要重新评估你的持仓。</li></ul><ul><li>对于想要买入的投资者，我建议等待更好的价格。考虑到当前估值水平，如果股价能够回调到更具吸引力的水平，比如200美元以下，可能会提供更好的安全边际。</li></ul><ul><li>长期来看，旅游行业的潜力依然存在，但投资时需要考虑经济周期的波动。</li></ul><p>最后，我想引用查理·芒格常说的话：&quot;投资就像打棒球，你不需要每次都挥棒。&quot;在面对像BKNG这样有吸引力但估值偏高的公司时，耐心等待更好的时机可能是更明智的选择。</p></div></div><div class="mreply"><div class="mh"><span class="who">达利欧</span><span class="mscore">50</span></div><div class="md"><h4>达利欧圆桌发言：关于BKNG的投资观点</h4><p><strong>结论：BKNG目前处于一个复杂但值得关注的阶段，我对其持中性偏谨慎的态度。</strong></p><p>让我从几个角度分析：</p><p><strong>理由：</strong></p><ul><li><strong>短期市场表现与行业复苏预期</strong></li></ul><p>   BKNG近期股价表现强劲，涨幅达到3.39%，这反映了市场对旅游行业复苏的乐观预期。从基本面来看，公司营收同比增长8.1%，净利润更是大幅增长130%，显示出强劲的盈利能力。</p><ul><li><strong>估值与经济环境的不确定性</strong></li></ul><p>   然而，当前的估值水平（PE为23.8倍）需要谨慎对待。虽然盈利能力强劲，但估值已经反映了大部分乐观预期。此外，经济衰退的风险依然存在，这可能会抑制旅游需求的持续增长。</p><ul><li><strong>债务周期视角</strong></li></ul><p>   从更宏观的角度看，我们正处于一个债务周期的敏感阶段。全球范围内的经济不确定性可能会影响消费者的旅行支出意愿。这种情况下，旅游业可能会面临需求波动的挑战。</p><p><strong>风险/行动建议：</strong></p><ul><li><strong>关注经济数据与行业趋势</strong></li></ul><p>   投资者需要密切关注全球经济数据，特别是与消费者支出和旅游业相关的数据。如果经济衰退迹象加剧，可能会对BKNG的业绩产生负面影响。</p><ul><li><strong>考虑分批建仓</strong></li></ul><p>   对于长期投资者来说，可以考虑在当前价位分批建仓，以降低短期波动风险。同时，要做好仓位管理，避免过度集中投资于单一股票。</p><ul><li><strong>关注公司战略调整</strong></li></ul><p>   密切关注BKNG在应对经济不确定性方面的战略调整。如果公司能够有效应对潜在的需求波动，可能会在长期内创造更大的价值。</p><p>总的来说，BKNG是一个值得关注的投资标的，但需要在当前的经济环境下保持谨慎。建议投资者在做出投资决策时，充分考虑自身的风险承受能力和投资期限。</p><p><strong>原则化收口：</strong></p><p>在当前复杂的经济环境下，投资决策需要更加注重风险管理和长期价值。我建议投资者将这次分析记录在决策日志中，并定期回顾，以评估最初的判断是否需要调整。正如我常说的：&quot;Pain + Reflection = Progress&quot;，只有通过不断反思和调整，我们才能在不确定的市场环境中取得进步。</p></div></div><div class="mreply"><div class="mh"><span class="who">林奇</span><span class="mscore">80</span></div><div class="md"><p>各位，今天我们来聊聊BKNG这只股票，我的结论是：<strong>值得密切关注，但不要盲目追高</strong>。</p><h4>理由：</h4><p>首先，BKNG作为一家在线旅游巨头，它的业务模式非常清晰，专注于酒店预订、机票和旅游服务等。随着全球旅游行业的逐步复苏，BKNG的营收和利润都出现了强劲反弹，尤其是净利润同比增长了130%，这是一个非常亮眼的数据。</p><p>其次，旅游行业的复苏预期是一个长期趋势。人们在经历了疫情期间的压抑后，对旅行的需求正在快速释放，这为BKNG的持续增长提供了有力支撑。</p><h4>估值与风险：</h4><p>然而，我们也需要看到，BKNG目前的估值并不便宜，市盈率（PE）达到了23.8倍。虽然这个估值对于一家快速增长型公司来说并不算过高，但考虑到经济衰退的风险，投资者需要谨慎对待。</p><p>经济衰退可能会导致旅游需求下降，这对BKNG的业务将是一个直接的冲击。此外，市场对旅游行业的复苏预期已经部分反映在股价中，这意味着未来的上涨空间可能会受到限制。</p><h4>行动建议：</h4><p>我的建议是：<strong>如果你已经持有BKNG，可以继续持有，但要注意观察经济数据和旅游行业的复苏情况</strong>。如果你还没有买入，建议等待一个更好的入场时机，比如在经济数据出现疲软迹象时，市场可能会给出更好的买入价格。</p><p>总之，BKNG是一家值得关注的优质公司，但当前的估值需要我们保持警惕。不要因为短期的涨幅而盲目追高，耐心等待更好的机会可能会带来更好的回报。</p></div></div><div class="mreply"><div class="mh"><span class="who">芒格</span><span class="mscore">70</span></div><div class="md"><p>各位好，今天我们来讨论一下BKNG这家公司。</p><p>首先，我的结论是：BKNG是一家值得关注的优质公司，但当前价格可能已经包含了过多的乐观预期。</p><p>让我来解释一下我的思考过程。</p><h4>逆向思维：潜在风险在哪里？</h4><ul><li><strong>估值过高风险</strong>：当前23.8倍的市盈率并不便宜，如果市场情绪转向，估值可能会迅速收缩。</li><li><strong>经济衰退影响</strong>：旅游行业对经济周期高度敏感，如果出现经济衰退，需求可能会大幅下降。</li><li><strong>竞争加剧</strong>：在线旅游市场竞争激烈，新的竞争对手可能会侵蚀市场份额。</li></ul><h4>激励机制：谁在获利？</h4><p>BKNG的商业模式非常强大，它通过平台效应和强大的品牌影响力获取了可观的利润。公司的主要受益者是股东和管理层，他们的利益与公司长期增长紧密相连。然而，高管薪酬结构可能会导致他们在短期内追求市场份额而牺牲利润率。</p><h4>优势审视：多元心智模型分析</h4><ul><li><strong>经济学视角</strong>：旅游行业的复苏是一个长期趋势，BKNG作为行业领导者，将从中受益。</li><li><strong>心理学视角</strong>：消费者对旅行的需求是根深蒂固的，即使在经济衰退期间，这种需求也可能只是被推迟而非消失。</li><li><strong>财务视角</strong>：公司的净利润增长率达到了130%，这表明其盈利能力正在快速提升。</li></ul><h4>概率与赔率：投资决策</h4><p>考虑到当前的市场环境和公司的基本面，我认为BKNG的胜率较高，但赔率较低。换句话说，虽然公司有很好的增长潜力，但当前价格已经反映了大部分利好因素。因此，投资者需要谨慎评估风险与回报。</p><h4>心理学陷阱自检</h4><p>在这种情况下，投资者容易受到&quot;追涨杀跌&quot;和&quot;过度自信&quot;的影响。我们必须警惕这些心理陷阱，避免在市场情绪高涨时做出冲动决策。</p><h4>行动建议</h4><ul><li><strong>谨慎观望</strong>：如果投资者已经持有BKNG，可以考虑在当前价位部分获利了结，等待更好的买入机会。</li><li><strong>长期视角</strong>：对于长期投资者，可以考虑分批买入，以降低短期波动风险。</li><li><strong>风险管理</strong>：设置止损位，以防止市场情绪突然转向带来的损失。</li></ul><p>最后，我想提醒大家，投资决策不应仅仅基于对未来的乐观预期，而应充分考虑各种潜在风险。正如我常说的：&quot;如果我知道自己死在哪里，我就永远不去那里。&quot;在投资中，识别并避开风险是取得长期成功的关键。</p></div></div></div>
+<div class="panel"><h2>分析师报告<span class="sub">2 篇</span></h2><details open><summary>市场面分析</summary><div class="body"><div class="md"><h4>BKNG BKNG 市场面分析</h4><ul><li>红黑榜多空分数：多头 85 / 空头 20，分差 65。</li><li>当前价格：214.42。</li><li>当前交易评级：Buy。</li><li>值得加仓区间：207.99 - 216.56。</li><li>目标价格：240.15。</li><li>市场愿意给溢价的原因：强劲的3.39%涨幅；旅游行业复苏预期。</li><li>当前主要压制因素：估值可能偏高；经济衰退影响旅游需求。</li></ul></div></div></details><details open><summary>基本面分析</summary><div class="body"><div class="md"><h4>BKNG BKNG 基本面分析</h4><ul><li>报告期：暂无。</li><li>PE(TTM)：23.80。</li><li>PB：-15.07。</li><li>营收同比：8.10%。</li><li>归母净利润同比：130.00%。</li><li>核心判断：收入仍在增长；利润端保持扩张。</li></ul></div></div></details></div>
+<div class="panel"><h2>研究与计划</h2>
+<details><summary>基本面摘要</summary><div class="body"><div class="md"><h3>核心财务快照</h3><ul><li>报告期: 数据缺失</li><li>当前股价: 214.42 元</li><li>总市值: 1661.49 亿元</li><li>PE (TTM): 23.80</li><li>PB: -15.07</li><li>PS (TTM): 数据缺失</li><li>营业总收入(报告期): 数据缺失 亿元</li><li>营收同比增长率: 8.10%</li><li>归母净利润(报告期): 数据缺失 亿元</li><li>归母净利润同比增长率: 130.00%</li><li>ROE (TTM/估算): 数据缺失</li><li>资产负债率: 数据缺失</li><li>经营性现金流 / 归母净利润: 数据缺失</li></ul><h4>缺失字段</h4><ul><li>PS(TTM), 营业总收入, 归母净利润, ROE, 资产负债率, 经营性现金流与归母净利润比值</li></ul></div></div></details>
+<details><summary>研究计划</summary><div class="body"><div class="md"><h4>BKNG BKNG 研究摘要</h4><ul><li>红黑榜结论: Buy</li><li>多头/空头: 85/20</li><li>正向信号: 营收同比 8.10%；归母净利润同比 130.00%；PE(TTM) 23.80；PB -15.07</li><li>榜单看多理由: 强劲的3.39%涨幅；旅游行业复苏预期</li><li>榜单风险提示: 估值可能偏高；经济衰退影响旅游需求</li></ul></div></div></details>
+<details><summary>交易计划</summary><div class="body"><div class="md"><h4>BKNG BKNG 交易计划</h4><ul><li>评级: Buy</li><li>当前价格: 214.42</li><li>值得加仓区间: 207.99 - 216.56</li><li>目标价格: 240.15</li><li>止损位: 197.27</li><li>备注: 当前为缓存降级交易卡，后续若完整 TradingAgent 结果生成，将自动覆盖。</li></ul></div></div></details>
+<details><summary>交易决策</summary><div class="body"><div class="md"><p>Buy</p><p>BKNG BKNG 当前使用红黑榜缓存结果生成兜底交易卡。多头 85 / 空头 20，分差 65。当前尚未取得完整 TradingAgent 长文决策，但榜单分数、财务快照和大师观点已经足够生成基础交易建议。</p></div></div></details>
+</div>
+<div class="panel"><h2>多空逻辑</h2><div class="pts"><div class="h bull">看多逻辑</div><div class="md"><p>强劲的3.39%涨幅</p><p>旅游行业复苏预期</p></div></div><div class="pts"><div class="h bear">看空逻辑</div><div class="md"><p>估值可能偏高</p><p>经济衰退影响旅游需求</p></div></div></div>
+<div class="panel"><h2>伯克希尔研究</h2><p><strong>BKNG是一家具有强大护城河和稳健财务表现的在线旅游巨头，但需警惕行业周期性波动及潜在监管风险。</strong></p><p>伯克希尔综合评分：<strong>3.75</strong></p><div class="md"><p>{&quot;verdict&quot;: &quot;买入&quot;, &quot;conservative_tip&quot;: &quot;建议在PE TTM低于16倍时买入，长期持有。&quot;, &quot;moderate_tip&quot;: &quot;建议在PE TTM低于18倍时买入，持有3-5年。&quot;, &quot;aggressive_tip&quot;: &quot;建议在PE TTM低于20倍时买入，持有1-3年。&quot;, &quot;catalysts_plus&quot;: [&quot;全球经济复苏带动旅游需求增长。&quot;, &quot;公司推出创新产品或服务提升市场份额。&quot;, &quot;反垄断政策风险解除。&quot;], &quot;catalysts_minus&quot;: [&quot;全球经济衰退导致旅游需求下降。&quot;, &quot;新兴平台颠覆现有商业模式。&quot;, &quot;反垄断政策加强限制公司扩张。&quot;]}</p></div></div>
+<div class="panel news"><h2>最新资讯</h2><div class="md"><p>整体情绪偏利好，共8条利多，3条中性，1条利空。</p></div><div class="nitem"><div class="t">Booking Holdings Stock Jumps As &#x27;Resilient&#x27; Travel Demand Powers Earnings Beat</div><div class="s">Investor&#x27;s Business Daily · 利好</div></div><div class="nitem"><div class="t">Is Booking Holdings (BKNG) a Buying Opportunity as AI Fears Weigh on the Stock?</div><div class="s">Yahoo Finance · 中性</div></div><div class="nitem"><div class="t">BKNG Stock Climbs After Hours: Q4 Earnings Beat, Stock Split And $700M AI Push Makes Traders Bullish</div><div class="s">stocktwits.com · 利好</div></div><div class="nitem"><div class="t">Why Is Booking (BKNG) Stock Rocketing Higher Today</div><div class="s">StockStory · 利好</div></div><div class="nitem"><div class="t">3 Stocks Whose Charts May Be Signaling the Next Big Move</div><div class="s">MarketBeat · 中性</div></div><div class="nitem"><div class="t">Popular cruise line tightens booking rules: Here’s how it could affect your voyage</div><div class="s">NJ.com · 中性</div></div><div class="nitem"><div class="t">How Booking.com&#x27;s Travel Proud program is helping LGBTQ+ travelers feel more welcome</div><div class="s">The Points Guy · 利好</div></div><div class="nitem"><div class="t">Booking Holdings Has Begun Merging Agoda, Booking.com, and Priceline&#x27;s B2B Units: Scoop</div><div class="s">Skift · 利好</div></div></div>
+<footer>稳健理财Agent · 红黑榜每日归档 · 红榜 #10 · 仅供研究，不构成投资建议</footer>
+</div></body>
+</html>

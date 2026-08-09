@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>快手-W(01024) 黑榜 2026-08-10</title>
+<style>
+:root{--red:#d8342c;--redbg:#fdecea;--green:#1a9e54;--ink:#1c2230;--muted:#6b7385;
+--line:#e7e9ef;--card:#fff;--bg:#f4f6fa;--chip:#eef1f6;--dark:#23262d;--darkbg:#ececef}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",
+"Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);
+line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 16px 64px}
+header.top{background:linear-gradient(135deg,#1c2230,#2c3550);color:#fff;border-radius:14px;
+padding:22px 24px;margin-bottom:20px;box-shadow:0 6px 24px rgba(20,26,46,.12)}
+header.top h1{margin:0 0 6px;font-size:24px;letter-spacing:.5px}
+header.top .sub{opacity:.85;font-size:13px}
+header.top .sub b{color:#ffd166;font-weight:600}
+nav.mkt{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;
+background:rgba(244,246,250,.92);backdrop-filter:blur(6px);padding:10px 0;margin-bottom:14px}
+nav.mkt a{text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);
+padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600}
+nav.mkt a:hover{border-color:var(--red);color:var(--red)}
+.summary{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.summary .chip{background:var(--card);border:1px solid var(--line);border-radius:10px;
+padding:8px 12px;font-size:12px;color:var(--muted)}
+.summary .chip b{color:var(--ink);font-size:14px;margin-left:4px}
+section.board{margin:26px 0}
+.board-title{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:19px}
+.board-title .dot{width:10px;height:10px;border-radius:50%}
+.board-title.red .dot{background:var(--red)}
+.board-title.black .dot{background:var(--dark)}
+.board-title small{color:var(--muted);font-weight:400;font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+position:relative;transition:box-shadow .15s}
+.card:hover{box-shadow:0 4px 18px rgba(20,26,46,.08)}
+.card.red{border-top:3px solid var(--red)}
+.card.black{border-top:3px solid var(--dark)}
+.rank{position:absolute;top:10px;right:12px;font-size:26px;font-weight:800;color:#eceff5}
+.card.red .rank{color:#fbdcD9}
+.nm{font-size:16px;font-weight:700}
+.nm .tk{color:var(--muted);font-weight:500;font-size:12px;margin-left:6px}
+.tag{display:inline-block;background:var(--chip);color:var(--muted);border-radius:6px;
+padding:1px 7px;font-size:11px;margin:6px 6px 0 0}
+.price-row{display:flex;align-items:baseline;gap:10px;margin:10px 0 4px}
+.price{font-size:24px;font-weight:800}
+.pct{font-size:14px;font-weight:700;padding:2px 8px;border-radius:8px}
+.up{color:var(--red)}.down{color:var(--green)}.flat{color:var(--muted)}
+.pct.up{background:var(--redbg)}.pct.down{background:#e2f4e9}.pct.flat{background:var(--chip)}
+.psrc{font-size:11px;color:var(--muted);margin-left:auto}
+.scores{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.scores span{background:var(--chip);border-radius:6px;padding:2px 8px;font-size:11px;color:var(--muted)}
+.scores span b{color:var(--ink)}
+.pts{font-size:12.5px;margin:8px 0 0}
+.pts .h{font-weight:700;font-size:12px;margin:6px 0 2px}
+.pts .h.bull{color:var(--red)}.pts .h.bear{color:var(--green)}
+.pts ul{margin:2px 0 4px;padding-left:18px;color:#3a4152}
+.pts li{margin:1px 0}
+.masters{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:11px;color:var(--muted)}
+.masters b{color:var(--ink)}
+.summ{font-size:12.5px;color:#3a4152;background:#fafbfd;border:1px solid var(--line);
+border-radius:8px;padding:8px 10px;margin-top:8px}
+.empty{color:var(--muted);background:var(--card);border:1px dashed var(--line);
+border-radius:10px;padding:18px;text-align:center}
+footer{margin-top:34px;color:var(--muted);font-size:12px;text-align:center;line-height:1.8}
+a.lnk{color:var(--red);text-decoration:none}
+/* ── detail page ── */
+.backbar{margin-bottom:14px;font-size:13px}
+.backbar a{color:var(--muted);text-decoration:none;margin-right:14px}
+.backbar a:hover{color:var(--red)}
+.badge{display:inline-block;border-radius:6px;padding:2px 10px;font-size:12px;font-weight:700;margin-right:8px}
+.badge.red{background:var(--red);color:#fff}.badge.black{background:var(--dark);color:#fff}
+.trade{display:flex;flex-wrap:wrap;gap:10px;background:linear-gradient(135deg,#2c3550,#1c2230);
+color:#fff;border-radius:12px;padding:16px 18px;margin:16px 0}
+.trade .cell{min-width:120px}
+.trade .k{font-size:11px;opacity:.75}
+.trade .v{font-size:18px;font-weight:800;margin-top:2px}
+.trade .v.buy{color:#7ee2a8}.trade .v.sell{color:#ff9d97}.trade .v.hold{color:#ffd166}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0}
+.mgrid .m{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.mgrid .m .k{font-size:11px;color:var(--muted)}
+.mgrid .m .v{font-size:16px;font-weight:700;margin-top:2px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.panel>h2{margin:0 0 12px;font-size:17px}
+.panel>h2 .sub{font-size:12px;color:var(--muted);font-weight:400;margin-left:8px}
+.mreply{border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;
+padding:12px 14px;margin:10px 0;background:#fff}
+.mreply .mh{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.mreply .mh .who{font-weight:700;font-size:14px}
+.mreply .mh .mscore{margin-left:auto;background:var(--chip);border-radius:6px;padding:1px 8px;font-size:12px;font-weight:700}
+.md h2,.md h3,.md h4,.md h5{margin:12px 0 6px;font-size:15px}
+.md p{margin:6px 0;font-size:13.5px;color:#2c3345}
+.md ul{margin:6px 0;padding-left:20px;font-size:13.5px;color:#2c3345}
+.md li{margin:3px 0}
+.md strong{color:var(--ink)}
+details{border:1px solid var(--line);border-radius:10px;background:#fff;margin:10px 0;padding:0}
+details>summary{cursor:pointer;padding:12px 16px;font-weight:700;font-size:14px;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary:before{content:"▸ ";color:var(--red)}
+details[open]>summary:before{content:"▾ "}
+details>.body{padding:0 16px 14px;border-top:1px dashed var(--line)}
+.ychip{display:inline-block;background:var(--chip);border-radius:8px;padding:4px 10px;font-size:12px;margin:3px 6px 3px 0}
+.ychip b{font-size:13px}
+.news .nitem{border-top:1px dashed var(--line);padding:8px 0;font-size:13px}
+.news .nitem .t{font-weight:600}
+.news .nitem .s{color:var(--muted);font-size:12px}
+/* ── root landing page ── */
+.hero{padding:30px 26px}
+.hero-kicker{color:#ffd166;font-size:12px;font-weight:700;letter-spacing:2px;
+text-transform:uppercase;margin-bottom:8px}
+.hero h1{font-size:30px;margin:0 0 10px}
+.day-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.day-card{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);
+border-radius:12px;padding:14px 16px;transition:all .15s}
+.day-card:hover{border-color:var(--red);box-shadow:0 4px 16px rgba(216,52,44,.12);transform:translateY(-2px)}
+.day-card .d{font-weight:800;font-size:15px;color:var(--ink);display:flex;align-items:center;gap:8px}
+.day-card .m{margin-top:8px;display:flex;gap:6px}
+.day-card .m span{background:var(--chip);color:var(--muted);border-radius:6px;
+padding:2px 8px;font-size:11px}
+.latest-badge{background:var(--red);color:#fff;border-radius:6px;padding:1px 7px;
+font-size:10px;font-weight:700}
+</style>
+</head>
+<body><div class="wrap">
+<div class="backbar"><a href="../index.html">← 总览</a><a href="../hk.html">← 港股榜单</a></div>
+<header class="top">
+  <h1><span class="badge black">黑榜 #9</span>快手-W<span class="tk" style="opacity:.7;font-size:15px;font-weight:400;margin-left:8px">01024</span></h1>
+  <div class="sub">港股 ·  · 榜单日期 <b>2026-08-10</b> · 盘价采集 <b>2026-08-10 05:00:50</b></div>
+  <div class="price-row" style="margin-top:12px">
+    <span class="price" style="color:#fff">HK$44.18</span>
+    <span class="pct down">-0.14%</span>
+    <span class="psrc" style="color:rgba(255,255,255,.6)">实时</span>
+  </div>
+  <div class="scores" style="margin-top:10px">
+    <span>综合 <b>41.2</b></span>
+    <span>多头 <b>35</b></span>
+    <span>空头 <b>65</b></span>
+    <span>大师均值 <b>40</b></span>
+    <span>信号 <b>negative</b></span>
+  </div>
+</header>
+<div class="trade"><div class="cell"><div class="k">交易评级</div><span class="v hold">Reduce</span></div><div class="cell"><div class="k">加仓区间</div><span class="v">41.53 ~ 43.30</span></div><div class="cell"><div class="k">伯克希尔</div><span class="v">买入</span></div><div class="cell"><div class="k">伯克希尔分</div><span class="v">3.50</span></div></div>
+<div class="panel"><h2>财务指标</h2><div class="mgrid"><div class="m"><div class="k">市盈率 PE</div><div class="v">9.76</div></div><div class="m"><div class="k">市净率 PB</div><div class="v">2.05</div></div><div class="m"><div class="k">ROE</div><div class="v">3.6%</div></div><div class="m"><div class="k">总市值</div><div class="v">1912</div></div><div class="m"><div class="k">营收同比</div><div class="v">0.8%</div></div><div class="m"><div class="k">净利同比</div><div class="v">-5.8%</div></div></div></div>
+<div class="panel"><h2>历史收益</h2><span class="ychip">近1月 <b class="up">+2.65%</b></span><span class="ychip">近6月 <b class="down">-36.93%</b></span><span class="ychip">近1年 <b class="down">-39.85%</b></span></div>
+<div class="panel"><h2>大师圆桌<span class="sub">5 位</span></h2><div class="mreply"><div class="mh"><span class="who">段永平</span><span class="mscore">40</span></div><div class="md"><p>关于快手，我谈谈我的看法。</p><h4>结论：</h4><p>快手目前可能不是最好的投资选择。</p><h4>理由：</h4><p>首先，快手拥有庞大的用户基数，这在互联网行业中确实是一个重要的优势。然而，股价的小幅下跌和较大的竞争压力让我有些担忧。互联网行业虽然长期来看仍有增长潜力，但竞争格局的变化可能会对快手的盈利能力产生负面影响。</p><p>从财务数据来看，快手的市盈率（PE）约为9.76，估值不算高，但净资产收益率（ROE）仅为3.59%，这表明公司的盈利能力有待提升。此外，净利润同比下降5.77%，这也反映出公司当前面临的挑战。</p><h4>风险/行动建议：</h4><ul><li><strong>竞争压力</strong>：快手需要面对来自其他互联网巨头的激烈竞争，这可能会影响其市场份额和盈利能力。投资者需要密切关注公司在应对竞争方面的策略和执行情况。</li></ul><ul><li><strong>盈利能力</strong>：虽然用户基数大是快手的优势，但如何将这些用户转化为可持续的盈利是公司面临的关键挑战。投资者应关注公司在提升用户变现能力方面的举措。</li></ul><ul><li><strong>长期视角</strong>：如果你是长期投资者，并且相信快手能够在激烈的竞争中找到自己的定位，那么当前的估值可能具有一定的吸引力。但对于短期投资者来说，可能需要更谨慎地评估风险。</li></ul><p>总的来说，我认为在当前情况下，快手可能需要更多时间来证明其盈利能力。如果是我，我会选择观望一段时间，看看公司在应对竞争和提升盈利能力方面的表现如何。</p><p>别忘了，投资决策需要结合自身的风险承受能力和投资目标来做判断。</p></div></div><div class="mreply"><div class="mh"><span class="who">巴菲特</span><span class="mscore">30</span></div><div class="md"><p>各位朋友，今天我们讨论的是快手这家公司。我对它的看法是，这是一家目前不符合我投资理念的企业。</p><p>首先，让我们谈谈生意模式。快手作为一家互联网公司，拥有庞大的用户基础，这是它的优势所在。互联网行业确实具有长期的增长潜力，这是不可否认的。然而，当我审视它的盈利能力时，我发现一些令人担忧的迹象。尽管它的市盈率看起来并不高，只有不到10倍，但净利润率却只有8.6%，而且净利润同比下降了5.8%。这表明公司在盈利能力方面面临挑战。</p><p>其次，从护城河的角度来看，快手所处的市场竞争非常激烈。它不仅要面对国内其他短视频平台的竞争，还要应对来自其他内容平台的挑战。在这样的环境下，快手能否持续保持其市场份额并维持盈利能力，是一个值得深思的问题。</p><p>再者，从安全边际的角度来看，目前快手的股价为44.18港元，虽然市盈率不高，但考虑到其盈利能力下降和竞争压力，我对当前价格的安全边际并不满意。对于我来说，投资一家公司不仅仅要看它的价格是否便宜，更要确保这家公司有足够的盈利能力来支撑其长期价值。</p><p>基于以上分析，我的建议是：</p><ul><li><strong>关注盈利能力</strong>：如果你考虑投资快手，密切关注其盈利能力的改善情况。如果公司能够扭转净利润下降的趋势，并找到新的增长点，那么它可能会成为一个更有吸引力的投资标的。</li></ul><ul><li><strong>评估竞争环境</strong>：深入分析快手在竞争中的地位，看看它是否能够有效地应对来自其他平台的挑战，并保持其用户基础和市场份额。</li></ul><ul><li><strong>耐心等待</strong>：对于价值投资者来说，耐心是一个重要的美德。如果你认为快手有潜力，但目前还不符合你的投资标准，那么不妨耐心等待更好的时机。</li></ul><p>最后，我想说，投资就像打棒球，你不需要每次都挥棒。对于快手这家公司，我目前会选择继续观察，而不是急于出手。</p><p>如果是芒格，他会补充说：&quot;投资就像经营果园，你需要找到那些能够长期结出好果子的树，而不是那些看起来一时热闹的品种。&quot;</p></div></div><div class="mreply"><div class="mh"><span class="who">达利欧</span><span class="mscore">45</span></div><div class="md"><p>各位同仁，关于快手-W（01024），我的看法是：目前来看，这只股票处于一个较为复杂且具有挑战性的阶段，我持部分谨慎的态度。</p><p>首先，我们来看行业层面。互联网行业毫无疑问仍具有长期增长潜力，尤其是像快手这样的平台，拥有庞大的用户基础，这是其核心优势之一。在中国乃至全球市场中，数字内容消费的趋势仍在持续，这为快手提供了广阔的发展空间。</p><p>然而，当我们深入分析快手的现状时，需要关注几个关键问题：</p><p>第一，从估值角度来看，快手的市盈率（PE）约为9.76，低于行业平均水平，这表明市场对其未来盈利能力的预期并不乐观。尽管其市净率（PB）和市销率（PS）相对合理，但净资产收益率（ROE）仅为3.59%，显示出其盈利能力面临挑战。</p><p>第二，快手面临着激烈的市场竞争压力。尽管其用户基数庞大，但如何保持用户粘性并实现有效的商业化变现，仍是亟待解决的问题。此外，竞争对手的不断涌现和市场份额的争夺，也对其增长构成压力。</p><p>第三，从财务数据来看，快手的营收同比增长仅为0.78%，而净利润同比下降5.77%，这反映出其盈利能力正在受到挤压。尽管其净利率仍保持在8.62%的水平，但这种趋势需要引起重视。</p><p>基于以上分析，我的建议是：</p><ul><li>对于长期投资者而言，可以考虑在当前价位逐步建仓，但需要密切关注其竞争格局的变化以及盈利能力的改善情况。可以将快手纳入一个多元化的投资组合中，以分散风险。</li></ul><ul><li>对于短期交易者，建议保持观望态度，等待更明确的信号出现。可以关注其用户增长数据、营收增长以及毛利率的变化，作为判断其未来走势的重要指标。</li></ul><ul><li>无论哪种投资策略，都需要建立严格的止损机制，以应对可能出现的下行风险。</li></ul><p>最后，我想强调的是，投资决策应该建立在对周期和趋势的深刻理解之上。快手所处的互联网行业正处于一个快速变化的时期，我们需要保持极度开放的态度，持续跟踪其基本面和市场环境的变化。正如我常说的，&quot;Pain + Reflection = Progress&quot;，只有在不断反思和学习中，我们才能做出更明智的决策。</p></div></div><div class="mreply"><div class="mh"><span class="who">林奇</span><span class="mscore">50</span></div><div class="md"><p>各位朋友，今天我们来聊聊快手这家公司。我的总体判断是：快手是一家值得关注的互联网公司，但目前投资需要谨慎。</p><p>首先，快手作为一家互联网公司，拥有庞大的用户基础，这是它最大的优势。用户增长是互联网公司的核心驱动力，而快手在这方面表现不错。互联网行业长期来看仍有很大的增长潜力，这是快手未来发展的基础。</p><p>然而，我们也需要看到一些风险和挑战。快手的盈利能力目前并不突出，净利润同比下降了5.77%，这需要引起重视。此外，9.76倍的市盈率看似不高，但考虑到其净资产收益率（ROE）仅为3.59%，这个估值并不算便宜。市场竞争也非常激烈，这给快手的未来增长带来了不确定性。</p><p>从林奇的角度来看，我会给快手一个50分的评分，态度是&quot;部分看好&quot;。用户增长是亮点，但盈利能力需要进一步观察。如果要投资，我建议采取以下行动：</p><ul><li>密切关注快手的用户增长和盈利能力，特别是净利润的变化趋势。</li><li>如果你已经在持有快手，可以考虑暂时持有，但不要急于加仓。</li><li>如果你正在考虑买入，建议等待更明确的盈利改善信号，或者在股价回调时再考虑。</li></ul><p>总之，快手是一家有潜力的公司，但目前面临一些挑战。投资需要耐心和谨慎，等待更好的时机。</p></div></div><div class="mreply"><div class="mh"><span class="who">芒格</span><span class="mscore">35</span></div><div class="md"><p>各位同仁，今天我们讨论的是快手-W（01024）。我的结论是：快手是一家值得关注的互联网公司，但目前面临的挑战不容小觑。</p><h4>结论</h4><p>快手拥有庞大的用户基础和长期增长潜力，但短期内的竞争压力和盈利能力下滑值得关注。我对快手持谨慎态度，建议投资者在做出投资决策前仔细权衡风险与机会。</p><h4>理由</h4><p>首先，快手作为一家互联网公司，其用户基数庞大，长期增长潜力毋庸置疑。中国互联网行业的快速发展为快手提供了广阔的市场空间。然而，快手目前面临的主要挑战包括：</p><ul><li><strong>竞争压力</strong>：短视频领域的竞争异常激烈，抖音、B站等竞争对手不断蚕食市场份额。快手需要持续创新以保持竞争优势。</li><li><strong>盈利能力下滑</strong>：尽管营收同比增长，但净利润同比下降5.77%，显示出公司在盈利能力方面面临压力。净资产收益率（ROE）仅为3.59%，远低于行业平均水平。</li><li><strong>估值问题</strong>：当前市盈率（PE）为9.76，低于行业平均水平，但考虑到盈利能力下滑，这一估值并不算特别吸引人。</li></ul><h4>风险/行动建议</h4><ul><li><strong>竞争风险</strong>：快手需要持续投入资源进行技术创新和市场推广，以应对激烈的竞争。这可能导致利润率进一步承压。</li><li><strong>盈利能力风险</strong>：如果净利润持续下滑，投资者可能会对公司的长期增长潜力产生质疑。建议投资者密切关注快手的盈利能力变化。</li><li><strong>估值风险</strong>：尽管当前估值看似合理，但考虑到盈利能力下滑，投资者应谨慎对待。如果快手不能有效改善盈利能力，估值可能会进一步承压。</li></ul><h4>行动建议</h4><p>对于长期投资者而言，快手仍然是一个值得关注的公司，但目前可能不是最佳买入时机。建议投资者在以下情况下考虑买入：</p><ul><li><strong>盈利能力改善</strong>：如果快手能够有效改善盈利能力，净利润同比转正，可以考虑买入。</li><li><strong>竞争格局改善</strong>：如果快手在竞争中取得明显优势，市场份额稳步提升，可以考虑买入。</li><li><strong>估值更具吸引力</strong>：如果快手股价进一步下跌，估值更具吸引力，可以考虑分批买入。</li></ul><p>总之，快手是一家具有长期增长潜力的公司，但目前面临的挑战不容小觑。投资者应谨慎评估风险与机会，做出明智的投资决策。</p></div></div></div>
+<div class="panel"><h2>分析师报告<span class="sub">2 篇</span></h2><details open><summary>市场面分析</summary><div class="body"><div class="md"><h4>01024 快手-W 市场面分析</h4><ul><li>红黑榜多空分数：多头 35 / 空头 65，分差 -30。</li><li>当前价格：44.18。</li><li>当前交易评级：Reduce。</li><li>值得加仓区间：41.53 - 43.30。</li><li>风险控制位：38.88。</li><li>市场愿意给溢价的原因：互联网行业长期增长潜力；用户基数大。</li><li>当前主要压制因素：股价小幅下跌(-0.14%)；竞争压力较大。</li></ul></div></div></details><details open><summary>基本面分析</summary><div class="body"><div class="md"><h4>01024 快手-W 基本面分析</h4><ul><li>报告期：暂无。</li><li>PE(TTM)：9.76。</li><li>PB：2.05。</li><li>PS(TTM)：1.19。</li><li>ROE：3.59%。</li><li>营收同比：0.78%。</li><li>归母净利润同比：-5.77%。</li><li>核心判断：收入仍在增长。</li></ul></div></div></details></div>
+<div class="panel"><h2>研究与计划</h2>
+<details><summary>基本面摘要</summary><div class="body"><div class="md"><h3>核心财务快照</h3><ul><li>报告期: 数据缺失</li><li>当前股价: 44.18 元</li><li>总市值: 1911.54 亿元</li><li>PE (TTM): 9.76</li><li>PB: 2.05</li><li>PS (TTM): 1.19</li><li>营业总收入(报告期): 数据缺失 亿元</li><li>营收同比增长率: 0.78%</li><li>归母净利润(报告期): 数据缺失 亿元</li><li>归母净利润同比增长率: -5.77%</li><li>ROE (TTM/估算): 3.59%</li><li>资产负债率: 数据缺失</li><li>经营性现金流 / 归母净利润: 数据缺失</li></ul><h4>缺失字段</h4><ul><li>营业总收入, 归母净利润, 资产负债率, 经营性现金流与归母净利润比值</li></ul></div></div></details>
+<details><summary>研究计划</summary><div class="body"><div class="md"><h4>01024 快手-W 研究摘要</h4><ul><li>红黑榜结论: Reduce</li><li>多头/空头: 35/65</li><li>正向信号: 营收同比 0.78%；PE(TTM) 9.76；PB 2.05</li><li>风险信号: ROE 3.59%；归母净利润同比 -5.77%</li><li>榜单看多理由: 互联网行业长期增长潜力；用户基数大</li><li>榜单风险提示: 股价小幅下跌(-0.14%)；竞争压力较大</li></ul></div></div></details>
+<details><summary>交易计划</summary><div class="body"><div class="md"><h4>01024 快手-W 交易计划</h4><ul><li>评级: Reduce</li><li>当前价格: 44.18</li><li>值得加仓区间: 39.76 - 41.53</li><li>目标价格: 41.97</li><li>止损位: 38.88</li><li>备注: 当前为缓存降级交易卡，后续若完整 TradingAgent 结果生成，将自动覆盖。</li></ul></div></div></details>
+<details><summary>交易决策</summary><div class="body"><div class="md"><p>Reduce</p><p>01024 快手-W 当前使用红黑榜缓存结果生成兜底交易卡。多头 35 / 空头 65，分差 -30。当前尚未取得完整 TradingAgent 长文决策，但榜单分数、财务快照和大师观点已经足够生成基础交易建议。</p></div></div></details>
+</div>
+<div class="panel"><h2>多空逻辑</h2><div class="pts"><div class="h bull">看多逻辑</div><div class="md"><p>互联网行业长期增长潜力</p><p>用户基数大</p></div></div><div class="pts"><div class="h bear">看空逻辑</div><div class="md"><p>股价小幅下跌(-0.14%)</p><p>竞争压力较大</p></div></div></div>
+<div class="panel"><h2>伯克希尔研究</h2><p><strong>快手是一家具有强大用户粘性和变现潜力的短视频平台，但面临激烈竞争和监管压力，当前估值合理但需关注长期增长空间。</strong></p><p>伯克希尔综合评分：<strong>3.5</strong></p><div class="md"><p>{&quot;verdict&quot;: &quot;买入&quot;, &quot;conservative_tip&quot;: &quot;建议在70-75港元区间买入，长期持有。&quot;, &quot;moderate_tip&quot;: &quot;建议在80-85港元区间买入，持有3-5年。&quot;, &quot;aggressive_tip&quot;: &quot;建议在90港元以下买入，持有1-2年。&quot;, &quot;catalysts_plus&quot;: [&quot;用户增长超预期&quot;, &quot;电商业务收入占比提升&quot;, &quot;海外市场拓展取得突破&quot;], &quot;catalysts_minus&quot;: [&quot;监管政策进一步收紧&quot;, &quot;用户流失或DAU下降&quot;, &quot;竞争加剧导致市场份额下降&quot;]}</p></div></div>
+<div class="panel news"><h2>最新资讯</h2><div class="md"><p>1条利好，2条利空，整体情绪偏负面。</p></div><div class="nitem"><div class="t">快手-W(01024.HK)7月8日耗资4995.9万港元回购114.2万股</div><div class="s">Moomoo · 利好</div></div><div class="nitem"><div class="t">Dow Jones Top Company Headlines at 7 PM ET: Judge Rules JPMorgan Still Has to Pay for Charlie Javice&#x27;s Legal Defense | Micron ...</div><div class="s">Moomoo · 中性</div></div><div class="nitem"><div class="t">港股异动 | 科指盘初跌幅扩大至1.5%，快手、小鹏汽车跌超4%</div><div class="s">Tiger Brokers · 利空</div></div></div>
+<footer>稳健理财Agent · 红黑榜每日归档 · 黑榜 #9 · 仅供研究，不构成投资建议</footer>
+</div></body>
+</html>

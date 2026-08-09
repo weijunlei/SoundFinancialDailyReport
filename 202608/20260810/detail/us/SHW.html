@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SHW(SHW) 红榜 2026-08-10</title>
+<style>
+:root{--red:#d8342c;--redbg:#fdecea;--green:#1a9e54;--ink:#1c2230;--muted:#6b7385;
+--line:#e7e9ef;--card:#fff;--bg:#f4f6fa;--chip:#eef1f6;--dark:#23262d;--darkbg:#ececef}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",
+"Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);
+line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 16px 64px}
+header.top{background:linear-gradient(135deg,#1c2230,#2c3550);color:#fff;border-radius:14px;
+padding:22px 24px;margin-bottom:20px;box-shadow:0 6px 24px rgba(20,26,46,.12)}
+header.top h1{margin:0 0 6px;font-size:24px;letter-spacing:.5px}
+header.top .sub{opacity:.85;font-size:13px}
+header.top .sub b{color:#ffd166;font-weight:600}
+nav.mkt{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;
+background:rgba(244,246,250,.92);backdrop-filter:blur(6px);padding:10px 0;margin-bottom:14px}
+nav.mkt a{text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);
+padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600}
+nav.mkt a:hover{border-color:var(--red);color:var(--red)}
+.summary{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.summary .chip{background:var(--card);border:1px solid var(--line);border-radius:10px;
+padding:8px 12px;font-size:12px;color:var(--muted)}
+.summary .chip b{color:var(--ink);font-size:14px;margin-left:4px}
+section.board{margin:26px 0}
+.board-title{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:19px}
+.board-title .dot{width:10px;height:10px;border-radius:50%}
+.board-title.red .dot{background:var(--red)}
+.board-title.black .dot{background:var(--dark)}
+.board-title small{color:var(--muted);font-weight:400;font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+position:relative;transition:box-shadow .15s}
+.card:hover{box-shadow:0 4px 18px rgba(20,26,46,.08)}
+.card.red{border-top:3px solid var(--red)}
+.card.black{border-top:3px solid var(--dark)}
+.rank{position:absolute;top:10px;right:12px;font-size:26px;font-weight:800;color:#eceff5}
+.card.red .rank{color:#fbdcD9}
+.nm{font-size:16px;font-weight:700}
+.nm .tk{color:var(--muted);font-weight:500;font-size:12px;margin-left:6px}
+.tag{display:inline-block;background:var(--chip);color:var(--muted);border-radius:6px;
+padding:1px 7px;font-size:11px;margin:6px 6px 0 0}
+.price-row{display:flex;align-items:baseline;gap:10px;margin:10px 0 4px}
+.price{font-size:24px;font-weight:800}
+.pct{font-size:14px;font-weight:700;padding:2px 8px;border-radius:8px}
+.up{color:var(--red)}.down{color:var(--green)}.flat{color:var(--muted)}
+.pct.up{background:var(--redbg)}.pct.down{background:#e2f4e9}.pct.flat{background:var(--chip)}
+.psrc{font-size:11px;color:var(--muted);margin-left:auto}
+.scores{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.scores span{background:var(--chip);border-radius:6px;padding:2px 8px;font-size:11px;color:var(--muted)}
+.scores span b{color:var(--ink)}
+.pts{font-size:12.5px;margin:8px 0 0}
+.pts .h{font-weight:700;font-size:12px;margin:6px 0 2px}
+.pts .h.bull{color:var(--red)}.pts .h.bear{color:var(--green)}
+.pts ul{margin:2px 0 4px;padding-left:18px;color:#3a4152}
+.pts li{margin:1px 0}
+.masters{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:11px;color:var(--muted)}
+.masters b{color:var(--ink)}
+.summ{font-size:12.5px;color:#3a4152;background:#fafbfd;border:1px solid var(--line);
+border-radius:8px;padding:8px 10px;margin-top:8px}
+.empty{color:var(--muted);background:var(--card);border:1px dashed var(--line);
+border-radius:10px;padding:18px;text-align:center}
+footer{margin-top:34px;color:var(--muted);font-size:12px;text-align:center;line-height:1.8}
+a.lnk{color:var(--red);text-decoration:none}
+/* ── detail page ── */
+.backbar{margin-bottom:14px;font-size:13px}
+.backbar a{color:var(--muted);text-decoration:none;margin-right:14px}
+.backbar a:hover{color:var(--red)}
+.badge{display:inline-block;border-radius:6px;padding:2px 10px;font-size:12px;font-weight:700;margin-right:8px}
+.badge.red{background:var(--red);color:#fff}.badge.black{background:var(--dark);color:#fff}
+.trade{display:flex;flex-wrap:wrap;gap:10px;background:linear-gradient(135deg,#2c3550,#1c2230);
+color:#fff;border-radius:12px;padding:16px 18px;margin:16px 0}
+.trade .cell{min-width:120px}
+.trade .k{font-size:11px;opacity:.75}
+.trade .v{font-size:18px;font-weight:800;margin-top:2px}
+.trade .v.buy{color:#7ee2a8}.trade .v.sell{color:#ff9d97}.trade .v.hold{color:#ffd166}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0}
+.mgrid .m{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.mgrid .m .k{font-size:11px;color:var(--muted)}
+.mgrid .m .v{font-size:16px;font-weight:700;margin-top:2px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.panel>h2{margin:0 0 12px;font-size:17px}
+.panel>h2 .sub{font-size:12px;color:var(--muted);font-weight:400;margin-left:8px}
+.mreply{border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;
+padding:12px 14px;margin:10px 0;background:#fff}
+.mreply .mh{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.mreply .mh .who{font-weight:700;font-size:14px}
+.mreply .mh .mscore{margin-left:auto;background:var(--chip);border-radius:6px;padding:1px 8px;font-size:12px;font-weight:700}
+.md h2,.md h3,.md h4,.md h5{margin:12px 0 6px;font-size:15px}
+.md p{margin:6px 0;font-size:13.5px;color:#2c3345}
+.md ul{margin:6px 0;padding-left:20px;font-size:13.5px;color:#2c3345}
+.md li{margin:3px 0}
+.md strong{color:var(--ink)}
+details{border:1px solid var(--line);border-radius:10px;background:#fff;margin:10px 0;padding:0}
+details>summary{cursor:pointer;padding:12px 16px;font-weight:700;font-size:14px;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary:before{content:"▸ ";color:var(--red)}
+details[open]>summary:before{content:"▾ "}
+details>.body{padding:0 16px 14px;border-top:1px dashed var(--line)}
+.ychip{display:inline-block;background:var(--chip);border-radius:8px;padding:4px 10px;font-size:12px;margin:3px 6px 3px 0}
+.ychip b{font-size:13px}
+.news .nitem{border-top:1px dashed var(--line);padding:8px 0;font-size:13px}
+.news .nitem .t{font-weight:600}
+.news .nitem .s{color:var(--muted);font-size:12px}
+/* ── root landing page ── */
+.hero{padding:30px 26px}
+.hero-kicker{color:#ffd166;font-size:12px;font-weight:700;letter-spacing:2px;
+text-transform:uppercase;margin-bottom:8px}
+.hero h1{font-size:30px;margin:0 0 10px}
+.day-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.day-card{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);
+border-radius:12px;padding:14px 16px;transition:all .15s}
+.day-card:hover{border-color:var(--red);box-shadow:0 4px 16px rgba(216,52,44,.12);transform:translateY(-2px)}
+.day-card .d{font-weight:800;font-size:15px;color:var(--ink);display:flex;align-items:center;gap:8px}
+.day-card .m{margin-top:8px;display:flex;gap:6px}
+.day-card .m span{background:var(--chip);color:var(--muted);border-radius:6px;
+padding:2px 8px;font-size:11px}
+.latest-badge{background:var(--red);color:#fff;border-radius:6px;padding:1px 7px;
+font-size:10px;font-weight:700}
+</style>
+</head>
+<body><div class="wrap">
+<div class="backbar"><a href="../index.html">← 总览</a><a href="../us.html">← 美股榜单</a></div>
+<header class="top">
+  <h1><span class="badge red">红榜 #3</span>SHW<span class="tk" style="opacity:.7;font-size:15px;font-weight:400;margin-left:8px">SHW</span></h1>
+  <div class="sub">美股 ·  · 榜单日期 <b>2026-08-10</b> · 盘价采集 <b>2026-08-10 05:00:50</b></div>
+  <div class="price-row" style="margin-top:12px">
+    <span class="price" style="color:#fff">$369.73</span>
+    <span class="pct up">+1.74%</span>
+    <span class="psrc" style="color:rgba(255,255,255,.6)">实时</span>
+  </div>
+  <div class="scores" style="margin-top:10px">
+    <span>综合 <b>90.6</b></span>
+    <span>多头 <b>85</b></span>
+    <span>空头 <b>20</b></span>
+    <span>大师均值 <b>74</b></span>
+    <span>信号 <b>positive</b></span>
+  </div>
+</header>
+<div class="trade"><div class="cell"><div class="k">交易评级</div><span class="v buy">Buy</span></div><div class="cell"><div class="k">加仓区间</div><span class="v">358.64 ~ 373.43</span></div><div class="cell"><div class="k">目标价</div><span class="v">414.10</span></div><div class="cell"><div class="k">伯克希尔</div><span class="v">买入</span></div><div class="cell"><div class="k">伯克希尔分</div><span class="v">4.25</span></div></div>
+<div class="panel"><h2>财务指标</h2><div class="mgrid"><div class="m"><div class="k">市盈率 PE</div><div class="v">34.14</div></div><div class="m"><div class="k">市净率 PB</div><div class="v">23.15</div></div><div class="m"><div class="k">ROE</div><div class="v">65.1%</div></div><div class="m"><div class="k">总市值</div><div class="v">898</div></div><div class="m"><div class="k">营收同比</div><div class="v">7.5%</div></div><div class="m"><div class="k">净利同比</div><div class="v">14.3%</div></div></div></div>
+<div class="panel"><h2>历史收益</h2><span class="ychip">近1月 <b class="up">+11.85%</b></span><span class="ychip">近6月 <b class="up">+2.53%</b></span><span class="ychip">近1年 <b class="up">+4.99%</b></span><span class="ychip">近5年 <b class="up">+24.32%</b></span></div>
+<div class="panel"><h2>大师圆桌<span class="sub">5 位</span></h2><div class="mreply"><div class="mh"><span class="who">段永平</span><span class="mscore">80</span></div><div class="md"><h4>圆桌发言：关于 SHW 的投资观点</h4><p>首先，我认为 SHW 是一家值得关注的优秀公司。作为涂料市场的领导者，SHW 拥有强大的定价能力，这为其长期发展提供了坚实的基础。在当前的市场环境下，这样的竞争优势尤为难得。</p><p>然而，投资决策不能只看优势，还需要关注潜在风险。当前房地产市场的不确定性是一个重要的风险因素。房地产市场的波动可能会对 SHW 的业务产生负面影响。此外，原材料成本的持续上升也是一个不容忽视的问题，这可能会压缩公司的利润率。</p><p>从估值角度来看，SHW 的市盈率（PE）和市净率（PB）都处于较高水平，这表明市场对其未来增长有较高的预期。虽然公司目前的净资产收益率（ROE）表现强劲，但投资者需要谨慎评估其长期可持续性。</p><h4>理由：</h4><ul><li><strong>市场地位稳固</strong>：SHW 作为涂料市场的领导者，拥有强大的品牌影响力和定价能力，这为其提供了稳定的现金流和盈利能力。</li><li><strong>风险因素</strong>：房地产市场的波动和原材料成本的上升可能会对公司的盈利能力构成挑战。</li><li><strong>估值水平</strong>：当前的高估值意味着市场对其未来增长有较高预期，投资者需要评估这些预期是否合理。</li></ul><h4>风险/行动建议：</h4><ul><li><strong>关注成本控制</strong>：投资者应密切关注 SHW 在成本控制方面的表现，特别是在原材料价格波动的情况下。</li><li><strong>长期视角</strong>：如果决定投资 SHW，建议以长期持有的心态进行投资，避免因短期市场波动而做出仓促决策。</li><li><strong>分散投资</strong>：考虑到房地产市场的不确定性，建议投资者在投资组合中保持一定的分散度，以降低单一行业风险。</li></ul><p>总之，SHW 是一家具有吸引力的公司，但在当前的市场环境下，投资者需要谨慎评估其风险和收益。如果是我，我会根据自身的风险承受能力和投资目标来决定是否投资 SHW，并始终保持对市场变化的敏感度。</p></div></div><div class="mreply"><div class="mh"><span class="who">巴菲特</span><span class="mscore">75</span></div><div class="md"><h4>圆桌发言：关于 SHW 的看法</h4><p>各位朋友，今天我们来聊聊 SHW 这家公司。首先，我的结论是：SHW 是一家优秀的公司，但目前的价格让我有些犹豫。</p><h5>为什么说它优秀？</h5><p>SHW 是涂料市场的领导者，拥有强大的品牌和定价能力。这意味着它在行业中占据了主导地位，客户愿意为它的产品支付溢价。这种护城河是长期盈利的保障，也是我一直以来非常看重的特质。</p><p>此外，从财务数据来看，SHW 的营收和净利润都在稳步增长，净资产收益率（ROE）高达 65%，这在传统行业中是非常出色的表现。</p><h5>为什么我会犹豫？</h5><p>尽管 SHW 是一家好公司，但目前的价格并不便宜。以 34 倍的市盈率（PE）买入，意味着我们需要对未来增长有很高的预期。然而，SHW 面临两大挑战：</p><ul><li><strong>房地产市场风险</strong>：涂料行业与房地产市场密切相关，而当前房地产市场的不确定性可能会影响 SHW 的长期增长。</li></ul><ul><li><strong>原材料成本压力</strong>：原材料价格的波动可能会侵蚀 SHW 的利润率，这对公司的盈利能力构成潜在威胁。</li></ul><h5>我的建议</h5><ul><li><strong>关注长期基本面</strong>：如果你是长期投资者，可以考虑在价格回调时买入。SHW 的品牌和定价能力是其长期价值的核心。</li></ul><ul><li><strong>耐心等待更好的时机</strong>：如果你对当前价格感到不安，可以耐心等待市场情绪变化或公司基本面出现更有利的信号。</li></ul><ul><li><strong>评估风险承受能力</strong>：在决定买入之前，评估一下自己对房地产市场和原材料成本波动的承受能力。如果这些风险让你感到不安，可能需要重新考虑投资决策。</li></ul><p>最后，我想引用一句我常说的话：“价格是你付出的，价值是你得到的。” 在考虑 SHW 时，我们需要确保付出的价格能够为我们带来足够的价值。</p><h5>如果是芒格，他会补充什么？</h5><p>查理可能会提醒我们，投资就像在果园里摘果子，有时候最好的策略是等待那些熟透的果子掉下来，而不是急着去摘那些还没成熟的。他可能会建议我们保持耐心，等待更好的机会。</p></div></div><div class="mreply"><div class="mh"><span class="who">达利欧</span><span class="mscore">60</span></div><div class="md"><h4>达利欧圆桌发言：</h4><p>各位同仁，关于 SHW 的投资前景，我的观点是：这是一只具有显著优势但也面临挑战的公司。</p><p><strong>首先，SHW 作为涂料市场的领导者，拥有强大的定价能力。</strong> 这是一个重要的竞争优势，尤其是在当前经济环境下，企业能够将成本压力转嫁给消费者，维持利润率。这种定价权表明公司在行业中的地位稳固，市场对其产品的需求依然强劲。</p><p><strong>然而，我们也必须正视几个关键风险。</strong> 房地产市场作为涂料行业的重要下游领域，目前面临较大的不确定性。房地产市场的波动会直接影响涂料的需求。此外，原材料成本的上升也是一个不容忽视的问题。尽管公司有一定的定价能力，但如果成本上升过快，可能会侵蚀其利润率。</p><p><strong>从估值角度来看，SHW 的市盈率（PE）和市净率（PB）都处于较高水平。</strong> 这意味着市场对其未来增长有较高的预期，但同时也增加了股价的下行风险。如果经济增长放缓或市场情绪转向悲观，高估值可能会带来更大的波动性。</p><p><strong>基于以上分析，我的建议是：</strong></p><ul><li><strong>密切关注房地产市场的动向。</strong> 房地产市场的表现将是影响 SHW 业绩的关键因素。如果房地产市场出现明显下滑，可能需要重新评估 SHW 的投资价值。</li></ul><ul><li><strong>关注原材料成本的变化。</strong> 如果成本压力持续上升，可能会影响公司的盈利能力。在这种情况下，投资者需要评估公司是否能够继续维持其定价能力。</li></ul><ul><li><strong>保持适度仓位。</strong> 尽管 SHW 是一家优秀的企业，但在当前的经济环境下，过度集中投资可能会增加风险。建议投资者根据自身的风险承受能力，保持适度的仓位配置。</li></ul><p><strong>最后，我想强调的是，投资决策应该基于对长期趋势的判断，而不是短期的市场波动。</strong> 我们需要建立一个决策日志，记录我们的分析过程和决策依据，以便在市场环境发生变化时，能够及时调整我们的策略。正如我常说的，&quot;Pain + Reflection = Progress&quot;，只有通过不断的反思和学习，我们才能在复杂的市场环境中保持优势。</p></div></div><div class="mreply"><div class="mh"><span class="who">林奇</span><span class="mscore">85</span></div><div class="md"><p>各位，今天我们来聊聊 SHW 这家公司。</p><h4>结论：</h4><p>SHW 是一家值得关注的优质公司，但当前估值偏高，需要谨慎对待。</p><h4>理由：</h4><p>首先，SHW 在涂料市场拥有明显的领导地位，这使得它拥有强大的定价能力。就像我常说的，买股票就是买生意，而 SHW 的生意模式非常稳固。它能够持续提高产品价格，即使在成本上升的情况下也能保持盈利能力。</p><p>从财务数据来看，SHW 的营收同比增长 7.5%，净利润同比增长 14.3%，净资产收益率（ROE）高达 65.1%，这些都显示出公司强劲的盈利能力。</p><h4>风险：</h4><p>然而，我们也不能忽视一些潜在的风险：</p><ul><li><strong>房地产市场风险</strong>：涂料行业与房地产市场密切相关。如果房地产市场出现下滑，SHW 的业绩可能会受到影响。</li><li><strong>原材料成本压力</strong>：尽管 SHW 有一定的定价能力，但如果原材料成本持续上升，可能会挤压其利润率。</li></ul><h4>行动建议：</h4><p>对于 SHW，我的建议是：</p><ul><li><strong>耐心等待更好的买入时机</strong>：当前 34 倍的市盈率（PE）对于一家成熟公司来说偏高。如果你能耐心等待市场出现调整，可能会找到更好的买入机会。</li><li><strong>关注房地产市场和原材料价格走势</strong>：如果你已经持有 SHW，建议密切关注房地产市场的变化以及原材料价格的波动。这些因素可能会对 SHW 的业绩产生重大影响。</li></ul><p>总的来说，SHW 是一家优秀的公司，但当前估值偏高。如果你能在更合理的价位买入，长期持有应该会有不错的回报。就像我常说的，买股票就像买水果，要等到打折的时候再买，而不是在水果店门口排长队的时候去抢。</p></div></div><div class="mreply"><div class="mh"><span class="who">芒格</span><span class="mscore">70</span></div><div class="md"><p>各位同行，今天我们来谈谈 SHW 这家公司。我的立场是：这是一项值得关注的投资，但必须警惕几个关键风险。</p><p>首先，SHW 作为涂料市场的领导者，其商业模式具有显著的竞争优势。它拥有强大的定价能力，这使得公司在面对成本波动时能够维持利润率。这种定价权是许多公司梦寐以求的护城河。</p><p>然而，正如我们都知道的，投资不能只看优势。我们必须先考虑&quot;这件事可能怎么失败&quot;。这里有两个主要风险需要警惕：</p><p>第一，房地产市场的不确定性。涂料行业与房地产市场的关联度很高，如果房地产市场出现大幅下滑，SHW 的业绩必然会受到影响。</p><p>第二，原材料成本的压力。尽管公司有定价权，但原材料价格的持续上涨仍然可能侵蚀其利润率。我们不能忽视这个现实。</p><p>从估值角度来看，当前的市盈率约为 34 倍，市净率超过 23 倍。这些指标表明市场对 SHW 的预期已经相当高。虽然公司的净资产收益率（ROE）高达 65%，显示出其强大的盈利能力，但我们必须问自己：这种高估值是否已经充分反映了其增长潜力？</p><p>基于以上分析，我的建议是：</p><ul><li>密切关注房地产市场的动向。这将是影响 SHW 业绩的关键因素。</li></ul><ul><li>仔细评估原材料成本的变化趋势。如果成本压力持续上升，可能需要重新考虑投资决策。</li></ul><ul><li>在当前估值水平下，建议采取分批建仓的策略，而不是一次性投入。这样可以降低短期波动带来的风险。</li></ul><p>最后，我想提醒大家：投资就像打牌，重要的不是抓到好牌，而是知道什么时候该下注，什么时候该收手。我们必须保持理性，避免被市场情绪左右。</p><p>我能错在哪？或许是我低估了公司应对成本上涨的能力，或者高估了房地产市场风险的影响。但无论如何，保持警惕总是明智的。</p></div></div></div>
+<div class="panel"><h2>分析师报告<span class="sub">2 篇</span></h2><details open><summary>市场面分析</summary><div class="body"><div class="md"><h4>SHW SHW 市场面分析</h4><ul><li>红黑榜多空分数：多头 85 / 空头 20，分差 65。</li><li>当前价格：369.73。</li><li>当前交易评级：Buy。</li><li>值得加仓区间：358.64 - 373.43。</li><li>目标价格：414.10。</li><li>市场愿意给溢价的原因：涂料市场领导者；强大的定价能力。</li><li>当前主要压制因素：房地产市场风险；原材料成本压力。</li></ul></div></div></details><details open><summary>基本面分析</summary><div class="body"><div class="md"><h4>SHW SHW 基本面分析</h4><ul><li>报告期：暂无。</li><li>PE(TTM)：34.14。</li><li>PB：23.15。</li><li>ROE：65.12%。</li><li>营收同比：7.50%。</li><li>归母净利润同比：14.30%。</li><li>核心判断：盈利能力处于可接受区间；收入仍在增长；利润端保持扩张。</li></ul></div></div></details></div>
+<div class="panel"><h2>研究与计划</h2>
+<details><summary>基本面摘要</summary><div class="body"><div class="md"><h3>核心财务快照</h3><ul><li>报告期: 数据缺失</li><li>当前股价: 369.73 元</li><li>总市值: 897.55 亿元</li><li>PE (TTM): 34.14</li><li>PB: 23.15</li><li>PS (TTM): 数据缺失</li><li>营业总收入(报告期): 数据缺失 亿元</li><li>营收同比增长率: 7.50%</li><li>归母净利润(报告期): 数据缺失 亿元</li><li>归母净利润同比增长率: 14.30%</li><li>ROE (TTM/估算): 65.12%</li><li>资产负债率: 数据缺失</li><li>经营性现金流 / 归母净利润: 数据缺失</li></ul><h4>缺失字段</h4><ul><li>PS(TTM), 营业总收入, 归母净利润, 资产负债率, 经营性现金流与归母净利润比值</li></ul></div></div></details>
+<details><summary>研究计划</summary><div class="body"><div class="md"><h4>SHW SHW 研究摘要</h4><ul><li>红黑榜结论: Buy</li><li>多头/空头: 85/20</li><li>正向信号: ROE 65.12%；营收同比 7.50%；归母净利润同比 14.30%；PE(TTM) 34.14</li><li>榜单看多理由: 涂料市场领导者；强大的定价能力</li><li>榜单风险提示: 房地产市场风险；原材料成本压力</li></ul></div></div></details>
+<details><summary>交易计划</summary><div class="body"><div class="md"><h4>SHW SHW 交易计划</h4><ul><li>评级: Buy</li><li>当前价格: 369.73</li><li>值得加仓区间: 358.64 - 373.43</li><li>目标价格: 414.10</li><li>止损位: 340.15</li><li>备注: 当前为缓存降级交易卡，后续若完整 TradingAgent 结果生成，将自动覆盖。</li></ul></div></div></details>
+<details><summary>交易决策</summary><div class="body"><div class="md"><p>Buy</p><p>SHW SHW 当前使用红黑榜缓存结果生成兜底交易卡。多头 85 / 空头 20，分差 65。当前尚未取得完整 TradingAgent 长文决策，但榜单分数、财务快照和大师观点已经足够生成基础交易建议。</p></div></div></details>
+</div>
+<div class="panel"><h2>多空逻辑</h2><div class="pts"><div class="h bull">看多逻辑</div><div class="md"><p>涂料市场领导者</p><p>强大的定价能力</p></div></div><div class="pts"><div class="h bear">看空逻辑</div><div class="md"><p>房地产市场风险</p><p>原材料成本压力</p></div></div></div>
+<div class="panel"><h2>伯克希尔研究</h2><p><strong>宣伟是一家拥有强大护城河和长期确定性的涂料行业龙头，值得长期关注并逢低买入。</strong></p><p>伯克希尔综合评分：<strong>4.25</strong></p><div class="md"><p>{&quot;verdict&quot;: &quot;买入&quot;, &quot;conservative_tip&quot;: &quot;建议在PE TTM低于22倍时买入。&quot;, &quot;moderate_tip&quot;: &quot;建议在PE TTM低于25倍时买入。&quot;, &quot;aggressive_tip&quot;: &quot;建议在PE TTM低于28倍时买入。&quot;, &quot;catalysts_plus&quot;: [&quot;原材料价格回落&quot;, &quot;全球经济复苏&quot;, &quot;环保政策趋严导致市场份额进一步集中&quot;], &quot;catalysts_minus&quot;: [&quot;原材料价格大幅上涨&quot;, &quot;全球经济衰退&quot;, &quot;环保政策执行力度低于预期&quot;]}</p></div></div>
+<div class="panel news"><h2>最新资讯</h2><div class="md"><p>整体情绪偏多，8条利好，3条利空，1条中性。</p></div><div class="nitem"><div class="t">Beacon Investment Advisory Services Inc. Decreases Holdings in The Sherwin-Williams Company $SHW</div><div class="s">MarketBeat · 利空</div></div><div class="nitem"><div class="t">Is Sherwin-Williams (SHW) Fully Valued Following Strong Earnings And Raised Guidance?</div><div class="s">simplywall.st · 中性</div></div><div class="nitem"><div class="t">(SHW) as a Liquidity Pulse for Institutional Tactics</div><div class="s">Stock Traders Daily · 中性</div></div><div class="nitem"><div class="t">Sherwin-Williams (SHW) holder to sell 7,886 vested shares under Rule 144</div><div class="s">Stock Titan · 利空</div></div><div class="nitem"><div class="t">Why Sherwin-Williams (SHW) Stock Is Trading Up Today</div><div class="s">Yahoo Finance · 利好</div></div><div class="nitem"><div class="t">Sherwin-Williams Co (SHW) Shares Surge 3.9% -- What GF Score of 89 Tells Investors</div><div class="s">GuruFocus · 利好</div></div><div class="nitem"><div class="t">The Sherwin-Williams Company $SHW Holdings Raised by PensionDanmark Pensionsforsikringsaktieselskab</div><div class="s">MarketBeat · 利好</div></div><div class="nitem"><div class="t">SHW Aug 2026 390.000 put (SHW260821P00390000) Stock Price, News, Quote &amp; History</div><div class="s">Yahoo! Finance Canada · 中性</div></div></div>
+<footer>稳健理财Agent · 红黑榜每日归档 · 红榜 #3 · 仅供研究，不构成投资建议</footer>
+</div></body>
+</html>

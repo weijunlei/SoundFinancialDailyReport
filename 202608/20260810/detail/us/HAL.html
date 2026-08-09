@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HAL(HAL) 黑榜 2026-08-10</title>
+<style>
+:root{--red:#d8342c;--redbg:#fdecea;--green:#1a9e54;--ink:#1c2230;--muted:#6b7385;
+--line:#e7e9ef;--card:#fff;--bg:#f4f6fa;--chip:#eef1f6;--dark:#23262d;--darkbg:#ececef}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",
+"Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);
+line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 16px 64px}
+header.top{background:linear-gradient(135deg,#1c2230,#2c3550);color:#fff;border-radius:14px;
+padding:22px 24px;margin-bottom:20px;box-shadow:0 6px 24px rgba(20,26,46,.12)}
+header.top h1{margin:0 0 6px;font-size:24px;letter-spacing:.5px}
+header.top .sub{opacity:.85;font-size:13px}
+header.top .sub b{color:#ffd166;font-weight:600}
+nav.mkt{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;
+background:rgba(244,246,250,.92);backdrop-filter:blur(6px);padding:10px 0;margin-bottom:14px}
+nav.mkt a{text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);
+padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600}
+nav.mkt a:hover{border-color:var(--red);color:var(--red)}
+.summary{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.summary .chip{background:var(--card);border:1px solid var(--line);border-radius:10px;
+padding:8px 12px;font-size:12px;color:var(--muted)}
+.summary .chip b{color:var(--ink);font-size:14px;margin-left:4px}
+section.board{margin:26px 0}
+.board-title{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:19px}
+.board-title .dot{width:10px;height:10px;border-radius:50%}
+.board-title.red .dot{background:var(--red)}
+.board-title.black .dot{background:var(--dark)}
+.board-title small{color:var(--muted);font-weight:400;font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+position:relative;transition:box-shadow .15s}
+.card:hover{box-shadow:0 4px 18px rgba(20,26,46,.08)}
+.card.red{border-top:3px solid var(--red)}
+.card.black{border-top:3px solid var(--dark)}
+.rank{position:absolute;top:10px;right:12px;font-size:26px;font-weight:800;color:#eceff5}
+.card.red .rank{color:#fbdcD9}
+.nm{font-size:16px;font-weight:700}
+.nm .tk{color:var(--muted);font-weight:500;font-size:12px;margin-left:6px}
+.tag{display:inline-block;background:var(--chip);color:var(--muted);border-radius:6px;
+padding:1px 7px;font-size:11px;margin:6px 6px 0 0}
+.price-row{display:flex;align-items:baseline;gap:10px;margin:10px 0 4px}
+.price{font-size:24px;font-weight:800}
+.pct{font-size:14px;font-weight:700;padding:2px 8px;border-radius:8px}
+.up{color:var(--red)}.down{color:var(--green)}.flat{color:var(--muted)}
+.pct.up{background:var(--redbg)}.pct.down{background:#e2f4e9}.pct.flat{background:var(--chip)}
+.psrc{font-size:11px;color:var(--muted);margin-left:auto}
+.scores{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.scores span{background:var(--chip);border-radius:6px;padding:2px 8px;font-size:11px;color:var(--muted)}
+.scores span b{color:var(--ink)}
+.pts{font-size:12.5px;margin:8px 0 0}
+.pts .h{font-weight:700;font-size:12px;margin:6px 0 2px}
+.pts .h.bull{color:var(--red)}.pts .h.bear{color:var(--green)}
+.pts ul{margin:2px 0 4px;padding-left:18px;color:#3a4152}
+.pts li{margin:1px 0}
+.masters{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:11px;color:var(--muted)}
+.masters b{color:var(--ink)}
+.summ{font-size:12.5px;color:#3a4152;background:#fafbfd;border:1px solid var(--line);
+border-radius:8px;padding:8px 10px;margin-top:8px}
+.empty{color:var(--muted);background:var(--card);border:1px dashed var(--line);
+border-radius:10px;padding:18px;text-align:center}
+footer{margin-top:34px;color:var(--muted);font-size:12px;text-align:center;line-height:1.8}
+a.lnk{color:var(--red);text-decoration:none}
+/* ── detail page ── */
+.backbar{margin-bottom:14px;font-size:13px}
+.backbar a{color:var(--muted);text-decoration:none;margin-right:14px}
+.backbar a:hover{color:var(--red)}
+.badge{display:inline-block;border-radius:6px;padding:2px 10px;font-size:12px;font-weight:700;margin-right:8px}
+.badge.red{background:var(--red);color:#fff}.badge.black{background:var(--dark);color:#fff}
+.trade{display:flex;flex-wrap:wrap;gap:10px;background:linear-gradient(135deg,#2c3550,#1c2230);
+color:#fff;border-radius:12px;padding:16px 18px;margin:16px 0}
+.trade .cell{min-width:120px}
+.trade .k{font-size:11px;opacity:.75}
+.trade .v{font-size:18px;font-weight:800;margin-top:2px}
+.trade .v.buy{color:#7ee2a8}.trade .v.sell{color:#ff9d97}.trade .v.hold{color:#ffd166}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0}
+.mgrid .m{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.mgrid .m .k{font-size:11px;color:var(--muted)}
+.mgrid .m .v{font-size:16px;font-weight:700;margin-top:2px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.panel>h2{margin:0 0 12px;font-size:17px}
+.panel>h2 .sub{font-size:12px;color:var(--muted);font-weight:400;margin-left:8px}
+.mreply{border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;
+padding:12px 14px;margin:10px 0;background:#fff}
+.mreply .mh{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.mreply .mh .who{font-weight:700;font-size:14px}
+.mreply .mh .mscore{margin-left:auto;background:var(--chip);border-radius:6px;padding:1px 8px;font-size:12px;font-weight:700}
+.md h2,.md h3,.md h4,.md h5{margin:12px 0 6px;font-size:15px}
+.md p{margin:6px 0;font-size:13.5px;color:#2c3345}
+.md ul{margin:6px 0;padding-left:20px;font-size:13.5px;color:#2c3345}
+.md li{margin:3px 0}
+.md strong{color:var(--ink)}
+details{border:1px solid var(--line);border-radius:10px;background:#fff;margin:10px 0;padding:0}
+details>summary{cursor:pointer;padding:12px 16px;font-weight:700;font-size:14px;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary:before{content:"▸ ";color:var(--red)}
+details[open]>summary:before{content:"▾ "}
+details>.body{padding:0 16px 14px;border-top:1px dashed var(--line)}
+.ychip{display:inline-block;background:var(--chip);border-radius:8px;padding:4px 10px;font-size:12px;margin:3px 6px 3px 0}
+.ychip b{font-size:13px}
+.news .nitem{border-top:1px dashed var(--line);padding:8px 0;font-size:13px}
+.news .nitem .t{font-weight:600}
+.news .nitem .s{color:var(--muted);font-size:12px}
+/* ── root landing page ── */
+.hero{padding:30px 26px}
+.hero-kicker{color:#ffd166;font-size:12px;font-weight:700;letter-spacing:2px;
+text-transform:uppercase;margin-bottom:8px}
+.hero h1{font-size:30px;margin:0 0 10px}
+.day-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.day-card{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);
+border-radius:12px;padding:14px 16px;transition:all .15s}
+.day-card:hover{border-color:var(--red);box-shadow:0 4px 16px rgba(216,52,44,.12);transform:translateY(-2px)}
+.day-card .d{font-weight:800;font-size:15px;color:var(--ink);display:flex;align-items:center;gap:8px}
+.day-card .m{margin-top:8px;display:flex;gap:6px}
+.day-card .m span{background:var(--chip);color:var(--muted);border-radius:6px;
+padding:2px 8px;font-size:11px}
+.latest-badge{background:var(--red);color:#fff;border-radius:6px;padding:1px 7px;
+font-size:10px;font-weight:700}
+</style>
+</head>
+<body><div class="wrap">
+<div class="backbar"><a href="../index.html">← 总览</a><a href="../us.html">← 美股榜单</a></div>
+<header class="top">
+  <h1><span class="badge black">黑榜 #6</span>HAL<span class="tk" style="opacity:.7;font-size:15px;font-weight:400;margin-left:8px">HAL</span></h1>
+  <div class="sub">美股 ·  · 榜单日期 <b>2026-08-10</b> · 盘价采集 <b>2026-08-10 05:00:50</b></div>
+  <div class="price-row" style="margin-top:12px">
+    <span class="price" style="color:#fff">$31.89</span>
+    <span class="pct down">-1.91%</span>
+    <span class="psrc" style="color:rgba(255,255,255,.6)">实时</span>
+  </div>
+  <div class="scores" style="margin-top:10px">
+    <span>综合 <b>29.4</b></span>
+    <span>多头 <b>40</b></span>
+    <span>空头 <b>75</b></span>
+    <span>大师均值 <b>40</b></span>
+    <span>信号 <b>negative</b></span>
+  </div>
+</header>
+<div class="trade"><div class="cell"><div class="k">交易评级</div><span class="v hold">Reduce</span></div><div class="cell"><div class="k">加仓区间</div><span class="v">28.70 ~ 29.98</span></div><div class="cell"><div class="k">伯克希尔</div><span class="v">观望</span></div><div class="cell"><div class="k">伯克希尔分</div><span class="v">2.75</span></div></div>
+<div class="panel"><h2>财务指标</h2><div class="mgrid"><div class="m"><div class="k">市盈率 PE</div><div class="v">16.70</div></div><div class="m"><div class="k">市净率 PB</div><div class="v">2.42</div></div><div class="m"><div class="k">ROE</div><div class="v">14.9%</div></div><div class="m"><div class="k">总市值</div><div class="v">266</div></div><div class="m"><div class="k">营收同比</div><div class="v">3.7%</div></div><div class="m"><div class="k">净利同比</div><div class="v">16.1%</div></div></div></div>
+<div class="panel"><h2>历史收益</h2><span class="ychip">近1月 <b class="down">-8.81%</b></span><span class="ychip">近6月 <b class="down">-8.62%</b></span><span class="ychip">近1年 <b class="up">+52.58%</b></span><span class="ychip">近5年 <b class="up">+61.96%</b></span></div>
+<div class="panel"><h2>大师圆桌<span class="sub">5 位</span></h2><div class="mreply"><div class="mh"><span class="who">段永平</span><span class="mscore">35</span></div><div class="md"><p>各位同仁，关于 HAL 这家公司，我的看法是这样的。</p><p>首先，我的结论是：对于 HAL，我持谨慎态度。</p><p>原因主要有两点：</p><ul><li>虽然能源服务需求在增长，油价上涨也带来了一些利好，但 HAL 的股价在过去一段时间已经下跌了 1.91%。这表明市场对其未来前景存在担忧。</li></ul><ul><li>更重要的是，能源行业具有很强的周期性。虽然 HAL 目前市盈率 16 倍，市净率 2.4 倍，看起来不算贵，但考虑到行业的周期性波动，风险不容忽视。</li></ul><p>从价值投资的角度来看，我更关注的是企业的长期竞争力和确定性。而 HAL 所处的行业环境充满变数，这让我对其长期发展持保留意见。</p><p>关于行动建议：</p><ul><li>如果你已经在关注这家公司，建议先不要急于买入。耐心等待更明确的信号，观察行业周期变化趋势。</li></ul><ul><li>对于已经持有 HAL 的投资者，需要认真评估自己的风险承受能力。考虑到行业的周期性特征，可能需要做好长期持有的心理准备。</li></ul><ul><li>特别要提醒的是，不要因为短期油价上涨就过度乐观。能源行业的周期性波动往往超出预期，保持谨慎是必要的。</li></ul><p>最后，我想强调的是，投资决策要基于对企业长期价值的判断，而不是短期的市场波动。在面对周期性行业时，尤其要保持清醒的头脑。</p></div></div><div class="mreply"><div class="mh"><span class="who">巴菲特</span><span class="mscore">40</span></div><div class="md"><p>各位朋友，关于 HAL 公司，我有些看法。</p><p>首先，我的结论是：目前我不会考虑投资 HAL。</p><p>原因很简单：这是一家典型的能源服务公司，业务模式高度依赖于油价和整体经济周期。尽管能源服务需求确实在增长，油价上涨也带来了一些机会，但这个行业固有的周期性波动风险让我保持谨慎。</p><p>从估值来看，HAL 的市盈率约为 16 倍，市净率约为 2.4 倍。这个估值水平在能源行业中并不算特别便宜。更重要的是，公司最近一个季度的营收同比增长仅为 3.7%，净利润同比增长 16.1%，但股价却下跌了 1.91%。这表明市场对公司的未来预期并不乐观。</p><p>让我更担心的是能源行业的周期性本质。石油和天然气价格波动剧烈，这直接影响 HAL 的盈利能力。尽管目前油价上涨，但这种上涨能持续多久？当油价下跌时，HAL 的业务将面临巨大压力。</p><p>基于以上分析，我建议：</p><ul><li>如果你已经在关注 HAL，应该重点关注其长期合同占比，这能提供一定的收入稳定性。</li><li>密切关注油价走势，以及公司成本控制能力。</li><li>考虑行业周期性风险，在投资组合中保持适度比例，不要过度集中。</li></ul><p>最后，我想说，投资就像打棒球，你不需要每次都挥棒。对于 HAL，我会继续观察，等待更好的击球机会。</p><p>如果是芒格，他可能会补充说：&quot;在投资中，耐心是最重要的美德。HAL 这样的公司，需要在行业低谷时考虑，而不是在周期高点时追高。&quot;</p></div></div><div class="mreply"><div class="mh"><span class="who">达利欧</span><span class="mscore">45</span></div><div class="md"><p>各位同仁，关于 HAL 这家公司，我的看法是：目前市场对其看法较为悲观，理由充分，但同时也有一些积极因素值得考虑。</p><p>首先，HAL 当前的股价为 31.89 美元，市盈率 16.7 倍，市净率 2.4 倍。从基本面来看，收入同比增长 3.7%，净利润同比增长 16.1%，净资产收益率达到 14.9%，这些数据表明公司盈利能力尚可。然而，市场对其的看空情绪更强烈，熊市评分高达 75 分，主要原因是行业周期性波动带来的风险，以及近期股价下跌了 1.91%。</p><p>尽管如此，能源服务需求的增长和油价上涨的预期为 HAL 提供了一些支撑。能源行业与宏观经济周期密切相关，当前全球经济复苏的预期可能会带动能源需求，进而利好 HAL 的业务。</p><p>然而，我必须强调，HAL 的业务模式高度依赖于能源价格的波动，而能源价格本身受到地缘政治、供需关系和宏观经济政策的多重影响，具有高度的不确定性。因此，虽然 HAL 当前的估值看似合理，但投资者需要警惕其周期性风险。</p><p>我的建议是：</p><ul><li>如果你持有 HAL 的股票，建议密切关注能源价格走势和全球经济复苏的迹象，作为判断其未来业绩的重要指标。</li></ul><ul><li>对于考虑建仓的投资者，可以等待更明确的信号，比如能源需求的持续增长或油价突破关键点位。</li></ul><ul><li>考虑到 HAL 的周期性特征，建议将其纳入一个多元化的投资组合中，以分散单一行业带来的风险。</li></ul><p>最后，我要提醒大家，在做出投资决策时，要保持极度开放和透明的态度，记录下你的决策依据和预期，并在未来进行复盘和反思。正如我常说的，&quot;Pain + Reflection = Progress&quot;，只有不断学习和调整，才能在复杂的市场环境中取得长期的成功。</p></div></div><div class="mreply"><div class="mh"><span class="who">林奇</span><span class="mscore">50</span></div><div class="md"><h4>结论：</h4><p>关于 HAL，我目前的看法是谨慎观望。这只股票处于一个充满机会但也充满风险的领域。</p><h4>理由：</h4><p>首先，从积极的方面来看，HAL 所在的能源服务行业正受益于能源需求的增长和油价的上涨。这两个因素为公司的业务提供了支撑，使其营收和净利润分别增长了 3.7% 和 16.1%。此外，16 倍的市盈率（PE）和 2.4 倍的市净率（PB）表明市场对这只股票的估值相对合理。</p><p>然而，HAL 也面临着显著的挑战。行业周期性波动是一个不可忽视的风险，尤其是能源行业对经济周期和地缘政治因素的敏感性。此外，公司股价在过去一段时间内下跌了 1.91%，这可能反映出市场对其未来增长的担忧。</p><h4>风险/行动建议：</h4><ul><li><strong>周期性风险</strong>：能源服务行业具有明显的周期性，投资者需要密切关注全球经济走势和油价波动。如果全球经济出现放缓迹象，或者油价大幅下跌，HAL 的业绩可能会受到负面影响。</li></ul><ul><li><strong>市场情绪</strong>：尽管公司基本面有一定支撑，但市场情绪的变化可能会导致股价波动。投资者应做好心理准备，迎接可能的短期波动。</li></ul><ul><li><strong>长期视角</strong>：如果你对能源行业的长期前景有信心，并且能够承受短期波动，可以考虑在股价回调时逐步建仓。但要记住，这是一只周期股，不适合短期投机。</li></ul><ul><li><strong>仓位控制</strong>：由于 HAL 的风险较高，建议将其作为投资组合中的一部分，而不是重仓持有。分散投资可以有效降低单一股票带来的风险。</li></ul><p>总的来说，HAL 是一只值得关注的股票，但需要谨慎对待。如果你决定投资，务必做好风险管理，并保持对行业动态的持续关注。</p></div></div><div class="mreply"><div class="mh"><span class="who">munger</span></div><div class="md"><p>各位同仁，今天我们来谈谈 HAL 公司（HALLIBURTON）。首先，我的结论是：目前我对 HAL 的看法偏谨慎，甚至可以说有些悲观。</p><p>让我解释一下我的理由：</p><h4>逆向思考：失败的可能</h4><ul><li><strong>行业周期性风险</strong>：能源服务行业具有很强的周期性，而 HAL 作为行业龙头也难以避免这种波动。当前油价上涨确实带动了短期需求，但这种趋势能否持续是个问号。</li><li><strong>市场波动风险</strong>：从数据上看，HAL 股价近期已经下跌了 1.91%，这可能是一个警示信号，表明市场对未来的预期并不乐观。</li><li><strong>估值风险</strong>：尽管 HAL 的 PE 值为 16.7，PB 值为 2.4，看起来并不算高，但考虑到行业的周期性，估值可能并没有充分反映未来的风险。</li></ul><h4>激励机制分析</h4><p>能源服务行业的激励机制主要取决于油价和全球能源需求。当前油价上涨确实对 HAL 有利，但这种激励也可能导致公司在周期高点过度扩张，从而在周期下行时面临更大的风险。</p><h4>优势审视</h4><ul><li><strong>行业地位</strong>：HAL 在能源服务领域具有强大的市场地位和丰富的经验，这为其提供了较强的抗风险能力。</li><li><strong>需求增长</strong>：全球对能源服务的需求仍在增长，这为 HAL 提供了长期的增长机会。</li></ul><h4>概率与赔率</h4><p>综合考虑胜率和赔率，我认为 HAL 的胜率较低，而赔率也并不吸引人。当前市场环境充满不确定性，周期性风险和估值风险都较高。</p><h4>心理学陷阱自检</h4><p>在这种情况下，我们需要警惕几种常见的心理学陷阱：</p><ul><li><strong>从众心理</strong>：不要因为市场对能源行业的短期乐观情绪而盲目跟风。</li><li><strong>锚定效应</strong>：不要过分依赖当前的估值指标，而忽视了行业周期性的影响。</li><li><strong>过度自信</strong>：即使 HAL 是行业龙头，也不能忽视周期波动带来的风险。</li></ul><h4>风险与行动建议</h4><ul><li><strong>风险提示</strong>：HAL 面临的主要风险是行业周期性和市场波动性。如果全球经济放缓或油价下跌，HAL 的业绩可能会受到较大影响。</li><li><strong>行动建议</strong>：对于 HAL，我建议保持观望态度。如果投资者已经持有 HAL，建议密切关注油价走势和全球经济数据，并在适当的时候进行仓位调整。</li></ul><p>最后，我想提醒大家，投资决策不应仅仅基于短期的市场波动，而应更多地考虑长期的基本面和行业趋势。正如我常说的：&quot;如果我知道自己死在哪里，我就永远不去那里。&quot; 在 HAL 的案例中，我们需要警惕的就是行业周期性和市场波动性带来的风险。</p></div></div></div>
+<div class="panel"><h2>分析师报告<span class="sub">2 篇</span></h2><details open><summary>市场面分析</summary><div class="body"><div class="md"><h4>HAL HAL 市场面分析</h4><ul><li>红黑榜多空分数：多头 40 / 空头 75，分差 -35。</li><li>当前价格：31.89。</li><li>当前交易评级：Reduce。</li><li>值得加仓区间：28.70 - 29.98。</li><li>风险控制位：28.06。</li><li>市场愿意给溢价的原因：能源服务需求增长；油价上涨带动。</li><li>当前主要压制因素：-1.91%的跌幅；行业周期性波动风险。</li></ul></div></div></details><details open><summary>基本面分析</summary><div class="body"><div class="md"><h4>HAL HAL 基本面分析</h4><ul><li>报告期：暂无。</li><li>PE(TTM)：16.70。</li><li>PB：2.42。</li><li>ROE：14.92%。</li><li>营收同比：3.70%。</li><li>归母净利润同比：16.10%。</li><li>核心判断：盈利能力处于可接受区间；收入仍在增长；利润端保持扩张。</li></ul></div></div></details></div>
+<div class="panel"><h2>研究与计划</h2>
+<details><summary>基本面摘要</summary><div class="body"><div class="md"><h3>核心财务快照</h3><ul><li>报告期: 数据缺失</li><li>当前股价: 31.89 元</li><li>总市值: 265.69 亿元</li><li>PE (TTM): 16.70</li><li>PB: 2.42</li><li>PS (TTM): 数据缺失</li><li>营业总收入(报告期): 数据缺失 亿元</li><li>营收同比增长率: 3.70%</li><li>归母净利润(报告期): 数据缺失 亿元</li><li>归母净利润同比增长率: 16.10%</li><li>ROE (TTM/估算): 14.92%</li><li>资产负债率: 数据缺失</li><li>经营性现金流 / 归母净利润: 数据缺失</li></ul><h4>缺失字段</h4><ul><li>PS(TTM), 营业总收入, 归母净利润, 资产负债率, 经营性现金流与归母净利润比值</li></ul></div></div></details>
+<details><summary>研究计划</summary><div class="body"><div class="md"><h4>HAL HAL 研究摘要</h4><ul><li>红黑榜结论: Reduce</li><li>多头/空头: 40/75</li><li>正向信号: ROE 14.92%；营收同比 3.70%；归母净利润同比 16.10%；PE(TTM) 16.70</li><li>榜单看多理由: 能源服务需求增长；油价上涨带动</li><li>榜单风险提示: -1.91%的跌幅；行业周期性波动风险</li></ul></div></div></details>
+<details><summary>交易计划</summary><div class="body"><div class="md"><h4>HAL HAL 交易计划</h4><ul><li>评级: Reduce</li><li>当前价格: 31.89</li><li>值得加仓区间: 28.70 - 29.98</li><li>目标价格: 30.30</li><li>止损位: 28.06</li><li>备注: 当前为缓存降级交易卡，后续若完整 TradingAgent 结果生成，将自动覆盖。</li></ul></div></div></details>
+<details><summary>交易决策</summary><div class="body"><div class="md"><p>Reduce</p><p>HAL HAL 当前使用红黑榜缓存结果生成兜底交易卡。多头 40 / 空头 75，分差 -35。当前尚未取得完整 TradingAgent 长文决策，但榜单分数、财务快照和大师观点已经足够生成基础交易建议。</p></div></div></details>
+</div>
+<div class="panel"><h2>多空逻辑</h2><div class="pts"><div class="h bull">看多逻辑</div><div class="md"><p>能源服务需求增长</p><p>油价上涨带动</p></div></div><div class="pts"><div class="h bear">看空逻辑</div><div class="md"><p>-1.91%的跌幅</p><p>行业周期性波动风险</p></div></div></div>
+<div class="panel"><h2>伯克希尔研究</h2><p><strong>哈里伯顿是一家具有周期性特征的行业龙头，但当前面临能源行业波动和长期转型压力，需谨慎评估其投资价值。</strong></p><p>伯克希尔综合评分：<strong>2.75</strong></p><div class="md"><p>{&quot;verdict&quot;: &quot;观望&quot;, &quot;conservative_tip&quot;: &quot;建议等待更明确的行业趋势信号，当前价格区间可少量建仓。&quot;, &quot;moderate_tip&quot;: &quot;若能源价格持续上涨，可考虑在当前价格区间适度增持。&quot;, &quot;aggressive_tip&quot;: &quot;不建议激进投资，除非新能源转型出现明确突破。&quot;, &quot;catalysts_plus&quot;: [&quot;能源价格大幅上涨&quot;, &quot;公司新能源业务取得突破&quot;, &quot;行业竞争格局改善&quot;], &quot;catalysts_minus&quot;: [&quot;新能源政策加速落地&quot;, &quot;公司业绩不及预期&quot;, &quot;全球经济衰退&quot;]}</p></div></div>
+<div class="panel news"><h2>最新资讯</h2><div class="md"><p>整体情绪偏中性，利多0条，利空1条，中性10条。</p></div><div class="nitem"><div class="t">Dr. Harold &quot;Hal&quot; Maurer, who helped transform UNMC, has died</div><div class="s">Omaha World-Herald · 中性</div></div><div class="nitem"><div class="t">Dale’s Cookoff Challenge: Hal’s chicken lollipops</div><div class="s">fox10tv.com · 中性</div></div><div class="nitem"><div class="t">Bryan Stovall Obituary (2026) - Oxford, NC - Sossamon Funeral Home - Oxford</div><div class="s">Legacy obituary · 中性</div></div><div class="nitem"><div class="t">James Hal Austin Obituary Aug 5, 2026</div><div class="s">Leavitt Funeral Home · 中性</div></div><div class="nitem"><div class="t">The outrages mount | Hal Bidlack</div><div class="s">Colorado Politics · 中性</div></div><div class="nitem"><div class="t">Hal Williams Guest-Starred On One Of The Last Gunsmoke Episodes Ever Aired</div><div class="s">TVLine · 中性</div></div><div class="nitem"><div class="t">Hal Williams, ‘Sanford and Son’ and ‘227’ actor, dies at 91</div><div class="s">latimes.com · 中性</div></div><div class="nitem"><div class="t">Hal Williams, ‘Sanford and Son’ actor dies at 91</div><div class="s">FOX 8 News · 中性</div></div></div>
+<footer>稳健理财Agent · 红黑榜每日归档 · 黑榜 #6 · 仅供研究，不构成投资建议</footer>
+</div></body>
+</html>

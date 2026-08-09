@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>美股前200 红黑榜 2026-08-10</title>
+<style>
+:root{--red:#d8342c;--redbg:#fdecea;--green:#1a9e54;--ink:#1c2230;--muted:#6b7385;
+--line:#e7e9ef;--card:#fff;--bg:#f4f6fa;--chip:#eef1f6;--dark:#23262d;--darkbg:#ececef}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",
+"Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);
+line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 16px 64px}
+header.top{background:linear-gradient(135deg,#1c2230,#2c3550);color:#fff;border-radius:14px;
+padding:22px 24px;margin-bottom:20px;box-shadow:0 6px 24px rgba(20,26,46,.12)}
+header.top h1{margin:0 0 6px;font-size:24px;letter-spacing:.5px}
+header.top .sub{opacity:.85;font-size:13px}
+header.top .sub b{color:#ffd166;font-weight:600}
+nav.mkt{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;
+background:rgba(244,246,250,.92);backdrop-filter:blur(6px);padding:10px 0;margin-bottom:14px}
+nav.mkt a{text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);
+padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600}
+nav.mkt a:hover{border-color:var(--red);color:var(--red)}
+.summary{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.summary .chip{background:var(--card);border:1px solid var(--line);border-radius:10px;
+padding:8px 12px;font-size:12px;color:var(--muted)}
+.summary .chip b{color:var(--ink);font-size:14px;margin-left:4px}
+section.board{margin:26px 0}
+.board-title{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:19px}
+.board-title .dot{width:10px;height:10px;border-radius:50%}
+.board-title.red .dot{background:var(--red)}
+.board-title.black .dot{background:var(--dark)}
+.board-title small{color:var(--muted);font-weight:400;font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+position:relative;transition:box-shadow .15s}
+.card:hover{box-shadow:0 4px 18px rgba(20,26,46,.08)}
+.card.red{border-top:3px solid var(--red)}
+.card.black{border-top:3px solid var(--dark)}
+.rank{position:absolute;top:10px;right:12px;font-size:26px;font-weight:800;color:#eceff5}
+.card.red .rank{color:#fbdcD9}
+.nm{font-size:16px;font-weight:700}
+.nm .tk{color:var(--muted);font-weight:500;font-size:12px;margin-left:6px}
+.tag{display:inline-block;background:var(--chip);color:var(--muted);border-radius:6px;
+padding:1px 7px;font-size:11px;margin:6px 6px 0 0}
+.price-row{display:flex;align-items:baseline;gap:10px;margin:10px 0 4px}
+.price{font-size:24px;font-weight:800}
+.pct{font-size:14px;font-weight:700;padding:2px 8px;border-radius:8px}
+.up{color:var(--red)}.down{color:var(--green)}.flat{color:var(--muted)}
+.pct.up{background:var(--redbg)}.pct.down{background:#e2f4e9}.pct.flat{background:var(--chip)}
+.psrc{font-size:11px;color:var(--muted);margin-left:auto}
+.scores{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.scores span{background:var(--chip);border-radius:6px;padding:2px 8px;font-size:11px;color:var(--muted)}
+.scores span b{color:var(--ink)}
+.pts{font-size:12.5px;margin:8px 0 0}
+.pts .h{font-weight:700;font-size:12px;margin:6px 0 2px}
+.pts .h.bull{color:var(--red)}.pts .h.bear{color:var(--green)}
+.pts ul{margin:2px 0 4px;padding-left:18px;color:#3a4152}
+.pts li{margin:1px 0}
+.masters{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:11px;color:var(--muted)}
+.masters b{color:var(--ink)}
+.summ{font-size:12.5px;color:#3a4152;background:#fafbfd;border:1px solid var(--line);
+border-radius:8px;padding:8px 10px;margin-top:8px}
+.empty{color:var(--muted);background:var(--card);border:1px dashed var(--line);
+border-radius:10px;padding:18px;text-align:center}
+footer{margin-top:34px;color:var(--muted);font-size:12px;text-align:center;line-height:1.8}
+a.lnk{color:var(--red);text-decoration:none}
+/* ── detail page ── */
+.backbar{margin-bottom:14px;font-size:13px}
+.backbar a{color:var(--muted);text-decoration:none;margin-right:14px}
+.backbar a:hover{color:var(--red)}
+.badge{display:inline-block;border-radius:6px;padding:2px 10px;font-size:12px;font-weight:700;margin-right:8px}
+.badge.red{background:var(--red);color:#fff}.badge.black{background:var(--dark);color:#fff}
+.trade{display:flex;flex-wrap:wrap;gap:10px;background:linear-gradient(135deg,#2c3550,#1c2230);
+color:#fff;border-radius:12px;padding:16px 18px;margin:16px 0}
+.trade .cell{min-width:120px}
+.trade .k{font-size:11px;opacity:.75}
+.trade .v{font-size:18px;font-weight:800;margin-top:2px}
+.trade .v.buy{color:#7ee2a8}.trade .v.sell{color:#ff9d97}.trade .v.hold{color:#ffd166}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0}
+.mgrid .m{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.mgrid .m .k{font-size:11px;color:var(--muted)}
+.mgrid .m .v{font-size:16px;font-weight:700;margin-top:2px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.panel>h2{margin:0 0 12px;font-size:17px}
+.panel>h2 .sub{font-size:12px;color:var(--muted);font-weight:400;margin-left:8px}
+.mreply{border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;
+padding:12px 14px;margin:10px 0;background:#fff}
+.mreply .mh{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.mreply .mh .who{font-weight:700;font-size:14px}
+.mreply .mh .mscore{margin-left:auto;background:var(--chip);border-radius:6px;padding:1px 8px;font-size:12px;font-weight:700}
+.md h2,.md h3,.md h4,.md h5{margin:12px 0 6px;font-size:15px}
+.md p{margin:6px 0;font-size:13.5px;color:#2c3345}
+.md ul{margin:6px 0;padding-left:20px;font-size:13.5px;color:#2c3345}
+.md li{margin:3px 0}
+.md strong{color:var(--ink)}
+details{border:1px solid var(--line);border-radius:10px;background:#fff;margin:10px 0;padding:0}
+details>summary{cursor:pointer;padding:12px 16px;font-weight:700;font-size:14px;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary:before{content:"▸ ";color:var(--red)}
+details[open]>summary:before{content:"▾ "}
+details>.body{padding:0 16px 14px;border-top:1px dashed var(--line)}
+.ychip{display:inline-block;background:var(--chip);border-radius:8px;padding:4px 10px;font-size:12px;margin:3px 6px 3px 0}
+.ychip b{font-size:13px}
+.news .nitem{border-top:1px dashed var(--line);padding:8px 0;font-size:13px}
+.news .nitem .t{font-weight:600}
+.news .nitem .s{color:var(--muted);font-size:12px}
+/* ── root landing page ── */
+.hero{padding:30px 26px}
+.hero-kicker{color:#ffd166;font-size:12px;font-weight:700;letter-spacing:2px;
+text-transform:uppercase;margin-bottom:8px}
+.hero h1{font-size:30px;margin:0 0 10px}
+.day-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.day-card{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);
+border-radius:12px;padding:14px 16px;transition:all .15s}
+.day-card:hover{border-color:var(--red);box-shadow:0 4px 16px rgba(216,52,44,.12);transform:translateY(-2px)}
+.day-card .d{font-weight:800;font-size:15px;color:var(--ink);display:flex;align-items:center;gap:8px}
+.day-card .m{margin-top:8px;display:flex;gap:6px}
+.day-card .m span{background:var(--chip);color:var(--muted);border-radius:6px;
+padding:2px 8px;font-size:11px}
+.latest-badge{background:var(--red);color:#fff;border-radius:6px;padding:1px 7px;
+font-size:10px;font-weight:700}
+</style>
+</head>
+<body><div class="wrap">
+<header class="top">
+  <h1>美股前200 红黑榜</h1>
+  <div class="sub">榜单日期 <b>2026-08-10</b> · 榜单生成 2026-08-10 03:04:24<br>盘价采集时间 <b>2026-08-10 05:00:50</b>（Asia/Shanghai）</div>
+</header>
+<div class="summary"><span class="chip">覆盖股票<b>200</b></span><span class="chip">模型命中<b>198</b></span><span class="chip">伯克希尔打分<b>已叠加</b></span></div>
+
+<section class="board">
+  <h2 class="board-title red"><span class="dot"></span>美股前200 · 红榜 TOP 10 <small>盘价采集 2026-08-10 05:00:50</small></h2>
+  <div class="cards">
+<div class="card red">
+  <span class="rank">1</span>
+  <div class="nm">COST<span class="tk">COST</span></div>
+  <div></div>
+  <div class="price-row">
+    <span class="price">$947.82</span>
+    <span class="pct down">-0.14%</span>
+    <span class="psrc">实时</span>
+  </div>
+  <div class="scores">
+    <span>综合 <b>93.8</b></span>
+    <span>大师均值 <b>81</b></span>
+    <span>信号 <b>positive</b></span>
+  </div>
+  <div class="pts"><div class="h bull">看多理由</div><ul><li>Membership model resilience</li><li>Strong consumer value proposition</li></ul></div>
+  <div class="masters">大师评分：<b>段永平</b>80 · <b>巴菲特</b>90 · <b>达利欧</b>70 · <b>林奇</b>85 · <b>芒格</b>80</div>
+  
+  <div style="margin-top:10px;text-align:right"><a class="lnk" href="detail/us/COST.html" style="font-size:12px;font-weight:600">查看详情 →</a></div>
+</div>
+<div class="card red">
+  <span class="rank">2</span>
+  <div class="nm">HON<span class="tk">HON</span></div>
+  <div></div>
+  <div class="price-row">
+    <span class="price">$246.21</span>
+    <span class="pct up">+2.27%</span>
+    <span class="psrc">实时</span>
+  </div>
+  <div class="scores">
+    <span>综合 <b>90.6</b></span>
+    <span>大师均值 <b>74</b></span>
+    <span>信号 <b>positive</b></span>
+  </div>
+  <div class="pts"><div class="h bull">看多理由</div><ul><li>多元化工业集团，市场地位稳固</li><li>显著的价格上涨显示看涨势头</li></ul></div>
+  <div class="masters">大师评分：<b>段永平</b>75 · <b>巴菲特</b>80 · <b>达利欧</b>70 · <b>林奇</b>65 · <b>芒格</b>80</div>
+  
+  <div style="margin-top:10px;text-align:right"><a class="lnk" href="detail/us/HON.html" style="font-size:12px;font-weight:600">查看详情 →</a></div>
+</div>
+<div class="card red">
+  <span class="rank">3</span>
+  <div class="nm">SHW<span class="tk">SHW</span></div>
+  <div></div>
+  <div class="price-row">
+    <span class="price">$369.73</span>
+    <span class="pct up">+1.74%</span>
+    <span class="psrc">实时</span>
+  </div>
+  <div class="scores">
+    <span>综合 <b>90.6</b></span>
+    <span>大师均值 <b>74</b></span>
+    <span>信号 <b>positive</b></span>
+  </div>
+  <div class="pts"><div class="h bull">看多理由</div><ul><li>涂料市场领导者</li><li>强大的定价能力</li></ul></div>
+  <div class="masters">大师评分：<b>段永平</b>80 · <b>巴菲特</b>75 · <b>达利欧</b>60 · <b>林奇</b>85 · <b>芒格</b>70</div>
+  
+  <div style="margin-top:10px;text-align:right"><a class="lnk" href="detail/us/SHW.html" style="font-size:12px;font-weight:600">查看详情 →</a></div>
+</div>
+<div class="card red">
+  <span class="rank">4</span>
+  <div class="nm">INTU<span class="tk">INTU</span></div>
+  <div></div>
+  <div class="price-row">
+    <span class="price">$325.25</span>
+    <span class="pct up">+1.04%</span>
+    <span class="psrc">实时</span>
+  </div>
+  <div class="scores">
+    <span>综合 <b>90.6</b></span>
+    <span>大师均值 <b>74</b></span>
+    <span>信号 <b>positive</b></span>
+  </div>
+  <div class="pts"><div class="h bull">看多理由</div><ul><li>Leading financial software company with strong market position</li><li>Price increase shows positive investor sentiment</li></ul></div>
+  <div class="masters">大师评分：<b>Duan</b>75 · <b>Buffett</b>80 · <b>Dalio</b>70 · <b>Lynch</b>85 · <b>Munger</b>60</div>
+  
+  <div style="margin-top:10px;text-align:right"><a class="lnk" href="detail/us/INTU.html" style="font-size:12px;font-weight:600">查看详情 →</a></div>
+</div>
+<div class="card red">
+  <span class="rank">5</span>
+  <div class="nm">ADBE<span class="tk">ADBE</span></div>
+  <div></div>
+  <div class="price-row">
+    <span class="price">$265.21</span>
+    <span class="pct up">+1.91%</span>
+    <span class="psrc">实时</span>
+  </div>
+  <div class="scores">
+    <span>综合 <b>87.5</b></span>
+    <span>大师均值 <b>75</b></span>
+    <span>信号 <b>positive</b></span>
+  </div>
+  <div class="pts"><div class="h bull">看多理由</div><ul><li>Strong software company with recurring revenue</li><li>Significant price increase shows bullish momentum</li></ul></div>
+  <div class="masters">大师评分：<b>Duan</b>80 · <b>Buffett</b>70 · <b>Dalio</b>75 · <b>Lynch</b>85 · <b>Munger</b>65</div>
+  
+  <div style="margin-top:10px;text-align:right"><a class="lnk" href="detail/us/ADBE.html" style="font-size:12px;font-weight:600">查看详情 →</a></div>
+</div>
+<div class="card red">
+  <span class="rank">6</span>
+  <div class="nm">NOW<span class="tk">NOW</span></div>
+  <div></div>
+  <div class="price-row">
+    <span class="price">$124.88</span>
+    <span class="pct up">+6.42%</span>
+    <span class="psrc">实时</span>
+  </div>
+  <div class="scores">
+    <span>综合 <b>87.5</b></span>
+    <span>大师均值 <b>70</b></span>
+    <span>信号 <b>positive</b></span>
+  </div>
+  <div class="pts"><div class="h bull">看多理由</div><ul><li>强劲的股价上涨(6.42%)</li><li>技术股整体市场情绪积极</li></ul></div>
+  <div class="masters">大师评分：<b>段永平</b>75 · <b>巴菲特</b>55 · <b>达利欧</b>70 · <b>林奇</b>85 · <b>芒格</b>65</div>
+  
+  <div style="margin-top:10px;text-align:right"><a class="lnk" href="detail/us/NOW.html" style="font-size:12px;font-weight:600">查看详情 →</a></div>
+</div>
+<div class="card red">
+  <span class="rank">7</span>
+  <div class="nm">VRTX<span class="tk">VRTX</span></div>
+  <div></div>
+  <div class="price-row">
+    <span class="price">$496.07</span>
+    <span class="pct up">+2.49%</span>
+    <span class="psrc">实时</span>
+  </div>
+  <div class="scores">
+    <span>综合 <b>84.4</b></span>
+    <span>大师均值 <b>80</b></span>
+    <span>信号 <b>positive</b></span>
+  </div>
+  <div class="pts"><div class="h bull">看多理由</div><ul><li>Strong pipeline development</li><li>Market leadership in rare diseases</li></ul></div>
+  <div class="masters">大师评分：<b>Duan</b>85 · <b>Buffett</b>75 · <b>Dalio</b>80 · <b>Lynch</b>90 · <b>Munger</b>70</div>
+  
+  <div style="margin-top:10px;text-align:right"><a class="lnk" href="detail/us/VRTX.html" style="font-size:12px;font-weight:600">查看详情 →</a></div>
+</div>
+<div class="card red">
+  <span class="rank">8</span>
+  <div class="nm">ABNB<span class="tk">ABNB</span></div>
+  <div></div>
+  <div class="price-row">
+    <span class="price">$178.07</span>
+    <span class="pct up">+17.43%</span>
+    <span class="psrc">实时</span>
+  </div>
+  <div class="scores">
+    <span>综合 <b>84.4</b></span>
+    <span>大师均值 <b>74</b></span>
+    <span>信号 <b>positive</b></span>
+  </div>
+  <div class="pts"><div class="h bull">看多理由</div><ul><li>强劲的股价上涨(17.43%)</li><li>市场对旅游复苏的乐观预期</li></ul></div>
+  <div class="masters">大师评分：<b>段永平</b>80 · <b>巴菲特</b>70 · <b>达利欧</b>75 · <b>林奇</b>85 · <b>芒格</b>60</div>
+  
+  <div style="margin-top:10px;text-align:right"><a class="lnk" href="detail/us/ABNB.html" style="font-size:12px;font-weight:600">查看详情 →</a></div>
+</div>
+<div class="card red">
+  <span class="rank">9</span>
+  <div class="nm">LRCX<span class="tk">LRCX</span></div>
+  <div></div>
+  <div class="price-row">
+    <span class="price">$311.35</span>
+    <span class="pct up">+1.82%</span>
+    <span class="psrc">实时</span>
+  </div>
+  <div class="scores">
+    <span>综合 <b>84.4</b></span>
+    <span>大师均值 <b>70</b></span>
+    <span>信号 <b>positive</b></span>
+  </div>
+  <div class="pts"><div class="h bull">看多理由</div><ul><li>半导体行业高景气</li><li>盈利能力强劲</li></ul></div>
+  <div class="masters">大师评分：<b>段永平</b>75 · <b>巴菲特</b>60 · <b>达利欧</b>70 · <b>林奇</b>80 · <b>芒格</b>65</div>
+  
+  <div style="margin-top:10px;text-align:right"><a class="lnk" href="detail/us/LRCX.html" style="font-size:12px;font-weight:600">查看详情 →</a></div>
+</div>
+<div class="card red">
+  <span class="rank">10</span>
+  <div class="nm">BKNG<span class="tk">BKNG</span></div>
+  <div></div>
+  <div class="price-row">
+    <span class="price">$214.42</span>
+    <span class="pct up">+3.39%</span>
+    <span class="psrc">实时</span>
+  </div>
+  <div class="scores">
+    <span>综合 <b>84.4</b></span>
+    <span>大师均值 <b>67</b></span>
+    <span>信号 <b>positive</b></span>
+  </div>
+  <div class="pts"><div class="h bull">看多理由</div><ul><li>强劲的3.39%涨幅</li><li>旅游行业复苏预期</li></ul></div>
+  <div class="masters">大师评分：<b>段永平</b>75 · <b>巴菲特</b>60 · <b>达利欧</b>50 · <b>林奇</b>80 · <b>芒格</b>70</div>
+  
+  <div style="margin-top:10px;text-align:right"><a class="lnk" href="detail/us/BKNG.html" style="font-size:12px;font-weight:600">查看详情 →</a></div>
+</div></div>
+</section>
+
+<section class="board">
+  <h2 class="board-title black"><span class="dot"></span>美股前200 · 黑榜 BOTTOM 10 <small>盘价采集 2026-08-10 05:00:50</small></h2>
+  <div class="cards">
+<div class="card black">
+  <span class="rank">1</span>
+  <div class="nm">OKTA<span class="tk">OKTA</span></div>
+  <div></div>
+  <div class="price-row">
+    <span class="price">$148.32</span>
+    <span class="pct up">+3.35%</span>
+    <span class="psrc">实时</span>
+  </div>
+  <div class="scores">
+    <span>综合 <b>-10.0</b></span>
+    <span>大师均值 <b>46</b></span>
+    <span>信号 <b>negative</b></span>
+  </div>
+  <div class="pts"><div class="h bear">看空理由</div><ul><li>竞争加剧</li><li>利润率压力</li></ul></div>
+  <div class="masters">大师评分：<b>段永平</b>50 · <b>巴菲特</b>40 · <b>达利欧</b>45 · <b>林奇</b>55 · <b>芒格</b>40</div>
+  
+  <div style="margin-top:10px;text-align:right"><a class="lnk" href="detail/us/OKTA.html" style="font-size:12px;font-weight:600">查看详情 →</a></div>
+</div>
+<div class="card black">
+  <span class="rank">2</span>
+  <div class="nm">USO<span class="tk">USO</span></div>
+  <div></div>
+  <div class="price-row">
+    <span class="price">$117.98</span>
+    <span class="pct down">-0.75%</span>
+    <span class="psrc">实时</span>
+  </div>
+  <div class="scores">
+    <span>综合 <b>25.6</b></span>
+    <span>大师均值 <b>32</b></span>
+    <span>信号 <b>negative</b></span>
+  </div>
+  <div class="pts"><div class="h bear">看空理由</div><ul><li>Negative price change</li><li>Market cap not provided</li></ul></div>
+  <div class="masters">大师评分：<b>段永平</b>30 · <b>巴菲特</b>35 · <b>达利欧</b>40 · <b>林奇</b>30 · <b>芒格</b>25</div>
+  
+  <div style="margin-top:10px;text-align:right"><a class="lnk" href="detail/us/USO.html" style="font-size:12px;font-weight:600">查看详情 →</a></div>
+</div>
+<div class="card black">
+  <span class="rank">3</span>
+  <div class="nm">OIH<span class="tk">OIH</span></div>
+  <div></div>
+  <div class="price-row">
+    <span class="price">$388.28</span>
+    <span class="pct down">-0.97%</span>
+    <span class="psrc">实时</span>
+  </div>
+  <div class="scores">
+    <span>综合 <b>26.9</b></span>
+    <span>大师均值 <b>35</b></span>
+    <span>信号 <b>negative</b></span>
+  </div>
+  <div class="pts"><div class="h bear">看空理由</div><ul><li>Negative price change</li><li>Market cap not provided</li></ul></div>
+  <div class="masters">大师评分：<b>段永平</b>30 · <b>巴菲特</b>40 · <b>达利欧</b>35 · <b>林奇</b>45 · <b>芒格</b>25</div>
+  
+  <div style="margin-top:10px;text-align:right"><a class="lnk" href="detail/us/OIH.html" style="font-size:12px;font-weight:600">查看详情 →</a></div>
+</div>
+<div class="card black">
+  <span class="rank">4</span>
+  <div class="nm">XLE<span class="tk">XLE</span></div>
+  <div></div>
+  <div class="price-row">
+    <span class="price">$57.50</span>
+    <span class="pct down">-1.13%</span>
+    <span class="psrc">实时</span>
+  </div>
+  <div class="scores">
+    <span>综合 <b>28.1</b></span>
+    <span>大师均值 <b>26</b></span>
+    <span>信号 <b>negative</b></span>
+  </div>
+  <div class="pts"><div class="h bear">看空理由</div><ul><li>Strong negative price change</li><li>Market cap not provided</li></ul></div>
+  <div class="masters">大师评分：<b>段永平</b>25 · <b>巴菲特</b>30 · <b>达利欧</b>40 · <b>林奇</b>20 · <b>芒格</b>15</div>
+  
+  <div style="margin-top:10px;text-align:right"><a class="lnk" href="detail/us/XLE.html" style="font-size:12px;font-weight:600">查看详情 →</a></div>
+</div>
+<div class="card black">
+  <span class="rank">5</span>
+  <div class="nm">BE<span class="tk">BE</span></div>
+  <div></div>
+  <div class="price-row">
+    <span class="price">$219.34</span>
+    <span class="pct down">-4.20%</span>
+    <span class="psrc">实时</span>
+  </div>
+  <div class="scores">
+    <span>综合 <b>29.4</b></span>
+    <span>大师均值 <b>35</b></span>
+    <span>信号 <b>negative</b></span>
+  </div>
+  <div class="pts"><div class="h bear">看空理由</div><ul><li>股价大幅下跌</li><li>市场信心不足</li></ul></div>
+  <div class="masters">大师评分：<b>段永平</b>30 · <b>巴菲特</b>35 · <b>达利欧</b>40 · <b>林奇</b>45 · <b>芒格</b>25</div>
+  
+  <div style="margin-top:10px;text-align:right"><a class="lnk" href="detail/us/BE.html" style="font-size:12px;font-weight:600">查看详情 →</a></div>
+</div>
+<div class="card black">
+  <span class="rank">6</span>
+  <div class="nm">HAL<span class="tk">HAL</span></div>
+  <div></div>
+  <div class="price-row">
+    <span class="price">$31.89</span>
+    <span class="pct down">-1.91%</span>
+    <span class="psrc">实时</span>
+  </div>
+  <div class="scores">
+    <span>综合 <b>29.4</b></span>
+    <span>大师均值 <b>40</b></span>
+    <span>信号 <b>negative</b></span>
+  </div>
+  <div class="pts"><div class="h bear">看空理由</div><ul><li>-1.91%的跌幅</li><li>行业周期性波动风险</li></ul></div>
+  <div class="masters">大师评分：<b>段永平</b>35 · <b>巴菲特</b>40 · <b>达利欧</b>45 · <b>林奇</b>50 · <b>芒格</b>30</div>
+  
+  <div style="margin-top:10px;text-align:right"><a class="lnk" href="detail/us/HAL.html" style="font-size:12px;font-weight:600">查看详情 →</a></div>
+</div>
+<div class="card black">
+  <span class="rank">7</span>
+  <div class="nm">CHTR<span class="tk">CHTR</span></div>
+  <div></div>
+  <div class="price-row">
+    <span class="price">$152.57</span>
+    <span class="pct down">-3.09%</span>
+    <span class="psrc">实时</span>
+  </div>
+  <div class="scores">
+    <span>综合 <b>31.2</b></span>
+    <span>大师均值 <b>30</b></span>
+    <span>信号 <b>negative</b></span>
+  </div>
+  <div class="pts"><div class="h bear">看空理由</div><ul><li>-3.09%的显著跌幅</li><li>有线电视业务持续下滑</li></ul></div>
+  <div class="masters">大师评分：<b>段永平</b>30 · <b>巴菲特</b>40 · <b>达利欧</b>25 · <b>林奇</b>35 · <b>芒格</b>20</div>
+  
+  <div style="margin-top:10px;text-align:right"><a class="lnk" href="detail/us/CHTR.html" style="font-size:12px;font-weight:600">查看详情 →</a></div>
+</div>
+<div class="card black">
+  <span class="rank">8</span>
+  <div class="nm">GE<span class="tk">GE</span></div>
+  <div></div>
+  <div class="price-row">
+    <span class="price">$370.08</span>
+    <span class="pct down">-1.19%</span>
+    <span class="psrc">实时</span>
+  </div>
+  <div class="scores">
+    <span>综合 <b>31.9</b></span>
+    <span>大师均值 <b>36</b></span>
+    <span>信号 <b>negative</b></span>
+  </div>
+  <div class="pts"><div class="h bear">看空理由</div><ul><li>转型进展缓慢</li><li>面临宏观经济压力</li></ul></div>
+  <div class="masters">大师评分：<b>段永平</b>30 · <b>巴菲特</b>35 · <b>达利欧</b>40 · <b>林奇</b>45 · <b>芒格</b>30</div>
+  
+  <div style="margin-top:10px;text-align:right"><a class="lnk" href="detail/us/GE.html" style="font-size:12px;font-weight:600">查看详情 →</a></div>
+</div>
+<div class="card black">
+  <span class="rank">9</span>
+  <div class="nm">NCLH<span class="tk">NCLH</span></div>
+  <div></div>
+  <div class="price-row">
+    <span class="price">$19.25</span>
+    <span class="pct down">-0.62%</span>
+    <span class="psrc">实时</span>
+  </div>
+  <div class="scores">
+    <span>综合 <b>31.9</b></span>
+    <span>大师均值 <b>36</b></span>
+    <span>信号 <b>negative</b></span>
+  </div>
+  <div class="pts"><div class="h bear">看空理由</div><ul><li>疫情反复风险</li><li>运营成本上升</li></ul></div>
+  <div class="masters">大师评分：<b>段永平</b>35 · <b>巴菲特</b>40 · <b>达利欧</b>30 · <b>林奇</b>45 · <b>芒格</b>30</div>
+  
+  <div style="margin-top:10px;text-align:right"><a class="lnk" href="detail/us/NCLH.html" style="font-size:12px;font-weight:600">查看详情 →</a></div>
+</div>
+<div class="card black">
+  <span class="rank">10</span>
+  <div class="nm">AMD<span class="tk">AMD</span></div>
+  <div></div>
+  <div class="price-row">
+    <span class="price">$483.36</span>
+    <span class="pct down">-1.21%</span>
+    <span class="psrc">实时</span>
+  </div>
+  <div class="scores">
+    <span>综合 <b>34.4</b></span>
+    <span>大师均值 <b>36</b></span>
+    <span>信号 <b>negative</b></span>
+  </div>
+  <div class="pts"><div class="h bear">看空理由</div><ul><li>市场竞争加剧</li><li>供应链风险</li></ul></div>
+  <div class="masters">大师评分：<b>段永平</b>40 · <b>巴菲特</b>30 · <b>达利欧</b>35 · <b>林奇</b>50 · <b>芒格</b>25</div>
+  
+  <div style="margin-top:10px;text-align:right"><a class="lnk" href="detail/us/AMD.html" style="font-size:12px;font-weight:600">查看详情 →</a></div>
+</div></div>
+</section>
+<footer>稳健理财Agent · 红黑榜每日归档 · 数据来源：MiniMax 多Agent投研 + 实时行情<br>红涨绿跌（A股配色）· 仅供研究，不构成投资建议</footer>
+</div></body>
+</html>
