@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>东鹏饮料(09980) 红榜 2026-08-11</title>
+<style>
+:root{--red:#d8342c;--redbg:#fdecea;--green:#1a9e54;--ink:#1c2230;--muted:#6b7385;
+--line:#e7e9ef;--card:#fff;--bg:#f4f6fa;--chip:#eef1f6;--dark:#23262d;--darkbg:#ececef}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",
+"Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);
+line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 16px 64px}
+header.top{background:linear-gradient(135deg,#1c2230,#2c3550);color:#fff;border-radius:14px;
+padding:22px 24px;margin-bottom:20px;box-shadow:0 6px 24px rgba(20,26,46,.12)}
+header.top h1{margin:0 0 6px;font-size:24px;letter-spacing:.5px}
+header.top .sub{opacity:.85;font-size:13px}
+header.top .sub b{color:#ffd166;font-weight:600}
+nav.mkt{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;
+background:rgba(244,246,250,.92);backdrop-filter:blur(6px);padding:10px 0;margin-bottom:14px}
+nav.mkt a{text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);
+padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600}
+nav.mkt a:hover{border-color:var(--red);color:var(--red)}
+.summary{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.summary .chip{background:var(--card);border:1px solid var(--line);border-radius:10px;
+padding:8px 12px;font-size:12px;color:var(--muted)}
+.summary .chip b{color:var(--ink);font-size:14px;margin-left:4px}
+section.board{margin:26px 0}
+.board-title{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:19px}
+.board-title .dot{width:10px;height:10px;border-radius:50%}
+.board-title.red .dot{background:var(--red)}
+.board-title.black .dot{background:var(--dark)}
+.board-title small{color:var(--muted);font-weight:400;font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+position:relative;transition:box-shadow .15s}
+.card:hover{box-shadow:0 4px 18px rgba(20,26,46,.08)}
+.card.red{border-top:3px solid var(--red)}
+.card.black{border-top:3px solid var(--dark)}
+.rank{position:absolute;top:10px;right:12px;font-size:26px;font-weight:800;color:#eceff5}
+.card.red .rank{color:#fbdcD9}
+.nm{font-size:16px;font-weight:700}
+.nm .tk{color:var(--muted);font-weight:500;font-size:12px;margin-left:6px}
+.tag{display:inline-block;background:var(--chip);color:var(--muted);border-radius:6px;
+padding:1px 7px;font-size:11px;margin:6px 6px 0 0}
+.price-row{display:flex;align-items:baseline;gap:10px;margin:10px 0 4px}
+.price{font-size:24px;font-weight:800}
+.pct{font-size:14px;font-weight:700;padding:2px 8px;border-radius:8px}
+.up{color:var(--red)}.down{color:var(--green)}.flat{color:var(--muted)}
+.pct.up{background:var(--redbg)}.pct.down{background:#e2f4e9}.pct.flat{background:var(--chip)}
+.psrc{font-size:11px;color:var(--muted);margin-left:auto}
+.scores{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.scores span{background:var(--chip);border-radius:6px;padding:2px 8px;font-size:11px;color:var(--muted)}
+.scores span b{color:var(--ink)}
+.pts{font-size:12.5px;margin:8px 0 0}
+.pts .h{font-weight:700;font-size:12px;margin:6px 0 2px}
+.pts .h.bull{color:var(--red)}.pts .h.bear{color:var(--green)}
+.pts ul{margin:2px 0 4px;padding-left:18px;color:#3a4152}
+.pts li{margin:1px 0}
+.masters{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:11px;color:var(--muted)}
+.masters b{color:var(--ink)}
+.summ{font-size:12.5px;color:#3a4152;background:#fafbfd;border:1px solid var(--line);
+border-radius:8px;padding:8px 10px;margin-top:8px}
+.empty{color:var(--muted);background:var(--card);border:1px dashed var(--line);
+border-radius:10px;padding:18px;text-align:center}
+footer{margin-top:34px;color:var(--muted);font-size:12px;text-align:center;line-height:1.8}
+a.lnk{color:var(--red);text-decoration:none}
+/* ── detail page ── */
+.backbar{margin-bottom:14px;font-size:13px}
+.backbar a{color:var(--muted);text-decoration:none;margin-right:14px}
+.backbar a:hover{color:var(--red)}
+.badge{display:inline-block;border-radius:6px;padding:2px 10px;font-size:12px;font-weight:700;margin-right:8px}
+.badge.red{background:var(--red);color:#fff}.badge.black{background:var(--dark);color:#fff}
+.trade{display:flex;flex-wrap:wrap;gap:10px;background:linear-gradient(135deg,#2c3550,#1c2230);
+color:#fff;border-radius:12px;padding:16px 18px;margin:16px 0}
+.trade .cell{min-width:120px}
+.trade .k{font-size:11px;opacity:.75}
+.trade .v{font-size:18px;font-weight:800;margin-top:2px}
+.trade .v.buy{color:#7ee2a8}.trade .v.sell{color:#ff9d97}.trade .v.hold{color:#ffd166}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0}
+.mgrid .m{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.mgrid .m .k{font-size:11px;color:var(--muted)}
+.mgrid .m .v{font-size:16px;font-weight:700;margin-top:2px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.panel>h2{margin:0 0 12px;font-size:17px}
+.panel>h2 .sub{font-size:12px;color:var(--muted);font-weight:400;margin-left:8px}
+.mreply{border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;
+padding:12px 14px;margin:10px 0;background:#fff}
+.mreply .mh{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.mreply .mh .who{font-weight:700;font-size:14px}
+.mreply .mh .mscore{margin-left:auto;background:var(--chip);border-radius:6px;padding:1px 8px;font-size:12px;font-weight:700}
+.md h2,.md h3,.md h4,.md h5{margin:12px 0 6px;font-size:15px}
+.md p{margin:6px 0;font-size:13.5px;color:#2c3345}
+.md ul{margin:6px 0;padding-left:20px;font-size:13.5px;color:#2c3345}
+.md li{margin:3px 0}
+.md strong{color:var(--ink)}
+details{border:1px solid var(--line);border-radius:10px;background:#fff;margin:10px 0;padding:0}
+details>summary{cursor:pointer;padding:12px 16px;font-weight:700;font-size:14px;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary:before{content:"▸ ";color:var(--red)}
+details[open]>summary:before{content:"▾ "}
+details>.body{padding:0 16px 14px;border-top:1px dashed var(--line)}
+.ychip{display:inline-block;background:var(--chip);border-radius:8px;padding:4px 10px;font-size:12px;margin:3px 6px 3px 0}
+.ychip b{font-size:13px}
+.news .nitem{border-top:1px dashed var(--line);padding:8px 0;font-size:13px}
+.news .nitem .t{font-weight:600}
+.news .nitem .s{color:var(--muted);font-size:12px}
+/* ── root landing page ── */
+.hero{padding:30px 26px}
+.hero-kicker{color:#ffd166;font-size:12px;font-weight:700;letter-spacing:2px;
+text-transform:uppercase;margin-bottom:8px}
+.hero h1{font-size:30px;margin:0 0 10px}
+.day-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.day-card{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);
+border-radius:12px;padding:14px 16px;transition:all .15s}
+.day-card:hover{border-color:var(--red);box-shadow:0 4px 16px rgba(216,52,44,.12);transform:translateY(-2px)}
+.day-card .d{font-weight:800;font-size:15px;color:var(--ink);display:flex;align-items:center;gap:8px}
+.day-card .m{margin-top:8px;display:flex;gap:6px}
+.day-card .m span{background:var(--chip);color:var(--muted);border-radius:6px;
+padding:2px 8px;font-size:11px}
+.latest-badge{background:var(--red);color:#fff;border-radius:6px;padding:1px 7px;
+font-size:10px;font-weight:700}
+</style>
+</head>
+<body><div class="wrap">
+<div class="backbar"><a href="../index.html">← 总览</a><a href="../hk.html">← 港股榜单</a></div>
+<header class="top">
+  <h1><span class="badge red">红榜 #10</span>东鹏饮料<span class="tk" style="opacity:.7;font-size:15px;font-weight:400;margin-left:8px">09980</span></h1>
+  <div class="sub">港股 ·  · 榜单日期 <b>2026-08-11</b> · 盘价采集 <b>2026-08-11 05:00:58</b></div>
+  <div class="price-row" style="margin-top:12px">
+    <span class="price" style="color:#fff">HK$125.30</span>
+    <span class="pct up">+5.38%</span>
+    <span class="psrc" style="color:rgba(255,255,255,.6)">实时</span>
+  </div>
+  <div class="scores" style="margin-top:10px">
+    <span>综合 <b>81.2</b></span>
+    <span>多头 <b>88</b></span>
+    <span>空头 <b>25</b></span>
+    <span>大师均值 <b>60</b></span>
+    <span>信号 <b>positive</b></span>
+  </div>
+</header>
+<div class="trade"><div class="cell"><div class="k">交易评级</div><span class="v buy">Buy</span></div><div class="cell"><div class="k">加仓区间</div><span class="v">121.54 ~ 126.55</span></div><div class="cell"><div class="k">目标价</div><span class="v">140.34</span></div><div class="cell"><div class="k">伯克希尔</div><span class="v">观望</span></div><div class="cell"><div class="k">伯克希尔分</div><span class="v">3.50</span></div></div>
+<div class="panel"><h2>财务指标</h2><div class="mgrid"><div class="m"><div class="k">市盈率 PE</div><div class="v">16.47</div></div><div class="m"><div class="k">市净率 PB</div><div class="v">4.10</div></div><div class="m"><div class="k">ROE</div><div class="v">19.8%</div></div><div class="m"><div class="k">总市值</div><div class="v">920</div></div><div class="m"><div class="k">营收同比</div><div class="v">3.0%</div></div><div class="m"><div class="k">净利同比</div><div class="v">4.6%</div></div></div></div>
+<div class="panel"><h2>历史收益</h2><span class="ychip">近1月 <b class="up">+17.10%</b></span><span class="ychip">近6月 <b class="down">-36.00%</b></span><span class="ychip">近1年 <b class="down">-34.42%</b></span></div>
+<div class="panel"><h2>大师圆桌<span class="sub">5 位</span></h2><div class="mreply"><div class="mh"><span class="who">段永平</span><span class="mscore">34</span></div><div class="md"><h4>圆桌发言：关于东鹏饮料（09980）的看法</h4><h5>结论：</h5><p>我对东鹏饮料持谨慎态度，目前不建议重仓买入。</p><h5>理由：</h5><p>首先，从&quot;本分&quot;的角度来看，东鹏饮料所处的饮料行业是一个相对容易理解的市场，消费者需求稳定，商业模式也较为清晰。这符合我们&quot;看得懂&quot;的基本要求。</p><p>但是，当我们深入分析时，会发现一些需要谨慎对待的因素：</p><ul><li><strong>估值问题</strong>：当前16倍左右的PE估值，对于一个消费品公司来说并不算特别便宜。尤其是在市场已经给予其较高预期的情况下，进一步提升估值的空间可能有限。</li></ul><ul><li><strong>竞争环境</strong>：饮料行业竞争非常激烈，不仅有传统巨头的压制，还有新品牌的不断涌现。东鹏饮料虽然目前增长势头不错，但能否持续保持竞争优势，还需要进一步观察。</li></ul><ul><li><strong>成本压力</strong>：原材料成本的波动可能会对利润率造成影响。虽然公司有一定的定价权，但能否完全转嫁成本压力仍存在不确定性。</li></ul><ul><li><strong>品牌建设</strong>：虽然品牌认知度在提升，但消费品公司的品牌建设是一个长期过程，需要持续投入和耐心。</li></ul><h5>风险/行动建议：</h5><ul><li><strong>短期风险</strong>：如果你是短期投资者，需要注意市场情绪波动带来的风险。当前估值已经反映了较高的增长预期，一旦业绩不达预期，可能面临估值回调的压力。</li></ul><ul><li><strong>长期观察</strong>：如果你是长期投资者，可以持续关注公司的经营情况，特别是品牌建设、渠道拓展和成本控制等方面的进展。在估值回调到更合理水平时，或许是一个更好的买入时机。</li></ul><ul><li><strong>本分原则</strong>：投资要遵循&quot;做对的事，把事做对&quot;的原则。对于东鹏饮料，我们需要思考的是：这是不是一个我们真正理解的好生意？公司的竞争优势是否足够强大？管理层是否值得我们长期信任？</li></ul><p>总的来说，东鹏饮料是一家值得关注的公司，但目前的价格和估值水平需要我们更加谨慎。建议在深入研究并等待更合适的价格时再考虑买入。</p><p>别忘了，投资中最重要的不是抓住每一个机会，而是避免犯大的错误。</p></div></div><div class="mreply"><div class="mh"><span class="who">巴菲特</span><span class="mscore">30</span></div><div class="md"><p>各位同仁，我来说说对东鹏饮料的看法。</p><h4>结论：</h4><p>东鹏饮料是一家增长势头不错的公司，但目前的价格让我不太放心。</p><h4>理由：</h4><p>首先，这家公司确实展现出了不错的成长性，过去几年营收和利润都有不错的增长，市场空间也足够大，品牌认知度在提升，这些是它的亮点。</p><p>但从价值投资的角度来看，有几个问题值得深思：</p><ul><li><strong>估值偏高</strong>：目前16倍多的市盈率，对一家饮料公司来说不算便宜。我们投资要的是&quot;四毛钱买一块钱的东西&quot;，而现在这个价格似乎没有给我们留出足够的安全边际。</li><li><strong>护城河问题</strong>：饮料行业竞争非常激烈，消费者口味变化快。虽然东鹏现在势头不错，但这种优势能否长期保持是个问号。我一直在问自己：&quot;十年后这家公司还能不能收同样的钱？&quot;目前来看，答案还不够清晰。</li><li><strong>资本配置效率</strong>：虽然利润率看起来不错，但我们要看的是长期自由现金流的创造能力，以及管理层如何配置资本。从公开信息来看，这方面还需要更多观察。</li></ul><h4>风险/行动建议：</h4><ul><li><strong>短期风险</strong>：原材料成本上涨是一个实实在在的压力，可能会影响利润率。</li><li><strong>竞争风险</strong>：新进入者和其他老牌饮料巨头的竞争不可小觑，这可能会侵蚀市场份额。</li><li><strong>价格风险</strong>：目前的价格已经反映了相当一部分增长预期，如果未来增长不如预期，股价可能会面临回调压力。</li></ul><p>我的建议是，如果你已经持有，可以继续观察，但不要急于加仓。如果还没买入，不妨再等等，看看有没有更好的价格出现。</p><h4>芒格的补充：</h4><p>查理可能会说：&quot;投资就像在果园里摘果子，你要找那些最甜、风险最小的果子，而不是看到果子就摘。&quot; 在东鹏这个案例里，我们还需要更多时间来确认它是不是那颗最甜的果子。</p></div></div><div class="mreply"><div class="mh"><span class="who">达利欧</span><span class="mscore">67</span></div><div class="md"><p>各位同仁，关于东鹏饮料（09980），我的看法如下：</p><h4>结论</h4><p>目前我对其持中立偏积极的态度。虽然公司展现出强劲的增长动能和品牌提升趋势，但估值偏高和行业竞争加剧是需要警惕的风险点。</p><h4>理由</h4><ul><li><strong>增长动能强劲</strong>：东鹏饮料的股价近期上涨了5.38%，显示出强劲的市场动能。从基本面来看，其营收和净利润的同比增长率分别为3.03%和4.57%，虽然不算特别高，但在当前市场环境下仍显示出一定的成长性。</li></ul><ul><li><strong>市场空间大</strong>：饮料行业在中国市场仍有较大的增长空间。随着消费者健康意识的提升，功能性饮料的需求也在增加。东鹏饮料作为该领域的领先品牌，有望受益于这一趋势。</li></ul><ul><li><strong>品牌认知度提升</strong>：公司近年来在品牌建设方面投入了大量资源，品牌认知度有所提升，这为其未来的市场拓展奠定了基础。</li></ul><p>然而，我们也必须看到一些潜在的风险：</p><ul><li><strong>估值偏高</strong>：当前市盈率（PE）为16.47，市净率（PB）为4.10，均处于较高水平。高估值意味着市场对其未来增长有较高的预期，一旦业绩不达预期，股价可能会面临较大的回调压力。</li></ul><ul><li><strong>行业竞争加剧</strong>：饮料行业的竞争日益激烈，不仅有传统品牌的竞争，还有新兴品牌的不断涌现。东鹏饮料需要持续创新和提升品牌影响力，以保持其市场地位。</li></ul><ul><li><strong>原材料成本压力</strong>：原材料价格的波动可能会对公司的利润率产生影响。尽管公司可以通过提价等方式部分转嫁成本，但消费者对价格的敏感度仍是一个需要关注的因素。</li></ul><h4>风险/行动建议</h4><ul><li><strong>关注估值风险</strong>：如果投资者已经持有该股票，建议密切关注估值水平的变化。如果市场情绪转向悲观，估值可能会迅速回调。</li></ul><ul><li><strong>分散投资</strong>：考虑到行业竞争和估值风险，建议投资者不要将所有资金集中于单一股票。可以考虑将部分资金配置于其他具有成长性的公司，以分散风险。</li></ul><ul><li><strong>长期持有视角</strong>：对于长期投资者而言，如果能够承受短期波动，可以继续持有并观察公司未来的业绩表现和市场拓展情况。</li></ul><h4>原则化收口</h4><p>在投资决策中，我们应当遵循&quot;Pain + Reflection = Progress&quot;的原则。投资东鹏饮料需要权衡其增长潜力与估值风险，并持续监控行业竞争和成本压力。通过记录决策过程和反思，我们可以在未来的投资中做出更明智的选择。</p><p>最终，我的建议是：对于风险承受能力较强的投资者，可以考虑适度配置；但对于保守型投资者，建议等待更合适的买入时机。</p></div></div><div class="mreply"><div class="mh"><span class="who">彼得·林奇</span><span class="mscore">87</span></div><div class="md"><h4>结论：</h4><p>东鹏饮料是一家值得关注的公司，但当前价格可能偏高，投资者需要谨慎考虑。</p><h4>理由：</h4><p>首先，从生活场景的角度来看，东鹏饮料的品牌认知度在提升，市场表现强劲，股价也出现了5.38%的高涨幅，这表明市场对其产品有较高的认可度。其次，从成长性来看，公司在过去几年中保持了较好的增长势头，市场空间依然很大，这符合我们寻找成长型公司的标准。</p><p>然而，尽管公司基本面看起来不错，但估值方面存在一定的风险。目前的市盈率（PE）为16.47，虽然不算特别高，但在当前的市场环境下，考虑到行业竞争加剧和原材料成本上升的压力，这个估值水平可能已经反映了市场的乐观预期。</p><h4>风险/行动建议：</h4><ul><li><strong>竞争风险</strong>：饮料行业竞争非常激烈，东鹏饮料需要持续创新和提升品牌影响力才能保持竞争优势。投资者需要密切关注公司在市场中的表现和市场份额的变化。</li></ul><ul><li><strong>估值风险</strong>：当前估值水平可能已经反映了市场的乐观预期。如果未来业绩增长不及预期，股价可能会面临回调压力。建议投资者在买入前仔细评估公司的长期增长潜力，并考虑分批买入以分散风险。</li></ul><ul><li><strong>成本压力</strong>：原材料成本上升可能会对公司利润率造成压力。投资者需要关注公司如何应对成本上涨，以及是否能够通过提价或提高运营效率来抵消这部分影响。</li></ul><h4>具体行动：</h4><p>如果你是长期投资者，并且看好公司的成长潜力，可以考虑在当前价格附近小仓位买入，但不要急于重仓。同时，密切关注公司未来的业绩表现和行业动态，如果股价出现回调，可以考虑在更低的价格水平上增加仓位。</p><p>总之，投资东鹏饮料需要耐心和谨慎，既要看到其成长潜力，也要警惕潜在的风险。</p></div></div><div class="mreply"><div class="mh"><span class="who">芒格</span><span class="mscore">82</span></div><div class="md"><p>各位，今天我们来讨论一下东鹏饮料（09980）。我的看法是，这家公司值得进一步关注，但同时也要警惕潜在的风险。</p><h4>结论</h4><p>东鹏饮料是一家在饮料行业中表现出色的公司，其强劲的增长势头和不断提升的品牌认知度使其成为一个有吸引力的投资标的。然而，投资者必须警惕行业竞争加剧和估值偏高的风险。</p><h4>理由</h4><p>首先，东鹏饮料的市场表现非常强劲，股价上涨了5.38%，这表明市场对其未来增长潜力有较高的预期。公司在成长性方面表现突出，市场空间广阔，这为其未来的发展提供了良好的基础。此外，东鹏饮料的品牌认知度正在不断提升，这有助于其在激烈的市场竞争中保持优势。</p><p>然而，我们也必须看到行业竞争加剧的风险。随着越来越多的企业进入饮料市场，东鹏饮料面临的竞争压力将会越来越大。此外，尽管公司的成长性突出，但其估值水平已经偏高，这可能会限制其未来的股价上涨空间。最后，原材料成本的上升也可能对公司利润率造成压力。</p><h4>风险与行动建议</h4><ul><li><strong>竞争风险</strong>：投资者需要密切关注行业竞争态势。如果竞争对手推出更具吸引力的产品或服务，东鹏饮料的市场份额可能会受到威胁。</li></ul><ul><li><strong>估值风险</strong>：尽管公司基本面良好，但当前估值水平偏高。投资者应谨慎评估其未来的增长潜力，避免在高位买入。</li></ul><ul><li><strong>成本压力</strong>：关注原材料价格的波动。如果成本上升过快，可能会对公司利润率造成负面影响。</li></ul><h4>行动建议</h4><p>如果投资者已经持有东鹏饮料的股票，建议继续持有，但需密切关注上述风险因素。如果尚未买入，建议等待更合适的买入时机，尤其是在市场出现回调时。</p><h4>逆向思考</h4><p>从逆向思维的角度来看，东鹏饮料可能会因为以下原因失败：</p><ul><li>未能有效应对行业竞争，导致市场份额下降。</li><li>估值过高，市场情绪转变，导致股价大幅回调。</li><li>原材料成本上升过快，挤压公司利润。</li></ul><h4>激励机制</h4><p>东鹏饮料的管理层激励措施需要关注。如果管理层过于关注短期业绩，可能会采取一些不利于长期发展的策略。</p><h4>心理学陷阱</h4><p>投资者需要警惕从众心理和过度自信的陷阱。不要因为市场情绪高涨而盲目追高，也不要因为公司过去的成功而忽视潜在的风险。</p><p>总之，东鹏饮料是一家值得关注的优秀公司，但投资者需要保持理性，谨慎评估风险和机会。</p></div></div></div>
+<div class="panel"><h2>分析师报告<span class="sub">2 篇</span></h2><details open><summary>市场面分析</summary><div class="body"><div class="md"><h4>09980 东鹏饮料 市场面分析</h4><ul><li>红黑榜多空分数：多头 88 / 空头 25，分差 63。</li><li>当前价格：125.30。</li><li>当前交易评级：Buy。</li><li>值得加仓区间：121.54 - 126.55。</li><li>目标价格：140.34。</li><li>市场愿意给溢价的原因：高涨幅5.38%，动能强劲；成长性突出，市场空间大；品牌认知度提升。</li><li>当前主要压制因素：行业竞争加剧；估值偏高风险；原材料成本压力。</li></ul></div></div></details><details open><summary>基本面分析</summary><div class="body"><div class="md"><h4>09980 东鹏饮料 基本面分析</h4><ul><li>报告期：暂无。</li><li>PE(TTM)：16.47。</li><li>PB：4.10。</li><li>PS(TTM)：3.59。</li><li>ROE：19.84%。</li><li>营收同比：3.03%。</li><li>归母净利润同比：4.57%。</li><li>核心判断：盈利能力处于可接受区间；收入仍在增长；利润端保持扩张。</li></ul></div></div></details></div>
+<div class="panel"><h2>研究与计划</h2>
+<details><summary>基本面摘要</summary><div class="body"><div class="md"><h3>核心财务快照</h3><ul><li>报告期: 数据缺失</li><li>当前股价: 125.30 元</li><li>总市值: 919.95 亿元</li><li>PE (TTM): 16.47</li><li>PB: 4.10</li><li>PS (TTM): 3.59</li><li>营业总收入(报告期): 数据缺失 亿元</li><li>营收同比增长率: 3.03%</li><li>归母净利润(报告期): 数据缺失 亿元</li><li>归母净利润同比增长率: 4.57%</li><li>ROE (TTM/估算): 19.84%</li><li>资产负债率: 数据缺失</li><li>经营性现金流 / 归母净利润: 数据缺失</li></ul><h4>缺失字段</h4><ul><li>营业总收入, 归母净利润, 资产负债率, 经营性现金流与归母净利润比值</li></ul></div></div></details>
+<details><summary>研究计划</summary><div class="body"><div class="md"><h4>09980 东鹏饮料 研究摘要</h4><ul><li>红黑榜结论: Buy</li><li>多头/空头: 88/25</li><li>正向信号: ROE 19.84%；营收同比 3.03%；归母净利润同比 4.57%；PE(TTM) 16.47</li><li>榜单看多理由: 高涨幅5.38%，动能强劲；成长性突出，市场空间大；品牌认知度提升</li><li>榜单风险提示: 行业竞争加剧；估值偏高风险；原材料成本压力</li></ul></div></div></details>
+<details><summary>交易计划</summary><div class="body"><div class="md"><h4>09980 东鹏饮料 交易计划</h4><ul><li>评级: Buy</li><li>当前价格: 125.30</li><li>值得加仓区间: 121.54 - 126.55</li><li>目标价格: 140.34</li><li>止损位: 115.28</li><li>备注: 当前为缓存降级交易卡，后续若完整 TradingAgent 结果生成，将自动覆盖。</li></ul></div></div></details>
+<details><summary>交易决策</summary><div class="body"><div class="md"><p>Buy</p><p>09980 东鹏饮料 当前使用红黑榜缓存结果生成兜底交易卡。多头 88 / 空头 25，分差 63。当前尚未取得完整 TradingAgent 长文决策，但榜单分数、财务快照和大师观点已经足够生成基础交易建议。</p></div></div></details>
+</div>
+<div class="panel"><h2>多空逻辑</h2><div class="pts"><div class="h bull">看多逻辑</div><div class="md"><p>高涨幅5.38%，动能强劲</p><p>成长性突出，市场空间大</p><p>品牌认知度提升</p></div></div><div class="pts"><div class="h bear">看空逻辑</div><div class="md"><p>行业竞争加剧</p><p>估值偏高风险</p><p>原材料成本压力</p></div></div></div>
+<div class="panel"><h2>伯克希尔研究</h2><p><strong>东鹏饮料具备一定护城河和增长潜力，但需警惕竞争加剧和行业天花板风险，当前估值合理但并非显著低估。</strong></p><p>伯克希尔综合评分：<strong>3.5</strong></p><div class="md"><p>{&quot;verdict&quot;: &quot;观望&quot;, &quot;conservative_tip&quot;: &quot;建议观望，若股价回调至PE TTM 25倍以下可考虑买入。&quot;, &quot;moderate_tip&quot;: &quot;若股价回调至PE TTM 30倍以下可少量建仓。&quot;, &quot;aggressive_tip&quot;: &quot;当前估值偏高，不建议激进买入。&quot;, &quot;catalysts_plus&quot;: [&quot;新品类拓展成功&quot;, &quot;市场份额进一步提升&quot;, &quot;行业竞争格局改善&quot;], &quot;catalysts_minus&quot;: [&quot;竞争加剧导致毛利率下降&quot;, &quot;消费者偏好变化&quot;, &quot;政策风险增加&quot;]}</p></div></div>
+<div class="panel news"><h2>最新资讯</h2><div class="md"><p>共5条新闻，4条利多，1条中性，整体情绪偏利好。</p></div><div class="nitem"><div class="t">东鹏饮料(605499)2026年中报点评：第三曲线渐成 股东回报提升 - Futubull</div><div class="s">富途牛牛 · 利好</div></div><div class="nitem"><div class="t">东鹏饮料(605499)：茶饮料增速亮眼 成本红利释放利润弹性 - Futubull</div><div class="s">富途牛牛 · 利好</div></div><div class="nitem"><div class="t">东鹏饮料(605499)：锁价红利释放 股东回报强化 - Futubull</div><div class="s">富途牛牛 · 利好</div></div><div class="nitem"><div class="t">东鹏饮料(605499)：深化全国化布局 多品类协同绽放 - Futubull</div><div class="s">富途牛牛 · 利好</div></div><div class="nitem"><div class="t">China energy drink market fill with new innovations</div><div class="s">Mini Me Insights · 中性</div></div></div>
+<footer>稳健理财Agent · 红黑榜每日归档 · 红榜 #10 · 仅供研究，不构成投资建议</footer>
+</div></body>
+</html>

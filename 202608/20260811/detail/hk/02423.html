@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>贝壳-W(02423) 红榜 2026-08-11</title>
+<style>
+:root{--red:#d8342c;--redbg:#fdecea;--green:#1a9e54;--ink:#1c2230;--muted:#6b7385;
+--line:#e7e9ef;--card:#fff;--bg:#f4f6fa;--chip:#eef1f6;--dark:#23262d;--darkbg:#ececef}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",
+"Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);
+line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 16px 64px}
+header.top{background:linear-gradient(135deg,#1c2230,#2c3550);color:#fff;border-radius:14px;
+padding:22px 24px;margin-bottom:20px;box-shadow:0 6px 24px rgba(20,26,46,.12)}
+header.top h1{margin:0 0 6px;font-size:24px;letter-spacing:.5px}
+header.top .sub{opacity:.85;font-size:13px}
+header.top .sub b{color:#ffd166;font-weight:600}
+nav.mkt{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;
+background:rgba(244,246,250,.92);backdrop-filter:blur(6px);padding:10px 0;margin-bottom:14px}
+nav.mkt a{text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);
+padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600}
+nav.mkt a:hover{border-color:var(--red);color:var(--red)}
+.summary{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.summary .chip{background:var(--card);border:1px solid var(--line);border-radius:10px;
+padding:8px 12px;font-size:12px;color:var(--muted)}
+.summary .chip b{color:var(--ink);font-size:14px;margin-left:4px}
+section.board{margin:26px 0}
+.board-title{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:19px}
+.board-title .dot{width:10px;height:10px;border-radius:50%}
+.board-title.red .dot{background:var(--red)}
+.board-title.black .dot{background:var(--dark)}
+.board-title small{color:var(--muted);font-weight:400;font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+position:relative;transition:box-shadow .15s}
+.card:hover{box-shadow:0 4px 18px rgba(20,26,46,.08)}
+.card.red{border-top:3px solid var(--red)}
+.card.black{border-top:3px solid var(--dark)}
+.rank{position:absolute;top:10px;right:12px;font-size:26px;font-weight:800;color:#eceff5}
+.card.red .rank{color:#fbdcD9}
+.nm{font-size:16px;font-weight:700}
+.nm .tk{color:var(--muted);font-weight:500;font-size:12px;margin-left:6px}
+.tag{display:inline-block;background:var(--chip);color:var(--muted);border-radius:6px;
+padding:1px 7px;font-size:11px;margin:6px 6px 0 0}
+.price-row{display:flex;align-items:baseline;gap:10px;margin:10px 0 4px}
+.price{font-size:24px;font-weight:800}
+.pct{font-size:14px;font-weight:700;padding:2px 8px;border-radius:8px}
+.up{color:var(--red)}.down{color:var(--green)}.flat{color:var(--muted)}
+.pct.up{background:var(--redbg)}.pct.down{background:#e2f4e9}.pct.flat{background:var(--chip)}
+.psrc{font-size:11px;color:var(--muted);margin-left:auto}
+.scores{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.scores span{background:var(--chip);border-radius:6px;padding:2px 8px;font-size:11px;color:var(--muted)}
+.scores span b{color:var(--ink)}
+.pts{font-size:12.5px;margin:8px 0 0}
+.pts .h{font-weight:700;font-size:12px;margin:6px 0 2px}
+.pts .h.bull{color:var(--red)}.pts .h.bear{color:var(--green)}
+.pts ul{margin:2px 0 4px;padding-left:18px;color:#3a4152}
+.pts li{margin:1px 0}
+.masters{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:11px;color:var(--muted)}
+.masters b{color:var(--ink)}
+.summ{font-size:12.5px;color:#3a4152;background:#fafbfd;border:1px solid var(--line);
+border-radius:8px;padding:8px 10px;margin-top:8px}
+.empty{color:var(--muted);background:var(--card);border:1px dashed var(--line);
+border-radius:10px;padding:18px;text-align:center}
+footer{margin-top:34px;color:var(--muted);font-size:12px;text-align:center;line-height:1.8}
+a.lnk{color:var(--red);text-decoration:none}
+/* ── detail page ── */
+.backbar{margin-bottom:14px;font-size:13px}
+.backbar a{color:var(--muted);text-decoration:none;margin-right:14px}
+.backbar a:hover{color:var(--red)}
+.badge{display:inline-block;border-radius:6px;padding:2px 10px;font-size:12px;font-weight:700;margin-right:8px}
+.badge.red{background:var(--red);color:#fff}.badge.black{background:var(--dark);color:#fff}
+.trade{display:flex;flex-wrap:wrap;gap:10px;background:linear-gradient(135deg,#2c3550,#1c2230);
+color:#fff;border-radius:12px;padding:16px 18px;margin:16px 0}
+.trade .cell{min-width:120px}
+.trade .k{font-size:11px;opacity:.75}
+.trade .v{font-size:18px;font-weight:800;margin-top:2px}
+.trade .v.buy{color:#7ee2a8}.trade .v.sell{color:#ff9d97}.trade .v.hold{color:#ffd166}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0}
+.mgrid .m{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.mgrid .m .k{font-size:11px;color:var(--muted)}
+.mgrid .m .v{font-size:16px;font-weight:700;margin-top:2px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.panel>h2{margin:0 0 12px;font-size:17px}
+.panel>h2 .sub{font-size:12px;color:var(--muted);font-weight:400;margin-left:8px}
+.mreply{border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;
+padding:12px 14px;margin:10px 0;background:#fff}
+.mreply .mh{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.mreply .mh .who{font-weight:700;font-size:14px}
+.mreply .mh .mscore{margin-left:auto;background:var(--chip);border-radius:6px;padding:1px 8px;font-size:12px;font-weight:700}
+.md h2,.md h3,.md h4,.md h5{margin:12px 0 6px;font-size:15px}
+.md p{margin:6px 0;font-size:13.5px;color:#2c3345}
+.md ul{margin:6px 0;padding-left:20px;font-size:13.5px;color:#2c3345}
+.md li{margin:3px 0}
+.md strong{color:var(--ink)}
+details{border:1px solid var(--line);border-radius:10px;background:#fff;margin:10px 0;padding:0}
+details>summary{cursor:pointer;padding:12px 16px;font-weight:700;font-size:14px;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary:before{content:"▸ ";color:var(--red)}
+details[open]>summary:before{content:"▾ "}
+details>.body{padding:0 16px 14px;border-top:1px dashed var(--line)}
+.ychip{display:inline-block;background:var(--chip);border-radius:8px;padding:4px 10px;font-size:12px;margin:3px 6px 3px 0}
+.ychip b{font-size:13px}
+.news .nitem{border-top:1px dashed var(--line);padding:8px 0;font-size:13px}
+.news .nitem .t{font-weight:600}
+.news .nitem .s{color:var(--muted);font-size:12px}
+/* ── root landing page ── */
+.hero{padding:30px 26px}
+.hero-kicker{color:#ffd166;font-size:12px;font-weight:700;letter-spacing:2px;
+text-transform:uppercase;margin-bottom:8px}
+.hero h1{font-size:30px;margin:0 0 10px}
+.day-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.day-card{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);
+border-radius:12px;padding:14px 16px;transition:all .15s}
+.day-card:hover{border-color:var(--red);box-shadow:0 4px 16px rgba(216,52,44,.12);transform:translateY(-2px)}
+.day-card .d{font-weight:800;font-size:15px;color:var(--ink);display:flex;align-items:center;gap:8px}
+.day-card .m{margin-top:8px;display:flex;gap:6px}
+.day-card .m span{background:var(--chip);color:var(--muted);border-radius:6px;
+padding:2px 8px;font-size:11px}
+.latest-badge{background:var(--red);color:#fff;border-radius:6px;padding:1px 7px;
+font-size:10px;font-weight:700}
+</style>
+</head>
+<body><div class="wrap">
+<div class="backbar"><a href="../index.html">← 总览</a><a href="../hk.html">← 港股榜单</a></div>
+<header class="top">
+  <h1><span class="badge red">红榜 #6</span>贝壳-W<span class="tk" style="opacity:.7;font-size:15px;font-weight:400;margin-left:8px">02423</span></h1>
+  <div class="sub">港股 ·  · 榜单日期 <b>2026-08-11</b> · 盘价采集 <b>2026-08-11 05:00:58</b></div>
+  <div class="price-row" style="margin-top:12px">
+    <span class="price" style="color:#fff">HK$45.52</span>
+    <span class="pct up">+3.55%</span>
+    <span class="psrc" style="color:rgba(255,255,255,.6)">实时</span>
+  </div>
+  <div class="scores" style="margin-top:10px">
+    <span>综合 <b>81.2</b></span>
+    <span>多头 <b>86</b></span>
+    <span>空头 <b>20</b></span>
+    <span>大师均值 <b>66.4</b></span>
+    <span>信号 <b>positive</b></span>
+  </div>
+</header>
+<div class="trade"><div class="cell"><div class="k">交易评级</div><span class="v buy">Buy</span></div><div class="cell"><div class="k">加仓区间</div><span class="v">44.15 ~ 45.98</span></div><div class="cell"><div class="k">目标价</div><span class="v">50.98</span></div><div class="cell"><div class="k">伯克希尔</div><span class="v">观望</span></div><div class="cell"><div class="k">伯克希尔分</div><span class="v">3.50</span></div></div>
+<div class="panel"><h2>财务指标</h2><div class="mgrid"><div class="m"><div class="k">市盈率 PE</div><div class="v">41.37</div></div><div class="m"><div class="k">市净率 PB</div><div class="v">2.16</div></div><div class="m"><div class="k">ROE</div><div class="v">1.9%</div></div><div class="m"><div class="k">总市值</div><div class="v">1576</div></div><div class="m"><div class="k">营收同比</div><div class="v">-4.7%</div></div><div class="m"><div class="k">净利同比</div><div class="v">13.4%</div></div></div></div>
+<div class="panel"><h2>历史收益</h2><span class="ychip">近1月 <b class="up">+8.95%</b></span><span class="ychip">近6月 <b class="down">-5.58%</b></span><span class="ychip">近1年 <b class="down">-3.84%</b></span></div>
+<div class="panel"><h2>大师圆桌<span class="sub">5 位</span></h2><div class="mreply"><div class="mh"><span class="who">段永平</span><span class="mscore">87</span></div><div class="md"><p>各位好，今天我们来聊聊贝壳-W（02423）。</p><p>首先，我的看法是，这是一家值得关注的优秀公司。贝壳作为国内领先的房产交易平台，其商业模式清晰，市场地位稳固。从本分的角度出发，贝壳一直在做正确的事情：提升用户体验、优化交易流程，这些都符合长期价值创造的方向。</p><p>从数据上看，贝壳当前的股价表现稳健，市值达到1460亿，流动性良好。虽然估值略高，PE在41倍左右，但考虑到其行业地位和增长潜力，这个估值水平是可以接受的。公司的净利润同比增长13.35%，显示出良好的盈利能力。</p><p>然而，我们也需要关注一些潜在风险：</p><ul><li>估值偏高：虽然可以接受，但若市场情绪发生变化，可能面临回调压力。</li><li>行业竞争：房产交易平台竞争激烈，贝壳需要持续创新以保持领先。</li><li>宏观经济：房地产市场受政策影响较大，需关注政策变化带来的影响。</li></ul><p>基于以上分析，我的建议是：</p><p>如果你是长期投资者，并且认同贝壳的商业模式和长期价值，那么当前的价位可以考虑逐步建仓。但要保持耐心，不要因为短期波动而做出仓促决策。同时，要持续关注行业竞争态势和公司基本面变化。</p><p>最后，我想强调一点：投资要本分，不要被市场情绪左右。贝壳是一家好公司，但好公司也需要好价格。我们要在估值和成长性之间找到平衡，才能真正做到长期持有。</p><p>记住，投资不是短跑，而是马拉松。希望大家都能找到属于自己的投资之道。</p></div></div><div class="mreply"><div class="mh"><span class="who">巴菲特</span><span class="mscore">89</span></div><div class="md"><p>各位，大家好。今天我们来聊聊贝壳-W（02423）。我的看法是，这家公司值得投资者关注，但也有一些需要警惕的地方。</p><p>首先，我看到这家公司有一些非常吸引人的特质。从价值投资的角度来看，贝壳-W展现出了不错的护城河。它在房地产交易平台领域占据了相当的市场份额，并且这种优势似乎还在持续。这让我想起了我们投资过的那些具有持久竞争优势的公司。</p><p>从财务数据来看，虽然目前的估值看起来略高，市盈率达到了41倍，但公司的净利润增长率达到了13%，这表明它的盈利能力在不断提升。而且，它的净资产收益率（ROE）虽然不算特别高，但也在逐步改善。</p><p>不过，我也要提醒大家注意一些风险。贝壳-W所在的行业竞争非常激烈，虽然目前它处于领先地位，但这种领先地位是否能持续，还需要我们持续观察。此外，虽然公司目前的流动性不错，市场情绪也较为积极，但这也可能导致市场对它的期望过高，从而带来一定的估值压力。</p><p>基于以上分析，我的建议是：</p><p>如果你已经持有贝壳-W，并且买入时的逻辑依然成立，那么可以继续持有。但要密切关注行业竞争态势和公司的盈利能力变化。</p><p>如果你正在考虑买入，那么我建议你再等等，看看市场是否会给出更好的价格。毕竟，我们投资的原则是&quot;四毛买一块&quot;，现在这个价格可能还需要更多的安全边际。</p><p>最后，我想说的是，投资就像打棒球，我们不需要每次都挥棒。只有当球进入我们的&quot;甜蜜区&quot;时，才值得我们出手。对于贝壳-W，我们需要耐心等待更好的机会。</p><p>如果查理·芒格在这里，他可能会补充说：&quot;投资就像经营一家果园，最重要的是选择那些能够长期结出好果实的树，而不是那些只开花不结果的品种。&quot;贝壳-W是否是这样的树，还需要我们进一步观察。</p></div></div><div class="mreply"><div class="mh"><span class="who">达利欧</span><span class="mscore">37</span></div><div class="md"><h4>圆桌发言：关于贝壳-W（02423）的观点</h4><p><strong>结论：</strong></p><p>贝壳-W目前的价格表现稳健，但需要谨慎观察其上行空间。尽管当前市场情绪积极，但估值偏高且行业竞争压力不容忽视。我的立场偏向谨慎。</p><p><strong>理由：</strong></p><ul><li><strong>股价表现与流动性：</strong></li></ul><p>   贝壳-W的股价在过去一段时间内表现稳健，上涨了3.55%，显示出一定的市场信心。同时，其市值达到1460亿，流动性良好，这对于大资金进出提供了便利。</p><ul><li><strong>估值与风险：</strong></li></ul><p>   尽管股价上涨，但当前的估值水平偏高，PE（市盈率）达到41倍，PB（市净率）为2.16倍。这表明市场对其未来增长有较高的预期，但同时也意味着如果增长不及预期，股价可能会面临回调压力。此外，行业内的竞争压力也需要持续关注，这可能会影响其市场份额和利润率。</p><ul><li><strong>宏观与微观因素：</strong></li></ul><p>   从宏观角度来看，当前市场情绪积极，但这种情绪是否能持续取决于整体经济环境和行业趋势。微观层面，贝壳-W的营收同比下降4.69%，虽然净利润同比增长13.35%，但这种增长是否能持续需要进一步观察。</p><p><strong>风险/行动建议：</strong></p><ul><li><strong>风险提示：</strong></li><li>估值偏高带来的回调风险。</li><li>行业竞争加剧可能影响其市场份额和利润率。</li><li>宏观经济环境变化可能影响市场情绪和资金流向。</li></ul><ul><li><strong>行动建议：</strong></li><li>对于长期投资者，可以考虑在当前价格水平上逐步建仓，但需控制仓位，避免过度集中。</li><li>对于短期投资者，建议密切关注市场情绪和公司基本面变化，灵活调整仓位。</li><li>建议投资者在决策时参考更多独立验证的数据，并采用可信度加权的方法来平衡多头和空头观点。</li></ul><p><strong>原则化收口：</strong></p><p>在投资决策中，保持极度开放和透明是关键。我们需要不断审视自己的假设和逻辑，确保决策过程清晰可追溯。正如我常说的，&quot;Pain + Reflection = Progress&quot;，只有在不断反思和调整中，我们才能在复杂的市场环境中稳步前行。</p></div></div><div class="mreply"><div class="mh"><span class="who">彼得·林奇</span><span class="mscore">83</span></div><div class="md"><h4>圆桌发言：关于贝壳-W的投资观点</h4><h5>结论：</h5><p>我对贝壳-W持谨慎乐观的态度。这是一家值得关注的成长型公司，但当前估值水平需要投资者保持警觉。</p><h5>理由：</h5><ul><li><strong>业务模式与日常生活息息相关</strong>：</li></ul><p>   贝壳作为中国领先的房产交易平台，其业务模式与每个人的居住需求紧密相连。这种&quot;生活选股&quot;的方式让我对其业务有直观的理解，也更容易跟踪其市场表现。</p><ul><li><strong>稳健的财务表现</strong>：</li></ul><p>   尽管营收同比略有下降，但净利润同比增长超过13%，这表明公司在成本控制和运营效率方面取得了进展。净资产收益率（ROE）虽然不算特别高，但考虑到其行业特性，仍处于可接受的水平。</p><ul><li><strong>市场情绪与流动性良好</strong>：</li></ul><p>   股价近期表现强劲，上涨3.55%，市值达到1460亿港元，流动性良好。这反映了市场对其未来发展的积极预期。</p><ul><li><strong>估值水平需谨慎对待</strong>：</li></ul><p>   当前市盈率（PE）超过41倍，相对于其增长率而言，估值略高。这意味着市场已经对其未来增长给予了较高的预期，投资者需要警惕估值回调的风险。</p><h5>风险/行动建议：</h5><ul><li><strong>关注行业竞争压力</strong>：</li></ul><p>   房产交易平台市场竞争激烈，贝壳需要持续创新以保持其市场地位。投资者应密切关注其市场份额变化和新业务拓展情况。</p><ul><li><strong>估值风险</strong>：</li></ul><p>   尽管公司基本面稳健，但当前估值水平较高。如果市场情绪发生变化，估值可能会出现回调。建议投资者在买入时保持耐心，等待更好的入场时机。</p><ul><li><strong>长期持有 vs. 短期交易</strong>：</li></ul><p>   如果你是一个长期投资者，并且相信贝壳能够持续增长，那么当前的价格可能是一个可以接受的入场点。但对于短期交易者来说，需要警惕市场波动的风险。</p><ul><li><strong>持续跟踪基本面</strong>：</li></ul><p>   建议投资者定期关注公司的财报数据和经营动态，特别是其新业务的发展情况和市场份额的变化。如果基本面出现恶化迹象，应及时调整投资策略。</p><p>总的来说，贝壳-W是一家值得关注的公司，但当前估值水平需要投资者保持警觉。如果你决定投资，建议采取分批买入的方式，以降低风险。</p></div></div><div class="mreply"><div class="mh"><span class="who">芒格</span><span class="mscore">36</span></div><div class="md"><p>各位，这贝壳-W（02423）的情况，我得先说结论：我持谨慎态度。</p><h4>理由如下：</h4><p>第一，从股价表现来看，贝壳-W确实不错，股价上涨3.55%，流动性也充足，市场情绪积极。这说明市场对它的预期是好的。</p><p>第二，从估值角度，虽然不算离谱，但市盈率41倍，估值还是偏高的。考虑到当前市场环境，这样的估值需要更高的增长来支撑。</p><p>第三，从行业竞争来看，贝壳所处的房地产经纪行业，竞争压力不小。虽然目前没有明显的利空因素，但行业竞争加剧可能会影响其盈利能力。</p><h4>风险点：</h4><ul><li><strong>估值风险</strong>：当前市盈率41倍，估值偏高。如果增长不及预期，股价可能会面临回调压力。</li><li><strong>行业竞争</strong>：房地产经纪行业的竞争格局变化快，贝壳需要持续创新和提升服务质量来保持竞争力。</li><li><strong>市场情绪波动</strong>：虽然目前市场情绪积极，但情绪是易变的，一旦出现负面消息，股价可能会迅速反应。</li></ul><h4>行动建议：</h4><p>如果你是长期投资者，并且对贝壳的商业模式有信心，可以考虑小仓位介入，但要注意控制风险。不要因为短期股价上涨而盲目追高。</p><p>记住，投资不是赌博，我们要的是稳健的回报，而不是一时的刺激。正如我常说的：&quot;如果我知道自己死在哪里，我就永远不去那里。&quot; 在这里，我们要避开的是高估值和行业竞争带来的不确定性。</p><p>最后，提醒大家，投资决策要基于深入的分析和理性的判断，而不是情绪或短期市场波动。希望大家都能做出明智的选择。</p></div></div></div>
+<div class="panel"><h2>分析师报告<span class="sub">2 篇</span></h2><details open><summary>市场面分析</summary><div class="body"><div class="md"><h4>02423 贝壳-W 市场面分析</h4><ul><li>红黑榜多空分数：多头 86 / 空头 20，分差 66。</li><li>当前价格：45.52。</li><li>当前交易评级：Buy。</li><li>值得加仓区间：44.15 - 45.98。</li><li>目标价格：50.98。</li><li>市场愿意给溢价的原因：股价表现稳健；流动性良好；市场情绪积极。</li><li>当前主要压制因素：估值略高；无明显利空但上行空间需观察；行业竞争压力需关注。</li></ul></div></div></details><details open><summary>基本面分析</summary><div class="body"><div class="md"><h4>02423 贝壳-W 基本面分析</h4><ul><li>报告期：暂无。</li><li>PE(TTM)：41.37。</li><li>PB：2.16。</li><li>PS(TTM)：1.56。</li><li>ROE：1.92%。</li><li>营收同比：-4.69%。</li><li>归母净利润同比：13.35%。</li><li>核心判断：利润端保持扩张。</li></ul></div></div></details></div>
+<div class="panel"><h2>研究与计划</h2>
+<details><summary>基本面摘要</summary><div class="body"><div class="md"><h3>核心财务快照</h3><ul><li>报告期: 数据缺失</li><li>当前股价: 45.52 元</li><li>总市值: 1576.10 亿元</li><li>PE (TTM): 41.37</li><li>PB: 2.16</li><li>PS (TTM): 1.56</li><li>营业总收入(报告期): 数据缺失 亿元</li><li>营收同比增长率: -4.69%</li><li>归母净利润(报告期): 数据缺失 亿元</li><li>归母净利润同比增长率: 13.35%</li><li>ROE (TTM/估算): 1.92%</li><li>资产负债率: 数据缺失</li><li>经营性现金流 / 归母净利润: 数据缺失</li></ul><h4>缺失字段</h4><ul><li>营业总收入, 归母净利润, 资产负债率, 经营性现金流与归母净利润比值</li></ul></div></div></details>
+<details><summary>研究计划</summary><div class="body"><div class="md"><h4>02423 贝壳-W 研究摘要</h4><ul><li>红黑榜结论: Buy</li><li>多头/空头: 86/20</li><li>正向信号: 归母净利润同比 13.35%；PE(TTM) 41.37；PB 2.16</li><li>风险信号: ROE 1.92%；营收同比 -4.69%</li><li>榜单看多理由: 股价表现稳健；流动性良好；市场情绪积极</li><li>榜单风险提示: 估值略高；无明显利空但上行空间需观察；行业竞争压力需关注</li></ul></div></div></details>
+<details><summary>交易计划</summary><div class="body"><div class="md"><h4>02423 贝壳-W 交易计划</h4><ul><li>评级: Buy</li><li>当前价格: 45.52</li><li>值得加仓区间: 44.15 - 45.98</li><li>目标价格: 50.98</li><li>止损位: 41.88</li><li>备注: 当前为缓存降级交易卡，后续若完整 TradingAgent 结果生成，将自动覆盖。</li></ul></div></div></details>
+<details><summary>交易决策</summary><div class="body"><div class="md"><p>Buy</p><p>02423 贝壳-W 当前使用红黑榜缓存结果生成兜底交易卡。多头 86 / 空头 20，分差 66。当前尚未取得完整 TradingAgent 长文决策，但榜单分数、财务快照和大师观点已经足够生成基础交易建议。</p></div></div></details>
+</div>
+<div class="panel"><h2>多空逻辑</h2><div class="pts"><div class="h bull">看多逻辑</div><div class="md"><p>股价表现稳健</p><p>流动性良好</p><p>市场情绪积极</p></div></div><div class="pts"><div class="h bear">看空逻辑</div><div class="md"><p>估值略高</p><p>无明显利空但上行空间需观察</p><p>行业竞争压力需关注</p></div></div></div>
+<div class="panel"><h2>伯克希尔研究</h2><p><strong>贝壳作为中国领先的房产交易平台，具有显著的规模效应和护城河，但需警惕政策风险和行业周期波动。</strong></p><p>伯克希尔综合评分：<strong>3.5</strong></p><div class="md"><p>{&quot;verdict&quot;: &quot;观望&quot;, &quot;conservative_tip&quot;: &quot;建议在PE TTM低于25倍时买入，当前观望。&quot;, &quot;moderate_tip&quot;: &quot;建议在PE TTM低于30倍时买入，当前观望。&quot;, &quot;aggressive_tip&quot;: &quot;建议在PE TTM低于35倍时买入，当前观望。&quot;, &quot;catalysts_plus&quot;: [&quot;政策风险缓解&quot;, &quot;市场份额进一步提升&quot;, &quot;技术投入带来效率提升&quot;], &quot;catalysts_minus&quot;: [&quot;政策进一步收紧&quot;, &quot;竞争加剧导致市场份额下降&quot;, &quot;自由现金流恶化&quot;]}</p></div></div>
+<div class="panel news"><h2>最新资讯</h2><div class="md"><p>整体情绪偏利好，共5条利多消息，0条利空消息。</p></div><div class="nitem"><div class="t">贝壳-W(02423.HK)7月15日耗资199.7万美元回购34.8万股</div><div class="s">TradingView · 利好</div></div><div class="nitem"><div class="t">贝壳-W(02423.HK)7月16日耗资200万美元回购34.1万股</div><div class="s">TradingView · 利好</div></div><div class="nitem"><div class="t">贝壳-W(02423.HK)7月7日耗资793.8万美元回购160.3万股</div><div class="s">TradingView · 利好</div></div><div class="nitem"><div class="t">贝壳-W(02423.HK)7月6日耗资500万美元回购100.1万股</div><div class="s">TradingView · 利好</div></div><div class="nitem"><div class="t">贝壳-W(02423.HK)7月10日耗资500万美元回购95.88万股</div><div class="s">TradingView · 利好</div></div><div class="nitem"><div class="t">贝壳-W(02423.HK)6月4日耗资998.3万港元回购23.25万股</div><div class="s">TradingView · 利好</div></div></div>
+<footer>稳健理财Agent · 红黑榜每日归档 · 红榜 #6 · 仅供研究，不构成投资建议</footer>
+</div></body>
+</html>
