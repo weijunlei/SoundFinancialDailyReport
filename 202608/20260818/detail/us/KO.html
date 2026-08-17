@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>KO(KO) 红榜 2026-08-18</title>
+<style>
+:root{--red:#d8342c;--redbg:#fdecea;--green:#1a9e54;--ink:#1c2230;--muted:#6b7385;
+--line:#e7e9ef;--card:#fff;--bg:#f4f6fa;--chip:#eef1f6;--dark:#23262d;--darkbg:#ececef}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",
+"Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);
+line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 16px 64px}
+header.top{background:linear-gradient(135deg,#1c2230,#2c3550);color:#fff;border-radius:14px;
+padding:22px 24px;margin-bottom:20px;box-shadow:0 6px 24px rgba(20,26,46,.12)}
+header.top h1{margin:0 0 6px;font-size:24px;letter-spacing:.5px}
+header.top .sub{opacity:.85;font-size:13px}
+header.top .sub b{color:#ffd166;font-weight:600}
+nav.mkt{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;
+background:rgba(244,246,250,.92);backdrop-filter:blur(6px);padding:10px 0;margin-bottom:14px}
+nav.mkt a{text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);
+padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600}
+nav.mkt a:hover{border-color:var(--red);color:var(--red)}
+.summary{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.summary .chip{background:var(--card);border:1px solid var(--line);border-radius:10px;
+padding:8px 12px;font-size:12px;color:var(--muted)}
+.summary .chip b{color:var(--ink);font-size:14px;margin-left:4px}
+section.board{margin:26px 0}
+.board-title{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:19px}
+.board-title .dot{width:10px;height:10px;border-radius:50%}
+.board-title.red .dot{background:var(--red)}
+.board-title.black .dot{background:var(--dark)}
+.board-title small{color:var(--muted);font-weight:400;font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+position:relative;transition:box-shadow .15s}
+.card:hover{box-shadow:0 4px 18px rgba(20,26,46,.08)}
+.card.red{border-top:3px solid var(--red)}
+.card.black{border-top:3px solid var(--dark)}
+.rank{position:absolute;top:10px;right:12px;font-size:26px;font-weight:800;color:#eceff5}
+.card.red .rank{color:#fbdcD9}
+.nm{font-size:16px;font-weight:700}
+.nm .tk{color:var(--muted);font-weight:500;font-size:12px;margin-left:6px}
+.tag{display:inline-block;background:var(--chip);color:var(--muted);border-radius:6px;
+padding:1px 7px;font-size:11px;margin:6px 6px 0 0}
+.price-row{display:flex;align-items:baseline;gap:10px;margin:10px 0 4px}
+.price{font-size:24px;font-weight:800}
+.pct{font-size:14px;font-weight:700;padding:2px 8px;border-radius:8px}
+.up{color:var(--red)}.down{color:var(--green)}.flat{color:var(--muted)}
+.pct.up{background:var(--redbg)}.pct.down{background:#e2f4e9}.pct.flat{background:var(--chip)}
+.psrc{font-size:11px;color:var(--muted);margin-left:auto}
+.scores{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.scores span{background:var(--chip);border-radius:6px;padding:2px 8px;font-size:11px;color:var(--muted)}
+.scores span b{color:var(--ink)}
+.pts{font-size:12.5px;margin:8px 0 0}
+.pts .h{font-weight:700;font-size:12px;margin:6px 0 2px}
+.pts .h.bull{color:var(--red)}.pts .h.bear{color:var(--green)}
+.pts ul{margin:2px 0 4px;padding-left:18px;color:#3a4152}
+.pts li{margin:1px 0}
+.masters{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:11px;color:var(--muted)}
+.masters b{color:var(--ink)}
+.summ{font-size:12.5px;color:#3a4152;background:#fafbfd;border:1px solid var(--line);
+border-radius:8px;padding:8px 10px;margin-top:8px}
+.empty{color:var(--muted);background:var(--card);border:1px dashed var(--line);
+border-radius:10px;padding:18px;text-align:center}
+footer{margin-top:34px;color:var(--muted);font-size:12px;text-align:center;line-height:1.8}
+a.lnk{color:var(--red);text-decoration:none}
+/* ── detail page ── */
+.backbar{margin-bottom:14px;font-size:13px}
+.backbar a{color:var(--muted);text-decoration:none;margin-right:14px}
+.backbar a:hover{color:var(--red)}
+.badge{display:inline-block;border-radius:6px;padding:2px 10px;font-size:12px;font-weight:700;margin-right:8px}
+.badge.red{background:var(--red);color:#fff}.badge.black{background:var(--dark);color:#fff}
+.trade{display:flex;flex-wrap:wrap;gap:10px;background:linear-gradient(135deg,#2c3550,#1c2230);
+color:#fff;border-radius:12px;padding:16px 18px;margin:16px 0}
+.trade .cell{min-width:120px}
+.trade .k{font-size:11px;opacity:.75}
+.trade .v{font-size:18px;font-weight:800;margin-top:2px}
+.trade .v.buy{color:#7ee2a8}.trade .v.sell{color:#ff9d97}.trade .v.hold{color:#ffd166}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0}
+.mgrid .m{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.mgrid .m .k{font-size:11px;color:var(--muted)}
+.mgrid .m .v{font-size:16px;font-weight:700;margin-top:2px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.panel>h2{margin:0 0 12px;font-size:17px}
+.panel>h2 .sub{font-size:12px;color:var(--muted);font-weight:400;margin-left:8px}
+.mreply{border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;
+padding:12px 14px;margin:10px 0;background:#fff}
+.mreply .mh{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.mreply .mh .who{font-weight:700;font-size:14px}
+.mreply .mh .mscore{margin-left:auto;background:var(--chip);border-radius:6px;padding:1px 8px;font-size:12px;font-weight:700}
+.md h2,.md h3,.md h4,.md h5{margin:12px 0 6px;font-size:15px}
+.md p{margin:6px 0;font-size:13.5px;color:#2c3345}
+.md ul{margin:6px 0;padding-left:20px;font-size:13.5px;color:#2c3345}
+.md li{margin:3px 0}
+.md strong{color:var(--ink)}
+details{border:1px solid var(--line);border-radius:10px;background:#fff;margin:10px 0;padding:0}
+details>summary{cursor:pointer;padding:12px 16px;font-weight:700;font-size:14px;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary:before{content:"▸ ";color:var(--red)}
+details[open]>summary:before{content:"▾ "}
+details>.body{padding:0 16px 14px;border-top:1px dashed var(--line)}
+.ychip{display:inline-block;background:var(--chip);border-radius:8px;padding:4px 10px;font-size:12px;margin:3px 6px 3px 0}
+.ychip b{font-size:13px}
+.news .nitem{border-top:1px dashed var(--line);padding:8px 0;font-size:13px}
+.news .nitem .t{font-weight:600}
+.news .nitem .s{color:var(--muted);font-size:12px}
+/* ── root landing page ── */
+.hero{padding:30px 26px}
+.hero-kicker{color:#ffd166;font-size:12px;font-weight:700;letter-spacing:2px;
+text-transform:uppercase;margin-bottom:8px}
+.hero h1{font-size:30px;margin:0 0 10px}
+.day-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.day-card{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);
+border-radius:12px;padding:14px 16px;transition:all .15s}
+.day-card:hover{border-color:var(--red);box-shadow:0 4px 16px rgba(216,52,44,.12);transform:translateY(-2px)}
+.day-card .d{font-weight:800;font-size:15px;color:var(--ink);display:flex;align-items:center;gap:8px}
+.day-card .m{margin-top:8px;display:flex;gap:6px}
+.day-card .m span{background:var(--chip);color:var(--muted);border-radius:6px;
+padding:2px 8px;font-size:11px}
+.latest-badge{background:var(--red);color:#fff;border-radius:6px;padding:1px 7px;
+font-size:10px;font-weight:700}
+</style>
+</head>
+<body><div class="wrap">
+<div class="backbar"><a href="../index.html">← 总览</a><a href="../us.html">← 美股榜单</a></div>
+<header class="top">
+  <h1><span class="badge red">红榜 #4</span>KO<span class="tk" style="opacity:.7;font-size:15px;font-weight:400;margin-left:8px">KO</span></h1>
+  <div class="sub">美股 ·  · 榜单日期 <b>2026-08-18</b> · 盘价采集 <b>2026-08-18 05:00:46</b></div>
+  <div class="price-row" style="margin-top:12px">
+    <span class="price" style="color:#fff">$86.98</span>
+    <span class="pct down">-0.83%</span>
+    <span class="psrc" style="color:rgba(255,255,255,.6)">实时</span>
+  </div>
+  <div class="scores" style="margin-top:10px">
+    <span>综合 <b>90.6</b></span>
+    <span>多头 <b>85</b></span>
+    <span>空头 <b>20</b></span>
+    <span>大师均值 <b>48.6</b></span>
+    <span>信号 <b>positive</b></span>
+  </div>
+</header>
+<div class="trade"><div class="cell"><div class="k">交易评级</div><span class="v buy">Buy</span></div><div class="cell"><div class="k">加仓区间</div><span class="v">84.37 ~ 87.85</span></div><div class="cell"><div class="k">目标价</div><span class="v">97.42</span></div><div class="cell"><div class="k">伯克希尔</div><span class="v">买入</span></div><div class="cell"><div class="k">伯克希尔分</div><span class="v">4.25</span></div></div>
+<div class="panel"><h2>财务指标</h2><div class="mgrid"><div class="m"><div class="k">市盈率 PE</div><div class="v">26.12</div></div><div class="m"><div class="k">市净率 PB</div><div class="v">10.35</div></div><div class="m"><div class="k">ROE</div><div class="v">42.1%</div></div><div class="m"><div class="k">总市值</div><div class="v">3742</div></div><div class="m"><div class="k">营收同比</div><div class="v">6.7%</div></div><div class="m"><div class="k">净利同比</div><div class="v">16.9%</div></div></div></div>
+<div class="panel"><h2>历史收益</h2><span class="ychip">近1月 <b class="up">+5.92%</b></span><span class="ychip">近6月 <b class="up">+9.42%</b></span><span class="ychip">近1年 <b class="up">+25.82%</b></span><span class="ychip">近5年 <b class="up">+53.95%</b></span></div>
+<div class="panel"><h2>大师圆桌<span class="sub">5 位</span></h2><div class="mreply"><div class="mh"><span class="who">段永平</span><span class="mscore">41</span></div><div class="md"><h4>圆桌发言：关于 KO（可口可乐）的看法</h4><p><strong>结论：</strong></p><p>对于 KO 这家公司，我目前的看法是谨慎观望。虽然它是一家优秀的公司，但现在的价格可能并不适合买入。</p><p><strong>理由：</strong></p><p>首先，KO 是一家典型的防御性消费股，商业模式简单易懂，品牌强大，现金流稳定，历史派息记录良好，这些都是它的优势。作为长期持有的标的，它确实具备一定的吸引力。</p><p>然而，当我们用&quot;本分&quot;和&quot;看得懂&quot;的标准来审视时，会发现一些问题：</p><ul><li><strong>增长空间有限</strong>：KO 的主要市场已经非常成熟，很难再看到过去那样的高速增长。在当前的市场环境下，要维持现有的增长率都面临挑战。</li></ul><ul><li><strong>估值偏高</strong>：目前 KO 的市盈率（PE）超过 26 倍，市净率（PB）超过 10 倍。对于一家增长空间有限的公司来说，这样的估值水平显得有些过高。</li></ul><ul><li><strong>缺乏短期催化剂</strong>：在可预见的未来，似乎没有明显的增长动力或重大利好因素能够推动股价大幅上涨。</li></ul><p><strong>风险/行动建议：</strong></p><ul><li><strong>风险</strong>：如果现在买入，可能要面临估值回调的风险。尤其是在市场整体估值偏高的情况下，任何负面消息都可能导致股价波动。</li></ul><ul><li><strong>建议</strong>：对于已经持有的投资者，如果成本较低，可以继续持有，享受稳定的分红。但对于想要新买入的投资者，我建议再等等，看看是否有更好的买入时机。</li></ul><ul><li><strong>长期视角</strong>：如果从更长期的角度来看，KO 依然是一家值得关注的优秀公司。但投资决策不能只看长期，还要考虑当前的估值水平是否合理。</li></ul><p>总的来说，KO 是一家好公司，但现在可能不是最好的买入时机。我们需要保持耐心，等待更好的机会。记住，投资最重要的不是赚快钱，而是找到那些真正值得长期持有的好生意。</p></div></div><div class="mreply"><div class="mh"><span class="who">巴菲特</span><span class="mscore">61</span></div><div class="md"><p>各位朋友，今天我们来聊聊可口可乐（KO）。我的看法是，这家公司是一家典型的防御性消费股，拥有强大的品牌护城河和稳定的现金流，但当前的价格可能需要一些谨慎。</p><p>首先，谈到可口可乐，它无疑是全球最具价值的品牌之一。多年来，它在饮料市场的领导地位几乎没有受到挑战。这种强大的品牌效应和全球分销网络构成了它难以逾越的护城河。即使在经济低迷时期，人们对饮料的需求依然相对稳定，这使得可口可乐成为一个防御性很强的投资标的。此外，它一直保持着稳定的派息历史，对于追求长期稳定回报的投资者来说，这无疑是一个重要的吸引力。</p><p>然而，我们也需要关注一些潜在的风险。当前可口可乐的估值并不便宜，市盈率已经达到了26倍左右。对于一家增长空间相对有限的公司来说，这样的估值水平可能会对未来的回报构成压力。尽管它的市场表现一直很稳健，但缺乏明显的短期催化剂可能会让股价在短期内难以有显著突破。</p><p>在行动建议方面，如果你是一个长期投资者，并且更看重稳定的现金流和防御性，那么可口可乐仍然是一个不错的选择。但如果你更关注短期的价格升值潜力，当前的高估值可能需要你保持谨慎。我的建议是，在考虑买入时，不妨等待一个更有吸引力的价格，或者将目光投向那些估值更为合理、同时具备增长潜力的公司。</p><p>最后，我想说，投资就像打棒球，你不需要每次都挥棒。对于可口可乐这样的公司，我们需要耐心等待那个&quot;甜蜜点&quot;的出现。</p><p>如果是芒格，他可能会补充说：&quot;投资就像打理一个果园，你不能只盯着眼前的果实，还要考虑长期的收成。&quot; 在这里，他强调的仍然是长期视角和耐心。</p></div></div><div class="mreply"><div class="mh"><span class="who">达利欧</span><span class="mscore">33</span></div><div class="md"><p>各位同仁，关于可口可乐（KO）的投资价值，我将从几个关键角度来分享我的看法。</p><p>首先，我的结论是：<strong>可口可乐在当前环境下不是一个理想的投资选择。</strong> 尽管它是一家稳健的公司，但存在一些结构性问题和短期内的制约因素。</p><h4>理由分析：</h4><ul><li><strong>防御性特质与稳定性</strong></li></ul><p>   可口可乐确实具备典型的防御性消费股特征，其低波动性和稳定派息历史使其在市场动荡时期表现相对稳健。这对于寻求稳定回报的投资者来说是一个优势。</p><ul><li><strong>估值问题</strong></li></ul><p>   然而，当前可口可乐的估值偏高，市盈率（PE）达到26倍左右，远高于其历史平均水平。这种高估值意味着市场已经充分甚至过度反映了其稳定性和防御性优势。</p><ul><li><strong>增长瓶颈</strong></li></ul><p>   可口可乐面临的主要挑战是增长空间有限。作为一家成熟企业，其核心业务已经接近饱和，市场份额难以大幅提升。同时，在健康饮品趋势的冲击下，其传统碳酸饮料业务面临压力。</p><ul><li><strong>缺乏短期催化剂</strong></li></ul><p>   在当前市场环境下，缺乏明显的催化剂来推动其股价上涨。相比之下，其他一些成长型公司可能提供更高的上行潜力。</p><h4>风险与行动建议：</h4><ul><li><strong>风险</strong></li><li><strong>估值回调风险</strong>：如果市场情绪转向悲观，高估值股票可能面临更大的回调压力。</li><li><strong>行业趋势变化</strong>：健康饮品趋势的持续可能会进一步侵蚀其市场份额。</li><li><strong>宏观经济环境</strong>：如果全球经济出现衰退，其防御性特质可能不足以完全抵消整体市场下滑的影响。</li></ul><ul><li><strong>行动建议</strong></li><li><strong>观望为主</strong>：对于现有投资者，建议保持观望，关注其基本面是否出现实质性改善。</li><li><strong>寻找更优标的</strong>：对于潜在投资者，建议寻找那些估值更合理、增长潜力更大的公司。</li><li><strong>长期视角</strong>：如果投资者坚持看好可口可乐的长期价值，可以考虑在估值回调时逐步建仓，但需做好长期持有的准备。</li></ul><h4>原则化总结：</h4><p>在当前市场环境下，我的原则是<strong>&quot;在估值过高时保持耐心，在增长空间有限时寻找替代方案&quot;</strong>。这意味着我们需要对可口可乐保持谨慎态度，同时积极寻找其他更具吸引力的投资机会。</p><h4>决策日志建议：</h4><p>建议将这次分析记录在决策日志中，包括：</p><ul><li>投资理由和担忧</li><li>估值分析的详细过程</li><li>风险评估的具体因素</li><li>最终决策的依据和预期结果</li></ul><p>通过这种方式，我们可以更好地跟踪投资决策的演变过程，并在未来进行更有效的复盘和调整。</p></div></div><div class="mreply"><div class="mh"><span class="who">彼得·林奇</span><span class="mscore">60</span></div><div class="md"><p>各位好，今天我们来聊聊可口可乐（KO）。我的结论是：可口可乐是一家不错的公司，但当前价格有些偏高，不太适合大举买入。</p><p>首先，为什么说它不错？可口可乐是一家典型的防御性消费股，波动性低，现金流稳定，历史派息记录良好。对于那些寻求稳定收益的投资者来说，它是一个不错的选择。而且，在日常生活中，我们很容易观察到它的产品无处不在，从超市到餐馆，这种无处不在的品牌影响力是它长期稳定经营的基础。</p><p>然而，当前的估值让我有些犹豫。可口可乐的市盈率（PE）达到了26倍左右，对于一家增长空间有限的公司来说，这个估值并不便宜。尽管它的净利润同比增长了16.9%，但营收同比增长只有6.7%，这表明利润增长更多来自于成本控制和效率提升，而非销售扩张。在当前市场环境下，这样的增长可能难以支撑如此高的估值。</p><p>此外，缺乏短期催化剂也是一个需要考虑的因素。可口可乐的业务模式成熟，市场份额稳定，但要想在现有基础上实现突破性增长，难度较大。对于那些希望看到股价快速上涨的投资者来说，这可能不是一个理想的选择。</p><p>那么，面对这样的情况，我建议：</p><ul><li>如果你已经在持有可口可乐，并且是以长期收益为目标，那么继续持有是可以的。毕竟，它的稳定性和派息记录依然有吸引力。</li><li>如果你正在考虑买入，我建议你再等等，看看是否有更好的买入时机。耐心等待估值回调，或者寻找其他增长潜力更大的投资机会。</li><li>密切关注公司的营收增长情况。如果未来几个季度营收增长能够加速，那么当前的估值压力可能会得到缓解。</li></ul><p>总之，可口可乐是一家好公司，但当前的价格让我有些谨慎。希望大家在投资时，能够结合自身的风险承受能力和投资目标，做出明智的选择。</p></div></div><div class="mreply"><div class="mh"><span class="who">芒格</span><span class="mscore">48</span></div><div class="md"><p>各位，关于可口可乐公司（KO），我先说结论：<strong>这是一笔风险较低但回报潜力也受限的投资。</strong></p><h4>理由</h4><p>首先，这家公司符合防御性消费股的典型特征：<strong>稳定的现金流、持续派息的历史，以及较低的市场波动性</strong>。对于那些追求稳定回报、尤其是希望长期持有的投资者来说，它确实是一个不错的选择。</p><p>然而，<strong>当前估值偏高</strong>是一个不可忽视的问题。市盈率（PE）达到26倍，而市净率（PB）更是高达10倍。这种估值水平意味着市场已经对它的稳定性和品牌价值给予了充分的定价，甚至可能已经过度乐观。</p><p>此外，<strong>增长空间有限</strong>是另一个需要考虑的因素。尽管公司在过去几年保持了营收和利润的增长，但增幅并不显著，尤其是在新兴市场和国际扩张方面，面临诸多挑战。</p><h4>风险/行动建议</h4><ul><li><strong>估值风险</strong>：当前估值已经反映了大部分利好因素。如果市场情绪发生变化，或者公司业绩出现任何低于预期的迹象，股价可能会面临回调压力。</li></ul><ul><li><strong>缺乏催化剂</strong>：短期内很难看到推动股价大幅上涨的催化剂。对于那些希望获得超额回报的投资者来说，这可能不是一个理想的选择。</li></ul><ul><li><strong>长期持有价值</strong>：如果你是一个长期投资者，并且能够接受相对温和的回报，那么可口可乐仍然是一个值得考虑的选择。它的防御性特征和稳定的派息政策可以提供一定的安全边际。</li></ul><h4>逆向思考</h4><p>从逆向思维的角度来看，<strong>如果这笔投资失败了，可能的原因是什么？</strong> 可能是市场整体估值回调，或者是公司自身出现了一些意想不到的负面事件，比如品牌声誉受损或管理层的重大失误。因此，在投资时需要保持一定的警惕性，并密切关注公司的基本面变化。</p><h4>总结</h4><p>总的来说，可口可乐是一笔稳健但缺乏爆发力的投资。它适合那些追求稳定回报的投资者，但不建议将其作为追求高回报的主要标的。在当前的市场环境下，我会建议投资者在买入时保持谨慎，并做好长期持有的准备。</p><p>正如我常说的：<strong>&quot;如果我知道自己死在哪里，我就永远不去那里。&quot;</strong> 在投资中，识别风险并合理规避，是获得长期成功的关键。</p></div></div></div>
+<div class="panel"><h2>分析师报告<span class="sub">2 篇</span></h2><details open><summary>市场面分析</summary><div class="body"><div class="md"><h4>KO KO 市场面分析</h4><ul><li>红黑榜多空分数：多头 85 / 空头 20，分差 65。</li><li>当前价格：86.98。</li><li>当前交易评级：Buy。</li><li>值得加仓区间：84.37 - 87.85。</li><li>目标价格：97.42。</li><li>市场愿意给溢价的原因：防御性消费股，波动性低；稳定派息历史，适合长期持有；市场表现稳健。</li><li>当前主要压制因素：增长空间有限，估值承压；当前估值偏高；缺乏短期催化剂。</li></ul></div></div></details><details open><summary>基本面分析</summary><div class="body"><div class="md"><h4>KO KO 基本面分析</h4><ul><li>报告期：暂无。</li><li>PE(TTM)：26.12。</li><li>PB：10.35。</li><li>ROE：42.05%。</li><li>营收同比：6.70%。</li><li>归母净利润同比：16.90%。</li><li>核心判断：盈利能力处于可接受区间；收入仍在增长；利润端保持扩张。</li></ul></div></div></details></div>
+<div class="panel"><h2>研究与计划</h2>
+<details><summary>基本面摘要</summary><div class="body"><div class="md"><h3>核心财务快照</h3><ul><li>报告期: 数据缺失</li><li>当前股价: 86.98 元</li><li>总市值: 3742.36 亿元</li><li>PE (TTM): 26.12</li><li>PB: 10.35</li><li>PS (TTM): 数据缺失</li><li>营业总收入(报告期): 数据缺失 亿元</li><li>营收同比增长率: 6.70%</li><li>归母净利润(报告期): 数据缺失 亿元</li><li>归母净利润同比增长率: 16.90%</li><li>ROE (TTM/估算): 42.05%</li><li>资产负债率: 数据缺失</li><li>经营性现金流 / 归母净利润: 数据缺失</li></ul><h4>缺失字段</h4><ul><li>PS(TTM), 营业总收入, 归母净利润, 资产负债率, 经营性现金流与归母净利润比值</li></ul></div></div></details>
+<details><summary>研究计划</summary><div class="body"><div class="md"><h4>KO KO 研究摘要</h4><ul><li>红黑榜结论: Buy</li><li>多头/空头: 85/20</li><li>正向信号: ROE 42.05%；营收同比 6.70%；归母净利润同比 16.90%；PE(TTM) 26.12</li><li>榜单看多理由: 防御性消费股，波动性低；稳定派息历史，适合长期持有；市场表现稳健</li><li>榜单风险提示: 增长空间有限，估值承压；当前估值偏高；缺乏短期催化剂</li></ul></div></div></details>
+<details><summary>交易计划</summary><div class="body"><div class="md"><h4>KO KO 交易计划</h4><ul><li>评级: Buy</li><li>当前价格: 86.98</li><li>值得加仓区间: 84.37 - 87.85</li><li>目标价格: 97.42</li><li>止损位: 80.02</li><li>备注: 当前为缓存降级交易卡，后续若完整 TradingAgent 结果生成，将自动覆盖。</li></ul></div></div></details>
+<details><summary>交易决策</summary><div class="body"><div class="md"><p>Buy</p><p>KO KO 当前使用红黑榜缓存结果生成兜底交易卡。多头 85 / 空头 20，分差 65。当前尚未取得完整 TradingAgent 长文决策，但榜单分数、财务快照和大师观点已经足够生成基础交易建议。</p></div></div></details>
+</div>
+<div class="panel"><h2>多空逻辑</h2><div class="pts"><div class="h bull">看多逻辑</div><div class="md"><p>防御性消费股，波动性低</p><p>稳定派息历史，适合长期持有</p><p>市场表现稳健</p></div></div><div class="pts"><div class="h bear">看空逻辑</div><div class="md"><p>增长空间有限，估值承压</p><p>当前估值偏高</p><p>缺乏短期催化剂</p></div></div></div>
+<div class="panel"><h2>伯克希尔研究</h2><p><strong>可口可乐是一家拥有强大护城河和长期确定性的稳健型消费股，但需关注新兴市场增长和健康化趋势的挑战。</strong></p><p>伯克希尔综合评分：<strong>4.25</strong></p><div class="md"><p>{&quot;verdict&quot;: &quot;买入&quot;, &quot;conservative_tip&quot;: &quot;建议在PE TTM低于22倍时买入，目标价70美元。&quot;, &quot;moderate_tip&quot;: &quot;建议在PE TTM低于25倍时买入，目标价75美元。&quot;, &quot;aggressive_tip&quot;: &quot;建议在PE TTM低于28倍时买入，目标价80美元。&quot;, &quot;catalysts_plus&quot;: [&quot;健康化产品线取得突破性进展。&quot;, &quot;新兴市场营收增长超预期。&quot;, &quot;原材料价格回落提升利润率。&quot;], &quot;catalysts_minus&quot;: [&quot;健康化趋势加速导致碳酸饮料销量下滑。&quot;, &quot;新兴市场增长显著放缓。&quot;, &quot;新进入者对高端饮料市场构成实质性冲击。&quot;]}</p></div></div>
+<div class="panel news"><h2>最新资讯</h2><div class="md"><p>整体情绪偏中性，2条利多，0条利空，8条中性。</p></div><div class="nitem"><div class="t">Javier Herrera walks. Easton Shelton scores. Ching-Hsien Ko to 3rd. Oswaldo Osorio to 2nd.</div><div class="s">MLB.com · 中性</div></div><div class="nitem"><div class="t">San Angelo police seek victims of KO storage burglaries reported May through July</div><div class="s">myfoxzone.com · 中性</div></div><div class="nitem"><div class="t">Aspercreme® and Danny Trejo Launch &quot;KO Boomer&quot; Campaign to Challenge Ageist Stereotypes</div><div class="s">Yahoo Finance · 中性</div></div><div class="nitem"><div class="t">Donte Johnson Lands Powerful KO In Round 1 | UFC 330</div><div class="s">UFC.com · 中性</div></div><div class="nitem"><div class="t">[OSHI NO KO] Season 4 Anime Unveils Star-Studded Teaser Visual</div><div class="s">Crunchyroll · 中性</div></div><div class="nitem"><div class="t">Quant ratings on Berkshire Hathaway&#x27;s top holdings: AAPL, AXP, KO, GOOGL (BRK.B:NYSE)</div><div class="s">Seeking Alpha · 中性</div></div><div class="nitem"><div class="t">Dad and Sons, Ages 5 and 7, Stranded at Sea for 16 Hours Overnight After Jet Ski Capsized</div><div class="s">People.com · 中性</div></div><div class="nitem"><div class="t">Ching-Hsien Ko singles on a line drive to left fielder Samil Dishmey. Abel Lorenzo scores. Joendry Vargas scores. Easton Shelton to 3rd. Ching-Hsien Ko to 2nd.</div><div class="s">MLB.com · 中性</div></div></div>
+<footer>稳健理财Agent · 红黑榜每日归档 · 红榜 #4 · 仅供研究，不构成投资建议</footer>
+</div></body>
+</html>
