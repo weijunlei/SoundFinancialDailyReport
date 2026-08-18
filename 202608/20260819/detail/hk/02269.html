@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>药明生物(02269) 红榜 2026-08-19</title>
+<style>
+:root{--red:#d8342c;--redbg:#fdecea;--green:#1a9e54;--ink:#1c2230;--muted:#6b7385;
+--line:#e7e9ef;--card:#fff;--bg:#f4f6fa;--chip:#eef1f6;--dark:#23262d;--darkbg:#ececef}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",
+"Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);
+line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 16px 64px}
+header.top{background:linear-gradient(135deg,#1c2230,#2c3550);color:#fff;border-radius:14px;
+padding:22px 24px;margin-bottom:20px;box-shadow:0 6px 24px rgba(20,26,46,.12)}
+header.top h1{margin:0 0 6px;font-size:24px;letter-spacing:.5px}
+header.top .sub{opacity:.85;font-size:13px}
+header.top .sub b{color:#ffd166;font-weight:600}
+nav.mkt{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;
+background:rgba(244,246,250,.92);backdrop-filter:blur(6px);padding:10px 0;margin-bottom:14px}
+nav.mkt a{text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);
+padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600}
+nav.mkt a:hover{border-color:var(--red);color:var(--red)}
+.summary{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.summary .chip{background:var(--card);border:1px solid var(--line);border-radius:10px;
+padding:8px 12px;font-size:12px;color:var(--muted)}
+.summary .chip b{color:var(--ink);font-size:14px;margin-left:4px}
+section.board{margin:26px 0}
+.board-title{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:19px}
+.board-title .dot{width:10px;height:10px;border-radius:50%}
+.board-title.red .dot{background:var(--red)}
+.board-title.black .dot{background:var(--dark)}
+.board-title small{color:var(--muted);font-weight:400;font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+position:relative;transition:box-shadow .15s}
+.card:hover{box-shadow:0 4px 18px rgba(20,26,46,.08)}
+.card.red{border-top:3px solid var(--red)}
+.card.black{border-top:3px solid var(--dark)}
+.rank{position:absolute;top:10px;right:12px;font-size:26px;font-weight:800;color:#eceff5}
+.card.red .rank{color:#fbdcD9}
+.nm{font-size:16px;font-weight:700}
+.nm .tk{color:var(--muted);font-weight:500;font-size:12px;margin-left:6px}
+.tag{display:inline-block;background:var(--chip);color:var(--muted);border-radius:6px;
+padding:1px 7px;font-size:11px;margin:6px 6px 0 0}
+.price-row{display:flex;align-items:baseline;gap:10px;margin:10px 0 4px}
+.price{font-size:24px;font-weight:800}
+.pct{font-size:14px;font-weight:700;padding:2px 8px;border-radius:8px}
+.up{color:var(--red)}.down{color:var(--green)}.flat{color:var(--muted)}
+.pct.up{background:var(--redbg)}.pct.down{background:#e2f4e9}.pct.flat{background:var(--chip)}
+.psrc{font-size:11px;color:var(--muted);margin-left:auto}
+.scores{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.scores span{background:var(--chip);border-radius:6px;padding:2px 8px;font-size:11px;color:var(--muted)}
+.scores span b{color:var(--ink)}
+.pts{font-size:12.5px;margin:8px 0 0}
+.pts .h{font-weight:700;font-size:12px;margin:6px 0 2px}
+.pts .h.bull{color:var(--red)}.pts .h.bear{color:var(--green)}
+.pts ul{margin:2px 0 4px;padding-left:18px;color:#3a4152}
+.pts li{margin:1px 0}
+.masters{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:11px;color:var(--muted)}
+.masters b{color:var(--ink)}
+.summ{font-size:12.5px;color:#3a4152;background:#fafbfd;border:1px solid var(--line);
+border-radius:8px;padding:8px 10px;margin-top:8px}
+.empty{color:var(--muted);background:var(--card);border:1px dashed var(--line);
+border-radius:10px;padding:18px;text-align:center}
+footer{margin-top:34px;color:var(--muted);font-size:12px;text-align:center;line-height:1.8}
+a.lnk{color:var(--red);text-decoration:none}
+/* ── detail page ── */
+.backbar{margin-bottom:14px;font-size:13px}
+.backbar a{color:var(--muted);text-decoration:none;margin-right:14px}
+.backbar a:hover{color:var(--red)}
+.badge{display:inline-block;border-radius:6px;padding:2px 10px;font-size:12px;font-weight:700;margin-right:8px}
+.badge.red{background:var(--red);color:#fff}.badge.black{background:var(--dark);color:#fff}
+.trade{display:flex;flex-wrap:wrap;gap:10px;background:linear-gradient(135deg,#2c3550,#1c2230);
+color:#fff;border-radius:12px;padding:16px 18px;margin:16px 0}
+.trade .cell{min-width:120px}
+.trade .k{font-size:11px;opacity:.75}
+.trade .v{font-size:18px;font-weight:800;margin-top:2px}
+.trade .v.buy{color:#7ee2a8}.trade .v.sell{color:#ff9d97}.trade .v.hold{color:#ffd166}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0}
+.mgrid .m{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.mgrid .m .k{font-size:11px;color:var(--muted)}
+.mgrid .m .v{font-size:16px;font-weight:700;margin-top:2px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.panel>h2{margin:0 0 12px;font-size:17px}
+.panel>h2 .sub{font-size:12px;color:var(--muted);font-weight:400;margin-left:8px}
+.mreply{border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;
+padding:12px 14px;margin:10px 0;background:#fff}
+.mreply .mh{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.mreply .mh .who{font-weight:700;font-size:14px}
+.mreply .mh .mscore{margin-left:auto;background:var(--chip);border-radius:6px;padding:1px 8px;font-size:12px;font-weight:700}
+.md h2,.md h3,.md h4,.md h5{margin:12px 0 6px;font-size:15px}
+.md p{margin:6px 0;font-size:13.5px;color:#2c3345}
+.md ul{margin:6px 0;padding-left:20px;font-size:13.5px;color:#2c3345}
+.md li{margin:3px 0}
+.md strong{color:var(--ink)}
+details{border:1px solid var(--line);border-radius:10px;background:#fff;margin:10px 0;padding:0}
+details>summary{cursor:pointer;padding:12px 16px;font-weight:700;font-size:14px;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary:before{content:"▸ ";color:var(--red)}
+details[open]>summary:before{content:"▾ "}
+details>.body{padding:0 16px 14px;border-top:1px dashed var(--line)}
+.ychip{display:inline-block;background:var(--chip);border-radius:8px;padding:4px 10px;font-size:12px;margin:3px 6px 3px 0}
+.ychip b{font-size:13px}
+.news .nitem{border-top:1px dashed var(--line);padding:8px 0;font-size:13px}
+.news .nitem .t{font-weight:600}
+.news .nitem .s{color:var(--muted);font-size:12px}
+/* ── root landing page ── */
+.hero{padding:30px 26px}
+.hero-kicker{color:#ffd166;font-size:12px;font-weight:700;letter-spacing:2px;
+text-transform:uppercase;margin-bottom:8px}
+.hero h1{font-size:30px;margin:0 0 10px}
+.day-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.day-card{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);
+border-radius:12px;padding:14px 16px;transition:all .15s}
+.day-card:hover{border-color:var(--red);box-shadow:0 4px 16px rgba(216,52,44,.12);transform:translateY(-2px)}
+.day-card .d{font-weight:800;font-size:15px;color:var(--ink);display:flex;align-items:center;gap:8px}
+.day-card .m{margin-top:8px;display:flex;gap:6px}
+.day-card .m span{background:var(--chip);color:var(--muted);border-radius:6px;
+padding:2px 8px;font-size:11px}
+.latest-badge{background:var(--red);color:#fff;border-radius:6px;padding:1px 7px;
+font-size:10px;font-weight:700}
+</style>
+</head>
+<body><div class="wrap">
+<div class="backbar"><a href="../index.html">← 总览</a><a href="../hk.html">← 港股榜单</a></div>
+<header class="top">
+  <h1><span class="badge red">红榜 #4</span>药明生物<span class="tk" style="opacity:.7;font-size:15px;font-weight:400;margin-left:8px">02269</span></h1>
+  <div class="sub">港股 ·  · 榜单日期 <b>2026-08-19</b> · 盘价采集 <b>2026-08-19 05:00:33</b></div>
+  <div class="price-row" style="margin-top:12px">
+    <span class="price" style="color:#fff">HK$48.58</span>
+    <span class="pct up">+5.24%</span>
+    <span class="psrc" style="color:rgba(255,255,255,.6)">实时</span>
+  </div>
+  <div class="scores" style="margin-top:10px">
+    <span>综合 <b>87.5</b></span>
+    <span>多头 <b>90</b></span>
+    <span>空头 <b>25</b></span>
+    <span>大师均值 <b>64.8</b></span>
+    <span>信号 <b>positive</b></span>
+  </div>
+</header>
+<div class="trade"><div class="cell"><div class="k">交易评级</div><span class="v buy">Buy</span></div><div class="cell"><div class="k">加仓区间</div><span class="v">47.12 ~ 49.07</span></div><div class="cell"><div class="k">目标价</div><span class="v">54.41</span></div><div class="cell"><div class="k">伯克希尔</div><span class="v">买入</span></div><div class="cell"><div class="k">伯克希尔分</div><span class="v">4.00</span></div></div>
+<div class="panel"><h2>财务指标</h2><div class="mgrid"><div class="m"><div class="k">市盈率 PE</div><div class="v">37.05</div></div><div class="m"><div class="k">市净率 PB</div><div class="v">3.85</div></div><div class="m"><div class="k">ROE</div><div class="v">11.0%</div></div><div class="m"><div class="k">总市值</div><div class="v">2014</div></div><div class="m"><div class="k">营收同比</div><div class="v">8.7%</div></div><div class="m"><div class="k">净利同比</div><div class="v">17.0%</div></div></div></div>
+<div class="panel"><h2>历史收益</h2><span class="ychip">近1月 <b class="up">+25.14%</b></span><span class="ychip">近6月 <b class="up">+20.55%</b></span><span class="ychip">近1年 <b class="up">+45.97%</b></span></div>
+<div class="panel"><h2>大师圆桌<span class="sub">5 位</span></h2><div class="mreply"><div class="mh"><span class="who">段永平</span><span class="mscore">48</span></div><div class="md"><p>今天讨论药明生物这家公司，我来说说我的看法。</p><p>首先，我认同药明生物在生物科技行业的龙头地位，这确实是家好公司。从数据来看，营收和利润都有不错的增长，股价近期表现也很强劲。</p><p>但我投资时更看重的是&quot;做对的事&quot;，以及我们是否真的&quot;看得懂&quot;这家公司。在我看来，有几个问题需要考虑：</p><ul><li>估值方面，目前37倍的PE和8倍多的PS不算低。虽然市场认可度高，但这意味着我们对未来增长的预期已经被price in了不少。</li></ul><ul><li>生物科技行业受政策影响很大，这是我们必须正视的风险。投资这家公司，需要对行业政策有深入的理解。</li></ul><ul><li>行业竞争在加剧，这可能会影响公司的利润率。我们需要评估药明生物的竞争优势是否足够稳固。</li></ul><p>如果是我来决策，我会问自己几个问题：</p><ul><li>我是否真的理解生物科技行业的本质？</li><li>我能否承受估值回调的风险？</li><li>我对公司的长期竞争力有多大把握？</li></ul><p>我的建议是：</p><p>如果你是行业内的专家，对药明生物有深入的研究，并且能够承受短期波动，那么这可能是一个值得考虑的投资标的。但如果你只是看到股价上涨而心动，我建议你先冷静下来，仔细思考这是否符合你的投资原则。</p><p>最后，我想提醒大家，投资中最重要的是&quot;不懂不做&quot;。不要因为别人都在讨论就贸然入场。投资永远不缺机会，但我们要确保自己是在做对的事。</p></div></div><div class="mreply"><div class="mh"><span class="who">巴菲特</span><span class="mscore">77</span></div><div class="md"><p>各位，大家好，今天我们来聊聊药明生物（02269）。我的看法是，这是一家值得关注的生物科技公司，但投资时需要特别留意一些关键点。</p><p>首先，结论是：药明生物是一家拥有强大护城河的企业，在生物科技领域处于领先地位，这为其长期发展提供了坚实基础。但同时，投资者需要警惕其高估值以及行业政策变化带来的潜在风险。</p><h4>为什么这么说？</h4><p>首先，从护城河的角度来看，药明生物在生物科技行业拥有绝对龙头地位，这为其带来了显著的竞争优势。生物科技行业本身具有较高的进入壁垒，而药明生物通过多年的积累，已经建立起强大的技术平台和客户网络。这种优势不仅体现在其市场份额上，也体现在其持续增长的营收和净利润上。</p><p>其次，从自由现金流的角度来看，虽然生物科技行业通常需要大量的研发投入，但药明生物的盈利能力依然强劲。其净利润同比增长超过16%，这表明公司在保持高增长的同时，也具备良好的盈利能力。</p><h4>风险在哪里？</h4><p>然而，我们也不能忽视一些潜在的风险。首先，估值方面，药明生物的市盈率（PE）超过37倍，相对于其行业地位和市场表现而言，这并不算便宜。高估值意味着市场对其未来增长有较高的预期，但一旦业绩不达预期，股价可能会面临较大的调整压力。</p><p>其次，政策风险是生物科技行业不可忽视的重要因素。医药行业的监管政策变化可能会对公司产生重大影响，尤其是在中国这样的市场，政策环境的变化可能会对公司的运营产生深远影响。</p><h4>行动建议</h4><p>因此，我的建议是：</p><ul><li><strong>关注基本面变化</strong>：在投资药明生物时，要特别关注其基本面变化，尤其是营收增长和净利润率的变化。如果这些指标出现下滑，可能意味着公司的竞争优势正在减弱。</li></ul><ul><li><strong>评估政策风险</strong>：密切关注医药行业的政策变化，尤其是那些可能影响药明生物运营的政策。这需要投资者具备一定的行业知识和敏感性。</li></ul><ul><li><strong>考虑安全边际</strong>：由于药明生物的估值较高，投资者需要为其留出足够的安全边际。如果股价出现大幅回调，可能是一个更好的买入时机。</li></ul><p>最后，我想说的是，投资就像打棒球，你不需要每次都挥棒。对于药明生物这样的公司，如果价格合适，且你对行业有足够的了解，那么它可能是一个不错的选择。但如果没有足够的把握，不妨再等等。</p><p>如果是芒格，他可能会补充说：&quot;投资就像经营果园，你得知道哪些树能结出好果子，哪些不能。&quot; 在这里，药明生物就像一棵正在结果的树，但投资者需要确保这棵树能持续结出好果子。</p></div></div><div class="mreply"><div class="mh"><span class="who">达利欧</span><span class="mscore">80</span></div><div class="md"><h4>发言</h4><p><strong>结论：</strong></p><p>药明生物（02269）作为生物科技行业的领军企业，当前具有显著的投资吸引力，但需要警惕潜在的政策风险和估值压力。</p><p><strong>理由：</strong></p><ul><li><strong>行业地位与市场表现：</strong></li></ul><p>药明生物在生物科技领域拥有绝对的龙头地位，这一点从其股价的强劲表现中可见一斑——今天股价上涨了5.24%，市场对其认可度很高。这种强劲的市场表现反映了其在行业中的竞争优势和增长潜力。</p><ul><li><strong>估值与盈利能力：</strong></li></ul><p>尽管其估值指标如市盈率（PE）达到37倍，略显偏高，但考虑到其净资产收益率（ROE）超过11%，净利润同比增长近17%，这些数据表明其盈利能力强劲，能够支撑其当前的估值水平。此外，其净利率达到26%，显示出良好的成本控制和盈利能力。</p><ul><li><strong>宏观与行业环境：</strong></li></ul><p>从宏观角度看，生物科技行业正处于快速发展阶段，药明生物作为行业龙头，有望继续受益于行业增长。然而，我们也必须关注到行业竞争加剧的趋势，这可能会对其利润率产生一定的压力。此外，政策监管风险始终是生物科技行业不可忽视的因素，任何政策变化都可能对其业务产生重大影响。</p><p><strong>风险与行动建议：</strong></p><ul><li><strong>政策风险：</strong></li></ul><p>政策监管是生物科技行业面临的最大不确定性之一。建议密切关注相关政策动向，尤其是与药品审批、医保政策相关的变化。这些政策变化可能会对药明生物的业务产生直接影响。</p><ul><li><strong>估值压力：</strong></li></ul><p>尽管当前市场对其估值较高，但如果未来业绩增长不及预期，可能会面临估值回调的压力。建议投资者在投资决策时，考虑其长期增长潜力与短期估值压力的平衡。</p><ul><li><strong>竞争加剧：</strong></li></ul><p>行业竞争加剧可能会对其市场份额和利润率产生影响。建议投资者关注其市场份额的变化以及新进入者的动态，以便及时调整投资策略。</p><p><strong>总结原则：</strong></p><p>在投资决策中，我们应当遵循“极度透明”的原则，充分考虑各种风险因素，并将其纳入决策模型中。对于药明生物这样的优质公司，我们应当在享受其增长红利的同时，保持对风险的警惕，并做好风险管理。</p><p><strong>建议：</strong></p><p>对于长期投资者而言，药明生物仍然是一个值得关注的标的，但建议在投资组合中保持适当的分散，以应对潜在的风险。同时，建议定期回顾投资决策，记录决策过程中的思考和判断，以便在市场环境变化时能够及时调整策略。</p></div></div><div class="mreply"><div class="mh"><span class="who">彼得·林奇</span><span class="mscore">36</span></div><div class="md"><p>各位朋友，今天我们来聊聊药明生物（02269）。先说我的结论：我对这只股票持谨慎态度，尽管它有很强的增长潜力，但估值过高让我有些犹豫。</p><h4>理由：</h4><p>首先，药明生物在生物科技领域确实是龙头企业，市场占有率和技术实力都处于领先地位。过去一段时间股价上涨了5.24%，也反映了市场对它的认可。从基本面来看，它的营收和净利润都保持了不错的增长，尤其是净利润同比增长接近17%，这在当前的经济环境下是非常亮眼的。</p><p>然而，估值方面让我感到担忧。当前它的市盈率（PE）已经超过37倍，市净率（PB）接近3.85倍，市销率（PS）更是高达8.35倍。这些指标都显示出市场对它的预期非常高，已经给了相当大的估值溢价。虽然公司的盈利能力不错，但这样的估值水平让我觉得风险不小。</p><h4>风险：</h4><ul><li><strong>估值风险</strong>：过高的估值意味着市场已经充分甚至过度反映了未来的增长预期。如果业绩稍有不及预期，股价可能会面临较大的回调压力。</li><li><strong>政策风险</strong>：生物科技行业受政策影响较大，任何监管政策的变化都可能对公司的经营产生重大影响。</li><li><strong>竞争风险</strong>：随着行业竞争加剧，公司的利润率可能会受到挤压。</li></ul><h4>行动建议：</h4><p>对于已经持有药明生物的投资者，我建议密切关注公司的业绩增长和行业动态。如果未来几个季度的业绩能够持续超出市场预期，那么当前的估值水平可能会被证明是合理的。但如果没有，那么可以考虑在股价高位时逐步减仓，落袋为安。</p><p>对于想要买入的投资者，我建议再等等，寻找更好的入场时机。除非你非常确信公司的增长潜力能够持续，并且愿意承担较高的估值风险，否则现在可能不是最好的买入时机。</p><p>总之，药明生物是一只优秀的公司，但当前的估值让我有些担忧。希望大家在投资时能够理性分析，不要被短期的股价上涨冲昏了头脑。</p></div></div><div class="mreply"><div class="mh"><span class="who">芒格</span><span class="mscore">83</span></div><div class="md"><p>各位同仁，我今天就药明生物（02269）谈一谈我的看法。</p><p>首先，我的立场是总体看好这家公司。原因有三：</p><p>第一，这是一家在生物科技领域占据绝对龙头地位的企业。生物科技是一个需要长期积累、持续研发投入的行业，而药明生物已经证明了其在该领域的竞争力和创新能力。</p><p>第二，公司的市场表现也支持这一观点。股价近期上涨了5.24%，这表明市场对其前景的认可度很高。从估值指标来看，虽然市盈率（PE）达到37倍，看似偏高，但考虑到其行业地位和成长性，这个溢价是可以理解的。</p><p>第三，从商业模式来看，药明生物的业务模式具有很强的抗周期性。其营收和净利润的同比增长分别为8.65%和16.97%，显示出稳健的盈利能力。</p><p>然而，我们也必须保持警惕：</p><p>首先，估值确实不低。虽然我常说&quot;以合理的价格买入优秀公司&quot;，但这里的&quot;合理&quot;需要我们仔细斟酌。37倍的市盈率意味着市场已经给予了这家公司很高的期望，未来需要持续的超预期表现来支撑这样的估值。</p><p>其次，政策风险不容忽视。生物科技行业受政策影响较大，任何监管环境的变化都可能对公司的经营产生重大影响。我们必须密切关注相关政策动向。</p><p>最后，行业竞争正在加剧。虽然药明生物目前处于领先地位，但竞争对手也在不断涌现，这可能会对其利润率造成压力。</p><p>基于以上分析，我建议：</p><ul><li>保持关注，但不要盲目追高。如果股价出现回调，可以考虑在合理价位逐步建仓。</li></ul><ul><li>密切关注政策变化和行业竞争格局。这将是我们判断是否需要调整仓位的重要依据。</li></ul><ul><li>做好长期持有的准备。生物科技行业的特点决定了其投资周期可能较长，我们需要有足够的耐心。</li></ul><p>最后，我要提醒大家，投资决策不能只看表面数字，更要理解背后的商业逻辑。就像我常说的，&quot;如果我知道自己会死在哪里，我就永远不去那里&quot;。在投资中，我们要时刻警惕那些可能让我们失败的因素，而不是被短期的市场波动所左右。</p></div></div></div>
+<div class="panel"><h2>分析师报告<span class="sub">2 篇</span></h2><details open><summary>市场面分析</summary><div class="body"><div class="md"><h4>02269 药明生物 市场面分析</h4><ul><li>红黑榜多空分数：多头 90 / 空头 25，分差 65。</li><li>当前价格：48.58。</li><li>当前交易评级：Buy。</li><li>值得加仓区间：47.12 - 49.07。</li><li>目标价格：54.41。</li><li>市场愿意给溢价的原因：生物科技行业绝对龙头地位；股价强势上涨5.24%；市场认可度高，估值溢价合理。</li><li>当前主要压制因素：估值相对较高；需关注政策监管风险；行业竞争加剧可能影响利润率。</li></ul></div></div></details><details open><summary>基本面分析</summary><div class="body"><div class="md"><h4>02269 药明生物 基本面分析</h4><ul><li>报告期：暂无。</li><li>PE(TTM)：37.05。</li><li>PB：3.85。</li><li>PS(TTM)：8.35。</li><li>ROE：11.02%。</li><li>营收同比：8.65%。</li><li>归母净利润同比：16.97%。</li><li>核心判断：盈利能力处于可接受区间；收入仍在增长；利润端保持扩张。</li></ul></div></div></details></div>
+<div class="panel"><h2>研究与计划</h2>
+<details><summary>基本面摘要</summary><div class="body"><div class="md"><h3>核心财务快照</h3><ul><li>报告期: 数据缺失</li><li>当前股价: 48.58 元</li><li>总市值: 2013.64 亿元</li><li>PE (TTM): 37.05</li><li>PB: 3.85</li><li>PS (TTM): 8.35</li><li>营业总收入(报告期): 数据缺失 亿元</li><li>营收同比增长率: 8.65%</li><li>归母净利润(报告期): 数据缺失 亿元</li><li>归母净利润同比增长率: 16.97%</li><li>ROE (TTM/估算): 11.02%</li><li>资产负债率: 数据缺失</li><li>经营性现金流 / 归母净利润: 数据缺失</li></ul><h4>缺失字段</h4><ul><li>营业总收入, 归母净利润, 资产负债率, 经营性现金流与归母净利润比值</li></ul></div></div></details>
+<details><summary>研究计划</summary><div class="body"><div class="md"><h4>02269 药明生物 研究摘要</h4><ul><li>红黑榜结论: Buy</li><li>多头/空头: 90/25</li><li>正向信号: ROE 11.02%；营收同比 8.65%；归母净利润同比 16.97%；PE(TTM) 37.05</li><li>榜单看多理由: 生物科技行业绝对龙头地位；股价强势上涨5.24%；市场认可度高，估值溢价合理</li><li>榜单风险提示: 估值相对较高；需关注政策监管风险；行业竞争加剧可能影响利润率</li></ul></div></div></details>
+<details><summary>交易计划</summary><div class="body"><div class="md"><h4>02269 药明生物 交易计划</h4><ul><li>评级: Buy</li><li>当前价格: 48.58</li><li>值得加仓区间: 47.12 - 49.07</li><li>目标价格: 54.41</li><li>止损位: 44.69</li><li>备注: 当前为缓存降级交易卡，后续若完整 TradingAgent 结果生成，将自动覆盖。</li></ul></div></div></details>
+<details><summary>交易决策</summary><div class="body"><div class="md"><p>Buy</p><p>02269 药明生物 当前使用红黑榜缓存结果生成兜底交易卡。多头 90 / 空头 25，分差 65。当前尚未取得完整 TradingAgent 长文决策，但榜单分数、财务快照和大师观点已经足够生成基础交易建议。</p></div></div></details>
+</div>
+<div class="panel"><h2>多空逻辑</h2><div class="pts"><div class="h bull">看多逻辑</div><div class="md"><p>生物科技行业绝对龙头地位</p><p>股价强势上涨5.24%</p><p>市场认可度高，估值溢价合理</p></div></div><div class="pts"><div class="h bear">看空逻辑</div><div class="md"><p>估值相对较高</p><p>需关注政策监管风险</p><p>行业竞争加剧可能影响利润率</p></div></div></div>
+<div class="panel"><h2>伯克希尔研究</h2><p><strong>药明生物作为生物药CDMO领域的全球领先企业，具备强大的商业模式和增长潜力，但需关注竞争加剧及政策风险。</strong></p><p>伯克希尔综合评分：<strong>4.0</strong></p><div class="md"><p>{&quot;verdict&quot;: &quot;买入&quot;, &quot;conservative_tip&quot;: &quot;建议在PE TTM 40倍以下买入，长期持有。&quot;, &quot;moderate_tip&quot;: &quot;建议在PE TTM 45倍以下买入，中期持有。&quot;, &quot;aggressive_tip&quot;: &quot;建议在PE TTM 50倍以下买入，短期持有。&quot;, &quot;catalysts_plus&quot;: [&quot;新药研发需求增长&quot;, &quot;技术平台突破&quot;, &quot;国际市场拓展加速&quot;], &quot;catalysts_minus&quot;: [&quot;政策监管趋严&quot;, &quot;竞争加剧导致市场份额下降&quot;, &quot;宏观经济下行影响研发投入&quot;]}</p></div></div>
+<div class="panel news"><h2>最新资讯</h2><div class="md"><p>整体情绪偏利好，共3条利多，1条利空，2条中性。</p></div><div class="nitem"><div class="t">The Biotech Empire of Wuxi - by Nick Corvino</div><div class="s">ChinaTalk | Jordan Schneider · 中性</div></div><div class="nitem"><div class="t">China’s Wuxi Biologics to spin off international unit in Hong Kong IPO</div><div class="s">scmp.com · 利好</div></div><div class="nitem"><div class="t">药明生物(02269.HK)6月4日耗资4965.2万港元回购152.7万股</div><div class="s">TradingView · 利好</div></div><div class="nitem"><div class="t">Red Genes: Assessing WuXi AppTec’s Ties to the Party-Army-State in China</div><div class="s">jamestown.org · 利空</div></div><div class="nitem"><div class="t">药明生物(02269.HK)6月11日耗资9982万港元回购338.8万股</div><div class="s">TradingView · 利好</div></div><div class="nitem"><div class="t">药明生物(02269.HK)6月3日耗资4988.9万港元回购151.2万股</div><div class="s">TradingView · 利好</div></div><div class="nitem"><div class="t">Innovation and AI in China’s Biotech Sector</div><div class="s">ChinaTalk | Jordan Schneider · 中性</div></div></div>
+<footer>稳健理财Agent · 红黑榜每日归档 · 红榜 #4 · 仅供研究，不构成投资建议</footer>
+</div></body>
+</html>
