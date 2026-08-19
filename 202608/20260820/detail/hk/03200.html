@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>大族数控(03200) 黑榜 2026-08-20</title>
+<style>
+:root{--red:#d8342c;--redbg:#fdecea;--green:#1a9e54;--ink:#1c2230;--muted:#6b7385;
+--line:#e7e9ef;--card:#fff;--bg:#f4f6fa;--chip:#eef1f6;--dark:#23262d;--darkbg:#ececef}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",
+"Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);
+line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 16px 64px}
+header.top{background:linear-gradient(135deg,#1c2230,#2c3550);color:#fff;border-radius:14px;
+padding:22px 24px;margin-bottom:20px;box-shadow:0 6px 24px rgba(20,26,46,.12)}
+header.top h1{margin:0 0 6px;font-size:24px;letter-spacing:.5px}
+header.top .sub{opacity:.85;font-size:13px}
+header.top .sub b{color:#ffd166;font-weight:600}
+nav.mkt{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;
+background:rgba(244,246,250,.92);backdrop-filter:blur(6px);padding:10px 0;margin-bottom:14px}
+nav.mkt a{text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);
+padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600}
+nav.mkt a:hover{border-color:var(--red);color:var(--red)}
+.summary{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.summary .chip{background:var(--card);border:1px solid var(--line);border-radius:10px;
+padding:8px 12px;font-size:12px;color:var(--muted)}
+.summary .chip b{color:var(--ink);font-size:14px;margin-left:4px}
+section.board{margin:26px 0}
+.board-title{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:19px}
+.board-title .dot{width:10px;height:10px;border-radius:50%}
+.board-title.red .dot{background:var(--red)}
+.board-title.black .dot{background:var(--dark)}
+.board-title small{color:var(--muted);font-weight:400;font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+position:relative;transition:box-shadow .15s}
+.card:hover{box-shadow:0 4px 18px rgba(20,26,46,.08)}
+.card.red{border-top:3px solid var(--red)}
+.card.black{border-top:3px solid var(--dark)}
+.rank{position:absolute;top:10px;right:12px;font-size:26px;font-weight:800;color:#eceff5}
+.card.red .rank{color:#fbdcD9}
+.nm{font-size:16px;font-weight:700}
+.nm .tk{color:var(--muted);font-weight:500;font-size:12px;margin-left:6px}
+.tag{display:inline-block;background:var(--chip);color:var(--muted);border-radius:6px;
+padding:1px 7px;font-size:11px;margin:6px 6px 0 0}
+.price-row{display:flex;align-items:baseline;gap:10px;margin:10px 0 4px}
+.price{font-size:24px;font-weight:800}
+.pct{font-size:14px;font-weight:700;padding:2px 8px;border-radius:8px}
+.up{color:var(--red)}.down{color:var(--green)}.flat{color:var(--muted)}
+.pct.up{background:var(--redbg)}.pct.down{background:#e2f4e9}.pct.flat{background:var(--chip)}
+.psrc{font-size:11px;color:var(--muted);margin-left:auto}
+.scores{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.scores span{background:var(--chip);border-radius:6px;padding:2px 8px;font-size:11px;color:var(--muted)}
+.scores span b{color:var(--ink)}
+.pts{font-size:12.5px;margin:8px 0 0}
+.pts .h{font-weight:700;font-size:12px;margin:6px 0 2px}
+.pts .h.bull{color:var(--red)}.pts .h.bear{color:var(--green)}
+.pts ul{margin:2px 0 4px;padding-left:18px;color:#3a4152}
+.pts li{margin:1px 0}
+.masters{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:11px;color:var(--muted)}
+.masters b{color:var(--ink)}
+.summ{font-size:12.5px;color:#3a4152;background:#fafbfd;border:1px solid var(--line);
+border-radius:8px;padding:8px 10px;margin-top:8px}
+.empty{color:var(--muted);background:var(--card);border:1px dashed var(--line);
+border-radius:10px;padding:18px;text-align:center}
+footer{margin-top:34px;color:var(--muted);font-size:12px;text-align:center;line-height:1.8}
+a.lnk{color:var(--red);text-decoration:none}
+/* ── detail page ── */
+.backbar{margin-bottom:14px;font-size:13px}
+.backbar a{color:var(--muted);text-decoration:none;margin-right:14px}
+.backbar a:hover{color:var(--red)}
+.badge{display:inline-block;border-radius:6px;padding:2px 10px;font-size:12px;font-weight:700;margin-right:8px}
+.badge.red{background:var(--red);color:#fff}.badge.black{background:var(--dark);color:#fff}
+.trade{display:flex;flex-wrap:wrap;gap:10px;background:linear-gradient(135deg,#2c3550,#1c2230);
+color:#fff;border-radius:12px;padding:16px 18px;margin:16px 0}
+.trade .cell{min-width:120px}
+.trade .k{font-size:11px;opacity:.75}
+.trade .v{font-size:18px;font-weight:800;margin-top:2px}
+.trade .v.buy{color:#7ee2a8}.trade .v.sell{color:#ff9d97}.trade .v.hold{color:#ffd166}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0}
+.mgrid .m{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.mgrid .m .k{font-size:11px;color:var(--muted)}
+.mgrid .m .v{font-size:16px;font-weight:700;margin-top:2px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.panel>h2{margin:0 0 12px;font-size:17px}
+.panel>h2 .sub{font-size:12px;color:var(--muted);font-weight:400;margin-left:8px}
+.mreply{border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;
+padding:12px 14px;margin:10px 0;background:#fff}
+.mreply .mh{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.mreply .mh .who{font-weight:700;font-size:14px}
+.mreply .mh .mscore{margin-left:auto;background:var(--chip);border-radius:6px;padding:1px 8px;font-size:12px;font-weight:700}
+.md h2,.md h3,.md h4,.md h5{margin:12px 0 6px;font-size:15px}
+.md p{margin:6px 0;font-size:13.5px;color:#2c3345}
+.md ul{margin:6px 0;padding-left:20px;font-size:13.5px;color:#2c3345}
+.md li{margin:3px 0}
+.md strong{color:var(--ink)}
+details{border:1px solid var(--line);border-radius:10px;background:#fff;margin:10px 0;padding:0}
+details>summary{cursor:pointer;padding:12px 16px;font-weight:700;font-size:14px;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary:before{content:"▸ ";color:var(--red)}
+details[open]>summary:before{content:"▾ "}
+details>.body{padding:0 16px 14px;border-top:1px dashed var(--line)}
+.ychip{display:inline-block;background:var(--chip);border-radius:8px;padding:4px 10px;font-size:12px;margin:3px 6px 3px 0}
+.ychip b{font-size:13px}
+.news .nitem{border-top:1px dashed var(--line);padding:8px 0;font-size:13px}
+.news .nitem .t{font-weight:600}
+.news .nitem .s{color:var(--muted);font-size:12px}
+/* ── root landing page ── */
+.hero{padding:30px 26px}
+.hero-kicker{color:#ffd166;font-size:12px;font-weight:700;letter-spacing:2px;
+text-transform:uppercase;margin-bottom:8px}
+.hero h1{font-size:30px;margin:0 0 10px}
+.day-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.day-card{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);
+border-radius:12px;padding:14px 16px;transition:all .15s}
+.day-card:hover{border-color:var(--red);box-shadow:0 4px 16px rgba(216,52,44,.12);transform:translateY(-2px)}
+.day-card .d{font-weight:800;font-size:15px;color:var(--ink);display:flex;align-items:center;gap:8px}
+.day-card .m{margin-top:8px;display:flex;gap:6px}
+.day-card .m span{background:var(--chip);color:var(--muted);border-radius:6px;
+padding:2px 8px;font-size:11px}
+.latest-badge{background:var(--red);color:#fff;border-radius:6px;padding:1px 7px;
+font-size:10px;font-weight:700}
+</style>
+</head>
+<body><div class="wrap">
+<div class="backbar"><a href="../index.html">← 总览</a><a href="../hk.html">← 港股榜单</a></div>
+<header class="top">
+  <h1><span class="badge black">黑榜 #4</span>大族数控<span class="tk" style="opacity:.7;font-size:15px;font-weight:400;margin-left:8px">03200</span></h1>
+  <div class="sub">港股 ·  · 榜单日期 <b>2026-08-20</b> · 盘价采集 <b>2026-08-20 05:00:26</b></div>
+  <div class="price-row" style="margin-top:12px">
+    <span class="price" style="color:#fff">HK$105.60</span>
+    <span class="pct down">-7.61%</span>
+    <span class="psrc" style="color:rgba(255,255,255,.6)">实时</span>
+  </div>
+  <div class="scores" style="margin-top:10px">
+    <span>综合 <b>31.2</b></span>
+    <span>多头 <b>30</b></span>
+    <span>空头 <b>80</b></span>
+    <span>大师均值 <b>56.6</b></span>
+    <span>信号 <b>negative</b></span>
+  </div>
+</header>
+<div class="trade"><div class="cell"><div class="k">交易评级</div><span class="v hold">Reduce</span></div><div class="cell"><div class="k">加仓区间</div><span class="v">95.04 ~ 99.26</span></div><div class="cell"><div class="k">伯克希尔</div><span class="v">观望</span></div><div class="cell"><div class="k">伯克希尔分</div><span class="v">3.50</span></div></div>
+<div class="panel"><h2>财务指标</h2><div class="mgrid"><div class="m"><div class="k">市盈率 PE</div><div class="v">44.83</div></div><div class="m"><div class="k">市净率 PB</div><div class="v">4.07</div></div><div class="m"><div class="k">ROE</div><div class="v">3.7%</div></div><div class="m"><div class="k">总市值</div><div class="v">516</div></div><div class="m"><div class="k">营收同比</div><div class="v">17.2%</div></div><div class="m"><div class="k">净利同比</div><div class="v">25.0%</div></div></div></div>
+<div class="panel"><h2>历史收益</h2><span class="ychip">近1月 <b class="down">-8.65%</b></span><span class="ychip">近6月 <b class="down">-10.46%</b></span><span class="ychip">近1年 <b class="down">-3.54%</b></span></div>
+<div class="panel"><h2>大师圆桌<span class="sub">5 位</span></h2><div class="mreply"><div class="mh"><span class="who">段永平</span><span class="mscore">60</span></div><div class="md"><h4>段永平圆桌发言：</h4><p>关于大族数控（03200），我的看法是这样的：</p><p>首先，要判断这是否是一件&quot;对的事&quot;。投资股票就是投资公司的一部分，所以我们要问：这家公司是不是一家我们看得懂的好生意？从目前的信息来看，大族数控的估值并不便宜，市盈率（PE）超过44倍，市净率（PB）也达到了4倍。虽然营收和净利润的同比增长率看起来不错，但整体ROE只有3.7%，这让我对公司的盈利能力有所保留。</p><p>其次，从市场趋势来看，大族数控的股价持续下跌，这可能反映了市场对其未来前景的担忧。虽然有观点认为短期超跌可能带来反弹机会，但这种机会往往是短期的、难以把握的。作为价值投资者，我们更应该关注的是公司的长期价值，而不是短期的市场波动。</p><h4>风险与行动建议：</h4><ul><li><strong>估值风险</strong>：当前估值水平较高，可能已经反映了市场对公司未来增长的预期。如果未来增长不及预期，股价可能会面临进一步的下行压力。</li><li><strong>基本面风险</strong>：缺乏足够的基本面信息来支撑当前的估值水平。我们需要更深入地了解公司的核心竞争力、市场地位以及未来的增长潜力。</li></ul><h4>行动建议：</h4><p>如果是我，我会先问自己：&quot;我是否真的看懂了这家公司？&quot; 如果答案是否定的，那么我会选择不投资。因为投资的第一原则是&quot;不懂不做&quot;。如果我决定继续关注这家公司，我会：</p><ul><li><strong>深入研究</strong>：花更多时间了解公司的业务模式、竞争优势以及行业环境。</li><li><strong>等待时机</strong>：如果股价继续下跌，可能会出现更好的买入机会。但前提是，我必须对公司有足够的信心。</li></ul><h4>别错过的隐含约束：</h4><p>别为了短期的反弹机会而忽视了长期的价值投资原则。投资不是赌博，而是对一家公司的长期信任和陪伴。</p></div></div><div class="mreply"><div class="mh"><span class="who">巴菲特</span><span class="mscore">41</span></div><div class="md"><p>各位朋友，今天我们来聊聊大族数控（03200）。</p><h4>结论：</h4><p>目前我对大族数控持谨慎态度。从价值投资的角度来看，这家公司暂时不在我的能力圈范围内，也不符合我通常寻找的优质投资标的。</p><h4>理由：</h4><p>首先，我们来看公司的基本面。大族数控的市盈率（PE）高达44倍，市净率（PB）也达到了4倍，这表明市场对其未来增长抱有很高的预期。然而，从已披露的数据来看，其净资产收益率（ROE）仅为3.7%，这与高估值并不匹配。作为价值投资者，我更倾向于寻找那些能够持续产生高资本回报率的企业。</p><p>其次，大族数控的收入和利润增长虽然看起来不错，收入同比增长17%，净利润同比增长25%，但这些数字并没有给我足够的信心去判断其长期竞争力。我们需要更深入地了解其市场份额、竞争环境以及行业护城河，才能做出更准确的判断。</p><h4>风险/行动建议：</h4><ul><li><strong>价格波动风险</strong>：目前大族数控的股价已经出现了明显的下跌趋势，这可能反映出市场对其未来前景的担忧。作为投资者，我们需要警惕这种趋势是否会持续，以及公司是否能够扭转这种局面。</li></ul><ul><li><strong>信息不足</strong>：目前我们缺乏关于大族数控的详细行业信息和竞争分析。作为价值投资者，我始终坚持只投资那些我能够理解并且有足够信息支持的公司。因此，我建议在做出投资决策之前，进一步深入研究公司的业务模式和市场地位。</li></ul><ul><li><strong>安全边际</strong>：即使考虑短期超跌可能带来的反弹机会，我也建议投资者保持谨慎。只有当价格大幅低于其内在价值时，才值得考虑买入。目前来看，大族数控的估值并不具备足够的安全边际。</li></ul><h4>总结：</h4><p>总的来说，大族数控目前并不符合我寻找优质投资标的的标准。如果你是长期投资者，我建议你继续关注公司的基本面变化，等待更明确的信号出现。正如我常说的，投资就像打棒球，你不需要每次都挥棒，只需要等待那个最甜的机会。</p><p>如果查理·芒格在这里，他可能会补充说：&quot;投资就像经营果园，你需要耐心等待果实成熟，而不是急于摘下未熟的果子。&quot; 希望这句话能给大家一些启发。</p></div></div><div class="mreply"><div class="mh"><span class="who">达利欧</span><span class="mscore">76</span></div><div class="md"><h4>圆桌发言：关于大族数控（03200）的分析与建议</h4><p><strong>结论：</strong></p><p>目前我对大族数控持谨慎态度。尽管该公司市值规模适中，且短期超跌可能带来一定的反弹机会，但整体来看，价格持续下跌的趋势以及缺乏基本面信息支撑的风险更为显著。</p><p><strong>理由：</strong></p><ul><li><strong>多头逻辑：</strong></li><li><strong>市值规模适中</strong>：大族数控的市值约为516亿港元，在市场中处于中等规模，这使得它在一定程度上具备灵活性，可能更容易适应市场变化。</li><li><strong>短期超跌</strong>：近期股价下跌了7.61%，从技术分析的角度来看，可能存在超跌反弹的机会。</li></ul><ul><li><strong>空头风险：</strong></li><li><strong>价格持续下跌趋势</strong>：从趋势上看，价格的持续下跌表明市场对该公司的信心不足。这种趋势可能反映了投资者对其未来盈利能力的担忧。</li><li><strong>缺乏基本面信息支撑</strong>：目前我们缺乏足够的基本面信息来支撑对该公司的乐观预期。PE、PB等估值指标均处于较高水平，ROE仅为3.74%，这些数据表明公司的盈利能力相对较弱。</li></ul><p><strong>风险/行动建议：</strong></p><ul><li><strong>风险提示：</strong></li><li><strong>市场情绪风险</strong>：短期内市场情绪可能继续影响股价走势，尤其是在缺乏明确基本面支撑的情况下。</li><li><strong>估值风险</strong>：当前的估值水平较高，如果未来盈利能力未能提升，股价可能面临进一步的下行压力。</li></ul><ul><li><strong>行动建议：</strong></li><li><strong>保持观望</strong>：在缺乏足够的基本面信息支撑的情况下，建议投资者保持观望，等待更明确的信号。</li><li><strong>关注基本面变化</strong>：如果公司能够提供更多关于未来增长和盈利能力的信息，或者市场情绪有所改善，可以考虑重新评估投资机会。</li><li><strong>分散投资</strong>：对于已经持有该股票的投资者，建议考虑适当分散投资，以降低单一股票带来的风险。</li></ul><p><strong>原则化收口：</strong></p><p>在投资决策中，我们需要遵循“极度透明”的原则，确保对公司的基本面有充分的了解。同时，要“平衡风险与收益”，在市场情绪和估值水平之间找到合理的平衡点。对于大族数控，当前阶段建议以风险控制为主，等待更明确的信号再行动。</p><p><strong>建议记录在决策日志中：</strong></p><ul><li>当前对大族数控的判断：谨慎观望</li><li>主要风险点：价格持续下跌趋势、缺乏基本面信息支撑</li><li>行动建议：保持观望，关注基本面变化，适当分散投资</li></ul></div></div><div class="mreply"><div class="mh"><span class="who">彼得·林奇</span><span class="mscore">58</span></div><div class="md"><p>各位好，今天我们来聊聊大族数控（03200）。我的看法是：目前这只股票处于一个比较尴尬的位置，我持中性态度，既不强烈推荐买入，也不建议匆忙卖出。</p><h4>为什么这么说？</h4><p>首先，从估值角度来看，大族数控的市盈率（PE）高达44倍，市净率（PB）也有4倍，这在制造业公司中算是比较高的水平。虽然公司的营收同比增长了17%，净利润同比增长了25%，但这样的增速是否能支撑如此高的估值，我持怀疑态度。</p><p>其次，从基本面来看，虽然公司市值规模适中，短期超跌可能带来一定的反弹机会，但目前缺乏足够的基本面信息来支撑其高估值。我们需要更深入地了解公司的业务模式、市场竞争力以及未来增长潜力。</p><h4>风险在哪里？</h4><ul><li><strong>估值过高</strong>：当前的PE和PB水平都偏高，如果未来业绩增长不及预期，股价可能会面临较大的回调压力。</li><li><strong>缺乏基本面支撑</strong>：目前我们没有足够的信息来判断公司的长期竞争力和盈利能力，这增加了投资的不确定性。</li><li><strong>市场趋势</strong>：股价持续下跌的趋势明显，市场情绪可能还没有完全企稳。</li></ul><h4>我的行动建议是：</h4><ul><li><strong>不要急于抄底</strong>：虽然短期超跌可能带来反弹机会，但在没有明确的基本面改善信号之前，不建议匆忙买入。</li><li><strong>持续关注公司动态</strong>：如果有机会，可以亲自去公司门店或工厂看看，观察一下实际运营情况，了解更多一手信息。</li><li><strong>等待更明确信号</strong>：如果公司能够提供更详细的财务数据或业务进展报告，或者市场情绪有所好转，再考虑是否买入。</li></ul><p>总之，投资不是赌博，我们要做的是在风险可控的前提下，寻找那些真正有潜力的公司。对于大族数控，我建议大家保持耐心，继续观察，等待更明确的信号。</p></div></div><div class="mreply"><div class="mh"><span class="who">芒格</span><span class="mscore">48</span></div><div class="md"><p>各位同仁，关于大族数控（03200），我的看法是这样的：</p><p>首先，<strong>我持中性偏谨慎的态度</strong>。虽然这只股票市值规模适中，短期可能因超跌出现反弹机会，但从整体来看，负面因素更为显著。</p><h4>理由如下：</h4><ul><li><strong>价格趋势令人担忧</strong>。目前股价持续下跌，且缺乏明确的基本面信息支撑其估值。PE高达44倍，PB也达到4倍，这在当前市场环境下显得偏高。</li></ul><ul><li><strong>盈利能力与估值不匹配</strong>。虽然营收和净利润分别同比增长17%和25%，但ROE仅为3.7%，远低于市场平均水平。考虑到PS高达6.8倍，市场似乎对其未来增长预期过高。</li></ul><ul><li><strong>逆向思考的警示</strong>。当大多数人都在寻找反弹机会时，我们更应该思考：是什么导致了当前的下跌趋势？这种趋势是否会持续？缺乏清晰的基本面信息让我对这只股票保持高度警惕。</li></ul><h4>风险提示：</h4><ul><li><strong>估值风险</strong>：当前估值水平过高，市场可能正在price in一些尚未显现的风险。</li><li><strong>信息不对称</strong>：缺乏足够的基本面信息，这让我对这只股票的真实价值产生怀疑。</li><li><strong>市场情绪波动</strong>：短期超跌带来的反弹机会可能只是市场情绪的波动，而非基本面改善的结果。</li></ul><h4>行动建议：</h4><ul><li><strong>耐心等待更多信息披露</strong>。在没有足够的基本面信息支持的情况下，我不会急于做出投资决策。</li><li><strong>关注管理层动向</strong>。如果公司能够提供更清晰的增长路径或市场能够提供更多关于其核心竞争力的信息，我们可以重新评估。</li><li><strong>警惕市场情绪陷阱</strong>。不要被短期超跌带来的反弹机会所迷惑，要始终关注长期价值。</li></ul><p>最后，我想提醒大家：<strong>投资决策应该基于对长期价值的判断，而非短期市场波动</strong>。如果我们不知道一家公司为何下跌，最好的策略就是保持距离，直到我们找到答案。</p></div></div></div>
+<div class="panel"><h2>分析师报告<span class="sub">2 篇</span></h2><details open><summary>市场面分析</summary><div class="body"><div class="md"><h4>03200 大族数控 市场面分析</h4><ul><li>红黑榜多空分数：多头 30 / 空头 80，分差 -50。</li><li>当前价格：105.60。</li><li>当前交易评级：Reduce。</li><li>值得加仓区间：95.04 - 99.26。</li><li>风险控制位：92.93。</li><li>市场愿意给溢价的原因：市值规模适中；短期超跌可能带来反弹机会。</li><li>当前主要压制因素：价格持续下跌趋势明显；缺乏基本面信息支撑。</li></ul></div></div></details><details open><summary>基本面分析</summary><div class="body"><div class="md"><h4>03200 大族数控 基本面分析</h4><ul><li>报告期：暂无。</li><li>PE(TTM)：44.83。</li><li>PB：4.07。</li><li>PS(TTM)：6.83。</li><li>ROE：3.74%。</li><li>营收同比：17.24%。</li><li>归母净利润同比：25.01%。</li><li>核心判断：收入仍在增长；利润端保持扩张。</li></ul></div></div></details></div>
+<div class="panel"><h2>研究与计划</h2>
+<details><summary>基本面摘要</summary><div class="body"><div class="md"><h3>核心财务快照</h3><ul><li>报告期: 数据缺失</li><li>当前股价: 105.60 元</li><li>总市值: 516.39 亿元</li><li>PE (TTM): 44.83</li><li>PB: 4.07</li><li>PS (TTM): 6.83</li><li>营业总收入(报告期): 数据缺失 亿元</li><li>营收同比增长率: 17.24%</li><li>归母净利润(报告期): 数据缺失 亿元</li><li>归母净利润同比增长率: 25.01%</li><li>ROE (TTM/估算): 3.74%</li><li>资产负债率: 数据缺失</li><li>经营性现金流 / 归母净利润: 数据缺失</li></ul><h4>缺失字段</h4><ul><li>营业总收入, 归母净利润, 资产负债率, 经营性现金流与归母净利润比值</li></ul></div></div></details>
+<details><summary>研究计划</summary><div class="body"><div class="md"><h4>03200 大族数控 研究摘要</h4><ul><li>红黑榜结论: Reduce</li><li>多头/空头: 30/80</li><li>正向信号: 营收同比 17.24%；归母净利润同比 25.01%；PE(TTM) 44.83；PB 4.07</li><li>风险信号: ROE 3.74%</li><li>榜单看多理由: 市值规模适中；短期超跌可能带来反弹机会</li><li>榜单风险提示: 价格持续下跌趋势明显；缺乏基本面信息支撑</li></ul></div></div></details>
+<details><summary>交易计划</summary><div class="body"><div class="md"><h4>03200 大族数控 交易计划</h4><ul><li>评级: Reduce</li><li>当前价格: 105.60</li><li>值得加仓区间: 95.04 - 99.26</li><li>目标价格: 100.32</li><li>止损位: 92.93</li><li>备注: 当前为缓存降级交易卡，后续若完整 TradingAgent 结果生成，将自动覆盖。</li></ul></div></div></details>
+<details><summary>交易决策</summary><div class="body"><div class="md"><p>Reduce</p><p>03200 大族数控 当前使用红黑榜缓存结果生成兜底交易卡。多头 30 / 空头 80，分差 -50。当前尚未取得完整 TradingAgent 长文决策，但榜单分数、财务快照和大师观点已经足够生成基础交易建议。</p></div></div></details>
+</div>
+<div class="panel"><h2>多空逻辑</h2><div class="pts"><div class="h bull">看多逻辑</div><div class="md"><p>市值规模适中</p><p>短期超跌可能带来反弹机会</p></div></div><div class="pts"><div class="h bear">看空逻辑</div><div class="md"><p>价格持续下跌趋势明显</p><p>缺乏基本面信息支撑</p></div></div></div>
+<div class="panel"><h2>伯克希尔研究</h2><p><strong>大族数控是一家具备技术壁垒的工业自动化设备公司，但面临行业周期性和竞争压力，当前估值合理但需关注长期增长潜力。</strong></p><p>伯克希尔综合评分：<strong>3.5</strong></p><div class="md"><p>{&quot;verdict&quot;: &quot;观望&quot;, &quot;conservative_tip&quot;: &quot;建议在PE低于12倍时买入，目标价20港元。&quot;, &quot;moderate_tip&quot;: &quot;建议在PE 13-15倍时买入，目标价22港元。&quot;, &quot;aggressive_tip&quot;: &quot;建议在PE 15-18倍时买入，目标价25港元。&quot;, &quot;catalysts_plus&quot;: [&quot;PCB行业需求超预期增长。&quot;, &quot;公司推出新一代技术产品。&quot;, &quot;宏观经济复苏带动下游需求。&quot;], &quot;catalysts_minus&quot;: [&quot;全球经济下行导致需求萎缩。&quot;, &quot;技术被竞争对手超越。&quot;, &quot;原材料价格大幅上涨。&quot;]}</p></div></div>
+<div class="panel news"><h2>最新资讯</h2><div class="md"><p>整体情绪偏利好，共3条利多，1条利空，2条中性。</p></div><div class="nitem"><div class="t">Clifford Chance advises Shenzhen Han&#x27;s CNC Technology on its Hong Kong IPO and listing</div><div class="s">Clifford Chance · 利好</div></div><div class="nitem"><div class="t">大族数控创历史新高</div><div class="s">TradingView · 利好</div></div><div class="nitem"><div class="t">大族数控：H股公告-截至2026年5月31日止月份之股份发行人的证券变动月报表</div><div class="s">Moomoo · 中性</div></div><div class="nitem"><div class="t">Shenzhen Han&#x27;S Cnc Technology Co.,Ltd.’s Net Profit Dropped 71.8% in First Quarter of 2023</div><div class="s">Caixin Global · 利空</div></div><div class="nitem"><div class="t">大族数控(03200.HK)获SCHRODER INTERNATIONAL SELECTION FUND - CHINA A增持24.13万股</div><div class="s">TradingView · 利好</div></div><div class="nitem"><div class="t">港股PCB概念股涨幅居前！建滔积层板涨超15%，建滔集团张超9%</div><div class="s">Tiger Brokers · 中性</div></div></div>
+<footer>稳健理财Agent · 红黑榜每日归档 · 黑榜 #4 · 仅供研究，不构成投资建议</footer>
+</div></body>
+</html>
