@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>泡泡玛特(09992) 黑榜 2026-08-22</title>
+<style>
+:root{--red:#d8342c;--redbg:#fdecea;--green:#1a9e54;--ink:#1c2230;--muted:#6b7385;
+--line:#e7e9ef;--card:#fff;--bg:#f4f6fa;--chip:#eef1f6;--dark:#23262d;--darkbg:#ececef}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",
+"Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);
+line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 16px 64px}
+header.top{background:linear-gradient(135deg,#1c2230,#2c3550);color:#fff;border-radius:14px;
+padding:22px 24px;margin-bottom:20px;box-shadow:0 6px 24px rgba(20,26,46,.12)}
+header.top h1{margin:0 0 6px;font-size:24px;letter-spacing:.5px}
+header.top .sub{opacity:.85;font-size:13px}
+header.top .sub b{color:#ffd166;font-weight:600}
+nav.mkt{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;
+background:rgba(244,246,250,.92);backdrop-filter:blur(6px);padding:10px 0;margin-bottom:14px}
+nav.mkt a{text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);
+padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600}
+nav.mkt a:hover{border-color:var(--red);color:var(--red)}
+.summary{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.summary .chip{background:var(--card);border:1px solid var(--line);border-radius:10px;
+padding:8px 12px;font-size:12px;color:var(--muted)}
+.summary .chip b{color:var(--ink);font-size:14px;margin-left:4px}
+section.board{margin:26px 0}
+.board-title{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:19px}
+.board-title .dot{width:10px;height:10px;border-radius:50%}
+.board-title.red .dot{background:var(--red)}
+.board-title.black .dot{background:var(--dark)}
+.board-title small{color:var(--muted);font-weight:400;font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+position:relative;transition:box-shadow .15s}
+.card:hover{box-shadow:0 4px 18px rgba(20,26,46,.08)}
+.card.red{border-top:3px solid var(--red)}
+.card.black{border-top:3px solid var(--dark)}
+.rank{position:absolute;top:10px;right:12px;font-size:26px;font-weight:800;color:#eceff5}
+.card.red .rank{color:#fbdcD9}
+.nm{font-size:16px;font-weight:700}
+.nm .tk{color:var(--muted);font-weight:500;font-size:12px;margin-left:6px}
+.tag{display:inline-block;background:var(--chip);color:var(--muted);border-radius:6px;
+padding:1px 7px;font-size:11px;margin:6px 6px 0 0}
+.price-row{display:flex;align-items:baseline;gap:10px;margin:10px 0 4px}
+.price{font-size:24px;font-weight:800}
+.pct{font-size:14px;font-weight:700;padding:2px 8px;border-radius:8px}
+.up{color:var(--red)}.down{color:var(--green)}.flat{color:var(--muted)}
+.pct.up{background:var(--redbg)}.pct.down{background:#e2f4e9}.pct.flat{background:var(--chip)}
+.psrc{font-size:11px;color:var(--muted);margin-left:auto}
+.scores{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.scores span{background:var(--chip);border-radius:6px;padding:2px 8px;font-size:11px;color:var(--muted)}
+.scores span b{color:var(--ink)}
+.pts{font-size:12.5px;margin:8px 0 0}
+.pts .h{font-weight:700;font-size:12px;margin:6px 0 2px}
+.pts .h.bull{color:var(--red)}.pts .h.bear{color:var(--green)}
+.pts ul{margin:2px 0 4px;padding-left:18px;color:#3a4152}
+.pts li{margin:1px 0}
+.masters{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:11px;color:var(--muted)}
+.masters b{color:var(--ink)}
+.summ{font-size:12.5px;color:#3a4152;background:#fafbfd;border:1px solid var(--line);
+border-radius:8px;padding:8px 10px;margin-top:8px}
+.empty{color:var(--muted);background:var(--card);border:1px dashed var(--line);
+border-radius:10px;padding:18px;text-align:center}
+footer{margin-top:34px;color:var(--muted);font-size:12px;text-align:center;line-height:1.8}
+a.lnk{color:var(--red);text-decoration:none}
+/* ── detail page ── */
+.backbar{margin-bottom:14px;font-size:13px}
+.backbar a{color:var(--muted);text-decoration:none;margin-right:14px}
+.backbar a:hover{color:var(--red)}
+.badge{display:inline-block;border-radius:6px;padding:2px 10px;font-size:12px;font-weight:700;margin-right:8px}
+.badge.red{background:var(--red);color:#fff}.badge.black{background:var(--dark);color:#fff}
+.trade{display:flex;flex-wrap:wrap;gap:10px;background:linear-gradient(135deg,#2c3550,#1c2230);
+color:#fff;border-radius:12px;padding:16px 18px;margin:16px 0}
+.trade .cell{min-width:120px}
+.trade .k{font-size:11px;opacity:.75}
+.trade .v{font-size:18px;font-weight:800;margin-top:2px}
+.trade .v.buy{color:#7ee2a8}.trade .v.sell{color:#ff9d97}.trade .v.hold{color:#ffd166}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0}
+.mgrid .m{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.mgrid .m .k{font-size:11px;color:var(--muted)}
+.mgrid .m .v{font-size:16px;font-weight:700;margin-top:2px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.panel>h2{margin:0 0 12px;font-size:17px}
+.panel>h2 .sub{font-size:12px;color:var(--muted);font-weight:400;margin-left:8px}
+.mreply{border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;
+padding:12px 14px;margin:10px 0;background:#fff}
+.mreply .mh{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.mreply .mh .who{font-weight:700;font-size:14px}
+.mreply .mh .mscore{margin-left:auto;background:var(--chip);border-radius:6px;padding:1px 8px;font-size:12px;font-weight:700}
+.md h2,.md h3,.md h4,.md h5{margin:12px 0 6px;font-size:15px}
+.md p{margin:6px 0;font-size:13.5px;color:#2c3345}
+.md ul{margin:6px 0;padding-left:20px;font-size:13.5px;color:#2c3345}
+.md li{margin:3px 0}
+.md strong{color:var(--ink)}
+details{border:1px solid var(--line);border-radius:10px;background:#fff;margin:10px 0;padding:0}
+details>summary{cursor:pointer;padding:12px 16px;font-weight:700;font-size:14px;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary:before{content:"▸ ";color:var(--red)}
+details[open]>summary:before{content:"▾ "}
+details>.body{padding:0 16px 14px;border-top:1px dashed var(--line)}
+.ychip{display:inline-block;background:var(--chip);border-radius:8px;padding:4px 10px;font-size:12px;margin:3px 6px 3px 0}
+.ychip b{font-size:13px}
+.news .nitem{border-top:1px dashed var(--line);padding:8px 0;font-size:13px}
+.news .nitem .t{font-weight:600}
+.news .nitem .s{color:var(--muted);font-size:12px}
+/* ── root landing page ── */
+.hero{padding:30px 26px}
+.hero-kicker{color:#ffd166;font-size:12px;font-weight:700;letter-spacing:2px;
+text-transform:uppercase;margin-bottom:8px}
+.hero h1{font-size:30px;margin:0 0 10px}
+.day-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.day-card{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);
+border-radius:12px;padding:14px 16px;transition:all .15s}
+.day-card:hover{border-color:var(--red);box-shadow:0 4px 16px rgba(216,52,44,.12);transform:translateY(-2px)}
+.day-card .d{font-weight:800;font-size:15px;color:var(--ink);display:flex;align-items:center;gap:8px}
+.day-card .m{margin-top:8px;display:flex;gap:6px}
+.day-card .m span{background:var(--chip);color:var(--muted);border-radius:6px;
+padding:2px 8px;font-size:11px}
+.latest-badge{background:var(--red);color:#fff;border-radius:6px;padding:1px 7px;
+font-size:10px;font-weight:700}
+</style>
+</head>
+<body><div class="wrap">
+<div class="backbar"><a href="../index.html">← 总览</a><a href="../hk.html">← 港股榜单</a></div>
+<header class="top">
+  <h1><span class="badge black">黑榜 #4</span>泡泡玛特<span class="tk" style="opacity:.7;font-size:15px;font-weight:400;margin-left:8px">09992</span></h1>
+  <div class="sub">港股 ·  · 榜单日期 <b>2026-08-22</b> · 盘价采集 <b>2026-08-22 05:00:34</b></div>
+  <div class="price-row" style="margin-top:12px">
+    <span class="price" style="color:#fff">HK$149.00</span>
+    <span class="pct down">-3.06%</span>
+    <span class="psrc" style="color:rgba(255,255,255,.6)">实时</span>
+  </div>
+  <div class="scores" style="margin-top:10px">
+    <span>综合 <b>45.1</b></span>
+    <span>多头 <b>52</b></span>
+    <span>空头 <b>68</b></span>
+    <span>大师均值 <b>63.4</b></span>
+    <span>信号 <b>negative</b></span>
+  </div>
+</header>
+<div class="trade"><div class="cell"><div class="k">交易评级</div><span class="v hold">Hold</span></div><div class="cell"><div class="k">加仓区间</div><span class="v">140.06 ~ 146.02</span></div><div class="cell"><div class="k">伯克希尔</div><span class="v">观望</span></div><div class="cell"><div class="k">伯克希尔分</div><span class="v">3.25</span></div></div>
+<div class="panel"><h2>财务指标</h2><div class="mgrid"><div class="m"><div class="k">市盈率 PE</div><div class="v">13.29</div></div><div class="m"><div class="k">市净率 PB</div><div class="v">7.47</div></div><div class="m"><div class="k">ROE</div><div class="v">22.2%</div></div><div class="m"><div class="k">总市值</div><div class="v">1984</div></div><div class="m"><div class="k">营收同比</div><div class="v">8.9%</div></div><div class="m"><div class="k">净利同比</div><div class="v">3.6%</div></div></div></div>
+<div class="panel"><h2>历史收益</h2><span class="ychip">近1月 <b class="down">-7.40%</b></span><span class="ychip">近6月 <b class="down">-34.86%</b></span><span class="ychip">近1年 <b class="down">-53.25%</b></span></div>
+<div class="panel"><h2>大师圆桌<span class="sub">5 位</span></h2><div class="mreply"><div class="mh"><span class="who">段永平</span><span class="mscore">45</span></div><div class="md"><p>关于泡泡玛特这家公司，我来说几句我的看法。</p><p>首先，我得说，这家公司确实在创新消费模式方面有亮点。他们通过潮玩这个独特的商业模式，在年轻消费者群体中建立了一定的品牌影响力，这是值得肯定的。</p><p>但从投资的角度来看，我有几个疑问：</p><ul><li>这门生意我们真的懂吗？潮玩这个市场虽然看起来热闹，但它的长期持续性和用户粘性到底如何？年轻人对这类产品的喜好变化很快，这让我有些顾虑。</li></ul><ul><li>从估值来看，目前的市盈率在13倍左右，看起来不算特别高，但考虑到公司的净利润增速只有3.6%，这个估值水平可能并不便宜。</li></ul><ul><li>更重要的是，这家公司是否符合我们所说的&quot;本分&quot;？我说的本分，是指公司是否在坚持做正确的事情，而不是为了短期业绩而偏离主航道。从公开信息来看，这方面的情况还不够清晰。</li></ul><p>基于以上分析，我的看法是：</p><p>虽然泡泡玛特在创新消费领域有一定的先发优势，但目前我们对这门生意的理解还不够深入，估值方面也没有明显的吸引力。更重要的是，这家公司是否能够持续&quot;做对的事&quot;，我们还需要更多时间来观察。</p><p>建议大家：</p><ul><li>不要因为市场热度而急于做出投资决定。耐心等待更多关于公司长期竞争力的信息浮现。</li></ul><ul><li>重点关注公司能否在保持创新活力的同时，控制好成本和费用，确保盈利能力。</li></ul><ul><li>牢记&quot;不懂不做&quot;的原则。如果对潮玩这个细分市场没有深入理解，最好保持谨慎。</li></ul><p>最后，我想提醒大家，投资中最重要的不是抓住每一个机会，而是避免犯大的错误。在我们还没完全看懂之前，宁可错过，也不要做错。</p></div></div><div class="mreply"><div class="mh"><span class="who">巴菲特</span><span class="mscore">54</span></div><div class="md"><p>各位朋友，今天我们讨论的是泡泡玛特（09992）。我的看法是，这家公司有一些有趣的特质，但也伴随着不小的风险。</p><p>首先，从生意模式来看，泡泡玛特在潮玩领域确实占据了龙头地位。它通过创新的盲盒模式吸引消费者，这种模式在年轻人群体中形成了一定的消费粘性。这种创新消费模式具有一定的增长潜力，尤其是在中国市场消费升级的大背景下。</p><p>然而，当我们谈到投资价值时，必须考虑价格与价值的匹配度。目前，泡泡玛特的估值水平在我看来并不便宜。市盈率（PE）超过13倍，市净率（PB）接近7.5倍，对于一家处于消费品行业的公司来说，这显得有些偏高。近期股价的回调也反映出市场对这种高估值的一定担忧。</p><p>从护城河的角度来看，泡泡玛特虽然在潮玩市场占据领先地位，但这种优势是否能够长期维持，还需要打一个问号。潮玩行业的进入门槛相对较低，竞争者随时可能涌现。此外，消费者的口味变化较快，能否持续推出受欢迎的产品也是一大挑战。</p><p>基于以上分析，我的建议是：</p><ul><li>如果你已经在持有泡泡玛特的股票，建议密切关注公司的产品创新能力和市场竞争态势。如果发现护城河变弱的迹象，可能需要重新评估你的投资。</li></ul><ul><li>对于考虑买入的投资者，我建议再等等看。等待更好的价格出现，或者观察公司能否在接下来的几个季度里继续维持稳定的增长。</li></ul><ul><li>记住，投资就像打棒球，你不需要每次都挥棒。在市场情绪较为乐观的时候，保持耐心往往能带来更好的机会。</li></ul><p>最后，我想引用查理·芒格的一句话：&quot;在投资中，我们寻求的是那些显而易见的机会，而不是那些需要复杂分析才能理解的公司。&quot; 对于泡泡玛特，我们还需要更多时间来观察它的长期竞争力。</p></div></div><div class="mreply"><div class="mh"><span class="who">达利欧</span><span class="mscore">85</span></div><div class="md"><p>泡泡玛特（09992）是一家在创新消费领域具有代表性的公司。从我的角度分析，我对其持谨慎乐观的态度。</p><h4>结论：</h4><p>泡泡玛特值得观察，但当前不是最佳买入时机。我建议等待更明确的周期信号再考虑入场。</p><h4>理由：</h4><ul><li><strong>创新消费模式的优势</strong>：泡泡玛特的核心竞争力在于其创新的消费模式，这使其在年轻消费者中建立了强大的品牌认知。这种模式在当前消费升级的趋势下具有增长潜力。</li></ul><ul><li><strong>市场龙头地位</strong>：作为行业的领先者，泡泡玛特在市场份额和品牌影响力方面具有明显优势。这种地位为其提供了抵御竞争和维持利润率的能力。</li></ul><ul><li><strong>估值水平</strong>：尽管公司具有增长潜力，但其估值水平相对较高。当前市盈率（PE）为13.29，市净率（PB）为7.47，这在一定程度上反映了市场对其未来增长的预期，但也意味着较高的风险。</li></ul><ul><li><strong>股价回调压力</strong>：近期股价出现回调，这可能是市场对其高估值和增长放缓的担忧所致。这种回调压力需要密切关注。</li></ul><h4>风险/行动建议：</h4><ul><li><strong>等待周期信号</strong>：当前市场环境充满不确定性，建议等待更明确的周期信号再考虑入场。可以关注宏观经济指标和公司业绩的进一步发展。</li></ul><ul><li><strong>分散投资</strong>：如果决定投资，建议将泡泡玛特作为投资组合的一部分，而不是单一重仓。这有助于分散风险，特别是在市场波动较大的情况下。</li></ul><ul><li><strong>关注基本面变化</strong>：密切关注公司的基本面变化，特别是收入增长和利润率的变化。这些指标将直接影响其未来的估值和股价表现。</li></ul><ul><li><strong>原则化决策</strong>：将投资决策原则化，记录每次决策的依据和预期结果。这有助于在市场波动中保持冷静，并进行有效的复盘和调整。</li></ul><h4>总结：</h4><p>泡泡玛特在创新消费领域具有潜力，但其高估值和股价回调压力需要谨慎对待。建议投资者保持耐心，等待更明确的信号，并采用分散投资和原则化决策的方法来管理风险。</p><p>这条原则可以总结为：在高估值和市场不确定性较高的情况下，保持耐心和纪律性，通过分散投资和原则化决策来管理风险。</p></div></div><div class="mreply"><div class="mh"><span class="who">彼得·林奇</span><span class="mscore">89</span></div><div class="md"><h4>结论：</h4><p>泡泡玛特是一家值得关注的创新消费公司，但目前估值偏高，需要谨慎对待。</p><h4>理由：</h4><p>首先，泡泡玛特所在的潮玩市场是一个充满活力的新兴领域，它通过独特的IP运营和盲盒模式吸引了大量年轻消费者。这种创新消费模式具有很大的增长潜力，而泡泡玛特作为市场龙头，拥有明显的竞争优势。我喜欢从生活中观察公司，而泡泡玛特的产品在商场和购物中心随处可见，这让我对其市场渗透力印象深刻。</p><p>然而，从估值角度来看，目前的市盈率（PE）约为13倍，市净率（PB）约为7.5倍，对于一家成长型公司来说，这个估值水平并不算便宜。特别是考虑到近期股价回调压力明显，市场情绪似乎正在发生变化。</p><h4>风险/行动建议：</h4><ul><li><strong>估值风险</strong>：当前估值偏高，如果未来业绩增长不及预期，股价可能会面临更大的回调压力。作为投资者，我们需要警惕这种风险。</li></ul><ul><li><strong>市场情绪变化</strong>：近期股价的回调可能反映了市场对高估值成长股的担忧。如果市场情绪继续恶化，股价可能会进一步下跌。</li></ul><ul><li><strong>长期持有视角</strong>：如果你是一个长期投资者，并且相信泡泡玛特的商业模式和增长潜力，那么当前的回调可能是一个不错的买入机会。但我建议分批买入，而不是一次性重仓。</li></ul><ul><li><strong>密切关注业绩</strong>：接下来的几个季度，密切关注公司的业绩表现，特别是收入和利润的增长情况。如果业绩能够持续增长，那么当前的估值压力可能会逐渐缓解。</li></ul><h4>具体行动：</h4><p>如果你已经持有泡泡玛特的股票，建议暂时观望，等待更明确的业绩信号或市场情绪好转。如果你是潜在投资者，可以考虑在股价进一步回调时小仓位买入，并做好长期持有的准备。</p><p>记住，投资就像种树，需要耐心和细心观察。泡泡玛特这棵树能否长成参天大树，还需要时间来验证。</p></div></div><div class="mreply"><div class="mh"><span class="who">芒格</span><span class="mscore">44</span></div><div class="md"><p>各位，我谈谈对泡泡玛特（09992）的看法。</p><p>首先，我的结论是：目前对泡泡玛特持谨慎态度，估值偏高是主要问题。</p><p>让我解释原因。我们先逆向思考：泡泡玛特可能失败的方式是什么？第一，它的商业模式建立在持续创新和消费者对潮流玩具的持续热情上，这两点都存在不确定性。一旦消费者兴趣转移，或者竞争对手推出更吸引人的产品，泡泡玛特的增长可能迅速放缓。第二，估值问题。当前市盈率13倍，市净率7.5倍，对于一个消费类公司来说并不便宜。如果未来增长不及预期，股价可能会面临较大回调压力。</p><p>再从激励机制来看，管理层有动力通过不断推出新产品来维持增长，但这种模式能否持续是个问题。消费者对潮流产品的兴趣往往是短暂的，而公司需要不断创造新的&quot;爆款&quot;来维持业绩，这种压力不容忽视。</p><p>尽管泡泡玛特在创新消费领域有一定优势，但这个优势能否转化为长期价值还是个问号。我们不能忽视的是，消费潮流变化快，而公司需要不断适应这种变化，这对管理层的战略眼光和执行力都是巨大考验。</p><p>基于以上分析，我的建议是：</p><ul><li>现阶段不建议重仓持有。如果一定要投资，建议小仓位参与，并密切观察公司新品发布后的市场反应。</li></ul><ul><li>密切关注公司毛利率和净利润率的变化。如果出现持续下滑，可能预示着竞争加剧或消费者兴趣减退。</li></ul><ul><li>做好止损准备。如果股价跌破关键支撑位，要果断减仓，避免更大的损失。</li></ul><p>最后，我想说，投资就像打牌，我们不能只看胜率，还要考虑赔率。目前泡泡玛特的胜率并不高，而赔率也不够吸引人。在这样的情况下，保持耐心可能是更好的选择。</p><p>记住：&quot;如果我知道自己死在哪里，我就永远不去那里。&quot; 在投资中，识别风险比追求收益更重要。</p></div></div></div>
+<div class="panel"><h2>分析师报告<span class="sub">2 篇</span></h2><details open><summary>市场面分析</summary><div class="body"><div class="md"><h4>09992 泡泡玛特 市场面分析</h4><ul><li>红黑榜多空分数：多头 52 / 空头 68，分差 -16。</li><li>当前价格：149.00。</li><li>当前交易评级：Hold。</li><li>值得加仓区间：140.06 - 146.02。</li><li>市场愿意给溢价的原因：创新消费模式具有增长潜力；市场龙头地位带来竞争优势。</li><li>当前主要压制因素：估值水平相对较高；近期股价回调压力明显。</li></ul></div></div></details><details open><summary>基本面分析</summary><div class="body"><div class="md"><h4>09992 泡泡玛特 基本面分析</h4><ul><li>报告期：暂无。</li><li>PE(TTM)：13.29。</li><li>PB：7.47。</li><li>PS(TTM)：4.35。</li><li>ROE：22.23%。</li><li>营收同比：8.88%。</li><li>归母净利润同比：3.63%。</li><li>核心判断：盈利能力处于可接受区间；收入仍在增长；利润端保持扩张。</li></ul></div></div></details></div>
+<div class="panel"><h2>研究与计划</h2>
+<details><summary>基本面摘要</summary><div class="body"><div class="md"><h3>核心财务快照</h3><ul><li>报告期: 数据缺失</li><li>当前股价: 149.00 元</li><li>总市值: 1984.35 亿元</li><li>PE (TTM): 13.29</li><li>PB: 7.47</li><li>PS (TTM): 4.35</li><li>营业总收入(报告期): 数据缺失 亿元</li><li>营收同比增长率: 8.88%</li><li>归母净利润(报告期): 数据缺失 亿元</li><li>归母净利润同比增长率: 3.63%</li><li>ROE (TTM/估算): 22.23%</li><li>资产负债率: 数据缺失</li><li>经营性现金流 / 归母净利润: 数据缺失</li></ul><h4>缺失字段</h4><ul><li>营业总收入, 归母净利润, 资产负债率, 经营性现金流与归母净利润比值</li></ul></div></div></details>
+<details><summary>研究计划</summary><div class="body"><div class="md"><h4>09992 泡泡玛特 研究摘要</h4><ul><li>红黑榜结论: Hold</li><li>多头/空头: 52/68</li><li>正向信号: ROE 22.23%；营收同比 8.88%；归母净利润同比 3.63%；PE(TTM) 13.29</li><li>榜单看多理由: 创新消费模式具有增长潜力；市场龙头地位带来竞争优势</li><li>榜单风险提示: 估值水平相对较高；近期股价回调压力明显</li></ul></div></div></details>
+<details><summary>交易计划</summary><div class="body"><div class="md"><h4>09992 泡泡玛特 交易计划</h4><ul><li>评级: Hold</li><li>当前价格: 149.00</li><li>值得加仓区间: 140.06 - 146.02</li><li>目标价格: 156.45</li><li>止损位: 134.10</li><li>备注: 当前为缓存降级交易卡，后续若完整 TradingAgent 结果生成，将自动覆盖。</li></ul></div></div></details>
+<details><summary>交易决策</summary><div class="body"><div class="md"><p>Hold</p><p>09992 泡泡玛特 当前使用红黑榜缓存结果生成兜底交易卡。多头 52 / 空头 68，分差 -16。当前尚未取得完整 TradingAgent 长文决策，但榜单分数、财务快照和大师观点已经足够生成基础交易建议。</p></div></div></details>
+</div>
+<div class="panel"><h2>多空逻辑</h2><div class="pts"><div class="h bull">看多逻辑</div><div class="md"><p>创新消费模式具有增长潜力</p><p>市场龙头地位带来竞争优势</p></div></div><div class="pts"><div class="h bear">看空逻辑</div><div class="md"><p>估值水平相对较高</p><p>近期股价回调压力明显</p></div></div></div>
+<div class="panel"><h2>伯克希尔研究</h2><p><strong>泡泡玛特是一家具有独特商业模式的公司，但面临竞争加剧和行业周期波动的挑战，当前估值偏高，需谨慎观察。</strong></p><p>伯克希尔综合评分：<strong>3.25</strong></p><div class="md"><p>{&quot;verdict&quot;: &quot;观望&quot;, &quot;conservative_tip&quot;: &quot;建议等待估值回调至PE 30倍以下再考虑买入。&quot;, &quot;moderate_tip&quot;: &quot;可小仓位介入，但需密切关注竞争格局和监管变化。&quot;, &quot;aggressive_tip&quot;: &quot;当前估值偏高，不建议激进买入。&quot;, &quot;catalysts_plus&quot;: [&quot;IP推出成功，用户增长超预期。&quot;, &quot;政策风险解除，盲盒模式获得认可。&quot;, &quot;竞争格局改善，市场份额提升。&quot;], &quot;catalysts_minus&quot;: [&quot;IP老化，用户兴趣转移。&quot;, &quot;监管加强，对盲盒模式构成限制。&quot;, &quot;竞争对手推出强势产品，抢占市场份额。&quot;]}</p></div></div>
+<div class="panel news"><h2>最新资讯</h2><div class="md"><p>利空新闻较多，共7条利空，4条利好，1条中性。</p></div><div class="nitem"><div class="t">Labubu maker Pop Mart shares fall as key ex-China sales data drop, Citi cuts price target</div><div class="s">CNBC · 利空</div></div><div class="nitem"><div class="t">Hong Kong stocks rise on mixed earnings, PopMart drops 8pc after missing forecasts</div><div class="s">The Standard (HK) · 利空</div></div><div class="nitem"><div class="t">Popular blind box store, PopMart, coming to McAllen</div><div class="s">ValleyCentral.com · 利好</div></div><div class="nitem"><div class="t">News | LA Labubu HQ: Pop Mart inks deal for corporate hub</div><div class="s">CoStar · 中性</div></div><div class="nitem"><div class="t">Pop Mart to make its NC debut at Crabtree. What to know about Raleigh grand opening</div><div class="s">News &amp; Observer · 利好</div></div><div class="nitem"><div class="t">The Beacon Popmart Is Shutting Its Doors — Here&#x27;s Why</div><div class="s">Hudson Valley Post · 利空</div></div><div class="nitem"><div class="t">Pop Mart&#x27;s Overseas Sales Drop 11% as LABUBU Craze Fades, Growth Slows Sharply</div><div class="s">아시아경제 · 利空</div></div><div class="nitem"><div class="t">LABUBU Takes Over NYC, POP MART Celebrates THE MONSTERS With 10th Anniversary Exhibition</div><div class="s">Yahoo Finance · 利好</div></div></div>
+<footer>稳健理财Agent · 红黑榜每日归档 · 黑榜 #4 · 仅供研究，不构成投资建议</footer>
+</div></body>
+</html>
