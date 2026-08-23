@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>INTU(INTU) 红榜 2026-08-24</title>
+<style>
+:root{--red:#d8342c;--redbg:#fdecea;--green:#1a9e54;--ink:#1c2230;--muted:#6b7385;
+--line:#e7e9ef;--card:#fff;--bg:#f4f6fa;--chip:#eef1f6;--dark:#23262d;--darkbg:#ececef}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",
+"Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);
+line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 16px 64px}
+header.top{background:linear-gradient(135deg,#1c2230,#2c3550);color:#fff;border-radius:14px;
+padding:22px 24px;margin-bottom:20px;box-shadow:0 6px 24px rgba(20,26,46,.12)}
+header.top h1{margin:0 0 6px;font-size:24px;letter-spacing:.5px}
+header.top .sub{opacity:.85;font-size:13px}
+header.top .sub b{color:#ffd166;font-weight:600}
+nav.mkt{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;
+background:rgba(244,246,250,.92);backdrop-filter:blur(6px);padding:10px 0;margin-bottom:14px}
+nav.mkt a{text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);
+padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600}
+nav.mkt a:hover{border-color:var(--red);color:var(--red)}
+.summary{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.summary .chip{background:var(--card);border:1px solid var(--line);border-radius:10px;
+padding:8px 12px;font-size:12px;color:var(--muted)}
+.summary .chip b{color:var(--ink);font-size:14px;margin-left:4px}
+section.board{margin:26px 0}
+.board-title{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:19px}
+.board-title .dot{width:10px;height:10px;border-radius:50%}
+.board-title.red .dot{background:var(--red)}
+.board-title.black .dot{background:var(--dark)}
+.board-title small{color:var(--muted);font-weight:400;font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+position:relative;transition:box-shadow .15s}
+.card:hover{box-shadow:0 4px 18px rgba(20,26,46,.08)}
+.card.red{border-top:3px solid var(--red)}
+.card.black{border-top:3px solid var(--dark)}
+.rank{position:absolute;top:10px;right:12px;font-size:26px;font-weight:800;color:#eceff5}
+.card.red .rank{color:#fbdcD9}
+.nm{font-size:16px;font-weight:700}
+.nm .tk{color:var(--muted);font-weight:500;font-size:12px;margin-left:6px}
+.tag{display:inline-block;background:var(--chip);color:var(--muted);border-radius:6px;
+padding:1px 7px;font-size:11px;margin:6px 6px 0 0}
+.price-row{display:flex;align-items:baseline;gap:10px;margin:10px 0 4px}
+.price{font-size:24px;font-weight:800}
+.pct{font-size:14px;font-weight:700;padding:2px 8px;border-radius:8px}
+.up{color:var(--red)}.down{color:var(--green)}.flat{color:var(--muted)}
+.pct.up{background:var(--redbg)}.pct.down{background:#e2f4e9}.pct.flat{background:var(--chip)}
+.psrc{font-size:11px;color:var(--muted);margin-left:auto}
+.scores{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.scores span{background:var(--chip);border-radius:6px;padding:2px 8px;font-size:11px;color:var(--muted)}
+.scores span b{color:var(--ink)}
+.pts{font-size:12.5px;margin:8px 0 0}
+.pts .h{font-weight:700;font-size:12px;margin:6px 0 2px}
+.pts .h.bull{color:var(--red)}.pts .h.bear{color:var(--green)}
+.pts ul{margin:2px 0 4px;padding-left:18px;color:#3a4152}
+.pts li{margin:1px 0}
+.masters{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:11px;color:var(--muted)}
+.masters b{color:var(--ink)}
+.summ{font-size:12.5px;color:#3a4152;background:#fafbfd;border:1px solid var(--line);
+border-radius:8px;padding:8px 10px;margin-top:8px}
+.empty{color:var(--muted);background:var(--card);border:1px dashed var(--line);
+border-radius:10px;padding:18px;text-align:center}
+footer{margin-top:34px;color:var(--muted);font-size:12px;text-align:center;line-height:1.8}
+a.lnk{color:var(--red);text-decoration:none}
+/* ── detail page ── */
+.backbar{margin-bottom:14px;font-size:13px}
+.backbar a{color:var(--muted);text-decoration:none;margin-right:14px}
+.backbar a:hover{color:var(--red)}
+.badge{display:inline-block;border-radius:6px;padding:2px 10px;font-size:12px;font-weight:700;margin-right:8px}
+.badge.red{background:var(--red);color:#fff}.badge.black{background:var(--dark);color:#fff}
+.trade{display:flex;flex-wrap:wrap;gap:10px;background:linear-gradient(135deg,#2c3550,#1c2230);
+color:#fff;border-radius:12px;padding:16px 18px;margin:16px 0}
+.trade .cell{min-width:120px}
+.trade .k{font-size:11px;opacity:.75}
+.trade .v{font-size:18px;font-weight:800;margin-top:2px}
+.trade .v.buy{color:#7ee2a8}.trade .v.sell{color:#ff9d97}.trade .v.hold{color:#ffd166}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0}
+.mgrid .m{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.mgrid .m .k{font-size:11px;color:var(--muted)}
+.mgrid .m .v{font-size:16px;font-weight:700;margin-top:2px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.panel>h2{margin:0 0 12px;font-size:17px}
+.panel>h2 .sub{font-size:12px;color:var(--muted);font-weight:400;margin-left:8px}
+.mreply{border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;
+padding:12px 14px;margin:10px 0;background:#fff}
+.mreply .mh{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.mreply .mh .who{font-weight:700;font-size:14px}
+.mreply .mh .mscore{margin-left:auto;background:var(--chip);border-radius:6px;padding:1px 8px;font-size:12px;font-weight:700}
+.md h2,.md h3,.md h4,.md h5{margin:12px 0 6px;font-size:15px}
+.md p{margin:6px 0;font-size:13.5px;color:#2c3345}
+.md ul{margin:6px 0;padding-left:20px;font-size:13.5px;color:#2c3345}
+.md li{margin:3px 0}
+.md strong{color:var(--ink)}
+details{border:1px solid var(--line);border-radius:10px;background:#fff;margin:10px 0;padding:0}
+details>summary{cursor:pointer;padding:12px 16px;font-weight:700;font-size:14px;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary:before{content:"▸ ";color:var(--red)}
+details[open]>summary:before{content:"▾ "}
+details>.body{padding:0 16px 14px;border-top:1px dashed var(--line)}
+.ychip{display:inline-block;background:var(--chip);border-radius:8px;padding:4px 10px;font-size:12px;margin:3px 6px 3px 0}
+.ychip b{font-size:13px}
+.news .nitem{border-top:1px dashed var(--line);padding:8px 0;font-size:13px}
+.news .nitem .t{font-weight:600}
+.news .nitem .s{color:var(--muted);font-size:12px}
+/* ── root landing page ── */
+.hero{padding:30px 26px}
+.hero-kicker{color:#ffd166;font-size:12px;font-weight:700;letter-spacing:2px;
+text-transform:uppercase;margin-bottom:8px}
+.hero h1{font-size:30px;margin:0 0 10px}
+.day-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.day-card{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);
+border-radius:12px;padding:14px 16px;transition:all .15s}
+.day-card:hover{border-color:var(--red);box-shadow:0 4px 16px rgba(216,52,44,.12);transform:translateY(-2px)}
+.day-card .d{font-weight:800;font-size:15px;color:var(--ink);display:flex;align-items:center;gap:8px}
+.day-card .m{margin-top:8px;display:flex;gap:6px}
+.day-card .m span{background:var(--chip);color:var(--muted);border-radius:6px;
+padding:2px 8px;font-size:11px}
+.latest-badge{background:var(--red);color:#fff;border-radius:6px;padding:1px 7px;
+font-size:10px;font-weight:700}
+</style>
+</head>
+<body><div class="wrap">
+<div class="backbar"><a href="../index.html">← 总览</a><a href="../us.html">← 美股榜单</a></div>
+<header class="top">
+  <h1><span class="badge red">红榜 #3</span>INTU<span class="tk" style="opacity:.7;font-size:15px;font-weight:400;margin-left:8px">INTU</span></h1>
+  <div class="sub">美股 ·  · 榜单日期 <b>2026-08-24</b> · 盘价采集 <b>2026-08-24 05:00:11</b></div>
+  <div class="price-row" style="margin-top:12px">
+    <span class="price" style="color:#fff">$367.00</span>
+    <span class="pct up">+1.42%</span>
+    <span class="psrc" style="color:rgba(255,255,255,.6)">实时</span>
+  </div>
+  <div class="scores" style="margin-top:10px">
+    <span>综合 <b>93.8</b></span>
+    <span>多头 <b>88</b></span>
+    <span>空头 <b>30</b></span>
+    <span>大师均值 <b>59.8</b></span>
+    <span>信号 <b>positive</b></span>
+  </div>
+</header>
+<div class="trade"><div class="cell"><div class="k">交易评级</div><span class="v buy">Buy</span></div><div class="cell"><div class="k">加仓区间</div><span class="v">355.99 ~ 370.67</span></div><div class="cell"><div class="k">目标价</div><span class="v">411.04</span></div><div class="cell"><div class="k">伯克希尔</div><span class="v">买入</span></div><div class="cell"><div class="k">伯克希尔分</div><span class="v">4.50</span></div></div>
+<div class="panel"><h2>财务指标</h2><div class="mgrid"><div class="m"><div class="k">市盈率 PE</div><div class="v">22.38</div></div><div class="m"><div class="k">市净率 PB</div><div class="v">4.88</div></div><div class="m"><div class="k">ROE</div><div class="v">22.5%</div></div><div class="m"><div class="k">总市值</div><div class="v">1004</div></div><div class="m"><div class="k">营收同比</div><div class="v">10.4%</div></div><div class="m"><div class="k">净利同比</div><div class="v">10.7%</div></div></div></div>
+<div class="panel"><h2>历史收益</h2><span class="ychip">近1月 <b class="up">+29.01%</b></span><span class="ychip">近6月 <b class="up">+2.07%</b></span><span class="ychip">近1年 <b class="down">-44.62%</b></span><span class="ychip">近5年 <b class="down">-33.57%</b></span></div>
+<div class="panel"><h2>大师圆桌<span class="sub">5 位</span></h2><div class="mreply"><div class="mh"><span class="who">段永平</span><span class="mscore">50</span></div><div class="md"><p>各位好，关于INTU这家公司，我来说几句。</p><h4>结论：</h4><p>INTU是一家不错的公司，但目前的价格让我有些犹豫。我的态度是中性偏谨慎。</p><h4>理由：</h4><ul><li><strong>本分角度</strong>：INTU所在的财务软件领域是一个&quot;对的事&quot;。它解决了用户的真实需求，而且云服务转型也做得不错，这符合我们说的&quot;做对的事，把事做对&quot;。</li></ul><ul><li><strong>市场地位</strong>：INTU在行业内处于领先地位，财务软件的需求也持续强劲。这些都是好公司的特征。</li></ul><ul><li><strong>估值问题</strong>：不过，当前的估值水平让我有些担忧。22倍左右的市盈率处于历史高位，而4.8倍的市净率也不低。考虑到宏观经济的不确定性，这个价格可能已经包含了太多乐观预期。</li></ul><h4>风险/行动建议：</h4><ul><li><strong>风险</strong>：最大的风险在于估值过高。如果市场情绪转向，股价可能会有较大波动。此外，市场竞争加剧也是一个需要关注的因素。</li></ul><ul><li><strong>行动建议</strong>：如果已经持有，可以考虑继续持有，但需要密切关注估值变化。如果现在想买入，我建议再等等，看看是否有更好的价格出现。</li></ul><h4>长期视角：</h4><p>从十年后的角度来看，INTU所在的领域依然有发展空间，但关键在于公司能否持续创新并保持市场领导地位。我们需要关注的是公司的长期竞争力，而不是短期的股价波动。</p><h4>别错过的隐含约束：</h4><p>别把&quot;看似便宜&quot;当成&quot;本分&quot;。投资决策应该基于对公司的深入理解，而不是单纯的价格高低。</p><p>希望这些看法对大家有所帮助。谢谢。</p></div></div><div class="mreply"><div class="mh"><span class="who">巴菲特</span><span class="mscore">47</span></div><div class="md"><p>各位朋友，关于INTU这家公司，我想从几个角度谈谈我的看法。</p><p>首先，我得说，这是一家不错的公司。财务软件的需求依然强劲，这家公司已经在这个领域建立了稳固的市场领导地位。而且他们向云服务的转型看起来也相当成功，这让我想起了当年IBM的转型——虽然不完全一样，但方向是对的。</p><p>不过，我得提醒大家，现在的价格让我有些犹豫。当前市盈率在22倍左右，对于一家软件公司来说，这个估值水平已经处于历史高位。我们都知道，市场先生有时候会给出过高的价格，而我们现在可能就处在这样一个时刻。</p><p>让我来谈谈几个关键点：</p><ul><li><strong>护城河</strong>：INTU在财务软件市场的领导地位是它的护城河之一，但这并不意味着它不可撼动。市场竞争在加剧，新的玩家不断涌现，这可能会侵蚀它的市场份额。</li></ul><ul><li><strong>自由现金流</strong>：虽然公司的财务状况看起来不错，但我们要问自己，这家公司是否能持续产生强劲的自由现金流？考虑到市场竞争和可能的资本支出需求，这一点需要持续关注。</li></ul><ul><li><strong>估值</strong>：正如我之前提到的，22倍的市盈率对我来说有些偏高。我更倾向于在价格更低的时候买入，这样我们才能有足够的安全边际。</li></ul><ul><li><strong>长期前景</strong>：如果我们要考虑长期持有，那么我们需要问自己，十年后这家公司会是什么样子？它能否继续保持现在的市场地位？这些问题都需要我们深入思考。</li></ul><p>基于以上分析，我现在的态度是谨慎的。如果你是长期投资者，并且对这家公司的未来充满信心，那么你可以考虑在价格回调时买入。但对于我来说，我更愿意等待一个更有吸引力的价格。</p><p>最后，我想说，投资就像打棒球，你不需要每次都挥棒。现在可能不是挥棒的最佳时机。我们要有耐心，等待那个完美的击球机会。</p><p>如果查理·芒格在这里，他可能会补充说，投资就像经营一个果园，我们需要找到那些能够长期结出甜美果实的树，而不是那些只开花不结果的树。</p></div></div><div class="mreply"><div class="mh"><span class="who">达利欧</span><span class="mscore">62</span></div><div class="md"><p>各位同仁，今天我们来讨论一下 Intuit（INTU）这只股票。</p><h4>结论</h4><p>我的立场是保持中立（partial），既不强烈看多，也不强烈看空。这基于我对当前周期位置和风险平衡的判断。</p><h4>理由</h4><ul><li><strong>基本面强劲</strong>：Intuit 在财务软件领域的需求持续强劲，云服务转型也取得了显著成效，这为其未来增长提供了坚实的基础。市场领导地位的稳固更是其长期竞争力的体现。</li><li><strong>估值处于高位</strong>：尽管基本面强劲，但当前估值水平（PE 22.37805，PB 4.879346）处于历史高位，这增加了下行风险。</li><li><strong>宏观经济不确定性</strong>：当前全球经济环境充满不确定性，利率上升和潜在的经济放缓可能会对 Intuit 的增长前景产生影响。</li></ul><h4>风险/行动建议</h4><ul><li><strong>短期风险</strong>：考虑到估值处于高位，市场竞争加剧以及宏观经济的不确定性，短期内的波动性可能会增加。如果市场情绪发生变化，股价可能会面临回调压力。</li><li><strong>长期机会</strong>：从长期来看，Intuit 的云服务转型和市场领导地位为其提供了良好的增长潜力。如果能够有效应对市场竞争和宏观经济挑战，长期持有者可能会获得不错的回报。</li></ul><h4>行动建议</h4><ul><li><strong>现有持仓者</strong>：如果你是长期投资者，并且能够承受短期波动，可以考虑继续持有，但需要密切关注估值和市场情绪的变化。</li><li><strong>潜在投资者</strong>：如果你正在考虑买入，建议等待更合适的时机，比如市场出现回调，或者 Intuit 能够在竞争中进一步巩固其市场地位时再入场。</li></ul><h4>原则化收口</h4><p>在做出投资决策时，我们需要遵循的原则是：保持极度开放和透明，评估所有可能的风险和机会，并根据自身的风险承受能力做出决策。正如我常说的，&quot;Pain + Reflection = Progress&quot;，在投资过程中，我们需要不断反思和学习，以应对不断变化的市场环境。</p><p>希望这些分析对大家有所帮助。谢谢。</p></div></div><div class="mreply"><div class="mh"><span class="who">彼得·林奇</span><span class="mscore">76</span></div><div class="md"><p>各位，今天我们来聊聊 INTU（Intuit），这家公司我比较熟悉，因为我经常观察那些在日常生活中能接触到的生意。INTU 是一家做财务软件和税务服务的公司，像 QuickBooks 和 TurboTax 这些产品，很多小企业主和个人都会用到。</p><h4>结论：</h4><p>我目前对 INTU 持谨慎乐观的态度。虽然这家公司有很多吸引人的地方，但也有一些风险需要注意。</p><h4>理由：</h4><p>首先，INTU 的财务软件需求持续强劲，尤其是中小企业对财务管理软件的需求不断增加。随着越来越多的企业转向数字化运营，INTU 的产品正好满足了这一趋势。此外，INTU 在云服务转型方面取得了显著成效，这不仅提升了用户体验，还增加了客户的粘性。</p><p>从市场地位来看，INTU 在其领域内的领导地位非常稳固，拥有强大的品牌影响力和广泛的用户基础。这些因素都支持了公司的长期增长潜力。</p><p>然而，INTU 的估值目前处于历史高位，市盈率（PE）达到 22 倍左右。对于一家已经处于成熟阶段的公司来说，这样的估值水平可能会限制其未来的上涨空间。此外，市场竞争也在加剧，新的竞争对手不断涌现，可能会对 INTU 的市场份额构成威胁。</p><h4>风险/行动建议：</h4><ul><li><strong>估值风险</strong>：虽然 INTU 的基本面看起来不错，但目前的估值水平较高。如果市场情绪发生变化，或者公司业绩出现波动，股价可能会面临回调压力。因此，我建议在考虑买入时保持谨慎，不要追高。</li></ul><ul><li><strong>市场竞争</strong>：INTU 需要持续创新以保持其市场领导地位。投资者应密切关注公司在新产品开发和市场拓展方面的进展。如果 INTU 能够继续推出受欢迎的产品和服务，其长期增长潜力仍然值得期待。</li></ul><ul><li><strong>宏观经济不确定性</strong>：在经济不确定性增加的情况下，中小企业可能会减少在软件和服务上的支出，这对 INTU 的收入增长构成风险。因此，投资者应关注宏观经济环境的变化，以及其对公司业务的影响。</li></ul><h4>具体行动：</h4><p>如果你已经持有 INTU，建议继续持有，但密切关注公司的业绩和估值变化。如果估值出现回调，可以考虑适当加仓。如果没有持有，建议等待更好的买入时机，比如公司发布财报后，如果业绩超预期且股价回调，可以考虑逐步建仓。</p><p>总之，INTU 是一家值得关注的优质公司，但当前的估值水平需要我们保持警惕。希望大家在投资时都能做到理性分析，谨慎决策。</p></div></div><div class="mreply"><div class="mh"><span class="who">芒格</span><span class="mscore">64</span></div><div class="md"><p>各位同仁，关于INTU这只股票，我的看法是：<strong>谨慎看好，但必须警惕估值风险</strong>。</p><p>首先，INTU确实有一些值得称道的优势：</p><ul><li><strong>财务软件需求持续强劲</strong> - 无论是个人还是企业，对财务管理的数字化需求都在增长，这为INTU提供了坚实的业务基础。</li><li><strong>云服务转型成效显著</strong> - INTU在云服务领域的转型已经取得了明显的成果，这不仅提升了其产品的竞争力，也打开了新的增长空间。</li><li><strong>市场领导地位稳固</strong> - 在其核心市场中，INTU拥有强大的品牌影响力和客户基础，这为其长期发展提供了保障。</li></ul><p>然而，正如我常说的，&quot;如果我知道自己死在哪里，我就永远不去那里&quot;。在看到机会的同时，我们必须正视风险：</p><ul><li><strong>估值处于历史高位</strong> - 当前22倍的市盈率并不便宜，尤其是在宏观经济环境充满不确定性的背景下，这样的估值水平可能面临回调压力。</li><li><strong>市场竞争加剧</strong> - 尽管INTU目前处于市场领先地位，但竞争对手的不断涌现可能会对其市场份额构成威胁。</li><li><strong>宏观经济不确定性</strong> - 全球经济环境的变化可能会影响企业客户的IT支出，进而影响INTU的收入增长。</li></ul><p>从多元思维模型的角度来看，我们不仅要关注财务指标，还要考虑行业趋势、竞争格局以及宏观经济环境的影响。INTU的云服务转型是一个重要的加分项，但其在高估值下的抗风险能力需要特别关注。</p><p>基于以上分析，我的建议是：</p><ul><li><strong>如果已经持有INTU</strong>，可以考虑在当前价位部分获利了结，以降低在高估值下的持仓风险。</li><li><strong>如果考虑买入</strong>，建议等待更合适的入场时机，比如在市场出现回调时，或者INTU的估值回到更合理的水平。</li><li><strong>密切关注市场竞争和宏观经济变化</strong>，这些因素可能会对INTU的长期发展产生重大影响。</li></ul><p>最后，我想提醒大家，投资决策不应仅仅基于短期的股价波动，而应着眼于公司的长期价值创造能力。正如我常说的，&quot;机会成本&quot;是我们必须时刻牢记的概念。在做出投资决策时，我们要问自己：这笔投资的机会成本是什么？是否有更好的选择？</p><p>我能错在哪？或许我对INTU的云服务转型过于乐观，或者低估了市场竞争的激烈程度。但无论如何，保持理性和谨慎始终是我们的首要原则。</p></div></div></div>
+<div class="panel"><h2>分析师报告<span class="sub">2 篇</span></h2><details open><summary>市场面分析</summary><div class="body"><div class="md"><h4>INTU INTU 市场面分析</h4><ul><li>红黑榜多空分数：多头 88 / 空头 30，分差 58。</li><li>当前价格：367.00。</li><li>当前交易评级：Buy。</li><li>值得加仓区间：355.99 - 370.67。</li><li>目标价格：411.04。</li><li>市场愿意给溢价的原因：财务软件需求持续强劲；云服务转型成效显著；市场领导地位稳固。</li><li>当前主要压制因素：估值处于历史高位；市场竞争加剧；宏观经济不确定性。</li></ul></div></div></details><details open><summary>基本面分析</summary><div class="body"><div class="md"><h4>INTU INTU 基本面分析</h4><ul><li>报告期：暂无。</li><li>PE(TTM)：22.38。</li><li>PB：4.88。</li><li>ROE：22.50%。</li><li>营收同比：10.40%。</li><li>归母净利润同比：10.70%。</li><li>核心判断：盈利能力处于可接受区间；收入仍在增长；利润端保持扩张。</li></ul></div></div></details></div>
+<div class="panel"><h2>研究与计划</h2>
+<details><summary>基本面摘要</summary><div class="body"><div class="md"><h3>核心财务快照</h3><ul><li>报告期: 数据缺失</li><li>当前股价: 367.00 元</li><li>总市值: 1003.88 亿元</li><li>PE (TTM): 22.38</li><li>PB: 4.88</li><li>PS (TTM): 数据缺失</li><li>营业总收入(报告期): 数据缺失 亿元</li><li>营收同比增长率: 10.40%</li><li>归母净利润(报告期): 数据缺失 亿元</li><li>归母净利润同比增长率: 10.70%</li><li>ROE (TTM/估算): 22.50%</li><li>资产负债率: 数据缺失</li><li>经营性现金流 / 归母净利润: 数据缺失</li></ul><h4>缺失字段</h4><ul><li>PS(TTM), 营业总收入, 归母净利润, 资产负债率, 经营性现金流与归母净利润比值</li></ul></div></div></details>
+<details><summary>研究计划</summary><div class="body"><div class="md"><h4>INTU INTU 研究摘要</h4><ul><li>红黑榜结论: Buy</li><li>多头/空头: 88/30</li><li>正向信号: ROE 22.50%；营收同比 10.40%；归母净利润同比 10.70%；PE(TTM) 22.38</li><li>榜单看多理由: 财务软件需求持续强劲；云服务转型成效显著；市场领导地位稳固</li><li>榜单风险提示: 估值处于历史高位；市场竞争加剧；宏观经济不确定性</li></ul></div></div></details>
+<details><summary>交易计划</summary><div class="body"><div class="md"><h4>INTU INTU 交易计划</h4><ul><li>评级: Buy</li><li>当前价格: 367.00</li><li>值得加仓区间: 355.99 - 370.67</li><li>目标价格: 411.04</li><li>止损位: 337.64</li><li>备注: 当前为缓存降级交易卡，后续若完整 TradingAgent 结果生成，将自动覆盖。</li></ul></div></div></details>
+<details><summary>交易决策</summary><div class="body"><div class="md"><p>Buy</p><p>INTU INTU 当前使用红黑榜缓存结果生成兜底交易卡。多头 88 / 空头 30，分差 58。当前尚未取得完整 TradingAgent 长文决策，但榜单分数、财务快照和大师观点已经足够生成基础交易建议。</p></div></div></details>
+</div>
+<div class="panel"><h2>多空逻辑</h2><div class="pts"><div class="h bull">看多逻辑</div><div class="md"><p>财务软件需求持续强劲</p><p>云服务转型成效显著</p><p>市场领导地位稳固</p></div></div><div class="pts"><div class="h bear">看空逻辑</div><div class="md"><p>估值处于历史高位</p><p>市场竞争加剧</p><p>宏观经济不确定性</p></div></div></div>
+<div class="panel"><h2>伯克希尔研究</h2><p><strong>Intuit是一家拥有强大护城河和稳健财务表现的金融软件公司，具备长期投资价值，但需关注行业竞争加剧和技术变革风险。</strong></p><p>伯克希尔综合评分：<strong>4.5</strong></p><div class="md"><p>{&quot;verdict&quot;: &quot;买入&quot;, &quot;conservative_tip&quot;: &quot;建议在PE TTM低于35倍时买入。&quot;, &quot;moderate_tip&quot;: &quot;建议在PE TTM低于40倍时买入。&quot;, &quot;aggressive_tip&quot;: &quot;建议在PE TTM低于45倍时买入。&quot;, &quot;catalysts_plus&quot;: [&quot;AI技术应用取得突破性进展。&quot;, &quot;市场份额进一步提升。&quot;, &quot;推出创新型产品或服务。&quot;], &quot;catalysts_minus&quot;: [&quot;主要竞争对手推出颠覆性产品。&quot;, &quot;税务政策发生重大不利变化。&quot;, &quot;宏观经济下行导致中小企业客户支出减少。&quot;]}</p></div></div>
+<div class="panel news"><h2>最新资讯</h2><div class="md"><p>INTU整体情绪偏负面，共5条利空，3条利好，3条中性。</p></div><div class="nitem"><div class="t">Get Paid 16% A Year To Hold INTU Stock You Already Own</div><div class="s">Trefis · 利好</div></div><div class="nitem"><div class="t">Intuit (INTU) Stock Sees Fair Value Cut As Analysts Lower Targets</div><div class="s">Yahoo Finance · 利空</div></div><div class="nitem"><div class="t">Why Did CRM, INTU, FOXA Stocks Hit 52-Week Lows Last Week?</div><div class="s">Stocktwits · 利空</div></div><div class="nitem"><div class="t">INTU Shareholder Alert: Intuit Inc. Securities Class Action Lawsuit - Investors With Losses May Contact Levi &amp; Korsinsky</div><div class="s">PR Newswire · 利空</div></div><div class="nitem"><div class="t">INTU DEADLINE ALERT: Faruqi &amp; Faruqi, LLP Reminds Intuit (INTU) Investors of Securities Class Action Lawsuit Deadline on September 8, 2026</div><div class="s">TMX Newsfile · 利空</div></div><div class="nitem"><div class="t">24,255 Shares in Intuit Inc. $INTU Bought by Daiichi Life Insurance Co. Ltd.</div><div class="s">MarketBeat · 利好</div></div><div class="nitem"><div class="t">Intuit (INTU) Shares Just Moved, So What Is Driving Attention Today?</div><div class="s">simplywall.st · 中性</div></div><div class="nitem"><div class="t">Insights Into Intuit (INTU) Q4: Wall Street Projections for Key Metrics</div><div class="s">Yahoo Finance · 中性</div></div></div>
+<footer>稳健理财Agent · 红黑榜每日归档 · 红榜 #3 · 仅供研究，不构成投资建议</footer>
+</div></body>
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VRTX(VRTX) 红榜 2026-08-24</title>
+<style>
+:root{--red:#d8342c;--redbg:#fdecea;--green:#1a9e54;--ink:#1c2230;--muted:#6b7385;
+--line:#e7e9ef;--card:#fff;--bg:#f4f6fa;--chip:#eef1f6;--dark:#23262d;--darkbg:#ececef}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",
+"Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);
+line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 16px 64px}
+header.top{background:linear-gradient(135deg,#1c2230,#2c3550);color:#fff;border-radius:14px;
+padding:22px 24px;margin-bottom:20px;box-shadow:0 6px 24px rgba(20,26,46,.12)}
+header.top h1{margin:0 0 6px;font-size:24px;letter-spacing:.5px}
+header.top .sub{opacity:.85;font-size:13px}
+header.top .sub b{color:#ffd166;font-weight:600}
+nav.mkt{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;
+background:rgba(244,246,250,.92);backdrop-filter:blur(6px);padding:10px 0;margin-bottom:14px}
+nav.mkt a{text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);
+padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600}
+nav.mkt a:hover{border-color:var(--red);color:var(--red)}
+.summary{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.summary .chip{background:var(--card);border:1px solid var(--line);border-radius:10px;
+padding:8px 12px;font-size:12px;color:var(--muted)}
+.summary .chip b{color:var(--ink);font-size:14px;margin-left:4px}
+section.board{margin:26px 0}
+.board-title{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:19px}
+.board-title .dot{width:10px;height:10px;border-radius:50%}
+.board-title.red .dot{background:var(--red)}
+.board-title.black .dot{background:var(--dark)}
+.board-title small{color:var(--muted);font-weight:400;font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+position:relative;transition:box-shadow .15s}
+.card:hover{box-shadow:0 4px 18px rgba(20,26,46,.08)}
+.card.red{border-top:3px solid var(--red)}
+.card.black{border-top:3px solid var(--dark)}
+.rank{position:absolute;top:10px;right:12px;font-size:26px;font-weight:800;color:#eceff5}
+.card.red .rank{color:#fbdcD9}
+.nm{font-size:16px;font-weight:700}
+.nm .tk{color:var(--muted);font-weight:500;font-size:12px;margin-left:6px}
+.tag{display:inline-block;background:var(--chip);color:var(--muted);border-radius:6px;
+padding:1px 7px;font-size:11px;margin:6px 6px 0 0}
+.price-row{display:flex;align-items:baseline;gap:10px;margin:10px 0 4px}
+.price{font-size:24px;font-weight:800}
+.pct{font-size:14px;font-weight:700;padding:2px 8px;border-radius:8px}
+.up{color:var(--red)}.down{color:var(--green)}.flat{color:var(--muted)}
+.pct.up{background:var(--redbg)}.pct.down{background:#e2f4e9}.pct.flat{background:var(--chip)}
+.psrc{font-size:11px;color:var(--muted);margin-left:auto}
+.scores{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.scores span{background:var(--chip);border-radius:6px;padding:2px 8px;font-size:11px;color:var(--muted)}
+.scores span b{color:var(--ink)}
+.pts{font-size:12.5px;margin:8px 0 0}
+.pts .h{font-weight:700;font-size:12px;margin:6px 0 2px}
+.pts .h.bull{color:var(--red)}.pts .h.bear{color:var(--green)}
+.pts ul{margin:2px 0 4px;padding-left:18px;color:#3a4152}
+.pts li{margin:1px 0}
+.masters{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:11px;color:var(--muted)}
+.masters b{color:var(--ink)}
+.summ{font-size:12.5px;color:#3a4152;background:#fafbfd;border:1px solid var(--line);
+border-radius:8px;padding:8px 10px;margin-top:8px}
+.empty{color:var(--muted);background:var(--card);border:1px dashed var(--line);
+border-radius:10px;padding:18px;text-align:center}
+footer{margin-top:34px;color:var(--muted);font-size:12px;text-align:center;line-height:1.8}
+a.lnk{color:var(--red);text-decoration:none}
+/* ── detail page ── */
+.backbar{margin-bottom:14px;font-size:13px}
+.backbar a{color:var(--muted);text-decoration:none;margin-right:14px}
+.backbar a:hover{color:var(--red)}
+.badge{display:inline-block;border-radius:6px;padding:2px 10px;font-size:12px;font-weight:700;margin-right:8px}
+.badge.red{background:var(--red);color:#fff}.badge.black{background:var(--dark);color:#fff}
+.trade{display:flex;flex-wrap:wrap;gap:10px;background:linear-gradient(135deg,#2c3550,#1c2230);
+color:#fff;border-radius:12px;padding:16px 18px;margin:16px 0}
+.trade .cell{min-width:120px}
+.trade .k{font-size:11px;opacity:.75}
+.trade .v{font-size:18px;font-weight:800;margin-top:2px}
+.trade .v.buy{color:#7ee2a8}.trade .v.sell{color:#ff9d97}.trade .v.hold{color:#ffd166}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0}
+.mgrid .m{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.mgrid .m .k{font-size:11px;color:var(--muted)}
+.mgrid .m .v{font-size:16px;font-weight:700;margin-top:2px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.panel>h2{margin:0 0 12px;font-size:17px}
+.panel>h2 .sub{font-size:12px;color:var(--muted);font-weight:400;margin-left:8px}
+.mreply{border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;
+padding:12px 14px;margin:10px 0;background:#fff}
+.mreply .mh{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.mreply .mh .who{font-weight:700;font-size:14px}
+.mreply .mh .mscore{margin-left:auto;background:var(--chip);border-radius:6px;padding:1px 8px;font-size:12px;font-weight:700}
+.md h2,.md h3,.md h4,.md h5{margin:12px 0 6px;font-size:15px}
+.md p{margin:6px 0;font-size:13.5px;color:#2c3345}
+.md ul{margin:6px 0;padding-left:20px;font-size:13.5px;color:#2c3345}
+.md li{margin:3px 0}
+.md strong{color:var(--ink)}
+details{border:1px solid var(--line);border-radius:10px;background:#fff;margin:10px 0;padding:0}
+details>summary{cursor:pointer;padding:12px 16px;font-weight:700;font-size:14px;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary:before{content:"▸ ";color:var(--red)}
+details[open]>summary:before{content:"▾ "}
+details>.body{padding:0 16px 14px;border-top:1px dashed var(--line)}
+.ychip{display:inline-block;background:var(--chip);border-radius:8px;padding:4px 10px;font-size:12px;margin:3px 6px 3px 0}
+.ychip b{font-size:13px}
+.news .nitem{border-top:1px dashed var(--line);padding:8px 0;font-size:13px}
+.news .nitem .t{font-weight:600}
+.news .nitem .s{color:var(--muted);font-size:12px}
+/* ── root landing page ── */
+.hero{padding:30px 26px}
+.hero-kicker{color:#ffd166;font-size:12px;font-weight:700;letter-spacing:2px;
+text-transform:uppercase;margin-bottom:8px}
+.hero h1{font-size:30px;margin:0 0 10px}
+.day-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.day-card{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);
+border-radius:12px;padding:14px 16px;transition:all .15s}
+.day-card:hover{border-color:var(--red);box-shadow:0 4px 16px rgba(216,52,44,.12);transform:translateY(-2px)}
+.day-card .d{font-weight:800;font-size:15px;color:var(--ink);display:flex;align-items:center;gap:8px}
+.day-card .m{margin-top:8px;display:flex;gap:6px}
+.day-card .m span{background:var(--chip);color:var(--muted);border-radius:6px;
+padding:2px 8px;font-size:11px}
+.latest-badge{background:var(--red);color:#fff;border-radius:6px;padding:1px 7px;
+font-size:10px;font-weight:700}
+</style>
+</head>
+<body><div class="wrap">
+<div class="backbar"><a href="../index.html">← 总览</a><a href="../us.html">← 美股榜单</a></div>
+<header class="top">
+  <h1><span class="badge red">红榜 #2</span>VRTX<span class="tk" style="opacity:.7;font-size:15px;font-weight:400;margin-left:8px">VRTX</span></h1>
+  <div class="sub">美股 ·  · 榜单日期 <b>2026-08-24</b> · 盘价采集 <b>2026-08-24 05:00:11</b></div>
+  <div class="price-row" style="margin-top:12px">
+    <span class="price" style="color:#fff">$548.05</span>
+    <span class="pct up">+1.44%</span>
+    <span class="psrc" style="color:rgba(255,255,255,.6)">实时</span>
+  </div>
+  <div class="scores" style="margin-top:10px">
+    <span>综合 <b>93.8</b></span>
+    <span>多头 <b>91</b></span>
+    <span>空头 <b>30</b></span>
+    <span>大师均值 <b>61</b></span>
+    <span>信号 <b>positive</b></span>
+  </div>
+</header>
+<div class="trade"><div class="cell"><div class="k">交易评级</div><span class="v buy">Buy</span></div><div class="cell"><div class="k">加仓区间</div><span class="v">531.61 ~ 553.53</span></div><div class="cell"><div class="k">目标价</div><span class="v">613.82</span></div><div class="cell"><div class="k">伯克希尔</div><span class="v">强烈买入</span></div><div class="cell"><div class="k">伯克希尔分</div><span class="v">4.50</span></div></div>
+<div class="panel"><h2>财务指标</h2><div class="mgrid"><div class="m"><div class="k">市盈率 PE</div><div class="v">31.96</div></div><div class="m"><div class="k">市净率 PB</div><div class="v">6.86</div></div><div class="m"><div class="k">ROE</div><div class="v">23.5%</div></div><div class="m"><div class="k">总市值</div><div class="v">1388</div></div><div class="m"><div class="k">营收同比</div><div class="v">12.5%</div></div><div class="m"><div class="k">净利同比</div><div class="v">8.0%</div></div></div></div>
+<div class="panel"><h2>历史收益</h2><span class="ychip">近1月 <b class="up">+15.97%</b></span><span class="ychip">近6月 <b class="up">+13.94%</b></span><span class="ychip">近1年 <b class="up">+38.70%</b></span><span class="ychip">近5年 <b class="up">+176.23%</b></span></div>
+<div class="panel"><h2>大师圆桌<span class="sub">5 位</span></h2><div class="mreply"><div class="mh"><span class="who">段永平</span><span class="mscore">41</span></div><div class="md"><p>各位好，关于 VRTX 这家公司，我来说几句。</p><p>首先，我对这个公司的结论是：目前不建议重仓买入。</p><p>理由有几点：</p><ul><li>罕见病治疗领域确实有很强的壁垒，VRTX 在这方面也处于领先地位，这是它的优势。但我们做投资不能只看优势，还要看风险。</li></ul><ul><li>药物审批结果的不确定性是一个很大的风险点。医药行业的特点就是研发周期长、审批门槛高，一个审批结果可能就会对股价产生巨大影响。</li></ul><ul><li>市场竞争在加剧。虽然 VRTX 目前市场份额领先，但追赶者的压力不容小觑。我们需要思考的是，这种领先优势能否长期保持。</li></ul><ul><li>估值方面，31 倍的市盈率不算便宜。虽然公司营收和净利润都在增长，但增速并不算特别突出。</li></ul><p>从本分的角度出发，我们做投资要投看得懂的好生意。医药行业本身就是一个专业性很强的领域，需要对行业有深入的理解。</p><p>风险提示：</p><ul><li>药物审批失败的风险</li><li>市场竞争加剧的风险</li><li>估值过高的风险</li></ul><p>行动建议：</p><p>如果一定要投资，建议先观察以下几点：</p><ul><li>重点关注公司新药审批的进展，这将是影响股价的关键因素。</li><li>留意竞争对手的研发进展和市场反应。</li><li>耐心等待更好的买入时机，不要被短期波动影响判断。</li></ul><p>投资要保持平常心，不要被市场的热情冲昏头脑。记住，我们买的是公司的一部分，而不是短期的股价涨跌。</p></div></div><div class="mreply"><div class="mh"><span class="who">巴菲特</span><span class="mscore">83</span></div><div class="md"><p>各位朋友，今天我们来聊聊 VRTX（Vertex Pharmaceuticals）这家公司。</p><p>首先，我得说，这是一家让我觉得挺有意思的企业。从我的视角来看，这家公司有几个明显的优点。罕见病治疗领域是一个护城河相当深的生意，而 VRTX 在这方面可以说是无可替代的。他们的研发管线非常丰富，而且前景看起来相当不错，市场份额也在持续扩大。这些都是让我感到乐观的原因。</p><p>从估值角度来看，目前的市盈率大约是 32 倍，对于一家在罕见病治疗领域有强大地位的公司来说，这个价格不能说便宜，但也不算离谱。如果你相信这家公司未来几年能继续保持强劲的增长，那么这个价格可能是一个合理的机会。</p><p>不过，我们也不能忽视一些潜在的风险。首先，药物审批的结果总是存在不确定性，这可能会影响公司的短期表现。其次，尽管 VRTX 在罕见病治疗领域处于领先地位，但竞争者也在不断追赶，这可能会对他们的市场份额构成压力。最后，虽然 VRTX 目前在多个治疗领域都有布局，但单一产品的依赖风险仍然存在。</p><p>基于这些分析，我的建议是：</p><ul><li><strong>关注药物审批进展</strong>：这是影响公司短期表现的关键因素。如果你打算投资这家公司，密切关注他们的药物审批进展是非常重要的。</li></ul><ul><li><strong>评估长期竞争力</strong>：考虑这家公司是否能在未来几年继续保持其在罕见病治疗领域的领先地位。研发能力和市场拓展能力是评估的关键。</li></ul><ul><li><strong>考虑安全边际</strong>：虽然目前的价格不算离谱，但如果你能找到更好的买入时机，不妨再等等。投资就像打棒球，你不需要每次都挥棒。</li></ul><p>最后，我想说，投资这家公司需要有一定的耐心和信心。如果你相信这家公司能够持续创新并保持其市场地位，那么这可能是一个值得考虑的机会。但如果你对医药行业不太熟悉，或者对药物审批的风险感到不安，那么可能需要再考虑一下。</p><p>如果是芒格，他可能会补充说，投资就像经营一家果园，你需要耐心等待果实成熟，而不是急于摘取未成熟的果子。</p></div></div><div class="mreply"><div class="mh"><span class="who">达利欧</span><span class="mscore">66</span></div><div class="md"><p>各位同仁，关于 VRTX 这家公司，我的看法如下：</p><p><strong>结论</strong>：VRTX 目前处于一个稳健但需谨慎观察的位置，我对其持中性偏乐观态度。</p><p><strong>理由</strong>：</p><p>首先，VRTX 在罕见病治疗领域拥有独特的竞争优势，这是其核心价值所在。该公司在这一领域的研发管线非常丰富，且多个项目前景良好，这为其未来的增长提供了坚实的基础。此外，其市场份额持续扩大，表明公司在市场上的地位正在不断巩固。</p><p>从财务指标来看，VRTX 的营收同比增长 12.5%，净利润同比增长 8%，净资产收益率（ROE）达到 23.5%，这些数据都显示出公司良好的盈利能力和运营效率。当前市盈率为 32 倍，虽然不算低，但在其行业和增长前景的背景下，仍具有一定的合理性。</p><p>然而，我们也必须看到一些潜在的风险：</p><ul><li><strong>药物审批结果的不确定性</strong>：制药行业的核心风险之一就是新药审批的不可预测性，任何一个关键药物的审批失败都可能对公司的股价产生重大影响。</li></ul><ul><li><strong>竞争压力增大</strong>：随着其他制药公司也在加大对罕见病治疗的投入，VRTX 面临的竞争环境正在变得更加激烈。</li></ul><ul><li><strong>单一产品依赖风险</strong>：尽管 VRTX 的研发管线丰富，但目前其收入仍然依赖于少数几款主要产品，这种依赖性可能在市场环境变化时带来风险。</li></ul><p><strong>风险/行动建议</strong>：</p><p>对于投资者来说，现在是一个需要平衡收益和风险的时刻。如果你已经持有 VRTX，建议密切关注以下几点：</p><ul><li><strong>新药审批进展</strong>：这是影响公司未来增长的关键因素，建议定期跟踪相关公告和临床试验数据。</li></ul><ul><li><strong>市场竞争动态</strong>：关注主要竞争对手的研发进展和市场策略，以便及时调整投资策略。</li></ul><ul><li><strong>多元化投资组合</strong>：考虑到单一产品依赖风险，建议将 VRTX 作为投资组合的一部分，而不是全部，以分散风险。</li></ul><p>最后，我想强调的是，投资决策应该基于对长期趋势的判断，而不是短期的市场波动。VRTX 的基本面依然强劲，但需要保持警惕，关注潜在的风险因素。正如我常说的，&quot;Pain + Reflection = Progress&quot;，在投资中保持开放和透明的态度，不断学习和调整，才能在复杂的市场环境中取得成功。</p></div></div><div class="mreply"><div class="mh"><span class="who">彼得·林奇</span><span class="mscore">79</span></div><div class="md"><h4>圆桌发言：关于 VRTX（Vertex Pharmaceuticals）</h4><h5>结论：</h5><p>我看好 VRTX 这家公司，但目前估值偏高，需要谨慎考虑买入时机。</p><h5>理由：</h5><ul><li><strong>罕见病领域的领先地位</strong>：VRTX 在罕见病治疗领域拥有无可替代的优势，其核心产品如用于治疗囊性纤维化的药物市场份额持续扩大。这让我想起当年投资那些在细分市场占据主导地位的成长型公司，它们往往能带来丰厚的回报。</li></ul><ul><li><strong>研发管线强劲</strong>：公司的研发管线非常丰富，且多个项目处于后期临床阶段。这些新药一旦获批，将为公司带来新的增长动力。就像我当年投资那些不断推出新产品的公司一样，研发能力是长期增长的关键。</li></ul><ul><li><strong>财务表现稳健</strong>：虽然净利润增速略低于收入增速，但 ROE 达到 23.5%，显示出公司良好的盈利能力。这种财务稳健性让我想起那些能够持续创造价值的企业。</li></ul><h5>风险：</h5><ul><li><strong>药物审批的不确定性</strong>：医药行业最大的风险之一就是药物审批结果的不确定性。任何一款新药的审批失败都可能对股价造成重大影响。</li></ul><ul><li><strong>市场竞争加剧</strong>：随着其他制药公司加大在罕见病领域的研发投入，VRTX 面临的竞争压力也在增加。这让我想起那些曾经因为竞争加剧而失去市场份额的公司。</li></ul><ul><li><strong>单一产品依赖</strong>：尽管公司正在努力多元化产品线，但目前仍对少数几款核心产品有较大依赖。这种依赖性让我想起那些因为产品生命周期结束而陷入困境的公司。</li></ul><h5>行动建议：</h5><ul><li><strong>估值考量</strong>：当前市盈率超过 31 倍，对于一家医药公司来说已经偏高。如果你在考虑买入，我建议你耐心等待更好的时机，比如在市场出现回调时再介入。</li></ul><ul><li><strong>关注药物审批进展</strong>：密切关注公司新药审批的进展，特别是那些处于后期临床阶段的项目。如果审批结果良好，可能会成为股价上涨的催化剂。</li></ul><ul><li><strong>分散投资</strong>：如果你已经持有 VRTX，建议不要重仓单一股票。可以考虑将部分仓位分散到其他有潜力的医药公司，以降低单一公司风险。</li></ul><ul><li><strong>长期视角</strong>：医药行业是一个需要耐心和长期视角的行业。如果你相信 VRTX 的研发能力和市场地位，可以考虑长期持有，但一定要做好风险管理。</li></ul><p>总之，VRTX 是一家值得关注的优质公司，但目前估值偏高，需要谨慎对待。记住，投资就像打猎，耐心和时机把握同样重要。</p></div></div><div class="mreply"><div class="mh"><span class="who">芒格</span><span class="mscore">36</span></div><div class="md"><p>各位同仁，关于 VRTX（Vertex Pharmaceuticals），我先给出结论：我不建议现在重仓买入，尽管它有一些吸引人的特质，但我们必须先冷静地审视潜在风险。</p><p>首先，VRTX 在罕见病治疗领域确实占据领先地位，其研发管线也展现出良好的前景。这些都是值得肯定的亮点。然而，我们不能忽视几个关键问题：</p><h4>逆向思考：如何失败？</h4><ul><li><strong>药物审批失败</strong>：生物制药行业的核心风险在于监管审批。VRTX 高度依赖新药审批，一旦关键药物未获批准，其估值将遭受重创。</li></ul><ul><li><strong>竞争加剧</strong>：随着更多公司进入罕见病领域，VRTX 的市场份额可能受到侵蚀。竞争对手的追赶速度不容小觑。</li></ul><ul><li><strong>单一产品依赖</strong>：尽管 VRTX 管线丰富，但其主要收入仍依赖少数核心产品。这种依赖性在面对市场波动时可能成为致命弱点。</li></ul><h4>激励机制分析</h4><p>生物制药行业的激励机制存在扭曲。管理层有强烈动机推动新药研发，但这种压力可能导致过度投入高风险项目，而忽视了长期可持续性。此外，分析师的乐观预期也可能放大短期股价波动。</p><h4>优势与风险权衡</h4><p>从多元思维模型来看，VRTX 的优势在于其技术和市场地位，但其估值已充分反映这些优势。当前 31 倍的市盈率并不便宜，考虑到生物制药行业的高风险性，这个价格缺乏足够的安全边际。</p><h4>概率与赔率</h4><p>考虑到上述风险，我认为 VRTX 的胜率并不高。虽然其研发管线提供了长期增长潜力，但短期内面临的不确定性太大。在当前价位下，赔率也不够吸引人。</p><h4>行动建议</h4><p>我的建议是保持观望。如果 VRTX 股价出现显著回调，或者其研发管线取得重大突破，届时再考虑入场会更稳妥。对于已经持有 VRTX 的投资者，我建议密切关注药物审批进展和市场竞争动态。</p><p>最后，我要提醒大家，生物制药行业充满了不确定性。我们必须时刻警惕那些看似诱人的机会，因为它们往往伴随着巨大的风险。正如我常说的：&quot;如果我知道自己死在哪里，我就永远不去那里。&quot; 在投资中，识别风险比追逐收益更重要。</p></div></div></div>
+<div class="panel"><h2>分析师报告<span class="sub">2 篇</span></h2><details open><summary>市场面分析</summary><div class="body"><div class="md"><h4>VRTX VRTX 市场面分析</h4><ul><li>红黑榜多空分数：多头 91 / 空头 30，分差 61。</li><li>当前价格：548.05。</li><li>当前交易评级：Buy。</li><li>值得加仓区间：531.61 - 553.53。</li><li>目标价格：613.82。</li><li>市场愿意给溢价的原因：罕见病治疗领域无可替代；研发管线丰富且前景良好；市场份额持续扩大。</li><li>当前主要压制因素：药物审批结果不确定性；竞争者追赶压力增大；单一产品依赖风险。</li></ul></div></div></details><details open><summary>基本面分析</summary><div class="body"><div class="md"><h4>VRTX VRTX 基本面分析</h4><ul><li>报告期：暂无。</li><li>PE(TTM)：31.96。</li><li>PB：6.86。</li><li>ROE：23.54%。</li><li>营收同比：12.50%。</li><li>归母净利润同比：8.00%。</li><li>核心判断：盈利能力处于可接受区间；收入仍在增长；利润端保持扩张。</li></ul></div></div></details></div>
+<div class="panel"><h2>研究与计划</h2>
+<details><summary>基本面摘要</summary><div class="body"><div class="md"><h3>核心财务快照</h3><ul><li>报告期: 数据缺失</li><li>当前股价: 548.05 元</li><li>总市值: 1388.21 亿元</li><li>PE (TTM): 31.96</li><li>PB: 6.86</li><li>PS (TTM): 数据缺失</li><li>营业总收入(报告期): 数据缺失 亿元</li><li>营收同比增长率: 12.50%</li><li>归母净利润(报告期): 数据缺失 亿元</li><li>归母净利润同比增长率: 8.00%</li><li>ROE (TTM/估算): 23.54%</li><li>资产负债率: 数据缺失</li><li>经营性现金流 / 归母净利润: 数据缺失</li></ul><h4>缺失字段</h4><ul><li>PS(TTM), 营业总收入, 归母净利润, 资产负债率, 经营性现金流与归母净利润比值</li></ul></div></div></details>
+<details><summary>研究计划</summary><div class="body"><div class="md"><h4>VRTX VRTX 研究摘要</h4><ul><li>红黑榜结论: Buy</li><li>多头/空头: 91/30</li><li>正向信号: ROE 23.54%；营收同比 12.50%；归母净利润同比 8.00%；PE(TTM) 31.96</li><li>榜单看多理由: 罕见病治疗领域无可替代；研发管线丰富且前景良好；市场份额持续扩大</li><li>榜单风险提示: 药物审批结果不确定性；竞争者追赶压力增大；单一产品依赖风险</li></ul></div></div></details>
+<details><summary>交易计划</summary><div class="body"><div class="md"><h4>VRTX VRTX 交易计划</h4><ul><li>评级: Buy</li><li>当前价格: 548.05</li><li>值得加仓区间: 531.61 - 553.53</li><li>目标价格: 613.82</li><li>止损位: 504.21</li><li>备注: 当前为缓存降级交易卡，后续若完整 TradingAgent 结果生成，将自动覆盖。</li></ul></div></div></details>
+<details><summary>交易决策</summary><div class="body"><div class="md"><p>Buy</p><p>VRTX VRTX 当前使用红黑榜缓存结果生成兜底交易卡。多头 91 / 空头 30，分差 61。当前尚未取得完整 TradingAgent 长文决策，但榜单分数、财务快照和大师观点已经足够生成基础交易建议。</p></div></div></details>
+</div>
+<div class="panel"><h2>多空逻辑</h2><div class="pts"><div class="h bull">看多逻辑</div><div class="md"><p>罕见病治疗领域无可替代</p><p>研发管线丰富且前景良好</p><p>市场份额持续扩大</p></div></div><div class="pts"><div class="h bear">看空逻辑</div><div class="md"><p>药物审批结果不确定性</p><p>竞争者追赶压力增大</p><p>单一产品依赖风险</p></div></div></div>
+<div class="panel"><h2>伯克希尔研究</h2><p><strong>Vertex Pharmaceuticals是一家具有强大护城河和长期增长潜力的生物科技公司，值得投资者重点关注。</strong></p><p>伯克希尔综合评分：<strong>4.5</strong></p><div class="md"><p>{&quot;verdict&quot;: &quot;强烈买入&quot;, &quot;conservative_tip&quot;: &quot;建议在PE TTM低于18倍时买入。&quot;, &quot;moderate_tip&quot;: &quot;建议在PE TTM低于20倍时买入。&quot;, &quot;aggressive_tip&quot;: &quot;建议在PE TTM低于22倍时买入。&quot;, &quot;catalysts_plus&quot;: [&quot;新药获批上市&quot;, &quot;CF治疗市场渗透率提升&quot;, &quot;研发管线取得重大进展&quot;], &quot;catalysts_minus&quot;: [&quot;医保报销政策变化&quot;, &quot;新疗法或技术变革威胁&quot;, &quot;研发失败或新药审批延迟&quot;]}</p></div></div>
+<div class="panel news"><h2>最新资讯</h2><div class="md"><p>整体情绪偏利好，共8条利多消息，3条中性消息，0条利空消息。</p></div><div class="nitem"><div class="t">Is Vertex Pharmaceuticals (VRTX) Cheap Following Its Raised 2026 Revenue Guidance?</div><div class="s">simplywall.st · 中性</div></div><div class="nitem"><div class="t">Vertex Pharmaceuticals Inc Stock (VRTX) Closed Up by 4.48% on Aug 19: Drivers Behind the Movement</div><div class="s">TradingKey · 利好</div></div><div class="nitem"><div class="t">Vertex Pharmaceuticals (VRTX) Stock Looks Like A Bargain At This Price</div><div class="s">Yahoo Finance · 利好</div></div><div class="nitem"><div class="t">Knuff &amp; Co LLC Purchases New Stake in Vertex Pharmaceuticals Incorporated $VRTX</div><div class="s">MarketBeat · 利好</div></div><div class="nitem"><div class="t">Vertex Pharmaceuticals (VRTX) Expands Its Pipeline Reach, Is The Stock Fully Valued?</div><div class="s">Yahoo Finance · 中性</div></div><div class="nitem"><div class="t">PCM Encore LLC Invests $1.06 Million in Vertex Pharmaceuticals Incorporated $VRTX</div><div class="s">MarketBeat · 利好</div></div><div class="nitem"><div class="t">The Bull Case For Vertex (VRTX) Could Change Following Upgraded 2026 Guidance And Pipeline Momentum - Learn Why</div><div class="s">simplywall.st · 利好</div></div><div class="nitem"><div class="t">Vertex Pharmaceuticals (VRTX) Exceeds Market Returns: Some Facts to Consider</div><div class="s">Yahoo Finance · 利好</div></div></div>
+<footer>稳健理财Agent · 红黑榜每日归档 · 红榜 #2 · 仅供研究，不构成投资建议</footer>
+</div></body>
+</html>
