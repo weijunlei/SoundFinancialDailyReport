@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>创科实业(00669) 红榜 2026-09-06</title>
+<style>
+:root{--red:#d8342c;--redbg:#fdecea;--green:#1a9e54;--ink:#1c2230;--muted:#6b7385;
+--line:#e7e9ef;--card:#fff;--bg:#f4f6fa;--chip:#eef1f6;--dark:#23262d;--darkbg:#ececef}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",
+"Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);
+line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 16px 64px}
+header.top{background:linear-gradient(135deg,#1c2230,#2c3550);color:#fff;border-radius:14px;
+padding:22px 24px;margin-bottom:20px;box-shadow:0 6px 24px rgba(20,26,46,.12)}
+header.top h1{margin:0 0 6px;font-size:24px;letter-spacing:.5px}
+header.top .sub{opacity:.85;font-size:13px}
+header.top .sub b{color:#ffd166;font-weight:600}
+nav.mkt{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;
+background:rgba(244,246,250,.92);backdrop-filter:blur(6px);padding:10px 0;margin-bottom:14px}
+nav.mkt a{text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);
+padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600}
+nav.mkt a:hover{border-color:var(--red);color:var(--red)}
+.summary{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.summary .chip{background:var(--card);border:1px solid var(--line);border-radius:10px;
+padding:8px 12px;font-size:12px;color:var(--muted)}
+.summary .chip b{color:var(--ink);font-size:14px;margin-left:4px}
+section.board{margin:26px 0}
+.board-title{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:19px}
+.board-title .dot{width:10px;height:10px;border-radius:50%}
+.board-title.red .dot{background:var(--red)}
+.board-title.black .dot{background:var(--dark)}
+.board-title small{color:var(--muted);font-weight:400;font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+position:relative;transition:box-shadow .15s}
+.card:hover{box-shadow:0 4px 18px rgba(20,26,46,.08)}
+.card.red{border-top:3px solid var(--red)}
+.card.black{border-top:3px solid var(--dark)}
+.rank{position:absolute;top:10px;right:12px;font-size:26px;font-weight:800;color:#eceff5}
+.card.red .rank{color:#fbdcD9}
+.nm{font-size:16px;font-weight:700}
+.nm .tk{color:var(--muted);font-weight:500;font-size:12px;margin-left:6px}
+.tag{display:inline-block;background:var(--chip);color:var(--muted);border-radius:6px;
+padding:1px 7px;font-size:11px;margin:6px 6px 0 0}
+.price-row{display:flex;align-items:baseline;gap:10px;margin:10px 0 4px}
+.price{font-size:24px;font-weight:800}
+.pct{font-size:14px;font-weight:700;padding:2px 8px;border-radius:8px}
+.up{color:var(--red)}.down{color:var(--green)}.flat{color:var(--muted)}
+.pct.up{background:var(--redbg)}.pct.down{background:#e2f4e9}.pct.flat{background:var(--chip)}
+.psrc{font-size:11px;color:var(--muted);margin-left:auto}
+.scores{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.scores span{background:var(--chip);border-radius:6px;padding:2px 8px;font-size:11px;color:var(--muted)}
+.scores span b{color:var(--ink)}
+.pts{font-size:12.5px;margin:8px 0 0}
+.pts .h{font-weight:700;font-size:12px;margin:6px 0 2px}
+.pts .h.bull{color:var(--red)}.pts .h.bear{color:var(--green)}
+.pts ul{margin:2px 0 4px;padding-left:18px;color:#3a4152}
+.pts li{margin:1px 0}
+.masters{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:11px;color:var(--muted)}
+.masters b{color:var(--ink)}
+.summ{font-size:12.5px;color:#3a4152;background:#fafbfd;border:1px solid var(--line);
+border-radius:8px;padding:8px 10px;margin-top:8px}
+.empty{color:var(--muted);background:var(--card);border:1px dashed var(--line);
+border-radius:10px;padding:18px;text-align:center}
+footer{margin-top:34px;color:var(--muted);font-size:12px;text-align:center;line-height:1.8}
+a.lnk{color:var(--red);text-decoration:none}
+/* ── detail page ── */
+.backbar{margin-bottom:14px;font-size:13px}
+.backbar a{color:var(--muted);text-decoration:none;margin-right:14px}
+.backbar a:hover{color:var(--red)}
+.badge{display:inline-block;border-radius:6px;padding:2px 10px;font-size:12px;font-weight:700;margin-right:8px}
+.badge.red{background:var(--red);color:#fff}.badge.black{background:var(--dark);color:#fff}
+.trade{display:flex;flex-wrap:wrap;gap:10px;background:linear-gradient(135deg,#2c3550,#1c2230);
+color:#fff;border-radius:12px;padding:16px 18px;margin:16px 0}
+.trade .cell{min-width:120px}
+.trade .k{font-size:11px;opacity:.75}
+.trade .v{font-size:18px;font-weight:800;margin-top:2px}
+.trade .v.buy{color:#7ee2a8}.trade .v.sell{color:#ff9d97}.trade .v.hold{color:#ffd166}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0}
+.mgrid .m{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.mgrid .m .k{font-size:11px;color:var(--muted)}
+.mgrid .m .v{font-size:16px;font-weight:700;margin-top:2px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.panel>h2{margin:0 0 12px;font-size:17px}
+.panel>h2 .sub{font-size:12px;color:var(--muted);font-weight:400;margin-left:8px}
+.mreply{border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;
+padding:12px 14px;margin:10px 0;background:#fff}
+.mreply .mh{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.mreply .mh .who{font-weight:700;font-size:14px}
+.mreply .mh .mscore{margin-left:auto;background:var(--chip);border-radius:6px;padding:1px 8px;font-size:12px;font-weight:700}
+.md h2,.md h3,.md h4,.md h5{margin:12px 0 6px;font-size:15px}
+.md p{margin:6px 0;font-size:13.5px;color:#2c3345}
+.md ul{margin:6px 0;padding-left:20px;font-size:13.5px;color:#2c3345}
+.md li{margin:3px 0}
+.md strong{color:var(--ink)}
+details{border:1px solid var(--line);border-radius:10px;background:#fff;margin:10px 0;padding:0}
+details>summary{cursor:pointer;padding:12px 16px;font-weight:700;font-size:14px;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary:before{content:"▸ ";color:var(--red)}
+details[open]>summary:before{content:"▾ "}
+details>.body{padding:0 16px 14px;border-top:1px dashed var(--line)}
+.ychip{display:inline-block;background:var(--chip);border-radius:8px;padding:4px 10px;font-size:12px;margin:3px 6px 3px 0}
+.ychip b{font-size:13px}
+.news .nitem{border-top:1px dashed var(--line);padding:8px 0;font-size:13px}
+.news .nitem .t{font-weight:600}
+.news .nitem .s{color:var(--muted);font-size:12px}
+/* ── root landing page ── */
+.hero{padding:30px 26px}
+.hero-kicker{color:#ffd166;font-size:12px;font-weight:700;letter-spacing:2px;
+text-transform:uppercase;margin-bottom:8px}
+.hero h1{font-size:30px;margin:0 0 10px}
+.day-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.day-card{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);
+border-radius:12px;padding:14px 16px;transition:all .15s}
+.day-card:hover{border-color:var(--red);box-shadow:0 4px 16px rgba(216,52,44,.12);transform:translateY(-2px)}
+.day-card .d{font-weight:800;font-size:15px;color:var(--ink);display:flex;align-items:center;gap:8px}
+.day-card .m{margin-top:8px;display:flex;gap:6px}
+.day-card .m span{background:var(--chip);color:var(--muted);border-radius:6px;
+padding:2px 8px;font-size:11px}
+.latest-badge{background:var(--red);color:#fff;border-radius:6px;padding:1px 7px;
+font-size:10px;font-weight:700}
+</style>
+</head>
+<body><div class="wrap">
+<div class="backbar"><a href="../index.html">← 总览</a><a href="../hk.html">← 港股榜单</a></div>
+<header class="top">
+  <h1><span class="badge red">红榜 #6</span>创科实业<span class="tk" style="opacity:.7;font-size:15px;font-weight:400;margin-left:8px">00669</span></h1>
+  <div class="sub">港股 ·  · 榜单日期 <b>2026-09-06</b> · 盘价采集 <b>2026-09-06 05:00:01</b></div>
+  <div class="price-row" style="margin-top:12px">
+    <span class="price" style="color:#fff">HK$134.80</span>
+    <span class="pct up">+3.22%</span>
+    <span class="psrc" style="color:rgba(255,255,255,.6)">实时</span>
+  </div>
+  <div class="scores" style="margin-top:10px">
+    <span>综合 <b>84.4</b></span>
+    <span>多头 <b>87</b></span>
+    <span>空头 <b>18</b></span>
+    <span>大师均值 <b>48</b></span>
+    <span>信号 <b>positive</b></span>
+  </div>
+</header>
+<div class="trade"><div class="cell"><div class="k">交易评级</div><span class="v buy">Buy</span></div><div class="cell"><div class="k">加仓区间</div><span class="v">130.76 ~ 136.15</span></div><div class="cell"><div class="k">目标价</div><span class="v">150.98</span></div><div class="cell"><div class="k">伯克希尔</div><span class="v">买入</span></div><div class="cell"><div class="k">伯克希尔分</div><span class="v">3.75</span></div></div>
+<div class="panel"><h2>财务指标</h2><div class="mgrid"><div class="m"><div class="k">市盈率 PE</div><div class="v">24.19</div></div><div class="m"><div class="k">市净率 PB</div><div class="v">4.22</div></div><div class="m"><div class="k">ROE</div><div class="v">10.3%</div></div><div class="m"><div class="k">总市值</div><div class="v">2464</div></div><div class="m"><div class="k">营收同比</div><div class="v">0.4%</div></div><div class="m"><div class="k">净利同比</div><div class="v">6.3%</div></div></div></div>
+<div class="panel"><h2>历史收益</h2><span class="ychip">近1月 <b class="down">-7.02%</b></span><span class="ychip">近6月 <b class="up">+16.95%</b></span><span class="ychip">近1年 <b class="up">+39.94%</b></span></div>
+<div class="panel"><h2>大师圆桌<span class="sub">5 位</span></h2><div class="mreply"><div class="mh"><span class="who">段永平</span><span class="mscore">36</span></div><div class="md"><p>各位朋友，今天我们讨论的是创科实业（00669）。我的看法是，虽然这家公司目前表现强劲，但投资需要谨慎。</p><p>首先，创科实业的股价最近上涨了3.22%，延续了强势表现，市值也达到了2463亿港元，市场认可度较高。这说明市场对这家公司有一定的信心。同时，它的行业地位稳固，基本面看起来也较为稳健。</p><p>然而，我有几个担忧。第一，这家公司的估值水平处于相对高位，市盈率（PE）达到24倍，市净率（PB）也超过4倍。这样的估值水平意味着市场对它的预期已经很高，未来如果业绩不达预期，可能会面临调整压力。</p><p>第二，虽然目前没有明显的利空因素，但我们需要警惕行业周期性波动的风险。创科实业所处的行业可能会受到宏观经济环境影响，一旦经济周期下行，其业绩可能会受到影响。</p><p>从我的投资哲学来看，我更倾向于投资那些我真正看得懂、并且符合&quot;本分&quot;原则的公司。创科实业虽然是一家好公司，但目前的市场情绪过于乐观，这让我感到有些不安。</p><p>我的建议是，如果你已经持有创科实业的股票，可以考虑逐步减仓，尤其是在市场情绪过热的时候。如果你还没有买入，建议先观察一段时间，等待更合适的机会。</p><p>最后，我想提醒大家，投资中最重要的是保持平常心，不要被短期的市场波动所左右。长期来看，只有那些真正有价值的公司，才能给我们带来持续的回报。</p></div></div><div class="mreply"><div class="mh"><span class="who">巴菲特</span><span class="mscore">45</span></div><div class="md"><p>各位同仁，今天我们来聊聊创科实业（00669）。我的看法是，这是一家表现不错的公司，但目前的价格让我有些犹豫。</p><p>首先，创科实业在行业中的地位是稳固的，基本面也相当稳健。公司股价近期上涨了3.22%，延续了强劲的表现，市值达到了2463亿港元，市场认可度很高。这些都是积极的信号。</p><p>然而，从价值投资的角度来看，我有几个顾虑。一是估值水平，目前的市盈率（PE）约为24倍，市净率（PB）约为4.2倍，这些指标都处于相对高位。对于一家制造业公司来说，这样的估值水平需要更高的增长预期来支撑。</p><p>二是行业周期性风险。制造业往往受到经济周期的影响，创科实业也不例外。尽管目前没有明显的利空因素，但我们需要警惕未来可能出现的周期性波动。</p><p>基于以上分析，我的建议是：</p><ul><li><strong>关注自由现金流</strong>：如果公司能够持续产生强劲的自由现金流，这将是一个重要的加分项。自由现金流是衡量一家公司真正盈利能力的指标，也是我们长期投资的重要参考。</li></ul><ul><li><strong>耐心等待更好的价格</strong>：考虑到当前的估值水平，我建议投资者保持耐心，等待更好的买入时机。正如我常说的，&quot;四毛钱买一块钱的东西&quot;，我们需要在价格和价值之间留出足够的缓冲。</li></ul><ul><li><strong>长期视角</strong>：如果你是长期投资者，并且对公司的长期发展前景有信心，那么当前的股价上涨可能只是长期增长趋势的一部分。但即便如此，也要时刻关注公司的基本面变化，确保其护城河依然坚固。</li></ul><p>最后，我想提醒大家，投资就像打棒球，你不需要每次都挥棒。我们要有耐心，等待最甜的那一记。</p><p>如果是芒格，他可能会补充说：&quot;投资就像打理一个果园，你需要有长远的眼光和耐心，而不是急于摘取每一个成熟的果实。&quot;</p></div></div><div class="mreply"><div class="mh"><span class="who">达利欧</span><span class="mscore">56</span></div><div class="md"><p>各位好，今天我们来讨论一下创科实业（00669）的投资前景。</p><h4>结论</h4><p>创科实业目前是一个值得关注的标的，但需要谨慎对待。我的观点是中性偏乐观。</p><h4>理由</h4><p>首先，创科实业的股价近期表现强劲，上涨了3.22%，延续了之前的强势表现。这表明市场对其认可度较高，市值也达到了2463亿港币，显示出其行业地位稳固，基本面稳健。</p><p>其次，从估值角度来看，创科实业的市盈率为24倍，市净率为4.2倍，市销率为2倍，净资产收益率为10.25%。这些指标显示其估值水平处于相对高位，但仍在合理范围内，尤其是考虑到其行业地位和增长潜力。</p><p>然而，我们也需要警惕一些风险因素。首先，创科实业所处的行业具有周期性波动的特点，这意味着其业绩可能会受到宏观经济环境变化的影响。其次，尽管其基本面稳健，但市场情绪过于乐观可能会导致股价出现调整。</p><h4>风险/行动建议</h4><ul><li><strong>风险提示</strong>：</li><li><strong>周期性波动风险</strong>：创科实业所在的行业受宏观经济环境影响较大，投资者需要密切关注全球经济走势和行业周期变化。</li><li><strong>估值风险</strong>：当前估值水平较高，市场情绪过于乐观可能会带来调整压力。</li></ul><ul><li><strong>行动建议</strong>：</li><li><strong>适度配置</strong>：对于风险承受能力较强的投资者，可以考虑适度配置创科实业，但需控制好仓位，避免过度集中。</li><li><strong>长期持有</strong>：如果投资者看好创科实业的长期增长潜力，可以考虑长期持有，但要做好应对短期波动的心理准备。</li><li><strong>定期评估</strong>：建议投资者定期评估创科实业的财务状况和市场环境变化，及时调整投资策略。</li></ul><h4>原则化收口</h4><p>在投资决策中，我们需要遵循“极度透明”的原则，充分考虑各种风险因素，并将其纳入决策过程中。正如我常说的，“痛苦加上反思等于进步”，在投资过程中，我们需要不断反思和调整，以应对市场变化。</p><h4>决策日志建议</h4><p>建议投资者将本次分析纳入决策日志，记录下对创科实业的投资理由、风险评估和行动建议。这样可以在未来回顾时，更好地理解当时的决策过程，并从中吸取经验教训。</p><p>希望以上分析对各位有所帮助。谢谢！</p></div></div><div class="mreply"><div class="mh"><span class="who">彼得·林奇</span><span class="mscore">62</span></div><div class="md"><h4>发言内容：</h4><p>各位好，今天我们来聊聊创科实业这只股票。</p><h4>结论：</h4><p>从目前的信息来看，创科实业是一家值得关注的优秀公司，但我建议大家在买入前要谨慎评估估值水平。</p><h4>理由：</h4><ul><li><strong>行业地位稳固</strong>：创科实业在电动工具和地板护理设备领域拥有很强的市场地位，这从其稳健的财务数据和持续的增长中可以看出。公司能够保持较高的利润率，并且在过去几年中实现了稳定的营收和净利润增长。</li></ul><ul><li><strong>市场认可度高</strong>：股价的持续上涨和较大的市值反映了市场对公司的高度认可。这种认可不仅仅是基于短期的市场情绪，而是基于公司长期的业绩表现。</li></ul><ul><li><strong>基本面稳健</strong>：公司的净资产收益率（ROE）保持在10%以上，净利润率也保持在较高水平，这表明公司具有良好的盈利能力和财务健康状况。</li></ul><h4>风险/行动建议：</h4><ul><li><strong>估值水平较高</strong>：当前的市盈率（PE）约为24倍，对于一家已经处于成熟阶段的公司来说，这个估值水平相对较高。虽然公司基本面稳健，但投资者需要警惕高估值带来的风险。</li></ul><ul><li><strong>行业周期性波动</strong>：电动工具和地板护理设备行业可能会受到宏观经济波动的影响。如果全球经济出现下滑，公司的业绩可能会受到影响。因此，投资者需要密切关注行业景气度的变化。</li></ul><ul><li><strong>市场情绪过于乐观</strong>：市场情绪可能会导致股价短期内的过度上涨，从而带来调整风险。如果投资者在高位买入，可能会面临较大的回撤风险。</li></ul><h4>具体行动建议：</h4><ul><li><strong>评估自身风险承受能力</strong>：在决定买入之前，投资者需要评估自身的风险承受能力。如果能够承受短期内的波动，可以考虑在股价回调时逐步买入。</li></ul><ul><li><strong>关注行业景气度</strong>：密切关注电动工具和地板护理设备行业的景气度变化。如果行业出现下滑趋势，可能需要重新评估投资决策。</li></ul><ul><li><strong>分批买入</strong>：建议采用分批买入的方式，以降低短期市场波动带来的风险。同时，保持耐心，等待更好的买入时机。</li></ul><p>总之，创科实业是一家优秀的公司，但在当前高估值的情况下，投资者需要保持谨慎，做好风险管理。</p></div></div><div class="mreply"><div class="mh"><span class="who">芒格</span><span class="mscore">41</span></div><div class="md"><p>各位，今天我们来谈谈创科实业（00669）。首先，我得说，这家公司整体表现不错。股价上涨3.22%，延续了强势表现，市值达到2463亿港元，市场认可度很高。从基本面来看，这家公司行业地位稳固，财务数据稳健，营收和净利润都保持增长，净资产收益率（ROE）达到10.25%，这些都表明它是一家运营良好的企业。</p><p>然而，我们不能只看表面。逆向思考告诉我们，要先考虑&quot;这家公司可能怎么死掉&quot;。首先，创科实业所处的行业存在周期性波动风险。虽然目前没有明显的利空因素，但周期性行业的特点就是繁荣与萧条交替，投资者需要警惕这一点。其次，尽管公司基本面稳健，但当前的估值水平相对较高，市盈率（PE）达到24倍，市净率（PB）超过4倍，这表明市场对其未来增长预期较高，但同时也意味着如果增长不及预期，股价可能会面临调整压力。</p><p>再从激励机制的角度来看，创科实业的管理层在过去几年里表现不错，但我们要问的是，这种激励机制是否会导致管理层为了短期业绩而牺牲长期利益？这一点需要持续关注。</p><p>从多元思维模型的角度分析，创科实业所处的行业环境、技术变革以及宏观经济因素都需要考虑。技术变革可能带来新的竞争者，而宏观经济环境的变化也可能影响其市场需求。</p><p>综合来看，创科实业是一家值得关注的优质公司，但当前估值较高，市场情绪过于乐观可能带来调整风险。对于投资者来说，如果你已经在持有，可以考虑在高位适当减仓，锁定部分利润。如果你还没有买入，建议等待更好的入场时机。</p><p>最后，我要提醒大家，投资决策不能只看短期表现，而要着眼于长期价值。创科实业虽然目前表现强劲，但投资者需要保持理性，避免被市场情绪左右。正如我常说的，&quot;如果我知道自己死在哪里，我就永远不去那里&quot;。在投资中，识别并避开愚蠢，比追求短期收益更为重要。</p></div></div></div>
+<div class="panel"><h2>分析师报告<span class="sub">2 篇</span></h2><details open><summary>市场面分析</summary><div class="body"><div class="md"><h4>00669 创科实业 市场面分析</h4><ul><li>红黑榜多空分数：多头 87 / 空头 18，分差 69。</li><li>当前价格：134.80。</li><li>当前交易评级：Buy。</li><li>值得加仓区间：130.76 - 136.15。</li><li>目标价格：150.98。</li><li>市场愿意给溢价的原因：股价上涨3.22%，延续强势表现；市值较大，市场认可度高；行业地位稳固，基本面稳健。</li><li>当前主要压制因素：需警惕行业周期性波动风险；估值水平处于相对高位；市场情绪过于乐观可能带来调整。</li></ul></div></div></details><details open><summary>基本面分析</summary><div class="body"><div class="md"><h4>00669 创科实业 基本面分析</h4><ul><li>报告期：暂无。</li><li>PE(TTM)：24.19。</li><li>PB：4.22。</li><li>PS(TTM)：2.01。</li><li>ROE：10.25%。</li><li>营收同比：0.37%。</li><li>归母净利润同比：6.31%。</li><li>核心判断：盈利能力处于可接受区间；收入仍在增长；利润端保持扩张。</li></ul></div></div></details></div>
+<div class="panel"><h2>研究与计划</h2>
+<details><summary>基本面摘要</summary><div class="body"><div class="md"><h3>核心财务快照</h3><ul><li>报告期: 数据缺失</li><li>当前股价: 134.80 元</li><li>总市值: 2463.53 亿元</li><li>PE (TTM): 24.19</li><li>PB: 4.22</li><li>PS (TTM): 2.01</li><li>营业总收入(报告期): 数据缺失 亿元</li><li>营收同比增长率: 0.37%</li><li>归母净利润(报告期): 数据缺失 亿元</li><li>归母净利润同比增长率: 6.31%</li><li>ROE (TTM/估算): 10.25%</li><li>资产负债率: 数据缺失</li><li>经营性现金流 / 归母净利润: 数据缺失</li></ul><h4>缺失字段</h4><ul><li>营业总收入, 归母净利润, 资产负债率, 经营性现金流与归母净利润比值</li></ul></div></div></details>
+<details><summary>研究计划</summary><div class="body"><div class="md"><h4>00669 创科实业 研究摘要</h4><ul><li>红黑榜结论: Buy</li><li>多头/空头: 87/18</li><li>正向信号: ROE 10.25%；营收同比 0.37%；归母净利润同比 6.31%；PE(TTM) 24.19</li><li>榜单看多理由: 股价上涨3.22%，延续强势表现；市值较大，市场认可度高；行业地位稳固，基本面稳健</li><li>榜单风险提示: 需警惕行业周期性波动风险；估值水平处于相对高位；市场情绪过于乐观可能带来调整</li></ul></div></div></details>
+<details><summary>交易计划</summary><div class="body"><div class="md"><h4>00669 创科实业 交易计划</h4><ul><li>评级: Buy</li><li>当前价格: 134.80</li><li>值得加仓区间: 130.76 - 136.15</li><li>目标价格: 150.98</li><li>止损位: 124.02</li><li>备注: 当前为缓存降级交易卡，后续若完整 TradingAgent 结果生成，将自动覆盖。</li></ul></div></div></details>
+<details><summary>交易决策</summary><div class="body"><div class="md"><p>Buy</p><p>00669 创科实业 当前使用红黑榜缓存结果生成兜底交易卡。多头 87 / 空头 18，分差 69。当前尚未取得完整 TradingAgent 长文决策，但榜单分数、财务快照和大师观点已经足够生成基础交易建议。</p></div></div></details>
+</div>
+<div class="panel"><h2>多空逻辑</h2><div class="pts"><div class="h bull">看多逻辑</div><div class="md"><p>股价上涨3.22%，延续强势表现</p><p>市值较大，市场认可度高</p><p>行业地位稳固，基本面稳健</p></div></div><div class="pts"><div class="h bear">看空逻辑</div><div class="md"><p>需警惕行业周期性波动风险</p><p>估值水平处于相对高位</p><p>市场情绪过于乐观可能带来调整</p></div></div></div>
+<div class="panel"><h2>伯克希尔研究</h2><p><strong>创科实业是一家拥有强大品牌和稳健财务表现的电动工具企业，但需警惕行业竞争加剧和宏观周期波动。</strong></p><p>伯克希尔综合评分：<strong>3.75</strong></p><div class="md"><p>{&quot;verdict&quot;: &quot;买入&quot;, &quot;conservative_tip&quot;: &quot;建议在PE TTM低于20倍时买入，目标价120港元。&quot;, &quot;moderate_tip&quot;: &quot;建议在PE TTM低于22倍时买入，目标价130港元。&quot;, &quot;aggressive_tip&quot;: &quot;建议在PE TTM低于18倍时买入，目标价140港元。&quot;, &quot;catalysts_plus&quot;: [&quot;原材料价格回落&quot;, &quot;全球电动工具需求增长&quot;, &quot;技术创新突破&quot;], &quot;catalysts_minus&quot;: [&quot;原材料价格大幅上涨&quot;, &quot;全球经济衰退&quot;, &quot;竞争格局恶化&quot;]}</p></div></div>
+<div class="panel news"><h2>最新资讯</h2><div class="md"><p>整体情绪偏利好，共2条利多，1条利空。</p></div><div class="nitem"><div class="t">创科实业(00669.HK)8月26日耗资345.8万港元回购2.5万股</div><div class="s">Moomoo · 利好</div></div><div class="nitem"><div class="t">创科实业(00669.HK)6月11日耗资2638.01万港元回购23万股</div><div class="s">TradingView · 利好</div></div><div class="nitem"><div class="t">Boeing and 9 More Stocks for Manufacturing&#x27;s -4-</div><div class="s">富途牛牛 · 利空</div></div></div>
+<footer>稳健理财Agent · 红黑榜每日归档 · 红榜 #6 · 仅供研究，不构成投资建议</footer>
+</div></body>
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AVGO(AVGO) 红榜 2026-09-06</title>
+<style>
+:root{--red:#d8342c;--redbg:#fdecea;--green:#1a9e54;--ink:#1c2230;--muted:#6b7385;
+--line:#e7e9ef;--card:#fff;--bg:#f4f6fa;--chip:#eef1f6;--dark:#23262d;--darkbg:#ececef}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",
+"Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);
+line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 16px 64px}
+header.top{background:linear-gradient(135deg,#1c2230,#2c3550);color:#fff;border-radius:14px;
+padding:22px 24px;margin-bottom:20px;box-shadow:0 6px 24px rgba(20,26,46,.12)}
+header.top h1{margin:0 0 6px;font-size:24px;letter-spacing:.5px}
+header.top .sub{opacity:.85;font-size:13px}
+header.top .sub b{color:#ffd166;font-weight:600}
+nav.mkt{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;
+background:rgba(244,246,250,.92);backdrop-filter:blur(6px);padding:10px 0;margin-bottom:14px}
+nav.mkt a{text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);
+padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600}
+nav.mkt a:hover{border-color:var(--red);color:var(--red)}
+.summary{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.summary .chip{background:var(--card);border:1px solid var(--line);border-radius:10px;
+padding:8px 12px;font-size:12px;color:var(--muted)}
+.summary .chip b{color:var(--ink);font-size:14px;margin-left:4px}
+section.board{margin:26px 0}
+.board-title{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:19px}
+.board-title .dot{width:10px;height:10px;border-radius:50%}
+.board-title.red .dot{background:var(--red)}
+.board-title.black .dot{background:var(--dark)}
+.board-title small{color:var(--muted);font-weight:400;font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+position:relative;transition:box-shadow .15s}
+.card:hover{box-shadow:0 4px 18px rgba(20,26,46,.08)}
+.card.red{border-top:3px solid var(--red)}
+.card.black{border-top:3px solid var(--dark)}
+.rank{position:absolute;top:10px;right:12px;font-size:26px;font-weight:800;color:#eceff5}
+.card.red .rank{color:#fbdcD9}
+.nm{font-size:16px;font-weight:700}
+.nm .tk{color:var(--muted);font-weight:500;font-size:12px;margin-left:6px}
+.tag{display:inline-block;background:var(--chip);color:var(--muted);border-radius:6px;
+padding:1px 7px;font-size:11px;margin:6px 6px 0 0}
+.price-row{display:flex;align-items:baseline;gap:10px;margin:10px 0 4px}
+.price{font-size:24px;font-weight:800}
+.pct{font-size:14px;font-weight:700;padding:2px 8px;border-radius:8px}
+.up{color:var(--red)}.down{color:var(--green)}.flat{color:var(--muted)}
+.pct.up{background:var(--redbg)}.pct.down{background:#e2f4e9}.pct.flat{background:var(--chip)}
+.psrc{font-size:11px;color:var(--muted);margin-left:auto}
+.scores{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.scores span{background:var(--chip);border-radius:6px;padding:2px 8px;font-size:11px;color:var(--muted)}
+.scores span b{color:var(--ink)}
+.pts{font-size:12.5px;margin:8px 0 0}
+.pts .h{font-weight:700;font-size:12px;margin:6px 0 2px}
+.pts .h.bull{color:var(--red)}.pts .h.bear{color:var(--green)}
+.pts ul{margin:2px 0 4px;padding-left:18px;color:#3a4152}
+.pts li{margin:1px 0}
+.masters{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:11px;color:var(--muted)}
+.masters b{color:var(--ink)}
+.summ{font-size:12.5px;color:#3a4152;background:#fafbfd;border:1px solid var(--line);
+border-radius:8px;padding:8px 10px;margin-top:8px}
+.empty{color:var(--muted);background:var(--card);border:1px dashed var(--line);
+border-radius:10px;padding:18px;text-align:center}
+footer{margin-top:34px;color:var(--muted);font-size:12px;text-align:center;line-height:1.8}
+a.lnk{color:var(--red);text-decoration:none}
+/* ── detail page ── */
+.backbar{margin-bottom:14px;font-size:13px}
+.backbar a{color:var(--muted);text-decoration:none;margin-right:14px}
+.backbar a:hover{color:var(--red)}
+.badge{display:inline-block;border-radius:6px;padding:2px 10px;font-size:12px;font-weight:700;margin-right:8px}
+.badge.red{background:var(--red);color:#fff}.badge.black{background:var(--dark);color:#fff}
+.trade{display:flex;flex-wrap:wrap;gap:10px;background:linear-gradient(135deg,#2c3550,#1c2230);
+color:#fff;border-radius:12px;padding:16px 18px;margin:16px 0}
+.trade .cell{min-width:120px}
+.trade .k{font-size:11px;opacity:.75}
+.trade .v{font-size:18px;font-weight:800;margin-top:2px}
+.trade .v.buy{color:#7ee2a8}.trade .v.sell{color:#ff9d97}.trade .v.hold{color:#ffd166}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0}
+.mgrid .m{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.mgrid .m .k{font-size:11px;color:var(--muted)}
+.mgrid .m .v{font-size:16px;font-weight:700;margin-top:2px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.panel>h2{margin:0 0 12px;font-size:17px}
+.panel>h2 .sub{font-size:12px;color:var(--muted);font-weight:400;margin-left:8px}
+.mreply{border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;
+padding:12px 14px;margin:10px 0;background:#fff}
+.mreply .mh{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.mreply .mh .who{font-weight:700;font-size:14px}
+.mreply .mh .mscore{margin-left:auto;background:var(--chip);border-radius:6px;padding:1px 8px;font-size:12px;font-weight:700}
+.md h2,.md h3,.md h4,.md h5{margin:12px 0 6px;font-size:15px}
+.md p{margin:6px 0;font-size:13.5px;color:#2c3345}
+.md ul{margin:6px 0;padding-left:20px;font-size:13.5px;color:#2c3345}
+.md li{margin:3px 0}
+.md strong{color:var(--ink)}
+details{border:1px solid var(--line);border-radius:10px;background:#fff;margin:10px 0;padding:0}
+details>summary{cursor:pointer;padding:12px 16px;font-weight:700;font-size:14px;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary:before{content:"▸ ";color:var(--red)}
+details[open]>summary:before{content:"▾ "}
+details>.body{padding:0 16px 14px;border-top:1px dashed var(--line)}
+.ychip{display:inline-block;background:var(--chip);border-radius:8px;padding:4px 10px;font-size:12px;margin:3px 6px 3px 0}
+.ychip b{font-size:13px}
+.news .nitem{border-top:1px dashed var(--line);padding:8px 0;font-size:13px}
+.news .nitem .t{font-weight:600}
+.news .nitem .s{color:var(--muted);font-size:12px}
+/* ── root landing page ── */
+.hero{padding:30px 26px}
+.hero-kicker{color:#ffd166;font-size:12px;font-weight:700;letter-spacing:2px;
+text-transform:uppercase;margin-bottom:8px}
+.hero h1{font-size:30px;margin:0 0 10px}
+.day-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.day-card{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);
+border-radius:12px;padding:14px 16px;transition:all .15s}
+.day-card:hover{border-color:var(--red);box-shadow:0 4px 16px rgba(216,52,44,.12);transform:translateY(-2px)}
+.day-card .d{font-weight:800;font-size:15px;color:var(--ink);display:flex;align-items:center;gap:8px}
+.day-card .m{margin-top:8px;display:flex;gap:6px}
+.day-card .m span{background:var(--chip);color:var(--muted);border-radius:6px;
+padding:2px 8px;font-size:11px}
+.latest-badge{background:var(--red);color:#fff;border-radius:6px;padding:1px 7px;
+font-size:10px;font-weight:700}
+</style>
+</head>
+<body><div class="wrap">
+<div class="backbar"><a href="../index.html">← 总览</a><a href="../us.html">← 美股榜单</a></div>
+<header class="top">
+  <h1><span class="badge red">红榜 #5</span>AVGO<span class="tk" style="opacity:.7;font-size:15px;font-weight:400;margin-left:8px">AVGO</span></h1>
+  <div class="sub">美股 ·  · 榜单日期 <b>2026-09-06</b> · 盘价采集 <b>2026-09-06 05:00:01</b></div>
+  <div class="price-row" style="margin-top:12px">
+    <span class="price" style="color:#fff">$357.89</span>
+    <span class="pct up">+0.21%</span>
+    <span class="psrc" style="color:rgba(255,255,255,.6)">实时</span>
+  </div>
+  <div class="scores" style="margin-top:10px">
+    <span>综合 <b>89.1</b></span>
+    <span>多头 <b>82</b></span>
+    <span>空头 <b>35</b></span>
+    <span>大师均值 <b>72</b></span>
+    <span>信号 <b>positive</b></span>
+  </div>
+</header>
+<div class="trade"><div class="cell"><div class="k">交易评级</div><span class="v buy">Buy</span></div><div class="cell"><div class="k">加仓区间</div><span class="v">347.16 ~ 361.48</span></div><div class="cell"><div class="k">目标价</div><span class="v">400.85</span></div><div class="cell"><div class="k">伯克希尔</div><span class="v">买入</span></div><div class="cell"><div class="k">伯克希尔分</div><span class="v">4.25</span></div></div>
+<div class="panel"><h2>财务指标</h2><div class="mgrid"><div class="m"><div class="k">市盈率 PE</div><div class="v">45.65</div></div><div class="m"><div class="k">市净率 PB</div><div class="v">17.11</div></div><div class="m"><div class="k">ROE</div><div class="v">44.2%</div></div><div class="m"><div class="k">总市值</div><div class="v">1.7万</div></div><div class="m"><div class="k">营收同比</div><div class="v">85.5%</div></div><div class="m"><div class="k">净利同比</div><div class="v">215.3%</div></div></div></div>
+<div class="panel"><h2>历史收益</h2><span class="ychip">近1月 <b class="down">-14.44%</b></span><span class="ychip">近6月 <b class="up">+7.55%</b></span><span class="ychip">近1年 <b class="up">+6.87%</b></span><span class="ychip">近5年 <b class="up">+620.72%</b></span></div>
+<div class="panel"><h2>大师圆桌<span class="sub">5 位</span></h2><div class="mreply"><div class="mh"><span class="who">段永平</span><span class="mscore">85</span></div><div class="md"><p>关于 AVGO 这家公司，我分享一下我的看法。</p><p>首先，我认为 AVGO 是一家值得关注的优质企业。从本分的角度来看，这是一家在半导体行业拥有稳固领导地位的公司，其财务状况也非常健康，这两点是支持长期投资的重要依据。85.5% 的营收同比增长和 215.3% 的净利润同比增长，说明这家公司正处于快速发展的轨道上。</p><p>不过，我们也要看到一些潜在的风险。45.64987 的市盈率相对较高，虽然这反映了市场对其未来增长的预期，但也意味着投资者需要更高的成长性来支撑这个估值。此外，17.110245 的市净率也表明市场对其资产质量的认可度较高，但这也可能带来一定的估值压力。</p><p>从风险角度来看，市场波动和供应链问题是我们需要持续关注的两个方面。半导体行业本身具有较强的周期性，市场情绪的变化可能会对股价产生较大影响。同时，供应链的稳定性对 AVGO 的运营至关重要，任何供应链中断都可能对其业绩产生负面影响。</p><p>基于以上分析，我的建议是：</p><p>如果你是长期投资者，并且对半导体行业有足够的理解，那么 AVGO 可能是一个不错的选择。但前提是你要做好充分的准备，去深入了解这家公司的商业模式、竞争优势以及行业趋势。</p><p>同时，要时刻保持警惕，关注市场环境和供应链状况的变化。投资这家公司需要耐心和定力，不要被短期的市场波动所左右。</p><p>最后，我想提醒大家，投资的本质是找到那些真正创造价值的企业，并与之共同成长。AVGO 是否符合你的投资标准，最终还是要回到&quot;做对的事&quot;这个根本原则上来。你是否真的理解这家公司？你是否愿意与之长期相伴？这才是最重要的。</p></div></div><div class="mreply"><div class="mh"><span class="who">巴菲特</span><span class="mscore">51</span></div><div class="md"><p>各位朋友，今天我们讨论的是半导体行业的 AVGO 公司。我先给出我的初步看法：这是一家值得关注的优秀公司，但目前的价格让我持保留态度。</p><p>首先，AVGO 在半导体行业拥有稳固的领导地位，这一点从它的财务数据中可以看出。公司在过去一年实现了 85.5% 的收入增长和 215.3% 的净利润增长，净资产收益率（ROE）高达 44.25%，这些数字都表明它的经营状况非常强劲。此外，它的财务状况健康，这为公司的长期发展提供了有力支持。</p><p>然而，当我们谈到投资时，价格是一个非常重要的因素。目前 AVGO 的市盈率（P/E）约为 45.65，市净率（P/B）约为 17.11，这些估值指标都处于较高水平。作为一个价值投资者，我更倾向于以合理的价格买入优质的公司，而不是仅仅因为公司优秀就支付过高的价格。</p><p>接下来谈谈风险。首先，半导体行业本身具有周期性，市场波动可能会影响投资者情绪，导致股价出现较大波动。其次，供应链风险也是一个需要持续关注的问题。尽管 AVGO 在行业中占据领先地位，但全球供应链的不确定性可能会对其业务产生不利影响。</p><p>基于以上分析，我建议：</p><ul><li>如果你已经在持有 AVGO，并且买入价格较低，那么继续持有可能是明智的选择，因为公司的长期发展前景依然看好。</li><li>如果你正在考虑买入，我建议你耐心等待更好的入场时机。半导体行业的周期性波动可能会提供更好的买入机会。</li><li>密切关注供应链状况和公司资本配置策略的变化，这些因素可能会影响公司的长期价值。</li></ul><p>最后，我想引用查理·芒格的一句话：&quot;投资就像在果园里摘水果，你不需要摘下每一颗果子，只需要等待最好的时机。&quot; 在 AVGO 这家公司上，我们可能还需要更多的耐心来等待更好的机会。</p></div></div><div class="mreply"><div class="mh"><span class="who">达利欧</span><span class="mscore">47</span></div><div class="md"><p>各位同仁，今天我们来讨论 AVGO 这家公司。我的观点是，目前来看，AVGO 的基本面不错，但市场环境和潜在风险需要我们谨慎对待。</p><p>首先，AVGO 在半导体行业拥有稳固的领导地位，这一点从其强劲的财务表现中可以看出。营收同比增长 85.5%，净利润同比增长 215.3%，净资产收益率（ROE）达到 44.2%，这些数据都显示出公司强大的盈利能力和增长潜力。此外，其健康的财务状况也为长期发展提供了支持。</p><p>然而，我们也需要关注一些潜在的风险。市场波动可能会影响投资者情绪，尤其是在当前全球经济环境充满不确定性的情况下。此外，供应链风险是一个持续存在的问题，尤其是在半导体行业，供应链的稳定性对公司的运营至关重要。</p><p>从我的宏观框架来看，我更倾向于关注风险平衡和原则化的决策方式。当前 AVGO 的估值并不便宜，市盈率（PE）达到 45.6 倍，市净率（PB）更是高达 17.1 倍，这表明市场对其未来增长有很高的预期。但高估值也意味着更大的下行风险，尤其是在市场情绪转变时。</p><p>基于以上分析，我建议：</p><ul><li><strong>风险评估</strong>：密切关注供应链的稳定性以及全球市场的波动性。如果这些风险因素加剧，可能需要重新评估投资决策。</li><li><strong>原则化决策</strong>：在投资 AVGO 时，建议制定明确的原则和止损点。例如，如果公司基本面出现恶化迹象，或者市场情绪发生显著变化，应及时调整仓位。</li><li><strong>多元化配置</strong>：考虑到 AVGO 的高估值和潜在风险，建议投资者在投资组合中保持一定的多元化，以分散单一股票带来的风险。</li></ul><p>总之，AVGO 是一家具有强大增长潜力的公司，但其高估值和潜在风险需要我们保持警惕。在做出投资决策时，应遵循原则化的方法，并密切关注市场动态。</p></div></div><div class="mreply"><div class="mh"><span class="who">彼得·林奇</span><span class="mscore">96</span></div><div class="md"><h4>圆桌发言：关于 AVGO（博通）的看法</h4><p><strong>结论</strong>：</p><p>我认为 AVGO 是一家值得关注的优质公司，但目前的价格可能已经反映了大部分增长预期。对于长期投资者来说，如果能耐心持有，这家公司仍有不错的潜力；但短期来看，估值偏高，需要谨慎。</p><p><strong>理由</strong>：</p><ul><li><strong>行业地位与财务健康</strong>：AVGO 在半导体行业拥有稳固的领导地位，这一点从其强劲的营收和净利润增长中可以看出——营收同比增长 85.5%，净利润同比增长 215.3%。此外，其 ROE（净资产收益率）高达 44.2%，显示出公司强大的盈利能力。</li></ul><ul><li><strong>生活场景验证</strong>：作为投资者，我经常观察身边的技术趋势。AVGO 的芯片广泛应用于数据中心、网络设备等领域，而这些领域的需求仍在持续增长。这种来自日常生活的验证让我对公司的长期前景充满信心。</li></ul><ul><li><strong>估值考量</strong>：然而，目前 45.6 倍的 PE（市盈率）和 17.1 倍的 PB（市净率）都处于较高水平。虽然公司的增长强劲，但这样的估值已经反映了大部分预期。如果市场情绪发生变化，或者供应链出现波动，股价可能会面临较大压力。</li></ul><p><strong>风险/行动建议</strong>：</p><ul><li><strong>风险提示</strong>：</li><li>市场波动风险：半导体行业受宏观经济影响较大，投资者情绪可能会导致股价剧烈波动。</li><li>供应链风险：全球供应链的不确定性可能对 AVGO 的生产和销售造成影响。</li></ul><ul><li><strong>行动建议</strong>：</li><li>对于已经持有 AVGO 的投资者，建议密切关注公司财报和行业动态。如果股价出现大幅上涨，可以考虑逐步减仓锁定利润。</li><li>对于尚未买入的投资者，建议等待更好的买入时机，比如市场出现回调或公司出现负面消息但基本面未受重大影响时。</li></ul><p>总之，AVGO 是一家优秀的公司，但目前的价格需要谨慎对待。投资决策应基于对公司长期前景的信心，而不是短期的市场波动。</p></div></div><div class="mreply"><div class="mh"><span class="who">芒格</span><span class="mscore">81</span></div><div class="md"><p>各位，我今天要谈的是 AVGO（博通公司），一家在半导体行业占据领导地位的企业。先说我的结论：总体而言，这是一家值得关注的公司，但在投资决策上，我建议保持谨慎。</p><h4>理由</h4><p>首先，AVGO 在半导体领域的领导地位是毋庸置疑的。无论是从技术积累还是市场份额来看，它都展现出了强大的竞争优势。这种领导地位不仅体现在当前的盈利能力上，也为未来的持续增长奠定了基础。</p><p>其次，AVGO 的财务状况非常健康。从数据上看，其营收同比增长 85.5%，净利润同比增长 215.3%，净资产收益率（ROE）高达 44.25%。这些数字表明，公司在盈利能力和管理效率方面都表现出色。此外，其当前的市盈率（PE）为 45.65，市净率（PB）为 17.11，虽然不算便宜，但在当前市场环境下，对于一家高增长的公司来说也是可以接受的。</p><h4>风险</h4><p>然而，我们不能忽视潜在的风险。首先，半导体行业本身就具有较高的周期性，市场波动可能会对 AVGO 的股价产生较大影响。其次，供应链风险依然存在，尤其是在全球地缘政治局势不稳定的背景下，任何供应链中断都可能对公司的运营产生负面影响。</p><p>此外，尽管 AVGO 的财务状况良好，但其高估值也意味着市场对其未来增长有着较高的预期。如果公司无法持续保持高速增长，投资者可能会对其失去信心，导致股价下跌。</p><h4>行动建议</h4><p>基于以上分析，我的建议是：</p><ul><li><strong>保持谨慎的乐观</strong>：如果你已经持有 AVGO，可以继续持有，但要注意市场波动和供应链风险。如果你尚未持有，可以考虑在股价回调时逐步建仓。</li></ul><ul><li><strong>多元化投资组合</strong>：不要把所有资金都投入 AVGO 或半导体行业。通过多元化投资来分散风险，是明智的选择。</li></ul><ul><li><strong>关注长期价值</strong>：半导体行业是一个长期增长的市场，但短期内可能会有波动。投资者应关注公司的长期价值，而不是被短期的市场波动所左右。</li></ul><p>最后，我想提醒大家，投资决策不应仅仅基于财务数据，还要考虑整体的市场环境和个人的风险承受能力。正如我常说的，&quot;如果我知道自己死在哪里，我就永远不去那里&quot;。在投资中，识别并避开风险，往往比追求高回报更为重要。</p></div></div></div>
+<div class="panel"><h2>分析师报告<span class="sub">2 篇</span></h2><details open><summary>市场面分析</summary><div class="body"><div class="md"><h4>AVGO AVGO 市场面分析</h4><ul><li>红黑榜多空分数：多头 82 / 空头 35，分差 47。</li><li>当前价格：357.90。</li><li>当前交易评级：Buy。</li><li>值得加仓区间：347.16 - 361.48。</li><li>目标价格：400.85。</li><li>市场愿意给溢价的原因：半导体行业领导地位稳固；财务状况健康支持长期发展。</li><li>当前主要压制因素：市场波动可能影响投资者情绪；供应链风险需持续关注。</li></ul></div></div></details><details open><summary>基本面分析</summary><div class="body"><div class="md"><h4>AVGO AVGO 基本面分析</h4><ul><li>报告期：暂无。</li><li>PE(TTM)：45.65。</li><li>PB：17.11。</li><li>ROE：44.25%。</li><li>营收同比：85.50%。</li><li>归母净利润同比：215.30%。</li><li>核心判断：盈利能力处于可接受区间；收入仍在增长；利润端保持扩张。</li></ul></div></div></details></div>
+<div class="panel"><h2>研究与计划</h2>
+<details><summary>基本面摘要</summary><div class="body"><div class="md"><h3>核心财务快照</h3><ul><li>报告期: 数据缺失</li><li>当前股价: 357.90 元</li><li>总市值: 17027.14 亿元</li><li>PE (TTM): 45.65</li><li>PB: 17.11</li><li>PS (TTM): 数据缺失</li><li>营业总收入(报告期): 数据缺失 亿元</li><li>营收同比增长率: 85.50%</li><li>归母净利润(报告期): 数据缺失 亿元</li><li>归母净利润同比增长率: 215.30%</li><li>ROE (TTM/估算): 44.25%</li><li>资产负债率: 数据缺失</li><li>经营性现金流 / 归母净利润: 数据缺失</li></ul><h4>缺失字段</h4><ul><li>PS(TTM), 营业总收入, 归母净利润, 资产负债率, 经营性现金流与归母净利润比值</li></ul></div></div></details>
+<details><summary>研究计划</summary><div class="body"><div class="md"><h4>AVGO AVGO 研究摘要</h4><ul><li>红黑榜结论: Buy</li><li>多头/空头: 82/35</li><li>正向信号: ROE 44.25%；营收同比 85.50%；归母净利润同比 215.30%；PE(TTM) 45.65</li><li>榜单看多理由: 半导体行业领导地位稳固；财务状况健康支持长期发展</li><li>榜单风险提示: 市场波动可能影响投资者情绪；供应链风险需持续关注</li></ul></div></div></details>
+<details><summary>交易计划</summary><div class="body"><div class="md"><h4>AVGO AVGO 交易计划</h4><ul><li>评级: Buy</li><li>当前价格: 357.90</li><li>值得加仓区间: 347.16 - 361.48</li><li>目标价格: 400.85</li><li>止损位: 329.27</li><li>备注: 当前为缓存降级交易卡，后续若完整 TradingAgent 结果生成，将自动覆盖。</li></ul></div></div></details>
+<details><summary>交易决策</summary><div class="body"><div class="md"><p>Buy</p><p>AVGO AVGO 当前使用红黑榜缓存结果生成兜底交易卡。多头 82 / 空头 35，分差 47。当前尚未取得完整 TradingAgent 长文决策，但榜单分数、财务快照和大师观点已经足够生成基础交易建议。</p></div></div></details>
+</div>
+<div class="panel"><h2>多空逻辑</h2><div class="pts"><div class="h bull">看多逻辑</div><div class="md"><p>半导体行业领导地位稳固</p><p>财务状况健康支持长期发展</p></div></div><div class="pts"><div class="h bear">看空逻辑</div><div class="md"><p>市场波动可能影响投资者情绪</p><p>供应链风险需持续关注</p></div></div></div>
+<div class="panel"><h2>伯克希尔研究</h2><p><strong>AVGO是一家具备强大护城河和长期增长潜力的半导体巨头，但需警惕行业周期性和地缘政治风险。</strong></p><p>伯克希尔综合评分：<strong>4.25</strong></p><div class="md"><p>{&quot;verdict&quot;: &quot;买入&quot;, &quot;conservative_tip&quot;: &quot;建议在PE TTM低于18倍时买入，目标价450美元。&quot;, &quot;moderate_tip&quot;: &quot;建议在PE TTM低于20倍时买入，目标价500美元。&quot;, &quot;aggressive_tip&quot;: &quot;建议在PE TTM低于22倍时买入，目标价550美元。&quot;, &quot;catalysts_plus&quot;: [&quot;半导体行业需求复苏&quot;, &quot;地缘政治紧张局势缓解&quot;, &quot;重大技术突破或新产品发布&quot;], &quot;catalysts_minus&quot;: [&quot;地缘政治冲突升级&quot;, &quot;供应链中断&quot;, &quot;重大监管制裁&quot;]}</p></div></div>
+<div class="panel news"><h2>最新资讯</h2><div class="md"><p>整体情绪偏多，8条利好，2条利空，1条中性。</p></div><div class="nitem"><div class="t">5-star analyst resets Broadcom stock price target</div><div class="s">thestreet.com · 利好</div></div><div class="nitem"><div class="t">Jim Cramer Says “Someone Must Know Something” About Broadcom Inc. (NASDAQ:AVGO)’s Post-Earnings Share Dip</div><div class="s">Yahoo Finance · 利空</div></div><div class="nitem"><div class="t">LULU, AVGO, DELL, SNOW, GOOGL: 5 Stocks Investors Couldn&#x27;t Stop Buzzing About This Week</div><div class="s">Benzinga · 中性</div></div><div class="nitem"><div class="t">Stocks making the biggest moves premarket: Snowflake, Moderna, Broadcom &amp; more</div><div class="s">CNBC · 利好</div></div><div class="nitem"><div class="t">Here’s How Much Traders See Broadcom Stock Moving After Earnings</div><div class="s">Investopedia · 中性</div></div><div class="nitem"><div class="t">After-Hours Movers: AVGO, SNOW, HPE, NTAP, NTSK, CHPT, FIVE, TLYS, PVH, RARE</div><div class="s">Investing.com · 利好</div></div><div class="nitem"><div class="t">Broadcom&#x27;s Sell-Off May Be Running Out of Steam: The Chart Offers an Early Clue</div><div class="s">TradingView · 利好</div></div><div class="nitem"><div class="t">Broadcom (AVGO) vs. Marvell (MRVL): Why Morgan Stanley Favors One AI Chip Stock after Earnings</div><div class="s">TipRanks · 利好</div></div></div>
+<footer>稳健理财Agent · 红黑榜每日归档 · 红榜 #5 · 仅供研究，不构成投资建议</footer>
+</div></body>
+</html>
