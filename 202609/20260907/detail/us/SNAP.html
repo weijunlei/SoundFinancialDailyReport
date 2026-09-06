@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SNAP(SNAP) 黑榜 2026-09-07</title>
+<style>
+:root{--red:#d8342c;--redbg:#fdecea;--green:#1a9e54;--ink:#1c2230;--muted:#6b7385;
+--line:#e7e9ef;--card:#fff;--bg:#f4f6fa;--chip:#eef1f6;--dark:#23262d;--darkbg:#ececef}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",
+"Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);
+line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 16px 64px}
+header.top{background:linear-gradient(135deg,#1c2230,#2c3550);color:#fff;border-radius:14px;
+padding:22px 24px;margin-bottom:20px;box-shadow:0 6px 24px rgba(20,26,46,.12)}
+header.top h1{margin:0 0 6px;font-size:24px;letter-spacing:.5px}
+header.top .sub{opacity:.85;font-size:13px}
+header.top .sub b{color:#ffd166;font-weight:600}
+nav.mkt{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;
+background:rgba(244,246,250,.92);backdrop-filter:blur(6px);padding:10px 0;margin-bottom:14px}
+nav.mkt a{text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);
+padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600}
+nav.mkt a:hover{border-color:var(--red);color:var(--red)}
+.summary{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.summary .chip{background:var(--card);border:1px solid var(--line);border-radius:10px;
+padding:8px 12px;font-size:12px;color:var(--muted)}
+.summary .chip b{color:var(--ink);font-size:14px;margin-left:4px}
+section.board{margin:26px 0}
+.board-title{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:19px}
+.board-title .dot{width:10px;height:10px;border-radius:50%}
+.board-title.red .dot{background:var(--red)}
+.board-title.black .dot{background:var(--dark)}
+.board-title small{color:var(--muted);font-weight:400;font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+position:relative;transition:box-shadow .15s}
+.card:hover{box-shadow:0 4px 18px rgba(20,26,46,.08)}
+.card.red{border-top:3px solid var(--red)}
+.card.black{border-top:3px solid var(--dark)}
+.rank{position:absolute;top:10px;right:12px;font-size:26px;font-weight:800;color:#eceff5}
+.card.red .rank{color:#fbdcD9}
+.nm{font-size:16px;font-weight:700}
+.nm .tk{color:var(--muted);font-weight:500;font-size:12px;margin-left:6px}
+.tag{display:inline-block;background:var(--chip);color:var(--muted);border-radius:6px;
+padding:1px 7px;font-size:11px;margin:6px 6px 0 0}
+.price-row{display:flex;align-items:baseline;gap:10px;margin:10px 0 4px}
+.price{font-size:24px;font-weight:800}
+.pct{font-size:14px;font-weight:700;padding:2px 8px;border-radius:8px}
+.up{color:var(--red)}.down{color:var(--green)}.flat{color:var(--muted)}
+.pct.up{background:var(--redbg)}.pct.down{background:#e2f4e9}.pct.flat{background:var(--chip)}
+.psrc{font-size:11px;color:var(--muted);margin-left:auto}
+.scores{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.scores span{background:var(--chip);border-radius:6px;padding:2px 8px;font-size:11px;color:var(--muted)}
+.scores span b{color:var(--ink)}
+.pts{font-size:12.5px;margin:8px 0 0}
+.pts .h{font-weight:700;font-size:12px;margin:6px 0 2px}
+.pts .h.bull{color:var(--red)}.pts .h.bear{color:var(--green)}
+.pts ul{margin:2px 0 4px;padding-left:18px;color:#3a4152}
+.pts li{margin:1px 0}
+.masters{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:11px;color:var(--muted)}
+.masters b{color:var(--ink)}
+.summ{font-size:12.5px;color:#3a4152;background:#fafbfd;border:1px solid var(--line);
+border-radius:8px;padding:8px 10px;margin-top:8px}
+.empty{color:var(--muted);background:var(--card);border:1px dashed var(--line);
+border-radius:10px;padding:18px;text-align:center}
+footer{margin-top:34px;color:var(--muted);font-size:12px;text-align:center;line-height:1.8}
+a.lnk{color:var(--red);text-decoration:none}
+/* ── detail page ── */
+.backbar{margin-bottom:14px;font-size:13px}
+.backbar a{color:var(--muted);text-decoration:none;margin-right:14px}
+.backbar a:hover{color:var(--red)}
+.badge{display:inline-block;border-radius:6px;padding:2px 10px;font-size:12px;font-weight:700;margin-right:8px}
+.badge.red{background:var(--red);color:#fff}.badge.black{background:var(--dark);color:#fff}
+.trade{display:flex;flex-wrap:wrap;gap:10px;background:linear-gradient(135deg,#2c3550,#1c2230);
+color:#fff;border-radius:12px;padding:16px 18px;margin:16px 0}
+.trade .cell{min-width:120px}
+.trade .k{font-size:11px;opacity:.75}
+.trade .v{font-size:18px;font-weight:800;margin-top:2px}
+.trade .v.buy{color:#7ee2a8}.trade .v.sell{color:#ff9d97}.trade .v.hold{color:#ffd166}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0}
+.mgrid .m{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.mgrid .m .k{font-size:11px;color:var(--muted)}
+.mgrid .m .v{font-size:16px;font-weight:700;margin-top:2px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.panel>h2{margin:0 0 12px;font-size:17px}
+.panel>h2 .sub{font-size:12px;color:var(--muted);font-weight:400;margin-left:8px}
+.mreply{border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;
+padding:12px 14px;margin:10px 0;background:#fff}
+.mreply .mh{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.mreply .mh .who{font-weight:700;font-size:14px}
+.mreply .mh .mscore{margin-left:auto;background:var(--chip);border-radius:6px;padding:1px 8px;font-size:12px;font-weight:700}
+.md h2,.md h3,.md h4,.md h5{margin:12px 0 6px;font-size:15px}
+.md p{margin:6px 0;font-size:13.5px;color:#2c3345}
+.md ul{margin:6px 0;padding-left:20px;font-size:13.5px;color:#2c3345}
+.md li{margin:3px 0}
+.md strong{color:var(--ink)}
+details{border:1px solid var(--line);border-radius:10px;background:#fff;margin:10px 0;padding:0}
+details>summary{cursor:pointer;padding:12px 16px;font-weight:700;font-size:14px;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary:before{content:"▸ ";color:var(--red)}
+details[open]>summary:before{content:"▾ "}
+details>.body{padding:0 16px 14px;border-top:1px dashed var(--line)}
+.ychip{display:inline-block;background:var(--chip);border-radius:8px;padding:4px 10px;font-size:12px;margin:3px 6px 3px 0}
+.ychip b{font-size:13px}
+.news .nitem{border-top:1px dashed var(--line);padding:8px 0;font-size:13px}
+.news .nitem .t{font-weight:600}
+.news .nitem .s{color:var(--muted);font-size:12px}
+/* ── root landing page ── */
+.hero{padding:30px 26px}
+.hero-kicker{color:#ffd166;font-size:12px;font-weight:700;letter-spacing:2px;
+text-transform:uppercase;margin-bottom:8px}
+.hero h1{font-size:30px;margin:0 0 10px}
+.day-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.day-card{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);
+border-radius:12px;padding:14px 16px;transition:all .15s}
+.day-card:hover{border-color:var(--red);box-shadow:0 4px 16px rgba(216,52,44,.12);transform:translateY(-2px)}
+.day-card .d{font-weight:800;font-size:15px;color:var(--ink);display:flex;align-items:center;gap:8px}
+.day-card .m{margin-top:8px;display:flex;gap:6px}
+.day-card .m span{background:var(--chip);color:var(--muted);border-radius:6px;
+padding:2px 8px;font-size:11px}
+.latest-badge{background:var(--red);color:#fff;border-radius:6px;padding:1px 7px;
+font-size:10px;font-weight:700}
+</style>
+</head>
+<body><div class="wrap">
+<div class="backbar"><a href="../index.html">← 总览</a><a href="../us.html">← 美股榜单</a></div>
+<header class="top">
+  <h1><span class="badge black">黑榜 #2</span>SNAP<span class="tk" style="opacity:.7;font-size:15px;font-weight:400;margin-left:8px">SNAP</span></h1>
+  <div class="sub">美股 ·  · 榜单日期 <b>2026-09-07</b> · 盘价采集 <b>2026-09-07 05:00:48</b></div>
+  <div class="price-row" style="margin-top:12px">
+    <span class="price" style="color:#fff">$5.47</span>
+    <span class="pct down">-4.04%</span>
+    <span class="psrc" style="color:rgba(255,255,255,.6)">实时</span>
+  </div>
+  <div class="scores" style="margin-top:10px">
+    <span>综合 <b>18.8</b></span>
+    <span>多头 <b>35</b></span>
+    <span>空头 <b>85</b></span>
+    <span>大师均值 <b>53.4</b></span>
+    <span>信号 <b>negative</b></span>
+  </div>
+</header>
+<div class="trade"><div class="cell"><div class="k">交易评级</div><span class="v hold">Reduce</span></div><div class="cell"><div class="k">加仓区间</div><span class="v">4.92 ~ 5.14</span></div><div class="cell"><div class="k">伯克希尔</div><span class="v">观望</span></div><div class="cell"><div class="k">伯克希尔分</div><span class="v">2.50</span></div></div>
+<div class="panel"><h2>财务指标</h2><div class="mgrid"><div class="m"><div class="k">市盈率 PE</div><div class="v">7.05</div></div><div class="m"><div class="k">市净率 PB</div><div class="v">4.77</div></div><div class="m"><div class="k">ROE</div><div class="v">-15.6%</div></div><div class="m"><div class="k">总市值</div><div class="v">93</div></div><div class="m"><div class="k">营收同比</div><div class="v">18.9%</div></div></div></div>
+<div class="panel"><h2>历史收益</h2><span class="ychip">近1月 <b class="up">+2.63%</b></span><span class="ychip">近6月 <b class="up">+2.43%</b></span><span class="ychip">近1年 <b class="down">-25.17%</b></span><span class="ychip">近5年 <b class="down">-92.85%</b></span></div>
+<div class="panel"><h2>大师圆桌<span class="sub">5 位</span></h2><div class="mreply"><div class="mh"><span class="who">段永平</span><span class="mscore">41</span></div><div class="md"><p>各位朋友，今天我们聊一聊 SNAP 这家公司。我的看法是，SNAP 目前可能不是一个值得长期投资的好选择。</p><p>首先，从商业模式来看，SNAP 的核心是社交媒体和广告业务。但目前面临几个问题：一是广告收入受宏观经济环境影响较大，经济下行时广告预算往往最先被削减；二是市场竞争加剧，Instagram、TikTok 等平台都在争夺用户时间和广告预算。</p><p>再看财务数据，当前 PE 约为 7 倍，PB 约为 4.7 倍，表面上看似乎估值不高。但考虑到公司 ROE 为负值，说明盈利能力存在问题。营收虽然同比增长 18.9%，但这种增长能否持续需要打个问号。</p><p>从本分角度出发，我一向主张只投看得懂的好生意。SNAP 的商业模式目前还不太符合这个标准。虽然用户基数仍有增长潜力，但变现能力的不确定性太大。</p><p>当然，对于短线交易者来说，近期价格波动剧烈可能存在一些机会。但我还是要提醒大家，在做这类交易时要非常谨慎，因为股价持续下跌趋势明显，市场情绪偏负面。</p><p>我的建议是：</p><ul><li>如果你持有 SNAP，建议重新审视你的投资逻辑，看看这家公司是否真的符合你的投资标准。</li><li>如果你考虑买入，建议先观察一段时间，等公司展现出更清晰的盈利路径后再做决定。</li><li>记住，不要因为股价看似便宜就轻易买入，本分才是最重要的。</li></ul><p>最后，我想说的是，投资中最重要的不是抓住每一个机会，而是避免犯大错。SNAP 目前给我的感觉是风险大于机会，建议大家谨慎对待。</p></div></div><div class="mreply"><div class="mh"><span class="who">巴菲特</span><span class="mscore">53</span></div><div class="md"><p>各位朋友，今天我们来谈谈SNAP这家公司。</p><p>首先，我得承认，我对SNAP的兴趣有限。我一直强调，投资就像打棒球，你不需要每次都挥棒。SNAP这家公司，我看到了一些让我担忧的地方。</p><p>从生意模式来看，SNAP的核心收入来源是广告业务。但目前全球经济环境充满不确定性，广告支出通常是最先被削减的预算。更重要的是，社交媒体领域的竞争异常激烈，像Meta这样的巨头不断挤压市场份额，而TikTok等新兴平台也在争夺用户时间和广告预算。</p><p>再看估值，虽然7倍左右的市盈率看似不高，但考虑到公司的负净资产收益率和持续下滑的盈利能力，这个估值并不能提供足够的安全边际。我们投资要寻找的是那些即使在逆境中也能保持稳健盈利的好生意，而不是仅仅因为价格便宜就买入。</p><p>当然，SNAP的用户基数仍然可观，这可能是唯一的亮点。但我更关心的是，这家公司能否在未来十年内保持其市场地位，并为股东创造持续的自由现金流。从目前的情况来看，我对此持怀疑态度。</p><p>基于以上分析，我的建议是：</p><ul><li>对于那些想要买入的投资者，我建议你们要非常谨慎。除非你们对SNAP的长期竞争力有非常清晰的判断，并且能够接受可能出现的波动，否则最好还是观望。</li></ul><ul><li>对于已经持有SNAP的投资者，我建议你们重新审视当初买入的逻辑。如果这个逻辑已经不再成立，那么或许应该考虑止损。</li></ul><p>最后，我想说的是，投资最重要的不是追逐短期热点，而是找到那些能够持续创造价值的好生意。SNAP是否属于这一类？我个人的看法是，它还需要更多时间来证明自己。</p><p>如果查理·芒格在这里，他可能会补充说：&quot;投资就像经营果园，你得确保自己种的是能结出好果实的树，而不是那些只开花不结果的品种。&quot;</p></div></div><div class="mreply"><div class="mh"><span class="who">达利欧</span><span class="mscore">47</span></div><div class="md"><h4>圆桌发言：关于 SNAP 的观点</h4><p><strong>结论：</strong></p><p>目前来看，SNAP 的风险大于机会，我对其持谨慎态度。</p><p><strong>理由：</strong></p><p>首先，从价格走势来看，SNAP 的股价持续下跌，趋势明显。这种下跌并非偶然，而是反映了市场对其基本面的担忧。尽管其用户基数仍有增长潜力，但广告收入受到宏观经济环境的显著影响，这直接影响了公司的盈利能力。此外，市场竞争加剧，SNAP 需要在激烈的环境中保持其用户粘性和广告收入，这并非易事。</p><p>从估值角度来看，SNAP 的市盈率（PE）为 7.05，市净率（PB）为 4.77，虽然看似不高，但考虑到其负的净资产收益率（ROE），这种估值并不具备足够的安全边际。公司的盈利能力面临挑战，市场对其未来增长的预期也在下调。</p><p><strong>风险/行动建议：</strong></p><ul><li><strong>风险识别：</strong> SNAP 面临的主要风险是广告收入的波动性和市场竞争的加剧。如果宏观经济环境持续恶化，广告预算可能会进一步削减，这对 SNAP 的收入将构成重大威胁。</li></ul><ul><li><strong>短期交易机会：</strong> 尽管长期趋势不乐观，但短期内由于价格波动剧烈，可能存在交易性机会。对于擅长短期操作的投资者，可以关注价格波动，但需严格控制风险。</li></ul><ul><li><strong>长期投资建议：</strong> 对于长期投资者而言，当前 SNAP 的基本面和宏观环境都不支持大规模建仓。建议保持观望，等待更明确的信号出现，例如公司盈利能力改善或市场竞争格局的显著变化。</li></ul><ul><li><strong>决策日志：</strong> 在做出任何投资决策之前，建议详细记录决策过程和理由，包括对风险的评估和对未来可能变化的预期。这将有助于在市场波动中保持冷静，并进行有效的复盘和调整。</li></ul><p>总之，SNAP 目前的情况需要投资者保持高度警惕，谨慎评估风险和机会。在当前环境下，保守的策略可能更为明智。</p></div></div><div class="mreply"><div class="mh"><span class="who">彼得·林奇</span><span class="mscore">62</span></div><div class="md"><p>我今天想谈谈 SNAP（Snapchat 的母公司），从我的角度来评估一下这家公司。</p><h4>结论：</h4><p>SNAP 目前是一个让我持中性态度的投资标的。它既有一些吸引人的特质，也面临着相当多的挑战。</p><h4>理由：</h4><p>首先，SNAP 仍然拥有相当庞大的年轻用户群体，这部分用户群体的粘性较高，并且有一定的增长潜力。作为一个日常观察到的应用，它的用户基础依然稳固，这让我觉得它有一定的生命力。</p><p>然而，从财务数据来看，SNAP 的表现并不理想。目前的 PE 值约为 7 倍，看起来似乎很低，但 ROE 为负的 15.6%，这表明公司的盈利能力存在问题。此外，广告收入受宏观经济环境影响较大，而市场竞争也在加剧，这些都对 SNAP 的核心业务构成了压力。</p><h4>风险：</h4><ul><li><strong>经济环境风险</strong>：广告收入与经济周期高度相关，如果经济继续下行，SNAP 的广告收入可能会进一步受到冲击。</li><li><strong>市场竞争</strong>：社交媒体领域的竞争非常激烈，Instagram、Facebook 等竞争对手都在不断侵蚀 SNAP 的市场份额。</li><li><strong>盈利能力不足</strong>：尽管用户基数庞大，但 SNAP 尚未找到有效的盈利模式，这使得其财务状况堪忧。</li></ul><h4>行动建议：</h4><p>对于 SNAP，我的建议是保持观望。如果你已经持有 SNAP，建议密切关注以下几点：</p><ul><li><strong>用户增长和参与度</strong>：如果用户增长和参与度出现明显下滑，可能是时候考虑减仓。</li><li><strong>盈利能力改善</strong>：关注公司是否能够找到新的盈利点，例如通过创新广告形式或推出新的产品功能。</li><li><strong>宏观经济环境</strong>：如果经济环境好转，广告收入可能会回升，这将是 SNAP 的一个重要利好。</li></ul><p>总的来说，SNAP 目前并不是一个让我感到特别兴奋的投资机会，但它也并非一无是处。作为一个观察者，我会继续关注它的用户增长和盈利能力，看看是否有转机出现。在做出最终投资决策之前，我会建议大家多做调研，多去了解这家公司的实际运营情况，而不是仅仅依赖财务数据。</p></div></div><div class="mreply"><div class="mh"><span class="who">芒格</span><span class="mscore">64</span></div><div class="md"><p>各位同仁，关于SNAP这家公司，我的看法是这样的：</p><p>首先，SNAP目前的情况并不乐观。从逆向思维的角度来看，这家公司面临的风险远远超过了它可能带来的机会。股价持续下跌趋势明显，这本身就是一个警示信号。广告收入受经济环境影响较大，而市场竞争却在不断加剧，这些因素都使得SNAP的未来充满了不确定性。</p><p>从多元心智模型的角度分析，SNAP的用户基数虽然仍有增长潜力，但这并不能抵消其商业模式面临的挑战。广告收入是其主要收入来源，而这一收入来源的稳定性在当前经济环境下显得尤为脆弱。此外，SNAP在市场竞争中并不占据绝对优势，Facebook、Instagram等竞争对手都在不断侵蚀其市场份额。</p><p>从激励机制的角度来看，SNAP的管理层是否有足够的动力和策略来应对这些挑战，目前尚不明确。在当前的市场环境下，SNAP需要找到新的增长点或降低成本，否则其盈利能力将持续受到压制。</p><p>关于风险，我的建议是：</p><ul><li><strong>短期交易机会</strong>：虽然短期交易机会可能存在，但这需要极高的风险承受能力和精准的时机把握能力。对于大多数投资者来说，这并不是一个值得追求的方向。</li></ul><ul><li><strong>长期持有风险</strong>：考虑到SNAP目前面临的诸多挑战，长期持有该股票的风险较高。除非有明确的迹象表明其商业模式和盈利能力将得到显著改善，否则不建议长期持有。</li></ul><ul><li><strong>估值考量</strong>：当前PE和PB值虽然较低，但这并不足以成为买入的理由。估值低往往反映了市场对未来的悲观预期，而这种悲观预期在当前情况下是有其合理性的。</li></ul><p>最后，我想说的是，投资决策不应仅仅基于短期的价格波动或单一的因素分析。我们需要全面考虑公司的基本面、市场环境以及自身的风险承受能力。正如我常说的，如果知道自己死在哪里，就永远不去那里。在当前情况下，SNAP的风险似乎大于机会，因此建议谨慎行事。</p></div></div></div>
+<div class="panel"><h2>分析师报告<span class="sub">2 篇</span></h2><details open><summary>市场面分析</summary><div class="body"><div class="md"><h4>SNAP SNAP 市场面分析</h4><ul><li>红黑榜多空分数：多头 35 / 空头 85，分差 -50。</li><li>当前价格：5.47。</li><li>当前交易评级：Reduce。</li><li>值得加仓区间：4.92 - 5.14。</li><li>风险控制位：4.81。</li><li>市场愿意给溢价的原因：短期交易机会显现；用户基数仍有增长潜力。</li><li>当前主要压制因素：股价持续下跌趋势明显；广告收入受经济环境影响；市场竞争加剧。</li></ul></div></div></details><details open><summary>基本面分析</summary><div class="body"><div class="md"><h4>SNAP SNAP 基本面分析</h4><ul><li>报告期：暂无。</li><li>PE(TTM)：7.05。</li><li>PB：4.77。</li><li>ROE：-15.58%。</li><li>营收同比：18.90%。</li><li>核心判断：收入仍在增长。</li></ul></div></div></details></div>
+<div class="panel"><h2>研究与计划</h2>
+<details><summary>基本面摘要</summary><div class="body"><div class="md"><h3>核心财务快照</h3><ul><li>报告期: 数据缺失</li><li>当前股价: 5.47 元</li><li>总市值: 92.51 亿元</li><li>PE (TTM): 7.05</li><li>PB: 4.77</li><li>PS (TTM): 数据缺失</li><li>营业总收入(报告期): 数据缺失 亿元</li><li>营收同比增长率: 18.90%</li><li>归母净利润(报告期): 数据缺失 亿元</li><li>归母净利润同比增长率: 数据缺失</li><li>ROE (TTM/估算): -15.58%</li><li>资产负债率: 数据缺失</li><li>经营性现金流 / 归母净利润: 数据缺失</li></ul><h4>缺失字段</h4><ul><li>PS(TTM), 营业总收入, 归母净利润, 归母净利润同比增长率, 资产负债率, 经营性现金流与归母净利润比值</li></ul></div></div></details>
+<details><summary>研究计划</summary><div class="body"><div class="md"><h4>SNAP SNAP 研究摘要</h4><ul><li>红黑榜结论: Reduce</li><li>多头/空头: 35/85</li><li>正向信号: 营收同比 18.90%；PE(TTM) 7.05；PB 4.77</li><li>风险信号: ROE -15.58%</li><li>榜单看多理由: 短期交易机会显现；用户基数仍有增长潜力</li><li>榜单风险提示: 股价持续下跌趋势明显；广告收入受经济环境影响；市场竞争加剧</li></ul></div></div></details>
+<details><summary>交易计划</summary><div class="body"><div class="md"><h4>SNAP SNAP 交易计划</h4><ul><li>评级: Reduce</li><li>当前价格: 5.47</li><li>值得加仓区间: 4.92 - 5.14</li><li>目标价格: 5.20</li><li>止损位: 4.81</li><li>备注: 当前为缓存降级交易卡，后续若完整 TradingAgent 结果生成，将自动覆盖。</li></ul></div></div></details>
+<details><summary>交易决策</summary><div class="body"><div class="md"><p>Reduce</p><p>SNAP SNAP 当前使用红黑榜缓存结果生成兜底交易卡。多头 35 / 空头 85，分差 -50。当前尚未取得完整 TradingAgent 长文决策，但榜单分数、财务快照和大师观点已经足够生成基础交易建议。</p></div></div></details>
+</div>
+<div class="panel"><h2>多空逻辑</h2><div class="pts"><div class="h bull">看多逻辑</div><div class="md"><p>短期交易机会显现</p><p>用户基数仍有增长潜力</p></div></div><div class="pts"><div class="h bear">看空逻辑</div><div class="md"><p>股价持续下跌趋势明显</p><p>广告收入受经济环境影响</p><p>市场竞争加剧</p></div></div></div>
+<div class="panel"><h2>伯克希尔研究</h2><p><strong>SNAP商业模式具备一定创新性，但面临激烈竞争、盈利压力和监管风险，当前估值偏高，投资需谨慎。</strong></p><p>伯克希尔综合评分：<strong>2.5</strong></p><div class="md"><p>{&quot;verdict&quot;: &quot;观望&quot;, &quot;conservative_tip&quot;: &quot;建议等待更明确的盈利信号，当前价格区间偏高。&quot;, &quot;moderate_tip&quot;: &quot;若股价回调至每股8-10美元，可考虑小仓位介入。&quot;, &quot;aggressive_tip&quot;: &quot;若公司推出突破性产品或盈利模式，可短线参与。&quot;, &quot;catalysts_plus&quot;: [&quot;用户增长超预期&quot;, &quot;AR/VR产品取得突破&quot;, &quot;广告收入恢复强劲增长&quot;], &quot;catalysts_minus&quot;: [&quot;用户流失加剧&quot;, &quot;隐私政策趋严导致广告收入下降&quot;, &quot;TikTok等竞争对手市场份额进一步扩大&quot;]}</p></div></div>
+<div class="panel news"><h2>最新资讯</h2><div class="md"><p>利空新闻占多数，共6条利空，5条中性。</p></div><div class="nitem"><div class="t">As millions of kids lose SNAP food benefits, free school meals are also at risk</div><div class="s">NPR · 利空</div></div><div class="nitem"><div class="t">SNAP Benefits Maps Show States Impacted by Proposed Fast Food Ban</div><div class="s">Newsweek · 利空</div></div><div class="nitem"><div class="t">Greek PM rules out snap elections after unveiling tax cuts, wage hikes</div><div class="s">Reuters · 中性</div></div><div class="nitem"><div class="t">Metro Atlanta cleans up after severe storms snap trees, cause outages</div><div class="s">Atlanta News First · 中性</div></div><div class="nitem"><div class="t">FBI offers $150K reward for Tacoma, WA, store owner in $600K SNAP fraud scheme</div><div class="s">FOX 13 Seattle · 利空</div></div><div class="nitem"><div class="t">Oregon Ducks snap count takeaways from Week 1 vs. Boise State</div><div class="s">Ducks Wire · 中性</div></div><div class="nitem"><div class="t">IU football: Offensive snap counts and depth chart notes from win over North Texas</div><div class="s">The Daily Hoosier · 中性</div></div><div class="nitem"><div class="t">Federal request prompts Ohio to delay SNAP sugary drink ban: Here’s why</div><div class="s">Cleveland 19 News · 中性</div></div></div>
+<footer>稳健理财Agent · 红黑榜每日归档 · 黑榜 #2 · 仅供研究，不构成投资建议</footer>
+</div></body>
+</html>
