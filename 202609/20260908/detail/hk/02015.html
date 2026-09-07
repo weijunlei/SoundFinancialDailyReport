@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>理想汽车-W(02015) 红榜 2026-09-08</title>
+<style>
+:root{--red:#d8342c;--redbg:#fdecea;--green:#1a9e54;--ink:#1c2230;--muted:#6b7385;
+--line:#e7e9ef;--card:#fff;--bg:#f4f6fa;--chip:#eef1f6;--dark:#23262d;--darkbg:#ececef}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",
+"Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);
+line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 16px 64px}
+header.top{background:linear-gradient(135deg,#1c2230,#2c3550);color:#fff;border-radius:14px;
+padding:22px 24px;margin-bottom:20px;box-shadow:0 6px 24px rgba(20,26,46,.12)}
+header.top h1{margin:0 0 6px;font-size:24px;letter-spacing:.5px}
+header.top .sub{opacity:.85;font-size:13px}
+header.top .sub b{color:#ffd166;font-weight:600}
+nav.mkt{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;
+background:rgba(244,246,250,.92);backdrop-filter:blur(6px);padding:10px 0;margin-bottom:14px}
+nav.mkt a{text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);
+padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600}
+nav.mkt a:hover{border-color:var(--red);color:var(--red)}
+.summary{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.summary .chip{background:var(--card);border:1px solid var(--line);border-radius:10px;
+padding:8px 12px;font-size:12px;color:var(--muted)}
+.summary .chip b{color:var(--ink);font-size:14px;margin-left:4px}
+section.board{margin:26px 0}
+.board-title{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:19px}
+.board-title .dot{width:10px;height:10px;border-radius:50%}
+.board-title.red .dot{background:var(--red)}
+.board-title.black .dot{background:var(--dark)}
+.board-title small{color:var(--muted);font-weight:400;font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+position:relative;transition:box-shadow .15s}
+.card:hover{box-shadow:0 4px 18px rgba(20,26,46,.08)}
+.card.red{border-top:3px solid var(--red)}
+.card.black{border-top:3px solid var(--dark)}
+.rank{position:absolute;top:10px;right:12px;font-size:26px;font-weight:800;color:#eceff5}
+.card.red .rank{color:#fbdcD9}
+.nm{font-size:16px;font-weight:700}
+.nm .tk{color:var(--muted);font-weight:500;font-size:12px;margin-left:6px}
+.tag{display:inline-block;background:var(--chip);color:var(--muted);border-radius:6px;
+padding:1px 7px;font-size:11px;margin:6px 6px 0 0}
+.price-row{display:flex;align-items:baseline;gap:10px;margin:10px 0 4px}
+.price{font-size:24px;font-weight:800}
+.pct{font-size:14px;font-weight:700;padding:2px 8px;border-radius:8px}
+.up{color:var(--red)}.down{color:var(--green)}.flat{color:var(--muted)}
+.pct.up{background:var(--redbg)}.pct.down{background:#e2f4e9}.pct.flat{background:var(--chip)}
+.psrc{font-size:11px;color:var(--muted);margin-left:auto}
+.scores{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.scores span{background:var(--chip);border-radius:6px;padding:2px 8px;font-size:11px;color:var(--muted)}
+.scores span b{color:var(--ink)}
+.pts{font-size:12.5px;margin:8px 0 0}
+.pts .h{font-weight:700;font-size:12px;margin:6px 0 2px}
+.pts .h.bull{color:var(--red)}.pts .h.bear{color:var(--green)}
+.pts ul{margin:2px 0 4px;padding-left:18px;color:#3a4152}
+.pts li{margin:1px 0}
+.masters{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:11px;color:var(--muted)}
+.masters b{color:var(--ink)}
+.summ{font-size:12.5px;color:#3a4152;background:#fafbfd;border:1px solid var(--line);
+border-radius:8px;padding:8px 10px;margin-top:8px}
+.empty{color:var(--muted);background:var(--card);border:1px dashed var(--line);
+border-radius:10px;padding:18px;text-align:center}
+footer{margin-top:34px;color:var(--muted);font-size:12px;text-align:center;line-height:1.8}
+a.lnk{color:var(--red);text-decoration:none}
+/* ── detail page ── */
+.backbar{margin-bottom:14px;font-size:13px}
+.backbar a{color:var(--muted);text-decoration:none;margin-right:14px}
+.backbar a:hover{color:var(--red)}
+.badge{display:inline-block;border-radius:6px;padding:2px 10px;font-size:12px;font-weight:700;margin-right:8px}
+.badge.red{background:var(--red);color:#fff}.badge.black{background:var(--dark);color:#fff}
+.trade{display:flex;flex-wrap:wrap;gap:10px;background:linear-gradient(135deg,#2c3550,#1c2230);
+color:#fff;border-radius:12px;padding:16px 18px;margin:16px 0}
+.trade .cell{min-width:120px}
+.trade .k{font-size:11px;opacity:.75}
+.trade .v{font-size:18px;font-weight:800;margin-top:2px}
+.trade .v.buy{color:#7ee2a8}.trade .v.sell{color:#ff9d97}.trade .v.hold{color:#ffd166}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0}
+.mgrid .m{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.mgrid .m .k{font-size:11px;color:var(--muted)}
+.mgrid .m .v{font-size:16px;font-weight:700;margin-top:2px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.panel>h2{margin:0 0 12px;font-size:17px}
+.panel>h2 .sub{font-size:12px;color:var(--muted);font-weight:400;margin-left:8px}
+.mreply{border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;
+padding:12px 14px;margin:10px 0;background:#fff}
+.mreply .mh{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.mreply .mh .who{font-weight:700;font-size:14px}
+.mreply .mh .mscore{margin-left:auto;background:var(--chip);border-radius:6px;padding:1px 8px;font-size:12px;font-weight:700}
+.md h2,.md h3,.md h4,.md h5{margin:12px 0 6px;font-size:15px}
+.md p{margin:6px 0;font-size:13.5px;color:#2c3345}
+.md ul{margin:6px 0;padding-left:20px;font-size:13.5px;color:#2c3345}
+.md li{margin:3px 0}
+.md strong{color:var(--ink)}
+details{border:1px solid var(--line);border-radius:10px;background:#fff;margin:10px 0;padding:0}
+details>summary{cursor:pointer;padding:12px 16px;font-weight:700;font-size:14px;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary:before{content:"▸ ";color:var(--red)}
+details[open]>summary:before{content:"▾ "}
+details>.body{padding:0 16px 14px;border-top:1px dashed var(--line)}
+.ychip{display:inline-block;background:var(--chip);border-radius:8px;padding:4px 10px;font-size:12px;margin:3px 6px 3px 0}
+.ychip b{font-size:13px}
+.news .nitem{border-top:1px dashed var(--line);padding:8px 0;font-size:13px}
+.news .nitem .t{font-weight:600}
+.news .nitem .s{color:var(--muted);font-size:12px}
+/* ── root landing page ── */
+.hero{padding:30px 26px}
+.hero-kicker{color:#ffd166;font-size:12px;font-weight:700;letter-spacing:2px;
+text-transform:uppercase;margin-bottom:8px}
+.hero h1{font-size:30px;margin:0 0 10px}
+.day-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.day-card{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);
+border-radius:12px;padding:14px 16px;transition:all .15s}
+.day-card:hover{border-color:var(--red);box-shadow:0 4px 16px rgba(216,52,44,.12);transform:translateY(-2px)}
+.day-card .d{font-weight:800;font-size:15px;color:var(--ink);display:flex;align-items:center;gap:8px}
+.day-card .m{margin-top:8px;display:flex;gap:6px}
+.day-card .m span{background:var(--chip);color:var(--muted);border-radius:6px;
+padding:2px 8px;font-size:11px}
+.latest-badge{background:var(--red);color:#fff;border-radius:6px;padding:1px 7px;
+font-size:10px;font-weight:700}
+</style>
+</head>
+<body><div class="wrap">
+<div class="backbar"><a href="../index.html">← 总览</a><a href="../hk.html">← 港股榜单</a></div>
+<header class="top">
+  <h1><span class="badge red">红榜 #6</span>理想汽车-W<span class="tk" style="opacity:.7;font-size:15px;font-weight:400;margin-left:8px">02015</span></h1>
+  <div class="sub">港股 ·  · 榜单日期 <b>2026-09-08</b> · 盘价采集 <b>2026-09-08 05:00:34</b></div>
+  <div class="price-row" style="margin-top:12px">
+    <span class="price" style="color:#fff">HK$50.40</span>
+    <span class="pct up">+5.40%</span>
+    <span class="psrc" style="color:rgba(255,255,255,.6)">实时</span>
+  </div>
+  <div class="scores" style="margin-top:10px">
+    <span>综合 <b>81.2</b></span>
+    <span>多头 <b>90</b></span>
+    <span>空头 <b>30</b></span>
+    <span>大师均值 <b>69.2</b></span>
+    <span>信号 <b>positive</b></span>
+  </div>
+</header>
+<div class="trade"><div class="cell"><div class="k">交易评级</div><span class="v buy">Buy</span></div><div class="cell"><div class="k">加仓区间</div><span class="v">48.89 ~ 50.90</span></div><div class="cell"><div class="k">目标价</div><span class="v">56.45</span></div><div class="cell"><div class="k">伯克希尔</div><span class="v">观望</span></div><div class="cell"><div class="k">伯克希尔分</div><span class="v">3.50</span></div></div>
+<div class="panel"><h2>财务指标</h2><div class="mgrid"><div class="m"><div class="k">市净率 PB</div><div class="v">1.38</div></div><div class="m"><div class="k">总市值</div><div class="v">1042</div></div><div class="m"><div class="k">营收同比</div><div class="v">-4.2%</div></div><div class="m"><div class="k">净利同比</div><div class="v">-154.1%</div></div></div></div>
+<div class="panel"><h2>历史收益</h2><span class="ychip">近1月 <b class="up">+0.60%</b></span><span class="ychip">近6月 <b class="down">-28.15%</b></span><span class="ychip">近1年 <b class="down">-45.98%</b></span></div>
+<div class="panel"><h2>大师圆桌<span class="sub">5 位</span></h2><div class="mreply"><div class="mh"><span class="who">段永平</span><span class="mscore">45</span></div><div class="md"><h4>圆桌发言：关于理想汽车的投资看法</h4><p><strong>结论</strong>：</p><p>对于理想汽车这只股票，我持谨慎态度，目前不会考虑重仓买入。</p><p><strong>理由</strong>：</p><p>首先，从大方向来看，新能源汽车市场确实处于高速增长阶段，理想汽车作为其中的参与者，也具备一定的技术创新能力和品牌影响力，这些都是支持其发展的积极因素。然而，当我们用&quot;本分&quot;和&quot;看得懂&quot;的视角来审视时，会发现一些值得警惕的地方：</p><ul><li><strong>市场竞争加剧</strong>：新能源汽车行业的竞争越来越激烈，不仅有传统车企的转型，还有新势力的不断涌现。理想汽车能否持续保持竞争优势，需要打一个问号。</li></ul><ul><li><strong>供应链风险</strong>：汽车制造对供应链的依赖程度很高，而当前全球供应链的不确定性依然存在，这可能会对公司的生产和成本控制造成影响。</li></ul><ul><li><strong>财务表现</strong>：从数据上看，理想汽车的营收和净利润同比都在下降，净利润率更是为负。这表明公司在盈利能力方面面临较大挑战。</li></ul><ul><li><strong>政策不确定性</strong>：新能源汽车行业受政策影响较大，未来政策的变化可能会对行业格局产生重大影响。</li></ul><p><strong>风险/行动建议</strong>：</p><ul><li><strong>不要被市场热度冲昏头脑</strong>：新能源汽车行业虽然前景广阔，但并不意味着所有参与者都能最终胜出。投资时需要更加谨慎，关注公司的核心竞争力和长期盈利能力。</li></ul><ul><li><strong>关注供应链管理</strong>：如果决定投资理想汽车，需要密切关注其供应链管理能力，以及如何应对潜在的供应链风险。</li></ul><ul><li><strong>耐心等待更清晰的信号</strong>：目前给出的线索还不够扎实，建议继续观察公司的财务表现和市场竞争态势，等待更明确的信号出现。</li></ul><ul><li><strong>别为了短期增长忽视长期风险</strong>：新能源汽车行业虽然增长迅速，但竞争格局尚未稳定，投资者需要警惕短期增长背后的长期风险。</li></ul><p>总之，投资需要本分，要做对的事，而不是盲目追逐热点。对于理想汽车，我会继续关注，但目前不会急于出手。</p></div></div><div class="mreply"><div class="mh"><span class="who">巴菲特</span><span class="mscore">46</span></div><div class="md"><p>各位朋友，关于理想汽车这家公司，我来说几句。</p><p>首先，我得承认，我对这个行业确实不太在行。不过，我可以从价值投资的角度来谈谈我的看法。</p><h4>结论</h4><p>现在这个价格，我不太会考虑投资理想汽车。</p><h4>理由</h4><ul><li><strong>护城河方面</strong>：虽然新能源汽车市场增长很快，但理想汽车面临的竞争非常激烈。特斯拉、比亚迪等对手都在不断挤压市场份额。理想汽车的技术创新能力和品牌影响力虽然不错，但能否长期保持竞争优势，我持怀疑态度。</li><li><strong>财务表现</strong>：从财务数据来看，理想汽车的营收和净利润都在下降，净利润率更是为负。这让我对公司的盈利能力感到担忧。没有稳定的自由现金流，企业很难在长期竞争中站稳脚跟。</li><li><strong>市场情绪</strong>：市场对新能源汽车的热情很高，这往往会推高股价。但作为价值投资者，我更关注的是公司内在价值和当前价格之间的差距。目前来看，这个差距并不明显。</li></ul><h4>风险/行动建议</h4><ul><li><strong>市场竞争风险</strong>：新能源汽车市场的竞争只会越来越激烈。理想汽车能否在这样的环境中保持增长，需要打一个问号。</li><li><strong>供应链风险</strong>：汽车行业对供应链的依赖很大，任何供应链的中断都可能对生产造成严重影响。</li><li><strong>政策不确定性</strong>：政府对新能源汽车的补贴政策可能会发生变化，这也会影响公司的盈利前景。</li></ul><h4>行动建议</h4><p>如果你是短期投资者，可能会被市场的热情所吸引。但作为长期投资者，我建议你再观察一段时间，看看理想汽车能否在竞争中建立起真正的护城河，并实现稳定的盈利能力。</p><h4>如果是芒格，他会补充什么？</h4><p>查理可能会说：&quot;投资就像在果园里摘果子，你要找到那些已经成熟的果子，而不是那些还在成长中的小树苗。&quot; 在理想汽车的案例中，我们还需要更多的时间来观察它是否能成长为一家真正伟大的公司。</p><p>总之，现在这个价格，我选择继续等待。</p></div></div><div class="mreply"><div class="mh"><span class="who">达利欧</span><span class="mscore">84</span></div><div class="md"><h4>圆桌发言：关于理想汽车-W（02015）的看法</h4><p><strong>结论</strong>：</p><p>我对理想汽车-W持谨慎乐观态度。考虑到当前的市场环境和公司的基本面，这家公司具备一定的投资价值，但同时也面临一些显著的挑战。</p><p><strong>理由</strong>：</p><p>首先，从宏观角度来看，新能源汽车市场正处于高速增长阶段，这是理想汽车-W面临的一个重要机遇。中国乃至全球市场对新能源汽车的需求持续上升，这为理想汽车提供了广阔的发展空间。</p><p>其次，理想汽车在技术创新方面表现出色，这使得他们在竞争中占据了一定的优势。技术创新不仅提升了产品的吸引力，也为公司在成本控制和效率提升方面提供了可能。</p><p>此外，理想汽车的品牌影响力也在持续提升，这有助于他们在市场中获得更高的市场份额和消费者忠诚度。</p><p>然而，我们也必须看到一些潜在的风险：</p><ul><li><strong>市场竞争加剧</strong>：随着越来越多的企业进入新能源汽车市场，竞争日益激烈，这可能会对理想汽车的利润率造成压力。</li><li><strong>供应链风险</strong>：全球供应链的不确定性仍然存在，这可能会影响公司的生产和交付能力。</li><li><strong>政策不确定性</strong>：新能源汽车行业的政策环境可能会发生变化，这需要公司具备足够的灵活性和应对能力。</li></ul><p><strong>风险/行动建议</strong>：</p><p>基于以上分析，我建议投资者在关注理想汽车-W时，应采取以下策略：</p><ul><li><strong>密切关注市场动态</strong>：由于市场竞争和供应链风险的存在，投资者需要密切关注市场动态和政策变化，以便及时调整投资策略。</li><li><strong>分散投资</strong>：为了降低单一股票的风险，建议投资者在新能源汽车板块内进行适当的分散投资。</li><li><strong>长期视角</strong>：考虑到新能源汽车市场的长期增长潜力，投资者应以长期视角来看待对理想汽车的投资，而不是短期的市场波动。</li></ul><p><strong>原则化收口</strong>：</p><p>在投资决策中，我始终坚持“原则化”的方法。对于理想汽车-W的投资决策，我建议将“极度透明”和“风险平衡”作为核心原则。这意味着在做出投资决策时，不仅要关注公司的基本面和增长潜力，还要充分考虑各种潜在的风险因素，并制定相应的应对策略。</p><p>通过这种方式，我们可以在追求收益的同时，有效地管理风险，实现更为稳健的投资回报。</p></div></div><div class="mreply"><div class="mh"><span class="who">彼得·林奇</span><span class="mscore">89</span></div><div class="md"><p>各位朋友，今天我们来聊聊理想汽车-W（02015）。我的结论是：这只股票值得密切关注，但需要谨慎对待。</p><p>首先，从行业角度来看，新能源汽车市场仍在高速增长，这是理想汽车发展的最大机遇。理想汽车在技术创新方面表现突出，比如他们在增程式电动车领域的积累，以及不断提升的品牌影响力，这些都是支持其未来增长的重要因素。</p><p>然而，我们也必须看到一些潜在的风险。目前市场竞争正在加剧，不仅有特斯拉这样的国际巨头，还有比亚迪、小鹏等本土品牌的激烈竞争，这对理想汽车的利润率构成了压力。此外，供应链风险仍然存在，尤其是在全球芯片短缺和原材料价格波动的背景下。最后，政策的不确定性也是一个需要考虑的因素，新能源汽车行业的政策支持力度可能会随着市场变化而调整。</p><p>从估值角度来看，虽然我们没有直接的市盈率数据，但市净率和市销率分别为1.38和0.88，显示出市场对其未来增长有一定的预期。但需要注意的是，理想汽车目前处于亏损状态，净利润同比大幅下降，这表明公司在短期内可能面临较大的盈利压力。</p><p>基于以上分析，我建议：</p><ul><li>如果你已经在关注这只股票，可以考虑将其纳入观察名单，但不要急于重仓买入。可以先从少量仓位开始，逐步验证你的投资逻辑。</li></ul><ul><li>密切关注公司的季度财报和交付数据，特别是毛利率的变化趋势，这将直接影响其盈利能力。</li></ul><ul><li>留意行业政策的变化，以及竞争对手的动态，这些都可能对理想汽车的长期发展产生重大影响。</li></ul><ul><li>如果你是一个风险承受能力较低的投资者，建议等待更明确的盈利信号出现后再考虑入场。</li></ul><p>总之，理想汽车是一家值得关注的公司，但投资时需要充分考虑风险因素，并保持足够的耐心和灵活性。</p></div></div><div class="mreply"><div class="mh"><span class="who">芒格</span><span class="mscore">82</span></div><div class="md"><h4>结论：</h4><p>理想汽车-W（02015）值得持续关注，但在投资决策上需要谨慎对待。</p><h4>理由：</h4><ul><li><strong>新能源汽车市场增长</strong>：理想汽车身处一个快速扩张的行业。中国乃至全球对新能源汽车的需求持续增长，这是一个巨大的市场红利。从这个角度看，理想汽车有很好的赛道优势。</li></ul><ul><li><strong>技术创新能力</strong>：理想汽车在技术研发上投入了大量资源，尤其是在智能驾驶和电池技术方面。这使得他们在产品差异化上具备一定优势，能更好地满足消费者对智能化和性能的需求。</li></ul><ul><li><strong>品牌影响力提升</strong>：理想汽车的品牌认知度正在逐步提升，市场份额也在扩大。这表明公司在市场定位和营销策略上取得了成效。</li></ul><p>然而，我们也需要关注几个重要的风险点：</p><ul><li><strong>市场竞争加剧</strong>：新能源汽车市场竞争非常激烈，不仅有传统车企的转型，还有其他新势力的崛起。理想汽车能否持续保持竞争优势，需要打一个问号。</li></ul><ul><li><strong>供应链风险</strong>：汽车行业对供应链的依赖程度极高，而目前全球供应链仍存在诸多不确定性。原材料价格波动、芯片短缺等问题都可能对理想汽车的盈利能力造成影响。</li></ul><ul><li><strong>盈利能力不足</strong>：从财报数据来看，理想汽车目前仍处于亏损状态，净利润同比大幅下降。这表明公司在短期内可能面临较大的财务压力。</li></ul><h4>风险/行动建议：</h4><ul><li><strong>避免过度集中</strong>：虽然理想汽车在新能源汽车领域具备一定优势，但考虑到市场竞争和供应链风险，不建议将投资过度集中在单一标的上。可以考虑将理想汽车作为投资组合的一部分，但需要控制仓位。</li></ul><ul><li><strong>关注财务健康度</strong>：持续关注公司的财务状况，特别是盈利能力的变化。如果未来几个季度公司仍无法实现盈利，可能需要重新评估其投资价值。</li></ul><ul><li><strong>长期视角</strong>：新能源汽车行业是一个长期赛道，短期内的波动在所难免。投资者需要有足够的耐心，关注公司的长期发展，而不是被短期市场情绪左右。</li></ul><ul><li><strong>逆向思考</strong>：问问自己，如果理想汽车失败了，可能的原因是什么？例如，竞争对手推出更具竞争力的产品，或者公司内部管理出现问题。通过逆向思考，可以更好地识别潜在风险。</li></ul><h4>总结：</h4><p>理想汽车-W（02015）是一个值得关注的投资标的，但需要谨慎对待。在投资决策时，要综合考虑行业增长、技术优势和品牌影响力，同时也要警惕市场竞争、供应链风险和盈利能力不足等风险。保持多元化的投资组合，并持续关注公司的财务健康度和长期发展。</p></div></div></div>
+<div class="panel"><h2>分析师报告<span class="sub">2 篇</span></h2><details open><summary>市场面分析</summary><div class="body"><div class="md"><h4>02015 理想汽车-W 市场面分析</h4><ul><li>红黑榜多空分数：多头 90 / 空头 30，分差 60。</li><li>当前价格：50.40。</li><li>当前交易评级：Buy。</li><li>值得加仓区间：48.89 - 50.90。</li><li>目标价格：56.45。</li><li>市场愿意给溢价的原因：新能源汽车市场高速增长；技术创新能力突出；品牌影响力持续提升。</li><li>当前主要压制因素：市场竞争加剧；供应链风险；政策不确定性。</li></ul></div></div></details><details open><summary>基本面分析</summary><div class="body"><div class="md"><h4>02015 理想汽车-W 基本面分析</h4><ul><li>报告期：暂无。</li><li>PB：1.38。</li><li>PS(TTM)：0.88。</li><li>营收同比：-4.19%。</li><li>归母净利润同比：-154.06%。</li></ul></div></div></details></div>
+<div class="panel"><h2>研究与计划</h2>
+<details><summary>基本面摘要</summary><div class="body"><div class="md"><h3>核心财务快照</h3><ul><li>报告期: 数据缺失</li><li>当前股价: 50.40 元</li><li>总市值: 1042.42 亿元</li><li>PE (TTM): 数据缺失</li><li>PB: 1.38</li><li>PS (TTM): 0.88</li><li>营业总收入(报告期): 数据缺失 亿元</li><li>营收同比增长率: -4.19%</li><li>归母净利润(报告期): 数据缺失 亿元</li><li>归母净利润同比增长率: -154.06%</li><li>ROE (TTM/估算): 数据缺失</li><li>资产负债率: 数据缺失</li><li>经营性现金流 / 归母净利润: 数据缺失</li></ul><h4>缺失字段</h4><ul><li>PE(TTM), 营业总收入, 归母净利润, ROE, 资产负债率, 经营性现金流与归母净利润比值</li></ul></div></div></details>
+<details><summary>研究计划</summary><div class="body"><div class="md"><h4>02015 理想汽车-W 研究摘要</h4><ul><li>红黑榜结论: Buy</li><li>多头/空头: 90/30</li><li>正向信号: PB 1.38</li><li>风险信号: 营收同比 -4.19%；归母净利润同比 -154.06%</li><li>榜单看多理由: 新能源汽车市场高速增长；技术创新能力突出；品牌影响力持续提升</li><li>榜单风险提示: 市场竞争加剧；供应链风险；政策不确定性</li></ul></div></div></details>
+<details><summary>交易计划</summary><div class="body"><div class="md"><h4>02015 理想汽车-W 交易计划</h4><ul><li>评级: Buy</li><li>当前价格: 50.40</li><li>值得加仓区间: 48.89 - 50.90</li><li>目标价格: 56.45</li><li>止损位: 46.37</li><li>备注: 当前为缓存降级交易卡，后续若完整 TradingAgent 结果生成，将自动覆盖。</li></ul></div></div></details>
+<details><summary>交易决策</summary><div class="body"><div class="md"><p>Buy</p><p>02015 理想汽车-W 当前使用红黑榜缓存结果生成兜底交易卡。多头 90 / 空头 30，分差 60。当前尚未取得完整 TradingAgent 长文决策，但榜单分数、财务快照和大师观点已经足够生成基础交易建议。</p></div></div></details>
+</div>
+<div class="panel"><h2>多空逻辑</h2><div class="pts"><div class="h bull">看多逻辑</div><div class="md"><p>新能源汽车市场高速增长</p><p>技术创新能力突出</p><p>品牌影响力持续提升</p></div></div><div class="pts"><div class="h bear">看空逻辑</div><div class="md"><p>市场竞争加剧</p><p>供应链风险</p><p>政策不确定性</p></div></div></div>
+<div class="panel"><h2>伯克希尔研究</h2><p><strong>理想汽车是一家具备差异化竞争优势的新能源汽车企业，但面临激烈竞争与行业周期波动风险，当前估值合理但需关注长期确定性。</strong></p><p>伯克希尔综合评分：<strong>3.5</strong></p><div class="md"><p>{&quot;verdict&quot;: &quot;观望&quot;, &quot;conservative_tip&quot;: &quot;建议观望，等待更明确盈利信号或估值回调至更安全区间。&quot;, &quot;moderate_tip&quot;: &quot;可小仓位介入，关注未来几个季度财报表现。&quot;, &quot;aggressive_tip&quot;: &quot;若看好长期发展，可逢低买入，但需控制仓位并密切跟踪基本面变化。&quot;, &quot;catalysts_plus&quot;: [&quot;盈利能力转正&quot;, &quot;市场份额持续提升&quot;, &quot;纯电车型推出并获得市场认可&quot;], &quot;catalysts_minus&quot;: [&quot;竞争加剧导致毛利率下降&quot;, &quot;政策支持力度进一步减弱&quot;, &quot;技术路线被市场淘汰&quot;]}</p></div></div>
+<div class="panel news"><h2>最新资讯</h2><div class="md"><p>整体情绪偏中性，4条利好，3条中性。</p></div><div class="nitem"><div class="t">理想汽车-W(02015.HK)：26H1业绩符合预期 交付承压 静待新品放量 - Futubull</div><div class="s">富途牛牛 · 中性</div></div><div class="nitem"><div class="t">LI AUTO-W: Date of Board Meeting</div><div class="s">Moomoo · 中性</div></div><div class="nitem"><div class="t">理想汽车-W(02015.HK)6月11日耗资1.21亿港元回购227.45万股</div><div class="s">TradingView · 利好</div></div><div class="nitem"><div class="t">理想汽车-W(02015.HK)5月26日耗资888.67万美元回购111.7万股</div><div class="s">TradingView · 利好</div></div><div class="nitem"><div class="t">理想汽车-W(02015.HK)5月29日耗资849.34万美元回购112.87万股</div><div class="s">TradingView · 利好</div></div><div class="nitem"><div class="t">理想汽车-W(02015.HK)5月20日耗资983.41万美元回购122.67万股</div><div class="s">TradingView · 利好</div></div><div class="nitem"><div class="t">理想汽车-W(02015.HK)4月24日耗资346.13万美元回购38.58万股</div><div class="s">TradingView · 利好</div></div></div>
+<footer>稳健理财Agent · 红黑榜每日归档 · 红榜 #6 · 仅供研究，不构成投资建议</footer>
+</div></body>
+</html>
