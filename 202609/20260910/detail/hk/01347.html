@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>华虹宏力(01347) 红榜 2026-09-10</title>
+<style>
+:root{--red:#d8342c;--redbg:#fdecea;--green:#1a9e54;--ink:#1c2230;--muted:#6b7385;
+--line:#e7e9ef;--card:#fff;--bg:#f4f6fa;--chip:#eef1f6;--dark:#23262d;--darkbg:#ececef}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",
+"Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);
+line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 16px 64px}
+header.top{background:linear-gradient(135deg,#1c2230,#2c3550);color:#fff;border-radius:14px;
+padding:22px 24px;margin-bottom:20px;box-shadow:0 6px 24px rgba(20,26,46,.12)}
+header.top h1{margin:0 0 6px;font-size:24px;letter-spacing:.5px}
+header.top .sub{opacity:.85;font-size:13px}
+header.top .sub b{color:#ffd166;font-weight:600}
+nav.mkt{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;
+background:rgba(244,246,250,.92);backdrop-filter:blur(6px);padding:10px 0;margin-bottom:14px}
+nav.mkt a{text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);
+padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600}
+nav.mkt a:hover{border-color:var(--red);color:var(--red)}
+.summary{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.summary .chip{background:var(--card);border:1px solid var(--line);border-radius:10px;
+padding:8px 12px;font-size:12px;color:var(--muted)}
+.summary .chip b{color:var(--ink);font-size:14px;margin-left:4px}
+section.board{margin:26px 0}
+.board-title{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:19px}
+.board-title .dot{width:10px;height:10px;border-radius:50%}
+.board-title.red .dot{background:var(--red)}
+.board-title.black .dot{background:var(--dark)}
+.board-title small{color:var(--muted);font-weight:400;font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+position:relative;transition:box-shadow .15s}
+.card:hover{box-shadow:0 4px 18px rgba(20,26,46,.08)}
+.card.red{border-top:3px solid var(--red)}
+.card.black{border-top:3px solid var(--dark)}
+.rank{position:absolute;top:10px;right:12px;font-size:26px;font-weight:800;color:#eceff5}
+.card.red .rank{color:#fbdcD9}
+.nm{font-size:16px;font-weight:700}
+.nm .tk{color:var(--muted);font-weight:500;font-size:12px;margin-left:6px}
+.tag{display:inline-block;background:var(--chip);color:var(--muted);border-radius:6px;
+padding:1px 7px;font-size:11px;margin:6px 6px 0 0}
+.price-row{display:flex;align-items:baseline;gap:10px;margin:10px 0 4px}
+.price{font-size:24px;font-weight:800}
+.pct{font-size:14px;font-weight:700;padding:2px 8px;border-radius:8px}
+.up{color:var(--red)}.down{color:var(--green)}.flat{color:var(--muted)}
+.pct.up{background:var(--redbg)}.pct.down{background:#e2f4e9}.pct.flat{background:var(--chip)}
+.psrc{font-size:11px;color:var(--muted);margin-left:auto}
+.scores{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.scores span{background:var(--chip);border-radius:6px;padding:2px 8px;font-size:11px;color:var(--muted)}
+.scores span b{color:var(--ink)}
+.pts{font-size:12.5px;margin:8px 0 0}
+.pts .h{font-weight:700;font-size:12px;margin:6px 0 2px}
+.pts .h.bull{color:var(--red)}.pts .h.bear{color:var(--green)}
+.pts ul{margin:2px 0 4px;padding-left:18px;color:#3a4152}
+.pts li{margin:1px 0}
+.masters{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:11px;color:var(--muted)}
+.masters b{color:var(--ink)}
+.summ{font-size:12.5px;color:#3a4152;background:#fafbfd;border:1px solid var(--line);
+border-radius:8px;padding:8px 10px;margin-top:8px}
+.empty{color:var(--muted);background:var(--card);border:1px dashed var(--line);
+border-radius:10px;padding:18px;text-align:center}
+footer{margin-top:34px;color:var(--muted);font-size:12px;text-align:center;line-height:1.8}
+a.lnk{color:var(--red);text-decoration:none}
+/* ── detail page ── */
+.backbar{margin-bottom:14px;font-size:13px}
+.backbar a{color:var(--muted);text-decoration:none;margin-right:14px}
+.backbar a:hover{color:var(--red)}
+.badge{display:inline-block;border-radius:6px;padding:2px 10px;font-size:12px;font-weight:700;margin-right:8px}
+.badge.red{background:var(--red);color:#fff}.badge.black{background:var(--dark);color:#fff}
+.trade{display:flex;flex-wrap:wrap;gap:10px;background:linear-gradient(135deg,#2c3550,#1c2230);
+color:#fff;border-radius:12px;padding:16px 18px;margin:16px 0}
+.trade .cell{min-width:120px}
+.trade .k{font-size:11px;opacity:.75}
+.trade .v{font-size:18px;font-weight:800;margin-top:2px}
+.trade .v.buy{color:#7ee2a8}.trade .v.sell{color:#ff9d97}.trade .v.hold{color:#ffd166}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0}
+.mgrid .m{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.mgrid .m .k{font-size:11px;color:var(--muted)}
+.mgrid .m .v{font-size:16px;font-weight:700;margin-top:2px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.panel>h2{margin:0 0 12px;font-size:17px}
+.panel>h2 .sub{font-size:12px;color:var(--muted);font-weight:400;margin-left:8px}
+.mreply{border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;
+padding:12px 14px;margin:10px 0;background:#fff}
+.mreply .mh{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.mreply .mh .who{font-weight:700;font-size:14px}
+.mreply .mh .mscore{margin-left:auto;background:var(--chip);border-radius:6px;padding:1px 8px;font-size:12px;font-weight:700}
+.md h2,.md h3,.md h4,.md h5{margin:12px 0 6px;font-size:15px}
+.md p{margin:6px 0;font-size:13.5px;color:#2c3345}
+.md ul{margin:6px 0;padding-left:20px;font-size:13.5px;color:#2c3345}
+.md li{margin:3px 0}
+.md strong{color:var(--ink)}
+details{border:1px solid var(--line);border-radius:10px;background:#fff;margin:10px 0;padding:0}
+details>summary{cursor:pointer;padding:12px 16px;font-weight:700;font-size:14px;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary:before{content:"▸ ";color:var(--red)}
+details[open]>summary:before{content:"▾ "}
+details>.body{padding:0 16px 14px;border-top:1px dashed var(--line)}
+.ychip{display:inline-block;background:var(--chip);border-radius:8px;padding:4px 10px;font-size:12px;margin:3px 6px 3px 0}
+.ychip b{font-size:13px}
+.news .nitem{border-top:1px dashed var(--line);padding:8px 0;font-size:13px}
+.news .nitem .t{font-weight:600}
+.news .nitem .s{color:var(--muted);font-size:12px}
+/* ── root landing page ── */
+.hero{padding:30px 26px}
+.hero-kicker{color:#ffd166;font-size:12px;font-weight:700;letter-spacing:2px;
+text-transform:uppercase;margin-bottom:8px}
+.hero h1{font-size:30px;margin:0 0 10px}
+.day-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.day-card{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);
+border-radius:12px;padding:14px 16px;transition:all .15s}
+.day-card:hover{border-color:var(--red);box-shadow:0 4px 16px rgba(216,52,44,.12);transform:translateY(-2px)}
+.day-card .d{font-weight:800;font-size:15px;color:var(--ink);display:flex;align-items:center;gap:8px}
+.day-card .m{margin-top:8px;display:flex;gap:6px}
+.day-card .m span{background:var(--chip);color:var(--muted);border-radius:6px;
+padding:2px 8px;font-size:11px}
+.latest-badge{background:var(--red);color:#fff;border-radius:6px;padding:1px 7px;
+font-size:10px;font-weight:700}
+</style>
+</head>
+<body><div class="wrap">
+<div class="backbar"><a href="../index.html">← 总览</a><a href="../hk.html">← 港股榜单</a></div>
+<header class="top">
+  <h1><span class="badge red">红榜 #6</span>华虹宏力<span class="tk" style="opacity:.7;font-size:15px;font-weight:400;margin-left:8px">01347</span></h1>
+  <div class="sub">港股 ·  · 榜单日期 <b>2026-09-10</b> · 盘价采集 <b>2026-09-10 05:00:15</b></div>
+  <div class="price-row" style="margin-top:12px">
+    <span class="price" style="color:#fff">HK$111.60</span>
+    <span class="pct up">+0.54%</span>
+    <span class="psrc" style="color:rgba(255,255,255,.6)">实时</span>
+  </div>
+  <div class="scores" style="margin-top:10px">
+    <span>综合 <b>81.2</b></span>
+    <span>多头 <b>87</b></span>
+    <span>空头 <b>28</b></span>
+    <span>大师均值 <b>64</b></span>
+    <span>信号 <b>positive</b></span>
+  </div>
+</header>
+<div class="trade"><div class="cell"><div class="k">交易评级</div><span class="v buy">Buy</span></div><div class="cell"><div class="k">加仓区间</div><span class="v">108.25 ~ 112.72</span></div><div class="cell"><div class="k">目标价</div><span class="v">124.99</span></div><div class="cell"><div class="k">伯克希尔</div><span class="v">观望</span></div><div class="cell"><div class="k">伯克希尔分</div><span class="v">3.50</span></div></div>
+<div class="panel"><h2>财务指标</h2><div class="mgrid"><div class="m"><div class="k">市盈率 PE</div><div class="v">241.71</div></div><div class="m"><div class="k">市净率 PB</div><div class="v">3.46</div></div><div class="m"><div class="k">ROE</div><div class="v">0.9%</div></div><div class="m"><div class="k">总市值</div><div class="v">1939</div></div><div class="m"><div class="k">营收同比</div><div class="v">4.4%</div></div><div class="m"><div class="k">净利同比</div><div class="v">40.5%</div></div></div></div>
+<div class="panel"><h2>历史收益</h2><span class="ychip">近1月 <b class="down">-21.85%</b></span><span class="ychip">近6月 <b class="up">+18.10%</b></span><span class="ychip">近1年 <b class="up">+115.44%</b></span></div>
+<div class="panel"><h2>大师圆桌<span class="sub">5 位</span></h2><div class="mreply"><div class="mh"><span class="who">段永平</span><span class="mscore">51</span></div><div class="md"><p>各位好，关于华虹宏力（01347），我谈谈我的看法。</p><h4>结论：</h4><p>目前我对华虹宏力的态度是偏中性的，既不强烈看好，也不轻易否定。这家公司所处的半导体行业确实处于高景气度阶段，技术实力也处于领先地位，市场需求旺盛，这些都是值得肯定的方面。但同时，也存在一些让我谨慎的因素。</p><h4>理由：</h4><p>首先，从&quot;做对的事&quot;的角度来看，华虹宏力所处的半导体行业无疑是一个好赛道。随着数字化转型和智能化的推进，半导体需求将持续增长，这符合长期趋势。</p><p>然而，从&quot;把事做对&quot;的角度，我有一些顾虑：</p><ul><li>估值方面，目前的市盈率（PE）超过240倍，市销率（PS）接近10倍，这样的估值水平让我不得不谨慎。即使公司处于高增长阶段，这样的估值也意味着市场对其未来增长预期非常高，一旦业绩不达预期，股价可能会面临较大压力。</li><li>地缘政治风险是一个不可忽视的因素。半导体行业受国际关系影响较大，任何地缘政治的变化都可能对公司的经营环境产生重大影响。</li><li>产能扩张带来的资金压力也需要关注。半导体行业是重资产行业，产能扩张需要大量资金投入，这可能会对公司财务状况造成压力。</li></ul><h4>风险/行动建议：</h4><ul><li>如果你是一个长期投资者，并且对半导体行业有深入理解，可以考虑将华虹宏力纳入观察名单，但目前的价格可能并不是一个好的买入时机。建议耐心等待更合适的价格出现。</li><li>如果你是一个短期投资者，需要特别注意估值风险和市场情绪的变化。半导体行业波动较大，短期内的股价可能会受到各种因素影响。</li><li>密切关注公司的产能扩张计划和财务状况，以及地缘政治环境的变化。这些因素都可能会对公司的长期发展产生重大影响。</li></ul><p>总之，投资华虹宏力需要权衡行业前景和估值风险。我的建议是，在做投资决策时，要保持平常心，不要被市场情绪左右，坚守&quot;本分&quot;，只做自己看得懂的投资。</p></div></div><div class="mreply"><div class="mh"><span class="who">巴菲特</span><span class="mscore">70</span></div><div class="md"><p>各位朋友，今天我们来聊聊华虹宏力（01347）。我的看法是，这是一家需要谨慎观察的公司。</p><p>首先，我们看到半导体行业的景气度依然很高，华虹宏力在技术研发方面也展现了不错的实力，市场需求看起来很旺盛。这些都是它的优势。但我们必须同时关注几个潜在的风险因素。</p><h4>理由</h4><p>首先，从护城河的角度来看，华虹宏力所处的半导体行业确实有较高的进入门槛，但这并不意味着它就拥有了坚固的护城河。技术研发实力固然重要，但这个行业变化很快，竞争对手也在不断追赶。我们需要问自己：十年后，华虹宏力是否还能保持这样的竞争优势？</p><p>其次，从估值角度来看，目前的市盈率（PE）高达241倍，这是一个相当高的数字。即使考虑到公司的成长性，这样的估值也意味着市场已经给予了这家公司非常乐观的预期。我们需要谨慎评估这样的预期是否合理。</p><h4>风险</h4><ul><li><strong>地缘政治风险</strong>：半导体行业受地缘政治影响较大，任何政策变化都可能对公司的运营产生重大影响。</li><li><strong>产能扩张带来的资金压力</strong>：公司计划扩大产能，这需要大量的资金投入，可能会对财务状况造成压力。</li><li><strong>行业竞争加剧</strong>：随着更多企业进入市场，竞争可能会变得更加激烈，影响公司的利润率。</li></ul><h4>行动建议</h4><p>如果你是这家公司的股东，我的建议是密切关注公司的基本面变化，特别是产能扩张的进展和市场需求的变化。如果你是考虑买入的投资者，我建议你先问问自己：现在的价格是否给你足够的安全边际？考虑到当前的估值水平，我个人会倾向于等待更好的买入时机。</p><p>最后，我想引用查理·芒格的一句话：&quot;投资就像在果园里摘果子，你不需要摘下每一个果子，只需要等待最好的那个。&quot; 在面对高估值和高风险的情况下，耐心可能是最好的策略。</p></div></div><div class="mreply"><div class="mh"><span class="who">达利欧</span><span class="mscore">82</span></div><div class="md"><p>各位同仁，我将从原则化视角分析华虹宏力的投资前景。</p><p>首先，我的核心结论是：华虹宏力是一家处于高景气赛道、但面临多重风险的公司，我持谨慎乐观态度。</p><h4>理由分析：</h4><ul><li><strong>行业基本面强劲</strong>：半导体行业正处于历史性上升周期，需求持续旺盛，这是华虹宏力的核心支撑点。从数据看，公司净利润同比增长超过40%，营收增速虽然只有4.4%，但考虑到行业周期性特征，这一表现已经体现了较强的抗周期性。</li></ul><ul><li><strong>技术优势明显</strong>：华虹宏力在技术研发方面展现出领先优势，这使其在行业竞争中占据有利位置。从估值指标看，PB 3.46倍虽然不低，但考虑到行业特性和公司地位，仍在合理区间。</li></ul><ul><li><strong>风险因素不可忽视</strong>：</li><li><strong>地缘政治风险</strong>：这是最大的不确定性因素，可能影响公司的供应链和市场准入。</li><li><strong>产能扩张压力</strong>：公司正在积极扩张产能，这虽然有利于长期发展，但短期内会带来较大的资金压力，影响财务稳健性。</li><li><strong>估值偏高</strong>：当前PE高达241倍，反映出市场对其未来增长的高预期，这本身就是一种风险。</li></ul><h4>风险与行动建议：</h4><ul><li><strong>短期风险</strong>：地缘政治因素是最大的变量。如果地缘局势恶化，可能会对股价造成冲击。建议密切关注相关政策动向，将其作为仓位调整的重要参考。</li></ul><ul><li><strong>长期机会</strong>：如果公司能够有效管理产能扩张带来的资金压力，并在技术创新上保持领先优势，其长期增长潜力值得期待。建议采用分批建仓的方式，在市场出现回调时逐步增加仓位。</li></ul><ul><li><strong>决策原则</strong>：</li><li><strong>风险分散</strong>：不要把所有资金都押注在单一标的上，特别是像华虹宏力这样波动性较大的公司。</li><li><strong>持续监控</strong>：建立定期评估机制，重点关注公司产能扩张进度、财务状况以及地缘政治环境的变化。</li></ul><h4>总结：</h4><p>华虹宏力是一家处于高景气赛道、但面临多重风险的公司。我的建议是采取&quot;谨慎乐观&quot;的策略，通过分批建仓和持续监控来平衡风险与收益。正如我常说的：&quot;Pain + Reflection = Progress&quot;，在投资决策中，我们既要看到机会，也要正视风险，并通过持续反思来优化我们的投资策略。</p></div></div><div class="mreply"><div class="mh"><span class="who">彼得·林奇</span><span class="mscore">69</span></div><div class="md"><h4>华虹宏力（01347）投资观点</h4><h5>结论：</h5><p>华虹宏力是一家让我又爱又犹豫的公司。从行业前景和公司能力来看，它有潜力成为一家令人瞩目的公司，但当前估值确实让我有些担忧。</p><h5>理由：</h5><ul><li><strong>行业前景与公司能力：</strong></li><li>半导体行业目前处于高景气周期，华虹宏力作为国内领先的芯片制造企业，享有技术研发优势和市场需求红利。从日常生活中的电子产品到新兴科技应用，芯片需求持续旺盛，这为华虹宏力提供了良好的发展环境。</li><li>公司在技术研发方面表现出色，这使得它在竞争中占据有利位置。</li></ul><ul><li><strong>估值问题：</strong></li><li>当前华虹宏力的市盈率（PE）高达241倍，这是一个令人瞠目结舌的数字。即使考虑到公司的高成长性，这个估值水平也显得过高。历史上，极高的估值往往意味着投资者对未来的预期已经非常乐观，留给股价进一步上涨的空间有限。</li><li>市净率（PB）和市销率（PS）也处于较高水平，表明市场对公司未来增长寄予厚望。</li></ul><ul><li><strong>风险因素：</strong></li><li>地缘政治风险是一个不可忽视的因素。半导体行业受国际关系影响较大，任何政策变化都可能对公司运营产生重大影响。</li><li>产能扩张带来的资金压力也不容小觑。公司需要大量资金投入以维持竞争力，这可能会影响其财务状况。</li><li>此外，行业竞争加剧也可能对华虹宏力的市场份额构成威胁。</li></ul><h5>风险/行动建议：</h5><ul><li><strong>估值风险：</strong></li><li>当前估值水平过高，建议投资者谨慎对待。如果已经持有，可以考虑在股价进一步上涨时逐步减仓，以锁定利润。</li><li>如果尚未买入，建议等待更合适的买入时机，或者寻找估值更合理的同类公司。</li></ul><ul><li><strong>长期观察：</strong></li><li>密切关注公司产能扩张计划的实施情况以及市场对产品的需求变化。如果公司能够有效管理资金压力并保持技术领先地位，未来仍有很大的增长潜力。</li><li>留意地缘政治局势的变化，这可能对半导体行业产生重大影响。</li></ul><ul><li><strong>投资笔记：</strong></li><li>记录下你买入或卖出的理由，定期回顾这些笔记，以便在市场波动时做出更明智的决策。</li></ul><p>总的来说，华虹宏力是一家值得关注的公司，但当前估值水平需要谨慎对待。投资者应保持耐心，等待更好的买入时机，或者在持有过程中做好风险管理。</p></div></div><div class="mreply"><div class="mh"><span class="who">芒格</span><span class="mscore">48</span></div><div class="md"><p>各位，我来说说对华虹宏力的看法。</p><p>先给结论：我对这只股票持谨慎乐观的态度，但不会轻易重仓。</p><p>理由如下：</p><p>首先，半导体行业目前确实处于高景气周期，这是华虹宏力的最大优势所在。从数据看，公司营收同比增长4.4%，净利润更是大幅增长40.5%，显示出强劲的增长势头。技术研发实力也是他们的核心竞争力之一，在行业内处于领先地位。</p><p>然而，我们不能只看表面数字。估值方面，241倍的市盈率实在太高了，即使考虑到公司的高成长性，这个数字也让人不安。记住，估值就像地心引力，最终会把不合理的价格拉回现实。</p><p>从逆向思维的角度，我列出了几个可能导致失败的风险点：</p><ul><li>地缘政治风险 - 半导体行业受国际局势影响极大，任何贸易摩擦都可能对公司造成冲击。</li></ul><ul><li>产能扩张风险 - 公司正在扩大产能，这需要大量资金投入。如果市场需求出现波动，可能会导致产能过剩。</li></ul><ul><li>竞争加剧 - 行业内其他公司也在积极扩张，市场份额的争夺将更加激烈。</li></ul><ul><li>估值风险 - 过高的估值意味着市场对其增长预期极高，一旦业绩不及预期，股价可能会出现大幅回调。</li></ul><p>基于以上分析，我的建议是：</p><ul><li>如果你持有这只股票，可以继续持有，但需要密切关注估值变化和行业动态。</li></ul><ul><li>如果你打算买入，建议等待更合适的时机，或者分批建仓，以降低风险。</li></ul><ul><li>记住，不要被短期的高增长冲昏头脑。投资就像打扑克，最重要的是在胜率和赔率都合适的时候下注，而不是盲目追求高回报。</li></ul><p>最后，我想提醒大家，投资中最重要的不是追求最高回报，而是避免重大损失。正如我常说的：&quot;如果我知道自己会死在哪里，我就永远不去那里。&quot; 在做出投资决策时，请始终保持理性和谨慎。</p></div></div></div>
+<div class="panel"><h2>分析师报告<span class="sub">2 篇</span></h2><details open><summary>市场面分析</summary><div class="body"><div class="md"><h4>01347 华虹宏力 市场面分析</h4><ul><li>红黑榜多空分数：多头 87 / 空头 28，分差 59。</li><li>当前价格：111.60。</li><li>当前交易评级：Buy。</li><li>值得加仓区间：108.25 - 112.72。</li><li>目标价格：124.99。</li><li>市场愿意给溢价的原因：半导体行业高景气度；技术研发实力领先；市场需求旺盛。</li><li>当前主要压制因素：地缘政治风险需警惕；产能扩张带来资金压力；行业竞争加剧。</li></ul></div></div></details><details open><summary>基本面分析</summary><div class="body"><div class="md"><h4>01347 华虹宏力 基本面分析</h4><ul><li>报告期：暂无。</li><li>PE(TTM)：241.71。</li><li>PB：3.46。</li><li>PS(TTM)：9.32。</li><li>ROE：0.87%。</li><li>营收同比：4.40%。</li><li>归母净利润同比：40.51%。</li><li>核心判断：收入仍在增长；利润端保持扩张；估值偏贵，需要更强兑现。</li></ul></div></div></details></div>
+<div class="panel"><h2>研究与计划</h2>
+<details><summary>基本面摘要</summary><div class="body"><div class="md"><h3>核心财务快照</h3><ul><li>报告期: 数据缺失</li><li>当前股价: 111.60 元</li><li>总市值: 1939.30 亿元</li><li>PE (TTM): 241.71</li><li>PB: 3.46</li><li>PS (TTM): 9.32</li><li>营业总收入(报告期): 数据缺失 亿元</li><li>营收同比增长率: 4.40%</li><li>归母净利润(报告期): 数据缺失 亿元</li><li>归母净利润同比增长率: 40.51%</li><li>ROE (TTM/估算): 0.87%</li><li>资产负债率: 数据缺失</li><li>经营性现金流 / 归母净利润: 数据缺失</li></ul><h4>缺失字段</h4><ul><li>营业总收入, 归母净利润, 资产负债率, 经营性现金流与归母净利润比值</li></ul></div></div></details>
+<details><summary>研究计划</summary><div class="body"><div class="md"><h4>01347 华虹宏力 研究摘要</h4><ul><li>红黑榜结论: Buy</li><li>多头/空头: 87/28</li><li>正向信号: 营收同比 4.40%；归母净利润同比 40.51%；PB 3.46</li><li>风险信号: ROE 0.87%；PE(TTM) 241.71</li><li>榜单看多理由: 半导体行业高景气度；技术研发实力领先；市场需求旺盛</li><li>榜单风险提示: 地缘政治风险需警惕；产能扩张带来资金压力；行业竞争加剧</li></ul></div></div></details>
+<details><summary>交易计划</summary><div class="body"><div class="md"><h4>01347 华虹宏力 交易计划</h4><ul><li>评级: Buy</li><li>当前价格: 111.60</li><li>值得加仓区间: 108.25 - 112.72</li><li>目标价格: 124.99</li><li>止损位: 102.67</li><li>备注: 当前为缓存降级交易卡，后续若完整 TradingAgent 结果生成，将自动覆盖。</li></ul></div></div></details>
+<details><summary>交易决策</summary><div class="body"><div class="md"><p>Buy</p><p>01347 华虹宏力 当前使用红黑榜缓存结果生成兜底交易卡。多头 87 / 空头 28，分差 59。当前尚未取得完整 TradingAgent 长文决策，但榜单分数、财务快照和大师观点已经足够生成基础交易建议。</p></div></div></details>
+</div>
+<div class="panel"><h2>多空逻辑</h2><div class="pts"><div class="h bull">看多逻辑</div><div class="md"><p>半导体行业高景气度</p><p>技术研发实力领先</p><p>市场需求旺盛</p></div></div><div class="pts"><div class="h bear">看空逻辑</div><div class="md"><p>地缘政治风险需警惕</p><p>产能扩张带来资金压力</p><p>行业竞争加剧</p></div></div></div>
+<div class="panel"><h2>伯克希尔研究</h2><p><strong>华虹宏力作为国内领先的半导体代工企业，具备一定护城河，但面临行业竞争加剧和周期性波动风险，当前估值合理但需关注长期增长潜力。</strong></p><p>伯克希尔综合评分：<strong>3.5</strong></p><div class="md"><p>{&quot;verdict&quot;: &quot;观望&quot;, &quot;conservative_tip&quot;: &quot;建议观望，等待更明确增长信号，当前价格区间为15-20港元。&quot;, &quot;moderate_tip&quot;: &quot;可小仓位介入，关注未来业绩增长和行业趋势变化，价格区间为18-22港元。&quot;, &quot;aggressive_tip&quot;: &quot;可适当加仓，但需控制风险，价格区间为20-25港元。&quot;, &quot;catalysts_plus&quot;: [&quot;业绩超预期增长&quot;, &quot;技术突破或新产品发布&quot;, &quot;政策利好进一步释放&quot;], &quot;catalysts_minus&quot;: [&quot;行业竞争加剧导致毛利率下降&quot;, &quot;供应链风险加剧&quot;, &quot;全球经济衰退影响需求&quot;]}</p></div></div>
+<div class="panel news"><h2>最新资讯</h2><div class="md"><p>1条新闻整体情绪为中性，无明显利多或利空因素。</p></div><div class="nitem"><div class="t">华虹宏力：关于公司高级管理人员离任的公告</div><div class="s">Moomoo · 中性</div></div></div>
+<footer>稳健理财Agent · 红黑榜每日归档 · 红榜 #6 · 仅供研究，不构成投资建议</footer>
+</div></body>
+</html>
