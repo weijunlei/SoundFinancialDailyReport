@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>信达生物(01801) 红榜 2026-09-15</title>
+<style>
+:root{--red:#d8342c;--redbg:#fdecea;--green:#1a9e54;--ink:#1c2230;--muted:#6b7385;
+--line:#e7e9ef;--card:#fff;--bg:#f4f6fa;--chip:#eef1f6;--dark:#23262d;--darkbg:#ececef}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",
+"Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);
+line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 16px 64px}
+header.top{background:linear-gradient(135deg,#1c2230,#2c3550);color:#fff;border-radius:14px;
+padding:22px 24px;margin-bottom:20px;box-shadow:0 6px 24px rgba(20,26,46,.12)}
+header.top h1{margin:0 0 6px;font-size:24px;letter-spacing:.5px}
+header.top .sub{opacity:.85;font-size:13px}
+header.top .sub b{color:#ffd166;font-weight:600}
+nav.mkt{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;
+background:rgba(244,246,250,.92);backdrop-filter:blur(6px);padding:10px 0;margin-bottom:14px}
+nav.mkt a{text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);
+padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600}
+nav.mkt a:hover{border-color:var(--red);color:var(--red)}
+.summary{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.summary .chip{background:var(--card);border:1px solid var(--line);border-radius:10px;
+padding:8px 12px;font-size:12px;color:var(--muted)}
+.summary .chip b{color:var(--ink);font-size:14px;margin-left:4px}
+section.board{margin:26px 0}
+.board-title{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:19px}
+.board-title .dot{width:10px;height:10px;border-radius:50%}
+.board-title.red .dot{background:var(--red)}
+.board-title.black .dot{background:var(--dark)}
+.board-title small{color:var(--muted);font-weight:400;font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+position:relative;transition:box-shadow .15s}
+.card:hover{box-shadow:0 4px 18px rgba(20,26,46,.08)}
+.card.red{border-top:3px solid var(--red)}
+.card.black{border-top:3px solid var(--dark)}
+.rank{position:absolute;top:10px;right:12px;font-size:26px;font-weight:800;color:#eceff5}
+.card.red .rank{color:#fbdcD9}
+.nm{font-size:16px;font-weight:700}
+.nm .tk{color:var(--muted);font-weight:500;font-size:12px;margin-left:6px}
+.tag{display:inline-block;background:var(--chip);color:var(--muted);border-radius:6px;
+padding:1px 7px;font-size:11px;margin:6px 6px 0 0}
+.price-row{display:flex;align-items:baseline;gap:10px;margin:10px 0 4px}
+.price{font-size:24px;font-weight:800}
+.pct{font-size:14px;font-weight:700;padding:2px 8px;border-radius:8px}
+.up{color:var(--red)}.down{color:var(--green)}.flat{color:var(--muted)}
+.pct.up{background:var(--redbg)}.pct.down{background:#e2f4e9}.pct.flat{background:var(--chip)}
+.psrc{font-size:11px;color:var(--muted);margin-left:auto}
+.scores{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.scores span{background:var(--chip);border-radius:6px;padding:2px 8px;font-size:11px;color:var(--muted)}
+.scores span b{color:var(--ink)}
+.pts{font-size:12.5px;margin:8px 0 0}
+.pts .h{font-weight:700;font-size:12px;margin:6px 0 2px}
+.pts .h.bull{color:var(--red)}.pts .h.bear{color:var(--green)}
+.pts ul{margin:2px 0 4px;padding-left:18px;color:#3a4152}
+.pts li{margin:1px 0}
+.masters{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:11px;color:var(--muted)}
+.masters b{color:var(--ink)}
+.summ{font-size:12.5px;color:#3a4152;background:#fafbfd;border:1px solid var(--line);
+border-radius:8px;padding:8px 10px;margin-top:8px}
+.empty{color:var(--muted);background:var(--card);border:1px dashed var(--line);
+border-radius:10px;padding:18px;text-align:center}
+footer{margin-top:34px;color:var(--muted);font-size:12px;text-align:center;line-height:1.8}
+a.lnk{color:var(--red);text-decoration:none}
+/* ── detail page ── */
+.backbar{margin-bottom:14px;font-size:13px}
+.backbar a{color:var(--muted);text-decoration:none;margin-right:14px}
+.backbar a:hover{color:var(--red)}
+.badge{display:inline-block;border-radius:6px;padding:2px 10px;font-size:12px;font-weight:700;margin-right:8px}
+.badge.red{background:var(--red);color:#fff}.badge.black{background:var(--dark);color:#fff}
+.trade{display:flex;flex-wrap:wrap;gap:10px;background:linear-gradient(135deg,#2c3550,#1c2230);
+color:#fff;border-radius:12px;padding:16px 18px;margin:16px 0}
+.trade .cell{min-width:120px}
+.trade .k{font-size:11px;opacity:.75}
+.trade .v{font-size:18px;font-weight:800;margin-top:2px}
+.trade .v.buy{color:#7ee2a8}.trade .v.sell{color:#ff9d97}.trade .v.hold{color:#ffd166}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0}
+.mgrid .m{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.mgrid .m .k{font-size:11px;color:var(--muted)}
+.mgrid .m .v{font-size:16px;font-weight:700;margin-top:2px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.panel>h2{margin:0 0 12px;font-size:17px}
+.panel>h2 .sub{font-size:12px;color:var(--muted);font-weight:400;margin-left:8px}
+.mreply{border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;
+padding:12px 14px;margin:10px 0;background:#fff}
+.mreply .mh{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.mreply .mh .who{font-weight:700;font-size:14px}
+.mreply .mh .mscore{margin-left:auto;background:var(--chip);border-radius:6px;padding:1px 8px;font-size:12px;font-weight:700}
+.md h2,.md h3,.md h4,.md h5{margin:12px 0 6px;font-size:15px}
+.md p{margin:6px 0;font-size:13.5px;color:#2c3345}
+.md ul{margin:6px 0;padding-left:20px;font-size:13.5px;color:#2c3345}
+.md li{margin:3px 0}
+.md strong{color:var(--ink)}
+details{border:1px solid var(--line);border-radius:10px;background:#fff;margin:10px 0;padding:0}
+details>summary{cursor:pointer;padding:12px 16px;font-weight:700;font-size:14px;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary:before{content:"▸ ";color:var(--red)}
+details[open]>summary:before{content:"▾ "}
+details>.body{padding:0 16px 14px;border-top:1px dashed var(--line)}
+.ychip{display:inline-block;background:var(--chip);border-radius:8px;padding:4px 10px;font-size:12px;margin:3px 6px 3px 0}
+.ychip b{font-size:13px}
+.news .nitem{border-top:1px dashed var(--line);padding:8px 0;font-size:13px}
+.news .nitem .t{font-weight:600}
+.news .nitem .s{color:var(--muted);font-size:12px}
+/* ── root landing page ── */
+.hero{padding:30px 26px}
+.hero-kicker{color:#ffd166;font-size:12px;font-weight:700;letter-spacing:2px;
+text-transform:uppercase;margin-bottom:8px}
+.hero h1{font-size:30px;margin:0 0 10px}
+.day-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.day-card{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);
+border-radius:12px;padding:14px 16px;transition:all .15s}
+.day-card:hover{border-color:var(--red);box-shadow:0 4px 16px rgba(216,52,44,.12);transform:translateY(-2px)}
+.day-card .d{font-weight:800;font-size:15px;color:var(--ink);display:flex;align-items:center;gap:8px}
+.day-card .m{margin-top:8px;display:flex;gap:6px}
+.day-card .m span{background:var(--chip);color:var(--muted);border-radius:6px;
+padding:2px 8px;font-size:11px}
+.latest-badge{background:var(--red);color:#fff;border-radius:6px;padding:1px 7px;
+font-size:10px;font-weight:700}
+</style>
+</head>
+<body><div class="wrap">
+<div class="backbar"><a href="../index.html">← 总览</a><a href="../hk.html">← 港股榜单</a></div>
+<header class="top">
+  <h1><span class="badge red">红榜 #10</span>信达生物<span class="tk" style="opacity:.7;font-size:15px;font-weight:400;margin-left:8px">01801</span></h1>
+  <div class="sub">港股 ·  · 榜单日期 <b>2026-09-15</b> · 盘价采集 <b>2026-09-15 05:00:19</b></div>
+  <div class="price-row" style="margin-top:12px">
+    <span class="price" style="color:#fff">HK$96.85</span>
+    <span class="pct up">+3.53%</span>
+    <span class="psrc" style="color:rgba(255,255,255,.6)">实时</span>
+  </div>
+  <div class="scores" style="margin-top:10px">
+    <span>综合 <b>81.2</b></span>
+    <span>多头 <b>85</b></span>
+    <span>空头 <b>20</b></span>
+    <span>大师均值 <b>69.2</b></span>
+    <span>信号 <b>positive</b></span>
+  </div>
+</header>
+<div class="trade"><div class="cell"><div class="k">交易评级</div><span class="v buy">Buy</span></div><div class="cell"><div class="k">加仓区间</div><span class="v">93.94 ~ 97.82</span></div><div class="cell"><div class="k">目标价</div><span class="v">108.47</span></div><div class="cell"><div class="k">伯克希尔</div><span class="v">买入</span></div><div class="cell"><div class="k">伯克希尔分</div><span class="v">3.50</span></div></div>
+<div class="panel"><h2>财务指标</h2><div class="mgrid"><div class="m"><div class="k">市盈率 PE</div><div class="v">118.28</div></div><div class="m"><div class="k">市净率 PB</div><div class="v">7.07</div></div><div class="m"><div class="k">ROE</div><div class="v">6.2%</div></div><div class="m"><div class="k">总市值</div><div class="v">1690</div></div><div class="m"><div class="k">营收同比</div><div class="v">20.4%</div></div><div class="m"><div class="k">净利同比</div><div class="v">51.5%</div></div></div></div>
+<div class="panel"><h2>历史收益</h2><span class="ychip">近1月 <b class="up">+1.57%</b></span><span class="ychip">近6月 <b class="up">+18.33%</b></span><span class="ychip">近1年 <b class="up">+5.21%</b></span></div>
+<div class="panel"><h2>大师圆桌<span class="sub">5 位</span></h2><div class="mreply"><div class="mh"><span class="who">段永平</span><span class="mscore">62</span></div><div class="md"><p>各位好，关于信达生物（01801），我的看法是这样的：</p><p>首先，我认为信达生物所处的生物科技领域确实是一个前景广阔的赛道，这是它的一个明显优势。从股价表现来看，近期上涨3.53%，市值超过1600亿，流动性充足，这些都显示出市场对它的认可。</p><p>然而，投资不能只看表面。我们需要问自己：这家公司做的事情是不是&quot;对的事&quot;？从我的角度，我更关注的是公司是否在&quot;做对的事&quot;以及&quot;把事做对&quot;。信达生物所处的生物科技行业，研发风险是必须考虑的重要因素。虽然它目前财务数据看起来不错，营收同比增长20.43%，净利润同比增长51.48%，但生物科技行业的特点决定了这些数据可能会因为研发进展、政策变化等因素而出现较大波动。</p><p>从估值来看，目前118倍的市盈率（PE）并不低。虽然生物科技公司往往享有较高的估值溢价，但这个水平已经处于相对高位。我们需要思考：这样的估值是否已经充分反映了公司的长期价值？</p><p>我的建议是：</p><ul><li>首先要明确自己对生物科技行业的理解程度。如果对这个领域不够熟悉，可能需要更谨慎。</li></ul><ul><li>关注公司的研发管线进展和商业化能力，这才是决定长期价值的关键。</li></ul><ul><li>考虑当前估值水平是否已经包含了足够的风险溢价。如果市场过于乐观，可能会面临估值回调的风险。</li></ul><ul><li>密切关注政策变化对行业的影响，这是生物科技领域不可忽视的风险因素。</li></ul><p>最后，我想强调的是，投资要保持&quot;本分&quot;的心态。不要因为短期股价上涨而盲目乐观，也不要因为市场情绪波动而失去理性判断。信达生物可能是一个好机会，但前提是你真的懂这家公司，并且愿意承担相应的风险。</p><p>别错过的隐含约束是：不要因为短期业绩增长而忽视长期风险，也不要把&quot;看似便宜&quot;当成&quot;本分&quot;。</p></div></div><div class="mreply"><div class="mh"><span class="who">巴菲特</span><span class="mscore">79</span></div><div class="md"><p>各位朋友，关于信达生物（01801），我想先给出我的结论：我认为这是一家值得关注的公司，但投资它需要非常谨慎。</p><p>首先，信达生物所处的生物科技行业是一个充满前景的领域。随着人口老龄化和对创新疗法的需求不断增加，这个行业有着巨大的发展空间。信达生物的股价近期表现积极，市值超过1600亿，流动性充足，这为投资者提供了一定的安全边际。</p><p>然而，我们必须深入思考这家公司的护城河。生物科技行业的竞争非常激烈，信达生物能否在研发和创新上保持领先是一个关键问题。虽然目前它的财务数据看起来不错，营收和净利润都有不错的增长，但我们要问自己：十年后，这家公司是否还能保持这样的增长势头？它的研发投入能否转化为可持续的商业成功？</p><p>在评估信达生物时，我们需要特别注意以下几点风险：</p><ul><li>行业竞争加剧：随着更多公司进入生物科技领域，信达生物可能会面临更大的竞争压力。</li><li>研发风险：生物科技行业的研发周期长，成功率不确定，这可能会影响公司的盈利能力和市场信心。</li><li>政策变化：医疗行业的政策变化可能会对公司的运营产生重大影响。</li></ul><p>基于以上分析，我的建议是：</p><p>如果你对生物科技行业有深入的了解，并且愿意承担较高的风险，那么信达生物可能是一个值得考虑的投资标的。但请务必做好充分的研究，并考虑在投资组合中保持适当的分散。</p><p>最后，我想引用查理·芒格的一句话：&quot;投资就像种植果园，你不能只看到眼前的果实，还要考虑土壤、气候和病虫害。&quot; 在投资信达生物时，我们要仔细评估它的长期竞争力和潜在风险，确保我们的投资决策是基于对公司和行业的深刻理解。</p></div></div><div class="mreply"><div class="mh"><span class="who">达利欧</span><span class="mscore">88</span></div><div class="md"><h4>发言</h4><p>各位同仁，今天我们来讨论信达生物（01801）的投资机会。我将从原则化、周期以及风险平衡的角度来分享我的观点。</p><p>首先，我的结论是：<strong>信达生物目前是一个值得关注的投资标的，偏向积极</strong>。原因如下：</p><ul><li><strong>股价表现与流动性</strong>：信达生物股价近期上涨3.53%，这表明市场对其前景持乐观态度。同时，其市值超过1600亿，流动性充足，这为投资者提供了较好的进出条件。</li></ul><ul><li><strong>行业前景与公司基本面</strong>：生物科技领域本身具有广阔的发展前景，而信达生物作为该领域的参与者，其营收同比增长20.43%，净利润同比增长51.48%，显示出强劲的增长势头。</li></ul><ul><li><strong>估值与风险平衡</strong>：尽管其市盈率（PE）高达118倍，显示出市场对其未来增长的高预期，但从原则化角度来看，高估值需要高增长来支撑，而信达生物的净利润增速似乎能够部分缓解这种担忧。此外，其市净率（PB）和市销率（PS）也处于较高水平，这提醒我们需要密切关注其研发进展和市场竞争力。</li></ul><h4>风险与行动建议</h4><p>然而，任何投资都伴随着风险，以下是我认为需要重点关注的几个方面：</p><ul><li><strong>行业竞争加剧</strong>：生物科技行业的竞争日益激烈，信达生物需要不断创新以保持其市场地位。这需要我们密切关注其研发进展和新产品上市情况。</li></ul><ul><li><strong>政策风险</strong>：医疗行业的政策变化可能对信达生物产生重大影响。我们需要密切关注相关政策动向，并评估其对公司业务的影响。</li></ul><ul><li><strong>研发风险</strong>：生物科技公司的研发周期长、投入大，失败风险较高。我们需要评估信达生物的研发管线，并对其成功概率进行独立验证。</li></ul><h4>行动建议</h4><p>基于以上分析，我建议：</p><ul><li><strong>保持密切关注</strong>：对于已经持有信达生物的投资者，建议继续持有，但需密切关注其研发进展和政策变化。</li></ul><ul><li><strong>分批建仓</strong>：对于尚未建仓的投资者，建议分批建仓，以分散风险。同时，可以考虑设置止损线，以应对潜在的市场波动。</li></ul><ul><li><strong>记录决策日志</strong>：无论最终决策如何，建议将此次分析过程在决策日志中，以便未来复盘和优化投资策略。</li></ul><h4>原则化收口</h4><p>最后，我将此次分析压成一条原则：<strong>在评估高增长、高估值公司时，需特别关注其增长可持续性，并结合行业趋势和政策环境进行综合判断。</strong> 这条原则建议大家记录在决策日志中，以便未来参考和应用。</p><p>谢谢大家。</p></div></div><div class="mreply"><div class="mh"><span class="who">彼得·林奇</span><span class="mscore">74</span></div><div class="md"><h4>圆桌发言：关于信达生物的投资观点</h4><h5>结论：</h5><p>信达生物（01801）是一家我比较看好的生物科技公司，但目前估值偏高，需要谨慎对待。</p><h5>理由：</h5><p>首先，从生活场景的角度来看，生物科技行业的前景无疑是广阔的。信达生物作为国内领先的生物制药公司，在创新药研发和商业化方面都取得了不错的成绩，股价近期也表现积极，上涨了3.53%，这表明市场对其未来发展有一定的信心。</p><p>其次，从估值角度来看，虽然信达生物的市值超过1600亿，流动性充足，但当前的市盈率（PE）高达118倍，市净率（PB）也达到了7倍，这说明市场已经给予了这家公司相当高的预期。对于生物科技公司来说，高估值往往意味着更高的风险，因为研发过程中的不确定性很高，政策变化也可能对其产生重大影响。</p><h5>风险/行动建议：</h5><ul><li><strong>研发风险</strong>：生物科技公司的核心在于研发，而研发的成功与否直接影响到公司的未来发展。信达生物虽然有不错的产品管线，但研发失败的风险依然存在，投资者需要密切关注其研发进展。</li></ul><ul><li><strong>行业竞争</strong>：生物制药行业的竞争日益激烈，信达生物面临的竞争对手不仅包括国内企业，还包括国际巨头。投资者需要评估公司在竞争中的优势和劣势。</li></ul><ul><li><strong>政策变化</strong>：医药行业受政策影响较大，医保政策、药品审批政策等都可能对信达生物的业务产生重大影响。投资者需要密切关注政策动向。</li></ul><ul><li><strong>估值风险</strong>：目前信达生物的估值偏高，投资者需要谨慎对待。如果公司未来业绩增长无法支撑当前的估值水平，股价可能会面临回调压力。</li></ul><h5>具体行动建议：</h5><p>如果你是长期投资者，并且对信达生物的未来发展有足够的信心，可以考虑在股价回调时逐步建仓。但对于短期投资者来说，目前的估值水平可能不是一个好的买入时机，建议等待更合适的价格。</p><p>总之，信达生物是一家有潜力的公司，但高估值和潜在风险需要投资者保持警惕。记住，投资生物科技公司就像种树，需要耐心和定力。</p></div></div><div class="mreply"><div class="mh"><span class="who">芒格</span><span class="mscore">43</span></div><div class="md"><p>各位同仁，关于信达生物（01801），我先说结论：当前我对这只股票持谨慎态度。</p><h4>理由：</h4><p>首先，我们来逆向思考一下。信达生物作为生物科技公司，其成功与否主要取决于两个关键点：研发成果和市场竞争力。然而，这两个领域都充满了不确定性。生物科技行业的研发周期长、失败率高，且市场竞争日益加剧。即便信达生物目前股价上涨3.53%，市值超过1600亿，流动性充足，但这些都不能完全抵消其内在风险。</p><p>从多元思维模型的角度来看，我们不仅要关注财务指标，还要考虑行业特性和政策环境。信达生物的市盈率（PE）高达118倍，远超市场平均水平，这表明市场对其未来增长抱有极高期望。然而，生物科技行业的政策变化和研发风险都可能对这种高估值构成威胁。例如，政策调整可能导致市场准入门槛提高，或研发失败可能使公司面临巨大损失。</p><p>此外，从激励机制的角度分析，生物科技公司往往依赖资本市场的持续支持来维持研发投入。这种模式在短期内可能有效，但长期来看，如果公司无法持续推出有竞争力的产品，其资金链将面临压力。</p><h4>风险：</h4><ul><li><strong>研发风险</strong>：生物科技行业的研发失败率较高，任何一个关键项目的失败都可能对股价造成重大打击。</li><li><strong>市场竞争</strong>：随着更多公司进入生物科技领域，竞争将更加激烈，可能影响信达生物的市场份额和利润率。</li><li><strong>政策风险</strong>：医疗行业的政策变化频繁，可能对公司的运营和盈利能力产生不利影响。</li><li><strong>估值风险</strong>：当前的高市盈率意味着市场对其未来增长有很高预期，任何不达预期的业绩都可能引发股价回调。</li></ul><h4>行动建议：</h4><p>基于以上分析，我建议在投资信达生物时采取以下策略：</p><ul><li><strong>分散投资</strong>：不要将所有资金投入单一生物科技公司，以降低单一项目失败带来的风险。</li><li><strong>密切关注研发进展</strong>：定期跟踪公司的研发进展和行业动态，及时调整投资策略。</li><li><strong>设定止损线</strong>：根据自身的风险承受能力，设定合理的止损线，以控制潜在损失。</li><li><strong>长期视角</strong>：生物科技公司的投资通常需要较长的持有期，投资者应具备耐心，等待研发成果的逐步兑现。</li></ul><p>总之，信达生物虽然具备一定的增长潜力，但其面临的挑战和风险也不容忽视。在投资决策中，我们应保持理性，避免被短期股价波动所左右。</p></div></div></div>
+<div class="panel"><h2>分析师报告<span class="sub">2 篇</span></h2><details open><summary>市场面分析</summary><div class="body"><div class="md"><h4>01801 信达生物 市场面分析</h4><ul><li>红黑榜多空分数：多头 85 / 空头 20，分差 65。</li><li>当前价格：96.85。</li><li>当前交易评级：Buy。</li><li>值得加仓区间：93.94 - 97.82。</li><li>目标价格：108.47。</li><li>市场愿意给溢价的原因：股价上涨3.53%，趋势积极；市值超1600亿，流动性充足；生物科技领域前景广阔。</li><li>当前主要压制因素：行业竞争可能加剧；研发风险需要关注；政策变化可能带来影响。</li></ul></div></div></details><details open><summary>基本面分析</summary><div class="body"><div class="md"><h4>01801 信达生物 基本面分析</h4><ul><li>报告期：暂无。</li><li>PE(TTM)：118.28。</li><li>PB：7.07。</li><li>PS(TTM)：9.48。</li><li>ROE：6.25%。</li><li>营收同比：20.43%。</li><li>归母净利润同比：51.48%。</li><li>核心判断：收入仍在增长；利润端保持扩张；估值偏贵，需要更强兑现。</li></ul></div></div></details></div>
+<div class="panel"><h2>研究与计划</h2>
+<details><summary>基本面摘要</summary><div class="body"><div class="md"><h3>核心财务快照</h3><ul><li>报告期: 数据缺失</li><li>当前股价: 96.85 元</li><li>总市值: 1689.88 亿元</li><li>PE (TTM): 118.28</li><li>PB: 7.07</li><li>PS (TTM): 9.48</li><li>营业总收入(报告期): 数据缺失 亿元</li><li>营收同比增长率: 20.43%</li><li>归母净利润(报告期): 数据缺失 亿元</li><li>归母净利润同比增长率: 51.48%</li><li>ROE (TTM/估算): 6.25%</li><li>资产负债率: 数据缺失</li><li>经营性现金流 / 归母净利润: 数据缺失</li></ul><h4>缺失字段</h4><ul><li>营业总收入, 归母净利润, 资产负债率, 经营性现金流与归母净利润比值</li></ul></div></div></details>
+<details><summary>研究计划</summary><div class="body"><div class="md"><h4>01801 信达生物 研究摘要</h4><ul><li>红黑榜结论: Buy</li><li>多头/空头: 85/20</li><li>正向信号: 营收同比 20.43%；归母净利润同比 51.48%；PB 7.07</li><li>风险信号: ROE 6.25%；PE(TTM) 118.28</li><li>榜单看多理由: 股价上涨3.53%，趋势积极；市值超1600亿，流动性充足；生物科技领域前景广阔</li><li>榜单风险提示: 行业竞争可能加剧；研发风险需要关注；政策变化可能带来影响</li></ul></div></div></details>
+<details><summary>交易计划</summary><div class="body"><div class="md"><h4>01801 信达生物 交易计划</h4><ul><li>评级: Buy</li><li>当前价格: 96.85</li><li>值得加仓区间: 93.94 - 97.82</li><li>目标价格: 108.47</li><li>止损位: 89.10</li><li>备注: 当前为缓存降级交易卡，后续若完整 TradingAgent 结果生成，将自动覆盖。</li></ul></div></div></details>
+<details><summary>交易决策</summary><div class="body"><div class="md"><p>Buy</p><p>01801 信达生物 当前使用红黑榜缓存结果生成兜底交易卡。多头 85 / 空头 20，分差 65。当前尚未取得完整 TradingAgent 长文决策，但榜单分数、财务快照和大师观点已经足够生成基础交易建议。</p></div></div></details>
+</div>
+<div class="panel"><h2>多空逻辑</h2><div class="pts"><div class="h bull">看多逻辑</div><div class="md"><p>股价上涨3.53%，趋势积极</p><p>市值超1600亿，流动性充足</p><p>生物科技领域前景广阔</p></div></div><div class="pts"><div class="h bear">看空逻辑</div><div class="md"><p>行业竞争可能加剧</p><p>研发风险需要关注</p><p>政策变化可能带来影响</p></div></div></div>
+<div class="panel"><h2>伯克希尔研究</h2><p><strong>信达生物是一家具有强大研发能力和商业化潜力的生物制药公司，但面临行业竞争加剧和政策风险，需关注其长期创新能力和现金流稳定性。</strong></p><p>伯克希尔综合评分：<strong>3.5</strong></p><div class="md"><p>{&quot;verdict&quot;: &quot;买入&quot;, &quot;conservative_tip&quot;: &quot;建议在PE TTM低于50倍时买入，长期持有。&quot;, &quot;moderate_tip&quot;: &quot;建议在PE TTM低于60倍时买入，中期持有。&quot;, &quot;aggressive_tip&quot;: &quot;建议在PE TTM低于70倍时买入，短期关注研发进展和商业化成果。&quot;, &quot;catalysts_plus&quot;: [&quot;新药获批上市&quot;, &quot;医保谈判结果超预期&quot;, &quot;研发管线取得重大突破&quot;], &quot;catalysts_minus&quot;: [&quot;医保谈判结果不及预期&quot;, &quot;研发失败或临床试验结果不佳&quot;, &quot;政策风险加剧&quot;]}</p></div></div>
+<div class="panel news"><h2>最新资讯</h2><div class="md"><p>整体情绪偏利好，共2条利多，1条中性，1条利空。</p></div><div class="nitem"><div class="t">Weight-loss drug marketing in China is selling medicines it can’t name</div><div class="s">Dao Insights · 利空</div></div><div class="nitem"><div class="t">Fierce Pharma Asia—Historic solid tumor CAR-T nod; Inside Pfizer, Innovent’s $10B pact; More China deals</div><div class="s">Fierce Pharma · 利好</div></div><div class="nitem"><div class="t">Mapping China’s biotech titans</div><div class="s">Tech in Asia · 中性</div></div><div class="nitem"><div class="t">Innovent and Lilly Announce Successful Expansion of Sintilimab in China National Reimbursement Drug List to Include Three Additional First-Line Indications</div><div class="s">Eli Lilly · 利好</div></div></div>
+<footer>稳健理财Agent · 红黑榜每日归档 · 红榜 #10 · 仅供研究，不构成投资建议</footer>
+</div></body>
+</html>

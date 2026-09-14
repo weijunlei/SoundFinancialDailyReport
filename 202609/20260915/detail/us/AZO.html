@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AZO(AZO) 红榜 2026-09-15</title>
+<style>
+:root{--red:#d8342c;--redbg:#fdecea;--green:#1a9e54;--ink:#1c2230;--muted:#6b7385;
+--line:#e7e9ef;--card:#fff;--bg:#f4f6fa;--chip:#eef1f6;--dark:#23262d;--darkbg:#ececef}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",
+"Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);
+line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 16px 64px}
+header.top{background:linear-gradient(135deg,#1c2230,#2c3550);color:#fff;border-radius:14px;
+padding:22px 24px;margin-bottom:20px;box-shadow:0 6px 24px rgba(20,26,46,.12)}
+header.top h1{margin:0 0 6px;font-size:24px;letter-spacing:.5px}
+header.top .sub{opacity:.85;font-size:13px}
+header.top .sub b{color:#ffd166;font-weight:600}
+nav.mkt{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;
+background:rgba(244,246,250,.92);backdrop-filter:blur(6px);padding:10px 0;margin-bottom:14px}
+nav.mkt a{text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);
+padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600}
+nav.mkt a:hover{border-color:var(--red);color:var(--red)}
+.summary{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.summary .chip{background:var(--card);border:1px solid var(--line);border-radius:10px;
+padding:8px 12px;font-size:12px;color:var(--muted)}
+.summary .chip b{color:var(--ink);font-size:14px;margin-left:4px}
+section.board{margin:26px 0}
+.board-title{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:19px}
+.board-title .dot{width:10px;height:10px;border-radius:50%}
+.board-title.red .dot{background:var(--red)}
+.board-title.black .dot{background:var(--dark)}
+.board-title small{color:var(--muted);font-weight:400;font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+position:relative;transition:box-shadow .15s}
+.card:hover{box-shadow:0 4px 18px rgba(20,26,46,.08)}
+.card.red{border-top:3px solid var(--red)}
+.card.black{border-top:3px solid var(--dark)}
+.rank{position:absolute;top:10px;right:12px;font-size:26px;font-weight:800;color:#eceff5}
+.card.red .rank{color:#fbdcD9}
+.nm{font-size:16px;font-weight:700}
+.nm .tk{color:var(--muted);font-weight:500;font-size:12px;margin-left:6px}
+.tag{display:inline-block;background:var(--chip);color:var(--muted);border-radius:6px;
+padding:1px 7px;font-size:11px;margin:6px 6px 0 0}
+.price-row{display:flex;align-items:baseline;gap:10px;margin:10px 0 4px}
+.price{font-size:24px;font-weight:800}
+.pct{font-size:14px;font-weight:700;padding:2px 8px;border-radius:8px}
+.up{color:var(--red)}.down{color:var(--green)}.flat{color:var(--muted)}
+.pct.up{background:var(--redbg)}.pct.down{background:#e2f4e9}.pct.flat{background:var(--chip)}
+.psrc{font-size:11px;color:var(--muted);margin-left:auto}
+.scores{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.scores span{background:var(--chip);border-radius:6px;padding:2px 8px;font-size:11px;color:var(--muted)}
+.scores span b{color:var(--ink)}
+.pts{font-size:12.5px;margin:8px 0 0}
+.pts .h{font-weight:700;font-size:12px;margin:6px 0 2px}
+.pts .h.bull{color:var(--red)}.pts .h.bear{color:var(--green)}
+.pts ul{margin:2px 0 4px;padding-left:18px;color:#3a4152}
+.pts li{margin:1px 0}
+.masters{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:11px;color:var(--muted)}
+.masters b{color:var(--ink)}
+.summ{font-size:12.5px;color:#3a4152;background:#fafbfd;border:1px solid var(--line);
+border-radius:8px;padding:8px 10px;margin-top:8px}
+.empty{color:var(--muted);background:var(--card);border:1px dashed var(--line);
+border-radius:10px;padding:18px;text-align:center}
+footer{margin-top:34px;color:var(--muted);font-size:12px;text-align:center;line-height:1.8}
+a.lnk{color:var(--red);text-decoration:none}
+/* ── detail page ── */
+.backbar{margin-bottom:14px;font-size:13px}
+.backbar a{color:var(--muted);text-decoration:none;margin-right:14px}
+.backbar a:hover{color:var(--red)}
+.badge{display:inline-block;border-radius:6px;padding:2px 10px;font-size:12px;font-weight:700;margin-right:8px}
+.badge.red{background:var(--red);color:#fff}.badge.black{background:var(--dark);color:#fff}
+.trade{display:flex;flex-wrap:wrap;gap:10px;background:linear-gradient(135deg,#2c3550,#1c2230);
+color:#fff;border-radius:12px;padding:16px 18px;margin:16px 0}
+.trade .cell{min-width:120px}
+.trade .k{font-size:11px;opacity:.75}
+.trade .v{font-size:18px;font-weight:800;margin-top:2px}
+.trade .v.buy{color:#7ee2a8}.trade .v.sell{color:#ff9d97}.trade .v.hold{color:#ffd166}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0}
+.mgrid .m{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.mgrid .m .k{font-size:11px;color:var(--muted)}
+.mgrid .m .v{font-size:16px;font-weight:700;margin-top:2px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.panel>h2{margin:0 0 12px;font-size:17px}
+.panel>h2 .sub{font-size:12px;color:var(--muted);font-weight:400;margin-left:8px}
+.mreply{border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;
+padding:12px 14px;margin:10px 0;background:#fff}
+.mreply .mh{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.mreply .mh .who{font-weight:700;font-size:14px}
+.mreply .mh .mscore{margin-left:auto;background:var(--chip);border-radius:6px;padding:1px 8px;font-size:12px;font-weight:700}
+.md h2,.md h3,.md h4,.md h5{margin:12px 0 6px;font-size:15px}
+.md p{margin:6px 0;font-size:13.5px;color:#2c3345}
+.md ul{margin:6px 0;padding-left:20px;font-size:13.5px;color:#2c3345}
+.md li{margin:3px 0}
+.md strong{color:var(--ink)}
+details{border:1px solid var(--line);border-radius:10px;background:#fff;margin:10px 0;padding:0}
+details>summary{cursor:pointer;padding:12px 16px;font-weight:700;font-size:14px;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary:before{content:"▸ ";color:var(--red)}
+details[open]>summary:before{content:"▾ "}
+details>.body{padding:0 16px 14px;border-top:1px dashed var(--line)}
+.ychip{display:inline-block;background:var(--chip);border-radius:8px;padding:4px 10px;font-size:12px;margin:3px 6px 3px 0}
+.ychip b{font-size:13px}
+.news .nitem{border-top:1px dashed var(--line);padding:8px 0;font-size:13px}
+.news .nitem .t{font-weight:600}
+.news .nitem .s{color:var(--muted);font-size:12px}
+/* ── root landing page ── */
+.hero{padding:30px 26px}
+.hero-kicker{color:#ffd166;font-size:12px;font-weight:700;letter-spacing:2px;
+text-transform:uppercase;margin-bottom:8px}
+.hero h1{font-size:30px;margin:0 0 10px}
+.day-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.day-card{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);
+border-radius:12px;padding:14px 16px;transition:all .15s}
+.day-card:hover{border-color:var(--red);box-shadow:0 4px 16px rgba(216,52,44,.12);transform:translateY(-2px)}
+.day-card .d{font-weight:800;font-size:15px;color:var(--ink);display:flex;align-items:center;gap:8px}
+.day-card .m{margin-top:8px;display:flex;gap:6px}
+.day-card .m span{background:var(--chip);color:var(--muted);border-radius:6px;
+padding:2px 8px;font-size:11px}
+.latest-badge{background:var(--red);color:#fff;border-radius:6px;padding:1px 7px;
+font-size:10px;font-weight:700}
+</style>
+</head>
+<body><div class="wrap">
+<div class="backbar"><a href="../index.html">← 总览</a><a href="../us.html">← 美股榜单</a></div>
+<header class="top">
+  <h1><span class="badge red">红榜 #5</span>AZO<span class="tk" style="opacity:.7;font-size:15px;font-weight:400;margin-left:8px">AZO</span></h1>
+  <div class="sub">美股 ·  · 榜单日期 <b>2026-09-15</b> · 盘价采集 <b>2026-09-15 05:00:19</b></div>
+  <div class="price-row" style="margin-top:12px">
+    <span class="price" style="color:#fff">$2,965.52</span>
+    <span class="pct up">+3.09%</span>
+    <span class="psrc" style="color:rgba(255,255,255,.6)">实时</span>
+  </div>
+  <div class="scores" style="margin-top:10px">
+    <span>综合 <b>92.5</b></span>
+    <span>多头 <b>88</b></span>
+    <span>空头 <b>25</b></span>
+    <span>大师均值 <b>56.8</b></span>
+    <span>信号 <b>positive</b></span>
+  </div>
+</header>
+<div class="trade"><div class="cell"><div class="k">交易评级</div><span class="v buy">Buy</span></div><div class="cell"><div class="k">加仓区间</div><span class="v">2,876.55 ~ 2,995.18</span></div><div class="cell"><div class="k">目标价</div><span class="v">3,321.38</span></div><div class="cell"><div class="k">伯克希尔</div><span class="v">买入</span></div><div class="cell"><div class="k">伯克希尔分</div><span class="v">4.40</span></div></div>
+<div class="panel"><h2>财务指标</h2><div class="mgrid"><div class="m"><div class="k">市盈率 PE</div><div class="v">20.41</div></div><div class="m"><div class="k">市净率 PB</div><div class="v">-17.43</div></div><div class="m"><div class="k">总市值</div><div class="v">484</div></div><div class="m"><div class="k">营收同比</div><div class="v">8.4%</div></div><div class="m"><div class="k">净利同比</div><div class="v">7.7%</div></div></div></div>
+<div class="panel"><h2>历史收益</h2><span class="ychip">近1月 <b class="down">-1.78%</b></span><span class="ychip">近6月 <b class="down">-15.00%</b></span><span class="ychip">近1年 <b class="down">-29.95%</b></span><span class="ychip">近5年 <b class="up">+85.73%</b></span></div>
+<div class="panel"><h2>大师圆桌<span class="sub">5 位</span></h2><div class="mreply"><div class="mh"><span class="who">段永平</span><span class="mscore">76</span></div><div class="md"><p>关于AZO这家公司，我来说几句。</p><h4>结论：</h4><p>我认为AZO是一家值得关注的优质公司，但需要谨慎对待当前的高估值。</p><h4>理由：</h4><ul><li><strong>商业模式清晰</strong>：作为汽车零部件零售商，AZO的业务模式简单易懂，符合我&quot;只投看得懂的好生意&quot;的原则。它受益于汽车市场的复苏，这为公司的长期发展提供了支撑。</li></ul><ul><li><strong>稳健的财务表现</strong>：从数据来看，营收同比增长8.4%，净利润同比增长7.7%，显示出良好的盈利能力。高价位消费股的特性使其在经济不确定性中表现相对稳定。</li></ul><ul><li><strong>符合本分哲学</strong>：公司专注于主营业务，没有盲目扩张或进行不相关的多元化，这符合我强调的&quot;本分&quot;理念。</li></ul><h4>风险/行动建议：</h4><ul><li><strong>高估值风险</strong>：当前20.4倍的市盈率不算低，市场可能对这种高估值进行回调修正。投资者需要做好心理准备，承受可能的波动。</li></ul><ul><li><strong>经济环境的影响</strong>：虽然AZO属于防御性较强的消费股，但消费者支出仍可能受到宏观经济环境的影响。如果经济出现较大波动，可能会影响其销售表现。</li></ul><ul><li><strong>线下门店依赖</strong>：在电商持续发展的背景下，线下门店运营模式可能面临挑战。公司需要持续优化运营效率，以应对这种结构性变化。</li></ul><p>我的建议是：</p><p>如果你已经持有AZO，可以继续持有，但需要密切关注估值变化和市场情绪。</p><p>如果你考虑买入，建议等待更合适的时机，或者分批建仓以分散风险。</p><p>记住，投资最重要的是保持平常心，不要被短期波动影响判断。长期来看，优质的公司总会给耐心持有者带来回报。</p></div></div><div class="mreply"><div class="mh"><span class="who">巴菲特</span><span class="mscore">35</span></div><div class="md"><p>各位朋友，今天我们讨论的是汽车零部件零售商 AZO 这家公司。从我个人的角度，我会给出以下看法：</p><p>首先，我得说，这家公司目前的价格让我感到不太舒服。作为价值投资者，我更关心的是价格与内在价值的差距，而不是短期的股价波动。现在 AZO 的市盈率已经超过 20 倍，这对于一家汽车零部件零售商来说，显得有些过高了。</p><p>让我解释一下我的思考过程：</p><ul><li><strong>护城河角度</strong>：AZO 作为汽车零部件零售商，确实受益于汽车市场的复苏。但这个行业本身并不具备特别强的进入壁垒，竞争者随时可能出现。此外，线下门店运营模式在电商冲击下，也面临挑战。</li></ul><ul><li><strong>安全边际角度</strong>：当前 20 倍的市盈率意味着市场对这家公司的未来增长抱有很高期望。但考虑到经济环境的不确定性，以及消费者支出可能受到的影响，我认为这个估值水平并没有给我留出足够的安全边际。</li></ul><ul><li><strong>自由现金流角度</strong>：虽然公司的营收和利润都在增长，但自由现金流的状况如何，我还需要更多信息来判断。如果自由现金流不够强劲，那么高估值就更难得到支撑。</li></ul><p>关于风险，我的看法是：</p><ul><li><strong>估值风险</strong>：当前估值已经反映了相当乐观的预期，如果业绩不及预期，市场情绪可能会迅速转变。</li><li><strong>经济风险</strong>：如果经济环境恶化，消费者可能会减少在汽车零部件上的支出，这对公司业务构成直接威胁。</li><li><strong>竞争风险</strong>：这个行业竞争激烈，新的竞争者可能会侵蚀市场份额。</li></ul><p>基于以上分析，我的建议是：</p><ul><li><strong>保持谨慎</strong>：如果已经持有，可以考虑适当减仓，等待更合适的买入时机。</li><li><strong>关注基本面</strong>：密切跟踪公司的自由现金流状况，以及管理层如何应对竞争压力。</li><li><strong>耐心等待</strong>：对于价值投资者来说，最好的机会往往出现在市场恐慌的时候。现在不妨先观察，等待更好的安全边际出现。</li></ul><p>最后，我想说，投资就像打棒球，你不需要每次都挥棒。最重要的是，只在你最有把握的时候出手。</p><p>如果查理·芒格在这里，他可能会补充说：&quot;投资就像打理果园，最重要的是选对树种，然后耐心等待果实成熟。&quot; 在 AZO 这件事上，我建议大家先观察，等待更好的时机。</p></div></div><div class="mreply"><div class="mh"><span class="who">达利欧</span><span class="mscore">53</span></div><div class="md"><h4>圆桌发言：关于 AZO 的投资观点</h4><p><strong>结论：</strong></p><p>在当前阶段，我对 AZO 的投资立场是中性的。公司的基本面表现强劲，但估值较高，且存在一些潜在风险，需要进一步观察和权衡。</p><p><strong>理由：</strong></p><ul><li><strong>强劲的基本面表现：</strong></li></ul><p>   AZO 作为汽车零部件零售商，在汽车市场复苏的背景下，营收和净利润均实现了同比增长，显示出其在行业中的竞争力和市场需求的持续性。此外，公司在高价位消费领域的表现也相对稳定，这在当前经济不确定性较高的环境下是一个积极的信号。</p><ul><li><strong>估值压力：</strong></li></ul><p>   尽管基本面表现良好，但 AZO 的估值水平较高，市盈率（PE）达到 20.41 倍，这在当前市场环境下可能会面临一定的回调压力。高估值意味着市场对公司未来的增长预期较高，任何不及预期的表现都可能导致股价波动。</p><ul><li><strong>风险因素：</strong></li><li><strong>经济环境的不确定性：</strong> 消费者支出可能受到经济环境的影响，尤其是在通胀压力和利率上升的背景下，这可能会影响 AZO 的销售增长。</li><li><strong>线下门店依赖：</strong> 公司依赖线下门店运营，这在疫情期间已经显示出一定的脆弱性。虽然目前疫情影响减弱，但未来可能的公共卫生事件仍可能对其运营构成挑战。</li></ul><p><strong>风险/行动建议：</strong></p><ul><li><strong>密切关注经济指标：</strong></li></ul><p>   投资者应密切关注宏观经济指标，特别是消费者支出和汽车市场的相关数据。这些指标的变化将直接影响 AZO 的业绩表现。</p><ul><li><strong>评估估值风险：</strong></li></ul><p>   在当前高估值水平下，投资者需要评估自身的风险承受能力。如果市场出现回调，AZO 的股价可能会受到较大影响。因此，建议在投资组合中保持一定的流动性，以便在市场波动时进行灵活调整。</p><ul><li><strong>关注公司战略调整：</strong></li></ul><p>   投资者应关注 AZO 在应对线下门店运营风险方面的战略调整，例如线上渠道的拓展和数字化转型。这些措施的实施效果将对其长期竞争力产生重要影响。</p><p><strong>原则化收口：</strong></p><p>在投资决策中，我们应遵循的原则是“风险与收益的平衡”。在 AZO 的案例中，尽管基本面强劲，但高估值和潜在风险需要我们保持警惕。建议投资者在决策时记录下自己的判断依据和预期，并在未来进行复盘，以不断优化自己的投资原则。</p><p>---</p><p><strong>补充建议：</strong></p><p>对于 AZO 的投资，建议采用“观察为主，谨慎参与”的策略。可以考虑在市场回调时逐步建仓，以降低短期波动带来的风险。同时，保持对宏观经济和公司基本面的持续关注，以便在机会出现时做出及时的反应。</p></div></div><div class="mreply"><div class="mh"><span class="who">彼得·林奇</span><span class="mscore">77</span></div><div class="md"><p>各位，今天我想谈谈AZO这家公司。我的结论是：AZO是一家值得关注的优质公司，但目前估值偏高，投资者需要谨慎对待。</p><h4>为什么这么说？</h4><p>首先，AZO作为一家汽车零部件零售商，在当前汽车市场复苏的背景下，业绩表现相当不错。营收同比增长8.4%，净利润同比增长7.7%，这说明公司的基本面是稳健的。而且，高价位消费股在经济不确定性中通常表现较为稳定，这也是一个加分项。</p><p>其次，从生活场景来看，AZO的门店遍布各地，很多消费者在需要汽车零部件时都会选择去AZO，这说明公司在消费者心中有很强的品牌认知度。这种日常观察到的生意模式，往往是长期投资的好标的。</p><h4>风险在哪里？</h4><p>然而，我们也不能忽视一些潜在的风险。首先，AZO的估值已经不算便宜，市盈率（PE）达到了20.4倍，这在当前市场环境下算是相对较高的水平。高估值意味着市场对其未来增长的预期很高，如果业绩不达预期，可能会面临回调压力。</p><p>其次，消费者支出可能会受到经济环境的影响。如果经济出现衰退，消费者可能会减少非必需品的支出，这对AZO的业绩也会造成一定的压力。</p><h4>行动建议：</h4><p>对于已经持有AZO的投资者，我的建议是继续持有，但需要密切关注公司的业绩表现和市场的整体估值水平。如果市场出现大幅回调，可以考虑适当减仓以锁定利润。</p><p>对于想要买入的投资者，我建议再等等，等到估值回调到一个更合理的水平再考虑进场。毕竟，投资不仅仅是买好的，更要买得便宜。</p><h4>总结：</h4><p>AZO是一家好公司，但目前估值偏高。投资者需要权衡其增长潜力和估值风险，谨慎做出投资决策。记住，投资是一场马拉松，而不是短跑，耐心和理性是我们最好的伙伴。</p></div></div><div class="mreply"><div class="mh"><span class="who">芒格</span><span class="mscore">43</span></div><div class="md"><h4>芒格圆桌发言：关于 AZO（AZO）的看法</h4><p>各位同仁，关于 AZO（AZO）这家公司，我将从逆向思维和多元心智模型的角度来谈谈我的看法。</p><p>首先，结论是：<strong>我持谨慎态度</strong>。尽管 AZO 在过去一段时间内股价表现强劲，并且在经济不确定性中展现出一定的稳定性，但我认为目前投资它的风险收益比并不理想。</p><h5>理由如下：</h5><ul><li><strong>强劲的股价表现</strong>：AZO 确实在过去一段时间内表现良好，股价上涨了 2.26%。作为一家高价位消费股，它在经济不确定性中表现出了一定的韧性。这与其作为汽车零部件零售商受益于汽车市场复苏有关。</li></ul><ul><li><strong>高估值问题</strong>：然而，AZO 的高估值是一个不容忽视的风险。当前 PE 值为 20.41，这在当前市场环境下显得偏高。高估值意味着市场对其未来增长有较高的预期，但一旦业绩不及预期，市场回调的压力会很大。</li></ul><ul><li><strong>消费者支出风险</strong>：尽管 AZO 在经济不确定性中表现稳定，但消费者支出仍然可能受到经济环境恶化的影响。高价位消费品的销售更容易受到消费者信心下降的冲击。</li></ul><ul><li><strong>线下门店依赖</strong>：AZO 的业务模式依赖于线下门店运营，这在当前数字化转型的趋势下，可能成为一个潜在的风险点。线上零售的竞争压力不容小觑。</li></ul><h5>风险与行动建议：</h5><ul><li><strong>高估值风险</strong>：如果市场整体出现回调，AZO 的高估值可能会使其股价面临更大的下行压力。因此，投资者需要谨慎评估当前估值是否合理。</li></ul><ul><li><strong>消费者支出风险</strong>：密切关注消费者信心指数和经济数据的变化。如果经济环境恶化，AZO 的销售可能会受到负面影响。</li></ul><ul><li><strong>线下门店运营风险</strong>：考虑 AZO 在数字化转型方面的进展。如果其在线业务发展缓慢，可能会影响其长期竞争力。</li></ul><ul><li><strong>逆向思考</strong>：从逆向思维的角度出发，我们需要思考 AZO 可能面临的最大风险是什么。我认为，最大的风险在于其高估值和消费者支出下降的叠加效应。如果这两者同时发生，AZO 的股价可能会出现较大幅度的回调。</li></ul><p>综上所述，尽管 AZO 在某些方面表现不错，但目前的价格和估值水平让我持谨慎态度。投资者在考虑投资时，应充分评估上述风险，并做好相应的风险管理。</p><p>我能错在哪？可能是低估了 AZO 在经济复苏中的增长潜力，或者对其数字化转型的进展过于悲观。</p></div></div></div>
+<div class="panel"><h2>分析师报告<span class="sub">2 篇</span></h2><details open><summary>市场面分析</summary><div class="body"><div class="md"><h4>AZO AZO 市场面分析</h4><ul><li>红黑榜多空分数：多头 88 / 空头 25，分差 63。</li><li>当前价格：2965.52。</li><li>当前交易评级：Buy。</li><li>值得加仓区间：2876.55 - 2995.18。</li><li>目标价格：3321.38。</li><li>市场愿意给溢价的原因：强劲的股价表现（+2.26%）；高价位消费股在经济不确定性中表现稳定；作为汽车零部件零售商受益于汽车市场复苏。</li><li>当前主要压制因素：高估值可能面临市场回调压力；消费者支出可能受经济环境影响；依赖线下门店运营。</li></ul></div></div></details><details open><summary>基本面分析</summary><div class="body"><div class="md"><h4>AZO AZO 基本面分析</h4><ul><li>报告期：暂无。</li><li>PE(TTM)：20.41。</li><li>PB：-17.43。</li><li>营收同比：8.40%。</li><li>归母净利润同比：7.70%。</li><li>核心判断：收入仍在增长；利润端保持扩张。</li></ul></div></div></details></div>
+<div class="panel"><h2>研究与计划</h2>
+<details><summary>基本面摘要</summary><div class="body"><div class="md"><h3>核心财务快照</h3><ul><li>报告期: 数据缺失</li><li>当前股价: 2965.52 元</li><li>总市值: 484.13 亿元</li><li>PE (TTM): 20.41</li><li>PB: -17.43</li><li>PS (TTM): 数据缺失</li><li>营业总收入(报告期): 数据缺失 亿元</li><li>营收同比增长率: 8.40%</li><li>归母净利润(报告期): 数据缺失 亿元</li><li>归母净利润同比增长率: 7.70%</li><li>ROE (TTM/估算): 数据缺失</li><li>资产负债率: 数据缺失</li><li>经营性现金流 / 归母净利润: 数据缺失</li></ul><h4>缺失字段</h4><ul><li>PS(TTM), 营业总收入, 归母净利润, ROE, 资产负债率, 经营性现金流与归母净利润比值</li></ul></div></div></details>
+<details><summary>研究计划</summary><div class="body"><div class="md"><h4>AZO AZO 研究摘要</h4><ul><li>红黑榜结论: Buy</li><li>多头/空头: 88/25</li><li>正向信号: 营收同比 8.40%；归母净利润同比 7.70%；PE(TTM) 20.41；PB -17.43</li><li>榜单看多理由: 强劲的股价表现（+2.26%）；高价位消费股在经济不确定性中表现稳定；作为汽车零部件零售商受益于汽车市场复苏</li><li>榜单风险提示: 高估值可能面临市场回调压力；消费者支出可能受经济环境影响；依赖线下门店运营</li></ul></div></div></details>
+<details><summary>交易计划</summary><div class="body"><div class="md"><h4>AZO AZO 交易计划</h4><ul><li>评级: Buy</li><li>当前价格: 2965.52</li><li>值得加仓区间: 2876.55 - 2995.18</li><li>目标价格: 3321.38</li><li>止损位: 2728.28</li><li>备注: 当前为缓存降级交易卡，后续若完整 TradingAgent 结果生成，将自动覆盖。</li></ul></div></div></details>
+<details><summary>交易决策</summary><div class="body"><div class="md"><p>Buy</p><p>AZO AZO 当前使用红黑榜缓存结果生成兜底交易卡。多头 88 / 空头 25，分差 63。当前尚未取得完整 TradingAgent 长文决策，但榜单分数、财务快照和大师观点已经足够生成基础交易建议。</p></div></div></details>
+</div>
+<div class="panel"><h2>多空逻辑</h2><div class="pts"><div class="h bull">看多逻辑</div><div class="md"><p>强劲的股价表现（+2.26%）</p><p>高价位消费股在经济不确定性中表现稳定</p><p>作为汽车零部件零售商受益于汽车市场复苏</p></div></div><div class="pts"><div class="h bear">看空逻辑</div><div class="md"><p>高估值可能面临市场回调压力</p><p>消费者支出可能受经济环境影响</p><p>依赖线下门店运营</p></div></div></div>
+<div class="panel"><h2>伯克希尔研究</h2><p><strong>AZO是一家拥有强大护城河、稳健财务表现和长期确定性的汽车配件零售巨头，但需警惕行业周期性和竞争格局变化。</strong></p><p>伯克希尔综合评分：<strong>4.4</strong></p><div class="md"><p>{&quot;verdict&quot;: &quot;买入&quot;, &quot;conservative_tip&quot;: &quot;建议在PE低于15倍时买入，目标价区间为2200-2400美元。&quot;, &quot;moderate_tip&quot;: &quot;建议在PE低于17倍时买入，目标价区间为2400-2600美元。&quot;, &quot;aggressive_tip&quot;: &quot;建议在PE低于20倍时买入，目标价区间为2600-2800美元。&quot;, &quot;catalysts_plus&quot;: [&quot;DIY市场需求超预期增长。&quot;, &quot;新能源车普及带动新配件需求。&quot;, &quot;电商渠道拓展取得突破。&quot;], &quot;catalysts_minus&quot;: [&quot;经济衰退导致汽车维修需求大幅下降。&quot;, &quot;新能源车普及速度超预期。&quot;, &quot;电商冲击加剧，市场份额下降。&quot;]}</p></div></div>
+<div class="panel news"><h2>最新资讯</h2><div class="md"><p>利空新闻占多数，共6条利空，3条利好，2条中性。</p></div><div class="nitem"><div class="t">AutoZone facing DIY headwinds in FQ4 (AZO:NYSE)</div><div class="s">Seeking Alpha · 利空</div></div><div class="nitem"><div class="t">AZO Looks 22.4% Undervalued on GF Value™ as It Approaches Q4 Ear</div><div class="s">GuruFocus · 利好</div></div><div class="nitem"><div class="t">3 Big Reasons to Love AutoZone (AZO)</div><div class="s">Yahoo Finance · 利好</div></div><div class="nitem"><div class="t">Corient Private Wealth LP Grows Stock Holdings in AutoZone, Inc. $AZO</div><div class="s">marketbeat.com · 利好</div></div><div class="nitem"><div class="t">AutoZone (AZO) Stock Looks Pricey On Earnings Yet Firm On Cash Flow</div><div class="s">simplywall.st · 中性</div></div><div class="nitem"><div class="t">Why Did INTU, BJ, AZO Stocks Tumble To 52-Week Lows?</div><div class="s">Stocktwits · 利空</div></div><div class="nitem"><div class="t">Diazo-, azo- or azoxy-compounds (HS: 292700) Product Trade, Exporters and Importers</div><div class="s">The Observatory of Economic Complexity · 中性</div></div><div class="nitem"><div class="t">Kalamazoo-Battle Creek airport to suspend commercial air service for one week</div><div class="s">WWMT · 中性</div></div></div>
+<footer>稳健理财Agent · 红黑榜每日归档 · 红榜 #5 · 仅供研究，不构成投资建议</footer>
+</div></body>
+</html>
