@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>中国海洋石油(00883) 红榜 2026-09-16</title>
+<style>
+:root{--red:#d8342c;--redbg:#fdecea;--green:#1a9e54;--ink:#1c2230;--muted:#6b7385;
+--line:#e7e9ef;--card:#fff;--bg:#f4f6fa;--chip:#eef1f6;--dark:#23262d;--darkbg:#ececef}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",
+"Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);
+line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 16px 64px}
+header.top{background:linear-gradient(135deg,#1c2230,#2c3550);color:#fff;border-radius:14px;
+padding:22px 24px;margin-bottom:20px;box-shadow:0 6px 24px rgba(20,26,46,.12)}
+header.top h1{margin:0 0 6px;font-size:24px;letter-spacing:.5px}
+header.top .sub{opacity:.85;font-size:13px}
+header.top .sub b{color:#ffd166;font-weight:600}
+nav.mkt{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;
+background:rgba(244,246,250,.92);backdrop-filter:blur(6px);padding:10px 0;margin-bottom:14px}
+nav.mkt a{text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);
+padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600}
+nav.mkt a:hover{border-color:var(--red);color:var(--red)}
+.summary{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.summary .chip{background:var(--card);border:1px solid var(--line);border-radius:10px;
+padding:8px 12px;font-size:12px;color:var(--muted)}
+.summary .chip b{color:var(--ink);font-size:14px;margin-left:4px}
+section.board{margin:26px 0}
+.board-title{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:19px}
+.board-title .dot{width:10px;height:10px;border-radius:50%}
+.board-title.red .dot{background:var(--red)}
+.board-title.black .dot{background:var(--dark)}
+.board-title small{color:var(--muted);font-weight:400;font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+position:relative;transition:box-shadow .15s}
+.card:hover{box-shadow:0 4px 18px rgba(20,26,46,.08)}
+.card.red{border-top:3px solid var(--red)}
+.card.black{border-top:3px solid var(--dark)}
+.rank{position:absolute;top:10px;right:12px;font-size:26px;font-weight:800;color:#eceff5}
+.card.red .rank{color:#fbdcD9}
+.nm{font-size:16px;font-weight:700}
+.nm .tk{color:var(--muted);font-weight:500;font-size:12px;margin-left:6px}
+.tag{display:inline-block;background:var(--chip);color:var(--muted);border-radius:6px;
+padding:1px 7px;font-size:11px;margin:6px 6px 0 0}
+.price-row{display:flex;align-items:baseline;gap:10px;margin:10px 0 4px}
+.price{font-size:24px;font-weight:800}
+.pct{font-size:14px;font-weight:700;padding:2px 8px;border-radius:8px}
+.up{color:var(--red)}.down{color:var(--green)}.flat{color:var(--muted)}
+.pct.up{background:var(--redbg)}.pct.down{background:#e2f4e9}.pct.flat{background:var(--chip)}
+.psrc{font-size:11px;color:var(--muted);margin-left:auto}
+.scores{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.scores span{background:var(--chip);border-radius:6px;padding:2px 8px;font-size:11px;color:var(--muted)}
+.scores span b{color:var(--ink)}
+.pts{font-size:12.5px;margin:8px 0 0}
+.pts .h{font-weight:700;font-size:12px;margin:6px 0 2px}
+.pts .h.bull{color:var(--red)}.pts .h.bear{color:var(--green)}
+.pts ul{margin:2px 0 4px;padding-left:18px;color:#3a4152}
+.pts li{margin:1px 0}
+.masters{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:11px;color:var(--muted)}
+.masters b{color:var(--ink)}
+.summ{font-size:12.5px;color:#3a4152;background:#fafbfd;border:1px solid var(--line);
+border-radius:8px;padding:8px 10px;margin-top:8px}
+.empty{color:var(--muted);background:var(--card);border:1px dashed var(--line);
+border-radius:10px;padding:18px;text-align:center}
+footer{margin-top:34px;color:var(--muted);font-size:12px;text-align:center;line-height:1.8}
+a.lnk{color:var(--red);text-decoration:none}
+/* ── detail page ── */
+.backbar{margin-bottom:14px;font-size:13px}
+.backbar a{color:var(--muted);text-decoration:none;margin-right:14px}
+.backbar a:hover{color:var(--red)}
+.badge{display:inline-block;border-radius:6px;padding:2px 10px;font-size:12px;font-weight:700;margin-right:8px}
+.badge.red{background:var(--red);color:#fff}.badge.black{background:var(--dark);color:#fff}
+.trade{display:flex;flex-wrap:wrap;gap:10px;background:linear-gradient(135deg,#2c3550,#1c2230);
+color:#fff;border-radius:12px;padding:16px 18px;margin:16px 0}
+.trade .cell{min-width:120px}
+.trade .k{font-size:11px;opacity:.75}
+.trade .v{font-size:18px;font-weight:800;margin-top:2px}
+.trade .v.buy{color:#7ee2a8}.trade .v.sell{color:#ff9d97}.trade .v.hold{color:#ffd166}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0}
+.mgrid .m{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.mgrid .m .k{font-size:11px;color:var(--muted)}
+.mgrid .m .v{font-size:16px;font-weight:700;margin-top:2px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.panel>h2{margin:0 0 12px;font-size:17px}
+.panel>h2 .sub{font-size:12px;color:var(--muted);font-weight:400;margin-left:8px}
+.mreply{border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;
+padding:12px 14px;margin:10px 0;background:#fff}
+.mreply .mh{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.mreply .mh .who{font-weight:700;font-size:14px}
+.mreply .mh .mscore{margin-left:auto;background:var(--chip);border-radius:6px;padding:1px 8px;font-size:12px;font-weight:700}
+.md h2,.md h3,.md h4,.md h5{margin:12px 0 6px;font-size:15px}
+.md p{margin:6px 0;font-size:13.5px;color:#2c3345}
+.md ul{margin:6px 0;padding-left:20px;font-size:13.5px;color:#2c3345}
+.md li{margin:3px 0}
+.md strong{color:var(--ink)}
+details{border:1px solid var(--line);border-radius:10px;background:#fff;margin:10px 0;padding:0}
+details>summary{cursor:pointer;padding:12px 16px;font-weight:700;font-size:14px;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary:before{content:"▸ ";color:var(--red)}
+details[open]>summary:before{content:"▾ "}
+details>.body{padding:0 16px 14px;border-top:1px dashed var(--line)}
+.ychip{display:inline-block;background:var(--chip);border-radius:8px;padding:4px 10px;font-size:12px;margin:3px 6px 3px 0}
+.ychip b{font-size:13px}
+.news .nitem{border-top:1px dashed var(--line);padding:8px 0;font-size:13px}
+.news .nitem .t{font-weight:600}
+.news .nitem .s{color:var(--muted);font-size:12px}
+/* ── root landing page ── */
+.hero{padding:30px 26px}
+.hero-kicker{color:#ffd166;font-size:12px;font-weight:700;letter-spacing:2px;
+text-transform:uppercase;margin-bottom:8px}
+.hero h1{font-size:30px;margin:0 0 10px}
+.day-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.day-card{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);
+border-radius:12px;padding:14px 16px;transition:all .15s}
+.day-card:hover{border-color:var(--red);box-shadow:0 4px 16px rgba(216,52,44,.12);transform:translateY(-2px)}
+.day-card .d{font-weight:800;font-size:15px;color:var(--ink);display:flex;align-items:center;gap:8px}
+.day-card .m{margin-top:8px;display:flex;gap:6px}
+.day-card .m span{background:var(--chip);color:var(--muted);border-radius:6px;
+padding:2px 8px;font-size:11px}
+.latest-badge{background:var(--red);color:#fff;border-radius:6px;padding:1px 7px;
+font-size:10px;font-weight:700}
+</style>
+</head>
+<body><div class="wrap">
+<div class="backbar"><a href="../index.html">← 总览</a><a href="../hk.html">← 港股榜单</a></div>
+<header class="top">
+  <h1><span class="badge red">红榜 #3</span>中国海洋石油<span class="tk" style="opacity:.7;font-size:15px;font-weight:400;margin-left:8px">00883</span></h1>
+  <div class="sub">港股 ·  · 榜单日期 <b>2026-09-16</b> · 盘价采集 <b>2026-09-16 05:00:11</b></div>
+  <div class="price-row" style="margin-top:12px">
+    <span class="price" style="color:#fff">HK$24.48</span>
+    <span class="pct up">+0.08%</span>
+    <span class="psrc" style="color:rgba(255,255,255,.6)">实时</span>
+  </div>
+  <div class="scores" style="margin-top:10px">
+    <span>综合 <b>87.5</b></span>
+    <span>多头 <b>78</b></span>
+    <span>空头 <b>20</b></span>
+    <span>大师均值 <b>57.2</b></span>
+    <span>信号 <b>positive</b></span>
+  </div>
+</header>
+<div class="trade"><div class="cell"><div class="k">交易评级</div><span class="v buy">Buy</span></div><div class="cell"><div class="k">加仓区间</div><span class="v">23.75 ~ 24.72</span></div><div class="cell"><div class="k">目标价</div><span class="v">27.42</span></div><div class="cell"><div class="k">伯克希尔</div><span class="v">买入</span></div><div class="cell"><div class="k">伯克希尔分</div><span class="v">4.00</span></div></div>
+<div class="panel"><h2>财务指标</h2><div class="mgrid"><div class="m"><div class="k">市盈率 PE</div><div class="v">7.38</div></div><div class="m"><div class="k">市净率 PB</div><div class="v">1.18</div></div><div class="m"><div class="k">ROE</div><div class="v">10.3%</div></div><div class="m"><div class="k">总市值</div><div class="v">1.2万</div></div><div class="m"><div class="k">营收同比</div><div class="v">6.3%</div></div><div class="m"><div class="k">净利同比</div><div class="v">11.0%</div></div></div></div>
+<div class="panel"><h2>历史收益</h2><span class="ychip">近1月 <b class="up">+4.04%</b></span><span class="ychip">近6月 <b class="down">-14.53%</b></span><span class="ychip">近1年 <b class="up">+36.38%</b></span></div>
+<div class="panel"><h2>大师圆桌<span class="sub">5 位</span></h2><div class="mreply"><div class="mh"><span class="who">段永平</span><span class="mscore">43</span></div><div class="md"><p>各位好，关于中国海洋石油（00883），我想从本分的角度来谈谈我的看法。</p><p>首先，我的结论是：这可能不是一个特别适合我的投资标的。主要原因在于，这家公司虽然基本面不错，但并不完全符合我&quot;只投看得懂的好生意&quot;的原则。</p><p>理由有几点：</p><ul><li>中国海洋石油作为能源行业的龙头企业，现金流稳定，抗风险能力强，这是其优势所在。但能源行业本身受国际油价波动影响较大，而油价的走势往往难以预测，这超出了我的能力圈。</li></ul><ul><li>从估值来看，目前7倍左右的市盈率，1.18倍的市净率，股息率超过6%，这些指标都显示出公司估值相对合理甚至偏低。但低估值并不等同于好的投资机会，关键还是要看未来的增长潜力。</li></ul><ul><li>公司目前缺乏明显的短期催化剂，股价弹性较弱。对于追求长期稳定回报的投资者来说，这可能不是问题，但对于希望获得更高收益弹性的投资者来说，这可能是一个需要考虑的因素。</li></ul><p>关于风险，我认为主要来自两个方面：</p><p>一是国际油价的波动风险。虽然公司作为行业龙头，有较强的抗风险能力，但油价的大幅波动仍可能对公司业绩产生较大影响。</p><p>二是行业周期性风险。能源行业具有明显的周期性特征，在当前全球经济环境下，这种周期性风险可能会被放大。</p><p>如果一定要给建议，我会说：</p><p>如果你是追求长期稳定回报的投资者，并且能够承受油价波动带来的风险，那么中国海洋石油可能是一个可以考虑的标的。但对于那些希望获得更高收益弹性，或者对能源行业缺乏深入了解的投资者来说，可能需要谨慎考虑。</p><p>最后，我想强调一点：投资最重要的是要投自己看得懂的公司。如果对某个行业或公司没有足够的了解和信心，那么即使估值看起来很有吸引力，也可能不是一个好的投资选择。正如我常说的，&quot;不做不对的事，比做对的事更重要&quot;。</p></div></div><div class="mreply"><div class="mh"><span class="who">巴菲特</span><span class="mscore">64</span></div><div class="md"><p>各位朋友，今天我们来聊聊中国海洋石油这家公司，代码是 00883。</p><p>首先，我的结论是：这是一家值得关注的公司，但需要耐心等待更好的价格。</p><p>让我说说我的理由。首先，从行业地位来看，中国海洋石油无疑是能源行业的龙头之一。它的现金流非常稳定，这在能源行业是一个重要的优势，尤其是在油价波动频繁的环境下。此外，它的抗风险能力也较强，这得益于其规模效应和相对较低的生产成本。</p><p>然而，我们也必须看到一些不足之处。目前来看，市场上缺乏短期的催化剂，这可能导致股价在短期内缺乏上涨动力。同时，由于其业务性质，股价对国际油价的波动较为敏感，这增加了投资的不确定性。</p><p>从估值角度来看，目前的市盈率（PE）约为 7.4 倍，市净率（PB）约为 1.18 倍，股息收益率约为 6%。这些数据表明，从价值投资的角度来看，这家公司有一定的吸引力，但并不是一个&quot;捡便宜&quot;的机会。</p><p>在这里，我要提醒大家，投资这样的公司需要考虑几个关键风险：</p><p>首先，国际油价的波动是一个不可忽视的因素。虽然中国海洋石油在成本控制上有一定的优势，但油价的剧烈波动仍可能对其盈利能力产生重大影响。</p><p>其次，虽然目前股息收益率看起来不错，但我们也要考虑长期可持续性。如果油价持续低迷，公司的分红政策可能面临调整。</p><p>最后，作为长期投资者，我们需要思考这家公司在未来十年甚至更长时间里的竞争力。能源行业正在经历结构性变化，包括新能源的崛起和全球碳中和趋势的加速。这些变化可能会对传统石油公司的长期前景产生影响。</p><p>基于以上分析，我的建议是：</p><ul><li>如果你对中国海洋石油感兴趣，建议继续观察，等待更好的买入时机。油价波动可能会提供一些机会。</li></ul><ul><li>在投资组合中，这家公司可以作为防御性配置的一部分，但不宜过度集中。</li></ul><ul><li>密切关注公司的资本配置策略和新能源业务的进展，这些因素可能会影响其长期竞争力。</li></ul><p>最后，我想引用查理·芒格常说的话：&quot;投资就像打棒球，你不需要每次都挥棒。&quot;在面对这样的公司时，我们需要耐心等待最佳击球点。</p></div></div><div class="mreply"><div class="mh"><span class="who">达利欧</span><span class="mscore">77</span></div><div class="md"><h4>圆桌发言：中国海洋石油（00883）</h4><p>各位同仁，今天我们来讨论一下中国海洋石油这家公司。我的总体看法是，这是一家具有相当吸引力的投资标的，但需要明确其优势和潜在风险。</p><h5>结论：</h5><p>中国海洋石油（00883）目前是一个值得关注的投资机会，尤其适合那些寻求稳定现金流和抗风险能力的投资者。然而，其短期股价上涨的催化剂有限，投资者需要保持耐心。</p><h5>理由：</h5><ul><li><strong>行业地位与现金流</strong>：中国海洋石油在能源行业中占据龙头地位，拥有稳定的现金流和较强的抗风险能力。这些因素使其在当前经济环境下显得尤为稳健。</li><li><strong>估值吸引力</strong>：从估值角度看，其市盈率（PE）约为7.4，市净率（PB）约为1.18，显示出其股价相对其基本面而言处于合理偏低水平。</li><li><strong>盈利能力</strong>：其净资产收益率（ROE）约为10.3%，净利润同比增长约11%，显示出良好的盈利能力和增长潜力。</li></ul><p>然而，我们也必须看到一些潜在的风险：</p><ul><li><strong>缺乏短期催化剂</strong>：目前市场缺乏推动其股价上涨的短期催化剂，这可能导致股价在短期内保持相对平稳。</li><li><strong>国际油价波动</strong>：作为一家能源公司，其业绩和股价不可避免地受到国际油价波动的影响，这增加了其运营环境的不确定性。</li></ul><h5>风险与行动建议：</h5><ul><li><strong>风险</strong>：短期内股价可能缺乏上涨动力，投资者需要做好长期持有的准备。此外，国际油价的波动可能对其业绩产生不利影响。</li><li><strong>行动建议</strong>：对于寻求稳定收益的投资者，可以考虑将其作为长期投资组合的一部分，但需密切关注国际油价的走势和公司基本面变化。对于风险承受能力较低的投资者，建议在当前价位上保持谨慎，逐步建仓以分散风险。</li></ul><h5>原则化收口：</h5><p>在做出投资决策时，我们应遵循的原则是：保持极度透明和开放的态度，理性评估风险与收益的平衡。对于中国海洋石油，我们可以看到其稳健的基本面和估值优势，但也需清醒认识到短期内的不确定性。因此，建议投资者在决策时记录下自己的判断依据和预期，并在未来定期复盘，以验证和调整自己的投资策略。</p><p>希望以上分析对各位有所启发。谢谢！</p></div></div><div class="mreply"><div class="mh"><span class="who">彼得·林奇</span><span class="mscore">50</span></div><div class="md"><p>各位，我来说说中国海洋石油这家公司。</p><p>首先，我的结论是：这只股票值得考虑，但需要谨慎评估。</p><h4>理由：</h4><ul><li><strong>行业地位与现金流</strong>：</li></ul><p>   中国海洋石油在能源行业处于龙头地位，拥有稳定的现金流和较强的抗风险能力。作为一家大型国企，它在资源获取和市场地位方面具有天然优势。</p><ul><li><strong>估值吸引力</strong>：</li></ul><p>   当前市盈率（PE）约为7.4，市净率（PB）约为1.18，股息率超过6%。从估值角度看，这只股票目前的价格相对便宜，尤其是对于追求稳定收益的投资者来说，具有一定的吸引力。</p><ul><li><strong>盈利能力</strong>：</li></ul><p>   公司的净利润同比增长超过10%，毛利率高达35%，显示出较强的盈利能力。</p><h4>风险：</h4><ul><li><strong>国际油价波动</strong>：</li></ul><p>   石油行业受国际油价影响较大，股价的弹性较弱。如果油价出现大幅波动，公司的盈利和股价都会受到直接影响。</p><ul><li><strong>缺乏短期催化剂</strong>：</li></ul><p>   目前来看，缺乏明显的短期催化剂来推动股价上涨。对于追求短期收益的投资者来说，这可能不是一个理想的选择。</p><ul><li><strong>成长性</strong>：</li></ul><p>   尽管公司盈利能力稳定，但营收同比增长仅为6.3%，显示出一定的成长性瓶颈。对于希望看到快速增长的投资人来说，这可能是一个需要考虑的因素。</p><h4>行动建议：</h4><ul><li><strong>长期投资者</strong>：</li></ul><p>   如果你是一个长期投资者，并且希望获得稳定的股息收入，那么这只股票值得考虑。你可以分批买入，以降低短期波动带来的风险。</p><ul><li><strong>短期投资者</strong>：</li></ul><p>   对于短期投资者来说，由于缺乏明显的催化剂和股价弹性较弱，建议观望为主，等待更明确的信号。</p><ul><li><strong>风险控制</strong>：</li></ul><p>   无论你是哪种类型的投资者，都需要密切关注国际油价的走势，以及公司管理层的战略调整。如果油价出现大幅下跌，或者公司战略出现重大变化，可能需要重新评估你的投资决策。</p><p>总的来说，中国海洋石油是一只适合长期持有的股票，但需要谨慎评估油价波动带来的风险。希望大家在做决策时，能够结合自己的投资目标和风险承受能力，做出明智的选择。</p></div></div><div class="mreply"><div class="mh"><span class="who">芒格</span><span class="mscore">52</span></div><div class="md"><p>各位，在讨论中国海洋石油（00883）时，我建议我们先反过来思考：投资这家公司可能会如何失败？</p><p>首先，国际油价的波动性是一个显著风险。尽管中海油作为能源行业的龙头企业，拥有稳定的现金流和较强的抗风险能力，但油价的大幅下跌会直接影响其盈利能力。其次，缺乏短期催化剂可能导致股价在短期内表现平平，这对于那些寻求快速回报的投资者来说可能是一个挑战。</p><p>接下来，我们来看看激励机制。中海油作为国有控股企业，其管理层激励更多来自于规模扩张和市场份额的巩固，而非单纯的股价表现。这种激励机制在一定程度上保证了公司的长期稳定发展，但也可能限制其在资本市场上追求短期股价上涨的动力。</p><p>从多元思维模型的角度来看，中海油在估值上具有一定的吸引力。当前市盈率（PE）约为7.4，低于行业平均水平，显示出一定的安全边际。同时，其净资产收益率（ROE）保持在10%以上，说明公司的盈利能力依然稳健。然而，股价弹性较弱，这意味着即使在市场整体上涨时，其股价也可能不会迅速反应。</p><p>在概率与赔率方面，中海油的股息收益率达到6%，对于长期投资者来说是一个不错的回报来源。然而，缺乏短期催化剂和油价波动的风险意味着投资者需要做好长期持有的准备。</p><p>综上所述，中海油是一家值得考虑的公司，尤其是对于那些寻求稳定收益和长期持有的投资者。然而，投资者需要意识到以下几点风险：</p><ul><li>油价波动的不可控性；</li><li>缺乏短期股价催化剂；</li><li>股价弹性较弱，可能导致资金利用率不高。</li></ul><p>我的建议是：</p><p>如果你是一个寻求稳定收益的长期投资者，并且能够接受短期内股价的波动，那么中海油是一个不错的选择。但如果你更关注短期回报，或者对油价波动风险感到不安，那么可能需要重新评估你的投资组合。</p><p>最后，我能错在哪？或许是我低估了油价波动的剧烈程度，或者高估了中海油在市场低迷时期的抗风险能力。投资决策永远需要谨慎，尤其是在面对复杂多变的国际市场时。</p></div></div></div>
+<div class="panel"><h2>分析师报告<span class="sub">2 篇</span></h2><details open><summary>市场面分析</summary><div class="body"><div class="md"><h4>00883 中国海洋石油 市场面分析</h4><ul><li>红黑榜多空分数：多头 78 / 空头 20，分差 58。</li><li>当前价格：24.48。</li><li>当前交易评级：Buy。</li><li>值得加仓区间：23.75 - 24.72。</li><li>目标价格：27.42。</li><li>市场愿意给溢价的原因：能源行业龙头地位；现金流稳定；抗风险能力强。</li><li>当前主要压制因素：缺乏短期催化剂；股价弹性较弱；受国际油价波动影响。</li></ul></div></div></details><details open><summary>基本面分析</summary><div class="body"><div class="md"><h4>00883 中国海洋石油 基本面分析</h4><ul><li>报告期：暂无。</li><li>PE(TTM)：7.38。</li><li>PB：1.18。</li><li>PS(TTM)：2.36。</li><li>ROE：10.35%。</li><li>营收同比：6.34%。</li><li>归母净利润同比：10.99%。</li><li>核心判断：盈利能力处于可接受区间；收入仍在增长；利润端保持扩张。</li></ul></div></div></details></div>
+<div class="panel"><h2>研究与计划</h2>
+<details><summary>基本面摘要</summary><div class="body"><div class="md"><h3>核心财务快照</h3><ul><li>报告期: 数据缺失</li><li>当前股价: 24.48 元</li><li>总市值: 11635.33 亿元</li><li>PE (TTM): 7.38</li><li>PB: 1.18</li><li>PS (TTM): 2.36</li><li>营业总收入(报告期): 数据缺失 亿元</li><li>营收同比增长率: 6.34%</li><li>归母净利润(报告期): 数据缺失 亿元</li><li>归母净利润同比增长率: 10.99%</li><li>ROE (TTM/估算): 10.35%</li><li>资产负债率: 数据缺失</li><li>经营性现金流 / 归母净利润: 数据缺失</li></ul><h4>缺失字段</h4><ul><li>营业总收入, 归母净利润, 资产负债率, 经营性现金流与归母净利润比值</li></ul></div></div></details>
+<details><summary>研究计划</summary><div class="body"><div class="md"><h4>00883 中国海洋石油 研究摘要</h4><ul><li>红黑榜结论: Buy</li><li>多头/空头: 78/20</li><li>正向信号: ROE 10.35%；营收同比 6.34%；归母净利润同比 10.99%；PE(TTM) 7.38</li><li>榜单看多理由: 能源行业龙头地位；现金流稳定；抗风险能力强</li><li>榜单风险提示: 缺乏短期催化剂；股价弹性较弱；受国际油价波动影响</li></ul></div></div></details>
+<details><summary>交易计划</summary><div class="body"><div class="md"><h4>00883 中国海洋石油 交易计划</h4><ul><li>评级: Buy</li><li>当前价格: 24.48</li><li>值得加仓区间: 23.75 - 24.72</li><li>目标价格: 27.42</li><li>止损位: 22.52</li><li>备注: 当前为缓存降级交易卡，后续若完整 TradingAgent 结果生成，将自动覆盖。</li></ul></div></div></details>
+<details><summary>交易决策</summary><div class="body"><div class="md"><p>Buy</p><p>00883 中国海洋石油 当前使用红黑榜缓存结果生成兜底交易卡。多头 78 / 空头 20，分差 58。当前尚未取得完整 TradingAgent 长文决策，但榜单分数、财务快照和大师观点已经足够生成基础交易建议。</p></div></div></details>
+</div>
+<div class="panel"><h2>多空逻辑</h2><div class="pts"><div class="h bull">看多逻辑</div><div class="md"><p>能源行业龙头地位</p><p>现金流稳定</p><p>抗风险能力强</p></div></div><div class="pts"><div class="h bear">看空逻辑</div><div class="md"><p>缺乏短期催化剂</p><p>股价弹性较弱</p><p>受国际油价波动影响</p></div></div></div>
+<div class="panel"><h2>伯克希尔研究</h2><p><strong>中国海洋石油是一家具有强护城河、稳健财务表现和长期增长潜力的能源巨头，适合作为防御性投资标的。</strong></p><p>伯克希尔综合评分：<strong>4.0</strong></p><div class="md"><p>{&quot;verdict&quot;: &quot;买入&quot;, &quot;conservative_tip&quot;: &quot;建议在PE TTM低于6倍时买入，长期持有。&quot;, &quot;moderate_tip&quot;: &quot;建议在PE TTM低于5倍时买入，中期持有。&quot;, &quot;aggressive_tip&quot;: &quot;建议在PE TTM低于4.5倍时买入，短期博反弹。&quot;, &quot;catalysts_plus&quot;: [&quot;油价上涨&quot;, &quot;新能源转型政策放缓&quot;, &quot;深海勘探技术突破&quot;], &quot;catalysts_minus&quot;: [&quot;新能源技术突破&quot;, &quot;环保政策趋严&quot;, &quot;地缘政治风险加剧&quot;]}</p></div></div>
+<div class="panel news"><h2>最新资讯</h2><div class="md"><p>整体情绪偏利好，共3条利多，1条利空，2条中性。</p></div><div class="nitem"><div class="t">Wind Turbine Among New Structures in Taiwan’s EEZ</div><div class="s">The Jamestown Foundation · 中性</div></div><div class="nitem"><div class="t">China Appoints Offshore Oil Exploration Veteran as CNOOC General Manager</div><div class="s">Caixin Global · 利好</div></div><div class="nitem"><div class="t">US futures and Asian shares open lower, oil prices soar as US and Israel attack Iran</div><div class="s">Taipei Times · 利好</div></div><div class="nitem"><div class="t">Rigging the Game: PRC Oil Structures Encroach on Taiwan’s Pratas Island</div><div class="s">The Jamestown Foundation · 利空</div></div><div class="nitem"><div class="t">Cnooc Earnings Likely to Remain Resilient -- Market Talk</div><div class="s">Moomoo · 利好</div></div><div class="nitem"><div class="t">China signs agreements with oil majors</div><div class="s">Taipei Times · 中性</div></div></div>
+<footer>稳健理财Agent · 红黑榜每日归档 · 红榜 #3 · 仅供研究，不构成投资建议</footer>
+</div></body>
+</html>
