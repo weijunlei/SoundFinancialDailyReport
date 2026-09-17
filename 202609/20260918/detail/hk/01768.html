@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>鸣鸣很忙(01768) 黑榜 2026-09-18</title>
+<style>
+:root{--red:#d8342c;--redbg:#fdecea;--green:#1a9e54;--ink:#1c2230;--muted:#6b7385;
+--line:#e7e9ef;--card:#fff;--bg:#f4f6fa;--chip:#eef1f6;--dark:#23262d;--darkbg:#ececef}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",
+"Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);
+line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 16px 64px}
+header.top{background:linear-gradient(135deg,#1c2230,#2c3550);color:#fff;border-radius:14px;
+padding:22px 24px;margin-bottom:20px;box-shadow:0 6px 24px rgba(20,26,46,.12)}
+header.top h1{margin:0 0 6px;font-size:24px;letter-spacing:.5px}
+header.top .sub{opacity:.85;font-size:13px}
+header.top .sub b{color:#ffd166;font-weight:600}
+nav.mkt{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;
+background:rgba(244,246,250,.92);backdrop-filter:blur(6px);padding:10px 0;margin-bottom:14px}
+nav.mkt a{text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);
+padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600}
+nav.mkt a:hover{border-color:var(--red);color:var(--red)}
+.summary{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.summary .chip{background:var(--card);border:1px solid var(--line);border-radius:10px;
+padding:8px 12px;font-size:12px;color:var(--muted)}
+.summary .chip b{color:var(--ink);font-size:14px;margin-left:4px}
+section.board{margin:26px 0}
+.board-title{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:19px}
+.board-title .dot{width:10px;height:10px;border-radius:50%}
+.board-title.red .dot{background:var(--red)}
+.board-title.black .dot{background:var(--dark)}
+.board-title small{color:var(--muted);font-weight:400;font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+position:relative;transition:box-shadow .15s}
+.card:hover{box-shadow:0 4px 18px rgba(20,26,46,.08)}
+.card.red{border-top:3px solid var(--red)}
+.card.black{border-top:3px solid var(--dark)}
+.rank{position:absolute;top:10px;right:12px;font-size:26px;font-weight:800;color:#eceff5}
+.card.red .rank{color:#fbdcD9}
+.nm{font-size:16px;font-weight:700}
+.nm .tk{color:var(--muted);font-weight:500;font-size:12px;margin-left:6px}
+.tag{display:inline-block;background:var(--chip);color:var(--muted);border-radius:6px;
+padding:1px 7px;font-size:11px;margin:6px 6px 0 0}
+.price-row{display:flex;align-items:baseline;gap:10px;margin:10px 0 4px}
+.price{font-size:24px;font-weight:800}
+.pct{font-size:14px;font-weight:700;padding:2px 8px;border-radius:8px}
+.up{color:var(--red)}.down{color:var(--green)}.flat{color:var(--muted)}
+.pct.up{background:var(--redbg)}.pct.down{background:#e2f4e9}.pct.flat{background:var(--chip)}
+.psrc{font-size:11px;color:var(--muted);margin-left:auto}
+.scores{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.scores span{background:var(--chip);border-radius:6px;padding:2px 8px;font-size:11px;color:var(--muted)}
+.scores span b{color:var(--ink)}
+.pts{font-size:12.5px;margin:8px 0 0}
+.pts .h{font-weight:700;font-size:12px;margin:6px 0 2px}
+.pts .h.bull{color:var(--red)}.pts .h.bear{color:var(--green)}
+.pts ul{margin:2px 0 4px;padding-left:18px;color:#3a4152}
+.pts li{margin:1px 0}
+.masters{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:11px;color:var(--muted)}
+.masters b{color:var(--ink)}
+.summ{font-size:12.5px;color:#3a4152;background:#fafbfd;border:1px solid var(--line);
+border-radius:8px;padding:8px 10px;margin-top:8px}
+.empty{color:var(--muted);background:var(--card);border:1px dashed var(--line);
+border-radius:10px;padding:18px;text-align:center}
+footer{margin-top:34px;color:var(--muted);font-size:12px;text-align:center;line-height:1.8}
+a.lnk{color:var(--red);text-decoration:none}
+/* ── detail page ── */
+.backbar{margin-bottom:14px;font-size:13px}
+.backbar a{color:var(--muted);text-decoration:none;margin-right:14px}
+.backbar a:hover{color:var(--red)}
+.badge{display:inline-block;border-radius:6px;padding:2px 10px;font-size:12px;font-weight:700;margin-right:8px}
+.badge.red{background:var(--red);color:#fff}.badge.black{background:var(--dark);color:#fff}
+.trade{display:flex;flex-wrap:wrap;gap:10px;background:linear-gradient(135deg,#2c3550,#1c2230);
+color:#fff;border-radius:12px;padding:16px 18px;margin:16px 0}
+.trade .cell{min-width:120px}
+.trade .k{font-size:11px;opacity:.75}
+.trade .v{font-size:18px;font-weight:800;margin-top:2px}
+.trade .v.buy{color:#7ee2a8}.trade .v.sell{color:#ff9d97}.trade .v.hold{color:#ffd166}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0}
+.mgrid .m{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.mgrid .m .k{font-size:11px;color:var(--muted)}
+.mgrid .m .v{font-size:16px;font-weight:700;margin-top:2px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.panel>h2{margin:0 0 12px;font-size:17px}
+.panel>h2 .sub{font-size:12px;color:var(--muted);font-weight:400;margin-left:8px}
+.mreply{border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;
+padding:12px 14px;margin:10px 0;background:#fff}
+.mreply .mh{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.mreply .mh .who{font-weight:700;font-size:14px}
+.mreply .mh .mscore{margin-left:auto;background:var(--chip);border-radius:6px;padding:1px 8px;font-size:12px;font-weight:700}
+.md h2,.md h3,.md h4,.md h5{margin:12px 0 6px;font-size:15px}
+.md p{margin:6px 0;font-size:13.5px;color:#2c3345}
+.md ul{margin:6px 0;padding-left:20px;font-size:13.5px;color:#2c3345}
+.md li{margin:3px 0}
+.md strong{color:var(--ink)}
+details{border:1px solid var(--line);border-radius:10px;background:#fff;margin:10px 0;padding:0}
+details>summary{cursor:pointer;padding:12px 16px;font-weight:700;font-size:14px;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary:before{content:"▸ ";color:var(--red)}
+details[open]>summary:before{content:"▾ "}
+details>.body{padding:0 16px 14px;border-top:1px dashed var(--line)}
+.ychip{display:inline-block;background:var(--chip);border-radius:8px;padding:4px 10px;font-size:12px;margin:3px 6px 3px 0}
+.ychip b{font-size:13px}
+.news .nitem{border-top:1px dashed var(--line);padding:8px 0;font-size:13px}
+.news .nitem .t{font-weight:600}
+.news .nitem .s{color:var(--muted);font-size:12px}
+/* ── root landing page ── */
+.hero{padding:30px 26px}
+.hero-kicker{color:#ffd166;font-size:12px;font-weight:700;letter-spacing:2px;
+text-transform:uppercase;margin-bottom:8px}
+.hero h1{font-size:30px;margin:0 0 10px}
+.day-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.day-card{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);
+border-radius:12px;padding:14px 16px;transition:all .15s}
+.day-card:hover{border-color:var(--red);box-shadow:0 4px 16px rgba(216,52,44,.12);transform:translateY(-2px)}
+.day-card .d{font-weight:800;font-size:15px;color:var(--ink);display:flex;align-items:center;gap:8px}
+.day-card .m{margin-top:8px;display:flex;gap:6px}
+.day-card .m span{background:var(--chip);color:var(--muted);border-radius:6px;
+padding:2px 8px;font-size:11px}
+.latest-badge{background:var(--red);color:#fff;border-radius:6px;padding:1px 7px;
+font-size:10px;font-weight:700}
+</style>
+</head>
+<body><div class="wrap">
+<div class="backbar"><a href="../index.html">← 总览</a><a href="../hk.html">← 港股榜单</a></div>
+<header class="top">
+  <h1><span class="badge black">黑榜 #1</span>鸣鸣很忙<span class="tk" style="opacity:.7;font-size:15px;font-weight:400;margin-left:8px">01768</span></h1>
+  <div class="sub">港股 ·  · 榜单日期 <b>2026-09-18</b> · 盘价采集 <b>2026-09-18 05:00:10</b></div>
+  <div class="price-row" style="margin-top:12px">
+    <span class="price" style="color:#fff">HK$361.60</span>
+    <span class="pct down">-0.06%</span>
+    <span class="psrc" style="color:rgba(255,255,255,.6)">实时</span>
+  </div>
+  <div class="scores" style="margin-top:10px">
+    <span>综合 <b>26.2</b></span>
+    <span>多头 <b>45</b></span>
+    <span>空头 <b>80</b></span>
+    <span>大师均值 <b>67.8</b></span>
+    <span>信号 <b>negative</b></span>
+  </div>
+</header>
+<div class="trade"><div class="cell"><div class="k">交易评级</div><span class="v hold">Reduce</span></div><div class="cell"><div class="k">加仓区间</div><span class="v">325.44 ~ 339.90</span></div><div class="cell"><div class="k">伯克希尔</div><span class="v">观望</span></div><div class="cell"><div class="k">伯克希尔分</div><span class="v">2.50</span></div></div>
+<div class="panel"><h2>财务指标</h2><div class="mgrid"><div class="m"><div class="k">市盈率 PE</div><div class="v">18.77</div></div><div class="m"><div class="k">市净率 PB</div><div class="v">4.83</div></div><div class="m"><div class="k">ROE</div><div class="v">20.1%</div></div><div class="m"><div class="k">总市值</div><div class="v">788</div></div><div class="m"><div class="k">营收同比</div><div class="v">25.5%</div></div><div class="m"><div class="k">净利同比</div><div class="v">58.5%</div></div></div></div>
+<div class="panel"><h2>历史收益</h2><span class="ychip">近1月 <b class="down">-9.60%</b></span><span class="ychip">近6月 <b class="down">-8.78%</b></span><span class="ychip">近1年 <b class="down">-9.60%</b></span></div>
+<div class="panel"><h2>大师圆桌<span class="sub">5 位</span></h2><div class="mreply"><div class="mh"><span class="who">段永平</span><span class="mscore">35</span></div><div class="md"><p>关于鸣鸣很忙（01768）这只股票，我有一些看法。</p><p>首先，我必须承认，这家公司所处的行业确实充满想象空间，市场关注度也高，这可能是它吸引投资者注意力的原因。但从我们做投资的角度来看，更需要关注的是公司的基本面和商业模式是否扎实。</p><p>目前来看，这家公司的估值已经相当高了，市盈率接近19倍，市净率超过4.8倍。虽然营收和净利润同比都有不错的增长，ROE也达到20%，但这些数据还不足以支撑如此高的估值。更重要的是，这家公司的商业模式还没有得到充分验证。</p><h4>核心判断：</h4><p>如果用&quot;本分&quot;和&quot;看得懂&quot;的标准来衡量，我认为目前投资这只股票的风险是偏高的。我们做投资，首先要确保自己真正理解这家公司是做什么的，以及它的长期竞争力在哪里。就目前的信息来看，我对这个问题的答案还不够清晰。</p><h4>风险提示：</h4><ul><li>估值过高可能透支了未来多年的增长预期</li><li>商业模式尚未得到验证，存在较大不确定性</li><li>高关注度往往伴随着高波动性，投资者需要做好心理准备</li></ul><h4>行动建议：</h4><p>如果是我，我会选择暂时观望，直到公司的商业模式更加清晰，或者估值回到一个更合理的水平。投资中最重要的不是抓住每一个机会，而是避免犯大的错误。在看不清的时候，选择不做往往是更明智的做法。</p><h4>别错过的隐含约束：</h4><p>不要因为市场热度而忽视了对基本面的深入研究。投资中，&quot;不懂不做&quot;的原则永远值得坚守。</p></div></div><div class="mreply"><div class="mh"><span class="who">巴菲特</span><span class="mscore">75</span></div><div class="md"><p>各位同仁，我来说说对鸣鸣很忙（01768）的看法。</p><p>我的结论是：现在不是买入的好时机。虽然这家公司身处新兴行业，概念吸引人，市场流动性也不错，但价格已经过高，商业模式也还需要时间来验证。</p><p>让我解释一下理由。首先，我们投资一家公司，要看它的护城河，也就是可持续的竞争优势。从目前的信息来看，鸣鸣很忙的商业模式还没有完全确立，能否在未来持续创造价值还是个未知数。其次，我们投资是为了获得长期稳定的回报，而不是短期的概念炒作。目前的估值已经透支了未来多年的预期，18倍的市盈率对于一个尚未证明自身商业模式的公司来说，风险是相当高的。</p><p>再看看风险。首先是估值风险，现在的价格已经反映了过多的乐观预期。其次是经营风险，商业模式尚未得到验证，意味着未来可能面临各种不确定性和挑战。作为价值投资者，我更倾向于在价格合理、商业模式清晰的时候再考虑投资。</p><p>我的建议是：耐心等待。观察这家公司能否在未来几年内证明其商业模式的可行性和盈利能力。如果价格回落到更合理的水平，并且商业模式得到验证，那才是更好的投资时机。正如我常说的，投资就像打棒球，你不需要每次都挥棒，只需要等待那个最甜的机会。</p><p>如果查理·芒格在这里，他可能会补充说：&quot;投资就像经营果园，不要急着摘那些还没成熟的果子。&quot;耐心和纪律是我们最好的伙伴。</p></div></div><div class="mreply"><div class="mh"><span class="who">达利欧</span><span class="mscore">88</span></div><div class="md"><p>各位同仁，今天我们来讨论一下鸣鸣很忙（01768）这只股票。</p><p>首先，我的结论是：对这只股票持谨慎态度。虽然它具备一些吸引人的特点，但从整体风险收益比来看，目前并不是一个理想的投资标的。</p><h4>理由：</h4><ul><li><strong>多头逻辑：</strong></li><li>这家公司处于新兴行业赛道，市场对其未来增长空间抱有较高期待。这种概念驱动确实能吸引大量资金流入。</li><li>同时，它的市场关注度较高，流动性相对较好。这意味着投资者可以更灵活地进出市场，不容易遇到流动性陷阱。</li></ul><ul><li><strong>空头风险：</strong></li><li>然而，当前的估值水平过高，市盈率（PE）达到近19倍，市净率（PB）更是超过4.8倍。这表明市场已经提前透支了未来相当一段时间的预期收益。</li><li>更重要的是，它的商业模式尚未得到充分验证。尽管有概念支撑，但缺乏可靠的盈利路径和可持续性。这让我想起过去一些类似的公司，它们在初期获得大量关注，但最终因为无法兑现承诺而遭遇困境。</li></ul><h4>风险与行动建议：</h4><ul><li><strong>风险：</strong></li><li>主要风险在于估值回调的压力。如果市场情绪发生变化，或者公司业绩不及预期，股价可能会出现大幅波动。</li><li>此外，新兴行业往往面临监管风险和技术变革的挑战，这些都可能对公司的长期发展构成威胁。</li></ul><ul><li><strong>行动建议：</strong></li><li>对于想要投资这只股票的人，我建议采取&quot;极度透明&quot;的原则：密切关注公司的基本面变化，特别是其商业模式验证的进展。</li><li>可以考虑采用&quot;算法决策&quot;的方法，设定明确的买入和卖出条件，而不是盲目追涨。</li><li>从宏观角度来看，当前市场处于债务周期的后期阶段，流动性收紧的风险在增加。因此，在投资组合中保持适当的防御性配置是明智的。</li></ul><h4>总结原则：</h4><p>在投资中，我们应当遵循&quot;Pain + Reflection = Progress&quot;的原则。对于这只股票，目前的估值水平意味着较高的潜在痛苦，而其商业模式的不确定性则要求我们进行更深入的反思。因此，在做出投资决策之前，务必进行充分的尽职调查，并考虑设置严格的风险控制措施。</p><p>希望这些分析对大家有所帮助。谢谢。</p></div></div><div class="mreply"><div class="mh"><span class="who">彼得·林奇</span><span class="mscore">82</span></div><div class="md"><p>各位朋友，关于鸣鸣很忙（01768），我先说结论：我认为这只股票目前的价格有点贵了，估值过高。不过，这并不意味着它完全没有投资价值，只是我们需要谨慎对待。</p><h4>为什么这么说？</h4><p>首先，从行业角度来看，这家公司处于一个新兴行业，市场关注度很高，流动性也不错。这确实带来了想象空间，就像我以前提到的“故事股”一样，容易吸引投资者的目光。而且，从财务数据来看，它的营收和净利润增长都相当强劲，ROE 达到 20%，这些指标都显示出公司有一定的成长性。</p><p>然而，问题在于估值。目前的 PE 是 18 倍，PB 是 4.8 倍，这些数字在我看来已经有点高了。我们需要考虑的是，这个估值是否已经透支了未来的增长预期？毕竟，商业模式还没有得到充分的验证。我们不能仅仅因为一个新兴行业的概念就盲目乐观。</p><h4>风险在哪里？</h4><p>最大的风险在于估值过高。如果市场情绪发生变化，或者公司的业绩增长不如预期，股价可能会面临较大的回调压力。此外，商业模式尚未完全验证，这意味着我们还不能确定公司是否能够在激烈的市场竞争中持续保持优势。</p><h4>行动建议：</h4><ul><li><strong>耐心等待</strong>：如果你已经持有这只股票，建议密切关注公司的业绩表现和市场动态。如果股价继续上涨，可以考虑逐步减仓，落袋为安。</li><li><strong>深入调研</strong>：如果你对这只股票感兴趣，建议进行更深入的调研，特别是关注公司的商业模式和市场竞争情况。可以去实地考察一下，看看公司的产品和服务在市场上的接受度如何。</li><li><strong>分批买入</strong>：如果你决定投资，可以考虑分批买入，而不是一次性重仓。这样可以降低风险，同时也能在股价回调时有机会补仓。</li></ul><p>总之，投资这只股票需要谨慎，不要被新兴行业的概念冲昏头脑。记住，买股票就是买公司，最终还是要看公司的基本面和盈利能力。希望大家都能做出明智的投资决策。</p></div></div><div class="mreply"><div class="mh"><span class="who">芒格</span><span class="mscore">59</span></div><div class="md"><p>各位，今天讨论的是 01768 鸣鸣很忙这家公司。我先给出我的结论：目前我对这只股票持中立态度，既不强烈看好，也不建议立即介入。让我们来深入分析一下。</p><h4>理由分析：</h4><p>首先，从积极的角度来看，这家公司身处新兴行业，市场关注度高，流动性相对较好。这种新兴行业的概念通常会带来一些想象空间，吸引投资者的眼球。此外，其营收同比增长 25.5%，净利润同比增长 58.5%，这些数据看起来相当不错。</p><p>然而，从逆向思维的角度出发，我们必须思考&quot;这家公司可能如何失败&quot;。首先，估值过高是一个显著的风险。当前市盈率（PE）为 18.77，市净率（PB）为 4.83，这些指标显示市场已经对其未来增长给予了相当高的预期。如果这些预期未能实现，股价可能会面临大幅回调。其次，其商业模式尚未得到充分验证。尽管营收和利润增长迅速，但这种增长是否可持续，是否能够转化为长期竞争优势，仍需进一步观察。</p><p>从多元思维模型的角度来看，我们还需要考虑行业竞争格局、技术变革风险以及宏观经济环境的影响。新兴行业往往伴随着高竞争压力和技术不确定性，这些都可能对公司的长期发展构成挑战。</p><h4>风险与行动建议：</h4><ul><li><strong>估值风险</strong>：当前估值已经透支了未来相当一部分的增长预期。如果公司未能持续实现高增长，股价可能会面临较大压力。</li></ul><ul><li><strong>商业模式验证</strong>：需要密切关注公司商业模式的可持续性，尤其是其盈利能力是否能够持续提升。当前净利润率为 4.98%，虽然有所增长，但仍然处于相对较低的水平。</li></ul><ul><li><strong>行业与竞争风险</strong>：新兴行业通常伴随着高竞争和技术变革风险。公司需要在技术研发、市场拓展等方面持续投入，以保持竞争优势。</li></ul><h4>行动建议：</h4><p>对于投资者而言，目前不建议盲目追高。如果已经持有，可以考虑在股价回调时适当加仓，但需严格控制仓位，避免过度集中。对于尚未介入的投资者，建议耐心等待更好的入场时机，或者寻找其他估值更为合理的投资标的。</p><p>最后，我想强调的是，投资决策应基于深入的分析和理性的判断，而不是一时的市场情绪或短期波动。正如我常说的：&quot;如果我知道自己死在哪里，我就永远不去那里。&quot; 在投资中，识别并避开风险，往往比追求短期收益更为重要。</p></div></div></div>
+<div class="panel"><h2>分析师报告<span class="sub">2 篇</span></h2><details open><summary>市场面分析</summary><div class="body"><div class="md"><h4>01768 鸣鸣很忙 市场面分析</h4><ul><li>红黑榜多空分数：多头 45 / 空头 80，分差 -35。</li><li>当前价格：361.60。</li><li>当前交易评级：Reduce。</li><li>值得加仓区间：325.44 - 339.90。</li><li>风险控制位：318.21。</li><li>市场愿意给溢价的原因：新兴行业概念带来想象空间；市场关注度高，流动性较好。</li><li>当前主要压制因素：估值过高，透支未来预期；商业模式尚未得到验证。</li></ul></div></div></details><details open><summary>基本面分析</summary><div class="body"><div class="md"><h4>01768 鸣鸣很忙 基本面分析</h4><ul><li>报告期：暂无。</li><li>PE(TTM)：18.77。</li><li>PB：4.83。</li><li>PS(TTM)：0.84。</li><li>ROE：20.14%。</li><li>营收同比：25.50%。</li><li>归母净利润同比：58.51%。</li><li>核心判断：盈利能力处于可接受区间；收入仍在增长；利润端保持扩张。</li></ul></div></div></details></div>
+<div class="panel"><h2>研究与计划</h2>
+<details><summary>基本面摘要</summary><div class="body"><div class="md"><h3>核心财务快照</h3><ul><li>报告期: 数据缺失</li><li>当前股价: 361.60 元</li><li>总市值: 787.70 亿元</li><li>PE (TTM): 18.77</li><li>PB: 4.83</li><li>PS (TTM): 0.84</li><li>营业总收入(报告期): 数据缺失 亿元</li><li>营收同比增长率: 25.50%</li><li>归母净利润(报告期): 数据缺失 亿元</li><li>归母净利润同比增长率: 58.51%</li><li>ROE (TTM/估算): 20.14%</li><li>资产负债率: 数据缺失</li><li>经营性现金流 / 归母净利润: 数据缺失</li></ul><h4>缺失字段</h4><ul><li>营业总收入, 归母净利润, 资产负债率, 经营性现金流与归母净利润比值</li></ul></div></div></details>
+<details><summary>研究计划</summary><div class="body"><div class="md"><h4>01768 鸣鸣很忙 研究摘要</h4><ul><li>红黑榜结论: Reduce</li><li>多头/空头: 45/80</li><li>正向信号: ROE 20.14%；营收同比 25.50%；归母净利润同比 58.51%；PE(TTM) 18.77</li><li>榜单看多理由: 新兴行业概念带来想象空间；市场关注度高，流动性较好</li><li>榜单风险提示: 估值过高，透支未来预期；商业模式尚未得到验证</li></ul></div></div></details>
+<details><summary>交易计划</summary><div class="body"><div class="md"><h4>01768 鸣鸣很忙 交易计划</h4><ul><li>评级: Reduce</li><li>当前价格: 361.60</li><li>值得加仓区间: 325.44 - 339.90</li><li>目标价格: 343.52</li><li>止损位: 318.21</li><li>备注: 当前为缓存降级交易卡，后续若完整 TradingAgent 结果生成，将自动覆盖。</li></ul></div></div></details>
+<details><summary>交易决策</summary><div class="body"><div class="md"><p>Reduce</p><p>01768 鸣鸣很忙 当前使用红黑榜缓存结果生成兜底交易卡。多头 45 / 空头 80，分差 -35。当前尚未取得完整 TradingAgent 长文决策，但榜单分数、财务快照和大师观点已经足够生成基础交易建议。</p></div></div></details>
+</div>
+<div class="panel"><h2>多空逻辑</h2><div class="pts"><div class="h bull">看多逻辑</div><div class="md"><p>新兴行业概念带来想象空间</p><p>市场关注度高，流动性较好</p></div></div><div class="pts"><div class="h bear">看空逻辑</div><div class="md"><p>估值过高，透支未来预期</p><p>商业模式尚未得到验证</p></div></div></div>
+<div class="panel"><h2>伯克希尔研究</h2><p><strong>鸣鸣很忙商业模式尚不清晰，财务数据表现一般，行业竞争激烈，当前估值吸引力有限，建议观望。</strong></p><p>伯克希尔综合评分：<strong>2.5</strong></p><div class="md"><p>{&quot;verdict&quot;: &quot;观望&quot;, &quot;conservative_tip&quot;: &quot;建议观望，若股价跌至1港元以下可考虑小仓位买入&quot;, &quot;moderate_tip&quot;: &quot;若股价跌至1.2港元以下，可小仓位试探性买入&quot;, &quot;aggressive_tip&quot;: &quot;若股价跌至1港元以下且基本面出现改善迹象，可考虑适度加仓&quot;, &quot;catalysts_plus&quot;: [&quot;用户增速超预期&quot;, &quot;盈利能力显著改善&quot;, &quot;新业务模式取得成功&quot;], &quot;catalysts_minus&quot;: [&quot;用户增速持续放缓&quot;, &quot;自由现金流继续恶化&quot;, &quot;政策监管加强&quot;]}</p></div></div>
+<div class="panel news"><h2>最新资讯</h2><div class="md"><p>整体情绪偏利好，共2条利多，1条中性。</p></div><div class="nitem"><div class="t">Clifford Chance advises China&#x27;s leading snack retailer Busy Ming on its HK$3.67 billion Hong Kong IPO and listing</div><div class="s">Clifford Chance · 利好</div></div><div class="nitem"><div class="t">You Can Now Snack Till You Drop at China’s New Snack Megastore</div><div class="s">RADII · 利好</div></div><div class="nitem"><div class="t">Bulk snack stores sprout across China, reaching third- and fourth-tier cities</div><div class="s">ThinkChina · 中性</div></div></div>
+<footer>稳健理财Agent · 红黑榜每日归档 · 黑榜 #1 · 仅供研究，不构成投资建议</footer>
+</div></body>
+</html>
