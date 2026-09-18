@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>晶合集成(02249) 红榜 2026-09-19</title>
+<style>
+:root{--red:#d8342c;--redbg:#fdecea;--green:#1a9e54;--ink:#1c2230;--muted:#6b7385;
+--line:#e7e9ef;--card:#fff;--bg:#f4f6fa;--chip:#eef1f6;--dark:#23262d;--darkbg:#ececef}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",
+"Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);
+line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 16px 64px}
+header.top{background:linear-gradient(135deg,#1c2230,#2c3550);color:#fff;border-radius:14px;
+padding:22px 24px;margin-bottom:20px;box-shadow:0 6px 24px rgba(20,26,46,.12)}
+header.top h1{margin:0 0 6px;font-size:24px;letter-spacing:.5px}
+header.top .sub{opacity:.85;font-size:13px}
+header.top .sub b{color:#ffd166;font-weight:600}
+nav.mkt{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;
+background:rgba(244,246,250,.92);backdrop-filter:blur(6px);padding:10px 0;margin-bottom:14px}
+nav.mkt a{text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);
+padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600}
+nav.mkt a:hover{border-color:var(--red);color:var(--red)}
+.summary{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.summary .chip{background:var(--card);border:1px solid var(--line);border-radius:10px;
+padding:8px 12px;font-size:12px;color:var(--muted)}
+.summary .chip b{color:var(--ink);font-size:14px;margin-left:4px}
+section.board{margin:26px 0}
+.board-title{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:19px}
+.board-title .dot{width:10px;height:10px;border-radius:50%}
+.board-title.red .dot{background:var(--red)}
+.board-title.black .dot{background:var(--dark)}
+.board-title small{color:var(--muted);font-weight:400;font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+position:relative;transition:box-shadow .15s}
+.card:hover{box-shadow:0 4px 18px rgba(20,26,46,.08)}
+.card.red{border-top:3px solid var(--red)}
+.card.black{border-top:3px solid var(--dark)}
+.rank{position:absolute;top:10px;right:12px;font-size:26px;font-weight:800;color:#eceff5}
+.card.red .rank{color:#fbdcD9}
+.nm{font-size:16px;font-weight:700}
+.nm .tk{color:var(--muted);font-weight:500;font-size:12px;margin-left:6px}
+.tag{display:inline-block;background:var(--chip);color:var(--muted);border-radius:6px;
+padding:1px 7px;font-size:11px;margin:6px 6px 0 0}
+.price-row{display:flex;align-items:baseline;gap:10px;margin:10px 0 4px}
+.price{font-size:24px;font-weight:800}
+.pct{font-size:14px;font-weight:700;padding:2px 8px;border-radius:8px}
+.up{color:var(--red)}.down{color:var(--green)}.flat{color:var(--muted)}
+.pct.up{background:var(--redbg)}.pct.down{background:#e2f4e9}.pct.flat{background:var(--chip)}
+.psrc{font-size:11px;color:var(--muted);margin-left:auto}
+.scores{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.scores span{background:var(--chip);border-radius:6px;padding:2px 8px;font-size:11px;color:var(--muted)}
+.scores span b{color:var(--ink)}
+.pts{font-size:12.5px;margin:8px 0 0}
+.pts .h{font-weight:700;font-size:12px;margin:6px 0 2px}
+.pts .h.bull{color:var(--red)}.pts .h.bear{color:var(--green)}
+.pts ul{margin:2px 0 4px;padding-left:18px;color:#3a4152}
+.pts li{margin:1px 0}
+.masters{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:11px;color:var(--muted)}
+.masters b{color:var(--ink)}
+.summ{font-size:12.5px;color:#3a4152;background:#fafbfd;border:1px solid var(--line);
+border-radius:8px;padding:8px 10px;margin-top:8px}
+.empty{color:var(--muted);background:var(--card);border:1px dashed var(--line);
+border-radius:10px;padding:18px;text-align:center}
+footer{margin-top:34px;color:var(--muted);font-size:12px;text-align:center;line-height:1.8}
+a.lnk{color:var(--red);text-decoration:none}
+/* ── detail page ── */
+.backbar{margin-bottom:14px;font-size:13px}
+.backbar a{color:var(--muted);text-decoration:none;margin-right:14px}
+.backbar a:hover{color:var(--red)}
+.badge{display:inline-block;border-radius:6px;padding:2px 10px;font-size:12px;font-weight:700;margin-right:8px}
+.badge.red{background:var(--red);color:#fff}.badge.black{background:var(--dark);color:#fff}
+.trade{display:flex;flex-wrap:wrap;gap:10px;background:linear-gradient(135deg,#2c3550,#1c2230);
+color:#fff;border-radius:12px;padding:16px 18px;margin:16px 0}
+.trade .cell{min-width:120px}
+.trade .k{font-size:11px;opacity:.75}
+.trade .v{font-size:18px;font-weight:800;margin-top:2px}
+.trade .v.buy{color:#7ee2a8}.trade .v.sell{color:#ff9d97}.trade .v.hold{color:#ffd166}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0}
+.mgrid .m{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.mgrid .m .k{font-size:11px;color:var(--muted)}
+.mgrid .m .v{font-size:16px;font-weight:700;margin-top:2px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.panel>h2{margin:0 0 12px;font-size:17px}
+.panel>h2 .sub{font-size:12px;color:var(--muted);font-weight:400;margin-left:8px}
+.mreply{border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;
+padding:12px 14px;margin:10px 0;background:#fff}
+.mreply .mh{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.mreply .mh .who{font-weight:700;font-size:14px}
+.mreply .mh .mscore{margin-left:auto;background:var(--chip);border-radius:6px;padding:1px 8px;font-size:12px;font-weight:700}
+.md h2,.md h3,.md h4,.md h5{margin:12px 0 6px;font-size:15px}
+.md p{margin:6px 0;font-size:13.5px;color:#2c3345}
+.md ul{margin:6px 0;padding-left:20px;font-size:13.5px;color:#2c3345}
+.md li{margin:3px 0}
+.md strong{color:var(--ink)}
+details{border:1px solid var(--line);border-radius:10px;background:#fff;margin:10px 0;padding:0}
+details>summary{cursor:pointer;padding:12px 16px;font-weight:700;font-size:14px;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary:before{content:"▸ ";color:var(--red)}
+details[open]>summary:before{content:"▾ "}
+details>.body{padding:0 16px 14px;border-top:1px dashed var(--line)}
+.ychip{display:inline-block;background:var(--chip);border-radius:8px;padding:4px 10px;font-size:12px;margin:3px 6px 3px 0}
+.ychip b{font-size:13px}
+.news .nitem{border-top:1px dashed var(--line);padding:8px 0;font-size:13px}
+.news .nitem .t{font-weight:600}
+.news .nitem .s{color:var(--muted);font-size:12px}
+/* ── root landing page ── */
+.hero{padding:30px 26px}
+.hero-kicker{color:#ffd166;font-size:12px;font-weight:700;letter-spacing:2px;
+text-transform:uppercase;margin-bottom:8px}
+.hero h1{font-size:30px;margin:0 0 10px}
+.day-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.day-card{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);
+border-radius:12px;padding:14px 16px;transition:all .15s}
+.day-card:hover{border-color:var(--red);box-shadow:0 4px 16px rgba(216,52,44,.12);transform:translateY(-2px)}
+.day-card .d{font-weight:800;font-size:15px;color:var(--ink);display:flex;align-items:center;gap:8px}
+.day-card .m{margin-top:8px;display:flex;gap:6px}
+.day-card .m span{background:var(--chip);color:var(--muted);border-radius:6px;
+padding:2px 8px;font-size:11px}
+.latest-badge{background:var(--red);color:#fff;border-radius:6px;padding:1px 7px;
+font-size:10px;font-weight:700}
+</style>
+</head>
+<body><div class="wrap">
+<div class="backbar"><a href="../index.html">← 总览</a><a href="../hk.html">← 港股榜单</a></div>
+<header class="top">
+  <h1><span class="badge red">红榜 #6</span>晶合集成<span class="tk" style="opacity:.7;font-size:15px;font-weight:400;margin-left:8px">02249</span></h1>
+  <div class="sub">港股 ·  · 榜单日期 <b>2026-09-19</b> · 盘价采集 <b>2026-09-19 05:00:06</b></div>
+  <div class="price-row" style="margin-top:12px">
+    <span class="price" style="color:#fff">HK$28.74</span>
+    <span class="pct up">+7.40%</span>
+    <span class="psrc" style="color:rgba(255,255,255,.6)">实时</span>
+  </div>
+  <div class="scores" style="margin-top:10px">
+    <span>综合 <b>81.2</b></span>
+    <span>多头 <b>83</b></span>
+    <span>空头 <b>25</b></span>
+    <span>大师均值 <b>64</b></span>
+    <span>信号 <b>positive</b></span>
+  </div>
+</header>
+<div class="trade"><div class="cell"><div class="k">交易评级</div><span class="v buy">Buy</span></div><div class="cell"><div class="k">加仓区间</div><span class="v">27.88 ~ 29.03</span></div><div class="cell"><div class="k">目标价</div><span class="v">32.19</span></div><div class="cell"><div class="k">伯克希尔</div><span class="v">观望</span></div><div class="cell"><div class="k">伯克希尔分</div><span class="v">3.50</span></div></div>
+<div class="panel"><h2>财务指标</h2><div class="mgrid"><div class="m"><div class="k">市盈率 PE</div><div class="v">92.02</div></div><div class="m"><div class="k">市净率 PB</div><div class="v">2.40</div></div><div class="m"><div class="k">ROE</div><div class="v">1.1%</div></div><div class="m"><div class="k">总市值</div><div class="v">642</div></div><div class="m"><div class="k">营收同比</div><div class="v">3.5%</div></div><div class="m"><div class="k">净利同比</div><div class="v">-0.3%</div></div></div></div>
+<div class="panel"><h2>历史收益</h2><span class="ychip">近1月 <b class="down">-6.93%</b></span><span class="ychip">近6月 <b class="down">-11.02%</b></span><span class="ychip">近1年 <b class="down">-11.02%</b></span></div>
+<div class="panel"><h2>大师圆桌<span class="sub">5 位</span></h2><div class="mreply"><div class="mh"><span class="who">段永平</span><span class="mscore">63</span></div><div class="md"><h4>发言内容：</h4><p>关于晶合集成，我简单谈谈我的看法。</p><p>首先，我想先问一个问题：这是一家&quot;对&quot;的公司吗？从大的方向来看，芯片国产化是一个长期趋势，晶合集成在这个领域有技术积累和增长潜力，这确实是&quot;对的事&quot;。但仅仅做对的事还不够，还要看它的商业模式是否可持续，以及估值是否合理。</p><p>从目前的数据来看，晶合集成的市盈率高达92倍，市销率也超过5倍，这说明市场对它的预期已经很高了。虽然芯片行业有周期性波动的特点，但这么高的估值意味着投资者需要承担更大的风险。作为价值投资者，我更倾向于在估值合理的时候买入，而不是在市场情绪高涨的时候追高。</p><h4>理由：</h4><ul><li><strong>行业趋势</strong>：芯片国产化是一个长期趋势，晶合集成在这个领域有技术优势，这是它的基本面亮点。</li></ul><ul><li><strong>估值风险</strong>：目前估值偏高，市盈率92倍，市销率5倍，这样的估值水平需要非常谨慎对待。即使公司有增长潜力，但高估值意味着投资者需要承担更大的风险。</li></ul><ul><li><strong>流动性风险</strong>：市值较小，流动性风险也需要考虑。如果市场情绪发生变化，小市值股票可能会出现较大的波动。</li></ul><h4>风险/行动建议：</h4><ul><li><strong>估值风险</strong>：如果现在持有，建议密切关注公司的基本面变化和市场情绪。如果估值继续上升，可能需要考虑减仓。</li></ul><ul><li><strong>长期持有</strong>：如果决定长期持有，需要有足够的耐心和定力，因为芯片行业的周期性波动可能会带来较大的股价波动。</li></ul><ul><li><strong>风险控制</strong>：建议设置止损点，以防止市场情绪突然变化带来的损失。</li></ul><p>最后，我想提醒大家，投资最重要的是&quot;做对的事，把事做对&quot;。晶合集成在芯片国产化的大方向上是&quot;对的事&quot;，但高估值带来的风险也需要我们谨慎对待。希望大家在投资时都能保持平常心，不被短期市场情绪左右。</p></div></div><div class="mreply"><div class="mh"><span class="who">巴菲特</span><span class="mscore">64</span></div><div class="md"><p>各位先生女士，我很高兴能在这里与大家分享我对晶合集成的看法。</p><p>首先，我得说晶合集成这家公司确实有一些吸引人的地方。芯片行业的国产化趋势非常明确，这是个有利的大环境。晶合集成的技术优势也为它带来了不错的增长潜力。从股价表现来看，市场已经给予了一定的认可，过去一段时间上涨了7.4%。这些都显示出这家公司具有一定的发展前景。</p><p>然而，我必须强调，评估一家公司不能只看这些表面的亮点。我们需要深入了解它的护城河在哪里，以及它的自由现金流状况如何。从目前的数据来看，晶合集成的市盈率高达92倍，市净率2.4倍，市销率5.1倍，这些估值指标都显示出市场对它的预期非常高。作为一个价值投资者，我更关心的是以合理的价格买入优质的公司，而不是追逐高估值的热门股票。</p><p>说到这里，我得提醒大家注意几个风险点：</p><p>第一，估值偏高始终是一个需要谨慎对待的问题。高估值意味着市场已经给予了这家公司很高的期望，如果未来业绩增长不及预期，股价可能会面临较大的回调压力。</p><p>第二，半导体行业具有明显的周期性特征。虽然目前市场情绪乐观，但我们必须考虑到行业波动带来的风险。</p><p>第三，晶合集成的市值相对较小，这可能会带来一定的流动性风险。在市场环境发生变化时，小市值公司往往更容易受到冲击。</p><p>所以我的建议是：</p><ul><li>如果你已经在关注这家公司，我建议你重新审视一下当初的投资逻辑。问问自己，这家公司是否真的具有持久的竞争优势？它的估值是否已经透支了未来的增长潜力？</li></ul><ul><li>对于想要买入的投资者，我建议你们耐心等待更好的时机。除非你能确定这家公司具有独特的竞争优势，并且当前的估值水平能够为你的投资提供足够的安全边际，否则最好还是保持观望。</li></ul><p>最后，我想用一句话来总结：投资就像打棒球，你不需要每次都挥棒。在面对像晶合集成这样估值偏高的公司时，耐心等待更好的机会可能会是更明智的选择。</p><p>如果查理·芒格在这里，他可能会补充说：&quot;投资就像经营果园，你需要选择那些能结出好果子的树，而不是那些看起来最热闹的。&quot;</p></div></div><div class="mreply"><div class="mh"><span class="who">达利欧</span><span class="mscore">51</span></div><div class="md"><h4>圆桌发言：关于晶合集成的观点</h4><h5>结论</h5><p>我目前对晶合集成的看法是<strong>中性偏谨慎</strong>。尽管公司受益于芯片国产化趋势且市场表现出了认可，但高估值和行业周期性风险需要特别关注。</p><h5>理由</h5><ul><li><strong>宏观趋势与公司优势</strong></li></ul><p>   芯片国产化是一个明确的长期趋势，晶合集成作为国内芯片制造的重要参与者，有机会在这一波浪潮中受益。公司在技术上具备一定优势，这为其增长提供了支撑。近期股价上涨7.4%，也反映了市场对其未来潜力的认可。</p><ul><li><strong>估值与风险考量</strong></li></ul><p>   然而，当前的估值水平较高，市盈率（PE）达到92倍，远高于行业平均水平。这表明市场已经对其增长潜力给予了较高预期，但同时也意味着如果业绩不及预期，股价可能会面临较大回调压力。此外，芯片行业具有明显的周期性波动特征，在全球经济不确定性增加的背景下，这种周期性风险不容忽视。</p><ul><li><strong>流动性与市场风险</strong></li></ul><p>   晶合集成的市值相对较小，流动性风险较高。这意味着在市场情绪波动时，股价可能会出现较大波动。对于长期投资者而言，这增加了持仓的难度和风险。</p><h5>风险/行动建议</h5><ul><li><strong>风险提示</strong></li><li><strong>估值风险</strong>：高估值意味着市场预期已经较高，未来需要持续关注公司业绩能否支撑当前估值。</li><li><strong>行业周期性风险</strong>：芯片行业受宏观经济影响较大，需警惕全球经济波动带来的需求变化。</li><li><strong>流动性风险</strong>：小市值公司容易受到市场情绪影响，波动性较高。</li></ul><ul><li><strong>行动建议</strong></li><li><strong>原则化决策</strong>：建议投资者建立明确的决策原则，例如设定估值上限或风险容忍度，并在市场波动中严格执行。</li><li><strong>风险平衡</strong>：如果决定投资，建议将晶合集成作为投资组合的一部分，而不是单一重仓，以分散风险。</li><li><strong>持续监控</strong>：密切关注公司业绩、市场情绪以及行业周期性变化，适时调整仓位。</li></ul><ul><li><strong>长期视角</strong></li></ul><p>   对于长期投资者而言，可以考虑在估值回调时逐步建仓，但需保持耐心和纪律性，避免在市场情绪高涨时追高。</p><p>总之，晶合集成是一家受益于长期趋势的公司，但当前估值和风险因素需要谨慎对待。投资决策应基于个人的风险承受能力和投资期限，并严格执行原则化的决策流程。</p></div></div><div class="mreply"><div class="mh"><span class="who">彼得·林奇</span><span class="mscore">83</span></div><div class="md"><h4>彼得·林奇的圆桌发言</h4><p><strong>结论：晶合集成是一家值得关注的快速增长型公司，但目前估值偏高，需要谨慎对待。</strong></p><p>首先，我看到晶合集成所处的芯片行业正处于国产化趋势中，这是非常明确的增长动力。中国芯片市场的需求持续增长，而晶合集成作为一家技术上有优势的企业，有机会在这个大趋势中分得一杯羹。此外，公司近期股价上涨了7.4%，这表明市场对其前景的认可。</p><p>然而，我必须提醒大家，这家公司的估值已经相当高了。当前市盈率（PE）超过92倍，市净率（PB）也达到2.4倍。对于一家芯片公司来说，这样的估值水平意味着市场已经对其未来增长给予了很高的预期。虽然技术优势和行业趋势是支撑高估值的重要因素，但投资者需要警惕的是，芯片行业本身具有较强的周期性，需求波动可能会对公司的业绩产生较大影响。</p><h4>理由：</h4><ul><li><strong>行业趋势</strong>：芯片国产化是一个长期趋势，晶合集成作为国内领先的芯片制造商，有望受益于这一趋势。</li><li><strong>技术优势</strong>：公司拥有一定的技术优势，这为其在市场竞争中提供了保障。</li><li><strong>估值风险</strong>：当前估值水平已经很高，市场对其未来增长的预期已经反映在股价中。如果业绩增长不及预期，股价可能会面临较大回调压力。</li><li><strong>行业周期性</strong>：芯片行业具有较强的周期性，需求波动可能会对公司的业绩产生较大影响。</li></ul><h4>风险/行动建议：</h4><ul><li><strong>估值风险</strong>：对于已经持有晶合集成的投资者，建议密切关注公司的业绩增长情况。如果业绩增长能够持续支撑高估值，可以继续持有；但如果出现增长放缓的迹象，建议及时止盈。</li></ul><ul><li><strong>行业周期性</strong>：考虑到芯片行业的周期性波动，建议投资者在买入时保持谨慎，不要追高。可以等待市场回调时再考虑买入，以获得更好的安全边际。</li></ul><ul><li><strong>长期持有</strong>：如果你看好晶合集成的长期发展，并且能够承受短期波动，可以考虑长期持有。但要记住，长期持有的前提是公司基本面持续向好。</li></ul><p>总之，晶合集成是一家有潜力的公司，但目前估值偏高，需要谨慎对待。投资者应根据自身的风险承受能力和投资目标，理性做出决策。</p></div></div><div class="mreply"><div class="mh"><span class="who">芒格</span><span class="mscore">59</span></div><div class="md"><p>各位朋友，今天我们来聊聊晶合集成这家公司。我的结论是：谨慎乐观，但需密切监控。</p><p>首先，晶合集成身处芯片国产化的大趋势中，这是它的最大优势。中国芯片产业的自主可控需求是长期且明确的，而晶合集成作为其中的参与者，拥有一定的技术优势，这为它带来了增长潜力。从市场表现来看，7.4%的涨幅也显示出投资者对其的认可。</p><p>然而，我们必须用逆向思维来审视这家公司。估值是一个重要的警示信号。当前92倍的市盈率意味着市场对其未来增长抱有极高的期望，但这种预期能否兑现是值得怀疑的。此外，半导体行业具有明显的周期性波动特征，这意味着即使公司基本面良好，也可能在行业下行周期中受到冲击。</p><p>从风险角度来看，晶合集成的市值较小，流动性风险不容忽视。在市场情绪波动时，小市值公司往往更容易受到冲击。同时，高估值意味着市场对其业绩的容错空间很小，任何不及预期的表现都可能导致股价大幅回调。</p><p>我的建议是：</p><ul><li>密切监控行业周期变化和公司业绩表现。如果行业进入下行周期，或者公司业绩增长放缓，应及时调整仓位。</li></ul><ul><li>考虑分批建仓，而不是一次性投入。这样可以降低短期波动带来的风险。</li></ul><ul><li>密切关注估值水平。如果市盈率持续维持在高位，需要更加谨慎，因为高估值意味着更大的回调风险。</li></ul><p>最后，我想提醒大家，投资决策不能只看公司本身，还要考虑整个市场环境。在当前全球经济增长放缓的背景下，半导体行业的整体需求可能会受到影响。我们要用多元思维模型来审视这家公司，不仅要看其技术优势，还要考虑宏观经济环境和行业周期性波动。</p><p>我能错在哪？可能是低估了晶合集成在国产替代趋势中的成长潜力，或者对行业周期波动的判断过于悲观。但无论如何，保持理性和谨慎是投资中最重要的原则。</p></div></div></div>
+<div class="panel"><h2>分析师报告<span class="sub">2 篇</span></h2><details open><summary>市场面分析</summary><div class="body"><div class="md"><h4>02249 晶合集成 市场面分析</h4><ul><li>红黑榜多空分数：多头 83 / 空头 25，分差 58。</li><li>当前价格：28.74。</li><li>当前交易评级：Buy。</li><li>值得加仓区间：27.88 - 29.03。</li><li>目标价格：32.19。</li><li>市场愿意给溢价的原因：芯片国产化趋势明确；技术优势带来增长潜力；7.4%涨幅显示市场认可。</li><li>当前主要压制因素：估值较高需谨慎；行业周期性波动风险；市值较小，流动性风险。</li></ul></div></div></details><details open><summary>基本面分析</summary><div class="body"><div class="md"><h4>02249 晶合集成 基本面分析</h4><ul><li>报告期：暂无。</li><li>PE(TTM)：92.02。</li><li>PB：2.40。</li><li>PS(TTM)：5.13。</li><li>ROE：1.09%。</li><li>营收同比：3.50%。</li><li>归母净利润同比：-0.31%。</li><li>核心判断：收入仍在增长；估值偏贵，需要更强兑现。</li></ul></div></div></details></div>
+<div class="panel"><h2>研究与计划</h2>
+<details><summary>基本面摘要</summary><div class="body"><div class="md"><h3>核心财务快照</h3><ul><li>报告期: 数据缺失</li><li>当前股价: 28.74 元</li><li>总市值: 642.28 亿元</li><li>PE (TTM): 92.02</li><li>PB: 2.40</li><li>PS (TTM): 5.13</li><li>营业总收入(报告期): 数据缺失 亿元</li><li>营收同比增长率: 3.50%</li><li>归母净利润(报告期): 数据缺失 亿元</li><li>归母净利润同比增长率: -0.31%</li><li>ROE (TTM/估算): 1.09%</li><li>资产负债率: 数据缺失</li><li>经营性现金流 / 归母净利润: 数据缺失</li></ul><h4>缺失字段</h4><ul><li>营业总收入, 归母净利润, 资产负债率, 经营性现金流与归母净利润比值</li></ul></div></div></details>
+<details><summary>研究计划</summary><div class="body"><div class="md"><h4>02249 晶合集成 研究摘要</h4><ul><li>红黑榜结论: Buy</li><li>多头/空头: 83/25</li><li>正向信号: 营收同比 3.50%；PB 2.40</li><li>风险信号: ROE 1.09%；归母净利润同比 -0.31%；PE(TTM) 92.02</li><li>榜单看多理由: 芯片国产化趋势明确；技术优势带来增长潜力；7.4%涨幅显示市场认可</li><li>榜单风险提示: 估值较高需谨慎；行业周期性波动风险；市值较小，流动性风险</li></ul></div></div></details>
+<details><summary>交易计划</summary><div class="body"><div class="md"><h4>02249 晶合集成 交易计划</h4><ul><li>评级: Buy</li><li>当前价格: 28.74</li><li>值得加仓区间: 27.88 - 29.03</li><li>目标价格: 32.19</li><li>止损位: 26.44</li><li>备注: 当前为缓存降级交易卡，后续若完整 TradingAgent 结果生成，将自动覆盖。</li></ul></div></div></details>
+<details><summary>交易决策</summary><div class="body"><div class="md"><p>Buy</p><p>02249 晶合集成 当前使用红黑榜缓存结果生成兜底交易卡。多头 83 / 空头 25，分差 58。当前尚未取得完整 TradingAgent 长文决策，但榜单分数、财务快照和大师观点已经足够生成基础交易建议。</p></div></div></details>
+</div>
+<div class="panel"><h2>多空逻辑</h2><div class="pts"><div class="h bull">看多逻辑</div><div class="md"><p>芯片国产化趋势明确</p><p>技术优势带来增长潜力</p><p>7.4%涨幅显示市场认可</p></div></div><div class="pts"><div class="h bear">看空逻辑</div><div class="md"><p>估值较高需谨慎</p><p>行业周期性波动风险</p><p>市值较小，流动性风险</p></div></div></div>
+<div class="panel"><h2>伯克希尔研究</h2><p><strong>晶合集成作为国内领先的晶圆代工企业，具有一定技术壁垒和增长潜力，但面临激烈竞争和行业周期性风险，当前估值合理但需关注长期护城河建设。</strong></p><p>伯克希尔综合评分：<strong>3.5</strong></p><div class="md"><p>{&quot;verdict&quot;: &quot;观望&quot;, &quot;conservative_tip&quot;: &quot;建议在20-22倍PE区间内买入，低于20倍PE可考虑加仓。&quot;, &quot;moderate_tip&quot;: &quot;建议在22-25倍PE区间内买入，低于22倍PE可考虑加仓。&quot;, &quot;aggressive_tip&quot;: &quot;建议在25倍PE以下买入，低于20倍PE可考虑重仓。&quot;, &quot;catalysts_plus&quot;: [&quot;先进制程技术取得突破&quot;, &quot;市场份额持续提升&quot;, &quot;毛利率进一步改善&quot;], &quot;catalysts_minus&quot;: [&quot;市场竞争加剧&quot;, &quot;研发投入超预期增加&quot;, &quot;宏观经济下行风险加剧&quot;]}</p></div></div>
+<div class="panel news"><h2>最新资讯</h2><div class="md"><p>整体情绪偏利好，共3条利多，2条中性，无利空消息。</p></div><div class="nitem"><div class="t">Nexchip (晶合集成) IPO Trading</div><div class="s">Smartkarma · 利好</div></div><div class="nitem"><div class="t">Clifford Chance advises Nexchip Semiconductor Corporation on its IPO and listing in Hong Kong</div><div class="s">Clifford Chance · 利好</div></div><div class="nitem"><div class="t">China&#x27;s Nexchip has global ambitions as legacy chips thrive in AI&#x27;s shadow</div><div class="s">Nikkei Asia · 中性</div></div><div class="nitem"><div class="t">TSMC remains top chip foundry as sales rise 14%</div><div class="s">Taipei Times · 中性</div></div><div class="nitem"><div class="t">Chinese semiconductor companies to raise $8.91 billion via IPOs in first half of 2021</div><div class="s">jiweipreview.laoyaoba.com · 利好</div></div></div>
+<footer>稳健理财Agent · 红黑榜每日归档 · 红榜 #6 · 仅供研究，不构成投资建议</footer>
+</div></body>
+</html>
