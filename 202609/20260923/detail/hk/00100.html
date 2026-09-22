@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MINIMAX-W(00100) 黑榜 2026-09-23</title>
+<style>
+:root{--red:#d8342c;--redbg:#fdecea;--green:#1a9e54;--ink:#1c2230;--muted:#6b7385;
+--line:#e7e9ef;--card:#fff;--bg:#f4f6fa;--chip:#eef1f6;--dark:#23262d;--darkbg:#ececef}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",
+"Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);
+line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 16px 64px}
+header.top{background:linear-gradient(135deg,#1c2230,#2c3550);color:#fff;border-radius:14px;
+padding:22px 24px;margin-bottom:20px;box-shadow:0 6px 24px rgba(20,26,46,.12)}
+header.top h1{margin:0 0 6px;font-size:24px;letter-spacing:.5px}
+header.top .sub{opacity:.85;font-size:13px}
+header.top .sub b{color:#ffd166;font-weight:600}
+nav.mkt{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;
+background:rgba(244,246,250,.92);backdrop-filter:blur(6px);padding:10px 0;margin-bottom:14px}
+nav.mkt a{text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);
+padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600}
+nav.mkt a:hover{border-color:var(--red);color:var(--red)}
+.summary{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.summary .chip{background:var(--card);border:1px solid var(--line);border-radius:10px;
+padding:8px 12px;font-size:12px;color:var(--muted)}
+.summary .chip b{color:var(--ink);font-size:14px;margin-left:4px}
+section.board{margin:26px 0}
+.board-title{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:19px}
+.board-title .dot{width:10px;height:10px;border-radius:50%}
+.board-title.red .dot{background:var(--red)}
+.board-title.black .dot{background:var(--dark)}
+.board-title small{color:var(--muted);font-weight:400;font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+position:relative;transition:box-shadow .15s}
+.card:hover{box-shadow:0 4px 18px rgba(20,26,46,.08)}
+.card.red{border-top:3px solid var(--red)}
+.card.black{border-top:3px solid var(--dark)}
+.rank{position:absolute;top:10px;right:12px;font-size:26px;font-weight:800;color:#eceff5}
+.card.red .rank{color:#fbdcD9}
+.nm{font-size:16px;font-weight:700}
+.nm .tk{color:var(--muted);font-weight:500;font-size:12px;margin-left:6px}
+.tag{display:inline-block;background:var(--chip);color:var(--muted);border-radius:6px;
+padding:1px 7px;font-size:11px;margin:6px 6px 0 0}
+.price-row{display:flex;align-items:baseline;gap:10px;margin:10px 0 4px}
+.price{font-size:24px;font-weight:800}
+.pct{font-size:14px;font-weight:700;padding:2px 8px;border-radius:8px}
+.up{color:var(--red)}.down{color:var(--green)}.flat{color:var(--muted)}
+.pct.up{background:var(--redbg)}.pct.down{background:#e2f4e9}.pct.flat{background:var(--chip)}
+.psrc{font-size:11px;color:var(--muted);margin-left:auto}
+.scores{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.scores span{background:var(--chip);border-radius:6px;padding:2px 8px;font-size:11px;color:var(--muted)}
+.scores span b{color:var(--ink)}
+.pts{font-size:12.5px;margin:8px 0 0}
+.pts .h{font-weight:700;font-size:12px;margin:6px 0 2px}
+.pts .h.bull{color:var(--red)}.pts .h.bear{color:var(--green)}
+.pts ul{margin:2px 0 4px;padding-left:18px;color:#3a4152}
+.pts li{margin:1px 0}
+.masters{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:11px;color:var(--muted)}
+.masters b{color:var(--ink)}
+.summ{font-size:12.5px;color:#3a4152;background:#fafbfd;border:1px solid var(--line);
+border-radius:8px;padding:8px 10px;margin-top:8px}
+.empty{color:var(--muted);background:var(--card);border:1px dashed var(--line);
+border-radius:10px;padding:18px;text-align:center}
+footer{margin-top:34px;color:var(--muted);font-size:12px;text-align:center;line-height:1.8}
+a.lnk{color:var(--red);text-decoration:none}
+/* ── detail page ── */
+.backbar{margin-bottom:14px;font-size:13px}
+.backbar a{color:var(--muted);text-decoration:none;margin-right:14px}
+.backbar a:hover{color:var(--red)}
+.badge{display:inline-block;border-radius:6px;padding:2px 10px;font-size:12px;font-weight:700;margin-right:8px}
+.badge.red{background:var(--red);color:#fff}.badge.black{background:var(--dark);color:#fff}
+.trade{display:flex;flex-wrap:wrap;gap:10px;background:linear-gradient(135deg,#2c3550,#1c2230);
+color:#fff;border-radius:12px;padding:16px 18px;margin:16px 0}
+.trade .cell{min-width:120px}
+.trade .k{font-size:11px;opacity:.75}
+.trade .v{font-size:18px;font-weight:800;margin-top:2px}
+.trade .v.buy{color:#7ee2a8}.trade .v.sell{color:#ff9d97}.trade .v.hold{color:#ffd166}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0}
+.mgrid .m{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.mgrid .m .k{font-size:11px;color:var(--muted)}
+.mgrid .m .v{font-size:16px;font-weight:700;margin-top:2px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.panel>h2{margin:0 0 12px;font-size:17px}
+.panel>h2 .sub{font-size:12px;color:var(--muted);font-weight:400;margin-left:8px}
+.mreply{border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;
+padding:12px 14px;margin:10px 0;background:#fff}
+.mreply .mh{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.mreply .mh .who{font-weight:700;font-size:14px}
+.mreply .mh .mscore{margin-left:auto;background:var(--chip);border-radius:6px;padding:1px 8px;font-size:12px;font-weight:700}
+.md h2,.md h3,.md h4,.md h5{margin:12px 0 6px;font-size:15px}
+.md p{margin:6px 0;font-size:13.5px;color:#2c3345}
+.md ul{margin:6px 0;padding-left:20px;font-size:13.5px;color:#2c3345}
+.md li{margin:3px 0}
+.md strong{color:var(--ink)}
+details{border:1px solid var(--line);border-radius:10px;background:#fff;margin:10px 0;padding:0}
+details>summary{cursor:pointer;padding:12px 16px;font-weight:700;font-size:14px;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary:before{content:"▸ ";color:var(--red)}
+details[open]>summary:before{content:"▾ "}
+details>.body{padding:0 16px 14px;border-top:1px dashed var(--line)}
+.ychip{display:inline-block;background:var(--chip);border-radius:8px;padding:4px 10px;font-size:12px;margin:3px 6px 3px 0}
+.ychip b{font-size:13px}
+.news .nitem{border-top:1px dashed var(--line);padding:8px 0;font-size:13px}
+.news .nitem .t{font-weight:600}
+.news .nitem .s{color:var(--muted);font-size:12px}
+/* ── root landing page ── */
+.hero{padding:30px 26px}
+.hero-kicker{color:#ffd166;font-size:12px;font-weight:700;letter-spacing:2px;
+text-transform:uppercase;margin-bottom:8px}
+.hero h1{font-size:30px;margin:0 0 10px}
+.day-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.day-card{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);
+border-radius:12px;padding:14px 16px;transition:all .15s}
+.day-card:hover{border-color:var(--red);box-shadow:0 4px 16px rgba(216,52,44,.12);transform:translateY(-2px)}
+.day-card .d{font-weight:800;font-size:15px;color:var(--ink);display:flex;align-items:center;gap:8px}
+.day-card .m{margin-top:8px;display:flex;gap:6px}
+.day-card .m span{background:var(--chip);color:var(--muted);border-radius:6px;
+padding:2px 8px;font-size:11px}
+.latest-badge{background:var(--red);color:#fff;border-radius:6px;padding:1px 7px;
+font-size:10px;font-weight:700}
+</style>
+</head>
+<body><div class="wrap">
+<div class="backbar"><a href="../index.html">← 总览</a><a href="../hk.html">← 港股榜单</a></div>
+<header class="top">
+  <h1><span class="badge black">黑榜 #6</span>MINIMAX-W<span class="tk" style="opacity:.7;font-size:15px;font-weight:400;margin-left:8px">00100</span></h1>
+  <div class="sub">港股 ·  · 榜单日期 <b>2026-09-23</b> · 盘价采集 <b>2026-09-23 05:00:23</b></div>
+  <div class="price-row" style="margin-top:12px">
+    <span class="price" style="color:#fff">HK$286.40</span>
+    <span class="pct down">-3.89%</span>
+    <span class="psrc" style="color:rgba(255,255,255,.6)">实时</span>
+  </div>
+  <div class="scores" style="margin-top:10px">
+    <span>综合 <b>36.2</b></span>
+    <span>多头 <b>35</b></span>
+    <span>空头 <b>75</b></span>
+    <span>大师均值 <b>54.2</b></span>
+    <span>信号 <b>negative</b></span>
+  </div>
+</header>
+<div class="trade"><div class="cell"><div class="k">交易评级</div><span class="v hold">Reduce</span></div><div class="cell"><div class="k">加仓区间</div><span class="v">269.22 ~ 280.67</span></div><div class="cell"><div class="k">伯克希尔</div><span class="v">观望</span></div><div class="cell"><div class="k">伯克希尔分</div><span class="v">3.50</span></div></div>
+<div class="panel"><h2>财务指标</h2><div class="mgrid"><div class="m"><div class="k">市净率 PB</div><div class="v">9.47</div></div><div class="m"><div class="k">ROE</div><div class="v">55.0%</div></div><div class="m"><div class="k">总市值</div><div class="v">1000</div></div><div class="m"><div class="k">营收同比</div><div class="v">103.7%</div></div><div class="m"><div class="k">净利同比</div><div class="v">3.4%</div></div></div></div>
+<div class="panel"><h2>历史收益</h2><span class="ychip">近1月 <b class="down">-4.41%</b></span><span class="ychip">近6月 <b class="down">-71.07%</b></span><span class="ychip">近1年 <b class="down">-16.99%</b></span></div>
+<div class="panel"><h2>大师圆桌<span class="sub">5 位</span></h2><div class="mreply"><div class="mh"><span class="who">段永平</span><span class="mscore">45</span></div><div class="md"><h4>发言内容：</h4><p>各位同仁，关于 MINIMAX-W（00100），我的看法偏谨慎。</p><p>首先，<strong>人工智能这个方向是有长期潜力的</strong>，这点我认同。但就这家公司本身而言，目前的<strong>股价表现和市场波动性让我有些担忧</strong>。从数据上看，股价大幅下跌，PS 高达 77 倍，而净利润增长只有 3%，净利率更是为负。这些数字反映出的问题是，公司的盈利能力似乎并没有跟上其估值水平。</p><p>从投资理念上来说，我一向强调&quot;<strong>做对的事，把事做对</strong>&quot;。这里的关键是&quot;做对的事&quot;，也就是要投那些我们真正看得懂、能够理解其商业模式的公司。就 MINIMAX-W 而言，目前我们对其核心竞争力的了解可能还不够深入。</p><h4>风险提示：</h4><ul><li><strong>高估值风险</strong>：PS 高达 77 倍，说明市场对其预期已经非常高，一旦业绩不达预期，股价可能会面临较大压力。</li><li><strong>盈利能力不足</strong>：净利润增长缓慢，净利率为负，说明公司目前可能还处于投入期，尚未形成稳定的盈利模式。</li><li><strong>市场波动性</strong>：股价大幅波动，说明市场对其看法存在较大分歧，这增加了投资的不确定性。</li></ul><h4>行动建议：</h4><p>如果是我，我会选择先观望一段时间，等待更清晰的信号出现。具体来说：</p><ul><li><strong>关注盈利能力</strong>：重点关注公司未来几个季度的盈利改善情况，看其是否能形成稳定的盈利模式。</li><li><strong>评估核心竞争力</strong>：深入了解公司在人工智能领域的具体优势，看其是否能持续保持竞争优势。</li><li><strong>耐心等待时机</strong>：不要急于入场，耐心等待市场情绪稳定，股价走势更加明朗。</li></ul><p>总之，投资要<strong>本分</strong>，要做自己看得懂的投资。如果我们对一家公司的理解还不够深入，那么最好的策略可能就是先保持距离，等待更好的机会。</p><p>别忘了，投资路上，<strong>不做什么往往比做什么更重要</strong>。</p></div></div><div class="mreply"><div class="mh"><span class="who">巴菲特</span><span class="mscore">31</span></div><div class="md"><p>各位，今天我们来聊聊 MINIMAX-W（00100）这只股票。我的看法是，它目前并不符合我投资的标准。</p><p>首先，我们来看这家公司的商业模式。人工智能确实是一个很有前景的领域，但仅凭这个概念并不能保证一家公司的长期成功。我们需要看到的是可持续的竞争优势，也就是我常说的&quot;护城河&quot;。从目前的情况来看，MINIMAX-W 似乎还没有展现出足够强大的护城河。</p><p>其次，我们来谈谈估值。从数据上看，这家公司的市销率（PS）高达 77 倍，这是一个非常高的数字。即使考虑到人工智能行业的增长潜力，这个估值也显得过于昂贵。我们投资的原则是&quot;四毛钱买一块钱的东西&quot;，而现在的情况是，我们可能要花一块二甚至更多去购买可能只值一块钱的东西。</p><p>再来看财务表现。虽然营收同比增长超过 100%，但净利润同比仅增长 3.35%，净利润率更是为负。这表明公司在盈利能力方面存在较大问题。我们投资的是企业，而不是单纯的增长数字。如果一家公司不能有效地将营收转化为利润，那么它的长期价值就会受到质疑。</p><p>当然，市场先生总是情绪化的，股价的波动性很高，这为我们提供了机会。但目前来看，股价的下跌更多是反映了市场对其基本面的担忧，而不是一个被低估的信号。</p><p>基于以上分析，我的建议是保持谨慎。如果你已经持有这只股票，可能需要重新评估你的投资逻辑。如果你正在考虑买入，我建议你再观察一段时间，等待更明确的信号。</p><p>最后，我想说，投资就像打棒球，你不需要每次都挥棒。最重要的是，只在你最有把握的时候出手。</p><p>如果是芒格，他可能会补充说，投资就像经营一个果园，你需要找到那些能结出甜美果实的树，而不是那些看起来光鲜亮丽但实际上结不出果实的树。</p></div></div><div class="mreply"><div class="mh"><span class="who">达利欧</span><span class="mscore">67</span></div><div class="md"><p>在当前情况下，关于MINIMAX-W（股票代码：00100），我的看法是保持谨慎中性态度。</p><p>首先，从积极的方面来看，这家公司处于人工智能领域，而人工智能无疑是未来具有长期增长潜力的行业。此外，该公司的市值规模相对较大，这为其提供了一定的稳定性，在市场波动中可能具备一定的抗风险能力。</p><p>然而，从风险角度来看，目前的股价已经出现了大幅下跌，这表明市场对其短期前景持较为悲观的态度。此外，该公司的估值指标显示出较高的风险：市净率（PB）达到9.47，市销率（PS）更是高达77.52，这表明市场对其未来盈利能力的预期可能过高。同时，尽管营收同比增长超过100%，但净利润同比仅增长3.35%，净利润率为-307%，这显示出公司在盈利能力方面存在显著问题。</p><p>基于这些因素，我的建议是：</p><ul><li><strong>风险控制</strong>：在当前高估值和盈利能力不足的情况下，投资者应严格控制仓位，避免过度集中投资于该股票。</li><li><strong>观察等待</strong>：建议持续关注公司的盈利能力改善情况，特别是净利润率的提升。如果未来几个季度能看到显著的盈利改善迹象，可以考虑重新评估投资机会。</li><li><strong>宏观环境</strong>：考虑到当前市场波动性较高，投资者应密切关注宏观经济环境和市场情绪的变化，这可能会对高估值股票产生较大影响。</li></ul><p>原则化来看，这让我想到一条原则：<strong>在市场情绪高涨、估值过高的情况下，谨慎控制风险比追求短期收益更为重要。</strong> 这条原则提醒我们，在面对高估值和盈利能力不足的股票时，保持冷静和耐心是至关重要的。</p><p>最后，我想强调的是，投资决策应基于充分的信息和理性的分析，而不是情绪或短期市场波动。希望大家在做出投资决策时，能够坚持原则，保持透明和开放的态度。</p></div></div><div class="mreply"><div class="mh"><span class="who">彼得·林奇</span><span class="mscore">64</span></div><div class="md"><p>各位朋友，今天我们来聊聊这只股票，代码是00100，名字是MINIMAX-W。从我的投资风格来看，我会先把它归类为快速增长型公司，因为它涉及人工智能概念，有潜力在未来的市场中获得增长。</p><p>先说我的结论：这只股票目前我持中性态度。为什么呢？一方面，人工智能是一个长期看好的领域，公司市值达到1000亿人民币，具备一定的市场稳定性。但另一方面，公司的股价近期大幅下跌，显示了短期内的弱势，而且市场波动性较高，风险较大。</p><p>从估值角度来看，公司的市净率（PB）达到9.47，市销率（PS）更是高达77.52，这表明市场对公司的未来增长有很高的预期。然而，公司的净利润增长率仅为3.35%，净利润率为-307%，这显示出公司目前盈利能力较弱，甚至处于亏损状态。这种高估值与低盈利之间的不匹配是一个值得警惕的信号。</p><p>接下来，我谈谈风险。首先，股价的大幅下跌可能反映出市场对公司未来增长的担忧。其次，高估值意味着市场对公司未来的增长预期非常高，如果公司无法实现这些预期，股价可能会面临更大的调整压力。此外，公司的盈利能力较弱，如果不能迅速改善，可能会影响其长期发展。</p><p>基于以上分析，我的建议是：</p><ul><li>如果你已经在持有这只股票，建议密切关注公司的基本面变化，特别是盈利能力是否有所改善。如果公司能够在未来几个季度内提高盈利能力，那么可以继续持有。</li><li>如果你正在考虑买入，建议等待更明确的盈利信号和市场情绪的稳定。可以先观察公司在人工智能领域的具体进展和市场表现，再做决定。</li><li>对于风险承受能力较低的投资者，建议暂时回避这只股票，等待市场情绪和公司基本面更为明朗时再考虑。</li></ul><p>总之，这只股票目前处于一个高风险高回报的阶段，需要投资者具备较强的风险承受能力和对人工智能行业的深入了解。希望这些分析对大家有所帮助。</p></div></div><div class="mreply"><div class="mh"><span class="who">芒格</span><span class="mscore">64</span></div><div class="md"><p>各位同行，今天我们讨论的是 00100 MINIMAX-W 这家公司。首先，我必须说，我对这只股票的立场是中立的，既不完全看多，也不完全看空。</p><h4>结论</h4><p>当前我对 MINIMAX-W 的态度是谨慎观望。这不是一只适合鲁莽下注的股票。</p><h4>理由</h4><p>从多元思维模型的角度来看，这家公司有一些值得考虑的亮点。首先，它身处人工智能领域，这是一个具有长期潜力的行业。其次，它的市值规模在千亿级别，这为投资者提供了一定程度的稳定性。</p><p>然而，负面因素更为显著。股价已经大幅下跌，短期来看非常弱势。市场波动性较高，风险较大。此外，尽管营收同比增长超过 100%，但净利润同比仅增长 3.35%，净利润率更是跌至 -307%，这表明公司的盈利能力存在严重问题。</p><p>从逆向思维的角度出发，我们需要问自己：这家公司可能如何失败？答案显而易见：盈利能力持续低迷、市场波动导致投资者信心崩溃、以及人工智能领域的激烈竞争都可能成为致命伤。</p><h4>风险/行动建议</h4><ul><li><strong>盈利能力风险</strong>：当前的净利润率和净利润增长数据令人担忧。如果这种情况持续下去，公司的长期生存能力将受到威胁。</li><li><strong>市场波动风险</strong>：高波动性意味着投资者需要具备强大的心理承受能力。如果市场情绪继续恶化，股价可能会进一步下跌。</li><li><strong>竞争风险</strong>：人工智能领域竞争激烈，MINIMAX-W 需要不断创新才能保持竞争力。</li></ul><p>我的建议是，在当前情况下，投资者应该保持观望，不要急于入场。如果一定要参与，应该严格控制仓位，并做好长期持有的准备。同时，密切关注公司未来的盈利能力和市场竞争态势。</p><h4>总结</h4><p>正如我常说的，&quot;如果我知道自己死在哪里，我就永远不去那里&quot;。在 MINIMAX-W 这只股票上，我们需要警惕盈利能力、市场波动和竞争风险。只有在这些风险得到有效控制后，才可以考虑进一步的投资行动。</p></div></div></div>
+<div class="panel"><h2>分析师报告<span class="sub">2 篇</span></h2><details open><summary>市场面分析</summary><div class="body"><div class="md"><h4>00100 MINIMAX-W 市场面分析</h4><ul><li>红黑榜多空分数：多头 35 / 空头 75，分差 -40。</li><li>当前价格：286.40。</li><li>当前交易评级：Reduce。</li><li>值得加仓区间：269.22 - 280.67。</li><li>风险控制位：252.03。</li><li>市场愿意给溢价的原因：人工智能概念具有长期潜力；市值规模提供一定稳定性。</li><li>当前主要压制因素：股价大幅下跌显示短期弱势；市场波动性较高，风险较大。</li></ul></div></div></details><details open><summary>基本面分析</summary><div class="body"><div class="md"><h4>00100 MINIMAX-W 基本面分析</h4><ul><li>报告期：暂无。</li><li>PB：9.47。</li><li>PS(TTM)：77.52。</li><li>ROE：55.01%。</li><li>营收同比：103.71%。</li><li>归母净利润同比：3.35%。</li><li>核心判断：盈利能力处于可接受区间；收入仍在增长；利润端保持扩张。</li></ul></div></div></details></div>
+<div class="panel"><h2>研究与计划</h2>
+<details><summary>基本面摘要</summary><div class="body"><div class="md"><h3>核心财务快照</h3><ul><li>报告期: 数据缺失</li><li>当前股价: 286.40 元</li><li>总市值: 1000.21 亿元</li><li>PE (TTM): 数据缺失</li><li>PB: 9.47</li><li>PS (TTM): 77.52</li><li>营业总收入(报告期): 数据缺失 亿元</li><li>营收同比增长率: 103.71%</li><li>归母净利润(报告期): 数据缺失 亿元</li><li>归母净利润同比增长率: 3.35%</li><li>ROE (TTM/估算): 55.01%</li><li>资产负债率: 数据缺失</li><li>经营性现金流 / 归母净利润: 数据缺失</li></ul><h4>缺失字段</h4><ul><li>PE(TTM), 营业总收入, 归母净利润, 资产负债率, 经营性现金流与归母净利润比值</li></ul></div></div></details>
+<details><summary>研究计划</summary><div class="body"><div class="md"><h4>00100 MINIMAX-W 研究摘要</h4><ul><li>红黑榜结论: Reduce</li><li>多头/空头: 35/75</li><li>正向信号: ROE 55.01%；营收同比 103.71%；归母净利润同比 3.35%；PB 9.47</li><li>榜单看多理由: 人工智能概念具有长期潜力；市值规模提供一定稳定性</li><li>榜单风险提示: 股价大幅下跌显示短期弱势；市场波动性较高，风险较大</li></ul></div></div></details>
+<details><summary>交易计划</summary><div class="body"><div class="md"><h4>00100 MINIMAX-W 交易计划</h4><ul><li>评级: Reduce</li><li>当前价格: 286.40</li><li>值得加仓区间: 257.76 - 269.22</li><li>目标价格: 272.08</li><li>止损位: 252.03</li><li>备注: 当前为缓存降级交易卡，后续若完整 TradingAgent 结果生成，将自动覆盖。</li></ul></div></div></details>
+<details><summary>交易决策</summary><div class="body"><div class="md"><p>Reduce</p><p>00100 MINIMAX-W 当前使用红黑榜缓存结果生成兜底交易卡。多头 35 / 空头 75，分差 -40。当前尚未取得完整 TradingAgent 长文决策，但榜单分数、财务快照和大师观点已经足够生成基础交易建议。</p></div></div></details>
+</div>
+<div class="panel"><h2>多空逻辑</h2><div class="pts"><div class="h bull">看多逻辑</div><div class="md"><p>人工智能概念具有长期潜力</p><p>市值规模提供一定稳定性</p></div></div><div class="pts"><div class="h bear">看空逻辑</div><div class="md"><p>股价大幅下跌显示短期弱势</p><p>市场波动性较高，风险较大</p></div></div></div>
+<div class="panel"><h2>伯克希尔研究</h2><p><strong>MINIMAX-W具备一定的商业模式差异化，但护城河尚需验证，当前估值合理但缺乏显著安全边际，建议观望为主。</strong></p><p>伯克希尔综合评分：<strong>3.5</strong></p><div class="md"><p>{&quot;verdict&quot;: &quot;观望&quot;, &quot;conservative_tip&quot;: &quot;建议观望，股价低于20元时可考虑轻仓介入&quot;, &quot;moderate_tip&quot;: &quot;股价在18-22元区间内可小规模建仓&quot;, &quot;aggressive_tip&quot;: &quot;股价低于18元时，可适当增加仓位&quot;, &quot;catalysts_plus&quot;: [&quot;营收增速超预期&quot;, &quot;新客户签约量大幅增长&quot;, &quot;技术突破带来差异化优势&quot;], &quot;catalysts_minus&quot;: [&quot;竞争加剧导致市场份额下降&quot;, &quot;监管政策变化&quot;, &quot;技术替代风险显现&quot;]}</p></div></div>
+<div class="panel news"><h2>最新资讯</h2><div class="md"><p>整体情绪偏利好，共6条利多，1条利空，4条中性。</p></div><div class="nitem"><div class="t">$MINIMAX-W (00100.HK)$</div><div class="s">Moomoo · 中性</div></div><div class="nitem"><div class="t">Southbound Connect Flows Flatline on August 14 as Tencent, MINIMAX-W Buck the Trend</div><div class="s">finance.biggo.com · 中性</div></div><div class="nitem"><div class="t">MiniMax shares surge as overseas partnerships pave the way for Chinese large language models to go global</div><div class="s">Moomoo · 利好</div></div><div class="nitem"><div class="t">MINIMAX-W(0100.HK)1H26点评：ARR增长提速 下半年期待旗舰模型与毛利率回暖 - Futubull</div><div class="s">富途牛牛 · 利好</div></div><div class="nitem"><div class="t">MINIMAX GROUP INC. - W (100)</div><div class="s">hkex.com.hk · 中性</div></div><div class="nitem"><div class="t">Minimax: Beginning to merge M3 and H3 into one single multimodal model</div><div class="s">CNBC · 利好</div></div><div class="nitem"><div class="t">Trending Industry Today: MINIMAX-W Leads Losses In AI-related Newly Listed Stocks</div><div class="s">Moomoo · 利空</div></div><div class="nitem"><div class="t">Hong Kong Stocks Open | Hang Seng Index Opens 0.49% Higher; Semiconductor and AI Stocks Gain Strength; MINIMAX-W (00100) Rises Nearly 4%</div><div class="s">Moomoo · 利好</div></div></div>
+<footer>稳健理财Agent · 红黑榜每日归档 · 黑榜 #6 · 仅供研究，不构成投资建议</footer>
+</div></body>
+</html>

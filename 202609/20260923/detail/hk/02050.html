@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>三花智控(02050) 黑榜 2026-09-23</title>
+<style>
+:root{--red:#d8342c;--redbg:#fdecea;--green:#1a9e54;--ink:#1c2230;--muted:#6b7385;
+--line:#e7e9ef;--card:#fff;--bg:#f4f6fa;--chip:#eef1f6;--dark:#23262d;--darkbg:#ececef}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",
+"Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);
+line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 16px 64px}
+header.top{background:linear-gradient(135deg,#1c2230,#2c3550);color:#fff;border-radius:14px;
+padding:22px 24px;margin-bottom:20px;box-shadow:0 6px 24px rgba(20,26,46,.12)}
+header.top h1{margin:0 0 6px;font-size:24px;letter-spacing:.5px}
+header.top .sub{opacity:.85;font-size:13px}
+header.top .sub b{color:#ffd166;font-weight:600}
+nav.mkt{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;
+background:rgba(244,246,250,.92);backdrop-filter:blur(6px);padding:10px 0;margin-bottom:14px}
+nav.mkt a{text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);
+padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600}
+nav.mkt a:hover{border-color:var(--red);color:var(--red)}
+.summary{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.summary .chip{background:var(--card);border:1px solid var(--line);border-radius:10px;
+padding:8px 12px;font-size:12px;color:var(--muted)}
+.summary .chip b{color:var(--ink);font-size:14px;margin-left:4px}
+section.board{margin:26px 0}
+.board-title{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:19px}
+.board-title .dot{width:10px;height:10px;border-radius:50%}
+.board-title.red .dot{background:var(--red)}
+.board-title.black .dot{background:var(--dark)}
+.board-title small{color:var(--muted);font-weight:400;font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+position:relative;transition:box-shadow .15s}
+.card:hover{box-shadow:0 4px 18px rgba(20,26,46,.08)}
+.card.red{border-top:3px solid var(--red)}
+.card.black{border-top:3px solid var(--dark)}
+.rank{position:absolute;top:10px;right:12px;font-size:26px;font-weight:800;color:#eceff5}
+.card.red .rank{color:#fbdcD9}
+.nm{font-size:16px;font-weight:700}
+.nm .tk{color:var(--muted);font-weight:500;font-size:12px;margin-left:6px}
+.tag{display:inline-block;background:var(--chip);color:var(--muted);border-radius:6px;
+padding:1px 7px;font-size:11px;margin:6px 6px 0 0}
+.price-row{display:flex;align-items:baseline;gap:10px;margin:10px 0 4px}
+.price{font-size:24px;font-weight:800}
+.pct{font-size:14px;font-weight:700;padding:2px 8px;border-radius:8px}
+.up{color:var(--red)}.down{color:var(--green)}.flat{color:var(--muted)}
+.pct.up{background:var(--redbg)}.pct.down{background:#e2f4e9}.pct.flat{background:var(--chip)}
+.psrc{font-size:11px;color:var(--muted);margin-left:auto}
+.scores{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.scores span{background:var(--chip);border-radius:6px;padding:2px 8px;font-size:11px;color:var(--muted)}
+.scores span b{color:var(--ink)}
+.pts{font-size:12.5px;margin:8px 0 0}
+.pts .h{font-weight:700;font-size:12px;margin:6px 0 2px}
+.pts .h.bull{color:var(--red)}.pts .h.bear{color:var(--green)}
+.pts ul{margin:2px 0 4px;padding-left:18px;color:#3a4152}
+.pts li{margin:1px 0}
+.masters{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:11px;color:var(--muted)}
+.masters b{color:var(--ink)}
+.summ{font-size:12.5px;color:#3a4152;background:#fafbfd;border:1px solid var(--line);
+border-radius:8px;padding:8px 10px;margin-top:8px}
+.empty{color:var(--muted);background:var(--card);border:1px dashed var(--line);
+border-radius:10px;padding:18px;text-align:center}
+footer{margin-top:34px;color:var(--muted);font-size:12px;text-align:center;line-height:1.8}
+a.lnk{color:var(--red);text-decoration:none}
+/* ── detail page ── */
+.backbar{margin-bottom:14px;font-size:13px}
+.backbar a{color:var(--muted);text-decoration:none;margin-right:14px}
+.backbar a:hover{color:var(--red)}
+.badge{display:inline-block;border-radius:6px;padding:2px 10px;font-size:12px;font-weight:700;margin-right:8px}
+.badge.red{background:var(--red);color:#fff}.badge.black{background:var(--dark);color:#fff}
+.trade{display:flex;flex-wrap:wrap;gap:10px;background:linear-gradient(135deg,#2c3550,#1c2230);
+color:#fff;border-radius:12px;padding:16px 18px;margin:16px 0}
+.trade .cell{min-width:120px}
+.trade .k{font-size:11px;opacity:.75}
+.trade .v{font-size:18px;font-weight:800;margin-top:2px}
+.trade .v.buy{color:#7ee2a8}.trade .v.sell{color:#ff9d97}.trade .v.hold{color:#ffd166}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0}
+.mgrid .m{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.mgrid .m .k{font-size:11px;color:var(--muted)}
+.mgrid .m .v{font-size:16px;font-weight:700;margin-top:2px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.panel>h2{margin:0 0 12px;font-size:17px}
+.panel>h2 .sub{font-size:12px;color:var(--muted);font-weight:400;margin-left:8px}
+.mreply{border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;
+padding:12px 14px;margin:10px 0;background:#fff}
+.mreply .mh{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.mreply .mh .who{font-weight:700;font-size:14px}
+.mreply .mh .mscore{margin-left:auto;background:var(--chip);border-radius:6px;padding:1px 8px;font-size:12px;font-weight:700}
+.md h2,.md h3,.md h4,.md h5{margin:12px 0 6px;font-size:15px}
+.md p{margin:6px 0;font-size:13.5px;color:#2c3345}
+.md ul{margin:6px 0;padding-left:20px;font-size:13.5px;color:#2c3345}
+.md li{margin:3px 0}
+.md strong{color:var(--ink)}
+details{border:1px solid var(--line);border-radius:10px;background:#fff;margin:10px 0;padding:0}
+details>summary{cursor:pointer;padding:12px 16px;font-weight:700;font-size:14px;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary:before{content:"▸ ";color:var(--red)}
+details[open]>summary:before{content:"▾ "}
+details>.body{padding:0 16px 14px;border-top:1px dashed var(--line)}
+.ychip{display:inline-block;background:var(--chip);border-radius:8px;padding:4px 10px;font-size:12px;margin:3px 6px 3px 0}
+.ychip b{font-size:13px}
+.news .nitem{border-top:1px dashed var(--line);padding:8px 0;font-size:13px}
+.news .nitem .t{font-weight:600}
+.news .nitem .s{color:var(--muted);font-size:12px}
+/* ── root landing page ── */
+.hero{padding:30px 26px}
+.hero-kicker{color:#ffd166;font-size:12px;font-weight:700;letter-spacing:2px;
+text-transform:uppercase;margin-bottom:8px}
+.hero h1{font-size:30px;margin:0 0 10px}
+.day-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.day-card{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);
+border-radius:12px;padding:14px 16px;transition:all .15s}
+.day-card:hover{border-color:var(--red);box-shadow:0 4px 16px rgba(216,52,44,.12);transform:translateY(-2px)}
+.day-card .d{font-weight:800;font-size:15px;color:var(--ink);display:flex;align-items:center;gap:8px}
+.day-card .m{margin-top:8px;display:flex;gap:6px}
+.day-card .m span{background:var(--chip);color:var(--muted);border-radius:6px;
+padding:2px 8px;font-size:11px}
+.latest-badge{background:var(--red);color:#fff;border-radius:6px;padding:1px 7px;
+font-size:10px;font-weight:700}
+</style>
+</head>
+<body><div class="wrap">
+<div class="backbar"><a href="../index.html">← 总览</a><a href="../hk.html">← 港股榜单</a></div>
+<header class="top">
+  <h1><span class="badge black">黑榜 #2</span>三花智控<span class="tk" style="opacity:.7;font-size:15px;font-weight:400;margin-left:8px">02050</span></h1>
+  <div class="sub">港股 ·  · 榜单日期 <b>2026-09-23</b> · 盘价采集 <b>2026-09-23 05:00:23</b></div>
+  <div class="price-row" style="margin-top:12px">
+    <span class="price" style="color:#fff">HK$24.78</span>
+    <span class="pct down">-0.49%</span>
+    <span class="psrc" style="color:rgba(255,255,255,.6)">实时</span>
+  </div>
+  <div class="scores" style="margin-top:10px">
+    <span>综合 <b>31.2</b></span>
+    <span>多头 <b>25</b></span>
+    <span>空头 <b>75</b></span>
+    <span>大师均值 <b>51</b></span>
+    <span>信号 <b>negative</b></span>
+  </div>
+</header>
+<div class="trade"><div class="cell"><div class="k">交易评级</div><span class="v hold">Reduce</span></div><div class="cell"><div class="k">加仓区间</div><span class="v">22.30 ~ 23.29</span></div><div class="cell"><div class="k">伯克希尔</div><span class="v">观望</span></div><div class="cell"><div class="k">伯克希尔分</div><span class="v">3.50</span></div></div>
+<div class="panel"><h2>财务指标</h2><div class="mgrid"><div class="m"><div class="k">市盈率 PE</div><div class="v">22.98</div></div><div class="m"><div class="k">市净率 PB</div><div class="v">2.79</div></div><div class="m"><div class="k">ROE</div><div class="v">6.4%</div></div><div class="m"><div class="k">总市值</div><div class="v">1043</div></div><div class="m"><div class="k">营收同比</div><div class="v">1.7%</div></div><div class="m"><div class="k">净利同比</div><div class="v">-2.2%</div></div></div></div>
+<div class="panel"><h2>历史收益</h2><span class="ychip">近1月 <b class="down">-5.31%</b></span><span class="ychip">近6月 <b class="down">-13.05%</b></span><span class="ychip">近1年 <b class="down">-38.45%</b></span></div>
+<div class="panel"><h2>大师圆桌<span class="sub">5 位</span></h2><div class="mreply"><div class="mh"><span class="who">段永平</span><span class="mscore">55</span></div><div class="md"><h4>圆桌发言：三花智控的投资价值</h4><h5>结论：</h5><p>对于三花智控，我目前持中性态度。这家公司有一定的吸引力，但也有一些需要谨慎的地方。</p><h5>理由：</h5><p>首先，三花智控所处的制造业领域，受宏观经济环境影响较大。当前全球经济形势并不明朗，这对公司的未来业绩构成了一定的压力。从财务数据来看，虽然公司市盈率（PE）不算高，约为23倍，但净利润同比下降2.2%，这反映出公司盈利能力面临挑战。</p><p>其次，从&quot;本分&quot;的角度来看，我们需要问自己：这是否是一家我们真正看得懂的好生意？三花智控在热管理领域有一定的技术优势，但制造业的竞争格局和技术迭代速度较快，我们需要深入理解其核心竞争力和长期护城河。</p><p>另外，从估值角度，虽然市盈率不算高，但市净率（PB）约为2.79倍，对于制造业公司来说，这个估值水平需要结合其资产质量和未来增长潜力来评估。</p><h5>风险/行动建议：</h5><ul><li><strong>宏观经济风险</strong>：制造业受经济周期影响较大，如果全球经济持续低迷，三花智控的业绩可能会继续承压。建议密切关注宏观经济指标和行业趋势。</li></ul><ul><li><strong>竞争格局</strong>：制造业的竞争格局较为激烈，技术迭代速度快。建议深入研究三花智控在热管理领域的竞争优势和市场份额，以及其研发投入和创新能力。</li></ul><ul><li><strong>估值合理性</strong>：虽然当前估值不算高，但考虑到净利润下降的趋势，我们需要谨慎评估其估值水平。建议进行更详细的财务分析和行业对比，以确定其估值是否合理。</li></ul><ul><li><strong>长期持有 vs 短期波动</strong>：如果决定投资，需要做好长期持有的准备，并准备好应对短期内的股价波动。制造业公司的股价通常会受到宏观经济和行业周期的影响。</li></ul><p>总的来说，三花智控是一家需要深入研究和谨慎评估的公司。如果你能理解其生意模式，并对其长期发展有信心，那么可以考虑在合适的估值水平下进行投资。但如果你对其业务模式或行业趋势感到不确定，那么可能需要再观察一段时间。</p></div></div><div class="mreply"><div class="mh"><span class="who">巴菲特</span><span class="mscore">33</span></div><div class="md"><p>各位朋友，关于三花智控（02050），我先说结论：我对这只股票持谨慎态度。</p><h4>理由：</h4><p>首先，从价值投资的角度来看，三花智控的市盈率（PE）约为23倍，估值并不算便宜。我们需要思考，这家公司是否有足够强的护城河，能在未来十年继续保持这样的盈利能力。从公开数据看，它的净资产收益率（ROE）只有6.36%，这让我对其资本配置效率有所担忧。</p><p>其次，三花智控所处的制造业受宏观经济环境影响较大。当前全球经济环境充满不确定性，这可能对其未来几年的业绩造成压力。尽管其市值规模中等，但这种规模并不足以构成明显的竞争优势。</p><h4>风险：</h4><ul><li><strong>经济周期风险</strong>：制造业受宏观经济波动影响较大，如果全球经济持续低迷，三花智控的业绩可能会受到冲击。</li><li><strong>护城河不足</strong>：从现有信息看，三花智控似乎没有特别强大的品牌、技术或成本优势，这使得它在面对竞争时可能处于不利地位。</li><li><strong>估值风险</strong>：当前市盈率（PE）约为23倍，对于一家没有明显护城河的公司来说，这个估值水平并不算低。</li></ul><h4>行动建议：</h4><p>如果你是长期投资者，我建议你先仔细评估三花智控的护城河和自由现金流情况。你可以问自己几个问题：</p><ul><li>这家公司在未来十年还能保持竞争力吗？</li><li>它的盈利能力是否足够稳定？</li><li>当前的估值是否为你提供了足够的安全边际？</li></ul><p>如果是芒格，他会补充说：&quot;投资就像在果园里挑选果树，你要选择那些能长期结出甜美果实的树，而不是那些看起来一时繁茂但根基不稳的树。&quot; 在做出投资决策之前，务必确保你对这个行业和公司有足够的了解，并且当前的估值能够为你提供足够的安全边际。</p></div></div><div class="mreply"><div class="mh"><span class="who">达利欧</span><span class="mscore">70</span></div><div class="md"><h4>圆桌发言：关于三花智控（02050）的看法</h4><p><strong>结论：</strong></p><p>目前我对三花智控持中性偏谨慎的态度。虽然公司基本面没有明显的负面信号，但考虑到宏观经济环境和制造业面临的挑战，我认为现阶段需要更多关注风险因素。</p><p><strong>理由：</strong></p><ul><li><strong>估值角度：</strong></li></ul><p>   从估值指标来看，三花智控的市盈率（PE）约为23倍，市净率（PB）约为2.8倍，估值水平处于合理区间，但并不算特别便宜。在当前市场环境下，这样的估值并没有提供足够的安全边际。</p><ul><li><strong>基本面分析：</strong></li></ul><p>   公司营收同比增长约1.7%，但净利润同比下降约2.2%，显示出一定的盈利压力。净资产收益率（ROE）约为6.4%，低于市场平均水平，表明其盈利能力有待提升。此外，净利率约为12.3%，虽然不算低，但在当前环境下也面临挑战。</p><ul><li><strong>宏观环境：</strong></li></ul><p>   制造业受宏观经济环境影响较大，尤其是全球经济增长放缓和地缘政治不确定性增加的情况下。三花智控作为一家制造业公司，其业务可能会受到市场需求波动和供应链压力的影响。</p><ul><li><strong>市场动能：</strong></li></ul><p>   股价近期小幅下跌0.49%，显示出市场动能偏弱。这可能反映了投资者对当前经济环境的担忧。</p><p><strong>风险/行动建议：</strong></p><ul><li><strong>风险提示：</strong></li><li>全球经济增长放缓可能影响公司产品的市场需求。</li><li>制造业面临的供应链压力和成本上升风险需要持续关注。</li><li>宏观经济环境的不确定性可能对估值产生负面影响。</li></ul><ul><li><strong>行动建议：</strong></li><li><strong>短期投资者：</strong> 如果你持有三花智控，建议密切关注公司财报和行业动态，评估其盈利能力的持续性。如果市场出现明显的不利信号，可以考虑适当减仓以控制风险。</li><li><strong>长期投资者：</strong> 可以继续观察，但需要更多耐心。在当前环境下，建议等待更明确的信号出现，例如公司盈利能力的改善或宏观环境的稳定。</li></ul><p><strong>原则化收口：</strong></p><p>在做出投资决策时，我们需要遵循“极度开放和透明”的原则。这意味着不仅要关注公司的基本面，还要考虑宏观环境和市场情绪的影响。正如我常说的，“Pain + Reflection = Progress”，在面对不确定性时，我们需要通过反思和调整来应对挑战。</p><p><strong>建议记录决策日志：</strong></p><p>记录下你当前的判断和理由，包括你对宏观环境和公司基本面的评估。这将有助于你在未来回顾时更好地理解自己的决策过程，并从中学习和改进。</p></div></div><div class="mreply"><div class="mh"><span class="who">彼得·林奇</span><span class="mscore">63</span></div><div class="md"><h4>三花智控的投资观点</h4><h5>结论：</h5><p>三花智控目前处于中性状态，既不是强烈推荐买入，也不是坚决卖出，需要进一步观察。</p><h5>理由：</h5><ul><li><strong>估值角度</strong>：从彼得·林奇的视角来看，22倍左右的市盈率对于一家制造业公司来说并不算便宜，但也不算特别贵。我们需要关注的是公司未来能否保持稳定的增长，以及其增长是否与估值相匹配。</li></ul><ul><li><strong>行业与公司基本面</strong>：三花智控属于制造业，受宏观经济环境影响较大。当前全球经济环境不确定性较高，这可能会对公司的业绩造成压力。此外，公司最近一个季度的营收同比增长仅为1.71%，净利润同比下降2.2%，显示出一定的增长疲态。</li></ul><ul><li><strong>生活场景验证</strong>：作为投资者，我会去观察三花智控的产品在实际生活中的应用场景，比如空调、冰箱等家电中的零部件。如果这些产品的市场需求依然强劲，那么公司可能会有一定的支撑。</li></ul><h5>风险/行动建议：</h5><ul><li><strong>风险提示</strong>：制造业受宏观经济影响较大，如果全球经济持续低迷，公司的业绩可能会受到进一步冲击。此外，制造业的竞争激烈，三花智控需要不断创新和降低成本才能保持竞争力。</li></ul><ul><li><strong>行动建议</strong>：对于已经持有三花智控的投资者，我建议暂时持有，但需要密切关注公司的季度财报和行业动态。如果发现公司业绩持续下滑，或者宏观经济环境进一步恶化，可以考虑减仓。对于想要买入的投资者，我建议再等等，等到估值更有吸引力或者公司业绩出现明显好转时再考虑。</li></ul><ul><li><strong>调研建议</strong>：作为彼得·林奇风格的投资人，我建议大家去实地调研一下，看看三花智控的产品在市场上的表现如何，比如去家电卖场看看产品的销售情况，或者了解一下公司在行业内的口碑和市场份额。</li></ul><p>总之，三花智控目前不是一只让人一见钟情的股票，但也不是一只需要立刻卖出的股票。投资者需要耐心观察，等待更好的时机。</p></div></div><div class="mreply"><div class="mh"><span class="who">芒格</span><span class="mscore">34</span></div><div class="md"><p>各位同仁，今天我们来聊聊三花智控这家公司。</p><p>首先，我的结论是：<strong>三花智控目前并不符合我理想的投资标的特征。</strong></p><p>为什么这么说呢？让我们先从逆向思维的角度来考虑这个问题。我们都知道，投资中最危险的情况之一就是被市场情绪牵着走，而忽略潜在的风险。三花智控所在的制造业领域，受宏观经济环境影响较大。这意味着在经济下行周期中，它的盈利能力可能会受到显著冲击。目前我们看到的是股价小幅下跌0.49%，虽然跌幅不大，但动能偏弱，这可能预示着市场对其未来表现的担忧。</p><p>再从多元心智模型的角度来看，制造业企业的估值通常需要考虑其净资产收益率（ROE）和净利润率等指标。三花智控的ROE为6.36%，净利润率为12.32%，虽然不算糟糕，但在当前的经济环境下，这样的盈利能力并不足以支撑其22.97倍的市盈率。此外，其营收同比增长仅为1.71%，净利润同比下降2.2%，这些数据都表明公司在当前市场环境下的增长乏力。</p><p>那么，风险在哪里呢？首先，经济周期的波动对制造业的影响是显而易见的。如果全球经济进一步放缓，三花智控的业绩可能会继续承压。其次，市场对其估值仍然偏高，尽管其市值为1042.75亿，但考虑到其增长前景，这样的估值并不算便宜。</p><p>基于以上分析，我的建议是：<strong>对于三花智控，目前应该保持观望态度。</strong> 如果你已经在持有这只股票，建议密切关注其基本面变化，特别是经济环境对公司业务的影响。如果你正在考虑买入，我建议你再等等，直到看到更明确的增长信号或估值调整。</p><p>最后，我能错在哪里呢？可能是我低估了公司在行业中的竞争力，或者忽略了某些潜在的利好因素。但无论如何，在当前的经济环境下，保持谨慎是更为明智的选择。</p></div></div></div>
+<div class="panel"><h2>分析师报告<span class="sub">2 篇</span></h2><details open><summary>市场面分析</summary><div class="body"><div class="md"><h4>02050 三花智控 市场面分析</h4><ul><li>红黑榜多空分数：多头 25 / 空头 75，分差 -50。</li><li>当前价格：24.78。</li><li>当前交易评级：Reduce。</li><li>值得加仓区间：22.30 - 23.29。</li><li>风险控制位：21.81。</li><li>市场愿意给溢价的原因：无明显多头信号；市值规模中等。</li><li>当前主要压制因素：股价小幅下跌0.49%，动能偏弱；制造业受宏观经济环境影响较大。</li></ul></div></div></details><details open><summary>基本面分析</summary><div class="body"><div class="md"><h4>02050 三花智控 基本面分析</h4><ul><li>报告期：暂无。</li><li>PE(TTM)：22.98。</li><li>PB：2.79。</li><li>PS(TTM)：2.90。</li><li>ROE：6.36%。</li><li>营收同比：1.71%。</li><li>归母净利润同比：-2.20%。</li><li>核心判断：收入仍在增长。</li></ul></div></div></details></div>
+<div class="panel"><h2>研究与计划</h2>
+<details><summary>基本面摘要</summary><div class="body"><div class="md"><h3>核心财务快照</h3><ul><li>报告期: 数据缺失</li><li>当前股价: 24.78 元</li><li>总市值: 1042.75 亿元</li><li>PE (TTM): 22.98</li><li>PB: 2.79</li><li>PS (TTM): 2.90</li><li>营业总收入(报告期): 数据缺失 亿元</li><li>营收同比增长率: 1.71%</li><li>归母净利润(报告期): 数据缺失 亿元</li><li>归母净利润同比增长率: -2.20%</li><li>ROE (TTM/估算): 6.36%</li><li>资产负债率: 数据缺失</li><li>经营性现金流 / 归母净利润: 数据缺失</li></ul><h4>缺失字段</h4><ul><li>营业总收入, 归母净利润, 资产负债率, 经营性现金流与归母净利润比值</li></ul></div></div></details>
+<details><summary>研究计划</summary><div class="body"><div class="md"><h4>02050 三花智控 研究摘要</h4><ul><li>红黑榜结论: Reduce</li><li>多头/空头: 25/75</li><li>正向信号: 营收同比 1.71%；PE(TTM) 22.98；PB 2.79</li><li>风险信号: ROE 6.36%；归母净利润同比 -2.20%</li><li>榜单看多理由: 无明显多头信号；市值规模中等</li><li>榜单风险提示: 股价小幅下跌0.49%，动能偏弱；制造业受宏观经济环境影响较大</li></ul></div></div></details>
+<details><summary>交易计划</summary><div class="body"><div class="md"><h4>02050 三花智控 交易计划</h4><ul><li>评级: Reduce</li><li>当前价格: 24.78</li><li>值得加仓区间: 22.30 - 23.29</li><li>目标价格: 23.54</li><li>止损位: 21.81</li><li>备注: 当前为缓存降级交易卡，后续若完整 TradingAgent 结果生成，将自动覆盖。</li></ul></div></div></details>
+<details><summary>交易决策</summary><div class="body"><div class="md"><p>Reduce</p><p>02050 三花智控 当前使用红黑榜缓存结果生成兜底交易卡。多头 25 / 空头 75，分差 -50。当前尚未取得完整 TradingAgent 长文决策，但榜单分数、财务快照和大师观点已经足够生成基础交易建议。</p></div></div></details>
+</div>
+<div class="panel"><h2>多空逻辑</h2><div class="pts"><div class="h bull">看多逻辑</div><div class="md"><p>无明显多头信号</p><p>市值规模中等</p></div></div><div class="pts"><div class="h bear">看空逻辑</div><div class="md"><p>股价小幅下跌0.49%，动能偏弱</p><p>制造业受宏观经济环境影响较大</p></div></div></div>
+<div class="panel"><h2>伯克希尔研究</h2><p><strong>三花智控是一家在热管理领域具有技术优势的企业，但面临行业竞争加剧和宏观周期波动的挑战，当前估值合理但需关注长期增长潜力。</strong></p><p>伯克希尔综合评分：<strong>3.5</strong></p><div class="md"><p>{&quot;verdict&quot;: &quot;观望&quot;, &quot;conservative_tip&quot;: &quot;建议观望，耐心等待更优价格，PE低于20倍可考虑建仓。&quot;, &quot;moderate_tip&quot;: &quot;当前价格可小仓位介入，若PE降至22倍以下可加仓。&quot;, &quot;aggressive_tip&quot;: &quot;若新能源车热管理业务超预期增长，可考虑在PE 25倍以下积极买入。&quot;, &quot;catalysts_plus&quot;: [&quot;新能源车热管理业务增长超预期。&quot;, &quot;研发突破带来技术领先优势。&quot;, &quot;市场份额进一步提升。&quot;], &quot;catalysts_minus&quot;: [&quot;竞争加剧导致毛利率下降。&quot;, &quot;宏观周期波动影响下游需求。&quot;, &quot;政策风险加剧，如环保法规趋严。&quot;]}</p></div></div>
+<div class="panel news"><h2>最新资讯</h2><div class="md"><p>1条新闻整体情绪为中性。</p></div><div class="nitem"><div class="t">三花智控：公司2026年中期利润分配预案的公告- Futubull</div><div class="s">富途牛牛 · 中性</div></div></div>
+<footer>稳健理财Agent · 红黑榜每日归档 · 黑榜 #2 · 仅供研究，不构成投资建议</footer>
+</div></body>
+</html>

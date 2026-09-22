@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>蓝思科技(06613) 黑榜 2026-09-23</title>
+<style>
+:root{--red:#d8342c;--redbg:#fdecea;--green:#1a9e54;--ink:#1c2230;--muted:#6b7385;
+--line:#e7e9ef;--card:#fff;--bg:#f4f6fa;--chip:#eef1f6;--dark:#23262d;--darkbg:#ececef}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",
+"Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);
+line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 16px 64px}
+header.top{background:linear-gradient(135deg,#1c2230,#2c3550);color:#fff;border-radius:14px;
+padding:22px 24px;margin-bottom:20px;box-shadow:0 6px 24px rgba(20,26,46,.12)}
+header.top h1{margin:0 0 6px;font-size:24px;letter-spacing:.5px}
+header.top .sub{opacity:.85;font-size:13px}
+header.top .sub b{color:#ffd166;font-weight:600}
+nav.mkt{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;
+background:rgba(244,246,250,.92);backdrop-filter:blur(6px);padding:10px 0;margin-bottom:14px}
+nav.mkt a{text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);
+padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600}
+nav.mkt a:hover{border-color:var(--red);color:var(--red)}
+.summary{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.summary .chip{background:var(--card);border:1px solid var(--line);border-radius:10px;
+padding:8px 12px;font-size:12px;color:var(--muted)}
+.summary .chip b{color:var(--ink);font-size:14px;margin-left:4px}
+section.board{margin:26px 0}
+.board-title{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:19px}
+.board-title .dot{width:10px;height:10px;border-radius:50%}
+.board-title.red .dot{background:var(--red)}
+.board-title.black .dot{background:var(--dark)}
+.board-title small{color:var(--muted);font-weight:400;font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+position:relative;transition:box-shadow .15s}
+.card:hover{box-shadow:0 4px 18px rgba(20,26,46,.08)}
+.card.red{border-top:3px solid var(--red)}
+.card.black{border-top:3px solid var(--dark)}
+.rank{position:absolute;top:10px;right:12px;font-size:26px;font-weight:800;color:#eceff5}
+.card.red .rank{color:#fbdcD9}
+.nm{font-size:16px;font-weight:700}
+.nm .tk{color:var(--muted);font-weight:500;font-size:12px;margin-left:6px}
+.tag{display:inline-block;background:var(--chip);color:var(--muted);border-radius:6px;
+padding:1px 7px;font-size:11px;margin:6px 6px 0 0}
+.price-row{display:flex;align-items:baseline;gap:10px;margin:10px 0 4px}
+.price{font-size:24px;font-weight:800}
+.pct{font-size:14px;font-weight:700;padding:2px 8px;border-radius:8px}
+.up{color:var(--red)}.down{color:var(--green)}.flat{color:var(--muted)}
+.pct.up{background:var(--redbg)}.pct.down{background:#e2f4e9}.pct.flat{background:var(--chip)}
+.psrc{font-size:11px;color:var(--muted);margin-left:auto}
+.scores{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.scores span{background:var(--chip);border-radius:6px;padding:2px 8px;font-size:11px;color:var(--muted)}
+.scores span b{color:var(--ink)}
+.pts{font-size:12.5px;margin:8px 0 0}
+.pts .h{font-weight:700;font-size:12px;margin:6px 0 2px}
+.pts .h.bull{color:var(--red)}.pts .h.bear{color:var(--green)}
+.pts ul{margin:2px 0 4px;padding-left:18px;color:#3a4152}
+.pts li{margin:1px 0}
+.masters{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:11px;color:var(--muted)}
+.masters b{color:var(--ink)}
+.summ{font-size:12.5px;color:#3a4152;background:#fafbfd;border:1px solid var(--line);
+border-radius:8px;padding:8px 10px;margin-top:8px}
+.empty{color:var(--muted);background:var(--card);border:1px dashed var(--line);
+border-radius:10px;padding:18px;text-align:center}
+footer{margin-top:34px;color:var(--muted);font-size:12px;text-align:center;line-height:1.8}
+a.lnk{color:var(--red);text-decoration:none}
+/* ── detail page ── */
+.backbar{margin-bottom:14px;font-size:13px}
+.backbar a{color:var(--muted);text-decoration:none;margin-right:14px}
+.backbar a:hover{color:var(--red)}
+.badge{display:inline-block;border-radius:6px;padding:2px 10px;font-size:12px;font-weight:700;margin-right:8px}
+.badge.red{background:var(--red);color:#fff}.badge.black{background:var(--dark);color:#fff}
+.trade{display:flex;flex-wrap:wrap;gap:10px;background:linear-gradient(135deg,#2c3550,#1c2230);
+color:#fff;border-radius:12px;padding:16px 18px;margin:16px 0}
+.trade .cell{min-width:120px}
+.trade .k{font-size:11px;opacity:.75}
+.trade .v{font-size:18px;font-weight:800;margin-top:2px}
+.trade .v.buy{color:#7ee2a8}.trade .v.sell{color:#ff9d97}.trade .v.hold{color:#ffd166}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0}
+.mgrid .m{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.mgrid .m .k{font-size:11px;color:var(--muted)}
+.mgrid .m .v{font-size:16px;font-weight:700;margin-top:2px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.panel>h2{margin:0 0 12px;font-size:17px}
+.panel>h2 .sub{font-size:12px;color:var(--muted);font-weight:400;margin-left:8px}
+.mreply{border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;
+padding:12px 14px;margin:10px 0;background:#fff}
+.mreply .mh{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.mreply .mh .who{font-weight:700;font-size:14px}
+.mreply .mh .mscore{margin-left:auto;background:var(--chip);border-radius:6px;padding:1px 8px;font-size:12px;font-weight:700}
+.md h2,.md h3,.md h4,.md h5{margin:12px 0 6px;font-size:15px}
+.md p{margin:6px 0;font-size:13.5px;color:#2c3345}
+.md ul{margin:6px 0;padding-left:20px;font-size:13.5px;color:#2c3345}
+.md li{margin:3px 0}
+.md strong{color:var(--ink)}
+details{border:1px solid var(--line);border-radius:10px;background:#fff;margin:10px 0;padding:0}
+details>summary{cursor:pointer;padding:12px 16px;font-weight:700;font-size:14px;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary:before{content:"▸ ";color:var(--red)}
+details[open]>summary:before{content:"▾ "}
+details>.body{padding:0 16px 14px;border-top:1px dashed var(--line)}
+.ychip{display:inline-block;background:var(--chip);border-radius:8px;padding:4px 10px;font-size:12px;margin:3px 6px 3px 0}
+.ychip b{font-size:13px}
+.news .nitem{border-top:1px dashed var(--line);padding:8px 0;font-size:13px}
+.news .nitem .t{font-weight:600}
+.news .nitem .s{color:var(--muted);font-size:12px}
+/* ── root landing page ── */
+.hero{padding:30px 26px}
+.hero-kicker{color:#ffd166;font-size:12px;font-weight:700;letter-spacing:2px;
+text-transform:uppercase;margin-bottom:8px}
+.hero h1{font-size:30px;margin:0 0 10px}
+.day-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.day-card{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);
+border-radius:12px;padding:14px 16px;transition:all .15s}
+.day-card:hover{border-color:var(--red);box-shadow:0 4px 16px rgba(216,52,44,.12);transform:translateY(-2px)}
+.day-card .d{font-weight:800;font-size:15px;color:var(--ink);display:flex;align-items:center;gap:8px}
+.day-card .m{margin-top:8px;display:flex;gap:6px}
+.day-card .m span{background:var(--chip);color:var(--muted);border-radius:6px;
+padding:2px 8px;font-size:11px}
+.latest-badge{background:var(--red);color:#fff;border-radius:6px;padding:1px 7px;
+font-size:10px;font-weight:700}
+</style>
+</head>
+<body><div class="wrap">
+<div class="backbar"><a href="../index.html">← 总览</a><a href="../hk.html">← 港股榜单</a></div>
+<header class="top">
+  <h1><span class="badge black">黑榜 #1</span>蓝思科技<span class="tk" style="opacity:.7;font-size:15px;font-weight:400;margin-left:8px">06613</span></h1>
+  <div class="sub">港股 ·  · 榜单日期 <b>2026-09-23</b> · 盘价采集 <b>2026-09-23 05:00:23</b></div>
+  <div class="price-row" style="margin-top:12px">
+    <span class="price" style="color:#fff">HK$22.26</span>
+    <span class="pct down">-1.07%</span>
+    <span class="psrc" style="color:rgba(255,255,255,.6)">实时</span>
+  </div>
+  <div class="scores" style="margin-top:10px">
+    <span>综合 <b>21.9</b></span>
+    <span>多头 <b>20</b></span>
+    <span>空头 <b>80</b></span>
+    <span>大师均值 <b>67</b></span>
+    <span>信号 <b>negative</b></span>
+  </div>
+</header>
+<div class="trade"><div class="cell"><div class="k">交易评级</div><span class="v hold">Reduce</span></div><div class="cell"><div class="k">加仓区间</div><span class="v">20.03 ~ 20.92</span></div><div class="cell"><div class="k">伯克希尔</div><span class="v">观望</span></div><div class="cell"><div class="k">伯克希尔分</div><span class="v">2.75</span></div></div>
+<div class="panel"><h2>财务指标</h2><div class="mgrid"><div class="m"><div class="k">市盈率 PE</div><div class="v">30.45</div></div><div class="m"><div class="k">市净率 PB</div><div class="v">1.93</div></div><div class="m"><div class="k">ROE</div><div class="v">1.1%</div></div><div class="m"><div class="k">总市值</div><div class="v">1175</div></div><div class="m"><div class="k">营收同比</div><div class="v">-1.6%</div></div><div class="m"><div class="k">净利同比</div><div class="v">0.4%</div></div></div></div>
+<div class="panel"><h2>历史收益</h2><span class="ychip">近1月 <b class="down">-5.20%</b></span><span class="ychip">近6月 <b class="up">+7.33%</b></span><span class="ychip">近1年 <b class="down">-21.87%</b></span></div>
+<div class="panel"><h2>大师圆桌<span class="sub">5 位</span></h2><div class="mreply"><div class="mh"><span class="who">段永平</span><span class="mscore">87</span></div><div class="md"><p>从段永平的角度来看，蓝思科技这样的公司需要我们先问自己几个问题：</p><h4>结论：</h4><p>目前蓝思科技可能不是一个特别适合投资的标的。</p><h4>理由：</h4><p>首先，从&quot;本分&quot;的角度来看，蓝思科技所在的科技硬件行业竞争格局非常严峻。行业内的竞争者众多，而蓝思科技并没有展现出特别明显的竞争优势。其次，从财务指标来看，虽然市盈率（PE）不算特别高，但净资产收益率（ROE）仅为1.07%，这表明公司的盈利能力相对较弱。此外，股价近期表现疲软，下跌了1.07%，这可能反映出市场对公司的信心不足。</p><h4>风险/行动建议：</h4><ul><li><strong>竞争风险</strong>：科技硬件行业的竞争非常激烈，蓝思科技需要面对来自国内外众多竞争对手的压力。如果公司不能在技术创新、成本控制或市场拓展方面取得突破，可能会面临更大的挑战。</li><li><strong>盈利能力</strong>：当前ROE较低，表明公司的盈利能力有待提高。投资者需要密切关注公司未来的盈利增长情况，以及管理层是否能够有效提升运营效率。</li><li><strong>市场信心</strong>：股价的疲软表现可能反映出市场对公司的预期较低。投资者需要考虑是否愿意在此时介入，以及是否有足够的耐心等待公司基本面改善。</li></ul><h4>行动建议：</h4><p>如果是我，我会先观察一段时间，看看公司是否能够在竞争中找到自己的定位，并提升盈利能力。同时，我会更关注公司的长期发展战略和执行力，而不是短期的股价波动。投资这样的公司，需要有足够的耐心和信心，而这两点目前来看可能并不充分。</p><h4>别错过的隐含约束：</h4><p>别因为&quot;市值较小&quot;就轻易认为有上涨空间。投资还是要看公司的长期竞争力和盈利能力，而不是简单的市值大小。</p></div></div><div class="mreply"><div class="mh"><span class="who">巴菲特</span><span class="mscore">52</span></div><div class="md"><p>各位好，关于蓝思科技这家公司，我先直接给结论：我现在持中立态度。这家公司目前既没有让我非常兴奋的理由，也没有让我感到极度担忧的地方，但需要更仔细地审视。</p><p>首先，从生意模式的角度来看，蓝思科技处于科技硬件行业，这是一个竞争非常激烈的领域。正如我常说的，护城河是判断一家公司长期竞争力的关键。而在这个行业，技术更新换代快，规模效应和成本控制能力非常重要。目前，我没有看到蓝思科技有特别明显的护城河优势，这让我有些犹豫。</p><p>从财务数据来看，当前的市盈率（PE）约为30倍，对于一个竞争激烈且增长放缓的行业来说，这个估值并不算便宜。净资产收益率（ROE）仅为1%左右，这表明公司利用股东权益创造利润的能力较弱。此外，收入同比下降，而净利润同比略有增长，但整体盈利能力仍然较弱。</p><p>然而，我也注意到一些潜在的积极因素。比如，公司的市值规模较小，这可能意味着在某些情况下，它有可能通过创新或市场变化实现快速增长。但这种增长需要建立在稳固的商业模式基础之上。</p><p>基于以上分析，我建议采取以下行动：</p><ul><li><strong>深入研究护城河</strong>：仔细评估蓝思科技在技术研发、成本控制和市场定位方面的优势，看看是否有潜在的护城河正在形成。</li></ul><ul><li><strong>关注自由现金流</strong>：观察公司的自由现金流情况，看看它是否有足够的现金来支持未来的增长和应对行业波动。</li></ul><ul><li><strong>耐心等待</strong>：如果对这家公司的长期前景感兴趣，可以先保持关注，等待更明确的机会出现。正如我常说的，投资就像打棒球，你不需要每次都挥棒。</li></ul><p>最后，我想提醒大家，投资决策应该基于对公司长期价值的判断，而不是短期的价格波动。如果蓝思科技的基本面没有显著改善，我可能会选择继续观望。正如查理·芒格常说的，&quot;在不确定的时候，最好的策略往往是耐心等待。&quot;</p></div></div><div class="mreply"><div class="mh"><span class="who">达利欧</span><span class="mscore">85</span></div><div class="md"><h4>圆桌发言：关于蓝思科技的投资观点</h4><h5>结论：</h5><p>目前我对蓝思科技持谨慎态度。从原则化、宏观风险平衡的角度来看，这家公司目前面临的压力大于机遇。</p><h5>理由：</h5><ul><li><strong>行业竞争格局严峻</strong>：科技硬件行业的竞争非常激烈，蓝思科技所处的市场环境并不乐观。行业内的头部效应明显，而蓝思科技目前并没有展现出显著的竞争优势。</li><li><strong>财务表现疲软</strong>：从财务数据来看，公司营收同比下降1.64%，虽然净利润同比增长0.36%，但整体盈利能力仍然较弱，净资产收益率（ROE）仅为1.07%。这表明公司在当前市场环境下的盈利能力有限。</li><li><strong>股价表现不佳</strong>：近期股价下跌1.07%，这反映了市场对公司的信心不足。在当前的市场环境下，投资者对科技硬件行业的预期普遍较为悲观。</li></ul><h5>风险/行动建议：</h5><ul><li><strong>风险评估</strong>：考虑到科技硬件行业的竞争格局和公司当前的财务表现，蓝思科技面临的主要风险在于市场份额的进一步流失和盈利能力的持续下降。如果行业竞争继续加剧，公司可能会面临更大的经营压力。</li><li><strong>行动建议</strong>：</li><li><strong>观望为主</strong>：对于现有投资者，建议密切关注公司未来的财务表现和行业动态。如果公司能够在竞争中展现出更强的盈利能力或市场份额的提升，可以考虑继续持有。</li><li><strong>谨慎投资</strong>：对于潜在投资者，建议在当前阶段保持观望。如果公司能够通过技术创新或市场拓展来改善其基本面，可以重新评估投资机会。</li><li><strong>原则化决策</strong>：将这次分析作为一条原则记录下来，即“在行业竞争激烈且公司财务表现疲软的情况下，谨慎投资”。这将有助于在未来类似情境下做出更明智的决策。</li></ul><h5>总结：</h5><p>蓝思科技目前处于一个较为艰难的时期，行业的竞争格局和公司的财务表现都不容乐观。对于投资者来说，保持谨慎和观望的态度是较为稳妥的选择。通过原则化的决策过程，我们可以更好地应对未来的不确定性。</p></div></div><div class="mreply"><div class="mh"><span class="who">彼得·林奇</span><span class="mscore">36</span></div><div class="md"><p>各位投资者，今天我们聊一聊蓝思科技（06613）。首先，我的结论是：这只股票目前不适合买入。</p><h4>理由：</h4><ul><li><strong>行业竞争格局严峻</strong>：蓝思科技所在的科技硬件行业，竞争非常激烈。科技行业变化快，竞争对手众多，而蓝思科技似乎没有展现出足够的差异化优势。</li><li><strong>业绩表现疲软</strong>：从财务数据来看，公司当前的营收同比下降了1.64%，虽然净利润同比略有增长，但整体盈利能力并不突出，净资产收益率（ROE）仅为1.07%。</li><li><strong>估值偏高</strong>：目前公司的市盈率（PE）约为30倍，对于一个处于竞争激烈行业且增长乏力的公司来说，这个估值水平偏高。在当前的市场环境下，投资者可能会对这样的高估值持谨慎态度。</li></ul><h4>风险：</h4><ul><li><strong>市场竞争风险</strong>：科技硬件行业的竞争不仅来自国内，还包括国际竞争对手。如果蓝思科技不能持续创新并保持竞争力，可能会面临市场份额下降的风险。</li><li><strong>估值回调风险</strong>：如果市场对科技硬件行业的整体估值水平进行调整，蓝思科技的股价可能会面临更大的下行压力。</li><li><strong>业绩波动风险</strong>：科技行业的周期性较强，公司的业绩可能会受到宏观经济环境和技术变革的影响，导致股价波动较大。</li></ul><h4>行动建议：</h4><ul><li><strong>观望为主</strong>：目前不建议立即买入。可以先观察公司在未来几个季度的业绩表现，以及行业竞争格局的变化。</li><li><strong>关注管理层动向</strong>：如果公司有重大战略调整或新产品发布，可以重新评估其投资价值。</li><li><strong>等待更佳时机</strong>：如果股价进一步下跌，且公司基本面没有恶化，可以考虑在更低的价位买入。但目前来看，耐心等待是更好的选择。</li></ul><p>总之，蓝思科技目前的情况并不符合我“买你懂的”原则，建议大家保持谨慎，多做观察。</p></div></div><div class="mreply"><div class="mh"><span class="who">芒格</span><span class="mscore">75</span></div><div class="md"><p>各位，这只股票叫蓝思科技（06613）。首先，我给个结论：我不看好这家公司，现在不是投资的好时机。</p><h4>理由：</h4><ul><li><strong>股价表现疲软</strong>：公司股价已经下跌了1.07%，这可不是一个好兆头。股价疲软往往预示着市场对公司未来盈利能力的担忧。</li></ul><ul><li><strong>行业竞争格局严峻</strong>：科技硬件行业的竞争非常激烈，蓝思科技所处的市场环境并不乐观。竞争对手众多，市场份额的争夺异常残酷，这会严重影响公司的利润率。</li></ul><ul><li><strong>财务指标不佳</strong>：公司的市盈率（PE）高达30.45，远高于市场平均水平，这表明市场对其未来增长有很高的预期。然而，净资产收益率（ROE）仅为1.07%，这意味着公司利用股东权益创造利润的能力非常弱。此外，营收同比下降1.64%，虽然净利润同比增长了0.36%，但整体盈利能力仍然令人担忧。</li></ul><ul><li><strong>缺乏明显的增长动力</strong>：从目前的信息来看，没有看到公司有明显的增长动力或竞争优势。市值较小虽然可能意味着有增长空间，但在当前竞争激烈的环境下，这种可能性并不乐观。</li></ul><h4>风险：</h4><ul><li><strong>行业风险</strong>：科技硬件行业的变化非常快，技术更新换代迅速。如果蓝思科技不能及时跟上行业趋势，可能会被市场淘汰。</li></ul><ul><li><strong>竞争风险</strong>：竞争对手的强大压力可能会进一步挤压公司的市场份额和利润率。</li></ul><ul><li><strong>财务风险</strong>：公司的财务状况并不稳健，盈利能力较弱。如果市场环境恶化，公司可能会面临更大的财务压力。</li></ul><h4>行动建议：</h4><ul><li><strong>观望为主</strong>：目前不建议买入。投资者应该继续观察公司的财务表现和行业动态，等待更明确的信号。</li></ul><ul><li><strong>关注行业趋势</strong>：如果对科技硬件行业感兴趣，可以关注那些在技术创新和市场占有率上有明显优势的公司。</li></ul><ul><li><strong>警惕高估值</strong>：即使公司未来有增长潜力，也要警惕当前的高估值。市场的预期可能过于乐观，一旦业绩不达预期，股价可能会大幅下跌。</li></ul><p>总之，投资要谨慎，不要被短期的市场波动或情绪所左右。记住，&quot;如果我知道自己会死在哪里，我就永远不去那里&quot;。在蓝思科技这只股票上，目前看不到足够的安全边际和增长潜力。</p></div></div></div>
+<div class="panel"><h2>分析师报告<span class="sub">2 篇</span></h2><details open><summary>市场面分析</summary><div class="body"><div class="md"><h4>06613 蓝思科技 市场面分析</h4><ul><li>红黑榜多空分数：多头 20 / 空头 80，分差 -60。</li><li>当前价格：22.26。</li><li>当前交易评级：Reduce。</li><li>值得加仓区间：20.03 - 20.92。</li><li>风险控制位：19.59。</li><li>市场愿意给溢价的原因：无明显多头信号；市值规模较小。</li><li>当前主要压制因素：股价下跌1.07%，表现疲软；科技硬件行业竞争格局严峻。</li></ul></div></div></details><details open><summary>基本面分析</summary><div class="body"><div class="md"><h4>06613 蓝思科技 基本面分析</h4><ul><li>报告期：暂无。</li><li>PE(TTM)：30.45。</li><li>PB：1.93。</li><li>PS(TTM)：1.48。</li><li>ROE：1.07%。</li><li>营收同比：-1.64%。</li><li>归母净利润同比：0.36%。</li><li>核心判断：利润端保持扩张。</li></ul></div></div></details></div>
+<div class="panel"><h2>研究与计划</h2>
+<details><summary>基本面摘要</summary><div class="body"><div class="md"><h3>核心财务快照</h3><ul><li>报告期: 数据缺失</li><li>当前股价: 22.26 元</li><li>总市值: 1175.05 亿元</li><li>PE (TTM): 30.45</li><li>PB: 1.93</li><li>PS (TTM): 1.48</li><li>营业总收入(报告期): 数据缺失 亿元</li><li>营收同比增长率: -1.64%</li><li>归母净利润(报告期): 数据缺失 亿元</li><li>归母净利润同比增长率: 0.36%</li><li>ROE (TTM/估算): 1.07%</li><li>资产负债率: 数据缺失</li><li>经营性现金流 / 归母净利润: 数据缺失</li></ul><h4>缺失字段</h4><ul><li>营业总收入, 归母净利润, 资产负债率, 经营性现金流与归母净利润比值</li></ul></div></div></details>
+<details><summary>研究计划</summary><div class="body"><div class="md"><h4>06613 蓝思科技 研究摘要</h4><ul><li>红黑榜结论: Reduce</li><li>多头/空头: 20/80</li><li>正向信号: 归母净利润同比 0.36%；PE(TTM) 30.45；PB 1.93</li><li>风险信号: ROE 1.07%；营收同比 -1.64%</li><li>榜单看多理由: 无明显多头信号；市值规模较小</li><li>榜单风险提示: 股价下跌1.07%，表现疲软；科技硬件行业竞争格局严峻</li></ul></div></div></details>
+<details><summary>交易计划</summary><div class="body"><div class="md"><h4>06613 蓝思科技 交易计划</h4><ul><li>评级: Reduce</li><li>当前价格: 22.26</li><li>值得加仓区间: 20.03 - 20.92</li><li>目标价格: 21.15</li><li>止损位: 19.59</li><li>备注: 当前为缓存降级交易卡，后续若完整 TradingAgent 结果生成，将自动覆盖。</li></ul></div></div></details>
+<details><summary>交易决策</summary><div class="body"><div class="md"><p>Reduce</p><p>06613 蓝思科技 当前使用红黑榜缓存结果生成兜底交易卡。多头 20 / 空头 80，分差 -60。当前尚未取得完整 TradingAgent 长文决策，但榜单分数、财务快照和大师观点已经足够生成基础交易建议。</p></div></div></details>
+</div>
+<div class="panel"><h2>多空逻辑</h2><div class="pts"><div class="h bull">看多逻辑</div><div class="md"><p>无明显多头信号</p><p>市值规模较小</p></div></div><div class="pts"><div class="h bear">看空逻辑</div><div class="md"><p>股价下跌1.07%，表现疲软</p><p>科技硬件行业竞争格局严峻</p></div></div></div>
+<div class="panel"><h2>伯克希尔研究</h2><p><strong>蓝思科技是一家具有规模优势和一定技术壁垒的消费电子零部件供应商，但面临行业周期性波动和竞争加剧的挑战，需谨慎评估其长期价值。</strong></p><p>伯克希尔综合评分：<strong>2.75</strong></p><div class="md"><p>{&quot;verdict&quot;: &quot;观望&quot;, &quot;conservative_tip&quot;: &quot;建议等待更优价格，PE低于15倍时考虑买入&quot;, &quot;moderate_tip&quot;: &quot;当前价格可小仓位介入，但需密切关注行业趋势和公司业绩&quot;, &quot;aggressive_tip&quot;: &quot;不建议激进买入，除非有明确的新业务增长信号&quot;, &quot;catalysts_plus&quot;: [&quot;新能源汽车或光伏业务取得突破&quot;, &quot;大客户订单超预期&quot;, &quot;毛利率持续改善&quot;], &quot;catalysts_minus&quot;: [&quot;大客户订单减少&quot;, &quot;毛利率持续下滑&quot;, &quot;新业务拓展不及预期&quot;]}</p></div></div>
+<div class="panel news"><h2>最新资讯</h2><div class="nitem"><div class="t">蓝思科技：2026年半年度报告摘要</div><div class="s">Moomoo · 中性</div></div><div class="nitem"><div class="t">Intel and Lens Technology Collaborate to Enable Advanced Semiconductor Packaging for the AI Era</div><div class="s">Intel · 中性</div></div><div class="nitem"><div class="t">WAIC 2026 | Lens Intelligent and Swancor Form Strategic Partnership, Secure Orders for Qiyuan Q1 &amp; Qiyuan T1</div><div class="s">Gasgoo · 中性</div></div><div class="nitem"><div class="t">Lens Technology Co.,Ltd.’s Net Profit Rose 18.9% in 2022</div><div class="s">Caixin Global · 中性</div></div><div class="nitem"><div class="t">《股市简讯》“果链”企业蓝思科技跌超4%，子公司东莞蓝思因当地疫情暂停生产活动</div><div class="s">Reuters · 中性</div></div><div class="nitem"><div class="t">Apple Vision Pro 2 might be closer than you think, new report details mass production in China</div><div class="s">PC Guide · 中性</div></div><div class="nitem"><div class="t">Catcher to sell two chassis plants</div><div class="s">Taipei Times · 中性</div></div><div class="nitem"><div class="t">The Richest Women in Hong Kong 2022</div><div class="s">Tatler Asia · 中性</div></div></div>
+<footer>稳健理财Agent · 红黑榜每日归档 · 黑榜 #1 · 仅供研究，不构成投资建议</footer>
+</div></body>
+</html>
