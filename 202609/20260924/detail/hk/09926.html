@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>康方生物(09926) 红榜 2026-09-24</title>
+<style>
+:root{--red:#d8342c;--redbg:#fdecea;--green:#1a9e54;--ink:#1c2230;--muted:#6b7385;
+--line:#e7e9ef;--card:#fff;--bg:#f4f6fa;--chip:#eef1f6;--dark:#23262d;--darkbg:#ececef}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",
+"Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);
+line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 16px 64px}
+header.top{background:linear-gradient(135deg,#1c2230,#2c3550);color:#fff;border-radius:14px;
+padding:22px 24px;margin-bottom:20px;box-shadow:0 6px 24px rgba(20,26,46,.12)}
+header.top h1{margin:0 0 6px;font-size:24px;letter-spacing:.5px}
+header.top .sub{opacity:.85;font-size:13px}
+header.top .sub b{color:#ffd166;font-weight:600}
+nav.mkt{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;
+background:rgba(244,246,250,.92);backdrop-filter:blur(6px);padding:10px 0;margin-bottom:14px}
+nav.mkt a{text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);
+padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600}
+nav.mkt a:hover{border-color:var(--red);color:var(--red)}
+.summary{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.summary .chip{background:var(--card);border:1px solid var(--line);border-radius:10px;
+padding:8px 12px;font-size:12px;color:var(--muted)}
+.summary .chip b{color:var(--ink);font-size:14px;margin-left:4px}
+section.board{margin:26px 0}
+.board-title{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:19px}
+.board-title .dot{width:10px;height:10px;border-radius:50%}
+.board-title.red .dot{background:var(--red)}
+.board-title.black .dot{background:var(--dark)}
+.board-title small{color:var(--muted);font-weight:400;font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+position:relative;transition:box-shadow .15s}
+.card:hover{box-shadow:0 4px 18px rgba(20,26,46,.08)}
+.card.red{border-top:3px solid var(--red)}
+.card.black{border-top:3px solid var(--dark)}
+.rank{position:absolute;top:10px;right:12px;font-size:26px;font-weight:800;color:#eceff5}
+.card.red .rank{color:#fbdcD9}
+.nm{font-size:16px;font-weight:700}
+.nm .tk{color:var(--muted);font-weight:500;font-size:12px;margin-left:6px}
+.tag{display:inline-block;background:var(--chip);color:var(--muted);border-radius:6px;
+padding:1px 7px;font-size:11px;margin:6px 6px 0 0}
+.price-row{display:flex;align-items:baseline;gap:10px;margin:10px 0 4px}
+.price{font-size:24px;font-weight:800}
+.pct{font-size:14px;font-weight:700;padding:2px 8px;border-radius:8px}
+.up{color:var(--red)}.down{color:var(--green)}.flat{color:var(--muted)}
+.pct.up{background:var(--redbg)}.pct.down{background:#e2f4e9}.pct.flat{background:var(--chip)}
+.psrc{font-size:11px;color:var(--muted);margin-left:auto}
+.scores{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.scores span{background:var(--chip);border-radius:6px;padding:2px 8px;font-size:11px;color:var(--muted)}
+.scores span b{color:var(--ink)}
+.pts{font-size:12.5px;margin:8px 0 0}
+.pts .h{font-weight:700;font-size:12px;margin:6px 0 2px}
+.pts .h.bull{color:var(--red)}.pts .h.bear{color:var(--green)}
+.pts ul{margin:2px 0 4px;padding-left:18px;color:#3a4152}
+.pts li{margin:1px 0}
+.masters{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:11px;color:var(--muted)}
+.masters b{color:var(--ink)}
+.summ{font-size:12.5px;color:#3a4152;background:#fafbfd;border:1px solid var(--line);
+border-radius:8px;padding:8px 10px;margin-top:8px}
+.empty{color:var(--muted);background:var(--card);border:1px dashed var(--line);
+border-radius:10px;padding:18px;text-align:center}
+footer{margin-top:34px;color:var(--muted);font-size:12px;text-align:center;line-height:1.8}
+a.lnk{color:var(--red);text-decoration:none}
+/* ── detail page ── */
+.backbar{margin-bottom:14px;font-size:13px}
+.backbar a{color:var(--muted);text-decoration:none;margin-right:14px}
+.backbar a:hover{color:var(--red)}
+.badge{display:inline-block;border-radius:6px;padding:2px 10px;font-size:12px;font-weight:700;margin-right:8px}
+.badge.red{background:var(--red);color:#fff}.badge.black{background:var(--dark);color:#fff}
+.trade{display:flex;flex-wrap:wrap;gap:10px;background:linear-gradient(135deg,#2c3550,#1c2230);
+color:#fff;border-radius:12px;padding:16px 18px;margin:16px 0}
+.trade .cell{min-width:120px}
+.trade .k{font-size:11px;opacity:.75}
+.trade .v{font-size:18px;font-weight:800;margin-top:2px}
+.trade .v.buy{color:#7ee2a8}.trade .v.sell{color:#ff9d97}.trade .v.hold{color:#ffd166}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0}
+.mgrid .m{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.mgrid .m .k{font-size:11px;color:var(--muted)}
+.mgrid .m .v{font-size:16px;font-weight:700;margin-top:2px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.panel>h2{margin:0 0 12px;font-size:17px}
+.panel>h2 .sub{font-size:12px;color:var(--muted);font-weight:400;margin-left:8px}
+.mreply{border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;
+padding:12px 14px;margin:10px 0;background:#fff}
+.mreply .mh{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.mreply .mh .who{font-weight:700;font-size:14px}
+.mreply .mh .mscore{margin-left:auto;background:var(--chip);border-radius:6px;padding:1px 8px;font-size:12px;font-weight:700}
+.md h2,.md h3,.md h4,.md h5{margin:12px 0 6px;font-size:15px}
+.md p{margin:6px 0;font-size:13.5px;color:#2c3345}
+.md ul{margin:6px 0;padding-left:20px;font-size:13.5px;color:#2c3345}
+.md li{margin:3px 0}
+.md strong{color:var(--ink)}
+details{border:1px solid var(--line);border-radius:10px;background:#fff;margin:10px 0;padding:0}
+details>summary{cursor:pointer;padding:12px 16px;font-weight:700;font-size:14px;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary:before{content:"▸ ";color:var(--red)}
+details[open]>summary:before{content:"▾ "}
+details>.body{padding:0 16px 14px;border-top:1px dashed var(--line)}
+.ychip{display:inline-block;background:var(--chip);border-radius:8px;padding:4px 10px;font-size:12px;margin:3px 6px 3px 0}
+.ychip b{font-size:13px}
+.news .nitem{border-top:1px dashed var(--line);padding:8px 0;font-size:13px}
+.news .nitem .t{font-weight:600}
+.news .nitem .s{color:var(--muted);font-size:12px}
+/* ── root landing page ── */
+.hero{padding:30px 26px}
+.hero-kicker{color:#ffd166;font-size:12px;font-weight:700;letter-spacing:2px;
+text-transform:uppercase;margin-bottom:8px}
+.hero h1{font-size:30px;margin:0 0 10px}
+.day-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.day-card{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);
+border-radius:12px;padding:14px 16px;transition:all .15s}
+.day-card:hover{border-color:var(--red);box-shadow:0 4px 16px rgba(216,52,44,.12);transform:translateY(-2px)}
+.day-card .d{font-weight:800;font-size:15px;color:var(--ink);display:flex;align-items:center;gap:8px}
+.day-card .m{margin-top:8px;display:flex;gap:6px}
+.day-card .m span{background:var(--chip);color:var(--muted);border-radius:6px;
+padding:2px 8px;font-size:11px}
+.latest-badge{background:var(--red);color:#fff;border-radius:6px;padding:1px 7px;
+font-size:10px;font-weight:700}
+</style>
+</head>
+<body><div class="wrap">
+<div class="backbar"><a href="../index.html">← 总览</a><a href="../hk.html">← 港股榜单</a></div>
+<header class="top">
+  <h1><span class="badge red">红榜 #8</span>康方生物<span class="tk" style="opacity:.7;font-size:15px;font-weight:400;margin-left:8px">09926</span></h1>
+  <div class="sub">港股 ·  · 榜单日期 <b>2026-09-24</b> · 盘价采集 <b>2026-09-24 05:00:15</b></div>
+  <div class="price-row" style="margin-top:12px">
+    <span class="price" style="color:#fff">HK$97.50</span>
+    <span class="pct up">+1.67%</span>
+    <span class="psrc" style="color:rgba(255,255,255,.6)">实时</span>
+  </div>
+  <div class="scores" style="margin-top:10px">
+    <span>综合 <b>81.2</b></span>
+    <span>多头 <b>85</b></span>
+    <span>空头 <b>30</b></span>
+    <span>大师均值 <b>66.8</b></span>
+    <span>信号 <b>positive</b></span>
+  </div>
+</header>
+<div class="trade"><div class="cell"><div class="k">交易评级</div><span class="v buy">Buy</span></div><div class="cell"><div class="k">加仓区间</div><span class="v">94.58 ~ 98.47</span></div><div class="cell"><div class="k">目标价</div><span class="v">109.20</span></div><div class="cell"><div class="k">伯克希尔</div><span class="v">观望</span></div><div class="cell"><div class="k">伯克希尔分</div><span class="v">3.50</span></div></div>
+<div class="panel"><h2>财务指标</h2><div class="mgrid"><div class="m"><div class="k">市净率 PB</div><div class="v">9.19</div></div><div class="m"><div class="k">总市值</div><div class="v">898</div></div><div class="m"><div class="k">营收同比</div><div class="v">12.9%</div></div><div class="m"><div class="k">净利同比</div><div class="v">13.1%</div></div></div></div>
+<div class="panel"><h2>历史收益</h2><span class="ychip">近1月 <b class="up">+3.50%</b></span><span class="ychip">近6月 <b class="down">-26.75%</b></span><span class="ychip">近1年 <b class="down">-30.95%</b></span></div>
+<div class="panel"><h2>大师圆桌<span class="sub">5 位</span></h2><div class="mreply"><div class="mh"><span class="who">段永平</span><span class="mscore">68</span></div><div class="md"><h4>圆桌发言</h4><p>各位同仁，关于康方生物（09926），我的看法是：值得持续关注，但投资决策需要非常谨慎。</p><h5>结论：</h5><p>康方生物是一家有潜力的生物科技公司，但目前估值偏高，且存在一定风险。我会建议先深入了解其业务模式，确认是否真的&quot;看得懂&quot;，再考虑是否投资。</p><h5>理由：</h5><ul><li>首先，康方生物所处的生物科技行业前景确实不错。中国人口老龄化趋势明显，对创新药的需求持续增长，这是行业发展的长期动力。</li></ul><ul><li>从公司基本面来看，营收和净利润都保持了双位数的同比增长，这说明其产品管线有一定的市场竞争力。</li></ul><ul><li>然而，我们也必须看到几个重要的风险点：</li><li>估值方面，无论是市净率（PB）还是市销率（PS）都处于较高水平，说明市场对其未来增长预期很高。这种高预期一旦落空，可能带来较大的估值回调风险。</li><li>生物科技行业的研发风险不容忽视。新药研发周期长、投入大、成功率不确定，这是行业固有的特性。</li><li>市场竞争也在加剧。康方生物需要持续证明其研发能力和商业化能力，才能在竞争中保持优势。</li></ul><h5>风险/行动建议：</h5><ul><li>对于已经持有的投资者，我建议不要被短期股价波动影响，要以长期视角来审视这笔投资。生物科技公司的发展往往需要较长时间才能体现价值。</li></ul><ul><li>对于考虑入场的投资者，我建议先问自己几个问题：</li><li>你是否真的了解生物科技行业的运作模式？</li><li>你是否愿意承担研发失败的风险？</li><li>你是否对这家公司的长期竞争力有足够的信心？</li></ul><ul><li>建议密切关注公司的研发进展和商业化能力，这将是决定其未来发展的关键因素。</li></ul><p>最后，我想强调的是，投资生物科技公司需要极大的耐心和风险承受能力。如果觉得超出自己的能力圈，宁可错过也不要盲目跟风。正如我常说的，&quot;不懂不做&quot;是投资中最重要的原则之一。</p><p>---</p><p>别错过的隐含约束：别因为行业前景好就忽略了对公司基本面的深入研究。</p></div></div><div class="mreply"><div class="mh"><span class="who">巴菲特</span><span class="mscore">79</span></div><div class="md"><h4>结论</h4><p>我对康方生物持谨慎乐观态度。这是一家在生物科技领域具有潜力的公司，但投资时需要关注其研发风险和市场情绪波动。</p><h4>理由</h4><p>首先，从护城河的角度来看，康方生物所处的生物科技行业前景广阔。随着人口老龄化和健康意识的提升，生物科技行业的长期需求是明确的。康方生物在创新药物研发方面有一定的积累，这为其提供了竞争优势。然而，生物科技行业的竞争非常激烈，康方生物需要不断创新和保持研发效率，才能维持其市场地位。</p><p>其次，从自由现金流的角度来看，康方生物目前处于研发投入阶段，尚未实现盈利。这意味着公司在短期内可能需要持续的资金支持来推动研发项目。虽然这可能带来一定的财务压力，但从长期来看，如果公司能够成功推出有市场竞争力的产品，自由现金流有望逐步改善。</p><p>此外，康方生物的市值规模适中，具有一定的成长空间。公司股价稳步上涨，反映了市场对其未来发展的预期。然而，投资者需要注意的是，生物科技行业的估值往往受到市场情绪的影响较大，股价波动性较高。</p><h4>风险/行动建议</h4><ul><li><strong>研发风险</strong>：生物科技公司的核心在于研发成果。如果康方生物的研发项目未能达到预期效果，可能会对公司的财务状况和股价产生重大影响。建议投资者密切关注公司的研发进展和临床试验结果。</li></ul><ul><li><strong>市场竞争</strong>：生物科技行业的竞争非常激烈，康方生物需要面对来自国内外同行的挑战。建议投资者关注行业动态，了解公司在市场中的竞争地位。</li></ul><ul><li><strong>市场情绪</strong>：生物科技公司的股价往往受到市场情绪的影响较大。建议投资者在投资时保持冷静，不要被短期市场波动所左右。</li></ul><ul><li><strong>长期持有</strong>：如果你相信康方生物的长期发展潜力，并且能够承受短期内的波动，那么可以考虑将其作为长期投资的一部分。记住，投资就像种植一片果园，需要时间和耐心才能看到果实。</li></ul><h4>如果是芒格，会补充什么</h4><p>查理·芒格可能会提醒我们，投资生物科技公司就像在果园里种树。你需要选择那些有潜力长成参天大树的树苗，并且要有耐心等待它们成长。同时，他可能会强调&quot;逆向思维&quot;的重要性，在市场情绪高涨时保持警惕，在市场低迷时寻找机会。总之，投资康方生物需要结合长期视角和风险管理。</p></div></div><div class="mreply"><div class="mh"><span class="who">达利欧</span><span class="mscore">73</span></div><div class="md"><h4>发言</h4><p>各位同仁，今天我们讨论的是康方生物（09926）。我的结论是：这只股票值得<strong>关注和考虑</strong>，但需要在投资组合中保持<strong>适度权重</strong>，并密切跟踪其发展。</p><h5>理由</h5><p>首先，从<strong>宏观和行业视角</strong>来看，生物科技行业正处于一个长期增长的趋势中。康方生物作为这一领域的参与者，拥有一定的技术优势和增长潜力。当前股价稳步上涨，市值规模适中，显示出良好的成长空间。此外，从财务指标来看，虽然利润率目前为负，但营收和净利润的同比增长分别为12.9%和13.1%，显示出公司在扩张阶段的表现。</p><p>其次，从<strong>原则化决策</strong>的角度出发，我们需要关注几个关键点：</p><ul><li><strong>极度透明</strong>：康方生物的研发风险和市场情绪波动是需要重点关注的因素。生物科技公司的估值往往受到临床试验结果和市场情绪的显著影响，这要求我们在投资时保持高度透明和灵活。</li><li><strong>风险平衡</strong>：虽然多头逻辑强劲，但我们不能忽视行业竞争加剧的风险。随着更多公司进入生物科技领域，竞争可能会对康方生物的市场份额和盈利能力构成压力。</li></ul><h5>风险与行动建议</h5><ul><li><strong>研发风险</strong>：生物科技公司的核心在于其研发能力。康方生物的研发进展和临床试验结果将是影响其股价的关键因素。建议投资者密切关注公司公告和行业新闻，及时调整投资策略。</li></ul><ul><li><strong>市场情绪波动</strong>：生物科技行业的估值往往受到市场情绪的显著影响。在市场情绪高涨时，股价可能会被高估；反之，在情绪低迷时，可能会出现低估。建议投资者在市场情绪波动较大时，保持冷静，避免盲目追高或恐慌抛售。</li></ul><ul><li><strong>行业竞争</strong>：随着更多公司进入生物科技领域，竞争可能会加剧。建议投资者关注行业动态，了解主要竞争对手的研发进展和市场策略，以便更好地评估康方生物的相对竞争优势。</li></ul><h4>总结</h4><p>康方生物在当前市场环境下展现出一定的投资价值，但我们需要在投资组合中保持适度权重，并密切跟踪其研发进展和市场情绪变化。正如我常说的，&quot;Pain + Reflection = Progress&quot;，在投资过程中，我们需要不断反思和调整，以应对市场的变化和不确定性。</p><p>希望我的观点对大家有所启发。谢谢。</p></div></div><div class="mreply"><div class="mh"><span class="who">彼得·林奇</span><span class="mscore">72</span></div><div class="md"><p>各位朋友，今天我们来聊聊康方生物（09926）。我的观点是，这家公司值得大家关注，但同时也要保持谨慎。</p><h4>结论：</h4><p>康方生物是一家有潜力的生物科技公司，在当前阶段可以纳入观察名单，但不适合盲目重仓买入。</p><h4>理由：</h4><p>首先，从行业前景来看，生物科技领域无疑是未来医疗发展的重要方向。康方生物作为一家专注于创新药研发的公司，拥有不错的产品管线，这符合我对&quot;快速增长型&quot;公司的定义。这类公司如果能成功将研发成果商业化，往往能带来可观的回报。</p><p>其次，从财务数据来看，虽然目前公司仍处于亏损状态，但营收和净利润的同比增长率分别达到12.9%和13.1%，显示出良好的增长势头。市销率（PS）约为23倍，对于一家处于成长期的生物科技公司来说，这个估值水平虽然不低，但在当前市场环境下也算合理。</p><h4>风险：</h4><p>然而，我们也不能忽视其中的风险：</p><ul><li>研发风险：生物科技公司的核心在于研发成果，而研发过程充满不确定性。临床试验失败、审批延迟等风险都可能对股价造成重大影响。</li><li>竞争加剧：随着越来越多企业进入生物科技领域，竞争势必会加剧，这可能会压缩康方生物的市场空间和利润率。</li><li>市场情绪波动：生物科技股往往容易受到市场情绪的影响，股价波动性较大。</li></ul><h4>行动建议：</h4><p>基于以上分析，我建议：</p><ul><li>如果你正在考虑买入，可以先少量建仓，将仓位控制在总投资组合的5%以下。这样既能保持参与感，又不会因为市场波动而承受过大风险。</li><li>密切关注公司的研发进展和商业化进程，特别是核心产品的临床试验结果和审批进度。这些关键节点将直接影响公司的未来发展。</li><li>定期评估公司的估值水平，当市销率（PS）超过30倍时，可能需要重新审视投资逻辑。</li></ul><p>总之，康方生物是一家值得关注的公司，但投资生物科技股需要耐心和定力。不要被短期的股价波动所左右，而是要着眼于公司的长期发展前景。</p></div></div><div class="mreply"><div class="mh"><span class="who">芒格</span><span class="mscore">42</span></div><div class="md"><h4>结论：</h4><p>康方生物（09926）目前股价为97.5元，市值898亿。从我的视角来看，这家公司存在一定的不确定性，建议谨慎观察。</p><h4>理由：</h4><ul><li><strong>逆向思考</strong>：先考虑失败的可能路径。首先，生物科技行业的特点是高风险高回报，研发失败是常见风险。康方生物目前净利率为-24.77%，说明其盈利能力尚未得到验证。其次，行业竞争加剧可能进一步压缩其市场份额和利润空间。</li></ul><ul><li><strong>激励机制</strong>：生物科技公司的核心激励机制是研发成果和药物审批进度。然而，这些因素具有高度不确定性，研发失败或审批延迟都可能对股价造成重大打击。此外，市场情绪波动也可能导致估值大幅波动。</li></ul><ul><li><strong>多元思维模型</strong>：从多个学科角度分析：</li><li><strong>生物学</strong>：生物科技行业前景广阔，但研发周期长、失败率高。</li><li><strong>经济学</strong>：当前市场对生物科技行业的估值较高，存在泡沫风险。</li><li><strong>心理学</strong>：市场情绪可能过度乐观，导致估值偏离基本面。</li></ul><ul><li><strong>概率与赔率</strong>：考虑到研发风险和行业竞争，胜率可能低于50%。虽然生物科技行业具有高赔率，但康方生物的当前估值较高，限制了潜在上涨空间。</li></ul><h4>风险/行动建议：</h4><ul><li><strong>风险</strong>：主要风险包括研发失败、行业竞争加剧、市场情绪波动。如果研发进展不如预期，股价可能大幅回调。</li></ul><ul><li><strong>行动建议</strong>：建议采取观望态度，等待更多明确信号。如果投资者对生物科技行业有深入研究，并且能够承受高波动性，可以考虑在股价回调时少量介入。但对于大多数投资者来说，当前估值水平下，谨慎观察是更为稳妥的选择。</li></ul><h4>我能错在哪：</h4><p>我可能低估了康方生物的研发能力和市场潜力，或者对行业竞争格局的判断过于悲观。此外，市场情绪可能持续乐观，推动股价进一步上涨。因此，投资者应密切关注公司研发进展和行业动态，并根据自身风险承受能力做出决策。</p></div></div></div>
+<div class="panel"><h2>分析师报告<span class="sub">2 篇</span></h2><details open><summary>市场面分析</summary><div class="body"><div class="md"><h4>09926 康方生物 市场面分析</h4><ul><li>红黑榜多空分数：多头 85 / 空头 30，分差 55。</li><li>当前价格：97.50。</li><li>当前交易评级：Buy。</li><li>值得加仓区间：94.58 - 98.47。</li><li>目标价格：109.20。</li><li>市场愿意给溢价的原因：股价稳步上涨；市值规模适中，成长空间大；生物科技行业前景看好。</li><li>当前主要压制因素：需关注行业竞争加剧；研发风险不容忽视；市场情绪波动可能影响估值。</li></ul></div></div></details><details open><summary>基本面分析</summary><div class="body"><div class="md"><h4>09926 康方生物 基本面分析</h4><ul><li>报告期：暂无。</li><li>PB：9.19。</li><li>PS(TTM)：22.94。</li><li>营收同比：12.90%。</li><li>归母净利润同比：13.10%。</li><li>核心判断：收入仍在增长；利润端保持扩张。</li></ul></div></div></details></div>
+<div class="panel"><h2>研究与计划</h2>
+<details><summary>基本面摘要</summary><div class="body"><div class="md"><h3>核心财务快照</h3><ul><li>报告期: 数据缺失</li><li>当前股价: 97.50 元</li><li>总市值: 898.11 亿元</li><li>PE (TTM): 数据缺失</li><li>PB: 9.19</li><li>PS (TTM): 22.94</li><li>营业总收入(报告期): 数据缺失 亿元</li><li>营收同比增长率: 12.90%</li><li>归母净利润(报告期): 数据缺失 亿元</li><li>归母净利润同比增长率: 13.10%</li><li>ROE (TTM/估算): 数据缺失</li><li>资产负债率: 数据缺失</li><li>经营性现金流 / 归母净利润: 数据缺失</li></ul><h4>缺失字段</h4><ul><li>PE(TTM), 营业总收入, 归母净利润, ROE, 资产负债率, 经营性现金流与归母净利润比值</li></ul></div></div></details>
+<details><summary>研究计划</summary><div class="body"><div class="md"><h4>09926 康方生物 研究摘要</h4><ul><li>红黑榜结论: Buy</li><li>多头/空头: 85/30</li><li>正向信号: 营收同比 12.90%；归母净利润同比 13.10%；PB 9.19</li><li>榜单看多理由: 股价稳步上涨；市值规模适中，成长空间大；生物科技行业前景看好</li><li>榜单风险提示: 需关注行业竞争加剧；研发风险不容忽视；市场情绪波动可能影响估值</li></ul></div></div></details>
+<details><summary>交易计划</summary><div class="body"><div class="md"><h4>09926 康方生物 交易计划</h4><ul><li>评级: Buy</li><li>当前价格: 97.50</li><li>值得加仓区间: 94.58 - 98.47</li><li>目标价格: 109.20</li><li>止损位: 89.70</li><li>备注: 当前为缓存降级交易卡，后续若完整 TradingAgent 结果生成，将自动覆盖。</li></ul></div></div></details>
+<details><summary>交易决策</summary><div class="body"><div class="md"><p>Buy</p><p>09926 康方生物 当前使用红黑榜缓存结果生成兜底交易卡。多头 85 / 空头 30，分差 55。当前尚未取得完整 TradingAgent 长文决策，但榜单分数、财务快照和大师观点已经足够生成基础交易建议。</p></div></div></details>
+</div>
+<div class="panel"><h2>多空逻辑</h2><div class="pts"><div class="h bull">看多逻辑</div><div class="md"><p>股价稳步上涨</p><p>市值规模适中，成长空间大</p><p>生物科技行业前景看好</p></div></div><div class="pts"><div class="h bear">看空逻辑</div><div class="md"><p>需关注行业竞争加剧</p><p>研发风险不容忽视</p><p>市场情绪波动可能影响估值</p></div></div></div>
+<div class="panel"><h2>伯克希尔研究</h2><p><strong>康方生物在创新药领域具有潜力，但当前估值较高，需关注其研发进展与商业化落地情况。</strong></p><p>伯克希尔综合评分：<strong>3.5</strong></p><div class="md"><p>{&quot;verdict&quot;: &quot;观望&quot;, &quot;conservative_tip&quot;: &quot;建议等待估值回调至更合理区间再考虑买入，当前观望。&quot;, &quot;moderate_tip&quot;: &quot;若研发管线取得重大突破，可小规模建仓。&quot;, &quot;aggressive_tip&quot;: &quot;激进投资者可小仓位参与，但需密切关注研发进展与市场情绪。&quot;, &quot;catalysts_plus&quot;: [&quot;重要临床试验结果公布。&quot;, &quot;新药获批上市。&quot;, &quot;与大型药企达成合作。&quot;], &quot;catalysts_minus&quot;: [&quot;临床试验失败。&quot;, &quot;医保谈判降价超预期。&quot;, &quot;竞争对手推出类似产品。&quot;]}</p></div></div>
+<div class="panel news"><h2>最新资讯</h2><div class="md"><p>1条利好新闻，康方生物研究数据被选为ESMO大会重磅摘要。</p></div><div class="nitem"><div class="t">康方生物 - Akeso, Inc | Ivonescimab First-Line Biliary Tract Cancer Phase III Overall Survival Data Selected as ESMO Late-Breaking Abstract; Nearly 30 Akeso Studies to Be Presented at ESMO 2026</div><div class="s">康方生物 · 利好</div></div></div>
+<footer>稳健理财Agent · 红黑榜每日归档 · 红榜 #8 · 仅供研究，不构成投资建议</footer>
+</div></body>
+</html>
