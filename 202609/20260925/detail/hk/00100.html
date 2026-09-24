@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MINIMAX-W(00100) 红榜 2026-09-25</title>
+<style>
+:root{--red:#d8342c;--redbg:#fdecea;--green:#1a9e54;--ink:#1c2230;--muted:#6b7385;
+--line:#e7e9ef;--card:#fff;--bg:#f4f6fa;--chip:#eef1f6;--dark:#23262d;--darkbg:#ececef}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",
+"Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);
+line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 16px 64px}
+header.top{background:linear-gradient(135deg,#1c2230,#2c3550);color:#fff;border-radius:14px;
+padding:22px 24px;margin-bottom:20px;box-shadow:0 6px 24px rgba(20,26,46,.12)}
+header.top h1{margin:0 0 6px;font-size:24px;letter-spacing:.5px}
+header.top .sub{opacity:.85;font-size:13px}
+header.top .sub b{color:#ffd166;font-weight:600}
+nav.mkt{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;
+background:rgba(244,246,250,.92);backdrop-filter:blur(6px);padding:10px 0;margin-bottom:14px}
+nav.mkt a{text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);
+padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600}
+nav.mkt a:hover{border-color:var(--red);color:var(--red)}
+.summary{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.summary .chip{background:var(--card);border:1px solid var(--line);border-radius:10px;
+padding:8px 12px;font-size:12px;color:var(--muted)}
+.summary .chip b{color:var(--ink);font-size:14px;margin-left:4px}
+section.board{margin:26px 0}
+.board-title{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:19px}
+.board-title .dot{width:10px;height:10px;border-radius:50%}
+.board-title.red .dot{background:var(--red)}
+.board-title.black .dot{background:var(--dark)}
+.board-title small{color:var(--muted);font-weight:400;font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+position:relative;transition:box-shadow .15s}
+.card:hover{box-shadow:0 4px 18px rgba(20,26,46,.08)}
+.card.red{border-top:3px solid var(--red)}
+.card.black{border-top:3px solid var(--dark)}
+.rank{position:absolute;top:10px;right:12px;font-size:26px;font-weight:800;color:#eceff5}
+.card.red .rank{color:#fbdcD9}
+.nm{font-size:16px;font-weight:700}
+.nm .tk{color:var(--muted);font-weight:500;font-size:12px;margin-left:6px}
+.tag{display:inline-block;background:var(--chip);color:var(--muted);border-radius:6px;
+padding:1px 7px;font-size:11px;margin:6px 6px 0 0}
+.price-row{display:flex;align-items:baseline;gap:10px;margin:10px 0 4px}
+.price{font-size:24px;font-weight:800}
+.pct{font-size:14px;font-weight:700;padding:2px 8px;border-radius:8px}
+.up{color:var(--red)}.down{color:var(--green)}.flat{color:var(--muted)}
+.pct.up{background:var(--redbg)}.pct.down{background:#e2f4e9}.pct.flat{background:var(--chip)}
+.psrc{font-size:11px;color:var(--muted);margin-left:auto}
+.scores{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.scores span{background:var(--chip);border-radius:6px;padding:2px 8px;font-size:11px;color:var(--muted)}
+.scores span b{color:var(--ink)}
+.pts{font-size:12.5px;margin:8px 0 0}
+.pts .h{font-weight:700;font-size:12px;margin:6px 0 2px}
+.pts .h.bull{color:var(--red)}.pts .h.bear{color:var(--green)}
+.pts ul{margin:2px 0 4px;padding-left:18px;color:#3a4152}
+.pts li{margin:1px 0}
+.masters{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:11px;color:var(--muted)}
+.masters b{color:var(--ink)}
+.summ{font-size:12.5px;color:#3a4152;background:#fafbfd;border:1px solid var(--line);
+border-radius:8px;padding:8px 10px;margin-top:8px}
+.empty{color:var(--muted);background:var(--card);border:1px dashed var(--line);
+border-radius:10px;padding:18px;text-align:center}
+footer{margin-top:34px;color:var(--muted);font-size:12px;text-align:center;line-height:1.8}
+a.lnk{color:var(--red);text-decoration:none}
+/* ── detail page ── */
+.backbar{margin-bottom:14px;font-size:13px}
+.backbar a{color:var(--muted);text-decoration:none;margin-right:14px}
+.backbar a:hover{color:var(--red)}
+.badge{display:inline-block;border-radius:6px;padding:2px 10px;font-size:12px;font-weight:700;margin-right:8px}
+.badge.red{background:var(--red);color:#fff}.badge.black{background:var(--dark);color:#fff}
+.trade{display:flex;flex-wrap:wrap;gap:10px;background:linear-gradient(135deg,#2c3550,#1c2230);
+color:#fff;border-radius:12px;padding:16px 18px;margin:16px 0}
+.trade .cell{min-width:120px}
+.trade .k{font-size:11px;opacity:.75}
+.trade .v{font-size:18px;font-weight:800;margin-top:2px}
+.trade .v.buy{color:#7ee2a8}.trade .v.sell{color:#ff9d97}.trade .v.hold{color:#ffd166}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0}
+.mgrid .m{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.mgrid .m .k{font-size:11px;color:var(--muted)}
+.mgrid .m .v{font-size:16px;font-weight:700;margin-top:2px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.panel>h2{margin:0 0 12px;font-size:17px}
+.panel>h2 .sub{font-size:12px;color:var(--muted);font-weight:400;margin-left:8px}
+.mreply{border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;
+padding:12px 14px;margin:10px 0;background:#fff}
+.mreply .mh{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.mreply .mh .who{font-weight:700;font-size:14px}
+.mreply .mh .mscore{margin-left:auto;background:var(--chip);border-radius:6px;padding:1px 8px;font-size:12px;font-weight:700}
+.md h2,.md h3,.md h4,.md h5{margin:12px 0 6px;font-size:15px}
+.md p{margin:6px 0;font-size:13.5px;color:#2c3345}
+.md ul{margin:6px 0;padding-left:20px;font-size:13.5px;color:#2c3345}
+.md li{margin:3px 0}
+.md strong{color:var(--ink)}
+details{border:1px solid var(--line);border-radius:10px;background:#fff;margin:10px 0;padding:0}
+details>summary{cursor:pointer;padding:12px 16px;font-weight:700;font-size:14px;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary:before{content:"▸ ";color:var(--red)}
+details[open]>summary:before{content:"▾ "}
+details>.body{padding:0 16px 14px;border-top:1px dashed var(--line)}
+.ychip{display:inline-block;background:var(--chip);border-radius:8px;padding:4px 10px;font-size:12px;margin:3px 6px 3px 0}
+.ychip b{font-size:13px}
+.news .nitem{border-top:1px dashed var(--line);padding:8px 0;font-size:13px}
+.news .nitem .t{font-weight:600}
+.news .nitem .s{color:var(--muted);font-size:12px}
+/* ── root landing page ── */
+.hero{padding:30px 26px}
+.hero-kicker{color:#ffd166;font-size:12px;font-weight:700;letter-spacing:2px;
+text-transform:uppercase;margin-bottom:8px}
+.hero h1{font-size:30px;margin:0 0 10px}
+.day-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.day-card{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);
+border-radius:12px;padding:14px 16px;transition:all .15s}
+.day-card:hover{border-color:var(--red);box-shadow:0 4px 16px rgba(216,52,44,.12);transform:translateY(-2px)}
+.day-card .d{font-weight:800;font-size:15px;color:var(--ink);display:flex;align-items:center;gap:8px}
+.day-card .m{margin-top:8px;display:flex;gap:6px}
+.day-card .m span{background:var(--chip);color:var(--muted);border-radius:6px;
+padding:2px 8px;font-size:11px}
+.latest-badge{background:var(--red);color:#fff;border-radius:6px;padding:1px 7px;
+font-size:10px;font-weight:700}
+</style>
+</head>
+<body><div class="wrap">
+<div class="backbar"><a href="../index.html">← 总览</a><a href="../hk.html">← 港股榜单</a></div>
+<header class="top">
+  <h1><span class="badge red">红榜 #8</span>MINIMAX-W<span class="tk" style="opacity:.7;font-size:15px;font-weight:400;margin-left:8px">00100</span></h1>
+  <div class="sub">港股 ·  · 榜单日期 <b>2026-09-25</b> · 盘价采集 <b>2026-09-25 05:00:08</b></div>
+  <div class="price-row" style="margin-top:12px">
+    <span class="price" style="color:#fff">HK$279.00</span>
+    <span class="pct up">+1.45%</span>
+    <span class="psrc" style="color:rgba(255,255,255,.6)">实时</span>
+  </div>
+  <div class="scores" style="margin-top:10px">
+    <span>综合 <b>81.2</b></span>
+    <span>多头 <b>85</b></span>
+    <span>空头 <b>30</b></span>
+    <span>大师均值 <b>78</b></span>
+    <span>信号 <b>positive</b></span>
+  </div>
+</header>
+<div class="trade"><div class="cell"><div class="k">交易评级</div><span class="v buy">Buy</span></div><div class="cell"><div class="k">加仓区间</div><span class="v">270.63 ~ 281.79</span></div><div class="cell"><div class="k">目标价</div><span class="v">312.48</span></div><div class="cell"><div class="k">伯克希尔</div><span class="v">观望</span></div><div class="cell"><div class="k">伯克希尔分</div><span class="v">3.50</span></div></div>
+<div class="panel"><h2>财务指标</h2><div class="mgrid"><div class="m"><div class="k">市净率 PB</div><div class="v">9.23</div></div><div class="m"><div class="k">ROE</div><div class="v">55.0%</div></div><div class="m"><div class="k">总市值</div><div class="v">974</div></div><div class="m"><div class="k">营收同比</div><div class="v">103.7%</div></div><div class="m"><div class="k">净利同比</div><div class="v">3.4%</div></div></div></div>
+<div class="panel"><h2>历史收益</h2><span class="ychip">近1月 <b class="down">-11.32%</b></span><span class="ychip">近6月 <b class="down">-69.98%</b></span><span class="ychip">近1年 <b class="down">-19.13%</b></span></div>
+<div class="panel"><h2>大师圆桌<span class="sub">5 位</span></h2><div class="mreply"><div class="mh"><span class="who">段永平</span><span class="mscore">80</span></div><div class="md"><h4>圆桌发言</h4><p><strong>结论：</strong></p><p>从我的投资理念出发，MINIMAX-W（00100）是一家值得关注的标的，但目前价格偏高，需要谨慎对待。</p><p><strong>理由：</strong></p><p>首先，这家公司身处AI赛道，这是一个前景广阔的领域，成长空间很大。从公司表现来看，其技术创新能力强，市场认可度高，股价也屡创新高。这些都是积极的信号，符合我们&quot;做对的事&quot;和&quot;只投看得懂的好生意&quot;的原则。</p><p>然而，目前的估值水平较高，市销率（PS）达到75倍，市净率（PB）也接近10倍。这样的估值水平意味着市场对其未来增长有很高的预期，但同时也带来了较大的回调风险。此外，AI行业的竞争正在加剧，市场波动对股价的影响也不容忽视。</p><p><strong>风险/行动建议：</strong></p><ul><li><strong>长期视角</strong>：如果从长期持有的角度出发，需要考虑公司是否能在激烈的竞争中持续保持技术领先，并将其转化为实实在在的盈利能力。目前的财务数据显示净利润率较低，这需要进一步关注。</li></ul><ul><li><strong>估值风险</strong>：当前估值较高，如果市场情绪发生变化，可能会面临较大的回调压力。建议投资者在买入时保持谨慎，可以考虑分批建仓，而不是一次性投入。</li></ul><ul><li><strong>本分原则</strong>：作为投资者，我们需要时刻提醒自己&quot;不做不对的事&quot;。在面对高估值和潜在的市场波动时，保持平常心，不被短期市场情绪左右，专注于公司的长期价值。</li></ul><p>总的来说，MINIMAX-W是一家有潜力的公司，但目前的价格可能已经反映了大部分的乐观预期。投资者需要权衡其成长潜力和估值风险，做出理性的投资决策。</p></div></div><div class="mreply"><div class="mh"><span class="who">巴菲特</span><span class="mscore">88</span></div><div class="md"><h4>圆桌发言：关于MINIMAX-W（00100）的看法</h4><p>各位同仁，今天我们来聊聊MINIMAX-W这家公司。从我的角度出发，我会从几个方面来评估这家公司。</p><p>首先，MINIMAX-W所处的AI赛道无疑是极具吸引力的。AI技术的应用前景广阔，这家公司展现出了强大的技术创新能力，这是它的核心竞争力之一。市场也给予了高度认可，股价屡创新高，这表明投资者对其未来增长抱有很高的期望。</p><p>然而，尽管多头逻辑非常强劲，我们也不能忽视其中的风险。估值方面，MINIMAX-W的市销率（PS）高达75倍，市净率（PB）也达到了9倍，这显示出市场对其未来增长给予了极高的预期。但高估值也意味着较高的回调风险，尤其是在市场波动较大的情况下。此外，AI行业的竞争正在加剧，这可能会影响公司的长期盈利能力。</p><p>从我的投资理念出发，我更关注的是一家公司的护城河和自由现金流。从目前的信息来看，MINIMAX-W在技术创新方面有一定的护城河，但这种优势是否能长期保持，还需要进一步观察。至于自由现金流，由于公司目前处于高速增长阶段，现金流状况可能并不理想，这需要我们在投资时保持谨慎。</p><h4>结论：</h4><p>MINIMAX-W是一家在AI领域具有强大增长潜力的公司，市场也给予了高度认可。然而，高估值和行业竞争加剧是其面临的主要风险。</p><h4>理由：</h4><ul><li><strong>护城河</strong>：技术创新能力是公司的核心竞争力，但需要持续观察其长期可持续性。</li><li><strong>自由现金流</strong>：由于公司处于高速增长阶段，现金流状况可能并不理想。</li><li><strong>市场认可</strong>：股价创新高表明市场对其未来增长抱有很高的期望，但高估值也带来了较高的回调风险。</li></ul><h4>风险/行动建议：</h4><ul><li><strong>风险</strong>：高估值和行业竞争加剧是主要风险因素。如果市场情绪发生变化，股价可能会出现较大波动。</li><li><strong>行动建议</strong>：对于长期投资者来说，可以考虑在估值回调时逐步建仓，但需要做好风险管理。对于短期投资者，则需要密切关注市场动态，谨慎操作。</li></ul><h4>芒格的补充：</h4><p>查理可能会说，投资就像在果园里挑选最好的果树。我们不仅要看到树上的果实，还要关注树根的深度和土壤的肥沃程度。MINIMAX-W的果实看起来很诱人，但树根是否足够深，还需要我们仔细考察。</p></div></div><div class="mreply"><div class="mh"><span class="who">达利欧</span><span class="mscore">74</span></div><div class="md"><h4>圆桌发言：关于 MINIMAX-W（00100）的分析</h4><p><strong>结论：</strong></p><p>我认为 MINIMAX-W（00100）是一家值得关注的公司，尤其在 AI 赛道展现出强劲的增长潜力，但同时也需要警惕其估值偏高和市场波动带来的风险。</p><p><strong>理由：</strong></p><p>首先，MINIMAX-W 所处的 AI 赛道前景广阔，这一点从其营收同比增长超过 100% 可以得到印证。AI 技术正在快速改变各行各业，而 MINIMAX-W 在技术创新方面的能力也得到了市场的认可，股价屡创新高。这表明市场对其未来增长抱有较高的预期。</p><p>然而，从风险角度来看，MINIMAX-W 的估值已经处于较高水平，其市销率（PS）高达 75 倍，市净率（PB）也接近 10 倍。这意味着市场对其未来增长的预期已经反映在股价中，甚至可能存在一定的过度乐观。此外，AI 行业的竞争正在加剧，这可能会对 MINIMAX-W 的市场份额和盈利能力构成挑战。</p><p>从宏观角度来看，当前市场波动较大，任何突发事件都可能导致高估值股票出现回调。因此，尽管 MINIMAX-W 的基本面看起来强劲，但其股价对市场情绪的敏感性较高，投资者需要对此保持警惕。</p><p><strong>风险/行动建议：</strong></p><ul><li><strong>风险提示：</strong> 投资者应密切关注 AI 行业的竞争态势以及市场整体情绪的变化。如果市场出现大幅波动，MINIMAX-W 的股价可能会受到较大影响。</li><li><strong>行动建议：</strong> 对于已经持有 MINIMAX-W 的投资者，建议定期评估其基本面和估值水平，确保其增长潜力能够持续支撑其高估值。对于考虑入场的投资者，建议等待更合适的时机，或者采取分批建仓的方式，以降低市场波动带来的风险。</li></ul><p><strong>原则化收口：</strong></p><p>在投资决策中，我们应始终保持极度开放和透明的态度，既要看到 MINIMAX-W 在 AI 领域的增长潜力，也要正视其估值偏高和市场波动带来的风险。正如我常说的，“Pain + Reflection = Progress”，在投资过程中，我们需要不断反思和调整策略，以应对不断变化的市场环境。</p></div></div><div class="mreply"><div class="mh"><span class="who">彼得·林奇</span><span class="mscore">96</span></div><div class="md"><h4>圆桌发言：关于 MINIMAX-W (00100) 的投资看法</h4><h5>结论：</h5><p>我看好 MINIMAX-W 这家公司，但建议大家在投资时保持谨慎。</p><h5>理由：</h5><p>首先，从我擅长的生活选股角度来看，MINIMAX-W 所处的 AI 赛道是一个充满潜力的领域。我们可以看到 AI 技术正在快速渗透到各个行业，从日常生活到工业应用，这表明该公司的市场空间非常广阔。此外，股价创新高也反映了市场对这家公司的认可。</p><p>其次，从公司的技术创新能力来看，MINIMAX-W 似乎在 AI 领域拥有一定的竞争优势。这种技术优势是支持其未来增长的重要因素。</p><p>然而，我们也必须正视一些风险。公司的估值较高，市销率（PS）达到了 75 倍，这表明市场已经给予了很高的预期。如果未来业绩增长不及预期，股价可能会面临较大的回调压力。此外，AI 行业的竞争正在加剧，这可能会影响公司的市场份额和利润率。</p><h5>风险/行动建议：</h5><ul><li><strong>估值风险</strong>：目前公司的估值较高，投资者需要警惕可能的回调风险。如果你是短期投资者，建议密切关注市场动态，设定合理的止损点。</li><li><strong>行业竞争</strong>：AI 行业的竞争日益激烈，投资者需要持续关注 MINIMAX-W 在技术研发和市场拓展方面的进展。如果公司在竞争中失去优势，可能会影响其长期增长潜力。</li><li><strong>长期持有</strong>：如果你是一个长期投资者，并且相信 AI 行业的未来发展，可以考虑在股价回调时逐步建仓。但要记住，长期持有并不意味着忽视风险，而是要在投资前做好充分的研究和心理准备。</li></ul><p>总的来说，MINIMAX-W 是一家值得关注的公司，但投资者需要根据自身的风险承受能力和投资期限来做出决策。正如我常说的，投资是一门艺术，而不是一门科学。我们需要不断学习和调整，才能在市场中立于不败之地。</p></div></div><div class="mreply"><div class="mh"><span class="who">芒格</span><span class="mscore">52</span></div><div class="md"><p>各位同仁，关于 MINIMAX-W 这家公司，我的看法是：它目前的股价已经反映了相当一部分增长预期，但仍有值得关注的点。</p><p>首先，我认同 AI 赛道的前景广阔，这家公司确实站在了未来科技发展的风口上。从它的技术创新能力和市场表现来看，投资者对它的预期很高，这从股价的屡创新高中可以看出。然而，我们不能忽视的是，它当前的估值已经相当高，PS 高达 75 倍，PB 也接近 10 倍，这意味着市场对它的期望已经非常高。</p><p>从逆向思维的角度来看，我们要问自己几个问题：这家公司的增长能持续多久？AI 行业的竞争格局是否会发生变化？如果市场情绪发生变化，股价回调的风险有多大？从多元心智模型的角度来看，我们需要考虑技术、市场、竞争等多个维度的因素，而不仅仅是增长这一个维度。</p><p>接下来，我们来谈谈风险。最大的风险在于估值过高，市场对它的期望已经非常高，任何不及预期的表现都可能导致股价的大幅回调。此外，AI 行业的竞争正在加剧，虽然这家公司目前处于领先地位，但未来的竞争格局仍存在不确定性。</p><p>基于以上分析，我的建议是：</p><ul><li>如果你已经持有这只股票，建议密切关注公司的基本面变化和市场情绪的波动。任何迹象显示增长放缓或竞争加剧，都应该重新评估你的持仓。</li><li>如果你打算买入，建议谨慎行事，等待更好的入场时机。当前的高估值意味着你需要有足够的耐心和信心，才能在未来的波动中保持坚定。</li><li>始终记住，投资不是一场短跑，而是一场马拉松。不要被短期的市场情绪所左右，要从长期的角度来审视你的投资决策。</li></ul><p>最后，我能错在哪？可能是我低估了 AI 行业的增长潜力，或者对市场竞争的判断过于保守。但无论如何，保持理性和谨慎，始终是投资中最重要的原则。</p></div></div></div>
+<div class="panel"><h2>分析师报告<span class="sub">2 篇</span></h2><details open><summary>市场面分析</summary><div class="body"><div class="md"><h4>00100 MINIMAX-W 市场面分析</h4><ul><li>红黑榜多空分数：多头 85 / 空头 30，分差 55。</li><li>当前价格：279.00。</li><li>当前交易评级：Buy。</li><li>值得加仓区间：270.63 - 281.79。</li><li>目标价格：312.48。</li><li>市场愿意给溢价的原因：AI赛道前景广阔，成长空间大；股价创新高，市场认可度高；技术创新能力强。</li><li>当前主要压制因素：估值较高，存在回调风险；AI行业竞争加剧；市场波动对股价影响较大。</li></ul></div></div></details><details open><summary>基本面分析</summary><div class="body"><div class="md"><h4>00100 MINIMAX-W 基本面分析</h4><ul><li>报告期：暂无。</li><li>PB：9.23。</li><li>PS(TTM)：75.51。</li><li>ROE：55.01%。</li><li>营收同比：103.71%。</li><li>归母净利润同比：3.35%。</li><li>核心判断：盈利能力处于可接受区间；收入仍在增长；利润端保持扩张。</li></ul></div></div></details></div>
+<div class="panel"><h2>研究与计划</h2>
+<details><summary>基本面摘要</summary><div class="body"><div class="md"><h3>核心财务快照</h3><ul><li>报告期: 数据缺失</li><li>当前股价: 279.00 元</li><li>总市值: 974.37 亿元</li><li>PE (TTM): 数据缺失</li><li>PB: 9.23</li><li>PS (TTM): 75.51</li><li>营业总收入(报告期): 数据缺失 亿元</li><li>营收同比增长率: 103.71%</li><li>归母净利润(报告期): 数据缺失 亿元</li><li>归母净利润同比增长率: 3.35%</li><li>ROE (TTM/估算): 55.01%</li><li>资产负债率: 数据缺失</li><li>经营性现金流 / 归母净利润: 数据缺失</li></ul><h4>缺失字段</h4><ul><li>PE(TTM), 营业总收入, 归母净利润, 资产负债率, 经营性现金流与归母净利润比值</li></ul></div></div></details>
+<details><summary>研究计划</summary><div class="body"><div class="md"><h4>00100 MINIMAX-W 研究摘要</h4><ul><li>红黑榜结论: Buy</li><li>多头/空头: 85/30</li><li>正向信号: ROE 55.01%；营收同比 103.71%；归母净利润同比 3.35%；PB 9.23</li><li>榜单看多理由: AI赛道前景广阔，成长空间大；股价创新高，市场认可度高；技术创新能力强</li><li>榜单风险提示: 估值较高，存在回调风险；AI行业竞争加剧；市场波动对股价影响较大</li></ul></div></div></details>
+<details><summary>交易计划</summary><div class="body"><div class="md"><h4>00100 MINIMAX-W 交易计划</h4><ul><li>评级: Buy</li><li>当前价格: 279.00</li><li>值得加仓区间: 270.63 - 281.79</li><li>目标价格: 312.48</li><li>止损位: 256.68</li><li>备注: 当前为缓存降级交易卡，后续若完整 TradingAgent 结果生成，将自动覆盖。</li></ul></div></div></details>
+<details><summary>交易决策</summary><div class="body"><div class="md"><p>Buy</p><p>00100 MINIMAX-W 当前使用红黑榜缓存结果生成兜底交易卡。多头 85 / 空头 30，分差 55。当前尚未取得完整 TradingAgent 长文决策，但榜单分数、财务快照和大师观点已经足够生成基础交易建议。</p></div></div></details>
+</div>
+<div class="panel"><h2>多空逻辑</h2><div class="pts"><div class="h bull">看多逻辑</div><div class="md"><p>AI赛道前景广阔，成长空间大</p><p>股价创新高，市场认可度高</p><p>技术创新能力强</p></div></div><div class="pts"><div class="h bear">看空逻辑</div><div class="md"><p>估值较高，存在回调风险</p><p>AI行业竞争加剧</p><p>市场波动对股价影响较大</p></div></div></div>
+<div class="panel"><h2>伯克希尔研究</h2><p><strong>MINIMAX-W是一家具备一定护城河但面临行业竞争加剧的企业，当前估值合理但需关注长期增长潜力。</strong></p><p>伯克希尔综合评分：<strong>3.5</strong></p><div class="md"><p>{&quot;verdict&quot;: &quot;观望&quot;, &quot;conservative_tip&quot;: &quot;建议观望，等待估值回调至PE TTM 35倍以下。&quot;, &quot;moderate_tip&quot;: &quot;可小仓位介入，PE TTM 40倍以下逐步建仓。&quot;, &quot;aggressive_tip&quot;: &quot;激进投资者可考虑PE TTM 45倍以下买入，但需密切关注行业竞争动态。&quot;, &quot;catalysts_plus&quot;: [&quot;AI行业政策利好&quot;, &quot;公司技术突破&quot;, &quot;市场份额提升&quot;], &quot;catalysts_minus&quot;: [&quot;竞争加剧导致毛利率下降&quot;, &quot;资本开支超预期&quot;, &quot;AI行业政策收紧&quot;]}</p></div></div>
+<div class="panel news"><h2>最新资讯</h2><div class="md"><p>整体情绪偏利好，共6条利多，2条利空，3条中性。</p></div><div class="nitem"><div class="t">Trending Industry Today: MINIMAX-W Leads Losses In AI-related Newly Listed Stocks</div><div class="s">Moomoo · 利空</div></div><div class="nitem"><div class="t">Southbound Connect Flows Flatline on August 14 as Tencent, MINIMAX-W Buck the Trend</div><div class="s">finance.biggo.com · 中性</div></div><div class="nitem"><div class="t">MINIMAX GROUP INC. - W (100)</div><div class="s">hkex.com.hk · 中性</div></div><div class="nitem"><div class="t">MINIMAX-W(0100.HK)1H26点评：ARR增长提速 下半年期待旗舰模型与毛利率回暖 - Futubull</div><div class="s">富途牛牛 · 利好</div></div><div class="nitem"><div class="t">MiniMax to Report 2026 Interim Financial Results on August 26, 2026</div><div class="s">Yahoo Finance · 中性</div></div><div class="nitem"><div class="t">MiniMax Targets Multimodal Field &quot;Deepseek&quot; Position to Solve Long-Standing Pain Points of Closed-Source Models in Global Tech Community</div><div class="s">eu.36kr.com · 利好</div></div><div class="nitem"><div class="t">MiniMax shares surge as overseas partnerships pave the way for Chinese large language models to go global</div><div class="s">Moomoo · 利好</div></div><div class="nitem"><div class="t">MiniMax Slides 18% as JPMorgan Cuts Target Again Amid $2 Billion Raise</div><div class="s">Yahoo Finance · 利空</div></div></div>
+<footer>稳健理财Agent · 红黑榜每日归档 · 红榜 #8 · 仅供研究，不构成投资建议</footer>
+</div></body>
+</html>
