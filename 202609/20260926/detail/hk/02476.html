@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>胜宏科技(02476) 黑榜 2026-09-26</title>
+<style>
+:root{--red:#d8342c;--redbg:#fdecea;--green:#1a9e54;--ink:#1c2230;--muted:#6b7385;
+--line:#e7e9ef;--card:#fff;--bg:#f4f6fa;--chip:#eef1f6;--dark:#23262d;--darkbg:#ececef}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",
+"Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);
+line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 16px 64px}
+header.top{background:linear-gradient(135deg,#1c2230,#2c3550);color:#fff;border-radius:14px;
+padding:22px 24px;margin-bottom:20px;box-shadow:0 6px 24px rgba(20,26,46,.12)}
+header.top h1{margin:0 0 6px;font-size:24px;letter-spacing:.5px}
+header.top .sub{opacity:.85;font-size:13px}
+header.top .sub b{color:#ffd166;font-weight:600}
+nav.mkt{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;
+background:rgba(244,246,250,.92);backdrop-filter:blur(6px);padding:10px 0;margin-bottom:14px}
+nav.mkt a{text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);
+padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600}
+nav.mkt a:hover{border-color:var(--red);color:var(--red)}
+.summary{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.summary .chip{background:var(--card);border:1px solid var(--line);border-radius:10px;
+padding:8px 12px;font-size:12px;color:var(--muted)}
+.summary .chip b{color:var(--ink);font-size:14px;margin-left:4px}
+section.board{margin:26px 0}
+.board-title{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:19px}
+.board-title .dot{width:10px;height:10px;border-radius:50%}
+.board-title.red .dot{background:var(--red)}
+.board-title.black .dot{background:var(--dark)}
+.board-title small{color:var(--muted);font-weight:400;font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+position:relative;transition:box-shadow .15s}
+.card:hover{box-shadow:0 4px 18px rgba(20,26,46,.08)}
+.card.red{border-top:3px solid var(--red)}
+.card.black{border-top:3px solid var(--dark)}
+.rank{position:absolute;top:10px;right:12px;font-size:26px;font-weight:800;color:#eceff5}
+.card.red .rank{color:#fbdcD9}
+.nm{font-size:16px;font-weight:700}
+.nm .tk{color:var(--muted);font-weight:500;font-size:12px;margin-left:6px}
+.tag{display:inline-block;background:var(--chip);color:var(--muted);border-radius:6px;
+padding:1px 7px;font-size:11px;margin:6px 6px 0 0}
+.price-row{display:flex;align-items:baseline;gap:10px;margin:10px 0 4px}
+.price{font-size:24px;font-weight:800}
+.pct{font-size:14px;font-weight:700;padding:2px 8px;border-radius:8px}
+.up{color:var(--red)}.down{color:var(--green)}.flat{color:var(--muted)}
+.pct.up{background:var(--redbg)}.pct.down{background:#e2f4e9}.pct.flat{background:var(--chip)}
+.psrc{font-size:11px;color:var(--muted);margin-left:auto}
+.scores{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.scores span{background:var(--chip);border-radius:6px;padding:2px 8px;font-size:11px;color:var(--muted)}
+.scores span b{color:var(--ink)}
+.pts{font-size:12.5px;margin:8px 0 0}
+.pts .h{font-weight:700;font-size:12px;margin:6px 0 2px}
+.pts .h.bull{color:var(--red)}.pts .h.bear{color:var(--green)}
+.pts ul{margin:2px 0 4px;padding-left:18px;color:#3a4152}
+.pts li{margin:1px 0}
+.masters{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:11px;color:var(--muted)}
+.masters b{color:var(--ink)}
+.summ{font-size:12.5px;color:#3a4152;background:#fafbfd;border:1px solid var(--line);
+border-radius:8px;padding:8px 10px;margin-top:8px}
+.empty{color:var(--muted);background:var(--card);border:1px dashed var(--line);
+border-radius:10px;padding:18px;text-align:center}
+footer{margin-top:34px;color:var(--muted);font-size:12px;text-align:center;line-height:1.8}
+a.lnk{color:var(--red);text-decoration:none}
+/* ── detail page ── */
+.backbar{margin-bottom:14px;font-size:13px}
+.backbar a{color:var(--muted);text-decoration:none;margin-right:14px}
+.backbar a:hover{color:var(--red)}
+.badge{display:inline-block;border-radius:6px;padding:2px 10px;font-size:12px;font-weight:700;margin-right:8px}
+.badge.red{background:var(--red);color:#fff}.badge.black{background:var(--dark);color:#fff}
+.trade{display:flex;flex-wrap:wrap;gap:10px;background:linear-gradient(135deg,#2c3550,#1c2230);
+color:#fff;border-radius:12px;padding:16px 18px;margin:16px 0}
+.trade .cell{min-width:120px}
+.trade .k{font-size:11px;opacity:.75}
+.trade .v{font-size:18px;font-weight:800;margin-top:2px}
+.trade .v.buy{color:#7ee2a8}.trade .v.sell{color:#ff9d97}.trade .v.hold{color:#ffd166}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0}
+.mgrid .m{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.mgrid .m .k{font-size:11px;color:var(--muted)}
+.mgrid .m .v{font-size:16px;font-weight:700;margin-top:2px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.panel>h2{margin:0 0 12px;font-size:17px}
+.panel>h2 .sub{font-size:12px;color:var(--muted);font-weight:400;margin-left:8px}
+.mreply{border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;
+padding:12px 14px;margin:10px 0;background:#fff}
+.mreply .mh{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.mreply .mh .who{font-weight:700;font-size:14px}
+.mreply .mh .mscore{margin-left:auto;background:var(--chip);border-radius:6px;padding:1px 8px;font-size:12px;font-weight:700}
+.md h2,.md h3,.md h4,.md h5{margin:12px 0 6px;font-size:15px}
+.md p{margin:6px 0;font-size:13.5px;color:#2c3345}
+.md ul{margin:6px 0;padding-left:20px;font-size:13.5px;color:#2c3345}
+.md li{margin:3px 0}
+.md strong{color:var(--ink)}
+details{border:1px solid var(--line);border-radius:10px;background:#fff;margin:10px 0;padding:0}
+details>summary{cursor:pointer;padding:12px 16px;font-weight:700;font-size:14px;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary:before{content:"▸ ";color:var(--red)}
+details[open]>summary:before{content:"▾ "}
+details>.body{padding:0 16px 14px;border-top:1px dashed var(--line)}
+.ychip{display:inline-block;background:var(--chip);border-radius:8px;padding:4px 10px;font-size:12px;margin:3px 6px 3px 0}
+.ychip b{font-size:13px}
+.news .nitem{border-top:1px dashed var(--line);padding:8px 0;font-size:13px}
+.news .nitem .t{font-weight:600}
+.news .nitem .s{color:var(--muted);font-size:12px}
+/* ── root landing page ── */
+.hero{padding:30px 26px}
+.hero-kicker{color:#ffd166;font-size:12px;font-weight:700;letter-spacing:2px;
+text-transform:uppercase;margin-bottom:8px}
+.hero h1{font-size:30px;margin:0 0 10px}
+.day-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.day-card{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);
+border-radius:12px;padding:14px 16px;transition:all .15s}
+.day-card:hover{border-color:var(--red);box-shadow:0 4px 16px rgba(216,52,44,.12);transform:translateY(-2px)}
+.day-card .d{font-weight:800;font-size:15px;color:var(--ink);display:flex;align-items:center;gap:8px}
+.day-card .m{margin-top:8px;display:flex;gap:6px}
+.day-card .m span{background:var(--chip);color:var(--muted);border-radius:6px;
+padding:2px 8px;font-size:11px}
+.latest-badge{background:var(--red);color:#fff;border-radius:6px;padding:1px 7px;
+font-size:10px;font-weight:700}
+</style>
+</head>
+<body><div class="wrap">
+<div class="backbar"><a href="../index.html">← 总览</a><a href="../hk.html">← 港股榜单</a></div>
+<header class="top">
+  <h1><span class="badge black">黑榜 #5</span>胜宏科技<span class="tk" style="opacity:.7;font-size:15px;font-weight:400;margin-left:8px">02476</span></h1>
+  <div class="sub">港股 ·  · 榜单日期 <b>2026-09-26</b> · 盘价采集 <b>2026-09-26 05:00:56</b></div>
+  <div class="price-row" style="margin-top:12px">
+    <span class="price" style="color:#fff">HK$216.00</span>
+    <span class="pct down">-0.83%</span>
+    <span class="psrc" style="color:rgba(255,255,255,.6)">实时</span>
+  </div>
+  <div class="scores" style="margin-top:10px">
+    <span>综合 <b>36.2</b></span>
+    <span>多头 <b>40</b></span>
+    <span>空头 <b>80</b></span>
+    <span>大师均值 <b>67.6</b></span>
+    <span>信号 <b>negative</b></span>
+  </div>
+</header>
+<div class="trade"><div class="cell"><div class="k">交易评级</div><span class="v hold">Reduce</span></div><div class="cell"><div class="k">加仓区间</div><span class="v">203.04 ~ 211.68</span></div><div class="cell"><div class="k">伯克希尔</div><span class="v">观望</span></div><div class="cell"><div class="k">伯克希尔分</div><span class="v">3.50</span></div></div>
+<div class="panel"><h2>财务指标</h2><div class="mgrid"><div class="m"><div class="k">市盈率 PE</div><div class="v">37.16</div></div><div class="m"><div class="k">市净率 PB</div><div class="v">4.86</div></div><div class="m"><div class="k">ROE</div><div class="v">10.5%</div></div><div class="m"><div class="k">总市值</div><div class="v">2123</div></div><div class="m"><div class="k">营收同比</div><div class="v">6.8%</div></div><div class="m"><div class="k">净利同比</div><div class="v">7.4%</div></div></div></div>
+<div class="panel"><h2>历史收益</h2><span class="ychip">近1月 <b class="down">-1.91%</b></span><span class="ychip">近6月 <b class="down">-31.43%</b></span><span class="ychip">近1年 <b class="down">-31.43%</b></span></div>
+<div class="panel"><h2>大师圆桌<span class="sub">5 位</span></h2><div class="mreply"><div class="mh"><span class="who">段永平</span><span class="mscore">65</span></div><div class="md"><h4>段永平视角：关于胜宏科技的投资思考</h4><h5>结论：</h5><p>关于胜宏科技，我目前的看法是保持谨慎。这家公司可能存在一些技术性反弹的机会，但从长期和本分的角度来看，还有不少值得深入思考的地方。</p><h5>理由：</h5><p>首先，从估值角度来看，目前37倍的市盈率（PE）并不算低。虽然股价已处于相对低位，但我们要问自己：这家公司是否真的被低估了？还是说市场已经给出了相对合理的定价？</p><p>其次，从公司基本面来看，虽然营收和净利润都有一定的同比增长，但净资产收益率（ROE）只有10%左右，这在我的投资标准中并不算特别出色。另外，8倍多的市销率（PS）也表明市场对其未来增长有一定的预期，但这种预期是否能够实现，还需要打一个问号。</p><p>再者，从市场流动性来看，这家公司的市值较小，流动性风险较高。这意味着在市场波动时，股价可能会出现较大的波动，这对于长期投资者来说是一个需要考虑的风险。</p><h5>风险/行动建议：</h5><ul><li><strong>风险提示</strong>：目前市场关注度较低，这既是机会也是风险。如果公司基本面没有明显改善，股价可能会继续承压。</li><li><strong>估值自检</strong>：建议投资者重新审视当前的估值水平，思考是否真的存在足够的安全边际。</li><li><strong>长期视角</strong>：如果决定投资，要做好长期持有的准备，并密切关注公司未来的发展动态，确保其业务模式符合&quot;做对的事&quot;的本分原则。</li></ul><p>总的来说，这家公司可能存在一些短期的技术性反弹机会，但从长期和本分的角度来看，我建议投资者保持谨慎，先做好充分的研究和估值自检，再决定是否值得投资。</p><p>别忘了，投资中最重要的不是抓住每一个机会，而是避免犯大的错误。</p></div></div><div class="mreply"><div class="mh"><span class="who">巴菲特</span><span class="mscore">86</span></div><div class="md"><p>各位朋友，关于胜宏科技（02476），我想从价值投资的角度来谈谈我的看法。</p><p>首先，我的结论是：目前我不会考虑买入这家公司。原因很简单，这家公司的股价虽然处于相对低位，但它的护城河和自由现金流状况并不符合我长期持有的标准。</p><p>让我来解释一下原因。</p><h4>护城河分析</h4><p>胜宏科技所处的行业竞争激烈，从它的财务数据来看，虽然净利润率有24.56%，但净资产收益率（ROE）只有10.48%。这表明公司可能缺乏足够的竞争优势来持续创造超额回报。市值较小也意味着它更容易受到市场波动的影响，流动性风险较高。</p><h4>自由现金流</h4><p>从自由现金流的角度来看，虽然我没有具体的数据，但从它的营收和净利润增长来看，增长率只有个位数，这表明公司的现金创造能力可能并不强。对于一家市值2000多亿的公司来说，这样的增长水平并不令人印象深刻。</p><h4>风险提示</h4><ul><li><strong>流动性风险</strong>：市值较小，流动性风险较高，这意味着在市场波动时，股价可能会出现大幅波动。</li><li><strong>持续下跌趋势</strong>：股价持续下跌的趋势明显，这表明市场对公司的前景并不乐观。</li><li><strong>市场关注度低</strong>：市场关注度较低，这可能会导致股价在短期内难以出现大幅反弹。</li></ul><h4>行动建议</h4><p>如果你是短期投资者，可能会看到技术性反弹的机会，但我建议不要被短期的价格波动所迷惑。对于长期投资者来说，更重要的是关注公司的基本面和竞争优势。</p><h4>芒格的补充</h4><p>查理·芒格可能会补充说：&quot;投资就像在果园里挑选最好的果树。你要选择那些能长期结出甜美果实的树，而不是那些看起来便宜但果实稀少的树。&quot; 在这里，胜宏科技可能更像是一棵果实稀少的树。</p><p>总之，我的建议是：在没有看到明显的护城河和自由现金流改善之前，保持观望可能是更好的选择。</p></div></div><div class="mreply"><div class="mh"><span class="who">达利欧</span><span class="mscore">52</span></div><div class="md"><p>各位同行，我们今天讨论的是胜宏科技（02476）。我的观点是：<strong>目前对胜宏科技持中性态度，短期内建议谨慎观察，暂不进行大规模投资。</strong></p><p>首先，从估值角度看，胜宏科技的市盈率（PE）约为37倍，市净率（PB）约为4.86倍，这表明市场对其未来增长有一定预期，但同时也意味着当前估值并不算便宜。此外，其市销率（PS）高达8.54倍，显示出市场对其营收增长有一定溢价。</p><p>从基本面来看，胜宏科技的收入和净利润同比增长率分别为6.79%和7.39%，虽然保持增长，但增速并不突出。其净资产收益率（ROE）为10.48%，处于中等水平。整体来看，公司盈利能力尚可，但并不具备显著的竞争优势。</p><p>接下来，我们谈谈风险：</p><ul><li><strong>流动性风险</strong>：胜宏科技市值较小，仅为2122.82亿人民币，市场关注度较低，流动性风险较高。这意味着在市场波动时，股价可能会出现较大波动。</li></ul><ul><li><strong>持续下跌趋势</strong>：从技术面来看，股价持续下跌趋势明显，目前股价为216元，已处于相对低位。虽然存在技术性反弹的可能性，但整体趋势尚未出现明确的反转信号。</li></ul><ul><li><strong>市场情绪</strong>：目前市场对胜宏科技的关注度较低，缺乏明显的催化剂来推动股价上涨。</li></ul><p>基于以上分析，我的建议是：</p><ul><li><strong>谨慎观察</strong>：在当前市场环境下，建议投资者保持谨慎，观察公司基本面是否出现明显改善，以及市场情绪是否有所转变。</li></ul><ul><li><strong>风险控制</strong>：如果考虑投资，建议控制仓位，避免因市场波动造成较大损失。同时，可以关注公司未来的财报发布，寻找可能的投资机会。</li></ul><ul><li><strong>原则化决策</strong>：根据“痛苦+反思=进步”的原则，建议投资者在做出投资决策前，详细记录决策过程和预期结果，并在事后进行复盘，以不断优化投资策略。</li></ul><p>总之，胜宏科技目前并不具备显著的投资吸引力，但在市场情绪好转或公司基本面出现积极变化时，可以重新评估投资机会。</p></div></div><div class="mreply"><div class="mh"><span class="who">彼得·林奇</span><span class="mscore">70</span></div><div class="md"><p>好的，我来说说对胜宏科技的看法。</p><h4>结论</h4><p>胜宏科技目前看起来不是特别吸引人的投资标的。虽然股价处于相对低位，存在技术性反弹的可能，但从基本面和估值角度来看，风险大于机会。</p><h4>理由</h4><ul><li><strong>估值偏高</strong>：当前市盈率（PE）高达37倍，对于一家营收和净利润增长率仅为个位数的公司来说，这个估值水平偏高。通常我会寻找那些增长更快、估值更合理的公司。</li></ul><ul><li><strong>增长乏力</strong>：公司营收同比增长不到7%，净利润增长也只有7%左右。这样的增长速度很难支撑当前的高估值。</li></ul><ul><li><strong>市场关注度低</strong>：市值较小，流动性风险较高，市场关注度也不高。这意味着一旦市场情绪转差，股价可能会面临更大的下行压力。</li></ul><ul><li><strong>缺乏明显的增长催化剂</strong>：从目前的信息来看，我没有看到能够推动公司未来几年快速增长的明显催化剂。</li></ul><h4>风险/行动建议</h4><ul><li><strong>风险</strong>：高估值和低增长是主要风险。如果市场情绪转差，股价可能会进一步下跌。此外，小市值公司通常波动性较大，需要注意流动性风险。</li></ul><ul><li><strong>行动建议</strong>：如果你已经持有这只股票，建议密切关注公司基本面的变化，特别是营收和利润的增长情况。如果增长没有明显改善，可能需要考虑减仓或止损。</li></ul><p>如果你正在考虑买入，我建议你先等等，看看公司是否有新的增长点出现，或者估值是否能够回调到更合理的水平。通常我会寻找那些增长更快、估值更合理的公司。</p><h4>总结</h4><p>胜宏科技目前的情况让我有些犹豫。高估值和低增长让我很难看到短期内股价大幅上涨的可能性。除非你对公司的未来有特别的信心，或者有新的增长点出现，否则我建议保持谨慎。</p><p>希望这些建议对你有帮助。如果你有更多关于公司的信息，欢迎随时和我讨论。</p></div></div><div class="mreply"><div class="mh"><span class="who">芒格</span><span class="mscore">65</span></div><div class="md"><p>各位，我今天谈谈胜宏科技这家公司。首先，我得说，这家公司目前并不在我眼中属于一个特别诱人的投资标的。</p><h4>结论</h4><p>胜宏科技当前的投资价值有限，我倾向于保持谨慎态度，甚至可能建议暂时回避。</p><h4>理由</h4><ul><li><strong>估值过高</strong>：当前市盈率高达37倍，远高于市场平均水平，而净资产收益率（ROE）仅为10.5%左右。这意味着市场对其未来增长预期可能过于乐观，但实际盈利能力并不足以支撑这样的估值。</li></ul><ul><li><strong>流动性风险</strong>：公司市值较小，仅有2122亿人民币，流动性风险较高。在市场波动加剧时，这类股票往往更容易受到冲击。</li></ul><ul><li><strong>持续下跌趋势</strong>：股价从技术面来看，持续下跌趋势明显，缺乏明确的底部信号。虽然有人认为存在技术性反弹机会，但这种反弹往往难以持续，且容易被更大的下行趋势所压制。</li></ul><ul><li><strong>市场关注度低</strong>：市场对胜宏科技的关注度较低，缺乏足够的机构投资者参与。这使得股价更容易受到个别投资者行为的影响，增加了不确定性。</li></ul><h4>风险/行动建议</h4><ul><li><strong>逆向思考</strong>：在考虑投资时，先问问自己，这家公司可能会因为什么原因而失败？比如，估值过高导致的回调风险，市场关注度低导致的流动性问题，以及公司盈利能力是否能持续支撑高估值。</li></ul><ul><li><strong>激励机制分析</strong>：我们需要关注公司管理层的激励措施。如果管理层的主要激励来自于短期股价上涨，而非长期价值创造，那么这种激励可能会导致短视行为，增加投资风险。</li></ul><ul><li><strong>多元化思维</strong>：从多个角度审视这家公司。除了财务指标，还需要考虑行业竞争格局、技术发展趋势以及宏观经济环境等因素。当前全球经济不确定性增加，科技行业竞争激烈，胜宏科技能否在其中脱颖而出，需要打一个大大的问号。</li></ul><ul><li><strong>风险控制</strong>：如果一定要参与，建议严格控制仓位，并设定明确的止损线。毕竟，在市场整体下行趋势中，贸然重仓可能会带来不必要的损失。</li></ul><p>总之，胜宏科技目前来看，并不是一个值得重点关注的投资标的。我们需要保持冷静，避免被短期的技术性反弹所迷惑，更应该关注长期的价值创造和风险控制。</p><p>我能错在哪？或许我对公司未来增长潜力过于悲观，或者忽略了某些潜在的利好因素。但无论如何，在当前的市场环境下，保持谨慎总是明智的选择。</p></div></div></div>
+<div class="panel"><h2>分析师报告<span class="sub">2 篇</span></h2><details open><summary>市场面分析</summary><div class="body"><div class="md"><h4>02476 胜宏科技 市场面分析</h4><ul><li>红黑榜多空分数：多头 40 / 空头 80，分差 -40。</li><li>当前价格：216.00。</li><li>当前交易评级：Reduce。</li><li>值得加仓区间：203.04 - 211.68。</li><li>风险控制位：190.08。</li><li>市场愿意给溢价的原因：股价已处于相对低位；存在技术性反弹机会。</li><li>当前主要压制因素：市值较小，流动性风险较高；股价持续下跌趋势明显；市场关注度较低。</li></ul></div></div></details><details open><summary>基本面分析</summary><div class="body"><div class="md"><h4>02476 胜宏科技 基本面分析</h4><ul><li>报告期：暂无。</li><li>PE(TTM)：37.16。</li><li>PB：4.86。</li><li>PS(TTM)：8.54。</li><li>ROE：10.48%。</li><li>营收同比：6.79%。</li><li>归母净利润同比：7.39%。</li><li>核心判断：盈利能力处于可接受区间；收入仍在增长；利润端保持扩张。</li></ul></div></div></details></div>
+<div class="panel"><h2>研究与计划</h2>
+<details><summary>基本面摘要</summary><div class="body"><div class="md"><h3>核心财务快照</h3><ul><li>报告期: 数据缺失</li><li>当前股价: 216.00 元</li><li>总市值: 2122.82 亿元</li><li>PE (TTM): 37.16</li><li>PB: 4.86</li><li>PS (TTM): 8.54</li><li>营业总收入(报告期): 数据缺失 亿元</li><li>营收同比增长率: 6.79%</li><li>归母净利润(报告期): 数据缺失 亿元</li><li>归母净利润同比增长率: 7.39%</li><li>ROE (TTM/估算): 10.48%</li><li>资产负债率: 数据缺失</li><li>经营性现金流 / 归母净利润: 数据缺失</li></ul><h4>缺失字段</h4><ul><li>营业总收入, 归母净利润, 资产负债率, 经营性现金流与归母净利润比值</li></ul></div></div></details>
+<details><summary>研究计划</summary><div class="body"><div class="md"><h4>02476 胜宏科技 研究摘要</h4><ul><li>红黑榜结论: Reduce</li><li>多头/空头: 40/80</li><li>正向信号: ROE 10.48%；营收同比 6.79%；归母净利润同比 7.39%；PE(TTM) 37.16</li><li>榜单看多理由: 股价已处于相对低位；存在技术性反弹机会</li><li>榜单风险提示: 市值较小，流动性风险较高；股价持续下跌趋势明显；市场关注度较低</li></ul></div></div></details>
+<details><summary>交易计划</summary><div class="body"><div class="md"><h4>02476 胜宏科技 交易计划</h4><ul><li>评级: Reduce</li><li>当前价格: 216.00</li><li>值得加仓区间: 194.40 - 203.04</li><li>目标价格: 205.20</li><li>止损位: 190.08</li><li>备注: 当前为缓存降级交易卡，后续若完整 TradingAgent 结果生成，将自动覆盖。</li></ul></div></div></details>
+<details><summary>交易决策</summary><div class="body"><div class="md"><p>Reduce</p><p>02476 胜宏科技 当前使用红黑榜缓存结果生成兜底交易卡。多头 40 / 空头 80，分差 -40。当前尚未取得完整 TradingAgent 长文决策，但榜单分数、财务快照和大师观点已经足够生成基础交易建议。</p></div></div></details>
+</div>
+<div class="panel"><h2>多空逻辑</h2><div class="pts"><div class="h bull">看多逻辑</div><div class="md"><p>股价已处于相对低位</p><p>存在技术性反弹机会</p></div></div><div class="pts"><div class="h bear">看空逻辑</div><div class="md"><p>市值较小，流动性风险较高</p><p>股价持续下跌趋势明显</p><p>市场关注度较低</p></div></div></div>
+<div class="panel"><h2>伯克希尔研究</h2><p><strong>胜宏科技具备一定的制造业护城河，但行业竞争加剧及技术迭代风险需警惕，当前估值合理但并非显著低估。</strong></p><p>伯克希尔综合评分：<strong>3.5</strong></p><div class="md"><p>{&quot;verdict&quot;: &quot;观望&quot;, &quot;conservative_tip&quot;: &quot;建议在PE TTM低于13倍时买入，目标价20元。&quot;, &quot;moderate_tip&quot;: &quot;建议在PE TTM低于15倍时买入，目标价22元。&quot;, &quot;aggressive_tip&quot;: &quot;建议在PE TTM低于17倍时买入，目标价25元。&quot;, &quot;catalysts_plus&quot;: [&quot;5G、新能源汽车等新兴领域需求增长超预期。&quot;, &quot;公司高端产品研发取得突破，市场份额提升。&quot;, &quot;原材料价格回落，盈利能力改善。&quot;], &quot;catalysts_minus&quot;: [&quot;贸易政策变化导致出口受阻。&quot;, &quot;原材料价格持续上涨，挤压利润空间。&quot;, &quot;高端产品研发失败，市场竞争力下降。&quot;]}</p></div></div>
+<div class="panel news"><h2>最新资讯</h2><div class="md"><p>1条利好新闻，整体情绪偏多</p></div><div class="nitem"><div class="t">胜宏科技A股创历史新高</div><div class="s">TradingView · 利好</div></div></div>
+<footer>稳健理财Agent · 红黑榜每日归档 · 黑榜 #5 · 仅供研究，不构成投资建议</footer>
+</div></body>
+</html>

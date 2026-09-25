@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>地平线机器人-W(09660) 黑榜 2026-09-26</title>
+<style>
+:root{--red:#d8342c;--redbg:#fdecea;--green:#1a9e54;--ink:#1c2230;--muted:#6b7385;
+--line:#e7e9ef;--card:#fff;--bg:#f4f6fa;--chip:#eef1f6;--dark:#23262d;--darkbg:#ececef}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",
+"Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);
+line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 16px 64px}
+header.top{background:linear-gradient(135deg,#1c2230,#2c3550);color:#fff;border-radius:14px;
+padding:22px 24px;margin-bottom:20px;box-shadow:0 6px 24px rgba(20,26,46,.12)}
+header.top h1{margin:0 0 6px;font-size:24px;letter-spacing:.5px}
+header.top .sub{opacity:.85;font-size:13px}
+header.top .sub b{color:#ffd166;font-weight:600}
+nav.mkt{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;
+background:rgba(244,246,250,.92);backdrop-filter:blur(6px);padding:10px 0;margin-bottom:14px}
+nav.mkt a{text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);
+padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600}
+nav.mkt a:hover{border-color:var(--red);color:var(--red)}
+.summary{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.summary .chip{background:var(--card);border:1px solid var(--line);border-radius:10px;
+padding:8px 12px;font-size:12px;color:var(--muted)}
+.summary .chip b{color:var(--ink);font-size:14px;margin-left:4px}
+section.board{margin:26px 0}
+.board-title{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:19px}
+.board-title .dot{width:10px;height:10px;border-radius:50%}
+.board-title.red .dot{background:var(--red)}
+.board-title.black .dot{background:var(--dark)}
+.board-title small{color:var(--muted);font-weight:400;font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+position:relative;transition:box-shadow .15s}
+.card:hover{box-shadow:0 4px 18px rgba(20,26,46,.08)}
+.card.red{border-top:3px solid var(--red)}
+.card.black{border-top:3px solid var(--dark)}
+.rank{position:absolute;top:10px;right:12px;font-size:26px;font-weight:800;color:#eceff5}
+.card.red .rank{color:#fbdcD9}
+.nm{font-size:16px;font-weight:700}
+.nm .tk{color:var(--muted);font-weight:500;font-size:12px;margin-left:6px}
+.tag{display:inline-block;background:var(--chip);color:var(--muted);border-radius:6px;
+padding:1px 7px;font-size:11px;margin:6px 6px 0 0}
+.price-row{display:flex;align-items:baseline;gap:10px;margin:10px 0 4px}
+.price{font-size:24px;font-weight:800}
+.pct{font-size:14px;font-weight:700;padding:2px 8px;border-radius:8px}
+.up{color:var(--red)}.down{color:var(--green)}.flat{color:var(--muted)}
+.pct.up{background:var(--redbg)}.pct.down{background:#e2f4e9}.pct.flat{background:var(--chip)}
+.psrc{font-size:11px;color:var(--muted);margin-left:auto}
+.scores{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.scores span{background:var(--chip);border-radius:6px;padding:2px 8px;font-size:11px;color:var(--muted)}
+.scores span b{color:var(--ink)}
+.pts{font-size:12.5px;margin:8px 0 0}
+.pts .h{font-weight:700;font-size:12px;margin:6px 0 2px}
+.pts .h.bull{color:var(--red)}.pts .h.bear{color:var(--green)}
+.pts ul{margin:2px 0 4px;padding-left:18px;color:#3a4152}
+.pts li{margin:1px 0}
+.masters{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:11px;color:var(--muted)}
+.masters b{color:var(--ink)}
+.summ{font-size:12.5px;color:#3a4152;background:#fafbfd;border:1px solid var(--line);
+border-radius:8px;padding:8px 10px;margin-top:8px}
+.empty{color:var(--muted);background:var(--card);border:1px dashed var(--line);
+border-radius:10px;padding:18px;text-align:center}
+footer{margin-top:34px;color:var(--muted);font-size:12px;text-align:center;line-height:1.8}
+a.lnk{color:var(--red);text-decoration:none}
+/* ── detail page ── */
+.backbar{margin-bottom:14px;font-size:13px}
+.backbar a{color:var(--muted);text-decoration:none;margin-right:14px}
+.backbar a:hover{color:var(--red)}
+.badge{display:inline-block;border-radius:6px;padding:2px 10px;font-size:12px;font-weight:700;margin-right:8px}
+.badge.red{background:var(--red);color:#fff}.badge.black{background:var(--dark);color:#fff}
+.trade{display:flex;flex-wrap:wrap;gap:10px;background:linear-gradient(135deg,#2c3550,#1c2230);
+color:#fff;border-radius:12px;padding:16px 18px;margin:16px 0}
+.trade .cell{min-width:120px}
+.trade .k{font-size:11px;opacity:.75}
+.trade .v{font-size:18px;font-weight:800;margin-top:2px}
+.trade .v.buy{color:#7ee2a8}.trade .v.sell{color:#ff9d97}.trade .v.hold{color:#ffd166}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0}
+.mgrid .m{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.mgrid .m .k{font-size:11px;color:var(--muted)}
+.mgrid .m .v{font-size:16px;font-weight:700;margin-top:2px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.panel>h2{margin:0 0 12px;font-size:17px}
+.panel>h2 .sub{font-size:12px;color:var(--muted);font-weight:400;margin-left:8px}
+.mreply{border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;
+padding:12px 14px;margin:10px 0;background:#fff}
+.mreply .mh{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.mreply .mh .who{font-weight:700;font-size:14px}
+.mreply .mh .mscore{margin-left:auto;background:var(--chip);border-radius:6px;padding:1px 8px;font-size:12px;font-weight:700}
+.md h2,.md h3,.md h4,.md h5{margin:12px 0 6px;font-size:15px}
+.md p{margin:6px 0;font-size:13.5px;color:#2c3345}
+.md ul{margin:6px 0;padding-left:20px;font-size:13.5px;color:#2c3345}
+.md li{margin:3px 0}
+.md strong{color:var(--ink)}
+details{border:1px solid var(--line);border-radius:10px;background:#fff;margin:10px 0;padding:0}
+details>summary{cursor:pointer;padding:12px 16px;font-weight:700;font-size:14px;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary:before{content:"▸ ";color:var(--red)}
+details[open]>summary:before{content:"▾ "}
+details>.body{padding:0 16px 14px;border-top:1px dashed var(--line)}
+.ychip{display:inline-block;background:var(--chip);border-radius:8px;padding:4px 10px;font-size:12px;margin:3px 6px 3px 0}
+.ychip b{font-size:13px}
+.news .nitem{border-top:1px dashed var(--line);padding:8px 0;font-size:13px}
+.news .nitem .t{font-weight:600}
+.news .nitem .s{color:var(--muted);font-size:12px}
+/* ── root landing page ── */
+.hero{padding:30px 26px}
+.hero-kicker{color:#ffd166;font-size:12px;font-weight:700;letter-spacing:2px;
+text-transform:uppercase;margin-bottom:8px}
+.hero h1{font-size:30px;margin:0 0 10px}
+.day-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.day-card{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);
+border-radius:12px;padding:14px 16px;transition:all .15s}
+.day-card:hover{border-color:var(--red);box-shadow:0 4px 16px rgba(216,52,44,.12);transform:translateY(-2px)}
+.day-card .d{font-weight:800;font-size:15px;color:var(--ink);display:flex;align-items:center;gap:8px}
+.day-card .m{margin-top:8px;display:flex;gap:6px}
+.day-card .m span{background:var(--chip);color:var(--muted);border-radius:6px;
+padding:2px 8px;font-size:11px}
+.latest-badge{background:var(--red);color:#fff;border-radius:6px;padding:1px 7px;
+font-size:10px;font-weight:700}
+</style>
+</head>
+<body><div class="wrap">
+<div class="backbar"><a href="../index.html">← 总览</a><a href="../hk.html">← 港股榜单</a></div>
+<header class="top">
+  <h1><span class="badge black">黑榜 #4</span>地平线机器人-W<span class="tk" style="opacity:.7;font-size:15px;font-weight:400;margin-left:8px">09660</span></h1>
+  <div class="sub">港股 ·  · 榜单日期 <b>2026-09-26</b> · 盘价采集 <b>2026-09-26 05:00:56</b></div>
+  <div class="price-row" style="margin-top:12px">
+    <span class="price" style="color:#fff">HK$4.03</span>
+    <span class="pct down">-2.66%</span>
+    <span class="psrc" style="color:rgba(255,255,255,.6)">实时</span>
+  </div>
+  <div class="scores" style="margin-top:10px">
+    <span>综合 <b>35.0</b></span>
+    <span>多头 <b>50</b></span>
+    <span>空头 <b>80</b></span>
+    <span>大师均值 <b>57</b></span>
+    <span>信号 <b>negative</b></span>
+  </div>
+</header>
+<div class="trade"><div class="cell"><div class="k">交易评级</div><span class="v hold">Reduce</span></div><div class="cell"><div class="k">加仓区间</div><span class="v">3.63 ~ 3.79</span></div><div class="cell"><div class="k">伯克希尔</div><span class="v">观望</span></div><div class="cell"><div class="k">伯克希尔分</div><span class="v">3.00</span></div></div>
+<div class="panel"><h2>财务指标</h2><div class="mgrid"><div class="m"><div class="k">市净率 PB</div><div class="v">3.39</div></div><div class="m"><div class="k">ROE</div><div class="v">26.1%</div></div><div class="m"><div class="k">总市值</div><div class="v">640</div></div><div class="m"><div class="k">营收同比</div><div class="v">13.5%</div></div><div class="m"><div class="k">净利同比</div><div class="v">86.1%</div></div></div></div>
+<div class="panel"><h2>历史收益</h2><span class="ychip">近1月 <b class="down">-15.16%</b></span><span class="ychip">近6月 <b class="down">-41.68%</b></span><span class="ychip">近1年 <b class="down">-58.75%</b></span></div>
+<div class="panel"><h2>大师圆桌<span class="sub">5 位</span></h2><div class="mreply"><div class="mh"><span class="who">段永平</span><span class="mscore">73</span></div><div class="md"><p>我谈谈对地平线机器人-W（09660）的看法。</p><p>首先，我的立场是偏谨慎的。虽然人工智能赛道确实前景广阔，公司在技术研发方面也展现了核心优势，但从投资的角度，我更关注的是&quot;做对的事&quot;和&quot;把事做对&quot;。目前来看，这家公司可能面临一些挑战。</p><h4>理由分析：</h4><ul><li><strong>赛道优势与公司能力的不匹配</strong>：人工智能赛道确实充满机会，但好赛道不等于好公司。从数据来看，公司盈利能力不足，净利率波动较大，这让我对其长期发展存疑。</li></ul><ul><li><strong>估值问题</strong>：当前市销率（PS）高达13倍，而市净率（PB）也超过3倍。在盈利能力尚未得到验证的情况下，这样的估值水平让我觉得有些偏高。</li></ul><ul><li><strong>资金流向</strong>：股价持续下跌，资金流出迹象明显，这反映了市场对公司的信心不足。</li></ul><h4>风险提示：</h4><ul><li><strong>盈利能力风险</strong>：公司目前盈利能力较弱，如果不能尽快实现盈利能力的提升，可能会面临更大的估值压力。</li></ul><ul><li><strong>竞争风险</strong>：人工智能领域竞争激烈，公司需要持续投入研发，但资金压力可能会影响其长期竞争力。</li></ul><h4>行动建议：</h4><p>如果是我，我会选择暂时观望。我会重点关注以下几点：</p><ul><li>公司能否在未来的几个季度中展现出更强的盈利能力。</li><li>公司在技术研发上的投入是否能够转化为商业化成果。</li><li>管理层是否能够有效应对市场竞争和资金压力。</li></ul><h4>别错过的隐含约束：</h4><p>不要因为赛道前景好就忽视了公司的基本面。在投资中，&quot;做对的事&quot;比&quot;抓住风口&quot;更重要。如果公司不能在盈利能力上证明自己，即使赛道再好，也可能不是一笔好投资。</p></div></div><div class="mreply"><div class="mh"><span class="who">巴菲特</span><span class="mscore">50</span></div><div class="md"><p>各位朋友，今天我们来聊聊地平线机器人-W这家公司。我的看法是，这是一家让我有些犹豫的公司。</p><p>首先，从业务角度来看，地平线机器人所处的AI赛道确实前景广阔。人工智能是未来科技发展的重要方向，这家公司如果能在技术研发上保持领先，确实有机会在未来占据一席之地。我一向重视企业的护城河，而技术研发能力可以说是这家公司的核心优势之一。</p><p>然而，当我们把目光转向财务数据时，情况就不那么乐观了。目前的股价持续下跌，显示资金正在流出。更重要的是，这家公司的盈利能力仍然不足。PS（市销率）高达13倍，而PB（市净率）也达到了3.4倍，这表明市场对其未来增长给予了很高的预期，但这种预期是否能够实现还有待观察。</p><p>在这里，我要强调一个重要的投资原则：价格是你付出的，价值是你得到的。我们需要确保付出的价格与得到的价值之间有足够的安全边际。目前来看，这家公司的估值并不便宜，而盈利能力的不确定性更是增加了投资风险。</p><p>因此，我的建议是：</p><ul><li>如果你已经在关注这家公司，建议先观察其盈利能力是否能持续改善。AI赛道虽然前景广阔，但竞争也非常激烈，最终谁能胜出还需要时间验证。</li></ul><ul><li>对于长期投资者来说，等待更好的买入时机可能是更明智的选择。我们需要看到更清晰的盈利路径和更合理的价格。</li></ul><ul><li>记住，投资就像打棒球，你不需要每次都挥棒。在市场充满不确定性的时候，保持耐心往往是最重要的。</li></ul><p>最后，我想引用查理·芒格的一句话：&quot;如果你找不到定价错误的投资机会，那就什么都不做。&quot;在面对像地平线机器人这样充满潜力但估值偏高的公司时，这句话值得我们深思。</p></div></div><div class="mreply"><div class="mh"><span class="who">达利欧</span><span class="mscore">55</span></div><div class="md"><h4>圆桌发言：关于地平线机器人-W（09660）的看法</h4><p>各位同仁，关于地平线机器人-W（09660），我的看法是：<strong>当前持谨慎中性态度，短期内不倾向于增持，但会持续关注其长期发展潜力。</strong></p><h5>理由：</h5><p>首先，从宏观角度分析，人工智能赛道无疑是未来发展的重要方向，地平线机器人所处的行业前景广阔，这一点是毋庸置疑的。其技术研发能力也构成了其核心竞争力，这为公司的长期发展提供了支撑。</p><p>然而，当我们把目光转向公司的具体财务状况和估值时，情况就变得复杂了。尽管地平线机器人的营收和净利润同比增长率表现不错，但其股价持续下跌，资金流出的迹象明显。这表明市场对其当前的盈利能力存在较大疑虑。此外，其市销率（PS）高达13.24倍，远高于行业平均水平，这进一步加剧了对其估值的担忧。</p><p>从原则化决策的角度来看，我们需要将这些问题放在一个更大的框架中进行分析。我们必须考虑：</p><ul><li><strong>短期债务周期的影响</strong>：当前全球经济环境充满不确定性，市场对高估值、高成长性公司的风险偏好正在下降。</li><li><strong>长期发展潜力</strong>：人工智能行业的长期发展趋势是明确的，但地平线机器人能否在这一领域持续保持竞争优势，仍需进一步观察。</li></ul><h5>风险/行动建议：</h5><ul><li><strong>风险提示</strong>：</li><li>盈利能力不足：当前地平线机器人的盈利能力不足以支撑其高估值，市场情绪一旦恶化，股价可能进一步承压。</li><li>资金流出：股价持续下跌表明市场对其信心不足，需警惕资金进一步流出的风险。</li></ul><ul><li><strong>行动建议</strong>：</li><li>短期观望：鉴于当前市场环境和公司财务状况，建议短期内持观望态度，不急于增持。</li><li>长期关注：持续关注公司在人工智能领域的技术研发进展和市场竞争力变化，等待更明确的信号出现。</li><li>原则化决策：建议将此次分析记录在决策日志中，并设定明确的触发条件，例如公司盈利能力改善或市场情绪回暖，以便在合适的时机做出调整。</li></ul><p>总之，地平线机器人-W目前处于一个需要谨慎观察的阶段。我们既要看到其长期发展潜力，也要正视当前面临的挑战和风险。通过原则化的决策流程，我们可以更好地平衡短期风险和长期收益，做出更为理性的投资决策。</p></div></div><div class="mreply"><div class="mh"><span class="who">彼得·林奇</span><span class="mscore">67</span></div><div class="md"><h4>圆桌发言：关于地平线机器人-W (09660) 的看法</h4><p>**结论：</p><p>这只股票目前我不建议买入，但值得持续关注。**</p><h4>理由：</h4><p>首先，从行业前景来看，人工智能无疑是一个充满潜力的赛道。地平线机器人在这个领域拥有不错的技术研发能力，这构成了它的核心优势。作为投资者，我们都喜欢那些在快速增长的行业中占据一席之地的公司。</p><p>然而，当我们把目光转向财务数据时，情况就不那么乐观了。尽管营收同比增长了13.5%，净利润更是大幅增长了86%，但这些数字并不能完全打消我的疑虑。目前的市销率(PS)高达13倍，这对于一家尚未实现稳定盈利的公司来说，显得有些过高。</p><p>更令人担忧的是，股价持续下跌，这通常意味着资金正在流出。盈利能力不足的问题依然存在，这可能会影响其长期估值。如果我们用彼得·林奇的方法来分析，这家公司目前还缺乏足够的&quot;生活场景验证&quot;——即我们是否能在日常生活中观察到它的产品或服务被广泛使用。</p><h4>风险/行动建议：</h4><ul><li><strong>估值风险</strong>：当前市销率(PS)高达13倍，而市盈率(PE)甚至无法计算，因为公司仍在亏损。对于这种高估值、高增长但尚未盈利的公司，我们需要格外谨慎。</li></ul><ul><li><strong>盈利能力</strong>：虽然净利润增长迅速，但净利率的波动性较大，表明公司尚未找到稳定的盈利模式。作为投资者，我们需要看到更持续的盈利能力才能放心买入。</li></ul><ul><li><strong>股价走势</strong>：股价持续下跌是一个需要警惕的信号。如果你是持有者，建议密切关注资金流向和公司基本面变化。如果你是潜在投资者，建议等待更明确的买入信号。</li></ul><h4>具体行动：</h4><ul><li>如果你目前持有这只股票，建议设定一个止损线，比如股价再下跌10%时考虑卖出，以控制风险。</li><li>如果你正在考虑买入，建议先观察一段时间，等待更明确的盈利信号和更合理的估值水平。可以先把它加入自选股名单，持续关注其季度财报和行业动态。</li></ul><p>总之，这是一家处于高增长赛道但面临盈利挑战的公司。投资这样的公司需要耐心和谨慎，不要被短期的高增长数字冲昏头脑。</p></div></div><div class="mreply"><div class="mh"><span class="who">芒格</span><span class="mscore">40</span></div><div class="md"><p>各位，在讨论地平线机器人-W（09660）之前，我想先提醒大家，我们投资决策的核心是避免愚蠢，而不是追求聪明。现在让我从逆向思维的角度来谈谈这家公司。</p><p>首先，这家公司的多头逻辑集中在人工智能赛道的广阔前景以及其技术研发能力上。这确实是当前市场的一个热点领域，也是许多投资者追逐的方向。然而，当我们反过来想——如何让这笔投资失败时，答案就变得清晰起来。</p><p>第一，股价的持续下跌是一个明显的警示信号。资金正在流出，这表明市场对这家公司的信心正在减弱。第二，尽管营收同比增长，但盈利能力仍然不足，净利润率的波动性很大，这直接影响了对公司长期估值的信心。</p><p>从激励机制的角度来看，我们需要问：谁从这笔投资中获利？目前看来，主要受益者可能是那些早期进入的投资者和公司内部人士，而不是新进入的散户投资者。</p><p>接下来，让我们用多元心智模型来审视这家公司。从技术角度来看，人工智能确实是一个有潜力的领域，但从商业角度来看，盈利能力是关键。没有稳定的盈利能力，任何技术优势都难以转化为长期价值。</p><p>在概率与赔率方面，目前的胜率似乎不高，而赔率也因为股价的下跌而变得不那么吸引人。我们需要更坚实的证据来支持买入决策。</p><p>最后，从心理学陷阱的角度来看，投资者容易受到从众心理的影响，看到人工智能的热点就急于入场，而忽视了基本面的风险。</p><p>综上所述，我的判断是：地平线机器人-W目前并不符合我的投资标准。风险在于盈利能力不足和市场信心的持续下降。行动建议是：除非有更明确的盈利改善信号，否则应谨慎对待。</p><p>我能错在哪？或许是我低估了公司技术突破带来的未来盈利能力，或者市场情绪突然转向乐观。但无论如何，我更倾向于等待更明确的信号，而不是在不确定性中冒险。</p></div></div></div>
+<div class="panel"><h2>分析师报告<span class="sub">2 篇</span></h2><details open><summary>市场面分析</summary><div class="body"><div class="md"><h4>09660 地平线机器人-W 市场面分析</h4><ul><li>红黑榜多空分数：多头 50 / 空头 80，分差 -30。</li><li>当前价格：4.03。</li><li>当前交易评级：Reduce。</li><li>值得加仓区间：3.63 - 3.79。</li><li>风险控制位：3.55。</li><li>市场愿意给溢价的原因：人工智能赛道前景广阔；技术研发能力构成核心优势。</li><li>当前主要压制因素：股价持续下跌显示资金流出；盈利能力不足影响长期估值。</li></ul></div></div></details><details open><summary>基本面分析</summary><div class="body"><div class="md"><h4>09660 地平线机器人-W 基本面分析</h4><ul><li>报告期：暂无。</li><li>PB：3.39。</li><li>PS(TTM)：13.24。</li><li>ROE：26.08%。</li><li>营收同比：13.54%。</li><li>归母净利润同比：86.13%。</li><li>核心判断：盈利能力处于可接受区间；收入仍在增长；利润端保持扩张。</li></ul></div></div></details></div>
+<div class="panel"><h2>研究与计划</h2>
+<details><summary>基本面摘要</summary><div class="body"><div class="md"><h3>核心财务快照</h3><ul><li>报告期: 数据缺失</li><li>当前股价: 4.03 元</li><li>总市值: 639.70 亿元</li><li>PE (TTM): 数据缺失</li><li>PB: 3.39</li><li>PS (TTM): 13.24</li><li>营业总收入(报告期): 数据缺失 亿元</li><li>营收同比增长率: 13.54%</li><li>归母净利润(报告期): 数据缺失 亿元</li><li>归母净利润同比增长率: 86.13%</li><li>ROE (TTM/估算): 26.08%</li><li>资产负债率: 数据缺失</li><li>经营性现金流 / 归母净利润: 数据缺失</li></ul><h4>缺失字段</h4><ul><li>PE(TTM), 营业总收入, 归母净利润, 资产负债率, 经营性现金流与归母净利润比值</li></ul></div></div></details>
+<details><summary>研究计划</summary><div class="body"><div class="md"><h4>09660 地平线机器人-W 研究摘要</h4><ul><li>红黑榜结论: Reduce</li><li>多头/空头: 50/80</li><li>正向信号: ROE 26.08%；营收同比 13.54%；归母净利润同比 86.13%；PB 3.39</li><li>榜单看多理由: 人工智能赛道前景广阔；技术研发能力构成核心优势</li><li>榜单风险提示: 股价持续下跌显示资金流出；盈利能力不足影响长期估值</li></ul></div></div></details>
+<details><summary>交易计划</summary><div class="body"><div class="md"><h4>09660 地平线机器人-W 交易计划</h4><ul><li>评级: Reduce</li><li>当前价格: 4.03</li><li>值得加仓区间: 3.63 - 3.79</li><li>目标价格: 3.83</li><li>止损位: 3.55</li><li>备注: 当前为缓存降级交易卡，后续若完整 TradingAgent 结果生成，将自动覆盖。</li></ul></div></div></details>
+<details><summary>交易决策</summary><div class="body"><div class="md"><p>Reduce</p><p>09660 地平线机器人-W 当前使用红黑榜缓存结果生成兜底交易卡。多头 50 / 空头 80，分差 -30。当前尚未取得完整 TradingAgent 长文决策，但榜单分数、财务快照和大师观点已经足够生成基础交易建议。</p></div></div></details>
+</div>
+<div class="panel"><h2>多空逻辑</h2><div class="pts"><div class="h bull">看多逻辑</div><div class="md"><p>人工智能赛道前景广阔</p><p>技术研发能力构成核心优势</p></div></div><div class="pts"><div class="h bear">看空逻辑</div><div class="md"><p>股价持续下跌显示资金流出</p><p>盈利能力不足影响长期估值</p></div></div></div>
+<div class="panel"><h2>伯克希尔研究</h2><p><strong>地平线机器人是一家具有技术潜力的AI芯片公司，但商业模式尚需验证，当前估值偏高，建议观望。</strong></p><p>伯克希尔综合评分：<strong>3.0</strong></p><div class="md"><p>{&quot;verdict&quot;: &quot;观望&quot;, &quot;conservative_tip&quot;: &quot;建议等待公司盈利能力改善后再考虑投资，当前观望。&quot;, &quot;moderate_tip&quot;: &quot;若股价回调至PS 10倍以下，可小仓位介入。&quot;, &quot;aggressive_tip&quot;: &quot;对AI行业有深入研究且风险承受能力强的投资者，可小仓位布局。&quot;, &quot;catalysts_plus&quot;: [&quot;盈利能力改善，净利润转正。&quot;, &quot;获得大客户订单，市场份额提升。&quot;, &quot;AI芯片技术取得突破性进展。&quot;], &quot;catalysts_minus&quot;: [&quot;持续亏损导致资金链紧张。&quot;, &quot;竞争加剧，市场份额被侵蚀。&quot;, &quot;监管政策收紧，影响AI行业发展。&quot;]}</p></div></div>
+<div class="panel news"><h2>最新资讯</h2><div class="md"><p>1条新闻无明确信息，整体情绪中性</p></div><div class="nitem"><div class="t">HORIZON ROBOTICS - W (9660)</div><div class="s">hkex.com.hk · 中性</div></div></div>
+<footer>稳健理财Agent · 红黑榜每日归档 · 黑榜 #4 · 仅供研究，不构成投资建议</footer>
+</div></body>
+</html>
