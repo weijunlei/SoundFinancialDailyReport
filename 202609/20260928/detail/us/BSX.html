@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BSX(BSX) 黑榜 2026-09-28</title>
+<style>
+:root{--red:#d8342c;--redbg:#fdecea;--green:#1a9e54;--ink:#1c2230;--muted:#6b7385;
+--line:#e7e9ef;--card:#fff;--bg:#f4f6fa;--chip:#eef1f6;--dark:#23262d;--darkbg:#ececef}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",
+"Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);
+line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 16px 64px}
+header.top{background:linear-gradient(135deg,#1c2230,#2c3550);color:#fff;border-radius:14px;
+padding:22px 24px;margin-bottom:20px;box-shadow:0 6px 24px rgba(20,26,46,.12)}
+header.top h1{margin:0 0 6px;font-size:24px;letter-spacing:.5px}
+header.top .sub{opacity:.85;font-size:13px}
+header.top .sub b{color:#ffd166;font-weight:600}
+nav.mkt{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;
+background:rgba(244,246,250,.92);backdrop-filter:blur(6px);padding:10px 0;margin-bottom:14px}
+nav.mkt a{text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);
+padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600}
+nav.mkt a:hover{border-color:var(--red);color:var(--red)}
+.summary{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.summary .chip{background:var(--card);border:1px solid var(--line);border-radius:10px;
+padding:8px 12px;font-size:12px;color:var(--muted)}
+.summary .chip b{color:var(--ink);font-size:14px;margin-left:4px}
+section.board{margin:26px 0}
+.board-title{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:19px}
+.board-title .dot{width:10px;height:10px;border-radius:50%}
+.board-title.red .dot{background:var(--red)}
+.board-title.black .dot{background:var(--dark)}
+.board-title small{color:var(--muted);font-weight:400;font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+position:relative;transition:box-shadow .15s}
+.card:hover{box-shadow:0 4px 18px rgba(20,26,46,.08)}
+.card.red{border-top:3px solid var(--red)}
+.card.black{border-top:3px solid var(--dark)}
+.rank{position:absolute;top:10px;right:12px;font-size:26px;font-weight:800;color:#eceff5}
+.card.red .rank{color:#fbdcD9}
+.nm{font-size:16px;font-weight:700}
+.nm .tk{color:var(--muted);font-weight:500;font-size:12px;margin-left:6px}
+.tag{display:inline-block;background:var(--chip);color:var(--muted);border-radius:6px;
+padding:1px 7px;font-size:11px;margin:6px 6px 0 0}
+.price-row{display:flex;align-items:baseline;gap:10px;margin:10px 0 4px}
+.price{font-size:24px;font-weight:800}
+.pct{font-size:14px;font-weight:700;padding:2px 8px;border-radius:8px}
+.up{color:var(--red)}.down{color:var(--green)}.flat{color:var(--muted)}
+.pct.up{background:var(--redbg)}.pct.down{background:#e2f4e9}.pct.flat{background:var(--chip)}
+.psrc{font-size:11px;color:var(--muted);margin-left:auto}
+.scores{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.scores span{background:var(--chip);border-radius:6px;padding:2px 8px;font-size:11px;color:var(--muted)}
+.scores span b{color:var(--ink)}
+.pts{font-size:12.5px;margin:8px 0 0}
+.pts .h{font-weight:700;font-size:12px;margin:6px 0 2px}
+.pts .h.bull{color:var(--red)}.pts .h.bear{color:var(--green)}
+.pts ul{margin:2px 0 4px;padding-left:18px;color:#3a4152}
+.pts li{margin:1px 0}
+.masters{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:11px;color:var(--muted)}
+.masters b{color:var(--ink)}
+.summ{font-size:12.5px;color:#3a4152;background:#fafbfd;border:1px solid var(--line);
+border-radius:8px;padding:8px 10px;margin-top:8px}
+.empty{color:var(--muted);background:var(--card);border:1px dashed var(--line);
+border-radius:10px;padding:18px;text-align:center}
+footer{margin-top:34px;color:var(--muted);font-size:12px;text-align:center;line-height:1.8}
+a.lnk{color:var(--red);text-decoration:none}
+/* ── detail page ── */
+.backbar{margin-bottom:14px;font-size:13px}
+.backbar a{color:var(--muted);text-decoration:none;margin-right:14px}
+.backbar a:hover{color:var(--red)}
+.badge{display:inline-block;border-radius:6px;padding:2px 10px;font-size:12px;font-weight:700;margin-right:8px}
+.badge.red{background:var(--red);color:#fff}.badge.black{background:var(--dark);color:#fff}
+.trade{display:flex;flex-wrap:wrap;gap:10px;background:linear-gradient(135deg,#2c3550,#1c2230);
+color:#fff;border-radius:12px;padding:16px 18px;margin:16px 0}
+.trade .cell{min-width:120px}
+.trade .k{font-size:11px;opacity:.75}
+.trade .v{font-size:18px;font-weight:800;margin-top:2px}
+.trade .v.buy{color:#7ee2a8}.trade .v.sell{color:#ff9d97}.trade .v.hold{color:#ffd166}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0}
+.mgrid .m{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.mgrid .m .k{font-size:11px;color:var(--muted)}
+.mgrid .m .v{font-size:16px;font-weight:700;margin-top:2px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.panel>h2{margin:0 0 12px;font-size:17px}
+.panel>h2 .sub{font-size:12px;color:var(--muted);font-weight:400;margin-left:8px}
+.mreply{border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;
+padding:12px 14px;margin:10px 0;background:#fff}
+.mreply .mh{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.mreply .mh .who{font-weight:700;font-size:14px}
+.mreply .mh .mscore{margin-left:auto;background:var(--chip);border-radius:6px;padding:1px 8px;font-size:12px;font-weight:700}
+.md h2,.md h3,.md h4,.md h5{margin:12px 0 6px;font-size:15px}
+.md p{margin:6px 0;font-size:13.5px;color:#2c3345}
+.md ul{margin:6px 0;padding-left:20px;font-size:13.5px;color:#2c3345}
+.md li{margin:3px 0}
+.md strong{color:var(--ink)}
+details{border:1px solid var(--line);border-radius:10px;background:#fff;margin:10px 0;padding:0}
+details>summary{cursor:pointer;padding:12px 16px;font-weight:700;font-size:14px;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary:before{content:"▸ ";color:var(--red)}
+details[open]>summary:before{content:"▾ "}
+details>.body{padding:0 16px 14px;border-top:1px dashed var(--line)}
+.ychip{display:inline-block;background:var(--chip);border-radius:8px;padding:4px 10px;font-size:12px;margin:3px 6px 3px 0}
+.ychip b{font-size:13px}
+.news .nitem{border-top:1px dashed var(--line);padding:8px 0;font-size:13px}
+.news .nitem .t{font-weight:600}
+.news .nitem .s{color:var(--muted);font-size:12px}
+/* ── root landing page ── */
+.hero{padding:30px 26px}
+.hero-kicker{color:#ffd166;font-size:12px;font-weight:700;letter-spacing:2px;
+text-transform:uppercase;margin-bottom:8px}
+.hero h1{font-size:30px;margin:0 0 10px}
+.day-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.day-card{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);
+border-radius:12px;padding:14px 16px;transition:all .15s}
+.day-card:hover{border-color:var(--red);box-shadow:0 4px 16px rgba(216,52,44,.12);transform:translateY(-2px)}
+.day-card .d{font-weight:800;font-size:15px;color:var(--ink);display:flex;align-items:center;gap:8px}
+.day-card .m{margin-top:8px;display:flex;gap:6px}
+.day-card .m span{background:var(--chip);color:var(--muted);border-radius:6px;
+padding:2px 8px;font-size:11px}
+.latest-badge{background:var(--red);color:#fff;border-radius:6px;padding:1px 7px;
+font-size:10px;font-weight:700}
+</style>
+</head>
+<body><div class="wrap">
+<div class="backbar"><a href="../index.html">← 总览</a><a href="../us.html">← 美股榜单</a></div>
+<header class="top">
+  <h1><span class="badge black">黑榜 #10</span>BSX<span class="tk" style="opacity:.7;font-size:15px;font-weight:400;margin-left:8px">BSX</span></h1>
+  <div class="sub">美股 ·  · 榜单日期 <b>2026-09-28</b> · 盘价采集 <b>2026-09-28 05:00:31</b></div>
+  <div class="price-row" style="margin-top:12px">
+    <span class="price" style="color:#fff">$43.92</span>
+    <span class="pct down">-1.70%</span>
+    <span class="psrc" style="color:rgba(255,255,255,.6)">实时</span>
+  </div>
+  <div class="scores" style="margin-top:10px">
+    <span>综合 <b>41.2</b></span>
+    <span>多头 <b>40</b></span>
+    <span>空头 <b>70</b></span>
+    <span>大师均值 <b>68.8</b></span>
+    <span>信号 <b>negative</b></span>
+  </div>
+</header>
+<div class="trade"><div class="cell"><div class="k">交易评级</div><span class="v hold">Reduce</span></div><div class="cell"><div class="k">加仓区间</div><span class="v">41.28 ~ 43.04</span></div><div class="cell"><div class="k">伯克希尔</div><span class="v">观望</span></div><div class="cell"><div class="k">伯克希尔分</div><span class="v">3.50</span></div></div>
+<div class="panel"><h2>财务指标</h2><div class="mgrid"><div class="m"><div class="k">市盈率 PE</div><div class="v">17.78</div></div><div class="m"><div class="k">市净率 PB</div><div class="v">2.55</div></div><div class="m"><div class="k">ROE</div><div class="v">15.3%</div></div><div class="m"><div class="k">总市值</div><div class="v">637</div></div><div class="m"><div class="k">营收同比</div><div class="v">7.5%</div></div><div class="m"><div class="k">净利同比</div><div class="v">15.1%</div></div></div></div>
+<div class="panel"><h2>历史收益</h2><span class="ychip">近1月 <b class="down">-8.82%</b></span><span class="ychip">近6月 <b class="down">-37.41%</b></span><span class="ychip">近1年 <b class="down">-55.27%</b></span><span class="ychip">近5年 <b class="down">-1.21%</b></span></div>
+<div class="panel"><h2>大师圆桌<span class="sub">5 位</span></h2><div class="mreply"><div class="mh"><span class="who">段永平</span><span class="mscore">36</span></div><div class="md"><h4>圆桌发言</h4><p><strong>结论</strong>：我对 BSX 这家公司持谨慎态度，目前可能不是投资的好时机。</p><p><strong>理由</strong>：</p><p>首先，从本分的角度来看，我们要问自己是否真的懂这家公司。医疗设备行业确实有持续增长的需求，BSX 在这个领域也有一定的市场地位，这些都是正面的因素。但另一方面，我们看到股价近期表现疲软，而且行业竞争在加剧，宏观经济波动也可能影响医疗支出。这些因素叠加起来，让我对这家公司的短期前景感到担忧。</p><p>从估值来看，PE 在 17 倍左右，虽然不算特别高，但在当前市场环境下也不算特别吸引人。更重要的是，我们投资股票就是投资公司的一部分，要考虑的是这家公司是否具备长期竞争力和持续增长的能力。目前的信息还不足以让我做出明确的判断。</p><p><strong>风险/行动建议</strong>：</p><ul><li><strong>短期风险</strong>：宏观经济波动和行业竞争加剧是主要风险点。如果医疗支出减少，BSX 的业绩可能会受到影响。</li><li><strong>长期潜力</strong>：如果你是长期投资者，可以关注公司在新产品研发和市场拓展方面的进展，这可能是未来增长的关键。</li><li><strong>行动建议</strong>：目前建议观望，不要急于买入。可以等公司发布下一季度财报后，再根据实际业绩和市场反应做进一步判断。</li></ul><p><strong>别错过的隐含约束</strong>：别把&quot;看似便宜&quot;当成&quot;本分&quot;。投资要基于对公司的深入理解，而不是单纯看估值。</p></div></div><div class="mreply"><div class="mh"><span class="who">巴菲特</span><span class="mscore">83</span></div><div class="md"><h4>巴菲特圆桌发言：关于 BSX 的看法</h4><h5>结论：</h5><p>BSX 这家公司符合我长期持有的价值投资标准，但目前的市场情绪和价格让我持谨慎乐观的态度。</p><h5>理由：</h5><p>首先，BSX 作为一家医疗设备公司，拥有长期稳固的市场地位。医疗设备行业是一个需求持续增长的领域，人口老龄化和医疗技术进步将长期推动这一趋势。公司的财务表现也显示出稳健的盈利能力，净资产收益率（ROE）达到 15.34%，净利润同比增长 15.1%，这些都是好生意的标志。</p><p>其次，从护城河的角度来看，医疗设备行业具有较高的进入壁垒，BSX 在这一领域积累了丰富的经验和品牌认知度，这为其提供了可持续的竞争优势。自由现金流也是我非常看重的指标，尽管我没有具体数据，但从公司的市场地位和盈利能力来看，我相信 BSX 能够产生稳定的自由现金流。</p><p>然而，市场先生最近似乎对 BSX 并不太友好，股价表现疲软，下跌了 1.7%。此外，行业竞争加剧和宏观经济波动可能对医疗支出产生影响，这些都是我们需要关注的风险点。</p><h5>风险/行动建议：</h5><ul><li><strong>关注竞争环境</strong>：医疗设备行业的竞争正在加剧，我们需要密切关注 BSX 在技术创新和市场拓展方面的表现，确保其护城河依然稳固。</li></ul><ul><li><strong>宏观经济风险</strong>：如果全球经济出现较大波动，医疗支出可能会受到影响，这对 BSX 的业绩构成潜在风险。我们需要保持警惕，关注全球经济的走势。</li></ul><ul><li><strong>价格与价值</strong>：目前 BSX 的市盈率（PE）为 17.78，低于市场平均水平，这为投资者提供了一定的安全边际。如果你相信这家公司能够在未来十年继续保持增长，那么现在的价格可能是一个不错的买入机会。</li></ul><ul><li><strong>长期视角</strong>：投资就像打棒球，你不需要每次都挥棒。对于 BSX，如果你有长期持有的打算，并且能够承受短期的市场波动，那么现在可以考虑逐步建仓。</li></ul><h5>如果是芒格，会补充什么：</h5><p>查理可能会提醒我们，投资就像在果园里挑选最好的果树。我们需要耐心等待合适的时机，确保我们投资的公司不仅现在表现良好，而且在未来十年甚至更长时间内都能保持竞争力。查理还会强调，声誉和诚信是公司长期成功的基石，我们需要关注 BSX 的管理层是否能够持续做出明智的决策。</p></div></div><div class="mreply"><div class="mh"><span class="who">达利欧</span><span class="mscore">66</span></div><div class="md"><p>各位同仁，今天我们讨论的是医疗设备公司BSX的当前投资价值。基于我对宏观环境、周期位置以及公司基本面信息的综合分析，我对其持中性立场，倾向于谨慎观望。以下是我的具体观点：</p><p>首先，从积极方面来看，医疗设备行业的基本面依然稳健。BSX作为行业内的重要参与者，长期以来建立了稳固的市场地位，其产品需求也受益于人口老龄化和医疗技术进步的持续推动。这些因素为公司提供了长期发展的基础。</p><p>然而，当我们转向更短期的视角时，情况则显得复杂得多。当前股价表现疲软，反映出市场对其未来增长的担忧。此外，行业竞争正在加剧，这可能会压缩其利润率。同时，宏观经济环境的不确定性，特别是医疗支出可能受到经济波动的影响，也为公司前景蒙上了一层阴影。</p><p>从估值角度看，BSX的市盈率为17.8倍，市净率为2.55倍，虽然不算过高，但在当前环境下也缺乏足够的吸引力。考虑到经济增长放缓的风险，这个估值水平并没有给我足够的信心。</p><p>基于以上分析，我的建议是采取观望态度，重点关注以下几个关键因素：</p><ul><li>密切关注宏观经济数据，特别是与医疗支出相关的指标。如果出现明显恶化，可能需要重新评估投资决策。</li><li>跟踪行业竞争态势，留意主要竞争对手的动向和市场占有率变化。</li><li>将BSX的股价表现与整体市场情绪结合起来分析。如果市场出现系统性调整，BSX可能难以独善其身。</li></ul><p>最后，我想强调的是，在当前环境下，保持投资组合的灵活性和风险意识至关重要。我们正处于一个充满不确定性的时期，任何投资决策都应建立在充分的风险评估和多元化的基础之上。</p><p>记住，&quot;Pain + Reflection = Progress&quot;。在面对复杂的市场环境时，我们需要不断反思和调整策略，以适应不断变化的条件。</p></div></div><div class="mreply"><div class="mh"><span class="who">彼得·林奇</span><span class="mscore">72</span></div><div class="md"><p>各位好，今天我们来聊聊医疗设备公司BSX。</p><p>首先，我给出一个结论：我对BSX持谨慎乐观的态度，但需要密切观察。</p><h4>理由：</h4><ul><li><strong>医疗设备需求持续增长</strong>：从日常生活来看，无论是医院还是诊所，医疗设备的需求都在稳步上升。随着人口老龄化和医疗技术的进步，这个趋势还会持续。这符合我&quot;买你身边能观察到的生意&quot;的理念。</li></ul><ul><li><strong>长期市场地位稳固</strong>：BSX在行业内拥有较强的品牌和技术优势，这为它提供了长期增长的潜力。</li></ul><h4>风险：</h4><ul><li><strong>近期股价表现疲软</strong>：目前股价下跌了1.7%，这可能反映出市场对某些短期因素的担忧。</li></ul><ul><li><strong>行业竞争加剧</strong>：医疗设备行业竞争日益激烈，这可能会影响公司的利润率。</li></ul><ul><li><strong>宏观经济波动</strong>：如果经济出现衰退，医疗支出可能会受到抑制，这对BSX的业务构成潜在风险。</li></ul><h4>行动建议：</h4><ul><li><strong>估值角度</strong>：当前PE为17.8倍，对于一家稳定增长型公司来说，这个估值不算高，但也不算特别便宜。如果你能找到更好的机会，可能需要再等等。</li></ul><ul><li><strong>观察指标</strong>：密切关注公司的新产品发布和市场占有率变化。如果这些指标持续向好，可以考虑在股价回调时逐步买入。</li></ul><ul><li><strong>仓位管理</strong>：对于这样一家公司，我建议不要一次性重仓。可以先建一个观察仓，等市场情绪稳定后再逐步加仓。</li></ul><p>总之，BSX是一家值得关注的优质公司，但目前的市场环境需要我们保持耐心和谨慎。希望大家记住，投资就像种树，需要时间和耐心。</p></div></div><div class="mreply"><div class="mh"><span class="who">芒格</span><span class="mscore">87</span></div><div class="md"><p>首先，我得说，投资这事儿得先想清楚怎么失败，然后才谈得上成功。对于 BSX，我看到了一些机会，但也有不少风险。</p><h4>结论：</h4><p>BSX 是一家在医疗设备领域有长期积累的公司，但目前面临的压力不容忽视。我的总体判断是谨慎乐观，但需要密切关注风险因素。</p><h4>理由：</h4><ul><li><strong>多头逻辑</strong>：</li><li>医疗设备行业的需求增长是长期趋势。随着人口老龄化和医疗技术的进步，这个领域的基本面是稳固的。</li><li>BSX 在这个行业已经建立了较强的市场地位，这为其长期发展提供了支撑。</li></ul><ul><li><strong>空头风险</strong>：</li><li>近期股价表现疲软，下跌了 1.7%，这可能反映了市场对某些短期因素的担忧。</li><li>行业竞争加剧是一个明显的风险点。医疗设备行业并非垄断市场，新进入者和现有竞争对手都可能对 BSX 的市场份额构成威胁。</li><li>宏观经济波动对医疗支出的影响也不容忽视。如果经济环境恶化，医疗预算可能会被削减，这会直接影响 BSX 的业绩。</li></ul><ul><li><strong>估值角度</strong>：</li><li>当前 PE 为 17.78，PB 为 2.55，从历史水平来看并不算高，但也不算特别便宜。这表明市场对 BSX 的增长预期相对谨慎。</li></ul><h4>风险/行动建议：</h4><ul><li><strong>短期风险</strong>：</li><li>股价的疲软表现需要引起重视。如果这种趋势持续，可能意味着市场对 BSX 的信心在减弱。</li><li>建议密切关注公司财报和行业动态，特别是竞争格局的变化。</li></ul><ul><li><strong>长期潜力</strong>：</li><li>如果你是一个长期投资者，并且相信医疗设备行业的长期增长趋势，那么 BSX 仍然是一个值得考虑的选择。但要注意控制仓位，避免在市场波动中过度暴露风险。</li></ul><ul><li><strong>行动建议</strong>：</li><li>不要急于下重注。可以考虑分批买入，以降低短期波动带来的风险。</li><li>同时，设定一个合理的止损线，以防止市场情绪的突然变化导致重大损失。</li></ul><h4>总结：</h4><p>BSX 是一家有长期潜力的公司，但当前面临的压力需要谨慎对待。正如我常说的，&quot;如果我知道自己死在哪里，我就永远不去那里&quot;。在投资 BSX 时，我们要特别警惕短期风险，同时关注长期机会。</p></div></div></div>
+<div class="panel"><h2>分析师报告<span class="sub">2 篇</span></h2><details open><summary>市场面分析</summary><div class="body"><div class="md"><h4>BSX BSX 市场面分析</h4><ul><li>红黑榜多空分数：多头 40 / 空头 70，分差 -30。</li><li>当前价格：43.92。</li><li>当前交易评级：Reduce。</li><li>值得加仓区间：41.28 - 43.04。</li><li>风险控制位：38.65。</li><li>市场愿意给溢价的原因：医疗设备需求持续增长；长期市场地位稳固。</li><li>当前主要压制因素：近期股价表现疲软；面临行业竞争加剧压力；宏观经济波动可能影响医疗支出。</li></ul></div></div></details><details open><summary>基本面分析</summary><div class="body"><div class="md"><h4>BSX BSX 基本面分析</h4><ul><li>报告期：暂无。</li><li>PE(TTM)：17.78。</li><li>PB：2.55。</li><li>ROE：15.34%。</li><li>营收同比：7.50%。</li><li>归母净利润同比：15.10%。</li><li>核心判断：盈利能力处于可接受区间；收入仍在增长；利润端保持扩张。</li></ul></div></div></details></div>
+<div class="panel"><h2>研究与计划</h2>
+<details><summary>基本面摘要</summary><div class="body"><div class="md"><h3>核心财务快照</h3><ul><li>报告期: 数据缺失</li><li>当前股价: 43.92 元</li><li>总市值: 636.50 亿元</li><li>PE (TTM): 17.78</li><li>PB: 2.55</li><li>PS (TTM): 数据缺失</li><li>营业总收入(报告期): 数据缺失 亿元</li><li>营收同比增长率: 7.50%</li><li>归母净利润(报告期): 数据缺失 亿元</li><li>归母净利润同比增长率: 15.10%</li><li>ROE (TTM/估算): 15.34%</li><li>资产负债率: 数据缺失</li><li>经营性现金流 / 归母净利润: 数据缺失</li></ul><h4>缺失字段</h4><ul><li>PS(TTM), 营业总收入, 归母净利润, 资产负债率, 经营性现金流与归母净利润比值</li></ul></div></div></details>
+<details><summary>研究计划</summary><div class="body"><div class="md"><h4>BSX BSX 研究摘要</h4><ul><li>红黑榜结论: Reduce</li><li>多头/空头: 40/70</li><li>正向信号: ROE 15.34%；营收同比 7.50%；归母净利润同比 15.10%；PE(TTM) 17.78</li><li>榜单看多理由: 医疗设备需求持续增长；长期市场地位稳固</li><li>榜单风险提示: 近期股价表现疲软；面临行业竞争加剧压力；宏观经济波动可能影响医疗支出</li></ul></div></div></details>
+<details><summary>交易计划</summary><div class="body"><div class="md"><h4>BSX BSX 交易计划</h4><ul><li>评级: Reduce</li><li>当前价格: 43.92</li><li>值得加仓区间: 39.53 - 41.28</li><li>目标价格: 41.72</li><li>止损位: 38.65</li><li>备注: 当前为缓存降级交易卡，后续若完整 TradingAgent 结果生成，将自动覆盖。</li></ul></div></div></details>
+<details><summary>交易决策</summary><div class="body"><div class="md"><p>Reduce</p><p>BSX BSX 当前使用红黑榜缓存结果生成兜底交易卡。多头 40 / 空头 70，分差 -30。当前尚未取得完整 TradingAgent 长文决策，但榜单分数、财务快照和大师观点已经足够生成基础交易建议。</p></div></div></details>
+</div>
+<div class="panel"><h2>多空逻辑</h2><div class="pts"><div class="h bull">看多逻辑</div><div class="md"><p>医疗设备需求持续增长</p><p>长期市场地位稳固</p></div></div><div class="pts"><div class="h bear">看空逻辑</div><div class="md"><p>近期股价表现疲软</p><p>面临行业竞争加剧压力</p><p>宏观经济波动可能影响医疗支出</p></div></div></div>
+<div class="panel"><h2>伯克希尔研究</h2><p><strong>BSX是一家具备护城河但面临行业竞争加剧的医疗设备公司，当前估值合理但需关注长期增长潜力。</strong></p><p>伯克希尔综合评分：<strong>3.5</strong></p><div class="md"><p>{&quot;verdict&quot;: &quot;观望&quot;, &quot;conservative_tip&quot;: &quot;建议观望，若股价跌至PE TTM 20倍以下可考虑买入。&quot;, &quot;moderate_tip&quot;: &quot;若股价跌至PE TTM 22倍以下可小仓位买入。&quot;, &quot;aggressive_tip&quot;: &quot;当前估值下不建议激进买入，耐心等待更优价格。&quot;, &quot;catalysts_plus&quot;: [&quot;新产品研发成功并获批上市。&quot;, &quot;市场份额提升超预期。&quot;, &quot;政策环境改善，医保覆盖范围扩大。&quot;], &quot;catalysts_minus&quot;: [&quot;政策监管趋严，医保控费力度加大。&quot;, &quot;竞争对手推出颠覆性产品。&quot;, &quot;营收和利润增速持续放缓。&quot;]}</p></div></div>
+<div class="panel news"><h2>最新资讯</h2><div class="md"><p>利空新闻较多，共7条利空，3条利好，1条中性。</p></div><div class="nitem"><div class="t">Boston Scientific (BSX) Stock Moves 2.74%: What You Should Know</div><div class="s">Yahoo Finance · 中性</div></div><div class="nitem"><div class="t">Why Did BSX, LI, BJ Stocks Hit 52-Week Lows Today?</div><div class="s">Stocktwits · 利空</div></div><div class="nitem"><div class="t">Boston Scientific (BSX) Could Be 27% Undervalued Following Earnings Growth Focus</div><div class="s">simplywall.st · 利好</div></div><div class="nitem"><div class="t">The Peer-Group Mispricing Sitting On BSX Stock</div><div class="s">Trefis · 中性</div></div><div class="nitem"><div class="t">BSX Maintained by Wells Fargo -- Price Target Lowered to $48.00</div><div class="s">GuruFocus · 利空</div></div><div class="nitem"><div class="t">Boston Scientific MedSurg, Asia Pacific leader to retire</div><div class="s">MassDevice · 中性</div></div><div class="nitem"><div class="t">How Far Can BSX Stock Swing After Losing More Than Half Its Value?</div><div class="s">Yahoo Finance · 中性</div></div><div class="nitem"><div class="t">Why Did BSX, LI, ROL Stocks Fall To 52-Week Lows On Friday?</div><div class="s">Stocktwits · 利空</div></div></div>
+<footer>稳健理财Agent · 红黑榜每日归档 · 黑榜 #10 · 仅供研究，不构成投资建议</footer>
+</div></body>
+</html>
