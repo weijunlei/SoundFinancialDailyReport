@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ORCL(ORCL) 黑榜 2026-09-29</title>
+<style>
+:root{--red:#d8342c;--redbg:#fdecea;--green:#1a9e54;--ink:#1c2230;--muted:#6b7385;
+--line:#e7e9ef;--card:#fff;--bg:#f4f6fa;--chip:#eef1f6;--dark:#23262d;--darkbg:#ececef}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",
+"Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);
+line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 16px 64px}
+header.top{background:linear-gradient(135deg,#1c2230,#2c3550);color:#fff;border-radius:14px;
+padding:22px 24px;margin-bottom:20px;box-shadow:0 6px 24px rgba(20,26,46,.12)}
+header.top h1{margin:0 0 6px;font-size:24px;letter-spacing:.5px}
+header.top .sub{opacity:.85;font-size:13px}
+header.top .sub b{color:#ffd166;font-weight:600}
+nav.mkt{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;
+background:rgba(244,246,250,.92);backdrop-filter:blur(6px);padding:10px 0;margin-bottom:14px}
+nav.mkt a{text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);
+padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600}
+nav.mkt a:hover{border-color:var(--red);color:var(--red)}
+.summary{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.summary .chip{background:var(--card);border:1px solid var(--line);border-radius:10px;
+padding:8px 12px;font-size:12px;color:var(--muted)}
+.summary .chip b{color:var(--ink);font-size:14px;margin-left:4px}
+section.board{margin:26px 0}
+.board-title{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:19px}
+.board-title .dot{width:10px;height:10px;border-radius:50%}
+.board-title.red .dot{background:var(--red)}
+.board-title.black .dot{background:var(--dark)}
+.board-title small{color:var(--muted);font-weight:400;font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+position:relative;transition:box-shadow .15s}
+.card:hover{box-shadow:0 4px 18px rgba(20,26,46,.08)}
+.card.red{border-top:3px solid var(--red)}
+.card.black{border-top:3px solid var(--dark)}
+.rank{position:absolute;top:10px;right:12px;font-size:26px;font-weight:800;color:#eceff5}
+.card.red .rank{color:#fbdcD9}
+.nm{font-size:16px;font-weight:700}
+.nm .tk{color:var(--muted);font-weight:500;font-size:12px;margin-left:6px}
+.tag{display:inline-block;background:var(--chip);color:var(--muted);border-radius:6px;
+padding:1px 7px;font-size:11px;margin:6px 6px 0 0}
+.price-row{display:flex;align-items:baseline;gap:10px;margin:10px 0 4px}
+.price{font-size:24px;font-weight:800}
+.pct{font-size:14px;font-weight:700;padding:2px 8px;border-radius:8px}
+.up{color:var(--red)}.down{color:var(--green)}.flat{color:var(--muted)}
+.pct.up{background:var(--redbg)}.pct.down{background:#e2f4e9}.pct.flat{background:var(--chip)}
+.psrc{font-size:11px;color:var(--muted);margin-left:auto}
+.scores{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.scores span{background:var(--chip);border-radius:6px;padding:2px 8px;font-size:11px;color:var(--muted)}
+.scores span b{color:var(--ink)}
+.pts{font-size:12.5px;margin:8px 0 0}
+.pts .h{font-weight:700;font-size:12px;margin:6px 0 2px}
+.pts .h.bull{color:var(--red)}.pts .h.bear{color:var(--green)}
+.pts ul{margin:2px 0 4px;padding-left:18px;color:#3a4152}
+.pts li{margin:1px 0}
+.masters{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:11px;color:var(--muted)}
+.masters b{color:var(--ink)}
+.summ{font-size:12.5px;color:#3a4152;background:#fafbfd;border:1px solid var(--line);
+border-radius:8px;padding:8px 10px;margin-top:8px}
+.empty{color:var(--muted);background:var(--card);border:1px dashed var(--line);
+border-radius:10px;padding:18px;text-align:center}
+footer{margin-top:34px;color:var(--muted);font-size:12px;text-align:center;line-height:1.8}
+a.lnk{color:var(--red);text-decoration:none}
+/* ── detail page ── */
+.backbar{margin-bottom:14px;font-size:13px}
+.backbar a{color:var(--muted);text-decoration:none;margin-right:14px}
+.backbar a:hover{color:var(--red)}
+.badge{display:inline-block;border-radius:6px;padding:2px 10px;font-size:12px;font-weight:700;margin-right:8px}
+.badge.red{background:var(--red);color:#fff}.badge.black{background:var(--dark);color:#fff}
+.trade{display:flex;flex-wrap:wrap;gap:10px;background:linear-gradient(135deg,#2c3550,#1c2230);
+color:#fff;border-radius:12px;padding:16px 18px;margin:16px 0}
+.trade .cell{min-width:120px}
+.trade .k{font-size:11px;opacity:.75}
+.trade .v{font-size:18px;font-weight:800;margin-top:2px}
+.trade .v.buy{color:#7ee2a8}.trade .v.sell{color:#ff9d97}.trade .v.hold{color:#ffd166}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0}
+.mgrid .m{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.mgrid .m .k{font-size:11px;color:var(--muted)}
+.mgrid .m .v{font-size:16px;font-weight:700;margin-top:2px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.panel>h2{margin:0 0 12px;font-size:17px}
+.panel>h2 .sub{font-size:12px;color:var(--muted);font-weight:400;margin-left:8px}
+.mreply{border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;
+padding:12px 14px;margin:10px 0;background:#fff}
+.mreply .mh{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.mreply .mh .who{font-weight:700;font-size:14px}
+.mreply .mh .mscore{margin-left:auto;background:var(--chip);border-radius:6px;padding:1px 8px;font-size:12px;font-weight:700}
+.md h2,.md h3,.md h4,.md h5{margin:12px 0 6px;font-size:15px}
+.md p{margin:6px 0;font-size:13.5px;color:#2c3345}
+.md ul{margin:6px 0;padding-left:20px;font-size:13.5px;color:#2c3345}
+.md li{margin:3px 0}
+.md strong{color:var(--ink)}
+details{border:1px solid var(--line);border-radius:10px;background:#fff;margin:10px 0;padding:0}
+details>summary{cursor:pointer;padding:12px 16px;font-weight:700;font-size:14px;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary:before{content:"▸ ";color:var(--red)}
+details[open]>summary:before{content:"▾ "}
+details>.body{padding:0 16px 14px;border-top:1px dashed var(--line)}
+.ychip{display:inline-block;background:var(--chip);border-radius:8px;padding:4px 10px;font-size:12px;margin:3px 6px 3px 0}
+.ychip b{font-size:13px}
+.news .nitem{border-top:1px dashed var(--line);padding:8px 0;font-size:13px}
+.news .nitem .t{font-weight:600}
+.news .nitem .s{color:var(--muted);font-size:12px}
+/* ── root landing page ── */
+.hero{padding:30px 26px}
+.hero-kicker{color:#ffd166;font-size:12px;font-weight:700;letter-spacing:2px;
+text-transform:uppercase;margin-bottom:8px}
+.hero h1{font-size:30px;margin:0 0 10px}
+.day-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.day-card{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);
+border-radius:12px;padding:14px 16px;transition:all .15s}
+.day-card:hover{border-color:var(--red);box-shadow:0 4px 16px rgba(216,52,44,.12);transform:translateY(-2px)}
+.day-card .d{font-weight:800;font-size:15px;color:var(--ink);display:flex;align-items:center;gap:8px}
+.day-card .m{margin-top:8px;display:flex;gap:6px}
+.day-card .m span{background:var(--chip);color:var(--muted);border-radius:6px;
+padding:2px 8px;font-size:11px}
+.latest-badge{background:var(--red);color:#fff;border-radius:6px;padding:1px 7px;
+font-size:10px;font-weight:700}
+</style>
+</head>
+<body><div class="wrap">
+<div class="backbar"><a href="../index.html">← 总览</a><a href="../us.html">← 美股榜单</a></div>
+<header class="top">
+  <h1><span class="badge black">黑榜 #6</span>ORCL<span class="tk" style="opacity:.7;font-size:15px;font-weight:400;margin-left:8px">ORCL</span></h1>
+  <div class="sub">美股 ·  · 榜单日期 <b>2026-09-29</b> · 盘价采集 <b>2026-09-29 05:00:26</b></div>
+  <div class="price-row" style="margin-top:12px">
+    <span class="price" style="color:#fff">$132.60</span>
+    <span class="pct down">-3.28%</span>
+    <span class="psrc" style="color:rgba(255,255,255,.6)">实时</span>
+  </div>
+  <div class="scores" style="margin-top:10px">
+    <span>综合 <b>33.8</b></span>
+    <span>多头 <b>35</b></span>
+    <span>空头 <b>80</b></span>
+    <span>大师均值 <b>49.2</b></span>
+    <span>信号 <b>negative</b></span>
+  </div>
+</header>
+<div class="trade"><div class="cell"><div class="k">交易评级</div><span class="v hold">Reduce</span></div><div class="cell"><div class="k">加仓区间</div><span class="v">119.34 ~ 124.64</span></div><div class="cell"><div class="k">伯克希尔</div><span class="v">观望</span></div><div class="cell"><div class="k">伯克希尔分</div><span class="v">3.50</span></div></div>
+<div class="panel"><h2>财务指标</h2><div class="mgrid"><div class="m"><div class="k">市盈率 PE</div><div class="v">20.78</div></div><div class="m"><div class="k">市净率 PB</div><div class="v">10.17</div></div><div class="m"><div class="k">ROE</div><div class="v">41.2%</div></div><div class="m"><div class="k">总市值</div><div class="v">4009</div></div><div class="m"><div class="k">营收同比</div><div class="v">29.6%</div></div><div class="m"><div class="k">净利同比</div><div class="v">54.5%</div></div></div></div>
+<div class="panel"><h2>历史收益</h2><span class="ychip">近1月 <b class="down">-11.08%</b></span><span class="ychip">近6月 <b class="down">-4.47%</b></span><span class="ychip">近1年 <b class="down">-53.11%</b></span><span class="ychip">近5年 <b class="up">+45.32%</b></span></div>
+<div class="panel"><h2>大师圆桌<span class="sub">5 位</span></h2><div class="mreply"><div class="mh"><span class="who">段永平</span><span class="mscore">41</span></div><div class="md"><p>各位好，关于甲骨文（ORCL），我的看法是：目前这家公司可能并不符合我们价值投资的本分标准。</p><p>首先，甲骨文的技术积累和企业客户基础确实是其优势，这些长期积累下来的护城河是值得肯定的。然而，从投资的角度来看，我们更关心的是公司未来的增长潜力和竞争环境。</p><p>当前，甲骨文面临几个关键问题：</p><ul><li><strong>云服务市场竞争激烈</strong>：甲骨文在云计算领域的转型并不顺利，面临着来自亚马逊AWS、微软Azure等强劲对手的挑战。在这样一个快速变化的市场中，甲骨文能否保持竞争力是一个很大的疑问。</li></ul><ul><li><strong>增长动力不足</strong>：尽管近期营收和净利润同比有所增长，但股价却出现了下跌，这表明市场对其未来增长预期并不乐观。</li></ul><ul><li><strong>估值问题</strong>：当前市盈率（PE）为20.78，对于一家增长动力不足的公司来说，这个估值可能并不算便宜。</li></ul><p>从本分哲学的角度来看，我们投资的原则是&quot;做对的事，把事做对&quot;。对于甲骨文，我目前看不到足够清晰的长期增长路径，也不太确定它在云计算领域的竞争优势。因此，这可能不是我们应该重点关注的公司。</p><p><strong>风险提示</strong>：</p><ul><li>云计算市场竞争加剧可能导致市场份额进一步流失。</li><li>转型不力可能影响公司未来的盈利能力。</li></ul><p><strong>行动建议</strong>：</p><p>如果一定要投资科技行业，我建议关注那些在云计算领域已经建立起明显优势的公司，比如亚马逊或微软。对于甲骨文，除非看到其在云计算领域有重大突破，否则不建议作为长期投资标的。</p><p>最后，我想强调的是，投资要保持平常心，不要被短期波动所左右。我们要做的是找到那些真正值得长期持有的好生意，而不是追逐短期的市场热点。</p></div></div><div class="mreply"><div class="mh"><span class="who">巴菲特</span><span class="mscore">46</span></div><div class="md"><p>各位朋友，今天我们来聊聊甲骨文（ORCL）。先说我的结论：我对甲骨文目前的投资价值持谨慎态度。</p><h4>理由</h4><p>首先，甲骨文确实有一些值得肯定的地方。他们在数据库和企业软件领域有长期的技术积累，并且拥有一批稳定的企业客户群。这些都是他们的优势。然而，当我们用护城河和自由现金流的视角来审视这家公司时，情况就不那么乐观了。</p><p>尽管甲骨文的营收和净利润同比都有不错的增长（分别为29.6%和54.5%），但我们必须看到，他们正面临着来自云服务领域的激烈竞争。亚马逊、微软和谷歌等公司在云服务市场的快速崛起，正在侵蚀甲骨文的市场份额。而且，甲骨文的增长动力看起来并不强劲，这让我对他们的长期前景感到担忧。</p><h4>风险</h4><ul><li><strong>竞争加剧</strong>：云服务市场的竞争非常激烈，甲骨文需要不断创新才能保持竞争力。</li><li><strong>增长放缓</strong>：尽管目前营收和净利润增长不错，但未来能否持续是个问题。</li><li><strong>股价波动</strong>：近期股价已经下跌了1.75%，这可能反映了市场对甲骨文未来增长的担忧。</li></ul><h4>行动建议</h4><p>对于那些已经在甲骨文上有持仓的朋友，我建议你们密切关注公司的基本面变化，特别是他们在云服务领域的进展。如果你们发现甲骨文的护城河正在被侵蚀，那么可能需要重新评估你们的投资。</p><p>对于那些考虑买入的朋友，我建议你们再等等。现在甲骨文的市盈率（P/E）为20.78，虽然不算特别高，但在当前的市场环境下，我们有更好的选择。除非你们对甲骨文的长期竞争力有非常坚定的信心，否则不妨再观察一段时间。</p><h4>芒格的补充</h4><p>查理·芒格可能会提醒我们，投资就像在果园里摘苹果。我们不需要摘下每一颗苹果，只需要找到那些最甜、最成熟的。在甲骨文的案例中，我们还需要更多的时间来确认它是否是我们要找的那颗苹果。</p><p>希望这些观点对你们有所帮助。谢谢大家。</p></div></div><div class="mreply"><div class="mh"><span class="who">达利欧</span><span class="mscore">47</span></div><div class="md"><p>各位同仁，今天我们来讨论甲骨文（ORCL）的投资前景。我的立场是偏向谨慎的，主要基于以下几个原因：</p><p>首先，我们看到甲骨文的基本面有一些积极的因素。公司拥有长期的技术积累，企业客户基础也相对稳定，这为其业务提供了坚实的支撑。从财务数据来看，甲骨文当前的市盈率为20.78，市净率为10.17，净资产收益率（ROE）达到41.19%，这些指标显示公司具备一定的盈利能力。</p><p>然而，从宏观环境和行业竞争的角度来看，甲骨文面临的压力不容忽视。尽管公司营收同比增长29.6%，净利润同比增长54.5%，但股价近期却下跌了1.75%。这表明市场对其未来增长前景存在担忧，尤其是在云服务领域，甲骨文面临着来自亚马逊AWS、微软Azure等强劲对手的激烈竞争。这种竞争环境可能会削弱甲骨文的市场份额和利润率。</p><p>从我的原则化视角来看，甲骨文目前的情况与我们的投资框架存在一定的不匹配。具体来说：</p><ul><li><strong>风险平衡</strong>：当前市场对甲骨文的空头情绪较为明显，股价下跌和行业竞争加剧都是需要警惕的风险信号。我们需要评估这些风险是否已经被市场充分定价。</li></ul><ul><li><strong>宏观环境</strong>：在全球经济不确定性增加的背景下，科技行业的周期性波动可能会加剧。甲骨文作为一家成熟企业，其增长动力可能不足以抵御宏观环境的下行压力。</li></ul><p>基于以上分析，我建议采取以下行动：</p><ul><li><strong>密切关注行业动态</strong>：特别是云服务市场的竞争格局变化。如果甲骨文能够在竞争中展现出更强的市场适应能力，可能会改变其增长预期。</li></ul><ul><li><strong>评估风险承受能力</strong>：对于风险偏好较低的投资者，当前可能不是增持甲骨文的好时机。相反，可以考虑等待更明确的增长信号出现。</li></ul><ul><li><strong>保持灵活的投资策略</strong>：在市场波动加剧的情况下，保持投资组合的灵活性至关重要。可以考虑使用期权等工具来对冲潜在的下行风险。</li></ul><p>最后，我要强调的是，投资决策应建立在对原则的坚守和对风险的充分评估之上。我们需要不断反思和调整策略，以适应不断变化的市场环境。希望以上分析对各位有所启发。</p></div></div><div class="mreply"><div class="mh"><span class="who">彼得·林奇</span><span class="mscore">77</span></div><div class="md"><p>各位朋友，关于甲骨文（ORCL），我的看法是：虽然这家公司有一些值得关注的亮点，但目前来看，我对其持谨慎态度。</p><h4>结论</h4><p>我不建议现在买入甲骨文股票。</p><h4>理由</h4><p>首先，甲骨文在企业软件和数据库领域拥有深厚的技术积累和稳定的客户基础，这是不争的事实。然而，这家公司正面临几个关键挑战：</p><ul><li><strong>云服务竞争加剧</strong>：甲骨文在向云服务转型过程中，面临着来自亚马逊AWS、微软Azure和谷歌云等强劲对手的激烈竞争。这场竞争不仅关乎技术，还涉及市场份额和客户粘性。</li></ul><ul><li><strong>增长动力不足</strong>：尽管最近一个季度的营收同比增长了29.6%，净利润增长了54.5%，但这些数字可能掩盖了公司核心业务增长放缓的问题。甲骨文需要证明它能够在云计算领域取得持续的市场份额增长。</li></ul><ul><li><strong>估值问题</strong>：以当前20.78倍的市盈率（PE）和10.17倍的市净率（PB）来看，甲骨文的估值并不便宜。在竞争激烈的科技行业，这样的估值需要强劲的增长来支撑，而目前看来，这种增长并不明朗。</li></ul><h4>风险/行动建议</h4><ul><li><strong>竞争风险</strong>：云服务市场的竞争可能会进一步侵蚀甲骨文的利润率。如果公司不能有效应对这种竞争，其股价可能会继续承压。</li></ul><ul><li><strong>转型风险</strong>：甲骨文的转型战略需要时间来验证。如果转型不成功，可能会导致投资者信心下降。</li></ul><ul><li><strong>估值风险</strong>：在当前估值水平下，市场对甲骨文的预期已经很高。如果公司不能达到这些预期，股价可能会出现调整。</li></ul><h4>具体行动建议</h4><p>如果你已经持有甲骨文股票，建议密切关注公司云服务业务的进展，特别是市场份额和客户反馈。如果云服务业务没有明显改善，可能需要考虑减仓。</p><p>对于想买入的投资者，我建议耐心等待更好的时机。观察公司云服务业务的增长情况，以及其能否在竞争中站稳脚跟。如果这些因素有所改善，届时再考虑买入也不迟。</p><p>总之，甲骨文是一家有潜力的公司，但在当前环境下，我们需要更谨慎地评估其投资价值。</p></div></div><div class="mreply"><div class="mh"><span class="who">芒格</span><span class="mscore">35</span></div><div class="md"><p>各位，很高兴能在这里讨论 ORCL 这家公司。我的看法很明确：我不认为这是一家值得当下重仓投资的标的。</p><p>首先，我们来逆向思考这个问题：投资 ORCL 可能会怎样失败？</p><ul><li>云计算市场竞争白热化，ORCL 能否维持现有市场份额存疑。AWS、Azure 等巨头持续施压，而 ORCL 的转型速度似乎不够快。</li><li>营收增长主要依赖传统数据库业务，但该领域已趋于饱和，云计算等新兴业务尚未能完全弥补缺口。</li><li>估值方面，20 倍的市盈率对于一家增长放缓的公司来说并不便宜。</li></ul><p>再来看看激励机制：ORCL 的管理层是否在为股东创造长期价值？从近期表现来看，似乎更倾向于维持现状而非积极创新。这让我想起一句老话：&quot;当一个人说他在转型时，你要小心了。&quot;</p><p>虽然 ORCL 拥有稳定的企业客户基础和长期技术积累，但这些优势正在被更灵活的竞争对手侵蚀。我们必须认识到，在科技行业，&quot;过去的辉煌&quot;往往是最危险的陷阱。</p><p>基于以上分析，我建议采取以下行动：</p><ul><li>观望为主，不要急于抄底。股价下跌可能反映了一些尚未完全显现的基本面问题。</li><li>密切关注 ORCL 在云计算领域的进展，特别是市场份额的变化。如果转型不力，可能需要重新评估投资逻辑。</li><li>考虑将部分资金配置到更具增长潜力的云计算公司，以平衡风险。</li></ul><p>最后，我要提醒大家：投资决策应该基于对未来的理性判断，而非对过去的情感依恋。正如我常说的：&quot;如果我知道自己死在哪里，我就永远不去那里。&quot; 在这个案例中，我们已经看到了足够多的警示信号。</p></div></div></div>
+<div class="panel"><h2>分析师报告<span class="sub">2 篇</span></h2><details open><summary>市场面分析</summary><div class="body"><div class="md"><h4>ORCL ORCL 市场面分析</h4><ul><li>红黑榜多空分数：多头 35 / 空头 80，分差 -45。</li><li>当前价格：132.60。</li><li>当前交易评级：Reduce。</li><li>值得加仓区间：119.34 - 124.64。</li><li>风险控制位：116.69。</li><li>市场愿意给溢价的原因：长期技术积累；企业客户基础稳定。</li><li>当前主要压制因素：近期股价下跌1.75%；面临云服务激烈竞争；增长动力不足。</li></ul></div></div></details><details open><summary>基本面分析</summary><div class="body"><div class="md"><h4>ORCL ORCL 基本面分析</h4><ul><li>报告期：暂无。</li><li>PE(TTM)：20.78。</li><li>PB：10.17。</li><li>ROE：41.19%。</li><li>营收同比：29.60%。</li><li>归母净利润同比：54.50%。</li><li>核心判断：盈利能力处于可接受区间；收入仍在增长；利润端保持扩张。</li></ul></div></div></details></div>
+<div class="panel"><h2>研究与计划</h2>
+<details><summary>基本面摘要</summary><div class="body"><div class="md"><h3>核心财务快照</h3><ul><li>报告期: 数据缺失</li><li>当前股价: 132.60 元</li><li>总市值: 4009.47 亿元</li><li>PE (TTM): 20.78</li><li>PB: 10.17</li><li>PS (TTM): 数据缺失</li><li>营业总收入(报告期): 数据缺失 亿元</li><li>营收同比增长率: 29.60%</li><li>归母净利润(报告期): 数据缺失 亿元</li><li>归母净利润同比增长率: 54.50%</li><li>ROE (TTM/估算): 41.19%</li><li>资产负债率: 数据缺失</li><li>经营性现金流 / 归母净利润: 数据缺失</li></ul><h4>缺失字段</h4><ul><li>PS(TTM), 营业总收入, 归母净利润, 资产负债率, 经营性现金流与归母净利润比值</li></ul></div></div></details>
+<details><summary>研究计划</summary><div class="body"><div class="md"><h4>ORCL ORCL 研究摘要</h4><ul><li>红黑榜结论: Reduce</li><li>多头/空头: 35/80</li><li>正向信号: ROE 41.19%；营收同比 29.60%；归母净利润同比 54.50%；PE(TTM) 20.78</li><li>榜单看多理由: 长期技术积累；企业客户基础稳定</li><li>榜单风险提示: 近期股价下跌1.75%；面临云服务激烈竞争；增长动力不足</li></ul></div></div></details>
+<details><summary>交易计划</summary><div class="body"><div class="md"><h4>ORCL ORCL 交易计划</h4><ul><li>评级: Reduce</li><li>当前价格: 132.60</li><li>值得加仓区间: 119.34 - 124.64</li><li>目标价格: 125.97</li><li>止损位: 116.69</li><li>备注: 当前为缓存降级交易卡，后续若完整 TradingAgent 结果生成，将自动覆盖。</li></ul></div></div></details>
+<details><summary>交易决策</summary><div class="body"><div class="md"><p>Reduce</p><p>ORCL ORCL 当前使用红黑榜缓存结果生成兜底交易卡。多头 35 / 空头 80，分差 -45。当前尚未取得完整 TradingAgent 长文决策，但榜单分数、财务快照和大师观点已经足够生成基础交易建议。</p></div></div></details>
+</div>
+<div class="panel"><h2>多空逻辑</h2><div class="pts"><div class="h bull">看多逻辑</div><div class="md"><p>长期技术积累</p><p>企业客户基础稳定</p></div></div><div class="pts"><div class="h bear">看空逻辑</div><div class="md"><p>近期股价下跌1.75%</p><p>面临云服务激烈竞争</p><p>增长动力不足</p></div></div></div>
+<div class="panel"><h2>伯克希尔研究</h2><p><strong>甲骨文是一家拥有强大护城河和稳定现金流的企业，但面临行业增长放缓和新兴技术冲击的挑战，当前估值合理但需关注长期转型效果。</strong></p><p>伯克希尔综合评分：<strong>3.5</strong></p><div class="md"><p>{&quot;verdict&quot;: &quot;观望&quot;, &quot;conservative_tip&quot;: &quot;建议在PE低于15倍时买入，目标价90-100美元。&quot;, &quot;moderate_tip&quot;: &quot;建议在PE低于18倍时买入，目标价100-110美元。&quot;, &quot;aggressive_tip&quot;: &quot;建议在PE低于20倍时买入，目标价110-120美元。&quot;, &quot;catalysts_plus&quot;: [&quot;云业务市场份额提升&quot;, &quot;AI和区块链技术应用取得突破&quot;, &quot;全球经济复苏带动企业IT支出增加&quot;], &quot;catalysts_minus&quot;: [&quot;云业务增长不及预期&quot;, &quot;主要竞争对手市场份额扩大&quot;, &quot;全球经济持续低迷&quot;]}</p></div></div>
+<div class="panel news"><h2>最新资讯</h2><div class="md"><p>利空新闻占多数，共7条利空，4条利好，1条中性。</p></div><div class="nitem"><div class="t">Michael Burry just put a date on Big Tech&#x27;s AI reckoning, and Oracle&#x27;s $664 billion lands in crosshairs</div><div class="s">Yahoo Finance · 利空</div></div><div class="nitem"><div class="t">ORCL vs. DELL: Which AI Infrastructure Stock Has Better Upside Now?</div><div class="s">Zacks Investment Research · 中性</div></div><div class="nitem"><div class="t">Oracle (ORCL) Reports a $664 Billion Backlog. Can AI Growth Outpace its Cash Burn?</div><div class="s">Yahoo Finance · 利空</div></div><div class="nitem"><div class="t">Oracle: Here&#x27;s How Badly The AI Trade Could Go (Rating Downgrade) (NYSE:ORCL)</div><div class="s">Seeking Alpha · 利空</div></div><div class="nitem"><div class="t">Oracle Stock Slides Monday: What&#x27;s Driving the Action?</div><div class="s">Benzinga · 利空</div></div><div class="nitem"><div class="t">Why Did Larry Ellison Pledge $9.2 Billion More Oracle (NYSE:ORCL) Stock After Cancelling His Share Sale?</div><div class="s">Stocks Down Under · 利好</div></div><div class="nitem"><div class="t">Oracle&#x27;s Collapse--$200 Billion In Data Center Shut Downs</div><div class="s">24/7 Wall St. · 利空</div></div><div class="nitem"><div class="t">Oracle’s Force Majeure Notice Exposes a Bigger Problem for the AI Build-Out</div><div class="s">MarketBeat · 利空</div></div></div>
+<footer>稳健理财Agent · 红黑榜每日归档 · 黑榜 #6 · 仅供研究，不构成投资建议</footer>
+</div></body>
+</html>

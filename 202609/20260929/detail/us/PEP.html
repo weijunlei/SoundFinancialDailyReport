@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PEP(PEP) 红榜 2026-09-29</title>
+<style>
+:root{--red:#d8342c;--redbg:#fdecea;--green:#1a9e54;--ink:#1c2230;--muted:#6b7385;
+--line:#e7e9ef;--card:#fff;--bg:#f4f6fa;--chip:#eef1f6;--dark:#23262d;--darkbg:#ececef}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",
+"Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);
+line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 16px 64px}
+header.top{background:linear-gradient(135deg,#1c2230,#2c3550);color:#fff;border-radius:14px;
+padding:22px 24px;margin-bottom:20px;box-shadow:0 6px 24px rgba(20,26,46,.12)}
+header.top h1{margin:0 0 6px;font-size:24px;letter-spacing:.5px}
+header.top .sub{opacity:.85;font-size:13px}
+header.top .sub b{color:#ffd166;font-weight:600}
+nav.mkt{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;
+background:rgba(244,246,250,.92);backdrop-filter:blur(6px);padding:10px 0;margin-bottom:14px}
+nav.mkt a{text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);
+padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600}
+nav.mkt a:hover{border-color:var(--red);color:var(--red)}
+.summary{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.summary .chip{background:var(--card);border:1px solid var(--line);border-radius:10px;
+padding:8px 12px;font-size:12px;color:var(--muted)}
+.summary .chip b{color:var(--ink);font-size:14px;margin-left:4px}
+section.board{margin:26px 0}
+.board-title{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:19px}
+.board-title .dot{width:10px;height:10px;border-radius:50%}
+.board-title.red .dot{background:var(--red)}
+.board-title.black .dot{background:var(--dark)}
+.board-title small{color:var(--muted);font-weight:400;font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+position:relative;transition:box-shadow .15s}
+.card:hover{box-shadow:0 4px 18px rgba(20,26,46,.08)}
+.card.red{border-top:3px solid var(--red)}
+.card.black{border-top:3px solid var(--dark)}
+.rank{position:absolute;top:10px;right:12px;font-size:26px;font-weight:800;color:#eceff5}
+.card.red .rank{color:#fbdcD9}
+.nm{font-size:16px;font-weight:700}
+.nm .tk{color:var(--muted);font-weight:500;font-size:12px;margin-left:6px}
+.tag{display:inline-block;background:var(--chip);color:var(--muted);border-radius:6px;
+padding:1px 7px;font-size:11px;margin:6px 6px 0 0}
+.price-row{display:flex;align-items:baseline;gap:10px;margin:10px 0 4px}
+.price{font-size:24px;font-weight:800}
+.pct{font-size:14px;font-weight:700;padding:2px 8px;border-radius:8px}
+.up{color:var(--red)}.down{color:var(--green)}.flat{color:var(--muted)}
+.pct.up{background:var(--redbg)}.pct.down{background:#e2f4e9}.pct.flat{background:var(--chip)}
+.psrc{font-size:11px;color:var(--muted);margin-left:auto}
+.scores{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.scores span{background:var(--chip);border-radius:6px;padding:2px 8px;font-size:11px;color:var(--muted)}
+.scores span b{color:var(--ink)}
+.pts{font-size:12.5px;margin:8px 0 0}
+.pts .h{font-weight:700;font-size:12px;margin:6px 0 2px}
+.pts .h.bull{color:var(--red)}.pts .h.bear{color:var(--green)}
+.pts ul{margin:2px 0 4px;padding-left:18px;color:#3a4152}
+.pts li{margin:1px 0}
+.masters{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:11px;color:var(--muted)}
+.masters b{color:var(--ink)}
+.summ{font-size:12.5px;color:#3a4152;background:#fafbfd;border:1px solid var(--line);
+border-radius:8px;padding:8px 10px;margin-top:8px}
+.empty{color:var(--muted);background:var(--card);border:1px dashed var(--line);
+border-radius:10px;padding:18px;text-align:center}
+footer{margin-top:34px;color:var(--muted);font-size:12px;text-align:center;line-height:1.8}
+a.lnk{color:var(--red);text-decoration:none}
+/* ── detail page ── */
+.backbar{margin-bottom:14px;font-size:13px}
+.backbar a{color:var(--muted);text-decoration:none;margin-right:14px}
+.backbar a:hover{color:var(--red)}
+.badge{display:inline-block;border-radius:6px;padding:2px 10px;font-size:12px;font-weight:700;margin-right:8px}
+.badge.red{background:var(--red);color:#fff}.badge.black{background:var(--dark);color:#fff}
+.trade{display:flex;flex-wrap:wrap;gap:10px;background:linear-gradient(135deg,#2c3550,#1c2230);
+color:#fff;border-radius:12px;padding:16px 18px;margin:16px 0}
+.trade .cell{min-width:120px}
+.trade .k{font-size:11px;opacity:.75}
+.trade .v{font-size:18px;font-weight:800;margin-top:2px}
+.trade .v.buy{color:#7ee2a8}.trade .v.sell{color:#ff9d97}.trade .v.hold{color:#ffd166}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0}
+.mgrid .m{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.mgrid .m .k{font-size:11px;color:var(--muted)}
+.mgrid .m .v{font-size:16px;font-weight:700;margin-top:2px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.panel>h2{margin:0 0 12px;font-size:17px}
+.panel>h2 .sub{font-size:12px;color:var(--muted);font-weight:400;margin-left:8px}
+.mreply{border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;
+padding:12px 14px;margin:10px 0;background:#fff}
+.mreply .mh{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.mreply .mh .who{font-weight:700;font-size:14px}
+.mreply .mh .mscore{margin-left:auto;background:var(--chip);border-radius:6px;padding:1px 8px;font-size:12px;font-weight:700}
+.md h2,.md h3,.md h4,.md h5{margin:12px 0 6px;font-size:15px}
+.md p{margin:6px 0;font-size:13.5px;color:#2c3345}
+.md ul{margin:6px 0;padding-left:20px;font-size:13.5px;color:#2c3345}
+.md li{margin:3px 0}
+.md strong{color:var(--ink)}
+details{border:1px solid var(--line);border-radius:10px;background:#fff;margin:10px 0;padding:0}
+details>summary{cursor:pointer;padding:12px 16px;font-weight:700;font-size:14px;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary:before{content:"▸ ";color:var(--red)}
+details[open]>summary:before{content:"▾ "}
+details>.body{padding:0 16px 14px;border-top:1px dashed var(--line)}
+.ychip{display:inline-block;background:var(--chip);border-radius:8px;padding:4px 10px;font-size:12px;margin:3px 6px 3px 0}
+.ychip b{font-size:13px}
+.news .nitem{border-top:1px dashed var(--line);padding:8px 0;font-size:13px}
+.news .nitem .t{font-weight:600}
+.news .nitem .s{color:var(--muted);font-size:12px}
+/* ── root landing page ── */
+.hero{padding:30px 26px}
+.hero-kicker{color:#ffd166;font-size:12px;font-weight:700;letter-spacing:2px;
+text-transform:uppercase;margin-bottom:8px}
+.hero h1{font-size:30px;margin:0 0 10px}
+.day-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.day-card{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);
+border-radius:12px;padding:14px 16px;transition:all .15s}
+.day-card:hover{border-color:var(--red);box-shadow:0 4px 16px rgba(216,52,44,.12);transform:translateY(-2px)}
+.day-card .d{font-weight:800;font-size:15px;color:var(--ink);display:flex;align-items:center;gap:8px}
+.day-card .m{margin-top:8px;display:flex;gap:6px}
+.day-card .m span{background:var(--chip);color:var(--muted);border-radius:6px;
+padding:2px 8px;font-size:11px}
+.latest-badge{background:var(--red);color:#fff;border-radius:6px;padding:1px 7px;
+font-size:10px;font-weight:700}
+</style>
+</head>
+<body><div class="wrap">
+<div class="backbar"><a href="../index.html">← 总览</a><a href="../us.html">← 美股榜单</a></div>
+<header class="top">
+  <h1><span class="badge red">红榜 #4</span>PEP<span class="tk" style="opacity:.7;font-size:15px;font-weight:400;margin-left:8px">PEP</span></h1>
+  <div class="sub">美股 ·  · 榜单日期 <b>2026-09-29</b> · 盘价采集 <b>2026-09-29 05:00:26</b></div>
+  <div class="price-row" style="margin-top:12px">
+    <span class="price" style="color:#fff">$128.50</span>
+    <span class="pct down">-0.10%</span>
+    <span class="psrc" style="color:rgba(255,255,255,.6)">实时</span>
+  </div>
+  <div class="scores" style="margin-top:10px">
+    <span>综合 <b>90.6</b></span>
+    <span>多头 <b>80</b></span>
+    <span>空头 <b>15</b></span>
+    <span>大师均值 <b>68.6</b></span>
+    <span>信号 <b>positive</b></span>
+  </div>
+</header>
+<div class="trade"><div class="cell"><div class="k">交易评级</div><span class="v buy">Buy</span></div><div class="cell"><div class="k">加仓区间</div><span class="v">124.83 ~ 129.98</span></div><div class="cell"><div class="k">目标价</div><span class="v">144.13</span></div><div class="cell"><div class="k">伯克希尔</div><span class="v">买入</span></div><div class="cell"><div class="k">伯克希尔分</div><span class="v">4.25</span></div></div>
+<div class="panel"><h2>财务指标</h2><div class="mgrid"><div class="m"><div class="k">市盈率 PE</div><div class="v">16.85</div></div><div class="m"><div class="k">市净率 PB</div><div class="v">7.95</div></div><div class="m"><div class="k">ROE</div><div class="v">51.5%</div></div><div class="m"><div class="k">总市值</div><div class="v">1757</div></div><div class="m"><div class="k">营收同比</div><div class="v">6.4%</div></div><div class="m"><div class="k">净利同比</div><div class="v">137.0%</div></div></div></div>
+<div class="panel"><h2>历史收益</h2><span class="ychip">近1月 <b class="down">-8.78%</b></span><span class="ychip">近6月 <b class="down">-17.94%</b></span><span class="ychip">近1年 <b class="down">-8.19%</b></span><span class="ychip">近5年 <b class="down">-14.80%</b></span></div>
+<div class="panel"><h2>大师圆桌<span class="sub">5 位</span></h2><div class="mreply"><div class="mh"><span class="who">段永平</span><span class="mscore">79</span></div><div class="md"><h4>圆桌发言：关于 PEP（百事公司）的看法</h4><p><strong>结论：PEP 是一家值得考虑的投资标的，但需要关注其增长空间和成本压力。</strong></p><p><strong>理由：</strong></p><p>首先，从&quot;本分&quot;的角度来看，PEP 是一家典型的&quot;看得懂的好生意&quot;。它属于必需消费品行业，商业模式清晰，现金流稳定，防御性强。在经济波动时期，这类公司往往能提供相对稳定的回报。此外，PEP 一直保持着良好的股息支付记录，这对于追求长期稳定收益的投资者来说是一个重要优势。</p><p>其次，PEP 拥有强大的品牌价值，这使得它在市场竞争中占据有利位置。品牌价值不仅帮助公司维持定价权，还能持续吸引消费者，形成良性循环。</p><p>然而，我们也必须看到 PEP 面临的一些挑战。成熟市场的增长空间有限，这是 PEP 需要面对的现实问题。此外，成本通胀压力对公司的利润率构成威胁。虽然 PEP 在成本控制方面有一定经验，但持续的通胀压力仍需警惕。</p><p><strong>风险/行动建议：</strong></p><ul><li><strong>关注新兴市场拓展：</strong> PEP 在新兴市场的表现将是未来增长的关键。投资者需要密切关注公司在这些市场的战略执行情况，以及能否有效应对当地竞争。</li></ul><ul><li><strong>成本管理能力：</strong> 持续的通胀压力是 PEP 需要面对的挑战。投资者应关注公司如何通过供应链优化、定价策略等方式来缓解成本压力。</li></ul><ul><li><strong>长期持有视角：</strong> 如果你认同 PEP 的长期价值，并且能够接受其成熟市场增长有限的现实，那么 PEP 可能是值得长期持有的标的。但如果你更关注短期增长潜力，可能需要考虑其他更具成长性的投资机会。</li></ul><p>总的来说，PEP 是一家稳健的公司，适合追求稳定收益的投资者。但投资决策需要结合自身的风险承受能力和投资目标来做出。</p><p><strong>别错过的隐含约束：</strong> 不要因为 PEP 的稳定性而忽视其增长局限，也不要因为短期成本压力而过度悲观。长期来看，PEP 的品牌价值和行业地位是其最大的护城河。</p></div></div><div class="mreply"><div class="mh"><span class="who">巴菲特</span><span class="mscore">88</span></div><div class="md"><p>各位朋友，今天我们来聊聊百事公司（PEP）。我的看法是，这是一家值得考虑的投资标的，但我们要保持清醒的认识。</p><p>首先，百事拥有强大的护城河。作为全球领先的食品和饮料公司，它拥有众多知名品牌，这些品牌在消费者心中根深蒂固。这种品牌价值构成了公司强大的竞争优势，使其能够在竞争激烈的市场中保持定价权和市场份额。此外，百事一直保持着稳定的股息支付，这对于追求长期稳定回报的投资者来说是一个重要考量。</p><p>从估值角度来看，目前百事的市盈率约为16.8倍，对于一家成熟型消费品公司来说，这是一个相对合理的水平。公司在自由现金流方面表现强劲，这为其持续派发股息和进行战略性投资提供了保障。</p><p>然而，我们也不能忽视潜在的风险。百事所处的市场已经相当成熟，未来增长空间可能有限。此外，原材料成本上涨和新兴市场拓展面临的挑战都是需要关注的问题。投资者需要权衡这些风险与公司的长期稳定性和防御性。</p><p>我的建议是，如果你正在寻找一个能够在经济波动中提供稳定回报的投资标的，百事值得考虑。但要记住，这是一家成熟型公司，不要期望它能带来高速增长。买入前，请确保你理解并接受它的增长前景和风险。</p><p>最后，我想引用查理·芒格常说的话：&quot;投资就像经营果园，你不能指望每年都丰收，但只要果树健康，长期来看你就能获得稳定的收成。&quot; 百事就是这样一棵健康的果树，但投资者需要耐心和理性。</p></div></div><div class="mreply"><div class="mh"><span class="who">达利欧</span><span class="mscore">59</span></div><div class="md"><h4>发言内容：</h4><p>各位好，今天我们来讨论一下百事可乐（PEP）的投资价值。</p><p>首先，我的结论是中性的立场。从数据上看，百事可乐在多个方面表现强劲。公司的品牌价值强大，股息支付稳定，这在当前经济环境下提供了防御性支撑。百事可乐在成熟市场中占据了稳固地位，同时也在新兴市场进行拓展，这些都为其长期增长提供了可能性。</p><h4>理由：</h4><ul><li><strong>防御性优势</strong>：百事可乐属于必需消费品行业，这使得它在经济波动中具有较强的防御性。消费者对食品和饮料的需求相对稳定，这为公司的收入提供了保障。</li></ul><ul><li><strong>股息支付</strong>：百事可乐一直保持着稳定的股息支付，这对于追求稳定收益的投资者来说是一个重要的吸引力。</li></ul><ul><li><strong>品牌价值</strong>：百事可乐拥有强大的品牌价值，这不仅帮助公司在竞争激烈的市场中保持优势，也为未来的增长提供了坚实的基础。</li></ul><p>然而，我们也需要看到一些潜在的风险：</p><ul><li><strong>成熟市场增长受限</strong>：在成熟市场中，百事可乐的增长空间有限。公司需要依赖新兴市场的增长来推动整体业绩，但这也带来了不确定性。</li></ul><ul><li><strong>成本通胀压力</strong>：当前的通胀环境对百事可乐的利润率构成压力。原材料和物流成本的上升可能会侵蚀公司的盈利能力。</li></ul><ul><li><strong>新兴市场拓展挑战</strong>：尽管新兴市场提供了增长机会，但这些市场的竞争也非常激烈。百事可乐需要克服文化差异、消费者偏好变化以及当地品牌的竞争。</li></ul><h4>风险与行动建议：</h4><ul><li><strong>估值风险</strong>：当前百事可乐的市盈率（PE）为16.87，接近历史平均水平，但考虑到市场的不确定性，投资者需要评估是否愿意为这样的估值水平承担风险。</li></ul><ul><li><strong>宏观环境变化</strong>：如果全球经济环境恶化，百事可乐的业绩可能会受到影响。投资者应密切关注宏观经济指标，如通胀率和消费者信心指数。</li></ul><ul><li><strong>新兴市场策略</strong>：建议投资者关注百事可乐在新兴市场的具体策略和执行情况。如果公司在这些市场能够成功拓展，将为其长期增长提供重要支撑。</li></ul><h4>总结：</h4><p>百事可乐是一家具有防御性和稳定收益的公司，但在当前环境下，投资者需要权衡其增长潜力和风险。我建议在投资组合中适度配置百事可乐，同时密切关注公司的新兴市场拓展和成本控制措施。</p><p>在做出最终决策之前，建议投资者记录下自己的原则和决策依据，以便在未来复盘时能够清晰地看到自己的思考过程和逻辑。记住，&quot;Pain + Reflection = Progress&quot;。</p></div></div><div class="mreply"><div class="mh"><span class="who">彼得·林奇</span><span class="mscore">48</span></div><div class="md"><p>各位朋友，今天我们讨论的是百事可乐（PEP），作为一家全球知名的饮料和零食巨头，它确实有一些吸引人的特点。</p><p>首先，百事可乐是一家典型的<strong>稳定增长型公司</strong>。它拥有强大的品牌价值，旗下的产品线从可乐到薯片，遍布全球市场。作为必需消费品行业的一员，它具有很强的防御性，在经济低迷时期也能保持相对稳定的收入。此外，百事可乐一直保持着稳定的股息支付，这对于长期投资者来说是一个重要的吸引力。</p><p>然而，我们也需要看到一些潜在的风险。百事可乐所处的市场已经相当成熟，增长空间有限。尽管它在新兴市场有一定的拓展潜力，但这些市场的竞争同样激烈，且面临着文化差异和消费习惯的挑战。此外，成本通胀压力也不容忽视，原料价格和运输成本的上升可能会侵蚀公司的利润率。</p><p>从估值角度来看，目前百事可乐的市盈率（PE）约为16.8倍，对于一家稳定增长型公司来说，这个估值处于合理区间。然而，考虑到其市场已经成熟，未来增长可能主要依赖于成本控制和产品创新，这个估值并不算便宜。</p><p>那么，我为什么说这个估值“合理但不便宜”呢？让我们从几个方面来思考：</p><ul><li><strong>品牌价值</strong>：百事可乐的品牌价值是巨大的，这为其提供了强大的市场竞争力。</li><li><strong>股息收益</strong>：稳定的股息支付为投资者提供了可靠的现金流。</li><li><strong>防御性</strong>：在经济不确定时期，必需消费品行业的防御性使其成为一个相对安全的避风港。</li></ul><p>然而，以下几个风险点也需要我们关注：</p><ul><li><strong>增长瓶颈</strong>：成熟市场的增长空间有限，新兴市场的拓展并非易事。</li><li><strong>成本压力</strong>：通胀压力可能会持续影响公司的利润率。</li><li><strong>竞争加剧</strong>：全球饮料和零食市场竞争激烈，百事可乐需要不断创新以保持其市场份额。</li></ul><p>基于以上分析，我的建议是：</p><p>如果你是一个寻求稳定收益的长期投资者，并且对百事可乐的品牌和管理团队有信心，那么目前的价格可能是一个可以接受的投资机会。但如果你更看重增长潜力，或者对通胀压力和市场竞争感到担忧，那么可能需要再观察一段时间，或者考虑其他更具增长潜力的投资标的。</p><p>总之，百事可乐是一家稳健的公司，但它的未来增长空间有限。在当前的市场环境下，投资者需要权衡其防御性和增长潜力，做出符合自身投资目标和风险偏好的决策。</p></div></div><div class="mreply"><div class="mh"><span class="who">芒格</span><span class="mscore">69</span></div><div class="md"><p>各位同行，今天我们来谈谈百事可乐（PEP）。我的结论是：百事可乐是一家值得考虑的投资标的，但并非没有风险。我会从几个角度来解释这个观点。</p><p>首先，百事可乐作为一家必需消费品公司，具有很强的防御性。它的品牌价值强大，产品线覆盖全球，现金流稳定，并且一直保持稳定的股息支付。这些特点在当前经济环境下显得尤为珍贵，尤其是在市场波动较大的时期。</p><p>然而，我们也要看到它的局限性。百事可乐所处的市场已经相当成熟，增长空间有限。尽管它在新兴市场有一定的拓展潜力，但这些市场同时也带来了更高的成本和运营挑战。此外，成本通胀压力对利润率的影响不容忽视。</p><p>从估值角度来看，百事可乐的市盈率（PE）为16.87，市净率（PB）为7.96，相对于其行业地位和增长前景，估值并不算便宜。但考虑到其稳定的现金流和股息支付，这或许是一个可以接受的溢价。</p><p>现在，让我们从逆向思维的角度来审视这个问题。我们需要问自己：投资百事可乐可能会在哪些方面失败？首先，如果全球经济陷入严重衰退，消费者可能会减少非必需品的支出，这对百事可乐的销量会有一定影响。其次，成本通胀如果持续恶化，可能会进一步挤压利润率。最后，新兴市场的拓展如果不如预期，可能会拖累整体业绩。</p><p>激励机制方面，百事可乐的管理层有很强的动力去维持和提升股东价值，这体现在他们一贯的股息政策和稳健的财务策略上。然而，管理层也可能因为过于关注短期业绩而忽视了长期创新和转型。</p><p>基于以上分析，我的建议是：如果您正在寻找一个防御性强的投资标的，并且能够接受相对适中的增长预期，百事可乐是一个不错的选择。但请注意，这不是一个高增长的故事，而是一个稳健的、长期的价值投资。</p><p>风险提示：投资者需要密切关注全球经济形势和新兴市场的表现。如果这些方面出现不利变化，可能会对百事可乐的业绩产生负面影响。此外，成本通胀的压力也需要持续关注。</p><p>行动建议：对于长期投资者，可以考虑在当前价位逐步建仓，但不要急于重仓。对于短期投资者，建议等待更明确的市场信号或更好的买入时机。</p><p>最后，我能错在哪？我可能低估了新兴市场的增长潜力，或者高估了成本通胀的影响。投资决策永远需要根据最新的信息进行调整。</p></div></div></div>
+<div class="panel"><h2>分析师报告<span class="sub">2 篇</span></h2><details open><summary>市场面分析</summary><div class="body"><div class="md"><h4>PEP PEP 市场面分析</h4><ul><li>红黑榜多空分数：多头 80 / 空头 15，分差 65。</li><li>当前价格：128.59。</li><li>当前交易评级：Buy。</li><li>值得加仓区间：124.83 - 129.98。</li><li>目标价格：144.13。</li><li>市场愿意给溢价的原因：必需消费品防御性强；稳定的股息支付；品牌价值强大。</li><li>当前主要压制因素：成熟市场限制增长；成本通胀压力；新兴市场拓展挑战。</li></ul></div></div></details><details open><summary>基本面分析</summary><div class="body"><div class="md"><h4>PEP PEP 基本面分析</h4><ul><li>报告期：暂无。</li><li>PE(TTM)：16.85。</li><li>PB：7.95。</li><li>ROE：51.51%。</li><li>营收同比：6.40%。</li><li>归母净利润同比：137.00%。</li><li>核心判断：盈利能力处于可接受区间；收入仍在增长；利润端保持扩张。</li></ul></div></div></details></div>
+<div class="panel"><h2>研究与计划</h2>
+<details><summary>基本面摘要</summary><div class="body"><div class="md"><h3>核心财务快照</h3><ul><li>报告期: 数据缺失</li><li>当前股价: 128.59 元</li><li>总市值: 1756.54 亿元</li><li>PE (TTM): 16.85</li><li>PB: 7.95</li><li>PS (TTM): 数据缺失</li><li>营业总收入(报告期): 数据缺失 亿元</li><li>营收同比增长率: 6.40%</li><li>归母净利润(报告期): 数据缺失 亿元</li><li>归母净利润同比增长率: 137.00%</li><li>ROE (TTM/估算): 51.51%</li><li>资产负债率: 数据缺失</li><li>经营性现金流 / 归母净利润: 数据缺失</li></ul><h4>缺失字段</h4><ul><li>PS(TTM), 营业总收入, 归母净利润, 资产负债率, 经营性现金流与归母净利润比值</li></ul></div></div></details>
+<details><summary>研究计划</summary><div class="body"><div class="md"><h4>PEP PEP 研究摘要</h4><ul><li>红黑榜结论: Buy</li><li>多头/空头: 80/15</li><li>正向信号: ROE 51.51%；营收同比 6.40%；归母净利润同比 137.00%；PE(TTM) 16.87</li><li>榜单看多理由: 必需消费品防御性强；稳定的股息支付；品牌价值强大</li><li>榜单风险提示: 成熟市场限制增长；成本通胀压力；新兴市场拓展挑战</li></ul></div></div></details>
+<details><summary>交易计划</summary><div class="body"><div class="md"><h4>PEP PEP 交易计划</h4><ul><li>评级: Buy</li><li>当前价格: 128.69</li><li>值得加仓区间: 124.83 - 129.98</li><li>目标价格: 144.13</li><li>止损位: 118.39</li><li>备注: 当前为缓存降级交易卡，后续若完整 TradingAgent 结果生成，将自动覆盖。</li></ul></div></div></details>
+<details><summary>交易决策</summary><div class="body"><div class="md"><p>Buy</p><p>PEP PEP 当前使用红黑榜缓存结果生成兜底交易卡。多头 80 / 空头 15，分差 65。当前尚未取得完整 TradingAgent 长文决策，但榜单分数、财务快照和大师观点已经足够生成基础交易建议。</p></div></div></details>
+</div>
+<div class="panel"><h2>多空逻辑</h2><div class="pts"><div class="h bull">看多逻辑</div><div class="md"><p>必需消费品防御性强</p><p>稳定的股息支付</p><p>品牌价值强大</p></div></div><div class="pts"><div class="h bear">看空逻辑</div><div class="md"><p>成熟市场限制增长</p><p>成本通胀压力</p><p>新兴市场拓展挑战</p></div></div></div>
+<div class="panel"><h2>伯克希尔研究</h2><p><strong>百事公司是一家拥有强大品牌护城河、稳健财务表现和长期增长潜力的消费必需品公司，当前估值合理，值得稳健型投资者关注。</strong></p><p>伯克希尔综合评分：<strong>4.25</strong></p><div class="md"><p>{&quot;verdict&quot;: &quot;买入&quot;, &quot;conservative_tip&quot;: &quot;建议在PE TTM低于25倍时买入，目标价180美元。&quot;, &quot;moderate_tip&quot;: &quot;建议在PE TTM低于28倍时买入，目标价200美元。&quot;, &quot;aggressive_tip&quot;: &quot;建议在PE TTM低于30倍时买入，目标价220美元。&quot;, &quot;catalysts_plus&quot;: [&quot;健康化产品线增长超预期。&quot;, &quot;原材料价格回落。&quot;, &quot;全球消费复苏。&quot;], &quot;catalysts_minus&quot;: [&quot;健康化转型不及预期。&quot;, &quot;原材料价格持续上涨。&quot;, &quot;政策监管加强。&quot;]}</p></div></div>
+<div class="panel news"><h2>最新资讯</h2><div class="md"><p>利空新闻较多，共7条利空，4条中性，0条利好。</p></div><div class="nitem"><div class="t">Pep Boys plans mass layoff at Bala Cynwyd headquarters after $700M sale</div><div class="s">The Business Journals · 利空</div></div><div class="nitem"><div class="t">Man City’s 115 Charges — The Scandal, The Escape, and Pep’s Own Past</div><div class="s">Al Jazeera · 中性</div></div><div class="nitem"><div class="t">Should Man City’s guilt change how we rate Pep Guardiola’s greatness?</div><div class="s">The Times · 中性</div></div><div class="nitem"><div class="t">Pep Guardiola&#x27;s confusing Arsenal mistake made worse after Man City 115 charges verdict</div><div class="s">Football London · 中性</div></div><div class="nitem"><div class="t">Milwaukee C.L.E. Panthers host pep rally</div><div class="s">FOX6 News Milwaukee · 中性</div></div><div class="nitem"><div class="t">How Liam &amp; Noel Gallagher are Man City&#x27;s most loyal fans who may soon grace EFL</div><div class="s">thesun.co.uk · 中性</div></div><div class="nitem"><div class="t">Pep Boys will eliminate 169 jobs at Bala Cynwyd corporate offices amid merger</div><div class="s">inquirer.com · 利空</div></div><div class="nitem"><div class="t">What Pep Guardiola said about Man City case after club found guilty in Premier League 115 charges case</div><div class="s">Yahoo Sports · 中性</div></div></div>
+<footer>稳健理财Agent · 红黑榜每日归档 · 红榜 #4 · 仅供研究，不构成投资建议</footer>
+</div></body>
+</html>
