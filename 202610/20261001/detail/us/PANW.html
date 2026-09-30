@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PANW(PANW) 红榜 2026-10-01</title>
+<style>
+:root{--red:#d8342c;--redbg:#fdecea;--green:#1a9e54;--ink:#1c2230;--muted:#6b7385;
+--line:#e7e9ef;--card:#fff;--bg:#f4f6fa;--chip:#eef1f6;--dark:#23262d;--darkbg:#ececef}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",
+"Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);
+line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 16px 64px}
+header.top{background:linear-gradient(135deg,#1c2230,#2c3550);color:#fff;border-radius:14px;
+padding:22px 24px;margin-bottom:20px;box-shadow:0 6px 24px rgba(20,26,46,.12)}
+header.top h1{margin:0 0 6px;font-size:24px;letter-spacing:.5px}
+header.top .sub{opacity:.85;font-size:13px}
+header.top .sub b{color:#ffd166;font-weight:600}
+nav.mkt{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;
+background:rgba(244,246,250,.92);backdrop-filter:blur(6px);padding:10px 0;margin-bottom:14px}
+nav.mkt a{text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);
+padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600}
+nav.mkt a:hover{border-color:var(--red);color:var(--red)}
+.summary{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.summary .chip{background:var(--card);border:1px solid var(--line);border-radius:10px;
+padding:8px 12px;font-size:12px;color:var(--muted)}
+.summary .chip b{color:var(--ink);font-size:14px;margin-left:4px}
+section.board{margin:26px 0}
+.board-title{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:19px}
+.board-title .dot{width:10px;height:10px;border-radius:50%}
+.board-title.red .dot{background:var(--red)}
+.board-title.black .dot{background:var(--dark)}
+.board-title small{color:var(--muted);font-weight:400;font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+position:relative;transition:box-shadow .15s}
+.card:hover{box-shadow:0 4px 18px rgba(20,26,46,.08)}
+.card.red{border-top:3px solid var(--red)}
+.card.black{border-top:3px solid var(--dark)}
+.rank{position:absolute;top:10px;right:12px;font-size:26px;font-weight:800;color:#eceff5}
+.card.red .rank{color:#fbdcD9}
+.nm{font-size:16px;font-weight:700}
+.nm .tk{color:var(--muted);font-weight:500;font-size:12px;margin-left:6px}
+.tag{display:inline-block;background:var(--chip);color:var(--muted);border-radius:6px;
+padding:1px 7px;font-size:11px;margin:6px 6px 0 0}
+.price-row{display:flex;align-items:baseline;gap:10px;margin:10px 0 4px}
+.price{font-size:24px;font-weight:800}
+.pct{font-size:14px;font-weight:700;padding:2px 8px;border-radius:8px}
+.up{color:var(--red)}.down{color:var(--green)}.flat{color:var(--muted)}
+.pct.up{background:var(--redbg)}.pct.down{background:#e2f4e9}.pct.flat{background:var(--chip)}
+.psrc{font-size:11px;color:var(--muted);margin-left:auto}
+.scores{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.scores span{background:var(--chip);border-radius:6px;padding:2px 8px;font-size:11px;color:var(--muted)}
+.scores span b{color:var(--ink)}
+.pts{font-size:12.5px;margin:8px 0 0}
+.pts .h{font-weight:700;font-size:12px;margin:6px 0 2px}
+.pts .h.bull{color:var(--red)}.pts .h.bear{color:var(--green)}
+.pts ul{margin:2px 0 4px;padding-left:18px;color:#3a4152}
+.pts li{margin:1px 0}
+.masters{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:11px;color:var(--muted)}
+.masters b{color:var(--ink)}
+.summ{font-size:12.5px;color:#3a4152;background:#fafbfd;border:1px solid var(--line);
+border-radius:8px;padding:8px 10px;margin-top:8px}
+.empty{color:var(--muted);background:var(--card);border:1px dashed var(--line);
+border-radius:10px;padding:18px;text-align:center}
+footer{margin-top:34px;color:var(--muted);font-size:12px;text-align:center;line-height:1.8}
+a.lnk{color:var(--red);text-decoration:none}
+/* ── detail page ── */
+.backbar{margin-bottom:14px;font-size:13px}
+.backbar a{color:var(--muted);text-decoration:none;margin-right:14px}
+.backbar a:hover{color:var(--red)}
+.badge{display:inline-block;border-radius:6px;padding:2px 10px;font-size:12px;font-weight:700;margin-right:8px}
+.badge.red{background:var(--red);color:#fff}.badge.black{background:var(--dark);color:#fff}
+.trade{display:flex;flex-wrap:wrap;gap:10px;background:linear-gradient(135deg,#2c3550,#1c2230);
+color:#fff;border-radius:12px;padding:16px 18px;margin:16px 0}
+.trade .cell{min-width:120px}
+.trade .k{font-size:11px;opacity:.75}
+.trade .v{font-size:18px;font-weight:800;margin-top:2px}
+.trade .v.buy{color:#7ee2a8}.trade .v.sell{color:#ff9d97}.trade .v.hold{color:#ffd166}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0}
+.mgrid .m{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.mgrid .m .k{font-size:11px;color:var(--muted)}
+.mgrid .m .v{font-size:16px;font-weight:700;margin-top:2px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.panel>h2{margin:0 0 12px;font-size:17px}
+.panel>h2 .sub{font-size:12px;color:var(--muted);font-weight:400;margin-left:8px}
+.mreply{border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;
+padding:12px 14px;margin:10px 0;background:#fff}
+.mreply .mh{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.mreply .mh .who{font-weight:700;font-size:14px}
+.mreply .mh .mscore{margin-left:auto;background:var(--chip);border-radius:6px;padding:1px 8px;font-size:12px;font-weight:700}
+.md h2,.md h3,.md h4,.md h5{margin:12px 0 6px;font-size:15px}
+.md p{margin:6px 0;font-size:13.5px;color:#2c3345}
+.md ul{margin:6px 0;padding-left:20px;font-size:13.5px;color:#2c3345}
+.md li{margin:3px 0}
+.md strong{color:var(--ink)}
+details{border:1px solid var(--line);border-radius:10px;background:#fff;margin:10px 0;padding:0}
+details>summary{cursor:pointer;padding:12px 16px;font-weight:700;font-size:14px;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary:before{content:"▸ ";color:var(--red)}
+details[open]>summary:before{content:"▾ "}
+details>.body{padding:0 16px 14px;border-top:1px dashed var(--line)}
+.ychip{display:inline-block;background:var(--chip);border-radius:8px;padding:4px 10px;font-size:12px;margin:3px 6px 3px 0}
+.ychip b{font-size:13px}
+.news .nitem{border-top:1px dashed var(--line);padding:8px 0;font-size:13px}
+.news .nitem .t{font-weight:600}
+.news .nitem .s{color:var(--muted);font-size:12px}
+/* ── root landing page ── */
+.hero{padding:30px 26px}
+.hero-kicker{color:#ffd166;font-size:12px;font-weight:700;letter-spacing:2px;
+text-transform:uppercase;margin-bottom:8px}
+.hero h1{font-size:30px;margin:0 0 10px}
+.day-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.day-card{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);
+border-radius:12px;padding:14px 16px;transition:all .15s}
+.day-card:hover{border-color:var(--red);box-shadow:0 4px 16px rgba(216,52,44,.12);transform:translateY(-2px)}
+.day-card .d{font-weight:800;font-size:15px;color:var(--ink);display:flex;align-items:center;gap:8px}
+.day-card .m{margin-top:8px;display:flex;gap:6px}
+.day-card .m span{background:var(--chip);color:var(--muted);border-radius:6px;
+padding:2px 8px;font-size:11px}
+.latest-badge{background:var(--red);color:#fff;border-radius:6px;padding:1px 7px;
+font-size:10px;font-weight:700}
+</style>
+</head>
+<body><div class="wrap">
+<div class="backbar"><a href="../index.html">← 总览</a><a href="../us.html">← 美股榜单</a></div>
+<header class="top">
+  <h1><span class="badge red">红榜 #5</span>PANW<span class="tk" style="opacity:.7;font-size:15px;font-weight:400;margin-left:8px">PANW</span></h1>
+  <div class="sub">美股 ·  · 榜单日期 <b>2026-10-01</b> · 盘价采集 <b>2026-10-01 05:00:07</b></div>
+  <div class="price-row" style="margin-top:12px">
+    <span class="price" style="color:#fff">$397.31</span>
+    <span class="pct up">+2.29%</span>
+    <span class="psrc" style="color:rgba(255,255,255,.6)">实时</span>
+  </div>
+  <div class="scores" style="margin-top:10px">
+    <span>综合 <b>87.5</b></span>
+    <span>多头 <b>90</b></span>
+    <span>空头 <b>25</b></span>
+    <span>大师均值 <b>73.4</b></span>
+    <span>信号 <b>positive</b></span>
+  </div>
+</header>
+<div class="trade"><div class="cell"><div class="k">交易评级</div><span class="v buy">Buy</span></div><div class="cell"><div class="k">加仓区间</div><span class="v">387.19 ~ 403.15</span></div><div class="cell"><div class="k">目标价</div><span class="v">447.06</span></div><div class="cell"><div class="k">伯克希尔</div><span class="v">买入</span></div><div class="cell"><div class="k">伯克希尔分</div><span class="v">4.00</span></div></div>
+<div class="panel"><h2>财务指标</h2><div class="mgrid"><div class="m"><div class="k">市盈率 PE</div><div class="v">1,022.85</div></div><div class="m"><div class="k">市净率 PB</div><div class="v">11.83</div></div><div class="m"><div class="k">ROE</div><div class="v">1.7%</div></div><div class="m"><div class="k">总市值</div><div class="v">3263</div></div><div class="m"><div class="k">营收同比</div><div class="v">34.5%</div></div></div></div>
+<div class="panel"><h2>历史收益</h2><span class="ychip">近1月 <b class="up">+4.46%</b></span><span class="ychip">近6月 <b class="up">+158.61%</b></span><span class="ychip">近1年 <b class="up">+96.03%</b></span><span class="ychip">近5年 <b class="up">+399.99%</b></span></div>
+<div class="panel"><h2>大师圆桌<span class="sub">5 位</span></h2><div class="mreply"><div class="mh"><span class="who">段永平</span><span class="mscore">87</span></div><div class="md"><h4>段永平圆桌发言</h4><p><strong>结论：</strong></p><p>PANW（PANW）是一家值得关注的网络安全公司，但目前估值偏高，投资决策需要谨慎。</p><p><strong>理由：</strong></p><p>首先，网络安全行业的长期增长潜力是毋庸置疑的。随着数字化进程的加速，网络安全的重要性只会不断提升，PANW作为行业领先者，有机会持续受益于这一趋势。</p><p>其次，从公司表现来看，PANW的股价表现强劲且持续性强，这反映了市场对其技术和市场地位的认可。从技术面来看，股价也突破了关键阻力位，显示出一定的强势。</p><p>然而，我们也必须正视当前估值水平较高的问题。超过1000倍的市盈率意味着市场对公司的未来增长预期非常高，这本身就蕴含着较高的风险。如果公司未来业绩增长不及预期，或者市场情绪出现波动，都可能导致股价回调。</p><p><strong>风险/行动建议：</strong></p><ul><li><strong>估值风险</strong>：当前估值水平较高，投资者需要做好心理准备，承受可能的短期波动。如果你是长期投资者，并且相信公司的长期增长潜力，那么可以适当关注，但不宜重仓。</li></ul><ul><li><strong>市场波动风险</strong>：网络安全行业虽然前景广阔，但市场竞争也在加剧。投资者需要密切关注行业动态和公司竞争力变化。</li></ul><ul><li><strong>本分原则</strong>：投资要基于对公司的深入理解，而不是单纯追逐市场热点。如果你对网络安全行业和PANW的业务模式有足够的了解，并且认同其长期价值，那么可以考虑分批买入。但如果你只是因为股价上涨而心动，建议再等等。</li></ul><ul><li><strong>长期视角</strong>：投资要看得长远，不要被短期波动左右。如果决定买入，要做好持有3-5年的准备，期间可能会经历市场的起伏。</li></ul><p>总之，投资要本分，做对的事，把事做对。PANW是一家好公司，但当前价格可能不是最好的买入时机。投资者需要权衡风险和收益，做出理性的决策。</p></div></div><div class="mreply"><div class="mh"><span class="who">巴菲特</span><span class="mscore">67</span></div><div class="md"><h4>巴菲特的圆桌发言：关于 PANW（PANW）</h4><h5>结论：</h5><p>我对 PANW 这家公司持中性偏谨慎的态度。虽然网络安全行业长期前景不错，但 PANW 当前的估值水平让我不得不三思。</p><h5>理由：</h5><p>首先，网络安全是一个长期增长的行业。随着数字化进程的加速，企业和个人对网络安全的重视程度只会越来越高。PANW 作为行业中的领先者，拥有一定的技术和市场优势，这构成了它的护城河。</p><p>然而，从价值投资的角度来看，我有几个担忧：</p><ul><li><strong>估值过高</strong>：PANW 的市盈率（PE）超过 1000 倍，这让我感到不安。即使考虑到公司的高增长潜力，这样的估值水平也意味着市场已经给予了非常乐观的预期。任何不及预期的表现都可能导致股价大幅波动。</li></ul><ul><li><strong>自由现金流</strong>：虽然 PANW 的营收增长强劲，但自由现金流的状况如何？我需要更详细的数据来评估公司是否能够持续产生足够的现金流来支持其增长和回报股东。</li></ul><ul><li><strong>市场竞争</strong>：网络安全行业的竞争日益激烈。PANW 能否保持其领先地位，并继续扩大市场份额？这需要持续关注。</li></ul><h5>风险/行动建议：</h5><ul><li><strong>估值风险</strong>：如果你已经持有 PANW，建议密切关注公司的基本面变化，特别是自由现金流和盈利能力。如果估值继续攀升，可能需要考虑部分获利了结。</li></ul><ul><li><strong>长期持有</strong>：如果你打算长期持有 PANW，确保你对公司的商业模式和管理团队有深入了解，并准备好承受短期市场波动的风险。</li></ul><ul><li><strong>安全边际</strong>：在当前估值水平下，我会更倾向于等待更好的买入时机。除非你能找到足够的安全边际，否则不建议现在买入。</li></ul><p>最后，我想说的是，投资就像打棒球，你不需要每次都挥棒。耐心等待那个最有把握的机会，可能会带来更好的回报。</p><h5>如果是芒格，会补充什么：</h5><p>查理可能会用他的&quot;逆向思维&quot;来提醒我们：在一个大家都看好的行业里，要特别小心那些被过度追捧的公司。他可能会问：&quot;如果这家公司突然失去市场份额，会是什么原因？&quot; 这个问题值得深思。</p></div></div><div class="mreply"><div class="mh"><span class="who">达利欧</span><span class="mscore">87</span></div><div class="md"><h4>圆桌发言：关于 PANW 的看法</h4><p><strong>结论</strong>：我对 PANW 持积极态度，但需要警惕高估值带来的潜在风险。</p><p><strong>理由</strong>：</p><p>首先，从行业角度来看，网络安全是一个长期增长的领域。随着数字化进程的加速和全球对网络安全的重视，这个行业的需求将会持续上升。PANW 作为该领域的领先企业，拥有强大的技术实力和市场份额，这为其提供了坚实的增长基础。</p><p>其次，从公司表现来看，PANW 的股价表现强劲且持续性强，这反映了市场对其未来发展的信心。此外，其营收同比增长 34.5%，显示出良好的盈利能力和增长潜力。尽管其市盈率（PE）高达 1023 倍，但考虑到其行业地位和增长前景，市场愿意给予其较高的估值。</p><p>然而，高估值也带来了风险。市场的波动性可能会影响投资者情绪，尤其是在宏观经济环境不稳定的情况下。此外，行业竞争加剧也可能对 PANW 的市场份额和利润率构成压力。因此，我们需要密切关注这些潜在的风险因素。</p><p><strong>风险/行动建议</strong>：</p><ul><li><strong>风险</strong>：</li><li>高估值带来的回调风险：如果市场情绪发生变化或公司业绩不及预期，高估值可能会导致股价回调。</li><li>市场波动：宏观经济环境的不确定性可能会影响投资者情绪，进而影响股价表现。</li><li>行业竞争：随着更多企业进入网络安全领域，竞争可能会加剧，影响 PANW 的市场份额和利润率。</li></ul><ul><li><strong>行动建议</strong>：</li><li><strong>保持关注</strong>：建议密切关注 PANW 的财报和行业动态，及时调整投资策略。</li><li><strong>分散投资</strong>：考虑到高估值风险，建议将 PANW 作为投资组合的一部分，而不是单一重仓持有。</li><li><strong>原则化决策</strong>：记录决策日志，明确投资 PANW 的原则和触发条件，以便在市场变化时进行复盘和调整。</li></ul><p>总的来说，PANW 是一个具有吸引力的投资标的，但其高估值和潜在风险需要我们保持警惕。通过原则化的决策过程和风险平衡，我们可以更好地把握投资机会。</p></div></div><div class="mreply"><div class="mh"><span class="who">彼得·林奇</span><span class="mscore">82</span></div><div class="md"><p>各位，我来说说PANW（PANW）的看法。</p><h4>结论</h4><p>我持看多立场，尽管估值不低，但这家公司值得考虑。</p><h4>理由</h4><p>首先，从行业角度看，网络安全是一个长期增长的领域。无论经济好坏，企业和个人对网络安全的重视程度只会增加，不会减少。PANW作为这一领域的领先企业，其产品和服务需求将持续强劲。</p><p>其次，从公司表现来看，PANW的营收同比增长了34.5%，这是一个非常健康的增长数字。虽然它的市盈率高达1023倍，看起来吓人，但考虑到网络安全行业的特点——高研发投入、高毛利率，这种高估值有一定的合理性。</p><p>此外，股价表现也相当强劲，近期上涨了2.68%，并且突破了关键阻力位，这表明市场对其未来前景的信心。</p><h4>风险/行动建议</h4><p>当然，高估值是一个不容忽视的风险。如果市场情绪发生变化，或者出现任何负面消息，股价可能会出现较大回调。因此，我建议：</p><ul><li><strong>分批买入</strong>：不要一次性投入全部资金，可以分批买入，以降低短期波动带来的风险。</li><li><strong>关注行业动态</strong>：网络安全行业竞争激烈，关注PANW的市场份额变化和竞争对手的动向。</li><li><strong>长期持有</strong>：如果决定买入，做好长期持有的准备，因为网络安全行业的增长是长期的，而不是短期的。</li></ul><p>总的来说，PANW是一家值得关注的优质公司，但需要谨慎对待高估值风险。对于那些相信网络安全行业长期增长潜力的投资者来说，这可能是一个不错的选择。</p></div></div><div class="mreply"><div class="mh"><span class="who">芒格</span><span class="mscore">44</span></div><div class="md"><p>各位同仁，我们来谈谈 PANW（PANW）。先说我的结论：我对这只股票持谨慎态度。</p><p>首先，我认同网络安全行业确实有长期增长潜力，这是不争的事实。PANW 作为行业内的重要参与者，也受益于这一趋势。此外，其股价表现强劲，技术面也突破了关键阻力位，这些都值得肯定。</p><p>然而，当我们用逆向思维和多元心智模型来审视这个问题时，会发现一些令人担忧的信号：</p><h4>1. 逆向思考：失败的可能路径</h4><ul><li><strong>高估值风险</strong>：当前市盈率超过 1000 倍，这是一个极其危险的信号。即使公司未来几年保持高速增长，也很难支撑如此高的估值。</li><li><strong>市场波动影响</strong>：任何市场波动都可能导致投资者情绪逆转，进而引发股价回调。</li><li><strong>竞争加剧</strong>：网络安全行业竞争日益激烈，PANW 能否持续保持竞争优势是一个未知数。</li></ul><h4>2. 激励机制分析</h4><ul><li><strong>短期 vs 长期</strong>：管理层是否有足够的动力去关注长期发展，而不是被短期股价上涨所激励？这是一个需要警惕的问题。</li><li><strong>股东利益一致性</strong>：大股东和散户投资者的利益是否一致？是否存在大股东利用高估值套现的风险？</li></ul><h4>3. 多元思维模型审视</h4><ul><li><strong>经济学角度</strong>：高估值意味着市场对未来的预期极高，任何不及预期的表现都可能导致股价大幅波动。</li><li><strong>心理学角度</strong>：投资者可能因为近期股价上涨而过度乐观，忽视了潜在的风险。</li><li><strong>历史角度</strong>：回顾过去科技股泡沫时期，高估值股票最终都经历了痛苦的调整。</li></ul><h4>4. 风险与行动建议</h4><ul><li><strong>风险</strong>：当前最大的风险是高估值带来的回调压力，以及市场波动对投资者情绪的影响。</li><li><strong>行动建议</strong>：对于已经持有 PANW 的投资者，我建议密切关注市场动态，设定合理的止损位。对于考虑买入的投资者，我建议等待更合适的时机，至少要等到估值水平回到更合理的区间。</li></ul><p>最后，我想说，投资决策应该基于理性的分析，而不是被短期的市场表现所左右。正如我常说的：&quot;如果我知道自己死在哪里，我就永远不去那里。&quot; 在这个案例中，高估值和市场波动就是我们可能&quot;死亡&quot;的地方。</p><h4>我能错在哪？</h4><p>我可能低估了 PANW 在未来几年内实现超预期增长的能力，或者忽视了行业竞争格局的重大变化。但无论如何，保持谨慎总是明智的。</p></div></div></div>
+<div class="panel"><h2>分析师报告<span class="sub">2 篇</span></h2><details open><summary>市场面分析</summary><div class="body"><div class="md"><h4>PANW PANW 市场面分析</h4><ul><li>红黑榜多空分数：多头 90 / 空头 25，分差 65。</li><li>当前价格：398.91。</li><li>当前交易评级：Buy。</li><li>值得加仓区间：387.19 - 403.15。</li><li>目标价格：447.06。</li><li>市场愿意给溢价的原因：网络安全行业长期增长潜力显著；股价表现强劲且持续性强；技术面突破关键阻力位。</li><li>当前主要压制因素：估值水平相对较高；市场波动可能影响短期走势；需关注行业竞争加剧风险。</li></ul></div></div></details><details open><summary>基本面分析</summary><div class="body"><div class="md"><h4>PANW PANW 基本面分析</h4><ul><li>报告期：暂无。</li><li>PE(TTM)：1022.85。</li><li>PB：11.83。</li><li>ROE：1.74%。</li><li>营收同比：34.50%。</li><li>核心判断：收入仍在增长；估值偏贵，需要更强兑现。</li></ul></div></div></details></div>
+<div class="panel"><h2>研究与计划</h2>
+<details><summary>基本面摘要</summary><div class="body"><div class="md"><h3>核心财务快照</h3><ul><li>报告期: 数据缺失</li><li>当前股价: 398.91 元</li><li>总市值: 3263.08 亿元</li><li>PE (TTM): 1022.85</li><li>PB: 11.83</li><li>PS (TTM): 数据缺失</li><li>营业总收入(报告期): 数据缺失 亿元</li><li>营收同比增长率: 34.50%</li><li>归母净利润(报告期): 数据缺失 亿元</li><li>归母净利润同比增长率: 数据缺失</li><li>ROE (TTM/估算): 1.74%</li><li>资产负债率: 数据缺失</li><li>经营性现金流 / 归母净利润: 数据缺失</li></ul><h4>缺失字段</h4><ul><li>PS(TTM), 营业总收入, 归母净利润, 归母净利润同比增长率, 资产负债率, 经营性现金流与归母净利润比值</li></ul></div></div></details>
+<details><summary>研究计划</summary><div class="body"><div class="md"><h4>PANW PANW 研究摘要</h4><ul><li>红黑榜结论: Buy</li><li>多头/空头: 90/25</li><li>正向信号: 营收同比 34.50%；PB 11.83</li><li>风险信号: ROE 1.74%；PE(TTM) 1023.49</li><li>榜单看多理由: 网络安全行业长期增长潜力显著；股价表现强劲且持续性强；技术面突破关键阻力位</li><li>榜单风险提示: 估值水平相对较高；市场波动可能影响短期走势；需关注行业竞争加剧风险</li></ul></div></div></details>
+<details><summary>交易计划</summary><div class="body"><div class="md"><h4>PANW PANW 交易计划</h4><ul><li>评级: Buy</li><li>当前价格: 399.16</li><li>值得加仓区间: 387.19 - 403.15</li><li>目标价格: 447.06</li><li>止损位: 367.23</li><li>备注: 当前为缓存降级交易卡，后续若完整 TradingAgent 结果生成，将自动覆盖。</li></ul></div></div></details>
+<details><summary>交易决策</summary><div class="body"><div class="md"><p>Buy</p><p>PANW PANW 当前使用红黑榜缓存结果生成兜底交易卡。多头 90 / 空头 25，分差 65。当前尚未取得完整 TradingAgent 长文决策，但榜单分数、财务快照和大师观点已经足够生成基础交易建议。</p></div></div></details>
+</div>
+<div class="panel"><h2>多空逻辑</h2><div class="pts"><div class="h bull">看多逻辑</div><div class="md"><p>网络安全行业长期增长潜力显著</p><p>股价表现强劲且持续性强</p><p>技术面突破关键阻力位</p></div></div><div class="pts"><div class="h bear">看空逻辑</div><div class="md"><p>估值水平相对较高</p><p>市场波动可能影响短期走势</p><p>需关注行业竞争加剧风险</p></div></div></div>
+<div class="panel"><h2>伯克希尔研究</h2><p><strong>PANW是一家在网络安全领域具有强大护城河和长期增长潜力的公司，但需警惕竞争加剧和估值风险。</strong></p><p>伯克希尔综合评分：<strong>4.0</strong></p><div class="md"><p>{&quot;verdict&quot;: &quot;买入&quot;, &quot;conservative_tip&quot;: &quot;建议在PE TTM降至50以下时买入。&quot;, &quot;moderate_tip&quot;: &quot;建议在PE TTM降至55以下时买入。&quot;, &quot;aggressive_tip&quot;: &quot;建议在PE TTM降至60以下时买入。&quot;, &quot;catalysts_plus&quot;: [&quot;AI驱动的安全解决方案取得突破性进展。&quot;, &quot;市场份额进一步提升。&quot;, &quot;自由现金流持续增长。&quot;], &quot;catalysts_minus&quot;: [&quot;竞争加剧，市场份额下降。&quot;, &quot;政策变化（数据隐私法）带来负面影响。&quot;, &quot;大型科技公司进入安全领域。&quot;]}</p></div></div>
+<div class="panel news"><h2>最新资讯</h2><div class="md"><p>共12条新闻，10条利多，1条利空，1条中性。</p></div><div class="nitem"><div class="t">Palo Alto Networks (PANW) Stock Trades Up, Here Is Why</div><div class="s">finance.yahoo.com · 利好</div></div><div class="nitem"><div class="t">Palo Alto Networks: The Valuation Has Lost Touch With Reality (NASDAQ:PANW)</div><div class="s">Seeking Alpha · 利空</div></div><div class="nitem"><div class="t">Analysts Raise Palo Alto Networks Stock Price Targets - What&#x27;s the Best PANW Play?</div><div class="s">Barchart.com · 利好</div></div><div class="nitem"><div class="t">Palo Alto’s AI Security Trio Could Fuel a Growth Surge, BTIG Says</div><div class="s">Benzinga · 利好</div></div><div class="nitem"><div class="t">PANW Stock Gets Price Target Hike From Five-Star Analyst – Here’s Why</div><div class="s">TipRanks · 利好</div></div><div class="nitem"><div class="t">PANW, CRWD, ZS Lead Nasdaq-100 Gains As Nvidia&#x27;s AI Agent Safety Push, Security Scares Lift Cybersecurity Stocks</div><div class="s">finance.yahoo.com · 利好</div></div><div class="nitem"><div class="t">Palo Alto Networks in spotlight as BTIG ups price target (PANW:NASDAQ)</div><div class="s">Seeking Alpha · 利好</div></div><div class="nitem"><div class="t">Why Bernstein Still Sees 46% Upside in Zscaler (ZS) but Downgraded Palo Alto (PANW)</div><div class="s">finance.yahoo.com · 利空</div></div></div>
+<footer>稳健理财Agent · 红黑榜每日归档 · 红榜 #5 · 仅供研究，不构成投资建议</footer>
+</div></body>
+</html>

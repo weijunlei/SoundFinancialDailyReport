@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NOW(NOW) 红榜 2026-10-01</title>
+<style>
+:root{--red:#d8342c;--redbg:#fdecea;--green:#1a9e54;--ink:#1c2230;--muted:#6b7385;
+--line:#e7e9ef;--card:#fff;--bg:#f4f6fa;--chip:#eef1f6;--dark:#23262d;--darkbg:#ececef}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",
+"Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);
+line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 16px 64px}
+header.top{background:linear-gradient(135deg,#1c2230,#2c3550);color:#fff;border-radius:14px;
+padding:22px 24px;margin-bottom:20px;box-shadow:0 6px 24px rgba(20,26,46,.12)}
+header.top h1{margin:0 0 6px;font-size:24px;letter-spacing:.5px}
+header.top .sub{opacity:.85;font-size:13px}
+header.top .sub b{color:#ffd166;font-weight:600}
+nav.mkt{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;
+background:rgba(244,246,250,.92);backdrop-filter:blur(6px);padding:10px 0;margin-bottom:14px}
+nav.mkt a{text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);
+padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600}
+nav.mkt a:hover{border-color:var(--red);color:var(--red)}
+.summary{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.summary .chip{background:var(--card);border:1px solid var(--line);border-radius:10px;
+padding:8px 12px;font-size:12px;color:var(--muted)}
+.summary .chip b{color:var(--ink);font-size:14px;margin-left:4px}
+section.board{margin:26px 0}
+.board-title{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:19px}
+.board-title .dot{width:10px;height:10px;border-radius:50%}
+.board-title.red .dot{background:var(--red)}
+.board-title.black .dot{background:var(--dark)}
+.board-title small{color:var(--muted);font-weight:400;font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+position:relative;transition:box-shadow .15s}
+.card:hover{box-shadow:0 4px 18px rgba(20,26,46,.08)}
+.card.red{border-top:3px solid var(--red)}
+.card.black{border-top:3px solid var(--dark)}
+.rank{position:absolute;top:10px;right:12px;font-size:26px;font-weight:800;color:#eceff5}
+.card.red .rank{color:#fbdcD9}
+.nm{font-size:16px;font-weight:700}
+.nm .tk{color:var(--muted);font-weight:500;font-size:12px;margin-left:6px}
+.tag{display:inline-block;background:var(--chip);color:var(--muted);border-radius:6px;
+padding:1px 7px;font-size:11px;margin:6px 6px 0 0}
+.price-row{display:flex;align-items:baseline;gap:10px;margin:10px 0 4px}
+.price{font-size:24px;font-weight:800}
+.pct{font-size:14px;font-weight:700;padding:2px 8px;border-radius:8px}
+.up{color:var(--red)}.down{color:var(--green)}.flat{color:var(--muted)}
+.pct.up{background:var(--redbg)}.pct.down{background:#e2f4e9}.pct.flat{background:var(--chip)}
+.psrc{font-size:11px;color:var(--muted);margin-left:auto}
+.scores{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.scores span{background:var(--chip);border-radius:6px;padding:2px 8px;font-size:11px;color:var(--muted)}
+.scores span b{color:var(--ink)}
+.pts{font-size:12.5px;margin:8px 0 0}
+.pts .h{font-weight:700;font-size:12px;margin:6px 0 2px}
+.pts .h.bull{color:var(--red)}.pts .h.bear{color:var(--green)}
+.pts ul{margin:2px 0 4px;padding-left:18px;color:#3a4152}
+.pts li{margin:1px 0}
+.masters{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:11px;color:var(--muted)}
+.masters b{color:var(--ink)}
+.summ{font-size:12.5px;color:#3a4152;background:#fafbfd;border:1px solid var(--line);
+border-radius:8px;padding:8px 10px;margin-top:8px}
+.empty{color:var(--muted);background:var(--card);border:1px dashed var(--line);
+border-radius:10px;padding:18px;text-align:center}
+footer{margin-top:34px;color:var(--muted);font-size:12px;text-align:center;line-height:1.8}
+a.lnk{color:var(--red);text-decoration:none}
+/* ── detail page ── */
+.backbar{margin-bottom:14px;font-size:13px}
+.backbar a{color:var(--muted);text-decoration:none;margin-right:14px}
+.backbar a:hover{color:var(--red)}
+.badge{display:inline-block;border-radius:6px;padding:2px 10px;font-size:12px;font-weight:700;margin-right:8px}
+.badge.red{background:var(--red);color:#fff}.badge.black{background:var(--dark);color:#fff}
+.trade{display:flex;flex-wrap:wrap;gap:10px;background:linear-gradient(135deg,#2c3550,#1c2230);
+color:#fff;border-radius:12px;padding:16px 18px;margin:16px 0}
+.trade .cell{min-width:120px}
+.trade .k{font-size:11px;opacity:.75}
+.trade .v{font-size:18px;font-weight:800;margin-top:2px}
+.trade .v.buy{color:#7ee2a8}.trade .v.sell{color:#ff9d97}.trade .v.hold{color:#ffd166}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0}
+.mgrid .m{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.mgrid .m .k{font-size:11px;color:var(--muted)}
+.mgrid .m .v{font-size:16px;font-weight:700;margin-top:2px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.panel>h2{margin:0 0 12px;font-size:17px}
+.panel>h2 .sub{font-size:12px;color:var(--muted);font-weight:400;margin-left:8px}
+.mreply{border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;
+padding:12px 14px;margin:10px 0;background:#fff}
+.mreply .mh{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.mreply .mh .who{font-weight:700;font-size:14px}
+.mreply .mh .mscore{margin-left:auto;background:var(--chip);border-radius:6px;padding:1px 8px;font-size:12px;font-weight:700}
+.md h2,.md h3,.md h4,.md h5{margin:12px 0 6px;font-size:15px}
+.md p{margin:6px 0;font-size:13.5px;color:#2c3345}
+.md ul{margin:6px 0;padding-left:20px;font-size:13.5px;color:#2c3345}
+.md li{margin:3px 0}
+.md strong{color:var(--ink)}
+details{border:1px solid var(--line);border-radius:10px;background:#fff;margin:10px 0;padding:0}
+details>summary{cursor:pointer;padding:12px 16px;font-weight:700;font-size:14px;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary:before{content:"▸ ";color:var(--red)}
+details[open]>summary:before{content:"▾ "}
+details>.body{padding:0 16px 14px;border-top:1px dashed var(--line)}
+.ychip{display:inline-block;background:var(--chip);border-radius:8px;padding:4px 10px;font-size:12px;margin:3px 6px 3px 0}
+.ychip b{font-size:13px}
+.news .nitem{border-top:1px dashed var(--line);padding:8px 0;font-size:13px}
+.news .nitem .t{font-weight:600}
+.news .nitem .s{color:var(--muted);font-size:12px}
+/* ── root landing page ── */
+.hero{padding:30px 26px}
+.hero-kicker{color:#ffd166;font-size:12px;font-weight:700;letter-spacing:2px;
+text-transform:uppercase;margin-bottom:8px}
+.hero h1{font-size:30px;margin:0 0 10px}
+.day-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.day-card{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);
+border-radius:12px;padding:14px 16px;transition:all .15s}
+.day-card:hover{border-color:var(--red);box-shadow:0 4px 16px rgba(216,52,44,.12);transform:translateY(-2px)}
+.day-card .d{font-weight:800;font-size:15px;color:var(--ink);display:flex;align-items:center;gap:8px}
+.day-card .m{margin-top:8px;display:flex;gap:6px}
+.day-card .m span{background:var(--chip);color:var(--muted);border-radius:6px;
+padding:2px 8px;font-size:11px}
+.latest-badge{background:var(--red);color:#fff;border-radius:6px;padding:1px 7px;
+font-size:10px;font-weight:700}
+</style>
+</head>
+<body><div class="wrap">
+<div class="backbar"><a href="../index.html">← 总览</a><a href="../us.html">← 美股榜单</a></div>
+<header class="top">
+  <h1><span class="badge red">红榜 #8</span>NOW<span class="tk" style="opacity:.7;font-size:15px;font-weight:400;margin-left:8px">NOW</span></h1>
+  <div class="sub">美股 ·  · 榜单日期 <b>2026-10-01</b> · 盘价采集 <b>2026-10-01 05:00:07</b></div>
+  <div class="price-row" style="margin-top:12px">
+    <span class="price" style="color:#fff">$134.01</span>
+    <span class="pct up">+3.13%</span>
+    <span class="psrc" style="color:rgba(255,255,255,.6)">实时</span>
+  </div>
+  <div class="scores" style="margin-top:10px">
+    <span>综合 <b>87.5</b></span>
+    <span>多头 <b>90</b></span>
+    <span>空头 <b>18</b></span>
+    <span>大师均值 <b>49.8</b></span>
+    <span>信号 <b>positive</b></span>
+  </div>
+</header>
+<div class="trade"><div class="cell"><div class="k">交易评级</div><span class="v buy">Buy</span></div><div class="cell"><div class="k">加仓区间</div><span class="v">130.28 ~ 135.65</span></div><div class="cell"><div class="k">目标价</div><span class="v">150.43</span></div><div class="cell"><div class="k">伯克希尔</div><span class="v">观望</span></div><div class="cell"><div class="k">伯克希尔分</div><span class="v">4.00</span></div></div>
+<div class="panel"><h2>财务指标</h2><div class="mgrid"><div class="m"><div class="k">市盈率 PE</div><div class="v">83.95</div></div><div class="m"><div class="k">市净率 PB</div><div class="v">11.10</div></div><div class="m"><div class="k">ROE</div><div class="v">14.2%</div></div><div class="m"><div class="k">总市值</div><div class="v">1389</div></div><div class="m"><div class="k">营收同比</div><div class="v">24.0%</div></div><div class="m"><div class="k">净利同比</div><div class="v">-21.9%</div></div></div></div>
+<div class="panel"><h2>历史收益</h2><span class="ychip">近1月 <b class="down">-9.24%</b></span><span class="ychip">近6月 <b class="up">+27.95%</b></span><span class="ychip">近1年 <b class="down">-27.03%</b></span><span class="ychip">近5年 <b class="up">+7.92%</b></span></div>
+<div class="panel"><h2>大师圆桌<span class="sub">5 位</span></h2><div class="mreply"><div class="mh"><span class="who">段永平</span><span class="mscore">33</span></div><div class="md"><h4>圆桌发言</h4><p>各位同仁，今天我们来讨论一下 NOW 这家公司。</p><p>首先，我的结论是：<strong>现在可能不是投资 NOW 的好时机</strong>。虽然这家公司目前在软件服务领域处于市场领导地位，并且股价表现强劲，但有几个关键点让我持谨慎态度。</p><h4>理由</h4><ul><li><strong>估值偏高</strong>：NOW 的市盈率（PE）已经达到 83 倍，市净率（PB）更是高达 11 倍。这样的估值水平意味着市场对其未来增长有着非常高的预期。任何不及预期的表现都可能导致股价大幅波动。</li></ul><ul><li><strong>盈利能力下降</strong>：尽管营收同比增长了 24%，但净利润却下降了 21.9%。这表明公司的成本控制或盈利能力可能存在问题，需要进一步关注。</li></ul><ul><li><strong>市场波动风险</strong>：软件服务行业竞争激烈，市场变化快。虽然 NOW 目前是市场领导者，但未来能否持续保持这种地位存在不确定性。</li></ul><h4>风险/行动建议</h4><ul><li><strong>关注竞争压力</strong>：软件服务行业的竞争格局变化迅速，NOW 需要不断创新以保持其市场地位。投资者应密切关注其市场份额和客户留存率的变化。</li></ul><ul><li><strong>长期视角</strong>：如果你是长期投资者，并且对 NOW 的商业模式有深入理解，那么可以考虑在估值回调时逐步买入。但目前的高估值水平需要谨慎对待。</li></ul><ul><li><strong>本分原则</strong>：投资要基于对公司的深刻理解，而不是单纯追逐市场热点。如果你不确定 NOW 的长期竞争力，那么现在可能不是介入的好时机。</li></ul><h4>总结</h4><p>投资就像种树，需要耐心和定力。NOW 目前的高估值和盈利能力下降让我对其短期表现持谨慎态度。但如果你对其长期发展有信心，并且愿意承受一定的波动，那么可以等待更好的时机再介入。</p><p>最后，提醒大家，投资决策要基于对公司的深刻理解，而不是盲目跟风。希望大家都能在投资路上走得稳、走得远。</p></div></div><div class="mreply"><div class="mh"><span class="who">巴菲特</span><span class="mscore">60</span></div><div class="md"><p>各位先生女士，今天我们来聊聊这家公司——NOW（ServiceNow）。</p><p>首先，我得说，这是一家在软件服务领域占据领导地位的公司。从市场表现来看，它的价格动能强劲，投资者信心也非常高，这让我想起了那些在市场上备受追捧的明星企业。</p><p>然而，作为一个价值投资者，我必须问：这家公司的护城河有多宽？它的自由现金流如何？目前来看，它的市盈率（PE）高达83倍，市净率（PB）也达到了11倍。这样的估值水平让我有些担忧，因为这意味着市场已经给了它非常高的预期。如果未来几年它的增长不能持续，市场可能会对它进行重新定价。</p><p>再者，虽然它的营收同比增长了24%，但净利润却下降了21.9%。这让我不禁要问：它的盈利能力是否稳定？它的资本配置是否合理？这些问题都需要进一步探讨。</p><h4>理由</h4><ul><li><strong>市场领导地位</strong>：NOW在软件服务领域确实有很强的市场地位，这为其提供了某种程度的护城河。</li><li><strong>强劲的价格动能和投资者信心</strong>：这表明市场对其未来充满期待。</li><li><strong>高估值</strong>：PE和PB都处于高位，这意味着市场已经给了它很高的预期。</li></ul><h4>风险/行动建议</h4><ul><li><strong>估值风险</strong>：高估值意味着如果未来增长不及预期，股价可能会大幅回调。作为投资者，我们需要问自己：这家公司是否值这个价？</li><li><strong>盈利能力波动</strong>：净利润的下降是一个警示信号，我们需要深入了解其背后的原因。是暂时的，还是长期趋势？</li><li><strong>竞争压力</strong>：软件服务领域的竞争非常激烈，我们需要关注NOW如何保持其竞争优势。</li></ul><h4>行动建议</h4><p>如果你是短期投资者，可能会被其强劲的价格动能所吸引。但作为一个长期投资者，我建议你先冷静下来，仔细评估以下几点：</p><ul><li><strong>护城河是否稳固</strong>：十年后，NOW是否还能保持其市场领导地位？</li><li><strong>自由现金流</strong>：公司的自由现金流是否充足，能否支持其长期增长？</li><li><strong>资本配置</strong>：管理层是否在合理地配置资本，以实现股东价值的最大化？</li></ul><p>如果这些问题都能得到满意的答案，那么NOW可能是一个值得考虑的投资标的。但如果不是，我建议你再等等。</p><p>最后，如果是芒格，他会补充说：“投资就像经营一家果园，你需要耐心和细致的照料，而不是急于摘取未成熟的果实。”希望这句话能给大家一些启发。</p></div></div><div class="mreply"><div class="mh"><span class="who">达利欧</span><span class="mscore">63</span></div><div class="md"><h4>发言：</h4><p>各位同仁，今天我们来讨论一下NOW这家公司。总的来说，我对NOW持中性偏谨慎的态度。尽管它在软件服务领域拥有市场领导地位，并且近期价格动能强劲，投资者信心也很高，但在我看来，这家公司面临的风险同样不容忽视。</p><h4>理由：</h4><p>首先，NOW在市场上的表现确实令人瞩目。价格动能强劲，过去一段时间上涨了2.91%，这表明市场对其未来增长充满信心。此外，作为软件服务领域的领导者，NOW在技术创新和市场份额方面都有显著优势，这为其长期发展奠定了基础。</p><p>然而，我们也需要看到NOW目前面临的一些挑战。其估值水平相当高，市盈率（PE）达到了83.94，市净率（PB）也高达11.09，这表明市场对其未来增长的预期非常高，但同时也意味着存在估值泡沫的风险。此外，尽管营收同比增长了24%，但净利润却下降了21.9%，这表明公司在盈利能力方面可能面临压力。</p><h4>风险/行动建议：</h4><ul><li><strong>估值风险</strong>：当前估值水平较高，市场可能对NOW的未来增长过于乐观。如果市场情绪发生变化，估值可能会面临回调压力。因此，投资者需要谨慎评估其增长潜力和市场预期之间的差距。</li></ul><ul><li><strong>盈利能力</strong>：净利润的下降是一个需要关注的信号。公司需要在保持收入增长的同时，提高其盈利能力。投资者应密切关注其未来的盈利报告，以判断其盈利能力是否有所改善。</li></ul><ul><li><strong>竞争压力</strong>：软件服务领域的竞争非常激烈，NOW需要持续创新以保持其市场领导地位。投资者应关注公司在技术创新和市场拓展方面的进展。</li></ul><h4>行动建议：</h4><p>基于以上分析，我建议投资者在考虑投资NOW时，应采取以下行动：</p><ul><li><strong>保持适度仓位</strong>：如果已经持有NOW，可以考虑保持现有仓位，但不要急于加仓。</li><li><strong>密切关注基本面</strong>：定期关注公司的盈利报告和市场动态，以便及时调整投资策略。</li><li><strong>多元化投资组合</strong>：为了降低单一股票的风险，建议将NOW作为投资组合的一部分，而不是全部。</li></ul><p>总之，NOW是一家具有潜力的公司，但也面临着不少挑战。投资者应在充分评估风险和收益的基础上，做出明智的投资决策。</p></div></div><div class="mreply"><div class="mh"><span class="who">彼得·林奇</span><span class="mscore">61</span></div><div class="md"><p>各位投资者朋友们，大家好。今天我们来聊聊NOW这家公司。</p><p>首先，我得说，这是一家在软件服务领域具有领导地位的公司。从我日常观察来看，它确实拥有强劲的价格动能，过去这段时间股价上涨了2.91%，这在当前市场环境下显得相当突出。投资者对它的信心也非常强劲，这从市场表现中就能看出来。</p><p>然而，我们不能只看表面。从估值角度来看，NOW的市盈率高达83.94倍，市净率也达到了11.09倍。这些数字都表明，市场对它的预期非常高，甚至可以说存在一定的泡沫风险。虽然公司营收同比增长了24%，但净利润却下降了21.9%，这值得我们警惕。</p><p>接下来，我得提醒大家几个风险点：</p><ul><li><strong>估值泡沫</strong>：83倍的市盈率意味着市场已经给了它很高的预期，未来需要持续的高速增长来支撑这个估值。</li><li><strong>市场波动</strong>：当前市场环境并不稳定，任何风吹草动都可能引发股价的剧烈波动。</li><li><strong>竞争压力</strong>：软件服务领域的竞争非常激烈，NOW需要不断创新才能保持其市场地位。</li></ul><p>那么，作为投资者，我们应该怎么做呢？</p><p>首先，我建议大家用&quot;10分制&quot;来评估这家公司：</p><ul><li>商业模式是否清晰？（8分）</li><li>未来5年能否持续增长？（7分）</li><li>现在买入，涨50%后你还会买吗？（5分）</li><li>管理层是否值得信赖？（6分）</li><li>你是否了解这家公司？（7分）</li></ul><p>总分38分，虽然不算低，但也不算特别高。</p><p>基于以上分析，我的建议是：</p><p>如果你已经持有NOW，可以考虑在股价继续上涨时逐步减仓，锁定部分利润。</p><p>如果你正在考虑买入，我建议你再等等，等到估值回到更合理的水平，或者公司展现出更强的盈利能力。</p><p>记住，投资不是赌博，我们要做的是找到那些既有增长潜力又有合理估值的公司。NOW虽然是一家好公司，但现在可能不是最好的买入时机。</p></div></div><div class="mreply"><div class="mh"><span class="who">芒格</span><span class="mscore">32</span></div><div class="md"><p>各位，今天我们来讨论一下 NOW 这家公司。</p><p>首先，我的结论是：尽管这家公司目前看起来势头强劲，但我持谨慎态度。</p><p>理由如下：</p><p>从多头逻辑来看，NOW 确实展现出了一些吸引力。它在软件服务领域占据市场领导地位，股价也表现出了强劲的动能，过去一段时间上涨了 2.91%。投资者信心似乎也很充足。</p><p>然而，当我们用逆向思维和多学科模型来审视时，情况就不那么乐观了。</p><p>首先，从估值角度来看，83 倍的市盈率（PE）和 11 倍的市净率（PB）都处于极高水平。这让我想起了互联网泡沫时期的一些公司。即使公司拥有强大的市场地位，如此高的估值也意味着投资者对其未来增长预期过高。</p><p>其次，虽然目前没有明显的负面因素，但我们要警惕市场波动风险。软件服务行业竞争激烈，NOW 需要持续创新才能保持领先地位。任何技术变革或竞争对手的突破都可能对其造成冲击。</p><p>此外，公司的净利润同比下降了 21.9%，这与营收 24% 的增长形成了鲜明对比。这表明公司在盈利能力方面可能面临压力。</p><p>基于以上分析，我建议：</p><ul><li>投资者应密切关注公司的盈利能力指标，如净利润率和净资产收益率（ROE），以评估其长期增长潜力。</li><li>在考虑投资时，应将估值水平作为重要考量因素，避免在市场情绪高涨时追高。</li><li>密切关注行业竞争格局的变化，以及公司能否持续推出创新产品和服务。</li></ul><p>最后，我想提醒大家，在投资中，我们不仅要考虑&quot;能赚多少&quot;，更要思考&quot;可能会在哪里失败&quot;。正如我常说的：&quot;如果我知道自己会死在哪里，我就永远不去那里。&quot; 在面对像 NOW 这样看似诱人的机会时，保持理性和谨慎尤为重要。</p></div></div></div>
+<div class="panel"><h2>分析师报告<span class="sub">2 篇</span></h2><details open><summary>市场面分析</summary><div class="body"><div class="md"><h4>NOW NOW 市场面分析</h4><ul><li>红黑榜多空分数：多头 90 / 空头 18，分差 72。</li><li>当前价格：134.32。</li><li>当前交易评级：Buy。</li><li>值得加仓区间：130.28 - 135.65。</li><li>目标价格：150.43。</li><li>市场愿意给溢价的原因：强劲的价格动能（+2.91%）；软件服务领域市场领导地位；投资者信心强劲。</li><li>当前主要压制因素：估值可能存在泡沫；市场波动风险；需关注竞争压力。</li></ul></div></div></details><details open><summary>基本面分析</summary><div class="body"><div class="md"><h4>NOW NOW 基本面分析</h4><ul><li>报告期：暂无。</li><li>PE(TTM)：83.95。</li><li>PB：11.10。</li><li>ROE：14.24%。</li><li>营收同比：24.00%。</li><li>归母净利润同比：-21.90%。</li><li>核心判断：盈利能力处于可接受区间；收入仍在增长；估值偏贵，需要更强兑现。</li></ul></div></div></details></div>
+<div class="panel"><h2>研究与计划</h2>
+<details><summary>基本面摘要</summary><div class="body"><div class="md"><h3>核心财务快照</h3><ul><li>报告期: 数据缺失</li><li>当前股价: 134.32 元</li><li>总市值: 1388.68 亿元</li><li>PE (TTM): 83.95</li><li>PB: 11.10</li><li>PS (TTM): 数据缺失</li><li>营业总收入(报告期): 数据缺失 亿元</li><li>营收同比增长率: 24.00%</li><li>归母净利润(报告期): 数据缺失 亿元</li><li>归母净利润同比增长率: -21.90%</li><li>ROE (TTM/估算): 14.24%</li><li>资产负债率: 数据缺失</li><li>经营性现金流 / 归母净利润: 数据缺失</li></ul><h4>缺失字段</h4><ul><li>PS(TTM), 营业总收入, 归母净利润, 资产负债率, 经营性现金流与归母净利润比值</li></ul></div></div></details>
+<details><summary>研究计划</summary><div class="body"><div class="md"><h4>NOW NOW 研究摘要</h4><ul><li>红黑榜结论: Buy</li><li>多头/空头: 90/18</li><li>正向信号: ROE 14.24%；营收同比 24.00%；PB 11.09</li><li>风险信号: 归母净利润同比 -21.90%；PE(TTM) 83.94</li><li>榜单看多理由: 强劲的价格动能（+2.91%）；软件服务领域市场领导地位；投资者信心强劲</li><li>榜单风险提示: 估值可能存在泡沫；市场波动风险；需关注竞争压力</li></ul></div></div></details>
+<details><summary>交易计划</summary><div class="body"><div class="md"><h4>NOW NOW 交易计划</h4><ul><li>评级: Buy</li><li>当前价格: 134.31</li><li>值得加仓区间: 130.28 - 135.65</li><li>目标价格: 150.43</li><li>止损位: 123.57</li><li>备注: 当前为缓存降级交易卡，后续若完整 TradingAgent 结果生成，将自动覆盖。</li></ul></div></div></details>
+<details><summary>交易决策</summary><div class="body"><div class="md"><p>Buy</p><p>NOW NOW 当前使用红黑榜缓存结果生成兜底交易卡。多头 90 / 空头 18，分差 72。当前尚未取得完整 TradingAgent 长文决策，但榜单分数、财务快照和大师观点已经足够生成基础交易建议。</p></div></div></details>
+</div>
+<div class="panel"><h2>多空逻辑</h2><div class="pts"><div class="h bull">看多逻辑</div><div class="md"><p>强劲的价格动能（+2.91%）</p><p>软件服务领域市场领导地位</p><p>投资者信心强劲</p></div></div><div class="pts"><div class="h bear">看空逻辑</div><div class="md"><p>估值可能存在泡沫</p><p>市场波动风险</p><p>需关注竞争压力</p></div></div></div>
+<div class="panel"><h2>伯克希尔研究</h2><p><strong>ServiceNow是一家具有强大护城河和长期增长潜力的SaaS公司，但估值偏高，需谨慎考虑买入价格。</strong></p><p>伯克希尔综合评分：<strong>4.0</strong></p><div class="md"><p>{&quot;verdict&quot;: &quot;观望&quot;, &quot;conservative_tip&quot;: &quot;建议等待PE TTM降至50倍以下再考虑买入。&quot;, &quot;moderate_tip&quot;: &quot;若PE TTM降至55倍左右，可小仓位买入。&quot;, &quot;aggressive_tip&quot;: &quot;PE TTM降至60倍以下可逐步建仓。&quot;, &quot;catalysts_plus&quot;: [&quot;营收增长超预期&quot;, &quot;AI/自动化技术取得突破&quot;, &quot;市场份额进一步提升&quot;], &quot;catalysts_minus&quot;: [&quot;PE TTM持续高于70倍&quot;, &quot;主要竞争对手推出颠覆性产品&quot;, &quot;全球经济衰退导致IT支出下降&quot;]}</p></div></div>
+<div class="panel news"><h2>最新资讯</h2><div class="md"><p>整体情绪偏中性，1条利多，1条利空，9条中性。</p></div><div class="nitem"><div class="t">The Fed right now is a follower, they are not a leader of the yield curve, says Peter Boockvar</div><div class="s">cnbc.com · 中性</div></div><div class="nitem"><div class="t">Now We’re All Starting to Talk Like AI Chatbots Too</div><div class="s">WSJ · 中性</div></div><div class="nitem"><div class="t">Supreme Court Allows Trump Administration’s Third-Country Deportations, for Now</div><div class="s">The New York Times · 中性</div></div><div class="nitem"><div class="t">TSA officers now not allowed to sit down while checking boarding passes and IDs</div><div class="s">CNN · 中性</div></div><div class="nitem"><div class="t">Prosecutors: Revenge motive in fatal shooting of Maui officer</div><div class="s">Hawaii News Now · 中性</div></div><div class="nitem"><div class="t">How much does it cost to go to college now? What the data shows</div><div class="s">WESH · 中性</div></div><div class="nitem"><div class="t">Cornell student body president describes what it&#x27;s like on campus right now</div><div class="s">NBC News · 中性</div></div><div class="nitem"><div class="t">Court halts execution of Christa Gail Pike in Tennessee for a murder she committed at age 18</div><div class="s">ms.now · 中性</div></div></div>
+<footer>稳健理财Agent · 红黑榜每日归档 · 红榜 #8 · 仅供研究，不构成投资建议</footer>
+</div></body>
+</html>

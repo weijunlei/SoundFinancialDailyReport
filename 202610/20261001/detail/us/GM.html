@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GM(GM) 黑榜 2026-10-01</title>
+<style>
+:root{--red:#d8342c;--redbg:#fdecea;--green:#1a9e54;--ink:#1c2230;--muted:#6b7385;
+--line:#e7e9ef;--card:#fff;--bg:#f4f6fa;--chip:#eef1f6;--dark:#23262d;--darkbg:#ececef}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",
+"Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);
+line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 16px 64px}
+header.top{background:linear-gradient(135deg,#1c2230,#2c3550);color:#fff;border-radius:14px;
+padding:22px 24px;margin-bottom:20px;box-shadow:0 6px 24px rgba(20,26,46,.12)}
+header.top h1{margin:0 0 6px;font-size:24px;letter-spacing:.5px}
+header.top .sub{opacity:.85;font-size:13px}
+header.top .sub b{color:#ffd166;font-weight:600}
+nav.mkt{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;
+background:rgba(244,246,250,.92);backdrop-filter:blur(6px);padding:10px 0;margin-bottom:14px}
+nav.mkt a{text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);
+padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600}
+nav.mkt a:hover{border-color:var(--red);color:var(--red)}
+.summary{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.summary .chip{background:var(--card);border:1px solid var(--line);border-radius:10px;
+padding:8px 12px;font-size:12px;color:var(--muted)}
+.summary .chip b{color:var(--ink);font-size:14px;margin-left:4px}
+section.board{margin:26px 0}
+.board-title{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:19px}
+.board-title .dot{width:10px;height:10px;border-radius:50%}
+.board-title.red .dot{background:var(--red)}
+.board-title.black .dot{background:var(--dark)}
+.board-title small{color:var(--muted);font-weight:400;font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+position:relative;transition:box-shadow .15s}
+.card:hover{box-shadow:0 4px 18px rgba(20,26,46,.08)}
+.card.red{border-top:3px solid var(--red)}
+.card.black{border-top:3px solid var(--dark)}
+.rank{position:absolute;top:10px;right:12px;font-size:26px;font-weight:800;color:#eceff5}
+.card.red .rank{color:#fbdcD9}
+.nm{font-size:16px;font-weight:700}
+.nm .tk{color:var(--muted);font-weight:500;font-size:12px;margin-left:6px}
+.tag{display:inline-block;background:var(--chip);color:var(--muted);border-radius:6px;
+padding:1px 7px;font-size:11px;margin:6px 6px 0 0}
+.price-row{display:flex;align-items:baseline;gap:10px;margin:10px 0 4px}
+.price{font-size:24px;font-weight:800}
+.pct{font-size:14px;font-weight:700;padding:2px 8px;border-radius:8px}
+.up{color:var(--red)}.down{color:var(--green)}.flat{color:var(--muted)}
+.pct.up{background:var(--redbg)}.pct.down{background:#e2f4e9}.pct.flat{background:var(--chip)}
+.psrc{font-size:11px;color:var(--muted);margin-left:auto}
+.scores{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.scores span{background:var(--chip);border-radius:6px;padding:2px 8px;font-size:11px;color:var(--muted)}
+.scores span b{color:var(--ink)}
+.pts{font-size:12.5px;margin:8px 0 0}
+.pts .h{font-weight:700;font-size:12px;margin:6px 0 2px}
+.pts .h.bull{color:var(--red)}.pts .h.bear{color:var(--green)}
+.pts ul{margin:2px 0 4px;padding-left:18px;color:#3a4152}
+.pts li{margin:1px 0}
+.masters{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:11px;color:var(--muted)}
+.masters b{color:var(--ink)}
+.summ{font-size:12.5px;color:#3a4152;background:#fafbfd;border:1px solid var(--line);
+border-radius:8px;padding:8px 10px;margin-top:8px}
+.empty{color:var(--muted);background:var(--card);border:1px dashed var(--line);
+border-radius:10px;padding:18px;text-align:center}
+footer{margin-top:34px;color:var(--muted);font-size:12px;text-align:center;line-height:1.8}
+a.lnk{color:var(--red);text-decoration:none}
+/* ── detail page ── */
+.backbar{margin-bottom:14px;font-size:13px}
+.backbar a{color:var(--muted);text-decoration:none;margin-right:14px}
+.backbar a:hover{color:var(--red)}
+.badge{display:inline-block;border-radius:6px;padding:2px 10px;font-size:12px;font-weight:700;margin-right:8px}
+.badge.red{background:var(--red);color:#fff}.badge.black{background:var(--dark);color:#fff}
+.trade{display:flex;flex-wrap:wrap;gap:10px;background:linear-gradient(135deg,#2c3550,#1c2230);
+color:#fff;border-radius:12px;padding:16px 18px;margin:16px 0}
+.trade .cell{min-width:120px}
+.trade .k{font-size:11px;opacity:.75}
+.trade .v{font-size:18px;font-weight:800;margin-top:2px}
+.trade .v.buy{color:#7ee2a8}.trade .v.sell{color:#ff9d97}.trade .v.hold{color:#ffd166}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0}
+.mgrid .m{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.mgrid .m .k{font-size:11px;color:var(--muted)}
+.mgrid .m .v{font-size:16px;font-weight:700;margin-top:2px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.panel>h2{margin:0 0 12px;font-size:17px}
+.panel>h2 .sub{font-size:12px;color:var(--muted);font-weight:400;margin-left:8px}
+.mreply{border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;
+padding:12px 14px;margin:10px 0;background:#fff}
+.mreply .mh{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.mreply .mh .who{font-weight:700;font-size:14px}
+.mreply .mh .mscore{margin-left:auto;background:var(--chip);border-radius:6px;padding:1px 8px;font-size:12px;font-weight:700}
+.md h2,.md h3,.md h4,.md h5{margin:12px 0 6px;font-size:15px}
+.md p{margin:6px 0;font-size:13.5px;color:#2c3345}
+.md ul{margin:6px 0;padding-left:20px;font-size:13.5px;color:#2c3345}
+.md li{margin:3px 0}
+.md strong{color:var(--ink)}
+details{border:1px solid var(--line);border-radius:10px;background:#fff;margin:10px 0;padding:0}
+details>summary{cursor:pointer;padding:12px 16px;font-weight:700;font-size:14px;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary:before{content:"▸ ";color:var(--red)}
+details[open]>summary:before{content:"▾ "}
+details>.body{padding:0 16px 14px;border-top:1px dashed var(--line)}
+.ychip{display:inline-block;background:var(--chip);border-radius:8px;padding:4px 10px;font-size:12px;margin:3px 6px 3px 0}
+.ychip b{font-size:13px}
+.news .nitem{border-top:1px dashed var(--line);padding:8px 0;font-size:13px}
+.news .nitem .t{font-weight:600}
+.news .nitem .s{color:var(--muted);font-size:12px}
+/* ── root landing page ── */
+.hero{padding:30px 26px}
+.hero-kicker{color:#ffd166;font-size:12px;font-weight:700;letter-spacing:2px;
+text-transform:uppercase;margin-bottom:8px}
+.hero h1{font-size:30px;margin:0 0 10px}
+.day-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.day-card{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);
+border-radius:12px;padding:14px 16px;transition:all .15s}
+.day-card:hover{border-color:var(--red);box-shadow:0 4px 16px rgba(216,52,44,.12);transform:translateY(-2px)}
+.day-card .d{font-weight:800;font-size:15px;color:var(--ink);display:flex;align-items:center;gap:8px}
+.day-card .m{margin-top:8px;display:flex;gap:6px}
+.day-card .m span{background:var(--chip);color:var(--muted);border-radius:6px;
+padding:2px 8px;font-size:11px}
+.latest-badge{background:var(--red);color:#fff;border-radius:6px;padding:1px 7px;
+font-size:10px;font-weight:700}
+</style>
+</head>
+<body><div class="wrap">
+<div class="backbar"><a href="../index.html">← 总览</a><a href="../us.html">← 美股榜单</a></div>
+<header class="top">
+  <h1><span class="badge black">黑榜 #6</span>GM<span class="tk" style="opacity:.7;font-size:15px;font-weight:400;margin-left:8px">GM</span></h1>
+  <div class="sub">美股 ·  · 榜单日期 <b>2026-10-01</b> · 盘价采集 <b>2026-10-01 05:00:07</b></div>
+  <div class="price-row" style="margin-top:12px">
+    <span class="price" style="color:#fff">$77.00</span>
+    <span class="pct down">-4.31%</span>
+    <span class="psrc" style="color:rgba(255,255,255,.6)">实时</span>
+  </div>
+  <div class="scores" style="margin-top:10px">
+    <span>综合 <b>48.1</b></span>
+    <span>多头 <b>45</b></span>
+    <span>空头 <b>55</b></span>
+    <span>大师均值 <b>40.4</b></span>
+    <span>信号 <b>negative</b></span>
+  </div>
+</header>
+<div class="trade"><div class="cell"><div class="k">交易评级</div><span class="v hold">Hold</span></div><div class="cell"><div class="k">加仓区间</div><span class="v">72.38 ~ 75.46</span></div><div class="cell"><div class="k">伯克希尔</div><span class="v">观望</span></div><div class="cell"><div class="k">伯克希尔分</div><span class="v">3.25</span></div></div>
+<div class="panel"><h2>财务指标</h2><div class="mgrid"><div class="m"><div class="k">市盈率 PE</div><div class="v">34.38</div></div><div class="m"><div class="k">市净率 PB</div><div class="v">1.09</div></div><div class="m"><div class="k">ROE</div><div class="v">3.2%</div></div><div class="m"><div class="k">总市值</div><div class="v">696</div></div><div class="m"><div class="k">营收同比</div><div class="v">190.0%</div></div><div class="m"><div class="k">净利同比</div><div class="v">-26.2%</div></div></div></div>
+<div class="panel"><h2>历史收益</h2><span class="ychip">近1月 <b class="down">-10.08%</b></span><span class="ychip">近6月 <b class="up">+2.61%</b></span><span class="ychip">近1年 <b class="up">+25.53%</b></span><span class="ychip">近5年 <b class="up">+44.93%</b></span></div>
+<div class="panel"><h2>大师圆桌<span class="sub">5 位</span></h2><div class="mreply"><div class="mh"><span class="who">段永平</span><span class="mscore">48</span></div><div class="md"><p>各位好，今天我们来谈谈通用汽车（GM）。首先，我给一个初步的看法：我对通用汽车持中性态度，既不强烈看好，也不强烈看空。这背后有几个原因。</p><h4>结论：中性态度</h4><h4>理由：</h4><ul><li><strong>电动车转型战略清晰</strong>：通用汽车在电动车领域的转型战略是比较清晰的，这表明公司管理层已经意识到行业未来的发展方向，并且在积极布局。这是一件&quot;对的事&quot;，因为电动车是未来趋势，不做这件事可能会在未来失去竞争力。</li></ul><ul><li><strong>传统汽车市场份额稳固</strong>：通用汽车在传统汽车市场的份额依然稳固，这为其转型提供了足够的现金流和缓冲时间。这是一个重要的优势，因为转型需要时间，而传统业务的稳定可以支撑这一过程。</li></ul><ul><li><strong>股价下跌和市场信心不足</strong>：然而，目前股价下跌1.6%，市场信心不足，这是一个需要警惕的信号。市场情绪虽然不能完全反映公司的内在价值，但短期内可能会影响股价表现。</li></ul><ul><li><strong>供应链问题仍是主要风险</strong>：供应链问题是一个长期存在的风险，尤其是在当前全球化的背景下，这个问题可能会持续影响公司的生产和交付能力。</li></ul><h4>风险/行动建议：</h4><ul><li><strong>估值偏高</strong>：从估值来看，通用汽车的市盈率（PE）为34.375，略显偏高。对于一个处于转型期的公司来说，市场可能已经给予了一定的预期溢价。如果未来业绩不及预期，股价可能会面临调整压力。</li></ul><ul><li><strong>关注供应链问题</strong>：投资者需要密切关注供应链问题的解决进展。如果这个问题得不到有效解决，可能会影响公司的盈利能力。</li></ul><ul><li><strong>长期持有需谨慎</strong>：如果你是一个长期投资者，并且认同通用汽车的转型战略，那么可以继续持有。但需要做好心理准备，短期内可能会面临股价波动。</li></ul><ul><li><strong>不做不懂的事</strong>：对于那些不熟悉汽车行业，尤其是电动车领域的投资者，我建议不要盲目跟风。投资应该基于对公司的深入理解，而不是短期的市场情绪。</li></ul><p>总的来说，通用汽车在做一件&quot;对的事&quot;，但转型过程中仍面临诸多挑战。投资者需要根据自身的风险承受能力和投资期限，谨慎做出决策。记住，投资是一件长期的事，不要被短期的市场波动所左右。</p></div></div><div class="mreply"><div class="mh"><span class="who">巴菲特</span><span class="mscore">47</span></div><div class="md"><p>各位朋友，关于通用汽车（GM），我想从价值投资的角度分享一些看法。</p><p>首先，我得承认，这家公司目前的状况与我通常偏好的投资标的并不完全吻合。虽然通用汽车在电动车转型方面展现出了清晰的战略方向，并且在传统汽车领域仍然保持着稳固的市场份额，但从价值投资的核心标准来看，它还存在一些让我犹豫的地方。</p><h4>理由：</h4><ul><li><strong>护城河问题</strong>：汽车行业竞争激烈，通用汽车虽然有传统优势，但电动车领域的竞争者越来越多，特斯拉、比亚迪等公司都在快速崛起。通用能否在电动车市场建立起足够深的护城河，还需要观察。</li><li><strong>自由现金流</strong>：从财报数据来看，通用汽车的自由现金流状况并不理想。营收同比增长190%，但净利润却下降了26.2%，这表明公司在盈利能力方面面临挑战。</li><li><strong>市场表现</strong>：股价下跌1.6%，市场信心不足，这可能反映了投资者对通用汽车未来发展的担忧。</li></ul><h4>风险/行动建议：</h4><ul><li><strong>供应链风险</strong>：汽车行业对供应链的依赖程度很高，而当前全球供应链问题仍然是一个主要风险点。如果这个问题持续存在，可能会对通用的生产和销售造成进一步的压力。</li><li><strong>估值问题</strong>：目前通用汽车的市盈率（PE）为34.375，市净率（PB）为1.089，从价值投资的角度来看，估值并不便宜。如果要投资，我需要看到更明确的盈利改善迹象和更强的市场竞争力。</li></ul><h4>结论：</h4><p>总的来说，通用汽车目前的情况与我的投资理念存在一定差距。如果要投资，我需要看到更扎实的证据，证明它在电动车领域的转型能够带来持续的增长和盈利能力。对于那些已经在关注这只股票的朋友，我建议你们密切关注公司的电动车战略执行情况，以及供应链问题的解决进展。</p><p>如果是芒格，他可能会补充说：&quot;投资就像经营果园，你得确保种下的每一棵树都有机会长成参天大树，而不是只关注眼前的果实。&quot; 在通用汽车的案例中，我们需要更清楚地看到那棵&quot;树&quot;的长势。</p></div></div><div class="mreply"><div class="mh"><span class="who">达利欧</span><span class="mscore">32</span></div><div class="md"><p>各位同仁，今天我们来讨论通用汽车（GM）的投资前景。</p><h4>结论：</h4><p>我对通用汽车持谨慎态度，目前不建议大举买入。</p><h4>理由：</h4><p>从多头角度来看，通用汽车的电动车转型战略是清晰的，这表明公司在未来趋势上有所布局。此外，其在传统汽车市场的份额依然稳固，这为转型提供了现金流支持。</p><p>然而，空头因素更值得关注。首先，市场表现疲软，股价下跌1.6%，这反映出投资者信心不足。其次，供应链问题仍然是主要风险，这可能影响其生产和交付能力。从估值来看，34倍的市盈率（PE）对于一家传统汽车制造商来说偏高，尤其是在其净利润同比下降26.2%的情况下。</p><h4>风险/行动建议：</h4><ul><li><strong>供应链风险</strong>：密切关注全球供应链状况，尤其是芯片和其他关键零部件的供应。如果供应链问题持续恶化，可能会进一步拖累其财务表现。</li><li><strong>电动车转型进展</strong>：跟踪其电动车产品的市场接受度和盈利能力。如果转型速度不及预期，可能会对其长期增长潜力造成影响。</li><li><strong>估值风险</strong>：考虑到当前较高的市盈率，建议在估值回调后再考虑买入。如果股价进一步下跌，可能会提供更好的入场机会。</li></ul><h4>原则化收口：</h4><p>在投资决策中，我们需要平衡多头和空头的因素，避免被单一因素左右。正如我常说的，“痛苦加上反思等于进步”，在当前的市场环境下，保持耐心和谨慎是至关重要的。建议投资者在做出决策前，详细记录自己的分析过程和理由，以便在未来复盘时能够更好地理解自己的决策逻辑。</p><p>希望这些分析对大家有所帮助。</p></div></div><div class="mreply"><div class="mh"><span class="who">彼得·林奇</span><span class="mscore">37</span></div><div class="md"><p>各位朋友，今天我们来聊聊通用汽车（GM）。我的观点是：<strong>目前通用汽车的估值与基本面并不匹配，短期内我会保持谨慎态度</strong>。</p><h4>理由分析：</h4><p>首先，通用汽车在电动车转型方面确实展现出了一定的战略清晰度，这是值得肯定的。同时，它在传统汽车市场的份额依然稳固，这为公司的基本面提供了一定的支撑。然而，当我们深入分析时，会发现一些令人担忧的迹象：</p><ul><li><strong>估值过高</strong>：当前通用汽车的市盈率（PE）高达34倍，这对于一家传统汽车制造商来说，显得有些过高。即使考虑到电动车转型的潜力，这样的估值也让人难以安心。</li></ul><ul><li><strong>市场表现疲软</strong>：股价近期下跌了1.6%，这表明市场对通用汽车的信心不足。投资者似乎对公司的未来增长前景持怀疑态度。</li></ul><ul><li><strong>供应链问题</strong>：供应链问题仍然是通用汽车面临的主要风险，这可能会影响公司的生产和盈利能力。</li></ul><h4>风险提示：</h4><ul><li><strong>电动车市场竞争加剧</strong>：随着越来越多的公司进入电动车市场，通用汽车面临的竞争压力将会越来越大。如果公司不能持续推出有竞争力的产品，可能会失去市场份额。</li></ul><ul><li><strong>宏观经济波动</strong>：汽车行业是典型的周期性行业，受宏观经济影响较大。如果全球经济出现衰退，汽车销量可能会大幅下降。</li></ul><ul><li><strong>供应链风险</strong>：全球供应链问题可能会持续影响公司的生产和交付能力，进而影响财务表现。</li></ul><h4>行动建议：</h4><p>对于通用汽车，我建议投资者保持谨慎。如果你已经持有该股票，可以考虑在适当的时机进行减仓，以规避潜在的风险。如果你正在考虑买入，我建议你再观察一段时间，等待更明确的增长信号和更合理的估值。</p><p>总之，通用汽车虽然有一些积极的转型迹象，但目前的市场表现和估值让我对其短期前景持谨慎态度。投资就像种树，我们需要耐心等待合适的时机，而不是急于在风雨中播种。</p></div></div><div class="mreply"><div class="mh"><span class="who">芒格</span><span class="mscore">38</span></div><div class="md"><p>各位，谈到通用汽车（GM），我们先从结论说起：我不看好现在买入通用汽车。</p><p>首先，通用汽车正在积极转型电动车，这一点值得肯定。电动车战略清晰，传统汽车市场份额也依然稳固，这些都是多头逻辑中值得称道的地方。但我们要反过来想——如何让这笔投资失败？</p><p>第一，市场对转型的耐心正在耗尽。股价已经下跌1.6%，这表明市场信心不足。电动车转型需要大量资金投入，而通用汽车的市盈率高达34倍，估值已经偏高。市场可能会对持续的资金消耗失去耐心。</p><p>第二，供应链问题仍未解决。这是汽车行业的普遍痛点，但在当前环境下，这个问题被放大了。原材料成本上升、芯片短缺等问题都在侵蚀利润空间。</p><p>从多元思维模型的角度分析，我们看到：</p><ul><li>从经济学角度，通用汽车的净资产收益率（ROE）仅为3.16%，远低于市场平均水平。这表明其资本利用效率低下。</li></ul><ul><li>从心理学角度，市场对电动车概念的追捧可能已经过度。投资者容易陷入&quot;这次不同&quot;的思维陷阱，而忽视了传统汽车业务面临的持续挑战。</li></ul><ul><li>从概率角度考虑，电动车市场竞争日益激烈，特斯拉和其他新兴车企都在抢占市场份额。通用汽车能否在竞争中胜出，仍是一个未知数。</li></ul><p>基于以上分析，我建议：</p><ul><li>如果你持有通用汽车股票，不要急于加仓。等待更明确的转型成果和利润率改善信号。</li></ul><ul><li>密切关注供应链问题的解决进展，以及电动车市场份额的变化。</li></ul><ul><li>考虑将部分仓位转向那些已经证明电动车盈利能力的企业。</li></ul><p>最后，我要提醒大家：投资中最危险的就是为情绪买单。我们要看清现实，而不是被市场情绪左右。通用汽车的转型之路充满挑战，现在下注为时尚早。</p></div></div></div>
+<div class="panel"><h2>分析师报告<span class="sub">2 篇</span></h2><details open><summary>市场面分析</summary><div class="body"><div class="md"><h4>GM GM 市场面分析</h4><ul><li>红黑榜多空分数：多头 45 / 空头 55，分差 -10。</li><li>当前价格：77.00。</li><li>当前交易评级：Hold。</li><li>值得加仓区间：72.38 - 75.46。</li><li>市场愿意给溢价的原因：电动车转型战略清晰；传统汽车市场份额稳固。</li><li>当前主要压制因素：股价下跌1.6%，市场信心不足；供应链问题仍是主要风险。</li></ul></div></div></details><details open><summary>基本面分析</summary><div class="body"><div class="md"><h4>GM GM 基本面分析</h4><ul><li>报告期：暂无。</li><li>PE(TTM)：34.38。</li><li>PB：1.09。</li><li>ROE：3.16%。</li><li>营收同比：190.00%。</li><li>归母净利润同比：-26.20%。</li><li>核心判断：收入仍在增长。</li></ul></div></div></details></div>
+<div class="panel"><h2>研究与计划</h2>
+<details><summary>基本面摘要</summary><div class="body"><div class="md"><h3>核心财务快照</h3><ul><li>报告期: 数据缺失</li><li>当前股价: 77.00 元</li><li>总市值: 696.43 亿元</li><li>PE (TTM): 34.38</li><li>PB: 1.09</li><li>PS (TTM): 数据缺失</li><li>营业总收入(报告期): 数据缺失 亿元</li><li>营收同比增长率: 190.00%</li><li>归母净利润(报告期): 数据缺失 亿元</li><li>归母净利润同比增长率: -26.20%</li><li>ROE (TTM/估算): 3.16%</li><li>资产负债率: 数据缺失</li><li>经营性现金流 / 归母净利润: 数据缺失</li></ul><h4>缺失字段</h4><ul><li>PS(TTM), 营业总收入, 归母净利润, 资产负债率, 经营性现金流与归母净利润比值</li></ul></div></div></details>
+<details><summary>研究计划</summary><div class="body"><div class="md"><h4>GM GM 研究摘要</h4><ul><li>红黑榜结论: Hold</li><li>多头/空头: 45/55</li><li>正向信号: 营收同比 190.00%；PE(TTM) 34.38；PB 1.09</li><li>风险信号: ROE 3.16%；归母净利润同比 -26.20%</li><li>榜单看多理由: 电动车转型战略清晰；传统汽车市场份额稳固</li><li>榜单风险提示: 股价下跌1.6%，市场信心不足；供应链问题仍是主要风险</li></ul></div></div></details>
+<details><summary>交易计划</summary><div class="body"><div class="md"><h4>GM GM 交易计划</h4><ul><li>评级: Hold</li><li>当前价格: 77.00</li><li>值得加仓区间: 72.38 - 75.46</li><li>目标价格: 80.85</li><li>止损位: 69.30</li><li>备注: 当前为缓存降级交易卡，后续若完整 TradingAgent 结果生成，将自动覆盖。</li></ul></div></div></details>
+<details><summary>交易决策</summary><div class="body"><div class="md"><p>Hold</p><p>GM GM 当前使用红黑榜缓存结果生成兜底交易卡。多头 45 / 空头 55，分差 -10。当前尚未取得完整 TradingAgent 长文决策，但榜单分数、财务快照和大师观点已经足够生成基础交易建议。</p></div></div></details>
+</div>
+<div class="panel"><h2>多空逻辑</h2><div class="pts"><div class="h bull">看多逻辑</div><div class="md"><p>电动车转型战略清晰</p><p>传统汽车市场份额稳固</p></div></div><div class="pts"><div class="h bear">看空逻辑</div><div class="md"><p>股价下跌1.6%，市场信心不足</p><p>供应链问题仍是主要风险</p></div></div></div>
+<div class="panel"><h2>伯克希尔研究</h2><p><strong>通用汽车是一家具有传统汽车行业护城河的企业，但面临电动化转型挑战，需谨慎评估其长期竞争力。</strong></p><p>伯克希尔综合评分：<strong>3.25</strong></p><div class="md"><p>{&quot;verdict&quot;: &quot;观望&quot;, &quot;conservative_tip&quot;: &quot;建议观望，等待电动车转型取得更多进展后再考虑入场。&quot;, &quot;moderate_tip&quot;: &quot;可考虑在股价回调至30美元以下时小仓位介入。&quot;, &quot;aggressive_tip&quot;: &quot;激进投资者可小仓位参与电动车转型主题，但需密切关注转型进展。&quot;, &quot;catalysts_plus&quot;: [&quot;电动车销量超预期增长&quot;, &quot;新车型发布获得市场认可&quot;, &quot;自动驾驶技术取得突破&quot;], &quot;catalysts_minus&quot;: [&quot;电动车销量不及预期&quot;, &quot;传统燃油车销量加速下滑&quot;, &quot;行业竞争加剧导致利润率下降&quot;]}</p></div></div>
+<div class="panel news"><h2>最新资讯</h2><div class="md"><p>利空新闻较多，共5条利空，2条利好，4条中性。</p></div><div class="nitem"><div class="t">GM’s pint-sized Bolt EV gets smaller production run</div><div class="s">Reuters · 利空</div></div><div class="nitem"><div class="t">GM is making fewer limited-run Chevy Bolts than planned. What we know</div><div class="s">Detroit Free Press · 利空</div></div><div class="nitem"><div class="t">GM Will Build Much Fewer Chevy Bolt Units Than Planned</div><div class="s">GM Authority · 利空</div></div><div class="nitem"><div class="t">GM recalls more than 29K Cadillac vehicles. See affected models</div><div class="s">USA Today · 利空</div></div><div class="nitem"><div class="t">Penguins GM eyes more certainty from Evgeni Malkin on future</div><div class="s">ESPN · 中性</div></div><div class="nitem"><div class="t">Mariners GM addresses 3 players who had down years in 2026</div><div class="s">Seattle Sports · 中性</div></div><div class="nitem"><div class="t">Ford, GM and Stellantis invest under $400 per vehicle in EVs — Chinese rivals spend up to $2,750, analyst warns</div><div class="s">Yahoo Finance · 利空</div></div><div class="nitem"><div class="t">What GM exec says will keep the carmaker a sales leader: Not price</div><div class="s">Detroit Free Press · 利好</div></div></div>
+<footer>稳健理财Agent · 红黑榜每日归档 · 黑榜 #6 · 仅供研究，不构成投资建议</footer>
+</div></body>
+</html>

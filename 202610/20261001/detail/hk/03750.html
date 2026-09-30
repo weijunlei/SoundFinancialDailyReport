@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>宁德时代(03750) 红榜 2026-10-01</title>
+<style>
+:root{--red:#d8342c;--redbg:#fdecea;--green:#1a9e54;--ink:#1c2230;--muted:#6b7385;
+--line:#e7e9ef;--card:#fff;--bg:#f4f6fa;--chip:#eef1f6;--dark:#23262d;--darkbg:#ececef}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",
+"Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);
+line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 16px 64px}
+header.top{background:linear-gradient(135deg,#1c2230,#2c3550);color:#fff;border-radius:14px;
+padding:22px 24px;margin-bottom:20px;box-shadow:0 6px 24px rgba(20,26,46,.12)}
+header.top h1{margin:0 0 6px;font-size:24px;letter-spacing:.5px}
+header.top .sub{opacity:.85;font-size:13px}
+header.top .sub b{color:#ffd166;font-weight:600}
+nav.mkt{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;
+background:rgba(244,246,250,.92);backdrop-filter:blur(6px);padding:10px 0;margin-bottom:14px}
+nav.mkt a{text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);
+padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600}
+nav.mkt a:hover{border-color:var(--red);color:var(--red)}
+.summary{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.summary .chip{background:var(--card);border:1px solid var(--line);border-radius:10px;
+padding:8px 12px;font-size:12px;color:var(--muted)}
+.summary .chip b{color:var(--ink);font-size:14px;margin-left:4px}
+section.board{margin:26px 0}
+.board-title{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:19px}
+.board-title .dot{width:10px;height:10px;border-radius:50%}
+.board-title.red .dot{background:var(--red)}
+.board-title.black .dot{background:var(--dark)}
+.board-title small{color:var(--muted);font-weight:400;font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+position:relative;transition:box-shadow .15s}
+.card:hover{box-shadow:0 4px 18px rgba(20,26,46,.08)}
+.card.red{border-top:3px solid var(--red)}
+.card.black{border-top:3px solid var(--dark)}
+.rank{position:absolute;top:10px;right:12px;font-size:26px;font-weight:800;color:#eceff5}
+.card.red .rank{color:#fbdcD9}
+.nm{font-size:16px;font-weight:700}
+.nm .tk{color:var(--muted);font-weight:500;font-size:12px;margin-left:6px}
+.tag{display:inline-block;background:var(--chip);color:var(--muted);border-radius:6px;
+padding:1px 7px;font-size:11px;margin:6px 6px 0 0}
+.price-row{display:flex;align-items:baseline;gap:10px;margin:10px 0 4px}
+.price{font-size:24px;font-weight:800}
+.pct{font-size:14px;font-weight:700;padding:2px 8px;border-radius:8px}
+.up{color:var(--red)}.down{color:var(--green)}.flat{color:var(--muted)}
+.pct.up{background:var(--redbg)}.pct.down{background:#e2f4e9}.pct.flat{background:var(--chip)}
+.psrc{font-size:11px;color:var(--muted);margin-left:auto}
+.scores{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.scores span{background:var(--chip);border-radius:6px;padding:2px 8px;font-size:11px;color:var(--muted)}
+.scores span b{color:var(--ink)}
+.pts{font-size:12.5px;margin:8px 0 0}
+.pts .h{font-weight:700;font-size:12px;margin:6px 0 2px}
+.pts .h.bull{color:var(--red)}.pts .h.bear{color:var(--green)}
+.pts ul{margin:2px 0 4px;padding-left:18px;color:#3a4152}
+.pts li{margin:1px 0}
+.masters{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:11px;color:var(--muted)}
+.masters b{color:var(--ink)}
+.summ{font-size:12.5px;color:#3a4152;background:#fafbfd;border:1px solid var(--line);
+border-radius:8px;padding:8px 10px;margin-top:8px}
+.empty{color:var(--muted);background:var(--card);border:1px dashed var(--line);
+border-radius:10px;padding:18px;text-align:center}
+footer{margin-top:34px;color:var(--muted);font-size:12px;text-align:center;line-height:1.8}
+a.lnk{color:var(--red);text-decoration:none}
+/* ── detail page ── */
+.backbar{margin-bottom:14px;font-size:13px}
+.backbar a{color:var(--muted);text-decoration:none;margin-right:14px}
+.backbar a:hover{color:var(--red)}
+.badge{display:inline-block;border-radius:6px;padding:2px 10px;font-size:12px;font-weight:700;margin-right:8px}
+.badge.red{background:var(--red);color:#fff}.badge.black{background:var(--dark);color:#fff}
+.trade{display:flex;flex-wrap:wrap;gap:10px;background:linear-gradient(135deg,#2c3550,#1c2230);
+color:#fff;border-radius:12px;padding:16px 18px;margin:16px 0}
+.trade .cell{min-width:120px}
+.trade .k{font-size:11px;opacity:.75}
+.trade .v{font-size:18px;font-weight:800;margin-top:2px}
+.trade .v.buy{color:#7ee2a8}.trade .v.sell{color:#ff9d97}.trade .v.hold{color:#ffd166}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0}
+.mgrid .m{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.mgrid .m .k{font-size:11px;color:var(--muted)}
+.mgrid .m .v{font-size:16px;font-weight:700;margin-top:2px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.panel>h2{margin:0 0 12px;font-size:17px}
+.panel>h2 .sub{font-size:12px;color:var(--muted);font-weight:400;margin-left:8px}
+.mreply{border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;
+padding:12px 14px;margin:10px 0;background:#fff}
+.mreply .mh{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.mreply .mh .who{font-weight:700;font-size:14px}
+.mreply .mh .mscore{margin-left:auto;background:var(--chip);border-radius:6px;padding:1px 8px;font-size:12px;font-weight:700}
+.md h2,.md h3,.md h4,.md h5{margin:12px 0 6px;font-size:15px}
+.md p{margin:6px 0;font-size:13.5px;color:#2c3345}
+.md ul{margin:6px 0;padding-left:20px;font-size:13.5px;color:#2c3345}
+.md li{margin:3px 0}
+.md strong{color:var(--ink)}
+details{border:1px solid var(--line);border-radius:10px;background:#fff;margin:10px 0;padding:0}
+details>summary{cursor:pointer;padding:12px 16px;font-weight:700;font-size:14px;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary:before{content:"▸ ";color:var(--red)}
+details[open]>summary:before{content:"▾ "}
+details>.body{padding:0 16px 14px;border-top:1px dashed var(--line)}
+.ychip{display:inline-block;background:var(--chip);border-radius:8px;padding:4px 10px;font-size:12px;margin:3px 6px 3px 0}
+.ychip b{font-size:13px}
+.news .nitem{border-top:1px dashed var(--line);padding:8px 0;font-size:13px}
+.news .nitem .t{font-weight:600}
+.news .nitem .s{color:var(--muted);font-size:12px}
+/* ── root landing page ── */
+.hero{padding:30px 26px}
+.hero-kicker{color:#ffd166;font-size:12px;font-weight:700;letter-spacing:2px;
+text-transform:uppercase;margin-bottom:8px}
+.hero h1{font-size:30px;margin:0 0 10px}
+.day-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.day-card{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);
+border-radius:12px;padding:14px 16px;transition:all .15s}
+.day-card:hover{border-color:var(--red);box-shadow:0 4px 16px rgba(216,52,44,.12);transform:translateY(-2px)}
+.day-card .d{font-weight:800;font-size:15px;color:var(--ink);display:flex;align-items:center;gap:8px}
+.day-card .m{margin-top:8px;display:flex;gap:6px}
+.day-card .m span{background:var(--chip);color:var(--muted);border-radius:6px;
+padding:2px 8px;font-size:11px}
+.latest-badge{background:var(--red);color:#fff;border-radius:6px;padding:1px 7px;
+font-size:10px;font-weight:700}
+</style>
+</head>
+<body><div class="wrap">
+<div class="backbar"><a href="../index.html">← 总览</a><a href="../hk.html">← 港股榜单</a></div>
+<header class="top">
+  <h1><span class="badge red">红榜 #7</span>宁德时代<span class="tk" style="opacity:.7;font-size:15px;font-weight:400;margin-left:8px">03750</span></h1>
+  <div class="sub">港股 ·  · 榜单日期 <b>2026-10-01</b> · 盘价采集 <b>2026-10-01 05:00:07</b></div>
+  <div class="price-row" style="margin-top:12px">
+    <span class="price" style="color:#fff">HK$484.20</span>
+    <span class="pct up">+0.41%</span>
+    <span class="psrc" style="color:rgba(255,255,255,.6)">实时</span>
+  </div>
+  <div class="scores" style="margin-top:10px">
+    <span>综合 <b>83.4</b></span>
+    <span>多头 <b>88</b></span>
+    <span>空头 <b>40</b></span>
+    <span>大师均值 <b>54.6</b></span>
+    <span>信号 <b>positive</b></span>
+  </div>
+</header>
+<div class="trade"><div class="cell"><div class="k">交易评级</div><span class="v buy">Buy</span></div><div class="cell"><div class="k">加仓区间</div><span class="v">469.67 ~ 489.04</span></div><div class="cell"><div class="k">目标价</div><span class="v">542.30</span></div><div class="cell"><div class="k">伯克希尔</div><span class="v">买入</span></div><div class="cell"><div class="k">伯克希尔分</div><span class="v">3.75</span></div></div>
+<div class="panel"><h2>财务指标</h2><div class="mgrid"><div class="m"><div class="k">市盈率 PE</div><div class="v">23.26</div></div><div class="m"><div class="k">市净率 PB</div><div class="v">5.13</div></div><div class="m"><div class="k">ROE</div><div class="v">12.1%</div></div><div class="m"><div class="k">总市值</div><div class="v">2.2万</div></div><div class="m"><div class="k">营收同比</div><div class="v">11.5%</div></div><div class="m"><div class="k">净利同比</div><div class="v">7.6%</div></div></div></div>
+<div class="panel"><h2>历史收益</h2><span class="ychip">近1月 <b class="down">-14.22%</b></span><span class="ychip">近6月 <b class="down">-22.35%</b></span><span class="ychip">近1年 <b class="down">-15.98%</b></span></div>
+<div class="panel"><h2>大师圆桌<span class="sub">5 位</span></h2><div class="mreply"><div class="mh"><span class="who">段永平</span><span class="mscore">39</span></div><div class="md"><p>宁德时代这家公司，我理解大家关注的是它在新能源行业的龙头地位和未来电动车市场的增长潜力。从数据上看，它确实表现不错，市值超过2万亿，营收和利润也保持增长。</p><p>不过，我的投资理念一直是&quot;做对的事，把事做对&quot;，并且只投那些我真正看得懂的好生意。从这个角度来看，宁德时代目前的情况让我有些犹豫。</p><p>首先，虽然它在新能源电池领域确实处于领先地位，但这个行业竞争非常激烈，技术更新换代快，未来能否持续保持领先优势还需要观察。其次，目前的估值水平在我看来偏高，市盈率超过23倍，市净率也达到5倍多，这让我对未来的回报空间有所担忧。</p><p>更重要的是，原材料价格的波动对公司的利润率影响很大。虽然电动车行业整体增长趋势明确，但作为上游供应商，宁德时代能否将成本压力有效转嫁给下游客户，这需要打一个问号。</p><p>基于以上分析，如果是我，我会采取更加谨慎的态度：</p><ul><li>首先要问自己是否真的理解这家公司的核心竞争力和长期竞争优势。如果觉得看不懂，就不要轻易投资。</li></ul><ul><li>对于已经持有的投资者，我建议重新审视当初买入的逻辑是否仍然成立。如果只是因为市场热度而买入，现在可能需要重新评估。</li></ul><ul><li>关注公司如何应对原材料价格波动，以及在技术创新方面的持续投入，这些都是影响长期投资价值的关键因素。</li></ul><p>最后，我想提醒大家，投资要保持平常心，不要被短期市场情绪左右。宁德时代虽然是一家优秀的公司，但投资决策还是要基于对生意的深入理解，而不是简单的趋势跟随。</p></div></div><div class="mreply"><div class="mh"><span class="who">巴菲特</span><span class="mscore">68</span></div><div class="md"><h4>圆桌发言</h4><p>各位朋友，今天我们来聊聊宁德时代这家公司。我先说结论：宁德时代是一家在新能源领域占据重要地位的公司，但目前的价格让我持谨慎态度。</p><p>首先，宁德时代在新能源电池行业确实有很强的竞争优势。它是全球领先的动力电池供应商，受益于电动车行业的快速增长。这就像在一条正在快速扩张的赛道上占据了一个有利位置。从护城河的角度来看，它的技术积累、规模效应和客户关系都为其提供了相当的竞争优势。</p><p>然而，当我们谈到价格时，情况就变得复杂了。目前宁德时代的估值偏高，市盈率（PE）超过23倍，市净率（PB）更是达到了5倍多。这样的估值水平意味着市场已经对其未来增长给予了很高的预期。我们需要问自己：这样的预期是否合理？未来几年，宁德时代能否继续保持如此高速的增长？</p><p>此外，原材料价格的波动也是一个不容忽视的风险。电池生产依赖于锂、钴等原材料，这些材料的价格波动可能会对公司的利润率产生重大影响。作为价值投资者，我总是关注自由现金流，而原材料价格的波动可能会对公司的现金流产生负面影响。</p><h4>行动建议</h4><ul><li><strong>评估增长预期</strong>：如果你相信电动车行业的增长能够持续，并且宁德时代能够保持其市场份额，那么当前的估值可能还有一定的合理性。但要记住，市场总是充满不确定性。</li></ul><ul><li><strong>关注自由现金流</strong>：密切关注公司的自由现金流状况。如果原材料价格波动导致现金流紧张，这可能会影响公司的长期发展。</li></ul><ul><li><strong>考虑安全边际</strong>：在当前估值水平下，我建议投资者保持谨慎。如果价格能够回调到一个更具吸引力的水平，可能会提供更好的安全边际。</li></ul><h4>风险提示</h4><p>最后，我要提醒大家，任何投资都伴随着风险。宁德时代虽然是一家优秀的企业，但高估值和原材料价格波动都是潜在的风险因素。作为投资者，我们需要时刻保持警惕，确保我们的投资决策是基于充分的研究和理性的判断。</p><p>如果是芒格，他会补充说：投资就像经营一家果园，你不能只看到果树开花，还要关注果实成熟后的价格和市场需求。宁德时代这棵“果树”目前看起来很诱人，但我们还需要耐心等待，看看果实成熟后的市场反应。</p></div></div><div class="mreply"><div class="mh"><span class="who">达利欧</span><span class="mscore">42</span></div><div class="md"><h4>圆桌发言：关于宁德时代的看法</h4><h5>结论：</h5><p>宁德时代是一家处于增长赛道中的公司，但当前估值较高，存在回调风险。作为投资者，我们需要权衡其长期增长潜力与短期风险。</p><h5>理由：</h5><ul><li><strong>行业龙头地位与增长潜力</strong>：</li></ul><p>   宁德时代是全球领先的新能源电池供应商，尤其在电动车电池领域占据重要地位。随着全球电动车行业的持续增长，宁德时代有望继续受益于这一趋势。这是我认为其多头逻辑的核心支撑点。</p><ul><li><strong>估值偏高与风险因素</strong>：</li></ul><p>   然而，当前宁德时代的估值水平较高，市盈率（PE）超过23倍，市净率（PB）也达到了5.1倍。这样的估值水平意味着市场对其未来增长预期已经包含在当前股价中。此外，原材料价格的波动可能对其利润率产生负面影响，这是我们需要警惕的风险点。</p><ul><li><strong>宏观与周期视角</strong>：</li></ul><p>   从宏观角度来看，新能源行业正处于长期增长周期中，但短期内的市场波动和估值回调风险不容忽视。我们需要关注全球货币政策的变化以及原材料价格的走势，这些因素都可能对宁德时代的股价产生重要影响。</p><h5>风险与行动建议：</h5><ul><li><strong>风险</strong>：</li><li>估值回调风险：当前高估值可能面临市场情绪波动带来的回调压力。</li><li>原材料价格波动：原材料价格的变化可能影响其利润率。</li><li>市场竞争加剧：其他电池供应商的崛起可能对其市场份额构成挑战。</li></ul><ul><li><strong>行动建议</strong>：</li><li><strong>长期投资者</strong>：如果你是长期投资者，可以考虑在估值回调时逐步建仓，但需保持耐心，等待更好的买入时机。</li><li><strong>短期投资者</strong>：建议密切关注市场动态，设定止损点以控制风险。当前市场环境下，短期波动可能较大，不宜盲目追高。</li><li><strong>风险控制</strong>：无论你是哪种类型的投资者，都应将宁德时代纳入一个多元化的投资组合中，以分散单一股票的风险。</li></ul><h5>原则化收口：</h5><p>在投资决策中，我们需要遵循&quot;Pain + Reflection = Progress&quot;的原则。面对高估值和高增长潜力的权衡，我们需要通过反思和观察市场变化来调整我们的投资策略。同时，保持极度开放和透明的态度，承认不确定性，并在决策过程中记录下我们的思考过程，以便未来复盘和改进。</p><p>总之，宁德时代是一家值得关注的优质公司，但在当前市场环境下，我们需要谨慎评估其风险与收益，并在投资组合中保持适当的平衡。</p></div></div><div class="mreply"><div class="mh"><span class="who">彼得·林奇</span><span class="mscore">54</span></div><div class="md"><p>宁德时代是一家值得关注的优秀公司，尤其是在新能源这个快速增长的行业里，它作为行业龙头，拥有强大的市场地位和增长潜力。这是我对这只股票的基本看法。</p><p>首先，宁德时代在电动车电池领域占据了领先地位，这是它最大的优势。随着全球对清洁能源的需求不断增长，电动车行业预计将持续扩张，这为宁德时代提供了巨大的市场空间。就像我常说的，投资那些在日常生活中能观察到的趋势，宁德时代正是这样一个例子——我们都能看到街上越来越多的电动车。</p><p>然而，尽管前景光明，宁德时代当前的估值并不算便宜。它的市盈率（PE）超过23倍，市净率（PB）也达到了5倍多。对于一家已经处于成熟阶段的公司来说，这样的估值水平意味着市场已经给予它很高的预期。如果未来增长不及预期，股价可能会面临较大的回调压力。此外，原材料价格的波动也会影响其盈利能力，这是不容忽视的风险。</p><p>从彼得·林奇的角度来看，我会给宁德时代一个中性的评价。虽然它在行业中的地位令人印象深刻，但估值偏高是一个需要谨慎对待的因素。我的建议是，如果你已经持有这只股票，可以考虑在股价进一步上涨时逐步减仓，以锁定部分利润。如果你还没有买入，不妨等待一个更好的入场时机，比如在市场出现回调时，或者当估值水平更为合理时。</p><p>总之，宁德时代是一家优秀的公司，但当前的估值水平需要我们保持警惕。投资时不仅要看到公司的优势，也要充分考虑潜在的风险和估值合理性。希望这些建议对你们有所帮助。</p></div></div><div class="mreply"><div class="mh"><span class="who">芒格</span><span class="mscore">70</span></div><div class="md"><h4>发言：</h4><p>各位同仁，关于宁德时代，我的立场是部分看好，但需要非常谨慎地审视。</p><p>首先，我认同宁德时代在新能源行业的龙头地位，以及它受益于电动车行业增长的大趋势。这两点构成了它主要的优势。新能源行业的长期前景是毋庸置疑的，而宁德时代作为电池领域的领军企业，拥有强大的技术积累和市场地位。</p><p>然而，我必须指出，宁德时代的估值偏高。当前市盈率超过23倍，市净率接近5倍，这些数字让我感到不安。估值过高意味着投资者对未来的预期已经打得很满，任何不及预期的表现都可能引发股价的剧烈波动。此外，原材料价格的波动也是一个不可忽视的风险因素。电池行业对原材料的依赖程度很高，价格的波动会直接影响公司的利润率。</p><p>从逆向思维的角度出发，我们需要思考：什么情况下宁德时代会失败？第一，如果电动车行业的增长不及预期，或者出现新的技术替代品，宁德时代的优势地位可能会受到挑战。第二，原材料价格的持续上涨或供应短缺可能会侵蚀公司的利润。第三，市场竞争加剧，其他电池厂商的崛起也可能削弱宁德时代的市场份额。</p><p>从激励机制来看，宁德时代的管理层有很强的动力去扩大市场份额和技术领先优势，但这种动力也可能导致过度扩张和资源错配。</p><p>综上所述，我的建议是：如果你已经持有宁德时代，可以考虑在股价高位时适当减仓，以降低风险。如果你正在考虑买入，我建议你等待更合适的时机，或者分批建仓，以应对可能的市场波动。</p><p>最后，我要提醒大家，投资中最重要的不是追求最高的回报，而是避免愚蠢的错误。宁德时代虽然是一家优秀的公司，但在当前的高估值下，我们需要格外谨慎，确保我们的投资决策是理性和稳健的。</p><h4>风险提示：</h4><ul><li>电动车行业增长不及预期</li><li>原材料价格波动</li><li>市场竞争加剧</li><li>估值过高带来的风险</li></ul></div></div></div>
+<div class="panel"><h2>分析师报告<span class="sub">2 篇</span></h2><details open><summary>市场面分析</summary><div class="body"><div class="md"><h4>03750 宁德时代 市场面分析</h4><ul><li>红黑榜多空分数：多头 88 / 空头 40，分差 48。</li><li>当前价格：484.20。</li><li>当前交易评级：Buy。</li><li>值得加仓区间：469.67 - 489.04。</li><li>目标价格：542.30。</li><li>市场愿意给溢价的原因：新能源行业龙头地位；受益于电动车行业增长。</li><li>当前主要压制因素：估值偏高；原材料价格波动影响。</li></ul></div></div></details><details open><summary>基本面分析</summary><div class="body"><div class="md"><h4>03750 宁德时代 基本面分析</h4><ul><li>报告期：暂无。</li><li>PE(TTM)：23.26。</li><li>PB：5.13。</li><li>PS(TTM)：3.79。</li><li>ROE：12.08%。</li><li>营收同比：11.45%。</li><li>归母净利润同比：7.63%。</li><li>核心判断：盈利能力处于可接受区间；收入仍在增长；利润端保持扩张。</li></ul></div></div></details></div>
+<div class="panel"><h2>研究与计划</h2>
+<details><summary>基本面摘要</summary><div class="body"><div class="md"><h3>核心财务快照</h3><ul><li>报告期: 数据缺失</li><li>当前股价: 484.20 元</li><li>总市值: 22405.14 亿元</li><li>PE (TTM): 23.26</li><li>PB: 5.13</li><li>PS (TTM): 3.79</li><li>营业总收入(报告期): 数据缺失 亿元</li><li>营收同比增长率: 11.45%</li><li>归母净利润(报告期): 数据缺失 亿元</li><li>归母净利润同比增长率: 7.63%</li><li>ROE (TTM/估算): 12.08%</li><li>资产负债率: 数据缺失</li><li>经营性现金流 / 归母净利润: 数据缺失</li></ul><h4>缺失字段</h4><ul><li>营业总收入, 归母净利润, 资产负债率, 经营性现金流与归母净利润比值</li></ul></div></div></details>
+<details><summary>研究计划</summary><div class="body"><div class="md"><h4>03750 宁德时代 研究摘要</h4><ul><li>红黑榜结论: Buy</li><li>多头/空头: 88/40</li><li>正向信号: ROE 12.08%；营收同比 11.45%；归母净利润同比 7.63%；PE(TTM) 23.26</li><li>榜单看多理由: 新能源行业龙头地位；受益于电动车行业增长</li><li>榜单风险提示: 估值偏高；原材料价格波动影响</li></ul></div></div></details>
+<details><summary>交易计划</summary><div class="body"><div class="md"><h4>03750 宁德时代 交易计划</h4><ul><li>评级: Buy</li><li>当前价格: 484.20</li><li>值得加仓区间: 469.67 - 489.04</li><li>目标价格: 542.30</li><li>止损位: 445.46</li><li>备注: 当前为缓存降级交易卡，后续若完整 TradingAgent 结果生成，将自动覆盖。</li></ul></div></div></details>
+<details><summary>交易决策</summary><div class="body"><div class="md"><p>Buy</p><p>03750 宁德时代 当前使用红黑榜缓存结果生成兜底交易卡。多头 88 / 空头 40，分差 48。当前尚未取得完整 TradingAgent 长文决策，但榜单分数、财务快照和大师观点已经足够生成基础交易建议。</p></div></div></details>
+</div>
+<div class="panel"><h2>多空逻辑</h2><div class="pts"><div class="h bull">看多逻辑</div><div class="md"><p>新能源行业龙头地位</p><p>受益于电动车行业增长</p></div></div><div class="pts"><div class="h bear">看空逻辑</div><div class="md"><p>估值偏高</p><p>原材料价格波动影响</p></div></div></div>
+<div class="panel"><h2>伯克希尔研究</h2><p><strong>宁德时代作为全球动力电池龙头，具有强大的技术壁垒和规模效应，但需警惕行业竞争加剧及技术变革风险。</strong></p><p>伯克希尔综合评分：<strong>3.75</strong></p><div class="md"><p>{&quot;verdict&quot;: &quot;买入&quot;, &quot;conservative_tip&quot;: &quot;建议在PE TTM低于25倍时买入，长期持有。&quot;, &quot;moderate_tip&quot;: &quot;建议在PE TTM低于30倍时买入，中期持有。&quot;, &quot;aggressive_tip&quot;: &quot;建议在当前价格附近买入，密切关注技术变革和竞争格局变化。&quot;, &quot;catalysts_plus&quot;: [&quot;新能源汽车销量超预期增长&quot;, &quot;固态电池技术取得突破&quot;, &quot;公司市场份额进一步提升&quot;], &quot;catalysts_minus&quot;: [&quot;政策变化导致行业需求下降&quot;, &quot;技术变革颠覆现有技术路线&quot;, &quot;竞争格局恶化，市场份额下降&quot;]}</p></div></div>
+<div class="panel news"><h2>最新资讯</h2><div class="md"><p>整体情绪偏利好，共8条利多，2条利空，1条中性。</p></div><div class="nitem"><div class="t">Automakers&#x27; Supply Chain Balancing Act: Signing with &quot;CATL&quot; While Cultivating &quot;Backups&quot;</div><div class="s">Gasgoo · 中性</div></div><div class="nitem"><div class="t">CATL kicks off trial production of battery cells in Hungary</div><div class="s">PR Newswire Canada · 利好</div></div><div class="nitem"><div class="t">CATL builds battery city in Ningde as young workers reshape economy - CHOSUNBIZ</div><div class="s">Chosunbiz · 利好</div></div><div class="nitem"><div class="t">CATL Establishes New Wholly-Owned New Energy Enterprise, Expands Energy Storage Business</div><div class="s">Gasgoo · 利好</div></div><div class="nitem"><div class="t">Toyota Indonesia signs CATL battery deal as EVs gather pace</div><div class="s">Yahoo Finance · 利好</div></div><div class="nitem"><div class="t">Zhongheng Electric (002364): CATL Makes a Strategic Investment, Enabling Mutual Benefits in the AIDC Energy Sector</div><div class="s">富途牛牛 · 利好</div></div><div class="nitem"><div class="t">CATL deepens Hyundai-Kia battery ties, challenges Korea on high-end NCM - CHOSUNBIZ</div><div class="s">Chosunbiz · 利好</div></div><div class="nitem"><div class="t">30 Billion Yuan! CATL Makes Another Major Move</div><div class="s">Gasgoo · 利好</div></div></div>
+<footer>稳健理财Agent · 红黑榜每日归档 · 红榜 #7 · 仅供研究，不构成投资建议</footer>
+</div></body>
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>京东集团-SW(09618) 红榜 2026-10-01</title>
+<style>
+:root{--red:#d8342c;--redbg:#fdecea;--green:#1a9e54;--ink:#1c2230;--muted:#6b7385;
+--line:#e7e9ef;--card:#fff;--bg:#f4f6fa;--chip:#eef1f6;--dark:#23262d;--darkbg:#ececef}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",
+"Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);
+line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 16px 64px}
+header.top{background:linear-gradient(135deg,#1c2230,#2c3550);color:#fff;border-radius:14px;
+padding:22px 24px;margin-bottom:20px;box-shadow:0 6px 24px rgba(20,26,46,.12)}
+header.top h1{margin:0 0 6px;font-size:24px;letter-spacing:.5px}
+header.top .sub{opacity:.85;font-size:13px}
+header.top .sub b{color:#ffd166;font-weight:600}
+nav.mkt{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;
+background:rgba(244,246,250,.92);backdrop-filter:blur(6px);padding:10px 0;margin-bottom:14px}
+nav.mkt a{text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);
+padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600}
+nav.mkt a:hover{border-color:var(--red);color:var(--red)}
+.summary{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.summary .chip{background:var(--card);border:1px solid var(--line);border-radius:10px;
+padding:8px 12px;font-size:12px;color:var(--muted)}
+.summary .chip b{color:var(--ink);font-size:14px;margin-left:4px}
+section.board{margin:26px 0}
+.board-title{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:19px}
+.board-title .dot{width:10px;height:10px;border-radius:50%}
+.board-title.red .dot{background:var(--red)}
+.board-title.black .dot{background:var(--dark)}
+.board-title small{color:var(--muted);font-weight:400;font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+position:relative;transition:box-shadow .15s}
+.card:hover{box-shadow:0 4px 18px rgba(20,26,46,.08)}
+.card.red{border-top:3px solid var(--red)}
+.card.black{border-top:3px solid var(--dark)}
+.rank{position:absolute;top:10px;right:12px;font-size:26px;font-weight:800;color:#eceff5}
+.card.red .rank{color:#fbdcD9}
+.nm{font-size:16px;font-weight:700}
+.nm .tk{color:var(--muted);font-weight:500;font-size:12px;margin-left:6px}
+.tag{display:inline-block;background:var(--chip);color:var(--muted);border-radius:6px;
+padding:1px 7px;font-size:11px;margin:6px 6px 0 0}
+.price-row{display:flex;align-items:baseline;gap:10px;margin:10px 0 4px}
+.price{font-size:24px;font-weight:800}
+.pct{font-size:14px;font-weight:700;padding:2px 8px;border-radius:8px}
+.up{color:var(--red)}.down{color:var(--green)}.flat{color:var(--muted)}
+.pct.up{background:var(--redbg)}.pct.down{background:#e2f4e9}.pct.flat{background:var(--chip)}
+.psrc{font-size:11px;color:var(--muted);margin-left:auto}
+.scores{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.scores span{background:var(--chip);border-radius:6px;padding:2px 8px;font-size:11px;color:var(--muted)}
+.scores span b{color:var(--ink)}
+.pts{font-size:12.5px;margin:8px 0 0}
+.pts .h{font-weight:700;font-size:12px;margin:6px 0 2px}
+.pts .h.bull{color:var(--red)}.pts .h.bear{color:var(--green)}
+.pts ul{margin:2px 0 4px;padding-left:18px;color:#3a4152}
+.pts li{margin:1px 0}
+.masters{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:11px;color:var(--muted)}
+.masters b{color:var(--ink)}
+.summ{font-size:12.5px;color:#3a4152;background:#fafbfd;border:1px solid var(--line);
+border-radius:8px;padding:8px 10px;margin-top:8px}
+.empty{color:var(--muted);background:var(--card);border:1px dashed var(--line);
+border-radius:10px;padding:18px;text-align:center}
+footer{margin-top:34px;color:var(--muted);font-size:12px;text-align:center;line-height:1.8}
+a.lnk{color:var(--red);text-decoration:none}
+/* ── detail page ── */
+.backbar{margin-bottom:14px;font-size:13px}
+.backbar a{color:var(--muted);text-decoration:none;margin-right:14px}
+.backbar a:hover{color:var(--red)}
+.badge{display:inline-block;border-radius:6px;padding:2px 10px;font-size:12px;font-weight:700;margin-right:8px}
+.badge.red{background:var(--red);color:#fff}.badge.black{background:var(--dark);color:#fff}
+.trade{display:flex;flex-wrap:wrap;gap:10px;background:linear-gradient(135deg,#2c3550,#1c2230);
+color:#fff;border-radius:12px;padding:16px 18px;margin:16px 0}
+.trade .cell{min-width:120px}
+.trade .k{font-size:11px;opacity:.75}
+.trade .v{font-size:18px;font-weight:800;margin-top:2px}
+.trade .v.buy{color:#7ee2a8}.trade .v.sell{color:#ff9d97}.trade .v.hold{color:#ffd166}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0}
+.mgrid .m{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.mgrid .m .k{font-size:11px;color:var(--muted)}
+.mgrid .m .v{font-size:16px;font-weight:700;margin-top:2px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.panel>h2{margin:0 0 12px;font-size:17px}
+.panel>h2 .sub{font-size:12px;color:var(--muted);font-weight:400;margin-left:8px}
+.mreply{border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;
+padding:12px 14px;margin:10px 0;background:#fff}
+.mreply .mh{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.mreply .mh .who{font-weight:700;font-size:14px}
+.mreply .mh .mscore{margin-left:auto;background:var(--chip);border-radius:6px;padding:1px 8px;font-size:12px;font-weight:700}
+.md h2,.md h3,.md h4,.md h5{margin:12px 0 6px;font-size:15px}
+.md p{margin:6px 0;font-size:13.5px;color:#2c3345}
+.md ul{margin:6px 0;padding-left:20px;font-size:13.5px;color:#2c3345}
+.md li{margin:3px 0}
+.md strong{color:var(--ink)}
+details{border:1px solid var(--line);border-radius:10px;background:#fff;margin:10px 0;padding:0}
+details>summary{cursor:pointer;padding:12px 16px;font-weight:700;font-size:14px;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary:before{content:"▸ ";color:var(--red)}
+details[open]>summary:before{content:"▾ "}
+details>.body{padding:0 16px 14px;border-top:1px dashed var(--line)}
+.ychip{display:inline-block;background:var(--chip);border-radius:8px;padding:4px 10px;font-size:12px;margin:3px 6px 3px 0}
+.ychip b{font-size:13px}
+.news .nitem{border-top:1px dashed var(--line);padding:8px 0;font-size:13px}
+.news .nitem .t{font-weight:600}
+.news .nitem .s{color:var(--muted);font-size:12px}
+/* ── root landing page ── */
+.hero{padding:30px 26px}
+.hero-kicker{color:#ffd166;font-size:12px;font-weight:700;letter-spacing:2px;
+text-transform:uppercase;margin-bottom:8px}
+.hero h1{font-size:30px;margin:0 0 10px}
+.day-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.day-card{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);
+border-radius:12px;padding:14px 16px;transition:all .15s}
+.day-card:hover{border-color:var(--red);box-shadow:0 4px 16px rgba(216,52,44,.12);transform:translateY(-2px)}
+.day-card .d{font-weight:800;font-size:15px;color:var(--ink);display:flex;align-items:center;gap:8px}
+.day-card .m{margin-top:8px;display:flex;gap:6px}
+.day-card .m span{background:var(--chip);color:var(--muted);border-radius:6px;
+padding:2px 8px;font-size:11px}
+.latest-badge{background:var(--red);color:#fff;border-radius:6px;padding:1px 7px;
+font-size:10px;font-weight:700}
+</style>
+</head>
+<body><div class="wrap">
+<div class="backbar"><a href="../index.html">← 总览</a><a href="../hk.html">← 港股榜单</a></div>
+<header class="top">
+  <h1><span class="badge red">红榜 #4</span>京东集团-SW<span class="tk" style="opacity:.7;font-size:15px;font-weight:400;margin-left:8px">09618</span></h1>
+  <div class="sub">港股 ·  · 榜单日期 <b>2026-10-01</b> · 盘价采集 <b>2026-10-01 05:00:07</b></div>
+  <div class="price-row" style="margin-top:12px">
+    <span class="price" style="color:#fff">HK$104.30</span>
+    <span class="pct up">+1.16%</span>
+    <span class="psrc" style="color:rgba(255,255,255,.6)">实时</span>
+  </div>
+  <div class="scores" style="margin-top:10px">
+    <span>综合 <b>84.4</b></span>
+    <span>多头 <b>82</b></span>
+    <span>空头 <b>30</b></span>
+    <span>大师均值 <b>66.8</b></span>
+    <span>信号 <b>positive</b></span>
+  </div>
+</header>
+<div class="trade"><div class="cell"><div class="k">交易评级</div><span class="v buy">Buy</span></div><div class="cell"><div class="k">加仓区间</div><span class="v">101.17 ~ 105.34</span></div><div class="cell"><div class="k">目标价</div><span class="v">116.82</span></div><div class="cell"><div class="k">伯克希尔</div><span class="v">买入</span></div><div class="cell"><div class="k">伯克希尔分</div><span class="v">3.75</span></div></div>
+<div class="panel"><h2>财务指标</h2><div class="mgrid"><div class="m"><div class="k">市盈率 PE</div><div class="v">17.19</div></div><div class="m"><div class="k">市净率 PB</div><div class="v">1.17</div></div><div class="m"><div class="k">ROE</div><div class="v">5.5%</div></div><div class="m"><div class="k">总市值</div><div class="v">2939</div></div><div class="m"><div class="k">营收同比</div><div class="v">-0.8%</div></div><div class="m"><div class="k">净利同比</div><div class="v">6.9%</div></div></div></div>
+<div class="panel"><h2>历史收益</h2><span class="ychip">近1月 <b class="down">-3.96%</b></span><span class="ychip">近6月 <b class="down">-6.62%</b></span><span class="ychip">近1年 <b class="down">-20.36%</b></span></div>
+<div class="panel"><h2>大师圆桌<span class="sub">5 位</span></h2><div class="mreply"><div class="mh"><span class="who">段永平</span><span class="mscore">76</span></div><div class="md"><h4>段永平关于京东集团-SW（09618）的圆桌发言</h4><p><strong>结论：京东是一家值得关注的好公司，但投资决策需要谨慎。</strong></p><p><strong>理由：</strong></p><p>首先，从&quot;本分&quot;的视角来看，京东在电商领域建立了稳固的领先地位，这一点很符合我们所说的&quot;做对的事&quot;。它的物流体系非常强大，这不仅是一个竞争壁垒，也是为用户创造价值的重要环节。这种长期积累的优势，不是竞争对手可以轻易复制的。</p><p>其次，京东在技术创新方面的持续投入也值得肯定。这表明公司管理层有长远的眼光，而不是只关注短期利益。这种对用户价值的持续追求，符合我们价值投资的理念。</p><p>不过，我们也必须看到一些潜在的风险：</p><ul><li>行业竞争在加剧，这可能会影响京东的利润率。电商行业从来都不是一个容易赚钱的领域，利润率本来就薄，现在竞争者越来越多，压力只会更大。</li></ul><ul><li>监管政策的不确定性是一个不可忽视的风险。中国对互联网行业的监管趋严，这可能会影响京东的经营环境。</li></ul><ul><li>宏观经济波动也会对消费产生直接影响，而电商行业与消费息息相关。</li></ul><p><strong>风险/行动建议：</strong></p><p>如果是我，我会这样考虑：</p><p>首先，要明确自己的投资期限。如果你是打算长期持有，那么京东的竞争优势和创新能力是值得关注的。但如果是短期投资，现在可能不是最好的时机，因为行业竞争和监管风险都会带来不确定性。</p><p>其次，要考虑自己的风险承受能力。电商行业的利润率本来就低，加上竞争加剧和监管风险，股价波动可能会比较大。如果你不能承受这种波动，可能需要重新评估。</p><p>最后，要持续关注公司的基本面变化，特别是监管政策的变化和竞争格局的演变。如果这些因素朝着不利的方向发展，可能需要重新审视你的投资决策。</p><p>总之，京东是一家好公司，但投资决策需要谨慎。要记住，我们投资的是公司，而不是股票价格。</p></div></div><div class="mreply"><div class="mh"><span class="who">巴菲特</span><span class="mscore">73</span></div><div class="md"><p>各位朋友，今天我们来聊聊京东集团-SW（09618）。我的看法是，这家公司值得认真考虑，但需要谨慎对待。</p><h4>结论：</h4><p>京东是一家拥有强大护城河的企业，在电商和物流领域建立了显著的竞争优势。从价值投资的角度来看，它符合&quot;好生意&quot;的某些标准，但目前的价格并没有提供足够的安全边际。</p><h4>理由：</h4><ul><li><strong>护城河</strong>：京东在电商领域的地位相当稳固，这得益于其强大的物流体系。物流网络的建设需要巨大的前期投入和时间积累，这构成了竞争对手难以逾越的壁垒。这种网络效应和规模优势，正是巴菲特所说的&quot;护城河&quot;。</li></ul><ul><li><strong>自由现金流</strong>：虽然京东的净利润率并不高，但其现金流状况相对稳健。作为一家重资产运营的公司，其资本配置能力显得尤为重要。从目前的数据来看，京东在自由现金流的创造上表现尚可。</li></ul><ul><li><strong>技术创新</strong>：京东持续在技术创新方面投入资源，这为其长期发展提供了动力。无论是物流自动化还是人工智能的应用，都显示出管理层的前瞻性。</li></ul><h4>风险：</h4><ul><li><strong>竞争加剧</strong>：电商行业的竞争日益激烈，阿里巴巴、拼多多等对手都在不断蚕食市场份额。这可能会影响京东的利润率。</li></ul><ul><li><strong>监管风险</strong>：在中国经营的企业都需要面对政策环境的不确定性。监管政策的变化可能会对京东的业务模式产生重大影响。</li></ul><ul><li><strong>宏观经济波动</strong>：消费类企业受宏观经济环境影响较大。如果经济增速放缓，消费者的支出可能会下降，从而影响京东的业绩。</li></ul><h4>行动建议：</h4><ul><li><strong>价格考量</strong>：目前京东的市盈率约为17倍，对于一家重资产运营的公司来说，这个估值并不算便宜。在考虑买入时，我们需要更充分的安全边际。</li></ul><ul><li><strong>长期视角</strong>：如果你是长期投资者，并且能够承受短期的波动，那么京东值得你持续关注。但要记住，&quot;长期持有&quot;不等于&quot;永远持有&quot;。我们需要定期评估其护城河是否依然稳固。</li></ul><ul><li><strong>关注管理层</strong>：巴菲特常说，&quot;买股票就是买公司&quot;。观察京东的管理层如何应对竞争和监管压力，将是判断其长期价值的重要依据。</li></ul><p>最后，我想引用查理·芒格的一句话：&quot;投资就像经营果园，你需要耐心等待果实成熟。&quot;对于京东这样的公司，我们需要保持耐心，同时密切关注其基本面变化。</p><p>如果是我，我会问自己：&quot;如果把京东的管理层换成我，我能否做得更好？&quot;这个问题能帮助我们更好地理解这家公司的价值。</p></div></div><div class="mreply"><div class="mh"><span class="who">达利欧</span><span class="mscore">50</span></div><div class="md"><p>各位好，我们来讨论一下京东集团-SW（09618）这个标的。</p><p>首先，我给出我的初步结论：我对京东持中性偏谨慎态度。这并非因为我不认可这家公司，而是因为当前市场环境下，需要更细致地权衡机会与风险。</p><h4>为什么我持中性偏谨慎态度？</h4><ul><li><strong>行业地位与优势</strong>：京东在电商领域的领先地位是毋庸置疑的。其强大的物流体系不仅是其核心竞争优势，也为公司在供应链管理方面提供了深厚的护城河。此外，公司在技术创新方面的持续投入，也为其长期增长奠定了基础。</li></ul><ul><li><strong>财务表现</strong>：从估值指标来看，京东的市盈率（PE）约为17倍，市净率（PB）约为1.17倍，这些数据表明其估值处于相对合理区间。同时，公司净利润同比增长约6.9%，显示出一定的盈利能力。</li></ul><ul><li><strong>风险因素</strong>：然而，我们也必须正视一些潜在的风险。首先，行业竞争正在加剧，这可能会对京东的利润率构成压力。其次，监管政策的不确定性始终是一个需要警惕的风险点。最后，全球宏观经济波动对消费的影响也不容忽视，这可能会对京东的营收增长构成挑战。</li></ul><h4>风险与行动建议</h4><ul><li><strong>竞争与利润率</strong>：如果行业竞争进一步加剧，京东可能会面临更大的定价压力，从而影响其利润率。建议密切关注公司毛利率的变化，以及其在高竞争环境下的应对策略。</li></ul><ul><li><strong>监管风险</strong>：监管政策的变化可能会对公司的运营模式产生重大影响。建议投资者密切关注相关政策动向，并评估其对公司业务模式的影响。</li></ul><ul><li><strong>宏观经济波动</strong>：在全球经济不确定性增加的背景下，消费需求可能会受到抑制。建议投资者关注宏观经济指标的变化，并评估其对京东营收增长的影响。</li></ul><h4>投资建议</h4><p>基于以上分析，我建议采取以下行动：</p><ul><li><strong>适度配置</strong>：对于看好京东长期增长潜力的投资者，可以考虑适度配置，但需保持警惕，随时准备应对潜在风险。</li></ul><ul><li><strong>风险对冲</strong>：在当前市场环境下，建议通过多元化投资来对冲单一标的的风险。可以考虑将京东作为投资组合的一部分，但不宜过度集中。</li></ul><ul><li><strong>持续监控</strong>：密切关注京东的财务表现、竞争环境以及监管政策的变化，并根据最新信息及时调整投资策略。</li></ul><h4>原则化总结</h4><p>在做出投资决策时，我们需要遵循的原则是：保持极度开放和透明，理性评估机会与风险。正如我常说的，&quot;Pain + Reflection = Progress&quot;，只有通过不断反思和调整，我们才能在复杂的市场环境中取得进步。</p><p>希望这些分析和建议对大家有所帮助。谢谢！</p></div></div><div class="mreply"><div class="mh"><span class="who">彼得·林奇</span><span class="mscore">70</span></div><div class="md"><p>京东集团-SW这只股票，我给它的评价是中性偏正面。</p><h4>结论</h4><p>京东是一家值得关注的电商公司，尤其是在中国电商领域占据重要地位。它的物流体系和供应链管理是核心竞争优势，这些都构筑了强大的竞争壁垒。但目前估值处于相对合理区间，既不算便宜，也不算贵。</p><h4>理由</h4><ul><li><strong>行业地位</strong>：京东在电商领域拥有稳固的市场地位，特别是在自营电商和物流方面建立了强大的品牌认知度。</li></ul><ul><li><strong>物流优势</strong>：它的物流体系非常强大，不仅提升了用户体验，还为公司带来了显著的运营效率。这种物流优势是其他竞争对手难以在短期内赶超的。</li></ul><ul><li><strong>技术创新</strong>：京东一直在积极推进技术创新，比如人工智能和大数据分析，这些技术应用有助于提升运营效率和用户粘性。</li></ul><h4>风险</h4><ul><li><strong>竞争压力</strong>：电商行业的竞争非常激烈，阿里巴巴、拼多多等竞争对手都在不断抢占市场份额，这可能会影响京东的利润率。</li></ul><ul><li><strong>监管风险</strong>：作为一家大型科技公司，京东面临着来自监管方面的压力，这可能会影响其业务发展。</li></ul><ul><li><strong>宏观经济波动</strong>：消费类公司的业绩与宏观经济环境密切相关，如果经济出现下滑，消费者的支出可能会减少，从而影响京东的业绩。</li></ul><h4>行动建议</h4><p>如果你已经持有京东的股票，我建议继续持有，但要注意以下几点：</p><ul><li><strong>密切关注业绩变化</strong>：定期查看公司的财报，关注营收和利润的变化情况。如果业绩出现持续下滑，可能需要重新评估持仓。</li></ul><ul><li><strong>留意竞争态势</strong>：关注竞争对手的动向，特别是拼多多等新兴电商平台的崛起。如果竞争对手在某些领域取得突破性进展，可能需要调整投资策略。</li></ul><ul><li><strong>估值水平</strong>：目前京东的估值处于相对合理区间，但如果股价出现大幅上涨，建议考虑部分获利了结。如果股价下跌，可以考虑在估值更具吸引力时适当加仓。</li></ul><p>总的来说，京东是一家值得长期关注的公司，但投资者需要保持耐心和谨慎，关注公司基本面的变化，并根据市场情况灵活调整投资策略。</p></div></div><div class="mreply"><div class="mh"><span class="who">芒格</span><span class="mscore">65</span></div><div class="md"><p>各位，今天我们来聊聊京东集团-SW。</p><p>首先，我的初步结论是：<strong>京东值得考虑，但需要谨慎对待</strong>。理由如下：</p><h4>理由</h4><ul><li><strong>行业地位与竞争优势</strong></li></ul><p>   京东在电商领域的地位依然稳固，其自建物流体系更是形成了强大的竞争壁垒。这种模式不仅提高了用户体验，还在一定程度上抵御了竞争对手的冲击。这种竞争优势是值得肯定的。</p><ul><li><strong>技术创新与长期潜力</strong></li></ul><p>   京东在技术创新方面的持续投入也值得称道。无论是人工智能、大数据还是供应链管理，京东都在积极布局未来。这种长期视角是投资者应该关注的。</p><ul><li><strong>估值相对合理</strong></li></ul><p>   从估值角度看，京东的市盈率（PE）约为17倍，市净率（PB）约为1.2倍，考虑到其行业地位和增长潜力，这个估值水平并不算高。</p><h4>风险</h4><p>然而，我们不能忽视以下几个风险点：</p><ul><li><strong>行业竞争加剧</strong></li></ul><p>   电商行业的竞争日益激烈，不仅有阿里巴巴这样的老对手，还有拼多多等新兴势力的崛起。这种竞争环境可能会对京东的利润率造成压力。</p><ul><li><strong>监管政策风险</strong></li></ul><p>   互联网行业的监管政策变化频繁，京东作为行业巨头，必然会受到政策的影响。这种不确定性需要我们密切关注。</p><ul><li><strong>宏观经济波动</strong></li></ul><p>   消费市场的表现与宏观经济环境密切相关。如果经济出现波动，消费者的购买力可能会下降，从而影响京东的业绩。</p><h4>行动建议</h4><p>基于以上分析，我建议：</p><ul><li><strong>保持适度仓位</strong></li></ul><p>   京东是一个值得关注的投资标的，但考虑到行业竞争和监管风险，建议不要过度集中投资。可以考虑将其作为投资组合的一部分，但不要超过总仓位的15%。</p><ul><li><strong>密切关注基本面变化</strong></li></ul><p>   投资者需要密切关注京东的财务数据和行业动态，特别是利润率的变化和监管政策的动向。如果基本面出现恶化，应及时调整仓位。</p><ul><li><strong>长期视角</strong></li></ul><p>   京东在技术创新和物流体系方面的优势需要时间来体现。投资者应具备长期视角，不要被短期的市场波动所左右。</p><h4>我能错在哪？</h4><p>最后，我要提醒自己，投资决策总是有风险的。我可能错在以下几个方面：</p><ul><li><strong>低估了竞争压力</strong></li></ul><p>   如果京东在面对竞争对手时表现不佳，可能会导致市场份额下降。</p><ul><li><strong>对监管政策的变化估计不足</strong></li></ul><p>   政策风险是互联网行业的重大不确定性，如果政策出现重大变化，可能会对京东的经营产生负面影响。</p><ul><li><strong>宏观经济环境恶化</strong></li></ul><p>   如果全球经济出现衰退，消费市场将受到冲击，京东的业绩也可能受到影响。</p><p>总之，京东是一个值得关注的投资标的，但需要谨慎对待，保持适度仓位，并密切关注基本面变化。希望我的分析对大家有所帮助。</p></div></div></div>
+<div class="panel"><h2>分析师报告<span class="sub">2 篇</span></h2><details open><summary>市场面分析</summary><div class="body"><div class="md"><h4>09618 京东集团-SW 市场面分析</h4><ul><li>红黑榜多空分数：多头 82 / 空头 30，分差 52。</li><li>当前价格：104.30。</li><li>当前交易评级：Buy。</li><li>值得加仓区间：101.17 - 105.34。</li><li>目标价格：116.82。</li><li>市场愿意给溢价的原因：电商行业领先地位稳固；物流体系构建强大竞争壁垒；技术创新持续推进。</li><li>当前主要压制因素：行业竞争加剧影响利润率；监管政策风险不容忽视；宏观经济波动影响消费。</li></ul></div></div></details><details open><summary>基本面分析</summary><div class="body"><div class="md"><h4>09618 京东集团-SW 基本面分析</h4><ul><li>报告期：暂无。</li><li>PE(TTM)：17.19。</li><li>PB：1.17。</li><li>PS(TTM)：0.20。</li><li>ROE：5.51%。</li><li>营收同比：-0.78%。</li><li>归母净利润同比：6.87%。</li><li>核心判断：利润端保持扩张。</li></ul></div></div></details></div>
+<div class="panel"><h2>研究与计划</h2>
+<details><summary>基本面摘要</summary><div class="body"><div class="md"><h3>核心财务快照</h3><ul><li>报告期: 数据缺失</li><li>当前股价: 104.30 元</li><li>总市值: 2939.48 亿元</li><li>PE (TTM): 17.19</li><li>PB: 1.17</li><li>PS (TTM): 0.20</li><li>营业总收入(报告期): 数据缺失 亿元</li><li>营收同比增长率: -0.78%</li><li>归母净利润(报告期): 数据缺失 亿元</li><li>归母净利润同比增长率: 6.87%</li><li>ROE (TTM/估算): 5.51%</li><li>资产负债率: 数据缺失</li><li>经营性现金流 / 归母净利润: 数据缺失</li></ul><h4>缺失字段</h4><ul><li>营业总收入, 归母净利润, 资产负债率, 经营性现金流与归母净利润比值</li></ul></div></div></details>
+<details><summary>研究计划</summary><div class="body"><div class="md"><h4>09618 京东集团-SW 研究摘要</h4><ul><li>红黑榜结论: Buy</li><li>多头/空头: 82/30</li><li>正向信号: 归母净利润同比 6.87%；PE(TTM) 17.19；PB 1.17</li><li>风险信号: ROE 5.51%；营收同比 -0.78%</li><li>榜单看多理由: 电商行业领先地位稳固；物流体系构建强大竞争壁垒；技术创新持续推进</li><li>榜单风险提示: 行业竞争加剧影响利润率；监管政策风险不容忽视；宏观经济波动影响消费</li></ul></div></div></details>
+<details><summary>交易计划</summary><div class="body"><div class="md"><h4>09618 京东集团-SW 交易计划</h4><ul><li>评级: Buy</li><li>当前价格: 104.30</li><li>值得加仓区间: 101.17 - 105.34</li><li>目标价格: 116.82</li><li>止损位: 95.96</li><li>备注: 当前为缓存降级交易卡，后续若完整 TradingAgent 结果生成，将自动覆盖。</li></ul></div></div></details>
+<details><summary>交易决策</summary><div class="body"><div class="md"><p>Buy</p><p>09618 京东集团-SW 当前使用红黑榜缓存结果生成兜底交易卡。多头 82 / 空头 30，分差 52。当前尚未取得完整 TradingAgent 长文决策，但榜单分数、财务快照和大师观点已经足够生成基础交易建议。</p></div></div></details>
+</div>
+<div class="panel"><h2>多空逻辑</h2><div class="pts"><div class="h bull">看多逻辑</div><div class="md"><p>电商行业领先地位稳固</p><p>物流体系构建强大竞争壁垒</p><p>技术创新持续推进</p></div></div><div class="pts"><div class="h bear">看空逻辑</div><div class="md"><p>行业竞争加剧影响利润率</p><p>监管政策风险不容忽视</p><p>宏观经济波动影响消费</p></div></div></div>
+<div class="panel"><h2>伯克希尔研究</h2><p><strong>京东集团是一家具备强大供应链能力和用户粘性的电商巨头，但面临激烈竞争和行业增速放缓的挑战，当前估值合理但需关注长期增长潜力。</strong></p><p>伯克希尔综合评分：<strong>3.75</strong></p><div class="md"><p>{&quot;verdict&quot;: &quot;买入&quot;, &quot;conservative_tip&quot;: &quot;建议在PE TTM低于20倍时买入，目标价220港元。&quot;, &quot;moderate_tip&quot;: &quot;建议在PE TTM低于22倍时买入，目标价240港元。&quot;, &quot;aggressive_tip&quot;: &quot;建议在PE TTM低于25倍时买入，目标价260港元。&quot;, &quot;catalysts_plus&quot;: [&quot;物流和供应链优势进一步巩固。&quot;, &quot;用户活跃度持续提升。&quot;, &quot;反垄断政策压力缓解。&quot;], &quot;catalysts_minus&quot;: [&quot;竞争加剧导致市场份额下降。&quot;, &quot;盈利能力持续承压。&quot;, &quot;政策风险加剧。&quot;]}</p></div></div>
+
+<footer>稳健理财Agent · 红黑榜每日归档 · 红榜 #4 · 仅供研究，不构成投资建议</footer>
+</div></body>
+</html>

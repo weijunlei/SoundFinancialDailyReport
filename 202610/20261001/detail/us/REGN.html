@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>REGN(REGN) 红榜 2026-10-01</title>
+<style>
+:root{--red:#d8342c;--redbg:#fdecea;--green:#1a9e54;--ink:#1c2230;--muted:#6b7385;
+--line:#e7e9ef;--card:#fff;--bg:#f4f6fa;--chip:#eef1f6;--dark:#23262d;--darkbg:#ececef}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",
+"Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);
+line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 16px 64px}
+header.top{background:linear-gradient(135deg,#1c2230,#2c3550);color:#fff;border-radius:14px;
+padding:22px 24px;margin-bottom:20px;box-shadow:0 6px 24px rgba(20,26,46,.12)}
+header.top h1{margin:0 0 6px;font-size:24px;letter-spacing:.5px}
+header.top .sub{opacity:.85;font-size:13px}
+header.top .sub b{color:#ffd166;font-weight:600}
+nav.mkt{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;
+background:rgba(244,246,250,.92);backdrop-filter:blur(6px);padding:10px 0;margin-bottom:14px}
+nav.mkt a{text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);
+padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600}
+nav.mkt a:hover{border-color:var(--red);color:var(--red)}
+.summary{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.summary .chip{background:var(--card);border:1px solid var(--line);border-radius:10px;
+padding:8px 12px;font-size:12px;color:var(--muted)}
+.summary .chip b{color:var(--ink);font-size:14px;margin-left:4px}
+section.board{margin:26px 0}
+.board-title{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:19px}
+.board-title .dot{width:10px;height:10px;border-radius:50%}
+.board-title.red .dot{background:var(--red)}
+.board-title.black .dot{background:var(--dark)}
+.board-title small{color:var(--muted);font-weight:400;font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+position:relative;transition:box-shadow .15s}
+.card:hover{box-shadow:0 4px 18px rgba(20,26,46,.08)}
+.card.red{border-top:3px solid var(--red)}
+.card.black{border-top:3px solid var(--dark)}
+.rank{position:absolute;top:10px;right:12px;font-size:26px;font-weight:800;color:#eceff5}
+.card.red .rank{color:#fbdcD9}
+.nm{font-size:16px;font-weight:700}
+.nm .tk{color:var(--muted);font-weight:500;font-size:12px;margin-left:6px}
+.tag{display:inline-block;background:var(--chip);color:var(--muted);border-radius:6px;
+padding:1px 7px;font-size:11px;margin:6px 6px 0 0}
+.price-row{display:flex;align-items:baseline;gap:10px;margin:10px 0 4px}
+.price{font-size:24px;font-weight:800}
+.pct{font-size:14px;font-weight:700;padding:2px 8px;border-radius:8px}
+.up{color:var(--red)}.down{color:var(--green)}.flat{color:var(--muted)}
+.pct.up{background:var(--redbg)}.pct.down{background:#e2f4e9}.pct.flat{background:var(--chip)}
+.psrc{font-size:11px;color:var(--muted);margin-left:auto}
+.scores{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.scores span{background:var(--chip);border-radius:6px;padding:2px 8px;font-size:11px;color:var(--muted)}
+.scores span b{color:var(--ink)}
+.pts{font-size:12.5px;margin:8px 0 0}
+.pts .h{font-weight:700;font-size:12px;margin:6px 0 2px}
+.pts .h.bull{color:var(--red)}.pts .h.bear{color:var(--green)}
+.pts ul{margin:2px 0 4px;padding-left:18px;color:#3a4152}
+.pts li{margin:1px 0}
+.masters{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:11px;color:var(--muted)}
+.masters b{color:var(--ink)}
+.summ{font-size:12.5px;color:#3a4152;background:#fafbfd;border:1px solid var(--line);
+border-radius:8px;padding:8px 10px;margin-top:8px}
+.empty{color:var(--muted);background:var(--card);border:1px dashed var(--line);
+border-radius:10px;padding:18px;text-align:center}
+footer{margin-top:34px;color:var(--muted);font-size:12px;text-align:center;line-height:1.8}
+a.lnk{color:var(--red);text-decoration:none}
+/* ── detail page ── */
+.backbar{margin-bottom:14px;font-size:13px}
+.backbar a{color:var(--muted);text-decoration:none;margin-right:14px}
+.backbar a:hover{color:var(--red)}
+.badge{display:inline-block;border-radius:6px;padding:2px 10px;font-size:12px;font-weight:700;margin-right:8px}
+.badge.red{background:var(--red);color:#fff}.badge.black{background:var(--dark);color:#fff}
+.trade{display:flex;flex-wrap:wrap;gap:10px;background:linear-gradient(135deg,#2c3550,#1c2230);
+color:#fff;border-radius:12px;padding:16px 18px;margin:16px 0}
+.trade .cell{min-width:120px}
+.trade .k{font-size:11px;opacity:.75}
+.trade .v{font-size:18px;font-weight:800;margin-top:2px}
+.trade .v.buy{color:#7ee2a8}.trade .v.sell{color:#ff9d97}.trade .v.hold{color:#ffd166}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0}
+.mgrid .m{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.mgrid .m .k{font-size:11px;color:var(--muted)}
+.mgrid .m .v{font-size:16px;font-weight:700;margin-top:2px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.panel>h2{margin:0 0 12px;font-size:17px}
+.panel>h2 .sub{font-size:12px;color:var(--muted);font-weight:400;margin-left:8px}
+.mreply{border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;
+padding:12px 14px;margin:10px 0;background:#fff}
+.mreply .mh{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.mreply .mh .who{font-weight:700;font-size:14px}
+.mreply .mh .mscore{margin-left:auto;background:var(--chip);border-radius:6px;padding:1px 8px;font-size:12px;font-weight:700}
+.md h2,.md h3,.md h4,.md h5{margin:12px 0 6px;font-size:15px}
+.md p{margin:6px 0;font-size:13.5px;color:#2c3345}
+.md ul{margin:6px 0;padding-left:20px;font-size:13.5px;color:#2c3345}
+.md li{margin:3px 0}
+.md strong{color:var(--ink)}
+details{border:1px solid var(--line);border-radius:10px;background:#fff;margin:10px 0;padding:0}
+details>summary{cursor:pointer;padding:12px 16px;font-weight:700;font-size:14px;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary:before{content:"▸ ";color:var(--red)}
+details[open]>summary:before{content:"▾ "}
+details>.body{padding:0 16px 14px;border-top:1px dashed var(--line)}
+.ychip{display:inline-block;background:var(--chip);border-radius:8px;padding:4px 10px;font-size:12px;margin:3px 6px 3px 0}
+.ychip b{font-size:13px}
+.news .nitem{border-top:1px dashed var(--line);padding:8px 0;font-size:13px}
+.news .nitem .t{font-weight:600}
+.news .nitem .s{color:var(--muted);font-size:12px}
+/* ── root landing page ── */
+.hero{padding:30px 26px}
+.hero-kicker{color:#ffd166;font-size:12px;font-weight:700;letter-spacing:2px;
+text-transform:uppercase;margin-bottom:8px}
+.hero h1{font-size:30px;margin:0 0 10px}
+.day-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.day-card{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);
+border-radius:12px;padding:14px 16px;transition:all .15s}
+.day-card:hover{border-color:var(--red);box-shadow:0 4px 16px rgba(216,52,44,.12);transform:translateY(-2px)}
+.day-card .d{font-weight:800;font-size:15px;color:var(--ink);display:flex;align-items:center;gap:8px}
+.day-card .m{margin-top:8px;display:flex;gap:6px}
+.day-card .m span{background:var(--chip);color:var(--muted);border-radius:6px;
+padding:2px 8px;font-size:11px}
+.latest-badge{background:var(--red);color:#fff;border-radius:6px;padding:1px 7px;
+font-size:10px;font-weight:700}
+</style>
+</head>
+<body><div class="wrap">
+<div class="backbar"><a href="../index.html">← 总览</a><a href="../us.html">← 美股榜单</a></div>
+<header class="top">
+  <h1><span class="badge red">红榜 #10</span>REGN<span class="tk" style="opacity:.7;font-size:15px;font-weight:400;margin-left:8px">REGN</span></h1>
+  <div class="sub">美股 ·  · 榜单日期 <b>2026-10-01</b> · 盘价采集 <b>2026-10-01 05:00:07</b></div>
+  <div class="price-row" style="margin-top:12px">
+    <span class="price" style="color:#fff">$758.27</span>
+    <span class="pct up">+1.03%</span>
+    <span class="psrc" style="color:rgba(255,255,255,.6)">实时</span>
+  </div>
+  <div class="scores" style="margin-top:10px">
+    <span>综合 <b>84.4</b></span>
+    <span>多头 <b>88</b></span>
+    <span>空头 <b>30</b></span>
+    <span>大师均值 <b>64.8</b></span>
+    <span>信号 <b>positive</b></span>
+  </div>
+</header>
+<div class="trade"><div class="cell"><div class="k">交易评级</div><span class="v buy">Buy</span></div><div class="cell"><div class="k">加仓区间</div><span class="v">735.34 ~ 765.67</span></div><div class="cell"><div class="k">目标价</div><span class="v">849.06</span></div><div class="cell"><div class="k">伯克希尔</div><span class="v">买入</span></div><div class="cell"><div class="k">伯克希尔分</div><span class="v">3.75</span></div></div>
+<div class="panel"><h2>财务指标</h2><div class="mgrid"><div class="m"><div class="k">市盈率 PE</div><div class="v">18.78</div></div><div class="m"><div class="k">市净率 PB</div><div class="v">2.40</div></div><div class="m"><div class="k">ROE</div><div class="v">14.0%</div></div><div class="m"><div class="k">总市值</div><div class="v">781</div></div><div class="m"><div class="k">营收同比</div><div class="v">16.7%</div></div><div class="m"><div class="k">净利同比</div><div class="v">-4.5%</div></div></div></div>
+<div class="panel"><h2>历史收益</h2><span class="ychip">近1月 <b class="down">-5.13%</b></span><span class="ychip">近6月 <b class="up">+1.17%</b></span><span class="ychip">近1年 <b class="up">+34.83%</b></span><span class="ychip">近5年 <b class="up">+25.27%</b></span></div>
+<div class="panel"><h2>大师圆桌<span class="sub">5 位</span></h2><div class="mreply"><div class="mh"><span class="who">段永平</span><span class="mscore">44</span></div><div class="md"><h4>段永平圆桌发言</h4><p><strong>结论</strong>：我对投资 REGN（Regeneron Pharmaceuticals）持谨慎态度。</p><p><strong>理由</strong>：</p><p>首先，从&quot;本分&quot;的角度来看，这家公司确实在生物技术领域处于领先地位，创新药物研发能力也很强，这些都是值得肯定的优点。但同时，我们也需要问自己：我们真的懂这家公司吗？它的商业模式是否足够清晰和可持续？</p><p>目前 REGN 的估值相对较高，市盈率接近 19 倍，而净利润同比下降了 4.5%。这让我有些担忧。虽然营收同比增长了 16.7%，但净利润的下降可能反映出成本控制或定价能力的挑战。</p><p>此外，生物技术行业的竞争正在加剧，这可能会影响 REGN 的长期增长潜力。虽然它在某些领域有优势，但能否持续保持领先地位还需要进一步观察。</p><p><strong>风险/行动建议</strong>：</p><ul><li><strong>估值风险</strong>：目前的价格可能已经反映了市场对其未来增长的预期。如果估值继续上升，可能会面临回调压力。</li></ul><ul><li><strong>竞争风险</strong>：需要密切关注行业竞争格局的变化，以及 REGN 在新产品研发和市场推广方面的进展。</li></ul><ul><li><strong>长期持有 vs 短期波动</strong>：如果决定投资，需要做好长期持有的准备，因为生物技术行业的研发周期长，短期内可能会有较大波动。</li></ul><p>总的来说，如果是我，我会先深入了解 REGN 的核心业务和竞争优势，确保自己真的&quot;看得懂&quot;这家公司。同时，我会密切关注其财务状况和行业动态，避免因为短期波动而做出仓促的决定。</p><p><strong>别错过的隐含约束</strong>：别因为市场热度而忽略了长期价值投资的原则。投资要基于对公司的深刻理解，而不是追逐短期热点。</p></div></div><div class="mreply"><div class="mh"><span class="who">巴菲特</span><span class="mscore">54</span></div><div class="md"><p>各位同仁，关于 REGN 这家公司，我来说几句。</p><p>首先，这是一家在生物技术领域占据绝对领先地位的企业。创新药物研发能力非常强，长期增长潜力巨大。单从业务角度来看，这家公司确实具备一定的护城河。</p><p>不过，我们投资不能只看公司的技术优势，还要考虑价格因素。目前 REGN 的估值并不算便宜，市盈率在 18 倍左右，市净率也达到了 2.4 倍。虽然这个估值水平对于一家高速成长的生物科技公司来说不算离谱，但也不是那种&quot;四毛钱买一块钱&quot;的机会。</p><p>这里我要提醒大家关注几个风险点：</p><p>第一，市场竞争正在加剧。虽然 REGN 目前处于领先地位，但生物技术行业变化很快，新兴公司不断涌现，可能会威胁到它的市场份额。</p><p>第二，短期波动性较大。生物科技股向来受市场情绪影响明显，如果出现行业负面新闻或者大盘回调，股价可能会出现较大波动。</p><p>第三，虽然营收增长不错，但净利润出现了同比下降，这需要我们进一步关注公司的成本控制和盈利能力。</p><p>所以我的建议是：</p><p>如果你是一个长期投资者，并且对生物技术行业有深入了解，那么可以考虑在估值回调时逐步建仓。但不要急于重仓买入，最好等待更合适的价格。</p><p>如果是芒格，他会补充说：&quot;投资就像种果园，要耐心等待果实成熟。不要因为别人都在抢着买，就急着出手。&quot; 在这里，我想强调的是，我们要把注意力放在公司的长期价值上，而不是短期股价波动。</p><p>记住，在投资中，耐心和纪律往往比聪明才智更重要。</p></div></div><div class="mreply"><div class="mh"><span class="who">达利欧</span><span class="mscore">63</span></div><div class="md"><p>在今天的圆桌上，我将从原则化、宏观风险平衡的角度来谈谈对 REGN 这家公司的看法。</p><p>首先，我的初步判断是：REGN 是一家具有强大创新能力和长期增长潜力的公司，但目前面临估值偏高和短期波动性较大的挑战。</p><p>让我详细解释一下：</p><h4>1. 优势分析</h4><ul><li><strong>行业地位</strong>：REGN 在生物技术领域处于绝对领先地位，其创新药物研发能力在行业内是顶尖的。这使得公司在未来几年内有可能继续推出重磅药物，保持竞争优势。</li><li><strong>增长潜力</strong>：从长期来看，生物技术行业整体具有巨大的增长潜力，而 REGN 作为行业领导者，有望从中受益。</li></ul><h4>2. 风险因素</h4><ul><li><strong>估值问题</strong>：尽管 REGN 的基本面强劲，但其当前的估值相对较高，市盈率（PE）约为 18.8 倍，市净率（PB）约为 2.4 倍。这意味着市场已经对其未来的增长预期给予了较高的定价。</li><li><strong>市场竞争</strong>：生物技术行业的竞争日益激烈，其他公司也在不断推出新药，这可能会对 REGN 的市场份额构成威胁。</li><li><strong>短期波动</strong>：由于市场对生物技术行业的预期变化较快，REGN 的股价可能会出现较大的短期波动。</li></ul><h4>3. 风险与收益平衡</h4><p>从宏观角度来看，当前全球经济增长放缓和地缘政治不确定性增加，可能会对整个市场情绪产生影响，进而影响 REGN 的股价表现。因此，在考虑投资 REGN 时，我们需要权衡其长期增长潜力与短期市场风险。</p><h4>4. 行动建议</h4><p>基于以上分析，我建议采取以下行动：</p><ul><li><strong>长期投资者</strong>：如果你是一个长期投资者，并且能够承受短期波动，那么 REGN 仍然是一个值得考虑的投资标的。但建议在当前估值较高的情况下，分批买入，以降低风险。</li><li><strong>短期投资者</strong>：对于短期投资者来说，当前市场波动较大，建议保持谨慎。可以等待市场情绪稳定后再做决策。</li></ul><h4>5. 原则化收口</h4><p>最后，我想强调的是，投资决策应该基于一套清晰的原则和框架，而不是短期的市场波动。在 REGN 的案例中，我们需要平衡其强大的创新能力和高估值风险，同时密切关注行业竞争态势和宏观环境的变化。</p><h4>原则建议</h4><p>我将这次分析总结为一条原则：在投资决策中，要始终保持对长期增长潜力的关注，同时警惕短期市场波动带来的风险。</p><p>希望这些分析和建议对大家有所帮助。</p></div></div><div class="mreply"><div class="mh"><span class="who">彼得·林奇</span><span class="mscore">96</span></div><div class="md"><p>各位朋友，关于 REGN 这家公司，我来说几句。</p><p>首先，我的结论是：这是一只值得关注的优质生物科技股，但目前价格确实不便宜。</p><h4>为什么这么说？</h4><h5>1. 行业地位和创新能力</h5><p>REGN 在生物技术领域处于绝对领先地位，拥有顶尖的创新药物研发能力。这种优势不仅体现在他们现有的产品线上，更在于他们持续推出新药的能力。这种创新能力是推动公司长期增长的关键因素。</p><h5>2. 增长潜力</h5><p>从数据来看，尽管净利润同比下降了 4.5%，但营收仍然保持了 16.7% 的增长。这表明公司仍在积极扩张市场份额，并且在研发上的投入可能会在未来带来更大的回报。</p><h4>风险在哪里？</h4><h5>1. 估值偏高</h5><p>目前 REGN 的市盈率为 18.77 倍，对于一家生物科技公司来说，这个估值并不算低。尤其是在市场波动较大的环境下，高估值股票更容易受到市场情绪的影响。</p><h5>2. 市场竞争</h5><p>生物科技行业的竞争日益激烈，REGN 面临的挑战不仅来自传统制药巨头，还包括新兴生物科技公司的崛起。如果 REGN 不能持续保持创新优势，可能会被竞争对手超越。</p><h4>行动建议</h4><h5>1. 长期投资者</h5><p>如果你是一个长期投资者，并且对生物科技行业有足够的了解，那么 REGN 仍然是一个值得考虑的选择。但我建议你在买入时留有足够的安全边际，不要在当前价格水平上急于重仓。</p><h5>2. 短期投资者</h5><p>对于短期投资者来说，REGN 的波动性可能是一个需要考虑的因素。如果你对市场波动比较敏感，可能需要谨慎对待，或者考虑分批买入以分散风险。</p><h5>3. 调研建议</h5><p>我一向主张“买你懂的公司”。如果你对 REGN 的产品线、研发进展和市场定位有更深入的了解，可以去参加行业会议，或者关注他们的临床试验结果。这些都是验证公司长期增长潜力的重要途径。</p><p>总之，REGN 是一只优秀的生物科技股，但目前的价格需要谨慎对待。希望大家在投资时都能找到适合自己的节奏和策略。</p></div></div><div class="mreply"><div class="mh"><span class="who">芒格</span><span class="mscore">67</span></div><div class="md"><p>各位同仁，关于 REGN，我先把结论放在前面：我对这只股票持部分看好的态度，但需要谨慎对待。</p><h4>结论</h4><p>REGN 是一家在生物技术领域具有绝对领先地位的公司，其创新药物研发能力在行业中处于顶尖水平，长期增长潜力巨大。然而，估值相对较高，市场竞争加剧的风险也不容忽视。综合来看，这是一笔值得考虑的长期投资，但需要严格控制仓位并密切监控风险。</p><h4>理由</h4><p>首先，REGN 在生物技术领域的领先地位是显而易见的。其研发管线丰富，尤其是在一些关键治疗领域，如癌症和心血管疾病，拥有突破性药物。这种创新能力为其提供了强大的护城河和长期增长潜力。</p><p>其次，从财务数据来看，尽管净利润同比下降了 4.5%，但营收同比增长了 16.7%，显示出公司在扩大市场份额和收入方面仍然强劲。此外，18.77 倍的市盈率（PE）和 2.4 倍的市净率（PB）虽然不算便宜，但在生物技术行业中处于合理区间。</p><p>然而，我们也不能忽视一些潜在的风险。首先，市场竞争正在加剧，其他大型制药公司和新兴生物技术公司都在积极研发类似药物，这可能对 REGN 的市场份额构成威胁。其次，生物技术行业的波动性较大，政策变化和临床试验结果的不确定性都可能对股价产生重大影响。</p><h4>风险/行动建议</h4><ul><li><strong>估值风险</strong>：当前估值虽然不算过高，但在市场情绪波动时仍可能面临回调压力。建议在买入时设定一个合理的估值区间，避免在高位追涨。</li></ul><ul><li><strong>市场竞争</strong>：密切关注行业动态，特别是竞争对手的研发进展和 FDA 审批情况。如果出现重大不利消息，可能需要重新评估投资逻辑。</li></ul><ul><li><strong>仓位控制</strong>：鉴于生物技术行业的波动性，建议将 REGN 作为投资组合的一部分，而不是单一重仓。分散投资可以有效降低单一股票带来的风险。</li></ul><ul><li><strong>长期视角</strong>：如果决定投资 REGN，需要有足够的耐心和长期视角。生物技术公司的价值释放通常需要较长时间，短期波动在所难免。</li></ul><p>最后，我想强调的是，投资决策应基于对公司的深入理解和严格的风险评估。正如我常说的，&quot;如果我知道自己死在哪里，我就永远不去那里&quot;。在投资 REGN 时，我们要时刻警惕潜在的风险，并做好应对准备。</p></div></div></div>
+<div class="panel"><h2>分析师报告<span class="sub">2 篇</span></h2><details open><summary>市场面分析</summary><div class="body"><div class="md"><h4>REGN REGN 市场面分析</h4><ul><li>红黑榜多空分数：多头 88 / 空头 30，分差 58。</li><li>当前价格：758.34。</li><li>当前交易评级：Buy。</li><li>值得加仓区间：735.34 - 765.67。</li><li>目标价格：849.06。</li><li>市场愿意给溢价的原因：生物技术领域绝对领先地位；创新药物研发能力行业顶尖；长期增长潜力巨大。</li><li>当前主要压制因素：估值相对较高；市场竞争加剧风险；短期波动性较大。</li></ul></div></div></details><details open><summary>基本面分析</summary><div class="body"><div class="md"><h4>REGN REGN 基本面分析</h4><ul><li>报告期：暂无。</li><li>PE(TTM)：18.78。</li><li>PB：2.40。</li><li>ROE：14.04%。</li><li>营收同比：16.70%。</li><li>归母净利润同比：-4.50%。</li><li>核心判断：盈利能力处于可接受区间；收入仍在增长。</li></ul></div></div></details></div>
+<div class="panel"><h2>研究与计划</h2>
+<details><summary>基本面摘要</summary><div class="body"><div class="md"><h3>核心财务快照</h3><ul><li>报告期: 数据缺失</li><li>当前股价: 758.34 元</li><li>总市值: 780.75 亿元</li><li>PE (TTM): 18.78</li><li>PB: 2.40</li><li>PS (TTM): 数据缺失</li><li>营业总收入(报告期): 数据缺失 亿元</li><li>营收同比增长率: 16.70%</li><li>归母净利润(报告期): 数据缺失 亿元</li><li>归母净利润同比增长率: -4.50%</li><li>ROE (TTM/估算): 14.04%</li><li>资产负债率: 数据缺失</li><li>经营性现金流 / 归母净利润: 数据缺失</li></ul><h4>缺失字段</h4><ul><li>PS(TTM), 营业总收入, 归母净利润, 资产负债率, 经营性现金流与归母净利润比值</li></ul></div></div></details>
+<details><summary>研究计划</summary><div class="body"><div class="md"><h4>REGN REGN 研究摘要</h4><ul><li>红黑榜结论: Buy</li><li>多头/空头: 88/30</li><li>正向信号: ROE 14.04%；营收同比 16.70%；PE(TTM) 18.77；PB 2.40</li><li>风险信号: 归母净利润同比 -4.50%</li><li>榜单看多理由: 生物技术领域绝对领先地位；创新药物研发能力行业顶尖；长期增长潜力巨大</li><li>榜单风险提示: 估值相对较高；市场竞争加剧风险；短期波动性较大</li></ul></div></div></details>
+<details><summary>交易计划</summary><div class="body"><div class="md"><h4>REGN REGN 交易计划</h4><ul><li>评级: Buy</li><li>当前价格: 758.09</li><li>值得加仓区间: 735.34 - 765.67</li><li>目标价格: 849.06</li><li>止损位: 697.44</li><li>备注: 当前为缓存降级交易卡，后续若完整 TradingAgent 结果生成，将自动覆盖。</li></ul></div></div></details>
+<details><summary>交易决策</summary><div class="body"><div class="md"><p>Buy</p><p>REGN REGN 当前使用红黑榜缓存结果生成兜底交易卡。多头 88 / 空头 30，分差 58。当前尚未取得完整 TradingAgent 长文决策，但榜单分数、财务快照和大师观点已经足够生成基础交易建议。</p></div></div></details>
+</div>
+<div class="panel"><h2>多空逻辑</h2><div class="pts"><div class="h bull">看多逻辑</div><div class="md"><p>生物技术领域绝对领先地位</p><p>创新药物研发能力行业顶尖</p><p>长期增长潜力巨大</p></div></div><div class="pts"><div class="h bear">看空逻辑</div><div class="md"><p>估值相对较高</p><p>市场竞争加剧风险</p><p>短期波动性较大</p></div></div></div>
+<div class="panel"><h2>伯克希尔研究</h2><p><strong>Regeneron是一家拥有强大研发能力和专利护城河的高增长生物科技公司，但需关注其核心产品依赖性和行业竞争风险。</strong></p><p>伯克希尔综合评分：<strong>3.75</strong></p><div class="md"><p>{&quot;verdict&quot;: &quot;买入&quot;, &quot;conservative_tip&quot;: &quot;建议在PE TTM低于18倍时买入。&quot;, &quot;moderate_tip&quot;: &quot;建议在PE TTM低于20倍时买入。&quot;, &quot;aggressive_tip&quot;: &quot;建议在PE TTM低于22倍时买入。&quot;, &quot;catalysts_plus&quot;: [&quot;Dupixent新适应症获批。&quot;, &quot;Eylea专利到期风险缓解。&quot;, &quot;新药研发取得突破性进展。&quot;], &quot;catalysts_minus&quot;: [&quot;Eylea销售额大幅下滑。&quot;, &quot;FDA对核心产品加强监管。&quot;, &quot;竞争对手推出颠覆性产品。&quot;]}</p></div></div>
+<div class="panel news"><h2>最新资讯</h2><div class="md"><p>利空新闻较多，共7条利空，3条利好，1条中性。</p></div><div class="nitem"><div class="t">Why Did Regeneron Pharmaceuticals (REGN) Stock Drop Today?</div><div class="s">Yahoo Finance · 利空</div></div><div class="nitem"><div class="t">What Is Regeneron Pharmaceuticals (REGN) Facing After A Rival Matched Its Key Eye Drug?</div><div class="s">simplywall.st · 利空</div></div><div class="nitem"><div class="t">Regeneron Pharmaceuticals (NASDAQ:REGN) Upgraded to Strong-Buy at Zacks Research</div><div class="s">marketbeat.com · 利好</div></div><div class="nitem"><div class="t">Why Is Regeneron Pharmaceuticals Stock Falling Today? - Regeneron Pharmaceuticals (NASDAQ:REGN), Kodiak S</div><div class="s">Benzinga · 利空</div></div><div class="nitem"><div class="t">Discipline and Rules-Based Execution in REGN Response</div><div class="s">Stock Traders Daily · 中性</div></div><div class="nitem"><div class="t">Regeneron Slides as New Wet AMD Trial Data Raises Fresh Eylea Competition Concerns</div><div class="s">Quiver Quantitative · 利空</div></div><div class="nitem"><div class="t">REGN Reiterates by RBC Capital -- Price Target Maintained at $73</div><div class="s">GuruFocus · 中性</div></div><div class="nitem"><div class="t">REGN or ILMN: Which Is the Better Value Stock Right Now?</div><div class="s">Yahoo Finance · 中性</div></div></div>
+<footer>稳健理财Agent · 红黑榜每日归档 · 红榜 #10 · 仅供研究，不构成投资建议</footer>
+</div></body>
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CVX(CVX) 红榜 2026-10-01</title>
+<style>
+:root{--red:#d8342c;--redbg:#fdecea;--green:#1a9e54;--ink:#1c2230;--muted:#6b7385;
+--line:#e7e9ef;--card:#fff;--bg:#f4f6fa;--chip:#eef1f6;--dark:#23262d;--darkbg:#ececef}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",
+"Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);
+line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 16px 64px}
+header.top{background:linear-gradient(135deg,#1c2230,#2c3550);color:#fff;border-radius:14px;
+padding:22px 24px;margin-bottom:20px;box-shadow:0 6px 24px rgba(20,26,46,.12)}
+header.top h1{margin:0 0 6px;font-size:24px;letter-spacing:.5px}
+header.top .sub{opacity:.85;font-size:13px}
+header.top .sub b{color:#ffd166;font-weight:600}
+nav.mkt{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;
+background:rgba(244,246,250,.92);backdrop-filter:blur(6px);padding:10px 0;margin-bottom:14px}
+nav.mkt a{text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);
+padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600}
+nav.mkt a:hover{border-color:var(--red);color:var(--red)}
+.summary{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.summary .chip{background:var(--card);border:1px solid var(--line);border-radius:10px;
+padding:8px 12px;font-size:12px;color:var(--muted)}
+.summary .chip b{color:var(--ink);font-size:14px;margin-left:4px}
+section.board{margin:26px 0}
+.board-title{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:19px}
+.board-title .dot{width:10px;height:10px;border-radius:50%}
+.board-title.red .dot{background:var(--red)}
+.board-title.black .dot{background:var(--dark)}
+.board-title small{color:var(--muted);font-weight:400;font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+position:relative;transition:box-shadow .15s}
+.card:hover{box-shadow:0 4px 18px rgba(20,26,46,.08)}
+.card.red{border-top:3px solid var(--red)}
+.card.black{border-top:3px solid var(--dark)}
+.rank{position:absolute;top:10px;right:12px;font-size:26px;font-weight:800;color:#eceff5}
+.card.red .rank{color:#fbdcD9}
+.nm{font-size:16px;font-weight:700}
+.nm .tk{color:var(--muted);font-weight:500;font-size:12px;margin-left:6px}
+.tag{display:inline-block;background:var(--chip);color:var(--muted);border-radius:6px;
+padding:1px 7px;font-size:11px;margin:6px 6px 0 0}
+.price-row{display:flex;align-items:baseline;gap:10px;margin:10px 0 4px}
+.price{font-size:24px;font-weight:800}
+.pct{font-size:14px;font-weight:700;padding:2px 8px;border-radius:8px}
+.up{color:var(--red)}.down{color:var(--green)}.flat{color:var(--muted)}
+.pct.up{background:var(--redbg)}.pct.down{background:#e2f4e9}.pct.flat{background:var(--chip)}
+.psrc{font-size:11px;color:var(--muted);margin-left:auto}
+.scores{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.scores span{background:var(--chip);border-radius:6px;padding:2px 8px;font-size:11px;color:var(--muted)}
+.scores span b{color:var(--ink)}
+.pts{font-size:12.5px;margin:8px 0 0}
+.pts .h{font-weight:700;font-size:12px;margin:6px 0 2px}
+.pts .h.bull{color:var(--red)}.pts .h.bear{color:var(--green)}
+.pts ul{margin:2px 0 4px;padding-left:18px;color:#3a4152}
+.pts li{margin:1px 0}
+.masters{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:11px;color:var(--muted)}
+.masters b{color:var(--ink)}
+.summ{font-size:12.5px;color:#3a4152;background:#fafbfd;border:1px solid var(--line);
+border-radius:8px;padding:8px 10px;margin-top:8px}
+.empty{color:var(--muted);background:var(--card);border:1px dashed var(--line);
+border-radius:10px;padding:18px;text-align:center}
+footer{margin-top:34px;color:var(--muted);font-size:12px;text-align:center;line-height:1.8}
+a.lnk{color:var(--red);text-decoration:none}
+/* ── detail page ── */
+.backbar{margin-bottom:14px;font-size:13px}
+.backbar a{color:var(--muted);text-decoration:none;margin-right:14px}
+.backbar a:hover{color:var(--red)}
+.badge{display:inline-block;border-radius:6px;padding:2px 10px;font-size:12px;font-weight:700;margin-right:8px}
+.badge.red{background:var(--red);color:#fff}.badge.black{background:var(--dark);color:#fff}
+.trade{display:flex;flex-wrap:wrap;gap:10px;background:linear-gradient(135deg,#2c3550,#1c2230);
+color:#fff;border-radius:12px;padding:16px 18px;margin:16px 0}
+.trade .cell{min-width:120px}
+.trade .k{font-size:11px;opacity:.75}
+.trade .v{font-size:18px;font-weight:800;margin-top:2px}
+.trade .v.buy{color:#7ee2a8}.trade .v.sell{color:#ff9d97}.trade .v.hold{color:#ffd166}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0}
+.mgrid .m{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.mgrid .m .k{font-size:11px;color:var(--muted)}
+.mgrid .m .v{font-size:16px;font-weight:700;margin-top:2px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.panel>h2{margin:0 0 12px;font-size:17px}
+.panel>h2 .sub{font-size:12px;color:var(--muted);font-weight:400;margin-left:8px}
+.mreply{border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;
+padding:12px 14px;margin:10px 0;background:#fff}
+.mreply .mh{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.mreply .mh .who{font-weight:700;font-size:14px}
+.mreply .mh .mscore{margin-left:auto;background:var(--chip);border-radius:6px;padding:1px 8px;font-size:12px;font-weight:700}
+.md h2,.md h3,.md h4,.md h5{margin:12px 0 6px;font-size:15px}
+.md p{margin:6px 0;font-size:13.5px;color:#2c3345}
+.md ul{margin:6px 0;padding-left:20px;font-size:13.5px;color:#2c3345}
+.md li{margin:3px 0}
+.md strong{color:var(--ink)}
+details{border:1px solid var(--line);border-radius:10px;background:#fff;margin:10px 0;padding:0}
+details>summary{cursor:pointer;padding:12px 16px;font-weight:700;font-size:14px;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary:before{content:"▸ ";color:var(--red)}
+details[open]>summary:before{content:"▾ "}
+details>.body{padding:0 16px 14px;border-top:1px dashed var(--line)}
+.ychip{display:inline-block;background:var(--chip);border-radius:8px;padding:4px 10px;font-size:12px;margin:3px 6px 3px 0}
+.ychip b{font-size:13px}
+.news .nitem{border-top:1px dashed var(--line);padding:8px 0;font-size:13px}
+.news .nitem .t{font-weight:600}
+.news .nitem .s{color:var(--muted);font-size:12px}
+/* ── root landing page ── */
+.hero{padding:30px 26px}
+.hero-kicker{color:#ffd166;font-size:12px;font-weight:700;letter-spacing:2px;
+text-transform:uppercase;margin-bottom:8px}
+.hero h1{font-size:30px;margin:0 0 10px}
+.day-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.day-card{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);
+border-radius:12px;padding:14px 16px;transition:all .15s}
+.day-card:hover{border-color:var(--red);box-shadow:0 4px 16px rgba(216,52,44,.12);transform:translateY(-2px)}
+.day-card .d{font-weight:800;font-size:15px;color:var(--ink);display:flex;align-items:center;gap:8px}
+.day-card .m{margin-top:8px;display:flex;gap:6px}
+.day-card .m span{background:var(--chip);color:var(--muted);border-radius:6px;
+padding:2px 8px;font-size:11px}
+.latest-badge{background:var(--red);color:#fff;border-radius:6px;padding:1px 7px;
+font-size:10px;font-weight:700}
+</style>
+</head>
+<body><div class="wrap">
+<div class="backbar"><a href="../index.html">← 总览</a><a href="../us.html">← 美股榜单</a></div>
+<header class="top">
+  <h1><span class="badge red">红榜 #9</span>CVX<span class="tk" style="opacity:.7;font-size:15px;font-weight:400;margin-left:8px">CVX</span></h1>
+  <div class="sub">美股 ·  · 榜单日期 <b>2026-10-01</b> · 盘价采集 <b>2026-10-01 05:00:07</b></div>
+  <div class="price-row" style="margin-top:12px">
+    <span class="price" style="color:#fff">$204.21</span>
+    <span class="pct down">-0.08%</span>
+    <span class="psrc" style="color:rgba(255,255,255,.6)">实时</span>
+  </div>
+  <div class="scores" style="margin-top:10px">
+    <span>综合 <b>84.4</b></span>
+    <span>多头 <b>80</b></span>
+    <span>空头 <b>30</b></span>
+    <span>大师均值 <b>68.4</b></span>
+    <span>信号 <b>positive</b></span>
+  </div>
+</header>
+<div class="trade"><div class="cell"><div class="k">交易评级</div><span class="v buy">Buy</span></div><div class="cell"><div class="k">加仓区间</div><span class="v">198.59 ~ 206.78</span></div><div class="cell"><div class="k">目标价</div><span class="v">229.30</span></div><div class="cell"><div class="k">伯克希尔</div><span class="v">买入</span></div><div class="cell"><div class="k">伯克希尔分</div><span class="v">3.75</span></div></div>
+<div class="panel"><h2>财务指标</h2><div class="mgrid"><div class="m"><div class="k">市盈率 PE</div><div class="v">19.73</div></div><div class="m"><div class="k">市净率 PB</div><div class="v">2.12</div></div><div class="m"><div class="k">ROE</div><div class="v">12.2%</div></div><div class="m"><div class="k">总市值</div><div class="v">4016</div></div><div class="m"><div class="k">营收同比</div><div class="v">53.5%</div></div><div class="m"><div class="k">净利同比</div><div class="v">321.9%</div></div></div></div>
+<div class="panel"><h2>历史收益</h2><span class="ychip">近1月 <b class="down">-0.68%</b></span><span class="ychip">近6月 <b class="down">-2.84%</b></span><span class="ychip">近1年 <b class="up">+31.84%</b></span><span class="ychip">近5年 <b class="up">+101.81%</b></span></div>
+<div class="panel"><h2>大师圆桌<span class="sub">5 位</span></h2><div class="mreply"><div class="mh"><span class="who">段永平</span><span class="mscore">92</span></div><div class="md"><h4>圆桌发言</h4><p>各位好，关于CVX（雪佛龙），我的看法是：这是一个符合&quot;本分&quot;原则、值得关注的投资机会。</p><h5>结论：</h5><p>我倾向于看好CVX，主要基于其核心业务模式的可预见性和长期价值。</p><h5>理由：</h5><p>首先，CVX所处的能源行业虽然面临转型压力，但传统能源在可预见的未来仍将是全球经济的基石。当前能源价格维持高位，这对CVX的盈利能力提供了有力支撑。</p><p>其次，CVX的股息收益具有吸引力。对于我们这些追求长期稳定回报的投资者来说，持续的股息支付能力是判断公司价值的重要指标。CVX在这方面表现稳健。</p><p>此外，行业整合趋势对CVX这样的龙头企业有利。在环保政策压力下，小型能源公司面临更大挑战，而CVX这样的巨头更有能力应对转型压力，甚至可能从中获益。</p><h5>风险/行动建议：</h5><p>当然，我们也必须正视一些风险因素：</p><ul><li>宏观经济的不确定性可能会影响能源需求，进而影响CVX的业绩表现。</li><li>环保政策压力持续存在，虽然CVX在新能源转型方面有所布局，但转型过程充满挑战。</li></ul><p>基于以上分析，我的建议是：</p><p>如果你是追求长期稳定回报的投资者，并且认同CVX的商业模式和应对挑战的能力，那么可以考虑将其纳入你的投资组合。但要记住，投资的关键在于&quot;做对的事&quot;，而不是盲目追逐短期收益。</p><p>最后，我想强调一点：投资CVX需要我们有足够的耐心和定力。能源行业的转型是一个长期过程，期间可能会出现各种波动。我们要用&quot;十年后回头看&quot;的心态来评估这笔投资，而不是被短期市场情绪左右。</p><h4>别错过的隐含约束：</h4><p>别为了追求高股息而忽视了行业转型的长期风险。投资CVX需要我们持续关注其新能源转型进展，以及全球能源政策的变化趋势。</p></div></div><div class="mreply"><div class="mh"><span class="who">巴菲特</span><span class="mscore">48</span></div><div class="md"><p>各位朋友，今天我们来聊聊 CVX 这家公司。</p><p>首先，我得说，CVX 是一家典型的能源巨头，拥有令人印象深刻的护城河。它的规模效应和行业整合趋势让它在能源价格维持高位时能够获得可观的利润。股息收益也相当吸引人，对于追求稳定回报的投资者来说，这无疑是一个亮点。</p><p>然而，我们不能忽视一些潜在的风险。宏观经济的不确定性始终是一个需要警惕的因素。环保政策的压力持续存在，这对传统能源公司来说是一个长期的挑战。此外，新能源转型的趋势也不容小觑，CVX 需要在保持传统业务优势的同时，积极应对这一变化。</p><p>从估值角度来看，CVX 的当前市盈率约为 19.7 倍，市净率约为 2.11 倍。这些数字在当前市场环境下并不算便宜，但考虑到其稳定的现金流和股息支付能力，仍然具有一定的吸引力。</p><p>在这里，我想提出几个关键问题，供大家思考：</p><ul><li>CVX 如何在保持传统能源业务优势的同时，成功转型到新能源领域？</li><li>当前的股价是否已经充分反映了其未来增长潜力？</li><li>在宏观经济不确定性增加的背景下，CVX 的资本配置策略是否足够稳健？</li></ul><p>对于那些考虑投资 CVX 的人来说，我的建议是：</p><ul><li><strong>密切关注公司的资本配置策略</strong>，确保其在新旧能源领域的投资能够带来长期回报。</li><li><strong>保持耐心和定力</strong>，不要被短期市场波动所左右。长期持有优质公司是获得复利增长的关键。</li><li><strong>做好风险管理</strong>，确保投资组合的多样性，以应对可能的市场波动。</li></ul><p>最后，我想引用一句我常说的话：“时间是伟大生意的朋友，是烂生意的敌人。” CVX 是一家有着深厚护城河的公司，但能否在新能源时代继续保持优势，还需要我们持续观察。</p><p>如果查理·芒格在这里，他可能会补充说：“投资就像经营果园，你得确保你的果树能够长期结出好果子。” 在这里，CVX 的“果树”就是其传统能源业务和新能源转型的成功。</p></div></div><div class="mreply"><div class="mh"><span class="who">达利欧</span><span class="mscore">78</span></div><div class="md"><p>各位同仁，今天我们来讨论一下 CVX 的投资前景。</p><p>首先，从我的角度来看，我对这个标的持谨慎乐观态度，给它一个 78 分的高分评级。这主要基于以下几个原因：</p><p>首先，CVX 处于一个非常有利的行业环境。能源价格持续高位，这对公司的盈利能力提供了强有力的支撑。我们可以看到公司最近一个季度的营收同比增长了 53.5%，净利润更是大幅增长了 321.9%，这表明公司在当前市场环境下能够很好地把握机会。</p><p>其次，CVX 提供了具有吸引力的股息收益。在当前低利率环境下，这样的收益水平对于寻求稳定回报的投资者来说是一个重要的考量因素。</p><p>然而，我们也需要保持警惕。正如我常说的，任何投资决策都应该基于对风险的充分认识。以下是几个需要关注的风险点：</p><ul><li>宏观经济的不确定性：全球经济增速放缓可能会影响能源需求，进而影响 CVX 的业绩表现。</li></ul><ul><li>环保政策的压力：全球向可再生能源转型的趋势不可逆转，这将对传统能源公司构成长期挑战。</li></ul><ul><li>新能源转型的挑战：CVX 需要在保持现有业务优势的同时，积极进行业务转型，这对公司的战略执行能力是一个考验。</li></ul><p>基于以上分析，我的建议是：</p><ul><li>对于已经持有 CVX 的投资者，我建议继续持有，但要密切关注宏观经济指标和公司的新能源转型进展。可以考虑将 CVX 作为投资组合中的一部分，而不是唯一的投资标的，以分散风险。</li></ul><ul><li>对于考虑建仓的投资者，我建议等待更好的入场时机。可以在市场出现回调时逐步建仓，同时设定好止损点，以控制下行风险。</li></ul><ul><li>无论采取何种投资策略，都应该将 CVX 纳入一个更广泛的投资组合中，并定期评估投资组合的风险敞口。</li></ul><p>最后，我想强调的是，投资决策应该基于对原则的坚持和对风险的清醒认识。正如我常说的，&quot;Pain + Reflection = Progress&quot;，我们需要不断学习和反思，才能在复杂的市场环境中做出明智的决策。</p></div></div><div class="mreply"><div class="mh"><span class="who">彼得·林奇</span><span class="mscore">57</span></div><div class="md"><p>各位好，我来说说对雪佛龙（CVX）的看法。</p><h4>结论：</h4><p>雪佛龙是一家值得关注的能源公司，但目前价格不算便宜。长期来看，如果能源价格能维持高位，公司前景不错，但短期内存在一些不确定性。</p><h4>理由：</h4><ul><li><strong>能源价格维持高位</strong>：当前能源价格处于相对高位，这对雪佛龙的盈利能力构成支撑。作为一家大型综合能源公司，雪佛龙在石油和天然气领域都有布局，能够较好地抵御单一市场的波动。</li></ul><ul><li><strong>股息收益具有吸引力</strong>：雪佛龙的股息收益率一直保持在较高水平，这对于追求稳定收益的投资者来说是一个亮点。公司在现金流管理方面表现稳健，能够持续支付股息。</li></ul><ul><li><strong>行业整合趋势利好</strong>：能源行业正在经历整合，这有助于提高行业集中度，增强龙头企业的市场定价能力。雪佛龙作为行业领先者，有望从中受益。</li></ul><h4>风险：</h4><ul><li><strong>宏观经济不确定性</strong>：全球经济形势仍然充满变数，能源需求可能会受到冲击。如果经济增速放缓，能源价格可能会下跌，影响公司盈利能力。</li></ul><ul><li><strong>环保政策压力持续</strong>：全球范围内的环保政策日益严格，这对传统能源公司构成长期挑战。雪佛龙需要投入大量资源进行转型，以适应低碳经济的要求。</li></ul><ul><li><strong>新能源转型挑战</strong>：新能源的快速发展对传统能源公司构成竞争压力。雪佛龙需要在新能源领域进行有效布局，否则可能会在未来失去市场份额。</li></ul><h4>行动建议：</h4><ul><li><strong>关注能源价格走势</strong>：如果能源价格能够持续高位运行，雪佛龙的盈利能力将得到保障。投资者需要密切关注全球能源市场的动态。</li></ul><ul><li><strong>评估股息可持续性</strong>：虽然雪佛龙的股息收益率较高，但投资者仍需评估其可持续性。如果公司未来面临较大的财务压力，可能会调整股息政策。</li></ul><ul><li><strong>考虑长期持有</strong>：如果你对能源行业的长期前景有信心，并且能够承受短期波动，可以考虑将雪佛龙作为长期投资组合的一部分。但要注意控制仓位，避免过度集中。</li></ul><p>总的来说，雪佛龙是一家基本面稳健的公司，但当前价格不算便宜。投资者需要根据自身的风险承受能力和投资目标，谨慎做出决策。</p></div></div><div class="mreply"><div class="mh"><span class="who">芒格</span><span class="mscore">67</span></div><div class="md"><h4>发言：</h4><p>首先，我必须说，我不喜欢预测短期市场走势，但就CVX这家公司的基本面而言，它确实有值得关注的点。</p><h4>结论：</h4><p>CVX是一家值得考虑的投资标的，但需要谨慎对待。</p><h4>理由：</h4><ul><li><strong>能源价格维持高位</strong>：CVX作为一家大型能源公司，当前能源价格的高位对其盈利能力有直接的正面影响。这种情况短期内不太可能改变，因为全球能源需求依然强劲。</li></ul><ul><li><strong>股息收益具有吸引力</strong>：CVX的股息收益率一直保持在较高水平，这对于追求稳定现金流的投资者来说是一个重要的吸引力。</li></ul><ul><li><strong>行业整合趋势利好</strong>：能源行业的整合趋势对CVX这样的龙头企业有利。行业集中度的提高通常会带来更强的定价能力和更高的利润率。</li></ul><h4>风险：</h4><ul><li><strong>宏观经济不确定性</strong>：全球经济的不确定性是一个重要的风险因素。如果经济出现衰退，能源需求可能会下降，从而影响CVX的盈利能力。</li></ul><ul><li><strong>环保政策压力持续</strong>：随着全球对环保的重视，CVX面临的政策压力也在增加。这可能会导致更高的合规成本和更严格的生产限制。</li></ul><ul><li><strong>新能源转型挑战</strong>：CVX需要应对新能源转型的挑战。虽然公司在传统能源领域有很强的竞争力，但在新能源领域的布局和竞争力尚不明确。</li></ul><h4>行动建议：</h4><ul><li><strong>估值审视</strong>：当前CVX的市盈率（PE）为19.7倍，市净率（PB）为2.1倍。虽然不算便宜，但在当前市场环境下，这个估值水平是可以接受的。不过，投资者应该密切关注公司的财务状况和未来增长预期。</li></ul><ul><li><strong>风险对冲</strong>：考虑到宏观经济的不确定性，投资者可以考虑通过多元化投资来对冲风险。例如，可以将部分资金配置到新能源领域或其他防御性行业。</li></ul><ul><li><strong>长期视角</strong>：CVX适合那些有长期投资视角的投资者。短期内，市场波动和政策变化可能会带来压力，但长期来看，CVX在能源行业的地位依然稳固。</li></ul><h4>我能错在哪？</h4><p>我可能低估了新能源转型的速度和高估了传统能源行业的持续性。此外，全球经济的不确定性可能比我预期的更为严重。如果这些风险因素恶化，CVX的股价可能会受到较大影响。</p><p>总之，CVX是一家值得关注的优质公司，但投资者需要谨慎评估风险，并做好长期持有的准备。</p></div></div></div>
+<div class="panel"><h2>分析师报告<span class="sub">2 篇</span></h2><details open><summary>市场面分析</summary><div class="body"><div class="md"><h4>CVX CVX 市场面分析</h4><ul><li>红黑榜多空分数：多头 80 / 空头 30，分差 50。</li><li>当前价格：204.75。</li><li>当前交易评级：Buy。</li><li>值得加仓区间：198.59 - 206.78。</li><li>目标价格：229.30。</li><li>市场愿意给溢价的原因：能源价格维持高位；股息收益具有吸引力；行业整合趋势利好。</li><li>当前主要压制因素：宏观经济不确定性；环保政策压力持续；新能源转型挑战。</li></ul></div></div></details><details open><summary>基本面分析</summary><div class="body"><div class="md"><h4>CVX CVX 基本面分析</h4><ul><li>报告期：暂无。</li><li>PE(TTM)：19.73。</li><li>PB：2.12。</li><li>ROE：12.23%。</li><li>营收同比：53.50%。</li><li>归母净利润同比：321.90%。</li><li>核心判断：盈利能力处于可接受区间；收入仍在增长；利润端保持扩张。</li></ul></div></div></details></div>
+<div class="panel"><h2>研究与计划</h2>
+<details><summary>基本面摘要</summary><div class="body"><div class="md"><h3>核心财务快照</h3><ul><li>报告期: 数据缺失</li><li>当前股价: 204.75 元</li><li>总市值: 4016.38 亿元</li><li>PE (TTM): 19.73</li><li>PB: 2.12</li><li>PS (TTM): 数据缺失</li><li>营业总收入(报告期): 数据缺失 亿元</li><li>营收同比增长率: 53.50%</li><li>归母净利润(报告期): 数据缺失 亿元</li><li>归母净利润同比增长率: 321.90%</li><li>ROE (TTM/估算): 12.23%</li><li>资产负债率: 数据缺失</li><li>经营性现金流 / 归母净利润: 数据缺失</li></ul><h4>缺失字段</h4><ul><li>PS(TTM), 营业总收入, 归母净利润, 资产负债率, 经营性现金流与归母净利润比值</li></ul></div></div></details>
+<details><summary>研究计划</summary><div class="body"><div class="md"><h4>CVX CVX 研究摘要</h4><ul><li>红黑榜结论: Buy</li><li>多头/空头: 80/30</li><li>正向信号: ROE 12.23%；营收同比 53.50%；归母净利润同比 321.90%；PE(TTM) 19.72</li><li>榜单看多理由: 能源价格维持高位；股息收益具有吸引力；行业整合趋势利好</li><li>榜单风险提示: 宏观经济不确定性；环保政策压力持续；新能源转型挑战</li></ul></div></div></details>
+<details><summary>交易计划</summary><div class="body"><div class="md"><h4>CVX CVX 交易计划</h4><ul><li>评级: Buy</li><li>当前价格: 204.73</li><li>值得加仓区间: 198.59 - 206.78</li><li>目标价格: 229.30</li><li>止损位: 188.35</li><li>备注: 当前为缓存降级交易卡，后续若完整 TradingAgent 结果生成，将自动覆盖。</li></ul></div></div></details>
+<details><summary>交易决策</summary><div class="body"><div class="md"><p>Buy</p><p>CVX CVX 当前使用红黑榜缓存结果生成兜底交易卡。多头 80 / 空头 30，分差 50。当前尚未取得完整 TradingAgent 长文决策，但榜单分数、财务快照和大师观点已经足够生成基础交易建议。</p></div></div></details>
+</div>
+<div class="panel"><h2>多空逻辑</h2><div class="pts"><div class="h bull">看多逻辑</div><div class="md"><p>能源价格维持高位</p><p>股息收益具有吸引力</p><p>行业整合趋势利好</p></div></div><div class="pts"><div class="h bear">看空逻辑</div><div class="md"><p>宏观经济不确定性</p><p>环保政策压力持续</p><p>新能源转型挑战</p></div></div></div>
+<div class="panel"><h2>伯克希尔研究</h2><p><strong>CVX是一家拥有深厚护城河、稳健财务表现和长期确定性的能源巨头，但需关注能源转型风险。</strong></p><p>伯克希尔综合评分：<strong>3.75</strong></p><div class="md"><p>{&quot;verdict&quot;: &quot;买入&quot;, &quot;conservative_tip&quot;: &quot;建议在PE低于9倍时买入，长期持有。&quot;, &quot;moderate_tip&quot;: &quot;建议在PE低于10倍时买入，持有3-5年。&quot;, &quot;aggressive_tip&quot;: &quot;建议在PE低于8.5倍时买入，密切关注能源转型进展。&quot;, &quot;catalysts_plus&quot;: [&quot;油价上涨&quot;, &quot;新能源转型取得突破&quot;, &quot;全球能源需求增长&quot;], &quot;catalysts_minus&quot;: [&quot;政策对传统能源的进一步限制&quot;, &quot;新能源技术突破导致油价下跌&quot;, &quot;地缘政治风险加剧&quot;]}</p></div></div>
+<div class="panel news"><h2>最新资讯</h2><div class="md"><p>整体情绪偏利好，共5条利多，3条利空，3条中性。</p></div><div class="nitem"><div class="t">Chevron (CVX) Stock Still Looks Undervalued Following Its 141% Run</div><div class="s">Yahoo Finance · 利好</div></div><div class="nitem"><div class="t">Is Chevron (CVX) Too Expensive for Its Cash Flow Outlook?</div><div class="s">simplywall.st · 利空</div></div><div class="nitem"><div class="t">Carvolix (CVX) Names New Board Chair; H1 Net Loss €13.9M</div><div class="s">TradingView · 中性</div></div><div class="nitem"><div class="t">Chevron Has More Going for It Than Higher Oil Prices</div><div class="s">24/7 Wall St. · 利好</div></div><div class="nitem"><div class="t">Stay informed with the top movers within the dow jones index on Wednesday.</div><div class="s">ChartMill · 中性</div></div><div class="nitem"><div class="t">CVX vs XOM: valuation, momentum, and which side the pairs trade favors</div><div class="s">Investing.com · 中性</div></div><div class="nitem"><div class="t">Chevron Corp (CVX) Stock Down 1.0% but Still Overvalued -- GF Sc</div><div class="s">GuruFocus · 利空</div></div><div class="nitem"><div class="t">Chevron (CVX): Is the Recent Decline a Temporary Setback or a Long-Term Opportunity?</div><div class="s">Yahoo Finance · 利好</div></div></div>
+<footer>稳健理财Agent · 红黑榜每日归档 · 红榜 #9 · 仅供研究，不构成投资建议</footer>
+</div></body>
+</html>
