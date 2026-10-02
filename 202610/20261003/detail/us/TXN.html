@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TXN(TXN) 红榜 2026-10-03</title>
+<style>
+:root{--red:#d8342c;--redbg:#fdecea;--green:#1a9e54;--ink:#1c2230;--muted:#6b7385;
+--line:#e7e9ef;--card:#fff;--bg:#f4f6fa;--chip:#eef1f6;--dark:#23262d;--darkbg:#ececef}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",
+"Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);
+line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 16px 64px}
+header.top{background:linear-gradient(135deg,#1c2230,#2c3550);color:#fff;border-radius:14px;
+padding:22px 24px;margin-bottom:20px;box-shadow:0 6px 24px rgba(20,26,46,.12)}
+header.top h1{margin:0 0 6px;font-size:24px;letter-spacing:.5px}
+header.top .sub{opacity:.85;font-size:13px}
+header.top .sub b{color:#ffd166;font-weight:600}
+nav.mkt{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;
+background:rgba(244,246,250,.92);backdrop-filter:blur(6px);padding:10px 0;margin-bottom:14px}
+nav.mkt a{text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);
+padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600}
+nav.mkt a:hover{border-color:var(--red);color:var(--red)}
+.summary{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.summary .chip{background:var(--card);border:1px solid var(--line);border-radius:10px;
+padding:8px 12px;font-size:12px;color:var(--muted)}
+.summary .chip b{color:var(--ink);font-size:14px;margin-left:4px}
+section.board{margin:26px 0}
+.board-title{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:19px}
+.board-title .dot{width:10px;height:10px;border-radius:50%}
+.board-title.red .dot{background:var(--red)}
+.board-title.black .dot{background:var(--dark)}
+.board-title small{color:var(--muted);font-weight:400;font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+position:relative;transition:box-shadow .15s}
+.card:hover{box-shadow:0 4px 18px rgba(20,26,46,.08)}
+.card.red{border-top:3px solid var(--red)}
+.card.black{border-top:3px solid var(--dark)}
+.rank{position:absolute;top:10px;right:12px;font-size:26px;font-weight:800;color:#eceff5}
+.card.red .rank{color:#fbdcD9}
+.nm{font-size:16px;font-weight:700}
+.nm .tk{color:var(--muted);font-weight:500;font-size:12px;margin-left:6px}
+.tag{display:inline-block;background:var(--chip);color:var(--muted);border-radius:6px;
+padding:1px 7px;font-size:11px;margin:6px 6px 0 0}
+.price-row{display:flex;align-items:baseline;gap:10px;margin:10px 0 4px}
+.price{font-size:24px;font-weight:800}
+.pct{font-size:14px;font-weight:700;padding:2px 8px;border-radius:8px}
+.up{color:var(--red)}.down{color:var(--green)}.flat{color:var(--muted)}
+.pct.up{background:var(--redbg)}.pct.down{background:#e2f4e9}.pct.flat{background:var(--chip)}
+.psrc{font-size:11px;color:var(--muted);margin-left:auto}
+.scores{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.scores span{background:var(--chip);border-radius:6px;padding:2px 8px;font-size:11px;color:var(--muted)}
+.scores span b{color:var(--ink)}
+.pts{font-size:12.5px;margin:8px 0 0}
+.pts .h{font-weight:700;font-size:12px;margin:6px 0 2px}
+.pts .h.bull{color:var(--red)}.pts .h.bear{color:var(--green)}
+.pts ul{margin:2px 0 4px;padding-left:18px;color:#3a4152}
+.pts li{margin:1px 0}
+.masters{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:11px;color:var(--muted)}
+.masters b{color:var(--ink)}
+.summ{font-size:12.5px;color:#3a4152;background:#fafbfd;border:1px solid var(--line);
+border-radius:8px;padding:8px 10px;margin-top:8px}
+.empty{color:var(--muted);background:var(--card);border:1px dashed var(--line);
+border-radius:10px;padding:18px;text-align:center}
+footer{margin-top:34px;color:var(--muted);font-size:12px;text-align:center;line-height:1.8}
+a.lnk{color:var(--red);text-decoration:none}
+/* ── detail page ── */
+.backbar{margin-bottom:14px;font-size:13px}
+.backbar a{color:var(--muted);text-decoration:none;margin-right:14px}
+.backbar a:hover{color:var(--red)}
+.badge{display:inline-block;border-radius:6px;padding:2px 10px;font-size:12px;font-weight:700;margin-right:8px}
+.badge.red{background:var(--red);color:#fff}.badge.black{background:var(--dark);color:#fff}
+.trade{display:flex;flex-wrap:wrap;gap:10px;background:linear-gradient(135deg,#2c3550,#1c2230);
+color:#fff;border-radius:12px;padding:16px 18px;margin:16px 0}
+.trade .cell{min-width:120px}
+.trade .k{font-size:11px;opacity:.75}
+.trade .v{font-size:18px;font-weight:800;margin-top:2px}
+.trade .v.buy{color:#7ee2a8}.trade .v.sell{color:#ff9d97}.trade .v.hold{color:#ffd166}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0}
+.mgrid .m{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.mgrid .m .k{font-size:11px;color:var(--muted)}
+.mgrid .m .v{font-size:16px;font-weight:700;margin-top:2px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.panel>h2{margin:0 0 12px;font-size:17px}
+.panel>h2 .sub{font-size:12px;color:var(--muted);font-weight:400;margin-left:8px}
+.mreply{border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;
+padding:12px 14px;margin:10px 0;background:#fff}
+.mreply .mh{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.mreply .mh .who{font-weight:700;font-size:14px}
+.mreply .mh .mscore{margin-left:auto;background:var(--chip);border-radius:6px;padding:1px 8px;font-size:12px;font-weight:700}
+.md h2,.md h3,.md h4,.md h5{margin:12px 0 6px;font-size:15px}
+.md p{margin:6px 0;font-size:13.5px;color:#2c3345}
+.md ul{margin:6px 0;padding-left:20px;font-size:13.5px;color:#2c3345}
+.md li{margin:3px 0}
+.md strong{color:var(--ink)}
+details{border:1px solid var(--line);border-radius:10px;background:#fff;margin:10px 0;padding:0}
+details>summary{cursor:pointer;padding:12px 16px;font-weight:700;font-size:14px;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary:before{content:"▸ ";color:var(--red)}
+details[open]>summary:before{content:"▾ "}
+details>.body{padding:0 16px 14px;border-top:1px dashed var(--line)}
+.ychip{display:inline-block;background:var(--chip);border-radius:8px;padding:4px 10px;font-size:12px;margin:3px 6px 3px 0}
+.ychip b{font-size:13px}
+.news .nitem{border-top:1px dashed var(--line);padding:8px 0;font-size:13px}
+.news .nitem .t{font-weight:600}
+.news .nitem .s{color:var(--muted);font-size:12px}
+/* ── root landing page ── */
+.hero{padding:30px 26px}
+.hero-kicker{color:#ffd166;font-size:12px;font-weight:700;letter-spacing:2px;
+text-transform:uppercase;margin-bottom:8px}
+.hero h1{font-size:30px;margin:0 0 10px}
+.day-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.day-card{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);
+border-radius:12px;padding:14px 16px;transition:all .15s}
+.day-card:hover{border-color:var(--red);box-shadow:0 4px 16px rgba(216,52,44,.12);transform:translateY(-2px)}
+.day-card .d{font-weight:800;font-size:15px;color:var(--ink);display:flex;align-items:center;gap:8px}
+.day-card .m{margin-top:8px;display:flex;gap:6px}
+.day-card .m span{background:var(--chip);color:var(--muted);border-radius:6px;
+padding:2px 8px;font-size:11px}
+.latest-badge{background:var(--red);color:#fff;border-radius:6px;padding:1px 7px;
+font-size:10px;font-weight:700}
+</style>
+</head>
+<body><div class="wrap">
+<div class="backbar"><a href="../index.html">← 总览</a><a href="../us.html">← 美股榜单</a></div>
+<header class="top">
+  <h1><span class="badge red">红榜 #5</span>TXN<span class="tk" style="opacity:.7;font-size:15px;font-weight:400;margin-left:8px">TXN</span></h1>
+  <div class="sub">美股 ·  · 榜单日期 <b>2026-10-03</b> · 盘价采集 <b>2026-10-03 05:00:07</b></div>
+  <div class="price-row" style="margin-top:12px">
+    <span class="price" style="color:#fff">$293.80</span>
+    <span class="pct up">+4.44%</span>
+    <span class="psrc" style="color:rgba(255,255,255,.6)">实时</span>
+  </div>
+  <div class="scores" style="margin-top:10px">
+    <span>综合 <b>90.6</b></span>
+    <span>多头 <b>85</b></span>
+    <span>空头 <b>25</b></span>
+    <span>大师均值 <b>81.6</b></span>
+    <span>信号 <b>positive</b></span>
+  </div>
+</header>
+<div class="trade"><div class="cell"><div class="k">交易评级</div><span class="v buy">Buy</span></div><div class="cell"><div class="k">加仓区间</div><span class="v">285.07 ~ 296.83</span></div><div class="cell"><div class="k">目标价</div><span class="v">329.16</span></div><div class="cell"><div class="k">伯克希尔</div><span class="v">买入</span></div><div class="cell"><div class="k">伯克希尔分</div><span class="v">4.25</span></div></div>
+<div class="panel"><h2>财务指标</h2><div class="mgrid"><div class="m"><div class="k">市盈率 PE</div><div class="v">44.70</div></div><div class="m"><div class="k">市净率 PB</div><div class="v">14.91</div></div><div class="m"><div class="k">ROE</div><div class="v">35.2%</div></div><div class="m"><div class="k">总市值</div><div class="v">2686</div></div><div class="m"><div class="k">营收同比</div><div class="v">22.8%</div></div><div class="m"><div class="k">净利同比</div><div class="v">51.8%</div></div></div></div>
+<div class="panel"><h2>历史收益</h2><span class="ychip">近1月 <b class="up">+15.34%</b></span><span class="ychip">近6月 <b class="up">+50.81%</b></span><span class="ychip">近1年 <b class="up">+61.19%</b></span><span class="ychip">近5年 <b class="up">+54.35%</b></span></div>
+<div class="panel"><h2>大师圆桌<span class="sub">5 位</span></h2><div class="mreply"><div class="mh"><span class="who">段永平</span><span class="mscore">56</span></div><div class="md"><p>我理解各位对TXN（德州仪器）的关注。我们可以从几个角度来探讨这个公司是否值得投资。</p><p>首先，从&quot;做对的事&quot;这个角度，德州仪器所处的半导体行业确实是一个好生意。半导体是现代科技的基础，而德州仪器作为模拟芯片领域的领导者，拥有稳固的市场地位，这符合我们&quot;只投好生意&quot;的原则。</p><p>从财务数据来看，22.8%的营收增长和51.8%的净利润增长显示出公司强劲的盈利能力。35.17%的ROE也表明公司能够很好地为股东创造价值。</p><p>然而，在做出投资决策时，我们还需要考虑一些重要的因素：</p><ul><li>当前44倍的PE估值是否合理？这需要我们深入思考。考虑到半导体行业的周期性特征，这样的估值水平可能已经包含了较高的增长预期。</li></ul><ul><li>供应链风险是不得不重视的问题。半导体行业对全球供应链的依赖程度很高，任何地缘政治或物流方面的波动都可能影响公司的运营。</li></ul><ul><li>市场波动带来的风险也不容忽视。虽然近期股价表现不错，但投资者需要考虑自己的风险承受能力。</li></ul><p>我的建议是：</p><p>如果你是长期投资者，并且能够承受一定程度的波动，那么德州仪器可能是一个值得考虑的投资标的。但前提是你要真正理解这个行业，并且能够以平常心看待市场的短期波动。</p><p>在这里，我想特别提醒大家一点：不要因为短期的股价上涨而忽略了长期的风险评估。正如我们常说的，&quot;不做不对的事，比做对的事更重要&quot;。在投资中，保持理性和克制是非常重要的。</p><p>最后，我想用一句话来总结：投资德州仪器需要我们既看到机会，也要正视风险。关键在于你是否真的理解这家公司，以及是否愿意以长期视角来持有它。</p></div></div><div class="mreply"><div class="mh"><span class="who">巴菲特</span><span class="mscore">85</span></div><div class="md"><p>各位朋友，今天我们来聊聊德州仪器（TXN）。首先，我的结论是：<strong>TXN是一家值得关注的优质公司，但目前价格偏高，需要谨慎对待</strong>。</p><h4>为什么这么说？</h4><p>首先，德州仪器拥有强大的<strong>护城河</strong>。作为全球领先的半导体公司，它在模拟和嵌入式处理芯片领域占据着稳固的市场地位。这种地位不仅源于其技术优势，还因为它与客户建立了长期的合作关系，这种关系带来了强大的转换成本。</p><p>其次，德州仪器的<strong>自由现金流</strong>非常强劲。近年来，公司一直保持着健康的盈利能力，并且能够将利润转化为持续的现金流。这种能力使得它在面对市场波动时具有更大的韧性。</p><h4>风险在哪里？</h4><p>然而，我们不能忽视当前的一些风险因素。首先，<strong>估值水平偏高</strong>。以44倍的市盈率来看，市场已经对德州仪器的未来增长给予了很高的预期。如果未来增长不及预期，可能会面临估值回调的压力。</p><p>其次，<strong>供应链风险</strong>依然存在。半导体行业对全球供应链的依赖程度很高，任何地缘政治或物流问题都可能对公司的运营产生重大影响。</p><h4>我的建议是：</h4><ul><li><strong>耐心等待更好的买入时机</strong>。虽然德州仪器是一家好公司，但目前的价格并没有给我们提供足够的安全边际。如果市场出现回调，可能会出现更好的买入机会。</li></ul><ul><li><strong>关注长期基本面</strong>。半导体行业的需求依然强劲，德州仪器在模拟芯片领域的领导地位短期内不会改变。投资者应关注公司能否持续保持其市场份额和技术优势。</li></ul><ul><li><strong>做好风险控制</strong>。在当前市场环境下，投资者应保持谨慎，合理配置仓位，避免因市场波动而做出情绪化的决策。</li></ul><h4>如果是芒格，他会怎么补充？</h4><p>查理可能会提醒我们，投资就像在果园里挑选最好的果树。我们不需要急着摘下每一颗果实，而是要耐心等待最好的时机。他可能会说：&quot;德州仪器是一家好公司，但好公司也要有好价格。&quot;</p></div></div><div class="mreply"><div class="mh"><span class="who">达利欧</span><span class="mscore">89</span></div><div class="md"><p>各位同仁，关于 TXN（德州仪器）的投资机会，我有以下看法：</p><h4>结论：</h4><p>我目前对 TXN 持乐观态度，但建议保持谨慎的乐观。</p><h4>理由：</h4><ul><li><strong>强劲的行业需求</strong>：半导体行业正处于强劲的增长周期，TXN 作为行业领导者之一，将受益于这一趋势。近期市场对半导体的需求持续强劲，尤其是在汽车和工业领域，这为 TXN 提供了良好的增长机会。</li></ul><ul><li><strong>优异的财务表现</strong>：从数据上看，TXN 的营收同比增长 22.8%，净利润同比增长 51.8%，净资产收益率（ROE）高达 35.176%，这些都显示出公司强劲的盈利能力和高效的资本运用。</li></ul><ul><li><strong>市场地位稳固</strong>：TXN 在半导体行业拥有稳固的市场地位，这为其提供了持续的增长潜力和抗风险能力。</li></ul><h4>风险：</h4><ul><li><strong>估值偏高</strong>：当前 PE 为 44.66，PB 为 14.90，估值水平较高。这意味着市场已经对 TXN 的未来增长给予了较高的预期，任何不及预期的表现都可能导致股价回调。</li></ul><ul><li><strong>供应链风险</strong>：半导体行业对供应链的依赖性极高，任何供应链的中断都可能对 TXN 的生产和销售产生负面影响。</li></ul><ul><li><strong>市场波动</strong>：近期市场波动较大，投资者信心可能受到影响，导致股价出现短期波动。</li></ul><h4>行动建议：</h4><ul><li><strong>保持关注</strong>：密切关注半导体行业的需求变化和 TXN 的供应链管理情况。如果行业需求持续强劲且 TXN 能够有效管理供应链风险，那么当前的高估值可以被认为是合理的。</li></ul><ul><li><strong>分散投资</strong>：考虑到估值偏高，建议投资者不要将所有资金集中投资于 TXN，而是通过分散投资来降低单一股票的风险。</li></ul><ul><li><strong>原则化决策</strong>：根据达利欧的原则化决策方法，建议投资者记录下当前的投资决策和理由，并在未来定期复盘，以验证决策的有效性并从中学习。</li></ul><h4>总结：</h4><p>TXN 是一家在半导体行业中具有强大市场地位和财务表现的公司，但在当前高估值和市场波动的情况下，投资者应保持谨慎的乐观。通过分散投资和持续关注行业动态，可以在享受 TXN 增长潜力的同时，适度控制风险。</p><p>记住，&quot;Pain + Reflection = Progress&quot;，在投资过程中，保持开放和透明的态度，持续学习和调整，是我们应对复杂市场环境的关键。</p></div></div><div class="mreply"><div class="mh"><span class="who">彼得·林奇</span><span class="mscore">96</span></div><div class="md"><p>各位好，今天我们来聊聊德州仪器（TXN）。我的观点是，这是一家值得关注的优质公司，但目前估值偏高，需要谨慎对待。</p><p>首先，德州仪器在半导体行业有着稳固的市场地位，需求也相当强劲。从我日常观察到的电子产品需求来看，这家公司正处于一个良好的增长轨道上。近期股价上涨了4.12%，也印证了市场对它的认可。</p><p>然而，我们不能忽视当前估值水平偏高的现实。市盈率（PE）达到44倍，市净率（PB）也高达14.9倍。这意味着投资者已经为未来的增长支付了相当高的溢价。尽管公司净利润同比增长了51.8%，但这样的估值水平仍然让人感到有些不安。</p><h4>理由：</h4><ul><li><strong>行业需求强劲</strong>：半导体是现代科技的核心，德州仪器作为行业龙头之一，将持续受益于这一趋势。</li><li><strong>市场地位稳固</strong>：公司在模拟芯片领域有着深厚的积累和强大的客户基础，这为其长期增长提供了保障。</li><li><strong>近期价格表现优异</strong>：股价的上涨反映了市场对公司前景的乐观预期。</li></ul><h4>风险：</h4><ul><li><strong>估值水平偏高</strong>：当前市盈率已经处于较高水平，未来股价上涨空间可能有限。</li><li><strong>供应链风险</strong>：全球供应链的不确定性可能对公司运营造成影响。</li><li><strong>市场波动</strong>：整体市场情绪的波动可能影响投资者信心，导致股价短期回调。</li></ul><h4>行动建议：</h4><p>如果已经持有TXN的股票，建议密切关注公司财报和行业动态。如果估值继续攀升，可以考虑适当减仓以锁定利润。如果没有持仓，当前价位不建议追高买入。可以等待估值回调至更合理的水平，或者在公司发布超预期的财报时再考虑入场。</p><p>总之，德州仪器是一家优秀的公司，但投资时需要耐心和谨慎。记住，我们买的是生意，而不是短期的股价波动。</p></div></div><div class="mreply"><div class="mh"><span class="who">芒格</span><span class="mscore">82</span></div><div class="md"><h4>发言</h4><p>各位同仁，今天我们来谈谈德州仪器（TXN）。首先，我给出我的结论：<strong>我对其持谨慎乐观态度，但必须高度警惕其高估值和供应链风险</strong>。</p><h5>理由</h5><ul><li><strong>强劲的市场需求和行业地位</strong></li></ul><p>   TXN所在的半导体行业目前需求非常强劲，这为公司的持续增长提供了坚实的基础。公司近期股价表现也相当亮眼，上涨了4.12%，这反映了市场对其的信心。</p><ul><li><strong>财务表现优异</strong></li></ul><p>   从财务指标来看，TXN的营收同比增长22.8%，净利润同比增长51.8%，净资产收益率（ROE）高达35.176%。这些数据表明公司在盈利能力和管理效率方面表现优异。</p><ul><li><strong>市场地位稳固</strong></li></ul><p>   TXN在半导体行业拥有稳固的市场地位，这为其长期发展提供了保障。</p><p>然而，我们不能忽视以下几个重要的风险因素：</p><ul><li><strong>高估值风险</strong></li></ul><p>   当前TXN的市盈率（PE）为44.66，市净率（PB）为14.90，这些估值指标都处于较高水平。高估值意味着市场对其未来增长有很高的预期，一旦业绩不达预期，股价可能会面临较大的回调压力。</p><ul><li><strong>供应链风险</strong></li></ul><p>   半导体行业对供应链的依赖程度很高，任何供应链的波动都可能对公司的生产和销售产生重大影响。我们必须持续关注这一风险。</p><ul><li><strong>市场波动风险</strong></li></ul><p>   整体市场的波动性可能会影响投资者对TXN的信心，尤其是在高估值的情况下，市场情绪的变化可能会导致股价的剧烈波动。</p><h5>风险/行动建议</h5><ul><li><strong>保持警惕，适度配置</strong></li></ul><p>   对于TXN，我建议保持谨慎乐观的态度。可以考虑适度配置，但不要过度集中投资。高估值和供应链风险需要我们时刻保持警惕。</p><ul><li><strong>关注长期价值</strong></li></ul><p>   如果你是一个长期投资者，可以考虑在股价回调时逢低买入。但前提是你对半导体行业的长期前景有坚定的信心，并且能够承受短期的市场波动。</p><ul><li><strong>多元化投资组合</strong></li></ul><p>   为了降低单一股票的风险，建议将TXN作为投资组合的一部分，而不是全部。这样可以有效分散风险，避免因单一股票波动而造成重大损失。</p><p>最后，我想提醒大家，投资决策必须基于多元思维模型和逆向思考。我们不仅要看到TXN的优势，还要清醒地认识到其潜在的风险。只有这样，我们才能在市场中保持理性，避免愚蠢的错误。</p></div></div></div>
+<div class="panel"><h2>分析师报告<span class="sub">2 篇</span></h2><details open><summary>市场面分析</summary><div class="body"><div class="md"><h4>TXN TXN 市场面分析</h4><ul><li>红黑榜多空分数：多头 85 / 空头 25，分差 60。</li><li>当前价格：294.14。</li><li>当前交易评级：Buy。</li><li>值得加仓区间：285.07 - 296.83。</li><li>目标价格：329.16。</li><li>市场愿意给溢价的原因：半导体行业需求强劲；近期价格表现优异，上涨4.12%；市场地位稳固。</li><li>当前主要压制因素：估值水平偏高；供应链风险需持续关注；市场波动可能影响投资者信心。</li></ul></div></div></details><details open><summary>基本面分析</summary><div class="body"><div class="md"><h4>TXN TXN 基本面分析</h4><ul><li>报告期：暂无。</li><li>PE(TTM)：44.70。</li><li>PB：14.91。</li><li>ROE：35.18%。</li><li>营收同比：22.80%。</li><li>归母净利润同比：51.80%。</li><li>核心判断：盈利能力处于可接受区间；收入仍在增长；利润端保持扩张。</li></ul></div></div></details></div>
+<div class="panel"><h2>研究与计划</h2>
+<details><summary>基本面摘要</summary><div class="body"><div class="md"><h3>核心财务快照</h3><ul><li>报告期: 数据缺失</li><li>当前股价: 294.14 元</li><li>总市值: 2686.23 亿元</li><li>PE (TTM): 44.70</li><li>PB: 14.91</li><li>PS (TTM): 数据缺失</li><li>营业总收入(报告期): 数据缺失 亿元</li><li>营收同比增长率: 22.80%</li><li>归母净利润(报告期): 数据缺失 亿元</li><li>归母净利润同比增长率: 51.80%</li><li>ROE (TTM/估算): 35.18%</li><li>资产负债率: 数据缺失</li><li>经营性现金流 / 归母净利润: 数据缺失</li></ul><h4>缺失字段</h4><ul><li>PS(TTM), 营业总收入, 归母净利润, 资产负债率, 经营性现金流与归母净利润比值</li></ul></div></div></details>
+<details><summary>研究计划</summary><div class="body"><div class="md"><h4>TXN TXN 研究摘要</h4><ul><li>红黑榜结论: Buy</li><li>多头/空头: 85/25</li><li>正向信号: ROE 35.18%；营收同比 22.80%；归母净利润同比 51.80%；PE(TTM) 44.66</li><li>榜单看多理由: 半导体行业需求强劲；近期价格表现优异，上涨4.12%；市场地位稳固</li><li>榜单风险提示: 估值水平偏高；供应链风险需持续关注；市场波动可能影响投资者信心</li></ul></div></div></details>
+<details><summary>交易计划</summary><div class="body"><div class="md"><h4>TXN TXN 交易计划</h4><ul><li>评级: Buy</li><li>当前价格: 293.89</li><li>值得加仓区间: 285.07 - 296.83</li><li>目标价格: 329.16</li><li>止损位: 270.38</li><li>备注: 当前为缓存降级交易卡，后续若完整 TradingAgent 结果生成，将自动覆盖。</li></ul></div></div></details>
+<details><summary>交易决策</summary><div class="body"><div class="md"><p>Buy</p><p>TXN TXN 当前使用红黑榜缓存结果生成兜底交易卡。多头 85 / 空头 25，分差 60。当前尚未取得完整 TradingAgent 长文决策，但榜单分数、财务快照和大师观点已经足够生成基础交易建议。</p></div></div></details>
+</div>
+<div class="panel"><h2>多空逻辑</h2><div class="pts"><div class="h bull">看多逻辑</div><div class="md"><p>半导体行业需求强劲</p><p>近期价格表现优异，上涨4.12%</p><p>市场地位稳固</p></div></div><div class="pts"><div class="h bear">看空逻辑</div><div class="md"><p>估值水平偏高</p><p>供应链风险需持续关注</p><p>市场波动可能影响投资者信心</p></div></div></div>
+<div class="panel"><h2>伯克希尔研究</h2><p><strong>德州仪器是一家拥有强大护城河、稳健财务表现和长期确定性的半导体公司，但需警惕行业周期性波动。</strong></p><p>伯克希尔综合评分：<strong>4.25</strong></p><div class="md"><p>{&quot;verdict&quot;: &quot;买入&quot;, &quot;conservative_tip&quot;: &quot;建议在PE TTM低于18倍时买入，目标价150美元。&quot;, &quot;moderate_tip&quot;: &quot;建议在PE TTM低于20倍时买入，目标价160美元。&quot;, &quot;aggressive_tip&quot;: &quot;建议在PE TTM低于22倍时买入，目标价170美元。&quot;, &quot;catalysts_plus&quot;: [&quot;模拟芯片需求超预期增长。&quot;, &quot;公司推出突破性新产品。&quot;, &quot;竞争对手市场份额下降。&quot;], &quot;catalysts_minus&quot;: [&quot;地缘政治紧张局势升级。&quot;, &quot;供应链中断影响生产。&quot;, &quot;行业竞争加剧。&quot;]}</p></div></div>
+<div class="panel news"><h2>最新资讯</h2><div class="md"><p>共12条新闻，其中利多3条，利空3条，中性6条，整体情绪偏中性。</p></div><div class="nitem"><div class="t">SPY is up 0.7% today, on TXN stock price movement</div><div class="s">Quiver Quantitative · 中性</div></div><div class="nitem"><div class="t">Texas Instruments Inc Stock (TXN) Moved Up by 4.43% on Oct 2: Key Drivers Unveiled</div><div class="s">TradingKey · 中性</div></div><div class="nitem"><div class="t">Texas Instruments (TXN) Stock Looks Expensive Against Its Cash Flow Outlook</div><div class="s">Yahoo Finance · 利空</div></div><div class="nitem"><div class="t">Unusual Options Activity: ADI, TXN and Others Attract Market Bets, ADI V/OI Ratio Reaches 142.4</div><div class="s">Moomoo · 中性</div></div><div class="nitem"><div class="t">Texas Instruments (TXN), What Is Behind The Fresh Attention?</div><div class="s">Simply Wall Street · 中性</div></div><div class="nitem"><div class="t">TXN Oct 2026 247.500 call (TXN261002C00247500) interactive stock chart</div><div class="s">Yahoo Finance UK · 中性</div></div><div class="nitem"><div class="t">TXN Jan 2029 350.000 call (TXN290119C00350000) stock price, news, quote and history</div><div class="s">Yahoo Finance Singapore · 中性</div></div><div class="nitem"><div class="t">Texas Instruments (TXN) Stock Could Be 17% Overvalued Despite Q2 Revenue Jump</div><div class="s">Simply Wall Street · 利空</div></div></div>
+<footer>稳健理财Agent · 红黑榜每日归档 · 红榜 #5 · 仅供研究，不构成投资建议</footer>
+</div></body>
+</html>

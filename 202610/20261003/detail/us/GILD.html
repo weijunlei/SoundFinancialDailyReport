@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GILD(GILD) 黑榜 2026-10-03</title>
+<style>
+:root{--red:#d8342c;--redbg:#fdecea;--green:#1a9e54;--ink:#1c2230;--muted:#6b7385;
+--line:#e7e9ef;--card:#fff;--bg:#f4f6fa;--chip:#eef1f6;--dark:#23262d;--darkbg:#ececef}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",
+"Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);
+line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 16px 64px}
+header.top{background:linear-gradient(135deg,#1c2230,#2c3550);color:#fff;border-radius:14px;
+padding:22px 24px;margin-bottom:20px;box-shadow:0 6px 24px rgba(20,26,46,.12)}
+header.top h1{margin:0 0 6px;font-size:24px;letter-spacing:.5px}
+header.top .sub{opacity:.85;font-size:13px}
+header.top .sub b{color:#ffd166;font-weight:600}
+nav.mkt{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;
+background:rgba(244,246,250,.92);backdrop-filter:blur(6px);padding:10px 0;margin-bottom:14px}
+nav.mkt a{text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);
+padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600}
+nav.mkt a:hover{border-color:var(--red);color:var(--red)}
+.summary{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.summary .chip{background:var(--card);border:1px solid var(--line);border-radius:10px;
+padding:8px 12px;font-size:12px;color:var(--muted)}
+.summary .chip b{color:var(--ink);font-size:14px;margin-left:4px}
+section.board{margin:26px 0}
+.board-title{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:19px}
+.board-title .dot{width:10px;height:10px;border-radius:50%}
+.board-title.red .dot{background:var(--red)}
+.board-title.black .dot{background:var(--dark)}
+.board-title small{color:var(--muted);font-weight:400;font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+position:relative;transition:box-shadow .15s}
+.card:hover{box-shadow:0 4px 18px rgba(20,26,46,.08)}
+.card.red{border-top:3px solid var(--red)}
+.card.black{border-top:3px solid var(--dark)}
+.rank{position:absolute;top:10px;right:12px;font-size:26px;font-weight:800;color:#eceff5}
+.card.red .rank{color:#fbdcD9}
+.nm{font-size:16px;font-weight:700}
+.nm .tk{color:var(--muted);font-weight:500;font-size:12px;margin-left:6px}
+.tag{display:inline-block;background:var(--chip);color:var(--muted);border-radius:6px;
+padding:1px 7px;font-size:11px;margin:6px 6px 0 0}
+.price-row{display:flex;align-items:baseline;gap:10px;margin:10px 0 4px}
+.price{font-size:24px;font-weight:800}
+.pct{font-size:14px;font-weight:700;padding:2px 8px;border-radius:8px}
+.up{color:var(--red)}.down{color:var(--green)}.flat{color:var(--muted)}
+.pct.up{background:var(--redbg)}.pct.down{background:#e2f4e9}.pct.flat{background:var(--chip)}
+.psrc{font-size:11px;color:var(--muted);margin-left:auto}
+.scores{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.scores span{background:var(--chip);border-radius:6px;padding:2px 8px;font-size:11px;color:var(--muted)}
+.scores span b{color:var(--ink)}
+.pts{font-size:12.5px;margin:8px 0 0}
+.pts .h{font-weight:700;font-size:12px;margin:6px 0 2px}
+.pts .h.bull{color:var(--red)}.pts .h.bear{color:var(--green)}
+.pts ul{margin:2px 0 4px;padding-left:18px;color:#3a4152}
+.pts li{margin:1px 0}
+.masters{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:11px;color:var(--muted)}
+.masters b{color:var(--ink)}
+.summ{font-size:12.5px;color:#3a4152;background:#fafbfd;border:1px solid var(--line);
+border-radius:8px;padding:8px 10px;margin-top:8px}
+.empty{color:var(--muted);background:var(--card);border:1px dashed var(--line);
+border-radius:10px;padding:18px;text-align:center}
+footer{margin-top:34px;color:var(--muted);font-size:12px;text-align:center;line-height:1.8}
+a.lnk{color:var(--red);text-decoration:none}
+/* ── detail page ── */
+.backbar{margin-bottom:14px;font-size:13px}
+.backbar a{color:var(--muted);text-decoration:none;margin-right:14px}
+.backbar a:hover{color:var(--red)}
+.badge{display:inline-block;border-radius:6px;padding:2px 10px;font-size:12px;font-weight:700;margin-right:8px}
+.badge.red{background:var(--red);color:#fff}.badge.black{background:var(--dark);color:#fff}
+.trade{display:flex;flex-wrap:wrap;gap:10px;background:linear-gradient(135deg,#2c3550,#1c2230);
+color:#fff;border-radius:12px;padding:16px 18px;margin:16px 0}
+.trade .cell{min-width:120px}
+.trade .k{font-size:11px;opacity:.75}
+.trade .v{font-size:18px;font-weight:800;margin-top:2px}
+.trade .v.buy{color:#7ee2a8}.trade .v.sell{color:#ff9d97}.trade .v.hold{color:#ffd166}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0}
+.mgrid .m{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.mgrid .m .k{font-size:11px;color:var(--muted)}
+.mgrid .m .v{font-size:16px;font-weight:700;margin-top:2px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.panel>h2{margin:0 0 12px;font-size:17px}
+.panel>h2 .sub{font-size:12px;color:var(--muted);font-weight:400;margin-left:8px}
+.mreply{border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;
+padding:12px 14px;margin:10px 0;background:#fff}
+.mreply .mh{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.mreply .mh .who{font-weight:700;font-size:14px}
+.mreply .mh .mscore{margin-left:auto;background:var(--chip);border-radius:6px;padding:1px 8px;font-size:12px;font-weight:700}
+.md h2,.md h3,.md h4,.md h5{margin:12px 0 6px;font-size:15px}
+.md p{margin:6px 0;font-size:13.5px;color:#2c3345}
+.md ul{margin:6px 0;padding-left:20px;font-size:13.5px;color:#2c3345}
+.md li{margin:3px 0}
+.md strong{color:var(--ink)}
+details{border:1px solid var(--line);border-radius:10px;background:#fff;margin:10px 0;padding:0}
+details>summary{cursor:pointer;padding:12px 16px;font-weight:700;font-size:14px;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary:before{content:"▸ ";color:var(--red)}
+details[open]>summary:before{content:"▾ "}
+details>.body{padding:0 16px 14px;border-top:1px dashed var(--line)}
+.ychip{display:inline-block;background:var(--chip);border-radius:8px;padding:4px 10px;font-size:12px;margin:3px 6px 3px 0}
+.ychip b{font-size:13px}
+.news .nitem{border-top:1px dashed var(--line);padding:8px 0;font-size:13px}
+.news .nitem .t{font-weight:600}
+.news .nitem .s{color:var(--muted);font-size:12px}
+/* ── root landing page ── */
+.hero{padding:30px 26px}
+.hero-kicker{color:#ffd166;font-size:12px;font-weight:700;letter-spacing:2px;
+text-transform:uppercase;margin-bottom:8px}
+.hero h1{font-size:30px;margin:0 0 10px}
+.day-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.day-card{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);
+border-radius:12px;padding:14px 16px;transition:all .15s}
+.day-card:hover{border-color:var(--red);box-shadow:0 4px 16px rgba(216,52,44,.12);transform:translateY(-2px)}
+.day-card .d{font-weight:800;font-size:15px;color:var(--ink);display:flex;align-items:center;gap:8px}
+.day-card .m{margin-top:8px;display:flex;gap:6px}
+.day-card .m span{background:var(--chip);color:var(--muted);border-radius:6px;
+padding:2px 8px;font-size:11px}
+.latest-badge{background:var(--red);color:#fff;border-radius:6px;padding:1px 7px;
+font-size:10px;font-weight:700}
+</style>
+</head>
+<body><div class="wrap">
+<div class="backbar"><a href="../index.html">← 总览</a><a href="../us.html">← 美股榜单</a></div>
+<header class="top">
+  <h1><span class="badge black">黑榜 #3</span>GILD<span class="tk" style="opacity:.7;font-size:15px;font-weight:400;margin-left:8px">GILD</span></h1>
+  <div class="sub">美股 ·  · 榜单日期 <b>2026-10-03</b> · 盘价采集 <b>2026-10-03 05:00:07</b></div>
+  <div class="price-row" style="margin-top:12px">
+    <span class="price" style="color:#fff">$144.74</span>
+    <span class="pct down">-1.87%</span>
+    <span class="psrc" style="color:rgba(255,255,255,.6)">实时</span>
+  </div>
+  <div class="scores" style="margin-top:10px">
+    <span>综合 <b>41.2</b></span>
+    <span>多头 <b>45</b></span>
+    <span>空头 <b>75</b></span>
+    <span>大师均值 <b>40</b></span>
+    <span>信号 <b>negative</b></span>
+  </div>
+</header>
+<div class="trade"><div class="cell"><div class="k">交易评级</div><span class="v hold">Reduce</span></div><div class="cell"><div class="k">加仓区间</div><span class="v">135.79 ~ 141.57</span></div><div class="cell"><div class="k">伯克希尔</div><span class="v">观望</span></div><div class="cell"><div class="k">伯克希尔分</div><span class="v">3.50</span></div></div>
+<div class="panel"><h2>财务指标</h2><div class="mgrid"><div class="m"><div class="k">市盈率 PE</div><div class="v">14.61</div></div><div class="m"><div class="k">市净率 PB</div><div class="v">15.16</div></div><div class="m"><div class="k">ROE</div><div class="v">-20.7%</div></div><div class="m"><div class="k">总市值</div><div class="v">1792</div></div><div class="m"><div class="k">营收同比</div><div class="v">10.2%</div></div></div></div>
+<div class="panel"><h2>历史收益</h2><span class="ychip">近1月 <b class="down">-3.44%</b></span><span class="ychip">近6月 <b class="up">+3.40%</b></span><span class="ychip">近1年 <b class="up">+30.66%</b></span><span class="ychip">近5年 <b class="up">+113.82%</b></span></div>
+<div class="panel"><h2>大师圆桌<span class="sub">5 位</span></h2><div class="mreply"><div class="mh"><span class="who">段永平</span><span class="mscore">61</span></div><div class="md"><p>各位好，关于GILD这只股票，我来说几句我的看法。</p><p>首先，我的核心判断是：GILD目前并不是一个特别让人放心的投资标的。理由主要有两点：</p><h4>一、增长动力不足</h4><p>虽然生物制药行业整体需求持续存在，但GILD的增长动力明显不足。从数据上看，收入同比增长10.2%，但ROE是负的20.68%，这说明公司的盈利能力出现了比较大的问题。</p><h4>二、专利悬崖风险</h4><p>GILD面临的专利悬崖风险不容忽视。作为一家生物制药公司，专利到期意味着营收可能会出现断崖式下跌，而公司目前似乎还没有足够的新产品来弥补这个缺口。</p><h4>估值方面</h4><p>目前GILD的PE是14.6倍，PB是15.15倍。单从估值来看，似乎不算特别贵，但考虑到公司面临的这些基本面问题，这个估值水平并不能提供足够的安全边际。</p><h4>我的建议是：</h4><ul><li>如果你已经在持有GILD，建议重新评估你的投资逻辑，看看这家公司是否真的符合你的投资标准。</li><li>如果你正在考虑买入，我建议你先等等，直到公司展现出更清晰的增长路径，或者估值出现更明显的吸引力。</li></ul><h4>风险提示：</h4><ul><li>专利悬崖带来的营收下滑风险</li><li>盈利能力持续恶化的可能性</li><li>行业竞争加剧带来的压力</li></ul><p>总的来说，GILD目前面临的挑战大于机遇。在投资决策上，我建议大家要格外谨慎，不要因为估值看似便宜就贸然买入。投资要本分，要投那些我们真正看得懂、能够理解其长期价值的好生意。</p><p>最后，我想提醒大家，投资决策要基于对公司长期价值的判断，而不是短期的价格波动。我们要做的是找到那些能够持续创造价值的企业，而不是追逐短期的市场热点。</p><p>希望这些看法对大家有所帮助。谢谢。</p></div></div><div class="mreply"><div class="mh"><span class="who">巴菲特</span><span class="mscore">33</span></div><div class="md"><p>各位同仁，今天我们讨论的是GILD这家公司。我先说结论：对于GILD，我持谨慎态度。</p><p>首先，从行业需求来看，生物制药行业确实有其持续性，这是GILD的一个亮点。然而，当我们深入分析公司的具体情况时，会发现一些令人担忧的因素。</p><p>GILD目前面临的主要问题是增长动力不足。尽管生物制药行业整体需求稳定，但GILD似乎未能充分利用这一趋势。更重要的是，公司正面临显著的专利悬崖风险。这意味着未来几年内，其核心产品的收入可能会受到严重影响。这种情况让我想起了过去一些制药公司因为专利到期而陷入困境的例子。</p><p>从估值角度来看，GILD的市盈率约为14.6，看起来并不高。但考虑到其净资产收益率（ROE）为-20.68%，这表明公司在资本配置方面可能存在问题。对于我们这些注重长期价值投资的投资者来说，资本配置能力是至关重要的。</p><p>此外，GILD的股价波动性较低，这可能被视为一个优点。然而，在缺乏强劲增长动力的情况下，低波动性也可能意味着市场对其未来增长潜力的预期不高。</p><p>基于以上分析，我的建议是：</p><ul><li>如果你已经在持有GILD，建议密切关注公司的研发管线和新药审批情况，特别是那些可能弥补专利悬崖影响的药物。</li></ul><ul><li>对于潜在投资者，我建议在做出投资决策之前，深入了解公司的研发投入和未来产品线，并评估其管理层在应对专利到期问题上的能力。</li></ul><p>最后，我想引用一句老话：&quot;时间是伟大生意的朋友，是烂生意的敌人。&quot;在当前情况下，我们需要更多时间来观察GILD是否能成功转型并恢复增长动力。</p><p>如果查理·芒格在这里，他可能会补充说：&quot;投资就像在果园里摘苹果，不要急着摘那些还没熟的果子。&quot;在GILD的案例中，我们可能需要等待更多明确的信号。</p></div></div><div class="mreply"><div class="mh"><span class="who">达利欧</span><span class="mscore">30</span></div><div class="md"><p>各位，我来说说对 GILD 的看法。</p><h4>结论：</h4><p>从当前情况来看，GILD 的投资价值并不突出，我倾向于持谨慎态度。</p><h4>理由：</h4><ul><li><strong>行业需求与稳定性</strong>：生物制药行业的需求确实持续存在，GILD 在这方面有一定的基础支撑。同时，其股价波动性相对较低，这在当前市场环境下是一个相对优势。</li></ul><ul><li><strong>增长与风险</strong>：然而，GILD 面临的核心问题是增长动力不足。尽管营收同比增长了 10.2%，但 ROE 为 -20.68%，显示出公司盈利能力存在较大问题。此外，专利悬崖的风险显著，这可能会在未来几年对其收入产生负面影响。</li></ul><ul><li><strong>估值角度</strong>：从估值来看，GILD 的 PE 为 14.6，PB 为 15.2，显示出市场对其未来增长预期并不乐观。尽管生物制药行业通常享有较高的估值溢价，但 GILD 的当前估值并没有体现出明显的吸引力。</li></ul><h4>风险与行动建议：</h4><ul><li><strong>风险</strong>：主要风险在于专利悬崖带来的收入下降，以及公司能否成功推出新的重磅产品来弥补这一缺口。此外，市场对生物制药行业的整体情绪变化也可能对其股价产生影响。</li></ul><ul><li><strong>行动建议</strong>：</li><li><strong>短期</strong>：如果持有 GILD，建议密切关注公司的新药研发进展和专利到期时间表。如果新药研发进展顺利，可能会带来一些短期机会。</li><li><strong>长期</strong>：从长期投资的角度来看，GILD 需要证明其有能力持续推出创新产品并保持稳定的盈利能力。当前情况下，我建议保持观望，等待更明确的增长信号。</li></ul><h4>原则化收口：</h4><p>在投资决策中，我们需要平衡需求稳定性与增长风险。正如我常说的，&quot;Pain + Reflection = Progress&quot;，在面对不确定性时，谨慎评估和耐心等待是至关重要的。</p><p>希望这些分析对大家有所帮助。</p></div></div><div class="mreply"><div class="mh"><span class="who">彼得·林奇</span><span class="mscore">45</span></div><div class="md"><h4>结论：</h4><p>GILD 这只股票，我持谨慎态度，不建议现在买入。</p><h4>理由：</h4><p>首先，GILD 属于生物制药行业，这个行业本身需求是持续存在的，这是个优势。但我们看 GILD 的具体情况，增长动力明显不足，收入同比增长只有 10.2%，而 ROE 更是负的 -20.68%。这表明公司的盈利能力出现了问题。</p><p>其次，GILD 面临显著的专利悬崖风险。生物制药公司一旦主要产品的专利到期，仿制药就会大量涌入市场，对公司收入造成巨大冲击。这种风险在 GILD 的案例中尤为突出。</p><p>从估值角度来看，虽然 14.6 倍的 PE 看起来不算特别高，但考虑到公司目前增长乏力，这个估值并不算便宜。PB 达到 15.15 倍，也显示出市场对公司的资产价值预期过高。</p><h4>风险/行动建议：</h4><ul><li><strong>专利悬崖风险</strong>：这是 GILD 当前面临的最大风险。如果公司不能及时推出新的重磅产品，未来的收入和利润可能会大幅下降。建议密切关注公司的新药研发进展和 FDA 审批情况。</li></ul><ul><li><strong>增长动力不足</strong>：目前 GILD 的收入增长和盈利能力都不理想。如果公司不能扭转这种局面，股价可能会进一步承压。建议投资者在考虑买入之前，先观察公司未来几个季度的财务表现。</li></ul><ul><li><strong>估值问题</strong>：虽然 PE 和 PB 看起来不算特别高，但考虑到公司的增长前景，这个估值并不算便宜。如果投资者对生物制药行业有兴趣，可以考虑其他增长更为强劲的标的。</li></ul><p>总的来说，GILD 目前的情况并不理想，建议投资者保持观望。如果一定要投资，也要做好长期持有的准备，并密切关注公司的基本面变化。</p></div></div><div class="mreply"><div class="mh"><span class="who">芒格</span><span class="mscore">31</span></div><div class="md"><p>各位同仁，关于GILD这家公司，我有以下看法。</p><p>首先，我的结论是：GILD目前不适合作为一项有吸引力的投资选择。原因有三：</p><p>第一，从商业模式来看，GILD面临明显的增长瓶颈。尽管生物制药行业的整体需求确实持续存在，但这家公司自身缺乏新的增长动力。当前的营收增长仅为10.2%，而ROE为-20.68%，这表明其盈利能力存在严重问题。</p><p>第二，专利悬崖的风险不容忽视。正如我们都知道的，制药公司的命脉在于专利保护，而GILD在这方面正面临显著挑战。一旦关键专利到期，仿制药的冲击将会进一步侵蚀其盈利能力。</p><p>第三，从估值角度来看，当前的市盈率约为14.6倍，看似不高，但考虑到其负的ROE和增长乏力，这个估值并不能提供足够的安全边际。生物制药行业的特点决定了我们不能仅仅依靠低估值来做出投资决策。</p><p>关于风险，我认为主要来自两个方面：</p><ul><li>专利到期带来的收入损失可能比预期更为严重</li><li>公司能否成功开发出新的重磅药物存在较大不确定性</li></ul><p>我的建议是：</p><ul><li>投资者应该密切关注GILD的研发管线进展，特别是那些有望填补专利到期空白的候选药物</li><li>在考虑投资之前，要深入分析公司的现金流状况和债务结构，因为负的ROE表明其财务状况可能并不稳固</li><li>如果一定要投资，请将仓位控制在较低水平，并做好长期持有且可能面临较大波动的心理准备</li></ul><p>最后，我想提醒大家，在投资中，我们常常要问自己：&quot;我可能错在哪里？&quot;就GILD而言，我可能忽视了其研发管线的潜在突破，或者低估了管理层改善经营状况的能力。但基于目前的信息，我认为保持谨慎是更明智的选择。</p><p>记住，投资不是要抓住每一个机会，而是要明智地选择那些真正有价值的标的。GILD目前并不符合我心目中的优质投资标准。</p></div></div></div>
+<div class="panel"><h2>分析师报告<span class="sub">2 篇</span></h2><details open><summary>市场面分析</summary><div class="body"><div class="md"><h4>GILD GILD 市场面分析</h4><ul><li>红黑榜多空分数：多头 45 / 空头 75，分差 -30。</li><li>当前价格：144.51。</li><li>当前交易评级：Reduce。</li><li>值得加仓区间：135.79 - 141.57。</li><li>风险控制位：127.12。</li><li>市场愿意给溢价的原因：生物制药行业需求持续；股价波动性较低。</li><li>当前主要压制因素：增长动力不足；专利悬崖风险显著。</li></ul></div></div></details><details open><summary>基本面分析</summary><div class="body"><div class="md"><h4>GILD GILD 基本面分析</h4><ul><li>报告期：暂无。</li><li>PE(TTM)：14.61。</li><li>PB：15.16。</li><li>ROE：-20.68%。</li><li>营收同比：10.20%。</li><li>核心判断：收入仍在增长。</li></ul></div></div></details></div>
+<div class="panel"><h2>研究与计划</h2>
+<details><summary>基本面摘要</summary><div class="body"><div class="md"><h3>核心财务快照</h3><ul><li>报告期: 数据缺失</li><li>当前股价: 144.51 元</li><li>总市值: 1791.92 亿元</li><li>PE (TTM): 14.61</li><li>PB: 15.16</li><li>PS (TTM): 数据缺失</li><li>营业总收入(报告期): 数据缺失 亿元</li><li>营收同比增长率: 10.20%</li><li>归母净利润(报告期): 数据缺失 亿元</li><li>归母净利润同比增长率: 数据缺失</li><li>ROE (TTM/估算): -20.68%</li><li>资产负债率: 数据缺失</li><li>经营性现金流 / 归母净利润: 数据缺失</li></ul><h4>缺失字段</h4><ul><li>PS(TTM), 营业总收入, 归母净利润, 归母净利润同比增长率, 资产负债率, 经营性现金流与归母净利润比值</li></ul></div></div></details>
+<details><summary>研究计划</summary><div class="body"><div class="md"><h4>GILD GILD 研究摘要</h4><ul><li>红黑榜结论: Reduce</li><li>多头/空头: 45/75</li><li>正向信号: 营收同比 10.20%；PE(TTM) 14.61；PB 15.16</li><li>风险信号: ROE -20.68%</li><li>榜单看多理由: 生物制药行业需求持续；股价波动性较低</li><li>榜单风险提示: 增长动力不足；专利悬崖风险显著</li></ul></div></div></details>
+<details><summary>交易计划</summary><div class="body"><div class="md"><h4>GILD GILD 交易计划</h4><ul><li>评级: Reduce</li><li>当前价格: 144.46</li><li>值得加仓区间: 130.01 - 135.79</li><li>目标价格: 137.24</li><li>止损位: 127.12</li><li>备注: 当前为缓存降级交易卡，后续若完整 TradingAgent 结果生成，将自动覆盖。</li></ul></div></div></details>
+<details><summary>交易决策</summary><div class="body"><div class="md"><p>Reduce</p><p>GILD GILD 当前使用红黑榜缓存结果生成兜底交易卡。多头 45 / 空头 75，分差 -30。当前尚未取得完整 TradingAgent 长文决策，但榜单分数、财务快照和大师观点已经足够生成基础交易建议。</p></div></div></details>
+</div>
+<div class="panel"><h2>多空逻辑</h2><div class="pts"><div class="h bull">看多逻辑</div><div class="md"><p>生物制药行业需求持续</p><p>股价波动性较低</p></div></div><div class="pts"><div class="h bear">看空逻辑</div><div class="md"><p>增长动力不足</p><p>专利悬崖风险显著</p></div></div></div>
+<div class="panel"><h2>伯克希尔研究</h2><p><strong>吉利德科学是一家具有强大研发能力和产品护城河的生命科学公司，但面临行业竞争加剧和增长放缓的挑战。</strong></p><p>伯克希尔综合评分：<strong>3.5</strong></p><div class="md"><p>{&quot;verdict&quot;: &quot;观望&quot;, &quot;conservative_tip&quot;: &quot;建议在PE低于8倍时买入，目标价70-75美元。&quot;, &quot;moderate_tip&quot;: &quot;建议在PE低于9倍时买入，目标价75-80美元。&quot;, &quot;aggressive_tip&quot;: &quot;建议在PE低于10倍时买入，目标价80-85美元。&quot;, &quot;catalysts_plus&quot;: [&quot;新药获批上市。&quot;, &quot;HIV药物市场份额提升。&quot;, &quot;细胞疗法取得突破性进展。&quot;], &quot;catalysts_minus&quot;: [&quot;专利悬崖临近。&quot;, &quot;新药研发失败。&quot;, &quot;医保谈判价格大幅下降。&quot;]}</p></div></div>
+<div class="panel news"><h2>最新资讯</h2><div class="md"><p>整体情绪偏中性，利多消息3条，利空消息2条，其余中性。</p></div><div class="nitem"><div class="t">Gilead Sciences (NASDAQ:GILD) Combines Top Technical Strength With a High-Quality Breakout Setup</div><div class="s">ChartMill · 利好</div></div><div class="nitem"><div class="t">Gilead Sciences (GILD) Stock Forecast and Price Target 2026 $GILD</div><div class="s">MarketBeat · 中性</div></div><div class="nitem"><div class="t">Gilead Sciences (GILD) Declines More Than Market: Some Information for Investors</div><div class="s">Yahoo Finance · 利空</div></div><div class="nitem"><div class="t">Gilead Sciences (GILD) Tests Its Multi Platform Story On Questions Around Valuation</div><div class="s">Simply Wall Street · 中性</div></div><div class="nitem"><div class="t">ETFs Bought $76.5 Million of Gilead Sciences (GILD) on Sept. 29</div><div class="s">GuruFocus · 利好</div></div><div class="nitem"><div class="t">Gilead Sciences, Inc. (GILD) Is a Trending Stock: Facts to Know Before Betting on It</div><div class="s">Yahoo Finance · 中性</div></div><div class="nitem"><div class="t">Confluence Investment Management LLC Cuts Position in Gilead Sciences, Inc. $GILD</div><div class="s">MarketBeat · 利空</div></div><div class="nitem"><div class="t">Can Lenacapavir Power Gilead Sciences (GILD)’s Next Growth Phase?</div><div class="s">Yahoo Finance · 中性</div></div></div>
+<footer>稳健理财Agent · 红黑榜每日归档 · 黑榜 #3 · 仅供研究，不构成投资建议</footer>
+</div></body>
+</html>
