@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NTES(NTES) 黑榜 2026-10-04</title>
+<style>
+:root{--red:#d8342c;--redbg:#fdecea;--green:#1a9e54;--ink:#1c2230;--muted:#6b7385;
+--line:#e7e9ef;--card:#fff;--bg:#f4f6fa;--chip:#eef1f6;--dark:#23262d;--darkbg:#ececef}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",
+"Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);
+line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 16px 64px}
+header.top{background:linear-gradient(135deg,#1c2230,#2c3550);color:#fff;border-radius:14px;
+padding:22px 24px;margin-bottom:20px;box-shadow:0 6px 24px rgba(20,26,46,.12)}
+header.top h1{margin:0 0 6px;font-size:24px;letter-spacing:.5px}
+header.top .sub{opacity:.85;font-size:13px}
+header.top .sub b{color:#ffd166;font-weight:600}
+nav.mkt{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;
+background:rgba(244,246,250,.92);backdrop-filter:blur(6px);padding:10px 0;margin-bottom:14px}
+nav.mkt a{text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);
+padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600}
+nav.mkt a:hover{border-color:var(--red);color:var(--red)}
+.summary{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.summary .chip{background:var(--card);border:1px solid var(--line);border-radius:10px;
+padding:8px 12px;font-size:12px;color:var(--muted)}
+.summary .chip b{color:var(--ink);font-size:14px;margin-left:4px}
+section.board{margin:26px 0}
+.board-title{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:19px}
+.board-title .dot{width:10px;height:10px;border-radius:50%}
+.board-title.red .dot{background:var(--red)}
+.board-title.black .dot{background:var(--dark)}
+.board-title small{color:var(--muted);font-weight:400;font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+position:relative;transition:box-shadow .15s}
+.card:hover{box-shadow:0 4px 18px rgba(20,26,46,.08)}
+.card.red{border-top:3px solid var(--red)}
+.card.black{border-top:3px solid var(--dark)}
+.rank{position:absolute;top:10px;right:12px;font-size:26px;font-weight:800;color:#eceff5}
+.card.red .rank{color:#fbdcD9}
+.nm{font-size:16px;font-weight:700}
+.nm .tk{color:var(--muted);font-weight:500;font-size:12px;margin-left:6px}
+.tag{display:inline-block;background:var(--chip);color:var(--muted);border-radius:6px;
+padding:1px 7px;font-size:11px;margin:6px 6px 0 0}
+.price-row{display:flex;align-items:baseline;gap:10px;margin:10px 0 4px}
+.price{font-size:24px;font-weight:800}
+.pct{font-size:14px;font-weight:700;padding:2px 8px;border-radius:8px}
+.up{color:var(--red)}.down{color:var(--green)}.flat{color:var(--muted)}
+.pct.up{background:var(--redbg)}.pct.down{background:#e2f4e9}.pct.flat{background:var(--chip)}
+.psrc{font-size:11px;color:var(--muted);margin-left:auto}
+.scores{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.scores span{background:var(--chip);border-radius:6px;padding:2px 8px;font-size:11px;color:var(--muted)}
+.scores span b{color:var(--ink)}
+.pts{font-size:12.5px;margin:8px 0 0}
+.pts .h{font-weight:700;font-size:12px;margin:6px 0 2px}
+.pts .h.bull{color:var(--red)}.pts .h.bear{color:var(--green)}
+.pts ul{margin:2px 0 4px;padding-left:18px;color:#3a4152}
+.pts li{margin:1px 0}
+.masters{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:11px;color:var(--muted)}
+.masters b{color:var(--ink)}
+.summ{font-size:12.5px;color:#3a4152;background:#fafbfd;border:1px solid var(--line);
+border-radius:8px;padding:8px 10px;margin-top:8px}
+.empty{color:var(--muted);background:var(--card);border:1px dashed var(--line);
+border-radius:10px;padding:18px;text-align:center}
+footer{margin-top:34px;color:var(--muted);font-size:12px;text-align:center;line-height:1.8}
+a.lnk{color:var(--red);text-decoration:none}
+/* ── detail page ── */
+.backbar{margin-bottom:14px;font-size:13px}
+.backbar a{color:var(--muted);text-decoration:none;margin-right:14px}
+.backbar a:hover{color:var(--red)}
+.badge{display:inline-block;border-radius:6px;padding:2px 10px;font-size:12px;font-weight:700;margin-right:8px}
+.badge.red{background:var(--red);color:#fff}.badge.black{background:var(--dark);color:#fff}
+.trade{display:flex;flex-wrap:wrap;gap:10px;background:linear-gradient(135deg,#2c3550,#1c2230);
+color:#fff;border-radius:12px;padding:16px 18px;margin:16px 0}
+.trade .cell{min-width:120px}
+.trade .k{font-size:11px;opacity:.75}
+.trade .v{font-size:18px;font-weight:800;margin-top:2px}
+.trade .v.buy{color:#7ee2a8}.trade .v.sell{color:#ff9d97}.trade .v.hold{color:#ffd166}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0}
+.mgrid .m{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.mgrid .m .k{font-size:11px;color:var(--muted)}
+.mgrid .m .v{font-size:16px;font-weight:700;margin-top:2px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.panel>h2{margin:0 0 12px;font-size:17px}
+.panel>h2 .sub{font-size:12px;color:var(--muted);font-weight:400;margin-left:8px}
+.mreply{border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;
+padding:12px 14px;margin:10px 0;background:#fff}
+.mreply .mh{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.mreply .mh .who{font-weight:700;font-size:14px}
+.mreply .mh .mscore{margin-left:auto;background:var(--chip);border-radius:6px;padding:1px 8px;font-size:12px;font-weight:700}
+.md h2,.md h3,.md h4,.md h5{margin:12px 0 6px;font-size:15px}
+.md p{margin:6px 0;font-size:13.5px;color:#2c3345}
+.md ul{margin:6px 0;padding-left:20px;font-size:13.5px;color:#2c3345}
+.md li{margin:3px 0}
+.md strong{color:var(--ink)}
+details{border:1px solid var(--line);border-radius:10px;background:#fff;margin:10px 0;padding:0}
+details>summary{cursor:pointer;padding:12px 16px;font-weight:700;font-size:14px;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary:before{content:"▸ ";color:var(--red)}
+details[open]>summary:before{content:"▾ "}
+details>.body{padding:0 16px 14px;border-top:1px dashed var(--line)}
+.ychip{display:inline-block;background:var(--chip);border-radius:8px;padding:4px 10px;font-size:12px;margin:3px 6px 3px 0}
+.ychip b{font-size:13px}
+.news .nitem{border-top:1px dashed var(--line);padding:8px 0;font-size:13px}
+.news .nitem .t{font-weight:600}
+.news .nitem .s{color:var(--muted);font-size:12px}
+/* ── root landing page ── */
+.hero{padding:30px 26px}
+.hero-kicker{color:#ffd166;font-size:12px;font-weight:700;letter-spacing:2px;
+text-transform:uppercase;margin-bottom:8px}
+.hero h1{font-size:30px;margin:0 0 10px}
+.day-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.day-card{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);
+border-radius:12px;padding:14px 16px;transition:all .15s}
+.day-card:hover{border-color:var(--red);box-shadow:0 4px 16px rgba(216,52,44,.12);transform:translateY(-2px)}
+.day-card .d{font-weight:800;font-size:15px;color:var(--ink);display:flex;align-items:center;gap:8px}
+.day-card .m{margin-top:8px;display:flex;gap:6px}
+.day-card .m span{background:var(--chip);color:var(--muted);border-radius:6px;
+padding:2px 8px;font-size:11px}
+.latest-badge{background:var(--red);color:#fff;border-radius:6px;padding:1px 7px;
+font-size:10px;font-weight:700}
+</style>
+</head>
+<body><div class="wrap">
+<div class="backbar"><a href="../index.html">← 总览</a><a href="../us.html">← 美股榜单</a></div>
+<header class="top">
+  <h1><span class="badge black">黑榜 #8</span>NTES<span class="tk" style="opacity:.7;font-size:15px;font-weight:400;margin-left:8px">NTES</span></h1>
+  <div class="sub">美股 ·  · 榜单日期 <b>2026-10-04</b> · 盘价采集 <b>2026-10-04 05:00:59</b></div>
+  <div class="price-row" style="margin-top:12px">
+    <span class="price" style="color:#fff">$117.21</span>
+    <span class="pct down">-2.82%</span>
+    <span class="psrc" style="color:rgba(255,255,255,.6)">实时</span>
+  </div>
+  <div class="scores" style="margin-top:10px">
+    <span>综合 <b>39.4</b></span>
+    <span>多头 <b>40</b></span>
+    <span>空头 <b>80</b></span>
+    <span>大师均值 <b>51</b></span>
+    <span>信号 <b>negative</b></span>
+  </div>
+</header>
+<div class="trade"><div class="cell"><div class="k">交易评级</div><span class="v hold">Reduce</span></div><div class="cell"><div class="k">加仓区间</div><span class="v">110.18 ~ 114.87</span></div><div class="cell"><div class="k">伯克希尔</div><span class="v">买入</span></div><div class="cell"><div class="k">伯克希尔分</div><span class="v">3.75</span></div></div>
+<div class="panel"><h2>财务指标</h2><div class="mgrid"><div class="m"><div class="k">市盈率 PE</div><div class="v">15.61</div></div><div class="m"><div class="k">市净率 PB</div><div class="v">15.06</div></div><div class="m"><div class="k">ROE</div><div class="v">20.4%</div></div><div class="m"><div class="k">总市值</div><div class="v">751</div></div><div class="m"><div class="k">营收同比</div><div class="v">7.9%</div></div><div class="m"><div class="k">净利同比</div><div class="v">-18.7%</div></div></div></div>
+<div class="panel"><h2>历史收益</h2><span class="ychip">近1月 <b class="up">+0.14%</b></span><span class="ychip">近6月 <b class="up">+4.07%</b></span><span class="ychip">近1年 <b class="down">-22.67%</b></span><span class="ychip">近5年 <b class="up">+42.70%</b></span></div>
+<div class="panel"><h2>大师圆桌<span class="sub">5 位</span></h2><div class="mreply"><div class="mh"><span class="who">段永平</span><span class="mscore">38</span></div><div class="md"><p>我理解大家对网易(NTES)的关注。让我从本分和价值投资的视角来谈谈我的看法。</p><p>首先，我的结论是：网易目前的情况不符合我的投资标准。</p><p>原因有以下几点：</p><ul><li>虽然网易的游戏业务基本面看起来还算稳健，但整体增长放缓的趋势已经显现。营收同比增长7.9%，但净利润同比下降18.7%，这说明公司的盈利能力正在承压。</li></ul><ul><li>从估值来看，当前的PE约15倍，PB约15倍，在互联网行业中并不算便宜。特别是考虑到公司面临的市场竞争加剧和增长放缓的挑战，这个估值水平缺乏足够的安全边际。</li></ul><ul><li>更重要的是，网易目前的情况让我感觉&quot;看不懂&quot;。虽然中国市场数字化转型是大趋势，但网易能否在这个过程中继续保持竞争优势，我个人持怀疑态度。</li></ul><p>关于风险，我认为主要有以下几点：</p><ul><li>行业竞争加剧的风险：不仅国内竞争对手在发力，国际巨头也在积极布局中国市场。</li><li>增长放缓的风险：现有业务模式可能已经接近天花板，需要新的增长点。</li><li>政策风险：互联网行业面临越来越严格的监管环境。</li></ul><p>基于以上分析，我的建议是：</p><p>如果是我，我会选择观望。理由是：</p><ul><li>目前的投资机会不够清晰，不符合&quot;只投看得懂的好生意&quot;的原则。</li><li>在看不清方向的时候，耐心等待可能是更好的选择。</li><li>如果一定要参与，建议控制仓位，并密切关注公司能否找到新的增长点。</li></ul><p>最后，我想提醒大家：投资中最重要的是要保持平常心。不要因为股价的短期波动而做出仓促的决定。记住，我们买的是公司的一部分，而不是股票代码。</p><p>别忘了，在投资中，&quot;不做什么&quot;往往比&quot;做什么&quot;更重要。</p></div></div><div class="mreply"><div class="mh"><span class="who">巴菲特</span><span class="mscore">31</span></div><div class="md"><p>各位朋友，关于网易（NTES），我先给出我的结论：我对这只股票持谨慎态度。虽然它在某些方面仍有吸引力，但整体上不符合我投资的标准。</p><h4>理由：</h4><p>首先，网易的游戏业务确实有其稳健的一面。游戏行业在中国仍有增长空间，而网易在这个领域有一定的市场地位。此外，中国市场的数字化转型也为互联网公司提供了长期机遇。</p><p>然而，股价的大幅回调已经显示出市场对其增长前景的担忧。从数据上看，营收同比增长7.9%，但净利润同比下降了18.7%，这表明公司的盈利能力正在受到挑战。与此同时，行业竞争加剧也是一个不容忽视的风险。</p><p>从估值角度来看，当前市盈率（PE）为15.6，市净率（PB）为15.1。对于一家增长放缓的公司来说，这样的估值并不算便宜。更重要的是，网易的护城河是否足够宽广，能否在未来几年继续保持其市场地位，我对此持保留态度。</p><h4>风险/行动建议：</h4><ul><li><strong>护城河评估</strong>：我建议大家仔细评估网易的护城河，看看它在未来十年是否还能保持其竞争优势。如果护城河不够坚固，那么当前的价格可能并没有提供足够的安全边际。</li></ul><ul><li><strong>增长放缓</strong>：净利润的下降是一个警示信号。我会特别关注公司未来的盈利能力和现金流状况。如果增长继续放缓，那么现在的估值可能还需要进一步下调。</li></ul><ul><li><strong>市场情绪</strong>：市场对网易的担忧已经反映在股价上。在这种情况下，我通常会采取更保守的态度，等待更明确的信号。</li></ul><p>最后，我想说的是，投资就像打棒球，你不需要每次都挥棒。对于网易，我认为现在不是挥棒的最好时机。如果你是芒格，他可能会补充说，投资就像经营一个果园，你需要耐心等待最好的果实成熟，而不是急于摘下每一个果子。</p></div></div><div class="mreply"><div class="mh"><span class="who">达利欧</span><span class="mscore">45</span></div><div class="md"><p>各位好，今天我们讨论的是网易（NTES）。我的立场是偏谨慎的，理由如下：</p><p>首先，从基本面来看，网易的游戏业务依然稳健，这是其核心优势。中国市场的数字化转型也为公司提供了长期机遇。然而，市场对网易的增长前景表现出明显的担忧，股价大幅回调，这表明投资者对未来的预期正在调整。</p><p>从数据上看，网易目前的市盈率（PE）为15.6，市净率（PB）为15.1，这些估值指标并不算高。然而，营收同比增长仅为7.9%，净利润同比下降了18.7%，这显示出增长放缓的迹象。此外，净资产收益率（ROE）为20.37%，虽然仍处于较高水平，但与过去相比有所下降。</p><p>从宏观角度来看，当前全球经济环境充满不确定性，利率上升和通胀压力对科技股的影响尤为显著。网易所在的行业竞争也在加剧，这对其未来的市场份额和利润率构成挑战。</p><p>基于以上分析，我的建议是：</p><ul><li><strong>风险评估</strong>：当前市场对网易的担忧主要集中在增长放缓和行业竞争上。投资者应密切关注公司未来的业绩指引和行业动态。</li></ul><ul><li><strong>行动建议</strong>：如果你是长期投资者，并且相信网易在游戏和数字化转型方面的潜力，可以考虑在股价回调时逐步建仓。但要控制好仓位，避免过度集中。</li></ul><ul><li><strong>原则应用</strong>：在当前环境下，保持极度开放和透明的态度非常重要。我们需要不断评估市场变化和公司基本面，确保我们的决策是基于最新的信息。</li></ul><p>总的来说，网易的基本面依然有吸引力，但市场对其未来的担忧不容忽视。我们需要在这两者之间找到平衡，确保我们的投资决策既不盲目乐观，也不被短期波动所左右。</p><p>记住，投资决策不是一次性的行为，而是一个持续的过程。我们需要不断反思和调整，以确保我们的原则和行动始终保持一致。</p></div></div><div class="mreply"><div class="mh"><span class="who">彼得·林奇</span><span class="mscore">76</span></div><div class="md"><h4>圆桌发言：关于网易（NTES）的投资看法</h4><p><strong>结论：网易（NTES）目前是一个值得关注的标的，但需要谨慎对待。</strong></p><p><strong>理由：</strong></p><p>首先，网易的游戏业务基本面依然稳健。作为一家在中国市场深耕多年的公司，网易在游戏领域的竞争力毋庸置疑。尽管整体市场增长有所放缓，但游戏行业仍然有发展空间，尤其是在数字化转型的大背景下，网易有机会抓住新的机遇。</p><p>其次，从估值角度来看，网易的市盈率（PE）为15.6倍，市净率（PB）为15.1倍，相对于其历史估值水平，当前价格并不算高。对于一家有稳定现金流和良好盈利能力的公司来说，这个估值水平具有一定的吸引力。</p><p>然而，市场对网易的增长前景表现出明显的担忧，这体现在股价的大幅回调上。净利润同比下降18.7%，这表明公司在短期内面临一定的经营压力。此外，行业竞争加剧，也给网易的未来增长带来了不确定性。</p><p><strong>风险/行动建议：</strong></p><ul><li><strong>短期风险</strong>：市场对网易的增长放缓和行业竞争加剧的担忧可能会继续影响股价。如果你是短期投资者，需要谨慎考虑这些因素。</li></ul><ul><li><strong>长期机会</strong>：如果你是一个长期投资者，并且相信网易能够在游戏行业继续保持竞争力，同时抓住数字化转型的机遇，那么当前的估值水平可能是一个不错的入场点。</li></ul><ul><li><strong>具体行动</strong>：建议在接下来的几周内密切关注网易的财报和行业动态。如果公司能够展示出新的增长点或者市场情绪有所改善，可以考虑逐步建仓。同时，设置一个止损点，以防止市场情绪进一步恶化。</li></ul><p>总之，网易是一家有潜力的公司，但当前的市场环境需要我们保持警惕。通过深入的研究和谨慎的操作，我们可以在控制风险的同时，抓住潜在的投资机会。</p></div></div><div class="mreply"><div class="mh"><span class="who">芒格</span><span class="mscore">65</span></div><div class="md"><p>各位同仁，关于NTES，我今天想从芒格的视角来谈谈我的看法。</p><p><strong>结论：NTES目前不是一个值得重点关注的投资标的，但也不是一个需要完全避开的对象。</strong></p><h4>理由：</h4><p>首先，让我们从逆向思维的角度出发。NTES面临的主要风险包括：</p><ul><li><strong>增长放缓</strong>：从财务数据来看，收入同比增长仅为7.9%，而净利润同比下降了18.7%。这表明公司在核心业务上的增长动力正在减弱。</li><li><strong>行业竞争加剧</strong>：中国的互联网行业竞争日益激烈，NTES在游戏和其他数字业务上面临来自国内外的强劲对手。</li><li><strong>市场担忧</strong>：股价的大幅回调反映了投资者对NTES未来前景的担忧。这种情绪可能会进一步影响股价表现。</li></ul><p>其次，从多元心智模型的角度来看：</p><ul><li><strong>游戏业务</strong>：虽然NTES的游戏业务基本面依然稳健，但整个行业的增长空间可能已经见顶。中国市场的数字化转型确实提供了机遇，但这些机遇是否能转化为NTES的实质性增长，还需要进一步观察。</li><li><strong>估值</strong>：当前PE为15.6，PB为15.1，从历史水平来看，估值并不算高。然而，考虑到净利润的下降，估值可能存在一定的压力。</li></ul><h4>风险/行动建议：</h4><ul><li><strong>短期风险</strong>：NTES面临的主要风险是增长放缓和行业竞争加剧。如果这些趋势持续，可能会对公司的盈利能力造成进一步的压力。</li><li><strong>长期机会</strong>：如果NTES能够成功转型并抓住数字化转型的机遇，可能会在长期内实现新的增长。然而，这种转型需要时间和资源的投入，存在不确定性。</li></ul><h4>行动建议：</h4><ul><li><strong>观望为主</strong>：对于NTES，目前建议以观望为主。如果投资者已经持有，可以考虑在反弹时适度减仓，以降低风险。</li><li><strong>关注转型进展</strong>：密切关注NTES在数字化转型方面的进展，以及公司在游戏之外的业务拓展情况。如果有明确的增长信号，可以重新评估投资机会。</li><li><strong>避免情绪化决策</strong>：在市场情绪低迷时，避免被恐慌情绪左右。保持理性，关注公司的基本面和长期价值。</li></ul><p>最后，我想提醒大家，投资决策应基于对公司的深入分析和理性判断，而不是短期的市场波动。正如我常说的：“如果我知道自己死在哪里，我就永远不去那里。”在NTES的案例中，我们需要警惕的是增长放缓和行业竞争带来的长期风险，而不是短期的股价波动。</p><p>谢谢大家。</p></div></div></div>
+<div class="panel"><h2>分析师报告<span class="sub">2 篇</span></h2><details open><summary>市场面分析</summary><div class="body"><div class="md"><h4>NTES NTES 市场面分析</h4><ul><li>红黑榜多空分数：多头 40 / 空头 80，分差 -40。</li><li>当前价格：117.21。</li><li>当前交易评级：Reduce。</li><li>值得加仓区间：110.18 - 114.87。</li><li>风险控制位：103.14。</li><li>市场愿意给溢价的原因：游戏业务基本面稳健；中国市场数字化转型机遇。</li><li>当前主要压制因素：股价大幅回调显示市场担忧；增长放缓迹象明显；行业竞争加剧。</li></ul></div></div></details><details open><summary>基本面分析</summary><div class="body"><div class="md"><h4>NTES NTES 基本面分析</h4><ul><li>报告期：暂无。</li><li>PE(TTM)：15.61。</li><li>PB：15.06。</li><li>ROE：20.37%。</li><li>营收同比：7.90%。</li><li>归母净利润同比：-18.70%。</li><li>核心判断：盈利能力处于可接受区间；收入仍在增长。</li></ul></div></div></details></div>
+<div class="panel"><h2>研究与计划</h2>
+<details><summary>基本面摘要</summary><div class="body"><div class="md"><h3>核心财务快照</h3><ul><li>报告期: 数据缺失</li><li>当前股价: 117.21 元</li><li>总市值: 750.53 亿元</li><li>PE (TTM): 15.61</li><li>PB: 15.06</li><li>PS (TTM): 数据缺失</li><li>营业总收入(报告期): 数据缺失 亿元</li><li>营收同比增长率: 7.90%</li><li>归母净利润(报告期): 数据缺失 亿元</li><li>归母净利润同比增长率: -18.70%</li><li>ROE (TTM/估算): 20.37%</li><li>资产负债率: 数据缺失</li><li>经营性现金流 / 归母净利润: 数据缺失</li></ul><h4>缺失字段</h4><ul><li>PS(TTM), 营业总收入, 归母净利润, 资产负债率, 经营性现金流与归母净利润比值</li></ul></div></div></details>
+<details><summary>研究计划</summary><div class="body"><div class="md"><h4>NTES NTES 研究摘要</h4><ul><li>红黑榜结论: Reduce</li><li>多头/空头: 40/80</li><li>正向信号: ROE 20.37%；营收同比 7.90%；PE(TTM) 15.61；PB 15.06</li><li>风险信号: 归母净利润同比 -18.70%</li><li>榜单看多理由: 游戏业务基本面稳健；中国市场数字化转型机遇</li><li>榜单风险提示: 股价大幅回调显示市场担忧；增长放缓迹象明显；行业竞争加剧</li></ul></div></div></details>
+<details><summary>交易计划</summary><div class="body"><div class="md"><h4>NTES NTES 交易计划</h4><ul><li>评级: Reduce</li><li>当前价格: 117.21</li><li>值得加仓区间: 105.49 - 110.18</li><li>目标价格: 111.35</li><li>止损位: 103.14</li><li>备注: 当前为缓存降级交易卡，后续若完整 TradingAgent 结果生成，将自动覆盖。</li></ul></div></div></details>
+<details><summary>交易决策</summary><div class="body"><div class="md"><p>Reduce</p><p>NTES NTES 当前使用红黑榜缓存结果生成兜底交易卡。多头 40 / 空头 80，分差 -40。当前尚未取得完整 TradingAgent 长文决策，但榜单分数、财务快照和大师观点已经足够生成基础交易建议。</p></div></div></details>
+</div>
+<div class="panel"><h2>多空逻辑</h2><div class="pts"><div class="h bull">看多逻辑</div><div class="md"><p>游戏业务基本面稳健</p><p>中国市场数字化转型机遇</p></div></div><div class="pts"><div class="h bear">看空逻辑</div><div class="md"><p>股价大幅回调显示市场担忧</p><p>增长放缓迹象明显</p><p>行业竞争加剧</p></div></div></div>
+<div class="panel"><h2>伯克希尔研究</h2><p><strong>网易是一家拥有强大护城河和稳健财务表现的互联网公司，但面临行业竞争加剧和监管风险，适合长期投资者关注。</strong></p><p>伯克希尔综合评分：<strong>3.75</strong></p><div class="md"><p>{&quot;verdict&quot;: &quot;买入&quot;, &quot;conservative_tip&quot;: &quot;建议在PE TTM低于15倍时买入，长期持有&quot;, &quot;moderate_tip&quot;: &quot;建议在PE TTM低于18倍时买入，中期持有&quot;, &quot;aggressive_tip&quot;: &quot;建议在PE TTM低于20倍时买入，短期关注技术突破和新品发布&quot;, &quot;catalysts_plus&quot;: [&quot;新游戏产品发布&quot;, &quot;电商业务市场份额提升&quot;, &quot;元宇宙技术取得突破&quot;], &quot;catalysts_minus&quot;: [&quot;游戏版号审批趋严&quot;, &quot;电商业务增长乏力&quot;, &quot;政策监管加强&quot;]}</p></div></div>
+<div class="panel news"><h2>最新资讯</h2><div class="md"><p>利空消息较多，共5条利空，4条利好，3条中性。</p></div><div class="nitem"><div class="t">NTES Stock Falls After Missing Q2 Earnings Estimates As Higher R&amp;D Expenses Weigh On Profits</div><div class="s">Stocktwits · 利空</div></div><div class="nitem"><div class="t">Price-Driven Insight from (NTES) for Rule-Based Strategy</div><div class="s">Stock Traders Daily · 中性</div></div><div class="nitem"><div class="t">NetEase (NASDAQ:NTES): A Growth-at-a-Reasonable-Price Opportunity</div><div class="s">ChartMill · 利好</div></div><div class="nitem"><div class="t">NetEase, Inc. $NTES Holdings Trimmed by Corient Private Wealth LP</div><div class="s">MarketBeat · 利空</div></div><div class="nitem"><div class="t">NetEase, Inc. (NTES) Stock Forecasts</div><div class="s">finance.yahoo.com · 中性</div></div><div class="nitem"><div class="t">Is NTES Undervalued? DCF Says Worth $162</div><div class="s">gurufocus.com · 利好</div></div><div class="nitem"><div class="t">Issued and treasury shares are the focus of NetEase (NTES)&#x27;s September 28 notice.</div><div class="s">Stock Titan · 中性</div></div><div class="nitem"><div class="t">Are Options Traders Betting on a Big Move in NetEase Stock?</div><div class="s">TradingView · 中性</div></div></div>
+<footer>稳健理财Agent · 红黑榜每日归档 · 黑榜 #8 · 仅供研究，不构成投资建议</footer>
+</div></body>
+</html>

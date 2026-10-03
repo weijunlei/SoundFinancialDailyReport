@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CSCO(CSCO) 红榜 2026-10-04</title>
+<style>
+:root{--red:#d8342c;--redbg:#fdecea;--green:#1a9e54;--ink:#1c2230;--muted:#6b7385;
+--line:#e7e9ef;--card:#fff;--bg:#f4f6fa;--chip:#eef1f6;--dark:#23262d;--darkbg:#ececef}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",
+"Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);
+line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 16px 64px}
+header.top{background:linear-gradient(135deg,#1c2230,#2c3550);color:#fff;border-radius:14px;
+padding:22px 24px;margin-bottom:20px;box-shadow:0 6px 24px rgba(20,26,46,.12)}
+header.top h1{margin:0 0 6px;font-size:24px;letter-spacing:.5px}
+header.top .sub{opacity:.85;font-size:13px}
+header.top .sub b{color:#ffd166;font-weight:600}
+nav.mkt{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;
+background:rgba(244,246,250,.92);backdrop-filter:blur(6px);padding:10px 0;margin-bottom:14px}
+nav.mkt a{text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);
+padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600}
+nav.mkt a:hover{border-color:var(--red);color:var(--red)}
+.summary{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.summary .chip{background:var(--card);border:1px solid var(--line);border-radius:10px;
+padding:8px 12px;font-size:12px;color:var(--muted)}
+.summary .chip b{color:var(--ink);font-size:14px;margin-left:4px}
+section.board{margin:26px 0}
+.board-title{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:19px}
+.board-title .dot{width:10px;height:10px;border-radius:50%}
+.board-title.red .dot{background:var(--red)}
+.board-title.black .dot{background:var(--dark)}
+.board-title small{color:var(--muted);font-weight:400;font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+position:relative;transition:box-shadow .15s}
+.card:hover{box-shadow:0 4px 18px rgba(20,26,46,.08)}
+.card.red{border-top:3px solid var(--red)}
+.card.black{border-top:3px solid var(--dark)}
+.rank{position:absolute;top:10px;right:12px;font-size:26px;font-weight:800;color:#eceff5}
+.card.red .rank{color:#fbdcD9}
+.nm{font-size:16px;font-weight:700}
+.nm .tk{color:var(--muted);font-weight:500;font-size:12px;margin-left:6px}
+.tag{display:inline-block;background:var(--chip);color:var(--muted);border-radius:6px;
+padding:1px 7px;font-size:11px;margin:6px 6px 0 0}
+.price-row{display:flex;align-items:baseline;gap:10px;margin:10px 0 4px}
+.price{font-size:24px;font-weight:800}
+.pct{font-size:14px;font-weight:700;padding:2px 8px;border-radius:8px}
+.up{color:var(--red)}.down{color:var(--green)}.flat{color:var(--muted)}
+.pct.up{background:var(--redbg)}.pct.down{background:#e2f4e9}.pct.flat{background:var(--chip)}
+.psrc{font-size:11px;color:var(--muted);margin-left:auto}
+.scores{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.scores span{background:var(--chip);border-radius:6px;padding:2px 8px;font-size:11px;color:var(--muted)}
+.scores span b{color:var(--ink)}
+.pts{font-size:12.5px;margin:8px 0 0}
+.pts .h{font-weight:700;font-size:12px;margin:6px 0 2px}
+.pts .h.bull{color:var(--red)}.pts .h.bear{color:var(--green)}
+.pts ul{margin:2px 0 4px;padding-left:18px;color:#3a4152}
+.pts li{margin:1px 0}
+.masters{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:11px;color:var(--muted)}
+.masters b{color:var(--ink)}
+.summ{font-size:12.5px;color:#3a4152;background:#fafbfd;border:1px solid var(--line);
+border-radius:8px;padding:8px 10px;margin-top:8px}
+.empty{color:var(--muted);background:var(--card);border:1px dashed var(--line);
+border-radius:10px;padding:18px;text-align:center}
+footer{margin-top:34px;color:var(--muted);font-size:12px;text-align:center;line-height:1.8}
+a.lnk{color:var(--red);text-decoration:none}
+/* ── detail page ── */
+.backbar{margin-bottom:14px;font-size:13px}
+.backbar a{color:var(--muted);text-decoration:none;margin-right:14px}
+.backbar a:hover{color:var(--red)}
+.badge{display:inline-block;border-radius:6px;padding:2px 10px;font-size:12px;font-weight:700;margin-right:8px}
+.badge.red{background:var(--red);color:#fff}.badge.black{background:var(--dark);color:#fff}
+.trade{display:flex;flex-wrap:wrap;gap:10px;background:linear-gradient(135deg,#2c3550,#1c2230);
+color:#fff;border-radius:12px;padding:16px 18px;margin:16px 0}
+.trade .cell{min-width:120px}
+.trade .k{font-size:11px;opacity:.75}
+.trade .v{font-size:18px;font-weight:800;margin-top:2px}
+.trade .v.buy{color:#7ee2a8}.trade .v.sell{color:#ff9d97}.trade .v.hold{color:#ffd166}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0}
+.mgrid .m{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.mgrid .m .k{font-size:11px;color:var(--muted)}
+.mgrid .m .v{font-size:16px;font-weight:700;margin-top:2px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.panel>h2{margin:0 0 12px;font-size:17px}
+.panel>h2 .sub{font-size:12px;color:var(--muted);font-weight:400;margin-left:8px}
+.mreply{border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;
+padding:12px 14px;margin:10px 0;background:#fff}
+.mreply .mh{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.mreply .mh .who{font-weight:700;font-size:14px}
+.mreply .mh .mscore{margin-left:auto;background:var(--chip);border-radius:6px;padding:1px 8px;font-size:12px;font-weight:700}
+.md h2,.md h3,.md h4,.md h5{margin:12px 0 6px;font-size:15px}
+.md p{margin:6px 0;font-size:13.5px;color:#2c3345}
+.md ul{margin:6px 0;padding-left:20px;font-size:13.5px;color:#2c3345}
+.md li{margin:3px 0}
+.md strong{color:var(--ink)}
+details{border:1px solid var(--line);border-radius:10px;background:#fff;margin:10px 0;padding:0}
+details>summary{cursor:pointer;padding:12px 16px;font-weight:700;font-size:14px;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary:before{content:"▸ ";color:var(--red)}
+details[open]>summary:before{content:"▾ "}
+details>.body{padding:0 16px 14px;border-top:1px dashed var(--line)}
+.ychip{display:inline-block;background:var(--chip);border-radius:8px;padding:4px 10px;font-size:12px;margin:3px 6px 3px 0}
+.ychip b{font-size:13px}
+.news .nitem{border-top:1px dashed var(--line);padding:8px 0;font-size:13px}
+.news .nitem .t{font-weight:600}
+.news .nitem .s{color:var(--muted);font-size:12px}
+/* ── root landing page ── */
+.hero{padding:30px 26px}
+.hero-kicker{color:#ffd166;font-size:12px;font-weight:700;letter-spacing:2px;
+text-transform:uppercase;margin-bottom:8px}
+.hero h1{font-size:30px;margin:0 0 10px}
+.day-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.day-card{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);
+border-radius:12px;padding:14px 16px;transition:all .15s}
+.day-card:hover{border-color:var(--red);box-shadow:0 4px 16px rgba(216,52,44,.12);transform:translateY(-2px)}
+.day-card .d{font-weight:800;font-size:15px;color:var(--ink);display:flex;align-items:center;gap:8px}
+.day-card .m{margin-top:8px;display:flex;gap:6px}
+.day-card .m span{background:var(--chip);color:var(--muted);border-radius:6px;
+padding:2px 8px;font-size:11px}
+.latest-badge{background:var(--red);color:#fff;border-radius:6px;padding:1px 7px;
+font-size:10px;font-weight:700}
+</style>
+</head>
+<body><div class="wrap">
+<div class="backbar"><a href="../index.html">← 总览</a><a href="../us.html">← 美股榜单</a></div>
+<header class="top">
+  <h1><span class="badge red">红榜 #10</span>CSCO<span class="tk" style="opacity:.7;font-size:15px;font-weight:400;margin-left:8px">CSCO</span></h1>
+  <div class="sub">美股 ·  · 榜单日期 <b>2026-10-04</b> · 盘价采集 <b>2026-10-04 05:00:59</b></div>
+  <div class="price-row" style="margin-top:12px">
+    <span class="price" style="color:#fff">$112.20</span>
+    <span class="pct up">+3.56%</span>
+    <span class="psrc" style="color:rgba(255,255,255,.6)">实时</span>
+  </div>
+  <div class="scores" style="margin-top:10px">
+    <span>综合 <b>84.4</b></span>
+    <span>多头 <b>87</b></span>
+    <span>空头 <b>22</b></span>
+    <span>大师均值 <b>66.8</b></span>
+    <span>信号 <b>positive</b></span>
+  </div>
+</header>
+<div class="trade"><div class="cell"><div class="k">交易评级</div><span class="v buy">Buy</span></div><div class="cell"><div class="k">加仓区间</div><span class="v">108.83 ~ 113.32</span></div><div class="cell"><div class="k">目标价</div><span class="v">125.66</span></div><div class="cell"><div class="k">伯克希尔</div><span class="v">买入</span></div><div class="cell"><div class="k">伯克希尔分</div><span class="v">3.75</span></div></div>
+<div class="panel"><h2>财务指标</h2><div class="mgrid"><div class="m"><div class="k">市盈率 PE</div><div class="v">33.69</div></div><div class="m"><div class="k">市净率 PB</div><div class="v">8.80</div></div><div class="m"><div class="k">ROE</div><div class="v">27.3%</div></div><div class="m"><div class="k">总市值</div><div class="v">4424</div></div><div class="m"><div class="k">营收同比</div><div class="v">17.6%</div></div><div class="m"><div class="k">净利同比</div><div class="v">52.1%</div></div></div></div>
+<div class="panel"><h2>历史收益</h2><span class="ychip">近1月 <b class="up">+3.31%</b></span><span class="ychip">近6月 <b class="flat">nan%</b></span><span class="ychip">近1年 <b class="up">+65.19%</b></span><span class="ychip">近5年 <b class="up">+106.90%</b></span></div>
+<div class="panel"><h2>大师圆桌<span class="sub">5 位</span></h2><div class="mreply"><div class="mh"><span class="who">段永平</span><span class="mscore">53</span></div><div class="md"><p>各位好，关于CSCO这只股票，我来说几句。</p><p>首先，我的看法是中性偏谨慎。虽然CSCO在科技行业是一个稳定的市场领导者，并且最近股价也展现出不错的动能（上涨3.16%），但我对这只股票的态度主要取决于两个关键因素：本分和估值。</p><p>从本分角度来看，CSCO是一家值得尊敬的公司，在其核心业务领域保持着领先地位。但问题是，我们是否真的&quot;看得懂&quot;这家公司未来的增长空间？虽然目前营收同比增长17.6%，净利润同比增长52.1%，但这些数据更多反映的是过去的表现。对于未来，我们需要更清楚地理解其长期竞争力和行业趋势。</p><p>从估值角度来看，当前的市盈率（PE）约为33倍，市净率（PB）约为8.8倍。这样的估值水平对于一家成熟科技公司来说并不算低。虽然ROE达到27.3%是一个不错的指标，但我们也要考虑市场回调的风险。</p><p>因此，我的建议是：</p><ul><li>如果你已经在持有CSCO，建议保持谨慎观察，不要急于加仓。除非你对公司的长期发展有非常清晰的判断，否则不要因为短期的股价上涨而过度乐观。</li></ul><ul><li>如果你正在考虑买入，我建议你先问自己几个问题：这家公司未来3-5年的增长点在哪里？其核心业务是否面临新的竞争压力？当前的估值水平是否已经充分反映了未来的增长预期？</li></ul><p>最后，我想提醒大家一点：投资中最重要的是&quot;做对的事&quot;。对于CSCO这样的公司，我们需要确保自己真正理解其业务模式和市场定位，而不是仅仅因为它是行业领导者就盲目跟进。</p><p>记住，投资不是一场短跑，而是一场马拉松。我们要做的是找到那些能够长期创造价值的好公司，而不是追逐短期的市场热点。</p></div></div><div class="mreply"><div class="mh"><span class="who">巴菲特</span><span class="mscore">70</span></div><div class="md"><p>各位朋友，今天我们来聊聊思科（CSCO）。首先，我得说，思科是一家在科技行业有着稳固地位的公司，多年来一直是市场的领导者之一。从目前的情况来看，它的价格动能不错，过去一段时间表现稳定，这说明市场对它的认可度还是比较高的。</p><p>不过，我投资一向看重的是护城河和自由现金流。思科在网络设备领域有着强大的品牌和技术优势，这构成了它的护城河。但我们也要看到，科技行业的竞争非常激烈，新的技术趋势和竞争对手随时可能出现，这对思科的长期护城河是一个潜在的挑战。</p><p>从估值角度来看，思科的市盈率（PE）约为33倍，市净率（PB）约为8.8倍。这些数字在我看来不算便宜，尤其是在当前市场环境下，科技股的估值普遍偏高。我们需要谨慎考虑当前价格是否已经反映了它的内在价值。</p><p>接下来谈谈风险。思科面临的挑战包括：1）科技行业的快速变化，可能导致其现有产品和技术过时；2）全球经济的不确定性，可能影响企业客户的IT支出；3）市场回调的风险，毕竟科技股在过去一段时间已经积累了不小的涨幅。</p><p>基于以上分析，我的建议是：</p><ul><li>如果你已经在持有思科的股票，建议密切关注其基本面的变化，特别是其自由现金流和市场份额的稳定性。</li><li>如果你考虑买入，建议等待更好的价格，或者至少分批买入，以降低市场波动带来的风险。</li><li>无论买入还是持有，都要做好长期投资的准备，因为科技行业的竞争格局变化很快，只有那些能够持续创新的公司才能长期保持竞争优势。</li></ul><p>最后，我想引用一句我常说的话：“你不需要打击每一记球。”在投资中，选择最有把握的机会才是关键。对于思科，我们需要更深入地了解其未来的创新能力和市场定位，才能做出更明智的决策。</p><p>如果是芒格，他会补充说：“投资就像在果园里摘果子，你要挑选那些最成熟、最有价值的果子，而不是看到果子就摘。”所以，在考虑思科时，我们要确保它是我们果园里最值得摘的那颗果子。</p></div></div><div class="mreply"><div class="mh"><span class="who">达利欧</span><span class="mscore">80</span></div><div class="md"><p>各位，我将从宏观和原则化的角度来谈谈CSCO这只股票。</p><h4>结论</h4><p>CSCO当前是一个值得考虑的投资标的，但需要在风险与收益之间进行权衡。</p><h4>理由</h4><ul><li><strong>价格动能与市场地位</strong>：CSCO在过去一段时间内表现出了强劲的价格动能，涨幅达到3.16%，并且作为科技行业的稳定领导者，其市场地位稳固。这表明公司在当前市场环境下具有一定的竞争力和吸引力。</li></ul><ul><li><strong>基本面数据</strong>：从财务数据来看，CSCO的营收同比增长17.6%，净利润同比增长52.1%，ROE达到27.319%，这些数据都显示出公司在盈利能力方面的强劲表现。然而，PE值为33.69，PB值为8.80，这些估值指标相对较高，表明市场对公司的未来增长有较高的预期。</li></ul><ul><li><strong>宏观环境与风险</strong>：在当前的市场环境中，科技行业整体表现强劲，但同时也面临着市场回调的风险。CSCO虽然基本面稳健，但没有重大基本面消息的支撑，这可能使得其在市场波动中受到一定影响。</li></ul><h4>风险与行动建议</h4><ul><li><strong>市场回调风险</strong>：由于缺乏重大基本面消息的支撑，CSCO可能会受到市场整体回调的影响。因此，投资者需要密切关注市场动向，并在必要时进行风险对冲。</li></ul><ul><li><strong>估值风险</strong>：尽管公司的财务数据表现强劲，但高估值意味着市场对其未来增长有较高的预期。如果公司未能达到这些预期，可能会面临估值下调的压力。因此，投资者需要对公司未来的增长潜力进行深入分析。</li></ul><ul><li><strong>行动建议</strong>：</li><li><strong>长期投资者</strong>：如果你是长期投资者，并且相信科技行业的长期增长潜力，那么CSCO仍然是一个值得考虑的投资标的。可以考虑在市场回调时逐步建仓，以降低短期波动带来的风险。</li><li><strong>短期投资者</strong>：对于短期投资者，建议密切关注市场动向，并在市场回调时考虑暂时减仓，以规避潜在的风险。</li></ul><h4>原则化收口</h4><p>在投资决策中，我们需要平衡收益与风险，保持极度开放和透明的态度。正如我常说的，&quot;Pain + Reflection = Progress&quot;，每一次决策都是一次学习和成长的机会。建议大家将这次的分析和决策过程下来，作为未来决策的参考。</p><p>通过这种方式，我们不仅能更好地理解市场，也能不断提升自己的投资能力。</p></div></div><div class="mreply"><div class="mh"><span class="who">彼得·林奇</span><span class="mscore">48</span></div><div class="md"><h4>圆桌发言：关于 CSCO（思科系统公司）</h4><h5>结论：</h5><p>思科是一家值得关注的科技公司，但我对当前价格持中性态度。它拥有稳健的市场地位和良好的增长数据，但估值偏高，需要谨慎对待。</p><h5>理由：</h5><ul><li><strong>行业地位与增长</strong>：思科是科技行业的稳定领导者，过去几年一直保持着良好的营收和净利润增长。从基本面来看，公司表现强劲，营收同比增长17.6%，净利润同比增长52.1%，净资产收益率（ROE）达到27.3%，这些数据都显示出公司良好的运营能力。</li></ul><ul><li><strong>估值考量</strong>：尽管公司基本面强劲，但当前的市盈率（PE）约为33倍，市净率（PB）约为8.8倍。这些估值指标相对较高，尤其是在科技行业整体回调风险加大的背景下，显得有些昂贵。对于稳健增长型公司来说，这样的估值水平需要更高的增长持续性来支撑。</li></ul><ul><li><strong>市场动能与风险</strong>：思科近期股价表现不错，过去几个月的价格动能强劲。然而，市场整体回调风险不容忽视，尤其是在科技股估值普遍较高的环境下。缺乏重大基本面消息也可能导致投资者情绪波动。</li></ul><h5>风险/行动建议：</h5><ul><li><strong>估值风险</strong>：当前估值偏高，建议投资者谨慎对待。如果你是长期投资者，并且对思科的长期增长有信心，可以考虑在股价回调时逐步建仓。</li></ul><ul><li><strong>市场风险</strong>：科技行业整体面临回调风险，建议关注市场动向，适时调整仓位。如果市场出现大幅波动，可以考虑暂时观望，等待更合适的买入时机。</li></ul><ul><li><strong>调研建议</strong>：如果你对思科的业务模式感兴趣，建议多关注其在企业网络和通信设备市场的表现，以及其在新兴技术领域的布局。实地调研或关注行业报告可以帮助你更好地理解公司的增长潜力。</li></ul><p>总之，思科是一家值得长期关注的公司，但当前价格偏高，需要耐心等待更好的买入时机。投资时务必保持理性，不要被短期价格波动所左右。</p></div></div><div class="mreply"><div class="mh"><span class="who">芒格</span><span class="mscore">83</span></div><div class="md"><p>各位同仁，今天我们来讨论一下思科（CSCO）的投资价值。</p><p>首先，我得说，从逆向思维的角度来看，思科目前没有明显的致命缺陷。它作为科技行业的市场领导者，有着稳定的地位，这一点值得肯定。现价112美元左右，市盈率33倍，估值不算便宜，但也不算离谱。从多元思维模型的角度分析，思科在营收和净利润方面分别实现了17.6%和52.1%的同比增长，净资产收益率（ROE）达到27%，这些数据都显示出公司良好的经营状况。</p><p>然而，我们不能忽视市场的回调风险。当前市场缺乏重大的基本面消息支撑，思科的强劲价格动能（3.16%的涨幅）可能是短期市场情绪的反映，而非长期趋势的体现。尽管多头逻辑看起来很吸引人，但我们必须警惕这种缺乏基本面支撑的上涨可能带来的风险。</p><p>接下来谈谈激励机制。思科的管理层在过去几年里表现出色，股东回报率较高，这表明公司的激励机制是有效的。但我们也要注意，科技行业的竞争日益激烈，思科能否持续保持其市场领导地位是一个关键问题。</p><p>在考虑投资行动时，我建议大家保持谨慎。如果你是长期投资者，并且已经持有思科，那么继续持有可能是合理的，因为公司的基本面依然强劲。但如果你是在考虑新开仓，我建议等待更好的时机，或者至少分批买入，以降低市场回调带来的风险。</p><p>最后，关于我能错在哪里，我得说，我可能低估了市场回调的幅度，或者高估了思科在面对竞争时的韧性。市场总是充满不确定性，我们能做的就是尽量减少犯错的可能性。</p><p>总之，思科是一家值得关注的优质公司，但当前的市场环境需要我们更加谨慎行事。希望大家在做决策时，能够充分考虑各种因素，避免被短期情绪左右。</p></div></div></div>
+<div class="panel"><h2>分析师报告<span class="sub">2 篇</span></h2><details open><summary>市场面分析</summary><div class="body"><div class="md"><h4>CSCO CSCO 市场面分析</h4><ul><li>红黑榜多空分数：多头 87 / 空头 22，分差 65。</li><li>当前价格：112.20。</li><li>当前交易评级：Buy。</li><li>值得加仓区间：108.83 - 113.32。</li><li>目标价格：125.66。</li><li>市场愿意给溢价的原因：强劲的价格动能(3.16%)；科技行业稳定的市场领导者。</li><li>当前主要压制因素：缺乏重大基本面消息；市场回调风险。</li></ul></div></div></details><details open><summary>基本面分析</summary><div class="body"><div class="md"><h4>CSCO CSCO 基本面分析</h4><ul><li>报告期：暂无。</li><li>PE(TTM)：33.69。</li><li>PB：8.80。</li><li>ROE：27.32%。</li><li>营收同比：17.60%。</li><li>归母净利润同比：52.10%。</li><li>核心判断：盈利能力处于可接受区间；收入仍在增长；利润端保持扩张。</li></ul></div></div></details></div>
+<div class="panel"><h2>研究与计划</h2>
+<details><summary>基本面摘要</summary><div class="body"><div class="md"><h3>核心财务快照</h3><ul><li>报告期: 数据缺失</li><li>当前股价: 112.20 元</li><li>总市值: 4423.58 亿元</li><li>PE (TTM): 33.69</li><li>PB: 8.80</li><li>PS (TTM): 数据缺失</li><li>营业总收入(报告期): 数据缺失 亿元</li><li>营收同比增长率: 17.60%</li><li>归母净利润(报告期): 数据缺失 亿元</li><li>归母净利润同比增长率: 52.10%</li><li>ROE (TTM/估算): 27.32%</li><li>资产负债率: 数据缺失</li><li>经营性现金流 / 归母净利润: 数据缺失</li></ul><h4>缺失字段</h4><ul><li>PS(TTM), 营业总收入, 归母净利润, 资产负债率, 经营性现金流与归母净利润比值</li></ul></div></div></details>
+<details><summary>研究计划</summary><div class="body"><div class="md"><h4>CSCO CSCO 研究摘要</h4><ul><li>红黑榜结论: Buy</li><li>多头/空头: 87/22</li><li>正向信号: ROE 27.32%；营收同比 17.60%；归母净利润同比 52.10%；PE(TTM) 33.69</li><li>榜单看多理由: 强劲的价格动能(3.16%)；科技行业稳定的市场领导者</li><li>榜单风险提示: 缺乏重大基本面消息；市场回调风险</li></ul></div></div></details>
+<details><summary>交易计划</summary><div class="body"><div class="md"><h4>CSCO CSCO 交易计划</h4><ul><li>评级: Buy</li><li>当前价格: 112.20</li><li>值得加仓区间: 108.83 - 113.32</li><li>目标价格: 125.66</li><li>止损位: 103.22</li><li>备注: 当前为缓存降级交易卡，后续若完整 TradingAgent 结果生成，将自动覆盖。</li></ul></div></div></details>
+<details><summary>交易决策</summary><div class="body"><div class="md"><p>Buy</p><p>CSCO CSCO 当前使用红黑榜缓存结果生成兜底交易卡。多头 87 / 空头 22，分差 65。当前尚未取得完整 TradingAgent 长文决策，但榜单分数、财务快照和大师观点已经足够生成基础交易建议。</p></div></div></details>
+</div>
+<div class="panel"><h2>多空逻辑</h2><div class="pts"><div class="h bull">看多逻辑</div><div class="md"><p>强劲的价格动能(3.16%)</p><p>科技行业稳定的市场领导者</p></div></div><div class="pts"><div class="h bear">看空逻辑</div><div class="md"><p>缺乏重大基本面消息</p><p>市场回调风险</p></div></div></div>
+<div class="panel"><h2>伯克希尔研究</h2><p><strong>CSCO是一家具有强大护城河和稳定现金流的企业，但面临行业增速放缓和竞争加剧的挑战，当前估值合理，适合稳健型投资者关注。</strong></p><p>伯克希尔综合评分：<strong>3.75</strong></p><div class="md"><p>{&quot;verdict&quot;: &quot;买入&quot;, &quot;conservative_tip&quot;: &quot;建议在PE低于14倍时买入，目标价50美元。&quot;, &quot;moderate_tip&quot;: &quot;建议在PE低于16倍时买入，目标价55美元。&quot;, &quot;aggressive_tip&quot;: &quot;建议在PE低于18倍时买入，目标价60美元。&quot;, &quot;catalysts_plus&quot;: [&quot;软件和服务收入占比持续提升。&quot;, &quot;5G网络部署加速。&quot;, &quot;云计算需求增长。&quot;], &quot;catalysts_minus&quot;: [&quot;全球IT支出下降。&quot;, &quot;主要竞争对手推出颠覆性技术。&quot;, &quot;宏观经济衰退导致企业削减IT预算。&quot;]}</p></div></div>
+<div class="panel news"><h2>最新资讯</h2><div class="md"><p>利多新闻3条，利空新闻2条，中性新闻6条，整体情绪偏中性。</p></div><div class="nitem"><div class="t">Are There Signs Cisco Stock Is Going To Swing Big?</div><div class="s">Trefis · 中性</div></div><div class="nitem"><div class="t">Did Bell–Cisco Sovereign AI Pact Just Recast Cisco Systems&#x27; (CSCO) Regulated-Market Strategy?</div><div class="s">Yahoo Finance · 利好</div></div><div class="nitem"><div class="t">If You Invested $1000 In Cisco Systems Stock 5 Years Ago, You Would Have This Much Today</div><div class="s">Benzinga · 中性</div></div><div class="nitem"><div class="t">The One Number Cisco Stock Investors Should Watch</div><div class="s">Trefis · 中性</div></div><div class="nitem"><div class="t">Cisco vs. Broadcom: One Stock Looks Like the Better AI Play</div><div class="s">24/7 Wall St. · 利空</div></div><div class="nitem"><div class="t">BofA makes bold call on Cisco stock after earnings</div><div class="s">thestreet.com · 利好</div></div><div class="nitem"><div class="t">Jim Cramer Dismissed Market Reaction To Cisco Systems, Inc. (NASDAQ:CSCO) Following Earnings</div><div class="s">Yahoo Finance · 中性</div></div><div class="nitem"><div class="t">Cisco Systems (NasdaqGS:CSCO) Stock Price</div><div class="s">Simply Wall Street · 中性</div></div></div>
+<footer>稳健理财Agent · 红黑榜每日归档 · 红榜 #10 · 仅供研究，不构成投资建议</footer>
+</div></body>
+</html>
