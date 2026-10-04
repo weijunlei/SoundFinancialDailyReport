@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ARM(ARM) 红榜 2026-10-05</title>
+<style>
+:root{--red:#d8342c;--redbg:#fdecea;--green:#1a9e54;--ink:#1c2230;--muted:#6b7385;
+--line:#e7e9ef;--card:#fff;--bg:#f4f6fa;--chip:#eef1f6;--dark:#23262d;--darkbg:#ececef}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",
+"Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);
+line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 16px 64px}
+header.top{background:linear-gradient(135deg,#1c2230,#2c3550);color:#fff;border-radius:14px;
+padding:22px 24px;margin-bottom:20px;box-shadow:0 6px 24px rgba(20,26,46,.12)}
+header.top h1{margin:0 0 6px;font-size:24px;letter-spacing:.5px}
+header.top .sub{opacity:.85;font-size:13px}
+header.top .sub b{color:#ffd166;font-weight:600}
+nav.mkt{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;
+background:rgba(244,246,250,.92);backdrop-filter:blur(6px);padding:10px 0;margin-bottom:14px}
+nav.mkt a{text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);
+padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600}
+nav.mkt a:hover{border-color:var(--red);color:var(--red)}
+.summary{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.summary .chip{background:var(--card);border:1px solid var(--line);border-radius:10px;
+padding:8px 12px;font-size:12px;color:var(--muted)}
+.summary .chip b{color:var(--ink);font-size:14px;margin-left:4px}
+section.board{margin:26px 0}
+.board-title{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:19px}
+.board-title .dot{width:10px;height:10px;border-radius:50%}
+.board-title.red .dot{background:var(--red)}
+.board-title.black .dot{background:var(--dark)}
+.board-title small{color:var(--muted);font-weight:400;font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+position:relative;transition:box-shadow .15s}
+.card:hover{box-shadow:0 4px 18px rgba(20,26,46,.08)}
+.card.red{border-top:3px solid var(--red)}
+.card.black{border-top:3px solid var(--dark)}
+.rank{position:absolute;top:10px;right:12px;font-size:26px;font-weight:800;color:#eceff5}
+.card.red .rank{color:#fbdcD9}
+.nm{font-size:16px;font-weight:700}
+.nm .tk{color:var(--muted);font-weight:500;font-size:12px;margin-left:6px}
+.tag{display:inline-block;background:var(--chip);color:var(--muted);border-radius:6px;
+padding:1px 7px;font-size:11px;margin:6px 6px 0 0}
+.price-row{display:flex;align-items:baseline;gap:10px;margin:10px 0 4px}
+.price{font-size:24px;font-weight:800}
+.pct{font-size:14px;font-weight:700;padding:2px 8px;border-radius:8px}
+.up{color:var(--red)}.down{color:var(--green)}.flat{color:var(--muted)}
+.pct.up{background:var(--redbg)}.pct.down{background:#e2f4e9}.pct.flat{background:var(--chip)}
+.psrc{font-size:11px;color:var(--muted);margin-left:auto}
+.scores{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.scores span{background:var(--chip);border-radius:6px;padding:2px 8px;font-size:11px;color:var(--muted)}
+.scores span b{color:var(--ink)}
+.pts{font-size:12.5px;margin:8px 0 0}
+.pts .h{font-weight:700;font-size:12px;margin:6px 0 2px}
+.pts .h.bull{color:var(--red)}.pts .h.bear{color:var(--green)}
+.pts ul{margin:2px 0 4px;padding-left:18px;color:#3a4152}
+.pts li{margin:1px 0}
+.masters{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:11px;color:var(--muted)}
+.masters b{color:var(--ink)}
+.summ{font-size:12.5px;color:#3a4152;background:#fafbfd;border:1px solid var(--line);
+border-radius:8px;padding:8px 10px;margin-top:8px}
+.empty{color:var(--muted);background:var(--card);border:1px dashed var(--line);
+border-radius:10px;padding:18px;text-align:center}
+footer{margin-top:34px;color:var(--muted);font-size:12px;text-align:center;line-height:1.8}
+a.lnk{color:var(--red);text-decoration:none}
+/* ── detail page ── */
+.backbar{margin-bottom:14px;font-size:13px}
+.backbar a{color:var(--muted);text-decoration:none;margin-right:14px}
+.backbar a:hover{color:var(--red)}
+.badge{display:inline-block;border-radius:6px;padding:2px 10px;font-size:12px;font-weight:700;margin-right:8px}
+.badge.red{background:var(--red);color:#fff}.badge.black{background:var(--dark);color:#fff}
+.trade{display:flex;flex-wrap:wrap;gap:10px;background:linear-gradient(135deg,#2c3550,#1c2230);
+color:#fff;border-radius:12px;padding:16px 18px;margin:16px 0}
+.trade .cell{min-width:120px}
+.trade .k{font-size:11px;opacity:.75}
+.trade .v{font-size:18px;font-weight:800;margin-top:2px}
+.trade .v.buy{color:#7ee2a8}.trade .v.sell{color:#ff9d97}.trade .v.hold{color:#ffd166}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0}
+.mgrid .m{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.mgrid .m .k{font-size:11px;color:var(--muted)}
+.mgrid .m .v{font-size:16px;font-weight:700;margin-top:2px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.panel>h2{margin:0 0 12px;font-size:17px}
+.panel>h2 .sub{font-size:12px;color:var(--muted);font-weight:400;margin-left:8px}
+.mreply{border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;
+padding:12px 14px;margin:10px 0;background:#fff}
+.mreply .mh{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.mreply .mh .who{font-weight:700;font-size:14px}
+.mreply .mh .mscore{margin-left:auto;background:var(--chip);border-radius:6px;padding:1px 8px;font-size:12px;font-weight:700}
+.md h2,.md h3,.md h4,.md h5{margin:12px 0 6px;font-size:15px}
+.md p{margin:6px 0;font-size:13.5px;color:#2c3345}
+.md ul{margin:6px 0;padding-left:20px;font-size:13.5px;color:#2c3345}
+.md li{margin:3px 0}
+.md strong{color:var(--ink)}
+details{border:1px solid var(--line);border-radius:10px;background:#fff;margin:10px 0;padding:0}
+details>summary{cursor:pointer;padding:12px 16px;font-weight:700;font-size:14px;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary:before{content:"▸ ";color:var(--red)}
+details[open]>summary:before{content:"▾ "}
+details>.body{padding:0 16px 14px;border-top:1px dashed var(--line)}
+.ychip{display:inline-block;background:var(--chip);border-radius:8px;padding:4px 10px;font-size:12px;margin:3px 6px 3px 0}
+.ychip b{font-size:13px}
+.news .nitem{border-top:1px dashed var(--line);padding:8px 0;font-size:13px}
+.news .nitem .t{font-weight:600}
+.news .nitem .s{color:var(--muted);font-size:12px}
+/* ── root landing page ── */
+.hero{padding:30px 26px}
+.hero-kicker{color:#ffd166;font-size:12px;font-weight:700;letter-spacing:2px;
+text-transform:uppercase;margin-bottom:8px}
+.hero h1{font-size:30px;margin:0 0 10px}
+.day-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.day-card{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);
+border-radius:12px;padding:14px 16px;transition:all .15s}
+.day-card:hover{border-color:var(--red);box-shadow:0 4px 16px rgba(216,52,44,.12);transform:translateY(-2px)}
+.day-card .d{font-weight:800;font-size:15px;color:var(--ink);display:flex;align-items:center;gap:8px}
+.day-card .m{margin-top:8px;display:flex;gap:6px}
+.day-card .m span{background:var(--chip);color:var(--muted);border-radius:6px;
+padding:2px 8px;font-size:11px}
+.latest-badge{background:var(--red);color:#fff;border-radius:6px;padding:1px 7px;
+font-size:10px;font-weight:700}
+</style>
+</head>
+<body><div class="wrap">
+<div class="backbar"><a href="../index.html">← 总览</a><a href="../us.html">← 美股榜单</a></div>
+<header class="top">
+  <h1><span class="badge red">红榜 #9</span>ARM<span class="tk" style="opacity:.7;font-size:15px;font-weight:400;margin-left:8px">ARM</span></h1>
+  <div class="sub">美股 ·  · 榜单日期 <b>2026-10-05</b> · 盘价采集 <b>2026-10-05 05:00:48</b></div>
+  <div class="price-row" style="margin-top:12px">
+    <span class="price" style="color:#fff">$307.49</span>
+    <span class="pct up">+5.18%</span>
+    <span class="psrc" style="color:rgba(255,255,255,.6)">实时</span>
+  </div>
+  <div class="scores" style="margin-top:10px">
+    <span>综合 <b>87.5</b></span>
+    <span>多头 <b>90</b></span>
+    <span>空头 <b>25</b></span>
+    <span>大师均值 <b>59.8</b></span>
+    <span>信号 <b>positive</b></span>
+  </div>
+</header>
+<div class="trade"><div class="cell"><div class="k">交易评级</div><span class="v buy">Buy</span></div><div class="cell"><div class="k">加仓区间</div><span class="v">298.27 ~ 310.56</span></div><div class="cell"><div class="k">目标价</div><span class="v">344.39</span></div><div class="cell"><div class="k">伯克希尔</div><span class="v">买入</span></div><div class="cell"><div class="k">伯克希尔分</div><span class="v">4.00</span></div></div>
+<div class="panel"><h2>财务指标</h2><div class="mgrid"><div class="m"><div class="k">市盈率 PE</div><div class="v">313.77</div></div><div class="m"><div class="k">市净率 PB</div><div class="v">38.05</div></div><div class="m"><div class="k">ROE</div><div class="v">13.4%</div></div><div class="m"><div class="k">总市值</div><div class="v">3284</div></div><div class="m"><div class="k">营收同比</div><div class="v">22.4%</div></div><div class="m"><div class="k">净利同比</div><div class="v">108.3%</div></div></div></div>
+<div class="panel"><h2>历史收益</h2><span class="ychip">近1月 <b class="up">+26.75%</b></span><span class="ychip">近6月 <b class="up">+106.69%</b></span><span class="ychip">近1年 <b class="up">+101.45%</b></span><span class="ychip">近5年 <b class="up">+383.55%</b></span></div>
+<div class="panel"><h2>大师圆桌<span class="sub">5 位</span></h2><div class="mreply"><div class="mh"><span class="who">段永平</span><span class="mscore">66</span></div><div class="md"><p>各位好，关于ARM这家公司，我简单谈几点看法。</p><p>首先，从&quot;做对的事&quot;的角度来看，ARM的业务模式是相当不错的。作为芯片架构领域的绝对龙头，它在AI发展的大背景下有很强的长期增长潜力，这一点是值得肯定的。</p><p>但谈到投资，我们还需要考虑&quot;把事做对&quot;，这里有几个问题需要大家注意：</p><ul><li>当前估值确实偏高，市盈率超过300倍，市净率也接近40倍。这样的估值水平意味着市场已经给了它非常乐观的预期。</li></ul><ul><li>虽然AI发展带来了长期利好，但短期内股价涨幅已经超过5%，这种快速上涨可能会带来回调风险。</li></ul><ul><li>作为投资者，我们是否真的&quot;看得懂&quot;ARM的长期价值？芯片行业竞争激烈，技术迭代快，ARM能否持续保持领先地位需要持续观察。</li></ul><p>我的建议是：</p><p>如果你是长期投资者，并且对芯片行业有深入理解，那么可以适当关注，但目前可能不是最好的买入时机。估值过高意味着我们需要更大的安全边际。</p><p>这里我想特别提醒大家：投资中最重要的是保持平常心，不要被短期涨幅迷惑。ARM是个好公司，但好公司也需要好价格。</p><p>最后，我想用一句话来总结：投资就像种地，不要因为别人家的庄稼长得快就乱了阵脚。坚持做对的事，把事做对，才是长期成功的关键。</p><p>别忘了，投资中最大的风险往往不是市场波动，而是我们自己的判断失误。</p></div></div><div class="mreply"><div class="mh"><span class="who">巴菲特</span><span class="mscore">42</span></div><div class="md"><p>各位朋友，今天我们讨论的是ARM这家公司。首先，我得说我对ARM这家公司持谨慎态度。让我先说结论：我认为当前价格买入ARM的风险大于机会。</p><p>理由很简单。虽然ARM在芯片架构领域拥有稳固的市场地位，并且AI的发展确实为它带来了长期的增长潜力，这些都是积极因素。但我们必须面对现实：这家公司的估值已经相当高了，市盈率超过300倍，市净率接近40倍。这样的估值水平意味着市场已经对未来的增长给予了极高的预期。</p><p>从护城河的角度来看，ARM确实有其独特的竞争优势。它在芯片架构领域的地位类似于科技界的&quot;收费站&quot;，每卖出一块芯片，ARM都能从中获得授权费。这种商业模式带来了稳定的现金流。但问题在于，当前的价格已经远远超出了我对&quot;合理价格&quot;的定义。</p><p>再从安全边际的角度考虑，我们支付的价格应该为我们留出足够的犯错空间。但以现在的估值水平来看，几乎没有给投资者留下任何犯错的空间。任何增长不及预期或者市场情绪的变化，都可能导致股价大幅回调。</p><p>因此，我的建议是：</p><ul><li>如果你已经在持有ARM的股票，建议重新审视当初买入的逻辑是否仍然成立。如果股价继续上涨，而基本面没有相应提升，可能需要考虑减仓。</li></ul><ul><li>对于想要买入的投资者，我建议耐心等待更好的买入时机。除非你对ARM的未来增长有极高的信心，并且愿意承担估值回调的风险，否则现在可能不是最好的买入时机。</li></ul><p>最后，我想引用一句老话：&quot;时间是伟大生意的朋友，是坏生意的敌人。&quot;ARM无疑是一家优秀的公司，但当前的价格可能已经透支了未来的增长潜力。我们需要耐心等待市场先生给我们提供更好的机会。</p><p>如果查理·芒格在这里，他可能会补充说：&quot;投资就像在果园里摘果子，不要急着摘那些还没成熟的果子。&quot;耐心是投资者最好的朋友。</p></div></div><div class="mreply"><div class="mh"><span class="who">达利欧</span><span class="mscore">69</span></div><div class="md"><p>各位同仁，今天我们讨论的是ARM这家公司。我将从我的原则化视角来分享一些看法。</p><h4>结论</h4><p>ARM是一家在当前环境下具有显著吸引力的公司，但同时也需要警惕其估值过高的风险。</p><h4>理由</h4><ul><li><strong>强劲的市场表现和行业地位</strong>：</li><li>ARM在芯片架构领域拥有稳固的龙头地位，这是其核心优势。随着AI技术的快速发展，对高效芯片架构的需求持续增长，这为ARM提供了长期的增长动力。</li><li>从价格表现来看，ARM的股价近期表现强劲，涨幅达到5.18%，这反映了市场对其未来前景的乐观预期。</li></ul><ul><li><strong>财务指标和估值</strong>：</li><li>ARM的营收同比增长22.4%，净利润同比增长108.3%，显示出强劲的盈利能力。然而，其市盈率（PE）高达313.77，市净率（PB）也达到38.05，这表明市场对其未来增长给予了非常高的预期。</li><li>从风险角度来看，高估值意味着市场对其增长预期已经非常高，任何不及预期的表现都可能导致股价回调。</li></ul><ul><li><strong>宏观和行业风险</strong>：</li><li>当前全球市场波动性较大，地缘政治风险和利率环境的变化都可能对科技股产生负面影响。ARM作为一家科技公司，其估值受市场情绪影响较大。</li><li>AI行业的快速发展虽然为ARM带来了机遇，但也伴随着激烈的竞争和快速变化的技术环境。</li></ul><h4>风险/行动建议</h4><ul><li><strong>风险</strong>：</li><li><strong>估值风险</strong>：高估值意味着市场预期已经很高，未来增长若不及预期，可能导致股价回调。</li><li><strong>市场波动风险</strong>：全球市场波动性和地缘政治风险可能对科技股产生负面影响。</li><li><strong>竞争风险</strong>：AI行业的快速发展伴随着激烈的竞争，ARM需要持续创新以保持其市场地位。</li></ul><ul><li><strong>行动建议</strong>：</li><li><strong>长期投资者</strong>：对于长期投资者来说，ARM的基本面和行业地位仍然具有吸引力，但建议在当前高估值环境下保持谨慎，逐步建仓或等待回调机会。</li><li><strong>短期投资者</strong>：短期投资者需要密切关注市场波动和公司财报表现，设定合理的止损点，以防范潜在的下行风险。</li><li><strong>风险控制</strong>：无论投资者类型如何，都应将ARM纳入一个多元化的投资组合中，以分散单一股票的风险。</li></ul><h4>原则化收口</h4><p>在投资ARM时，我们需要遵循的原则是：保持极度透明的风险意识，平衡长期增长潜力与短期估值风险。正如我常说的，&quot;Pain + Reflection = Progress&quot;，在投资决策中，我们需要不断反思和调整，以适应市场的变化。</p><p>希望这些分析对大家有所帮助。谢谢。</p></div></div><div class="mreply"><div class="mh"><span class="who">彼得·林奇</span><span class="mscore">72</span></div><div class="md"><p>各位朋友，今天我们来聊聊ARM这家公司。从我的视角来看，ARM是一家非常有吸引力的公司，但也有一些潜在的风险需要我们注意。</p><p>首先，ARM作为全球领先的芯片架构设计公司，其市场地位非常稳固。随着人工智能和物联网的快速发展，对芯片架构的需求也在不断增长，这为ARM提供了长期的增长动力。此外，近期股价表现强劲，涨幅达到5.18%，这也反映了市场对其未来发展的信心。</p><p>然而，我们也需要看到一些风险点。当前ARM的估值偏高，市盈率（PE）高达313倍，市净率（PB）也达到了38倍。这样的估值水平意味着市场对其未来增长的预期非常高，但同时也带来了较高的风险。如果市场情绪发生变化，或者公司业绩不及预期，股价可能会面临较大的回调压力。</p><p>从我的投资风格来看，我更倾向于在估值合理的情况下买入并长期持有。虽然ARM的基本面非常强劲，但其当前的估值水平让我有些犹豫。因此，我的建议是：</p><ul><li><strong>不要盲目追高</strong>：如果你已经持有ARM的股票，可以考虑在股价继续上涨时逐步减仓，以锁定部分利润。</li><li><strong>耐心等待机会</strong>：如果没有持仓，可以耐心等待市场回调，寻找更好的买入时机。记住，好的公司也需要好的价格才能成为好的投资。</li><li><strong>关注长期趋势</strong>：密切关注人工智能和物联网的发展趋势，这些领域的持续增长将是ARM未来发展的关键驱动力。</li></ul><p>总的来说，ARM是一家值得长期关注的公司，但当前的估值水平需要我们保持谨慎。希望大家在投资时都能做到理性决策，找到适合自己的投资策略。</p></div></div><div class="mreply"><div class="mh"><span class="who">芒格</span><span class="mscore">50</span></div><div class="md"><p>各位同仁，今天我们来谈谈ARM这家公司。我先给出我的结论：ARM是一家值得关注的公司，但当前价格偏高，需要谨慎对待。</p><p>首先，让我们从逆向思维的角度来审视这个问题。我们先思考&quot;ARM可能怎么失败&quot;。第一，如果芯片行业的整体需求增长放缓，ARM的业务增长可能受到拖累。第二，如果竞争对手在架构设计上取得突破性进展，ARM的市场地位可能受到威胁。第三，如果全球经济陷入衰退，科技行业的投资和扩张可能会大幅减少，这对ARM的营收和利润都会产生负面影响。</p><p>接下来，我们来看看ARM的激励机制。ARM作为芯片架构的龙头企业，其主要收入来源是授权费和版税。这种商业模式使得ARM能够持续受益于整个半导体行业的增长。然而，这种模式也意味着ARM的业绩高度依赖于下游客户的成功。如果下游客户在市场竞争中失利，ARM的收入也会受到影响。</p><p>从多元思维模型的角度来看，ARM的优势在于其技术领先地位和在AI领域的广泛应用。芯片架构是半导体行业的核心，而ARM在这一领域拥有强大的专利组合和技术优势。此外，AI的发展对高性能计算的需求不断增加，这为ARM提供了长期的增长动力。然而，正如前面提到的，ARM的估值已经非常高，PE高达313倍，PB也达到了38倍。这样的估值水平意味着市场对其未来增长抱有极高的期望，任何不及预期的表现都可能导致股价大幅回调。</p><p>从概率和赔率的角度分析，ARM的胜率较高，但其赔率较低。当前价格已经反映了市场对其未来增长的乐观预期，因此即使ARM继续取得成功，其股价的上涨空间也可能有限。相反，如果出现任何不利因素，股价可能会大幅下跌。</p><p>最后，我们来看看心理学陷阱。投资者往往容易受到近期价格上涨的诱惑，忽视了潜在的风险。当前ARM的股价已经经历了较大幅度的上涨，投资者需要警惕&quot;追涨杀跌&quot;的陷阱。此外，市场对AI的过度乐观也可能导致对ARM的估值过高。</p><p>综上所述，我的建议是：如果你已经持有ARM，可以考虑部分获利了结，锁定收益。如果你正在考虑买入，建议等待更好的入场时机，或者在投资组合中保持较低的仓位，以控制风险。正如我常说的，&quot;如果我知道自己死在哪里，我就永远不去那里&quot;。在投资中，谨慎和耐心往往是最好的策略。</p></div></div></div>
+<div class="panel"><h2>分析师报告<span class="sub">2 篇</span></h2><details open><summary>市场面分析</summary><div class="body"><div class="md"><h4>ARM ARM 市场面分析</h4><ul><li>红黑榜多空分数：多头 90 / 空头 25，分差 65。</li><li>当前价格：307.49。</li><li>当前交易评级：Buy。</li><li>值得加仓区间：298.27 - 310.56。</li><li>目标价格：344.39。</li><li>市场愿意给溢价的原因：价格表现强劲，涨幅5.18%；芯片架构龙头地位稳固；AI发展带动长期需求。</li><li>当前主要压制因素：估值偏高风险；市场波动性影响；短期涨幅过大可能回调。</li></ul></div></div></details><details open><summary>基本面分析</summary><div class="body"><div class="md"><h4>ARM ARM 基本面分析</h4><ul><li>报告期：暂无。</li><li>PE(TTM)：313.77。</li><li>PB：38.05。</li><li>ROE：13.35%。</li><li>营收同比：22.40%。</li><li>归母净利润同比：108.30%。</li><li>核心判断：盈利能力处于可接受区间；收入仍在增长；利润端保持扩张；估值偏贵，需要更强兑现。</li></ul></div></div></details></div>
+<div class="panel"><h2>研究与计划</h2>
+<details><summary>基本面摘要</summary><div class="body"><div class="md"><h3>核心财务快照</h3><ul><li>报告期: 数据缺失</li><li>当前股价: 307.49 元</li><li>总市值: 3283.99 亿元</li><li>PE (TTM): 313.77</li><li>PB: 38.05</li><li>PS (TTM): 数据缺失</li><li>营业总收入(报告期): 数据缺失 亿元</li><li>营收同比增长率: 22.40%</li><li>归母净利润(报告期): 数据缺失 亿元</li><li>归母净利润同比增长率: 108.30%</li><li>ROE (TTM/估算): 13.35%</li><li>资产负债率: 数据缺失</li><li>经营性现金流 / 归母净利润: 数据缺失</li></ul><h4>缺失字段</h4><ul><li>PS(TTM), 营业总收入, 归母净利润, 资产负债率, 经营性现金流与归母净利润比值</li></ul></div></div></details>
+<details><summary>研究计划</summary><div class="body"><div class="md"><h4>ARM ARM 研究摘要</h4><ul><li>红黑榜结论: Buy</li><li>多头/空头: 90/25</li><li>正向信号: ROE 13.35%；营收同比 22.40%；归母净利润同比 108.30%；PB 38.05</li><li>风险信号: PE(TTM) 313.77</li><li>榜单看多理由: 价格表现强劲，涨幅5.18%；芯片架构龙头地位稳固；AI发展带动长期需求</li><li>榜单风险提示: 估值偏高风险；市场波动性影响；短期涨幅过大可能回调</li></ul></div></div></details>
+<details><summary>交易计划</summary><div class="body"><div class="md"><h4>ARM ARM 交易计划</h4><ul><li>评级: Buy</li><li>当前价格: 307.49</li><li>值得加仓区间: 298.27 - 310.56</li><li>目标价格: 344.39</li><li>止损位: 282.89</li><li>备注: 当前为缓存降级交易卡，后续若完整 TradingAgent 结果生成，将自动覆盖。</li></ul></div></div></details>
+<details><summary>交易决策</summary><div class="body"><div class="md"><p>Buy</p><p>ARM ARM 当前使用红黑榜缓存结果生成兜底交易卡。多头 90 / 空头 25，分差 65。当前尚未取得完整 TradingAgent 长文决策，但榜单分数、财务快照和大师观点已经足够生成基础交易建议。</p></div></div></details>
+</div>
+<div class="panel"><h2>多空逻辑</h2><div class="pts"><div class="h bull">看多逻辑</div><div class="md"><p>价格表现强劲，涨幅5.18%</p><p>芯片架构龙头地位稳固</p><p>AI发展带动长期需求</p></div></div><div class="pts"><div class="h bear">看空逻辑</div><div class="md"><p>估值偏高风险</p><p>市场波动性影响</p><p>短期涨幅过大可能回调</p></div></div></div>
+<div class="panel"><h2>伯克希尔研究</h2><p><strong>ARM是一家具有强大护城河和长期增长潜力的半导体知识产权公司，但需警惕行业竞争和地缘政治风险。</strong></p><p>伯克希尔综合评分：<strong>4.0</strong></p><div class="md"><p>{&quot;verdict&quot;: &quot;买入&quot;, &quot;conservative_tip&quot;: &quot;建议在PE TTM低于40倍时买入。&quot;, &quot;moderate_tip&quot;: &quot;建议在PE TTM低于45倍时买入。&quot;, &quot;aggressive_tip&quot;: &quot;建议在PE TTM低于50倍时买入。&quot;, &quot;catalysts_plus&quot;: [&quot;全球半导体市场持续增长。&quot;, &quot;人工智能和自动驾驶等新兴领域需求增加。&quot;, &quot;与主要客户的合作深化。&quot;], &quot;catalysts_minus&quot;: [&quot;地缘政治风险加剧。&quot;, &quot;竞争格局恶化。&quot;, &quot;监管政策变化导致业务受阻。&quot;]}</p></div></div>
+<div class="panel news"><h2>最新资讯</h2><div class="md"><p>共12条新闻，其中利多3条，利空1条，中性8条，情绪整体偏中性。</p></div><div class="nitem"><div class="t">Science teacher charged with dragging seventh-grader 20 feet by the arm out of classroom</div><div class="s">New York Post · 中性</div></div><div class="nitem"><div class="t">A 72-foot robotic arm began squeezing into a wrecked reactor in Japan through a 22-inch opening on Friday, with months of cutting steel out of its path by water jet ahead of it, and the two grabs befo</div><div class="s">Autonocion.com · 中性</div></div><div class="nitem"><div class="t">China is giving its economy a big shot in the arm</div><div class="s">The Economist · 利好</div></div><div class="nitem"><div class="t">Country star says he accidentally broke a fan’s arm: ‘I felt horrible’</div><div class="s">Syracuse.com · 中性</div></div><div class="nitem"><div class="t">Christa Pike Spoke During Her Failed Execution, Says Witness: ‘My Arm Is Going to Burst’</div><div class="s">People.com · 中性</div></div><div class="nitem"><div class="t">Arm Working On &quot;TLBID&quot; For Linux To Increase Performance On High Core Count CPUs</div><div class="s">Phoronix · 利好</div></div><div class="nitem"><div class="t">Mortgage Rates Keep Climbing, Leading Some Buyers to Riskier Loans</div><div class="s">The New York Times · 中性</div></div><div class="nitem"><div class="t">Arm and hand exercises may ease tremor, improve grip in Parkinson’s</div><div class="s">Parkinson&#x27;s News Today · 中性</div></div></div>
+<footer>稳健理财Agent · 红黑榜每日归档 · 红榜 #9 · 仅供研究，不构成投资建议</footer>
+</div></body>
+</html>
