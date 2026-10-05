@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MOMENTA-W(06880) 黑榜 2026-10-06</title>
+<style>
+:root{--red:#d8342c;--redbg:#fdecea;--green:#1a9e54;--ink:#1c2230;--muted:#6b7385;
+--line:#e7e9ef;--card:#fff;--bg:#f4f6fa;--chip:#eef1f6;--dark:#23262d;--darkbg:#ececef}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",
+"Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);
+line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 16px 64px}
+header.top{background:linear-gradient(135deg,#1c2230,#2c3550);color:#fff;border-radius:14px;
+padding:22px 24px;margin-bottom:20px;box-shadow:0 6px 24px rgba(20,26,46,.12)}
+header.top h1{margin:0 0 6px;font-size:24px;letter-spacing:.5px}
+header.top .sub{opacity:.85;font-size:13px}
+header.top .sub b{color:#ffd166;font-weight:600}
+nav.mkt{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;
+background:rgba(244,246,250,.92);backdrop-filter:blur(6px);padding:10px 0;margin-bottom:14px}
+nav.mkt a{text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);
+padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600}
+nav.mkt a:hover{border-color:var(--red);color:var(--red)}
+.summary{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.summary .chip{background:var(--card);border:1px solid var(--line);border-radius:10px;
+padding:8px 12px;font-size:12px;color:var(--muted)}
+.summary .chip b{color:var(--ink);font-size:14px;margin-left:4px}
+section.board{margin:26px 0}
+.board-title{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:19px}
+.board-title .dot{width:10px;height:10px;border-radius:50%}
+.board-title.red .dot{background:var(--red)}
+.board-title.black .dot{background:var(--dark)}
+.board-title small{color:var(--muted);font-weight:400;font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+position:relative;transition:box-shadow .15s}
+.card:hover{box-shadow:0 4px 18px rgba(20,26,46,.08)}
+.card.red{border-top:3px solid var(--red)}
+.card.black{border-top:3px solid var(--dark)}
+.rank{position:absolute;top:10px;right:12px;font-size:26px;font-weight:800;color:#eceff5}
+.card.red .rank{color:#fbdcD9}
+.nm{font-size:16px;font-weight:700}
+.nm .tk{color:var(--muted);font-weight:500;font-size:12px;margin-left:6px}
+.tag{display:inline-block;background:var(--chip);color:var(--muted);border-radius:6px;
+padding:1px 7px;font-size:11px;margin:6px 6px 0 0}
+.price-row{display:flex;align-items:baseline;gap:10px;margin:10px 0 4px}
+.price{font-size:24px;font-weight:800}
+.pct{font-size:14px;font-weight:700;padding:2px 8px;border-radius:8px}
+.up{color:var(--red)}.down{color:var(--green)}.flat{color:var(--muted)}
+.pct.up{background:var(--redbg)}.pct.down{background:#e2f4e9}.pct.flat{background:var(--chip)}
+.psrc{font-size:11px;color:var(--muted);margin-left:auto}
+.scores{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.scores span{background:var(--chip);border-radius:6px;padding:2px 8px;font-size:11px;color:var(--muted)}
+.scores span b{color:var(--ink)}
+.pts{font-size:12.5px;margin:8px 0 0}
+.pts .h{font-weight:700;font-size:12px;margin:6px 0 2px}
+.pts .h.bull{color:var(--red)}.pts .h.bear{color:var(--green)}
+.pts ul{margin:2px 0 4px;padding-left:18px;color:#3a4152}
+.pts li{margin:1px 0}
+.masters{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:11px;color:var(--muted)}
+.masters b{color:var(--ink)}
+.summ{font-size:12.5px;color:#3a4152;background:#fafbfd;border:1px solid var(--line);
+border-radius:8px;padding:8px 10px;margin-top:8px}
+.empty{color:var(--muted);background:var(--card);border:1px dashed var(--line);
+border-radius:10px;padding:18px;text-align:center}
+footer{margin-top:34px;color:var(--muted);font-size:12px;text-align:center;line-height:1.8}
+a.lnk{color:var(--red);text-decoration:none}
+/* ── detail page ── */
+.backbar{margin-bottom:14px;font-size:13px}
+.backbar a{color:var(--muted);text-decoration:none;margin-right:14px}
+.backbar a:hover{color:var(--red)}
+.badge{display:inline-block;border-radius:6px;padding:2px 10px;font-size:12px;font-weight:700;margin-right:8px}
+.badge.red{background:var(--red);color:#fff}.badge.black{background:var(--dark);color:#fff}
+.trade{display:flex;flex-wrap:wrap;gap:10px;background:linear-gradient(135deg,#2c3550,#1c2230);
+color:#fff;border-radius:12px;padding:16px 18px;margin:16px 0}
+.trade .cell{min-width:120px}
+.trade .k{font-size:11px;opacity:.75}
+.trade .v{font-size:18px;font-weight:800;margin-top:2px}
+.trade .v.buy{color:#7ee2a8}.trade .v.sell{color:#ff9d97}.trade .v.hold{color:#ffd166}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0}
+.mgrid .m{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.mgrid .m .k{font-size:11px;color:var(--muted)}
+.mgrid .m .v{font-size:16px;font-weight:700;margin-top:2px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.panel>h2{margin:0 0 12px;font-size:17px}
+.panel>h2 .sub{font-size:12px;color:var(--muted);font-weight:400;margin-left:8px}
+.mreply{border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;
+padding:12px 14px;margin:10px 0;background:#fff}
+.mreply .mh{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.mreply .mh .who{font-weight:700;font-size:14px}
+.mreply .mh .mscore{margin-left:auto;background:var(--chip);border-radius:6px;padding:1px 8px;font-size:12px;font-weight:700}
+.md h2,.md h3,.md h4,.md h5{margin:12px 0 6px;font-size:15px}
+.md p{margin:6px 0;font-size:13.5px;color:#2c3345}
+.md ul{margin:6px 0;padding-left:20px;font-size:13.5px;color:#2c3345}
+.md li{margin:3px 0}
+.md strong{color:var(--ink)}
+details{border:1px solid var(--line);border-radius:10px;background:#fff;margin:10px 0;padding:0}
+details>summary{cursor:pointer;padding:12px 16px;font-weight:700;font-size:14px;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary:before{content:"▸ ";color:var(--red)}
+details[open]>summary:before{content:"▾ "}
+details>.body{padding:0 16px 14px;border-top:1px dashed var(--line)}
+.ychip{display:inline-block;background:var(--chip);border-radius:8px;padding:4px 10px;font-size:12px;margin:3px 6px 3px 0}
+.ychip b{font-size:13px}
+.news .nitem{border-top:1px dashed var(--line);padding:8px 0;font-size:13px}
+.news .nitem .t{font-weight:600}
+.news .nitem .s{color:var(--muted);font-size:12px}
+/* ── root landing page ── */
+.hero{padding:30px 26px}
+.hero-kicker{color:#ffd166;font-size:12px;font-weight:700;letter-spacing:2px;
+text-transform:uppercase;margin-bottom:8px}
+.hero h1{font-size:30px;margin:0 0 10px}
+.day-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.day-card{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);
+border-radius:12px;padding:14px 16px;transition:all .15s}
+.day-card:hover{border-color:var(--red);box-shadow:0 4px 16px rgba(216,52,44,.12);transform:translateY(-2px)}
+.day-card .d{font-weight:800;font-size:15px;color:var(--ink);display:flex;align-items:center;gap:8px}
+.day-card .m{margin-top:8px;display:flex;gap:6px}
+.day-card .m span{background:var(--chip);color:var(--muted);border-radius:6px;
+padding:2px 8px;font-size:11px}
+.latest-badge{background:var(--red);color:#fff;border-radius:6px;padding:1px 7px;
+font-size:10px;font-weight:700}
+</style>
+</head>
+<body><div class="wrap">
+<div class="backbar"><a href="../index.html">← 总览</a><a href="../hk.html">← 港股榜单</a></div>
+<header class="top">
+  <h1><span class="badge black">黑榜 #4</span>MOMENTA-W<span class="tk" style="opacity:.7;font-size:15px;font-weight:400;margin-left:8px">06880</span></h1>
+  <div class="sub">港股 ·  · 榜单日期 <b>2026-10-06</b> · 盘价采集 <b>2026-10-06 05:00:36</b></div>
+  <div class="price-row" style="margin-top:12px">
+    <span class="price" style="color:#fff">HK$156.50</span>
+    <span class="pct down">-2.07%</span>
+    <span class="psrc" style="color:rgba(255,255,255,.6)">实时</span>
+  </div>
+  <div class="scores" style="margin-top:10px">
+    <span>综合 <b>34.0</b></span>
+    <span>多头 <b>48</b></span>
+    <span>空头 <b>80</b></span>
+    <span>大师均值 <b>41.8</b></span>
+    <span>信号 <b>negative</b></span>
+  </div>
+</header>
+<div class="trade"><div class="cell"><div class="k">交易评级</div><span class="v hold">Reduce</span></div><div class="cell"><div class="k">加仓区间</div><span class="v">140.85 ~ 147.11</span></div><div class="cell"><div class="k">伯克希尔</div><span class="v">观望</span></div><div class="cell"><div class="k">伯克希尔分</div><span class="v">3.00</span></div></div>
+<div class="panel"><h2>财务指标</h2><div class="mgrid"><div class="m"><div class="k">ROE</div><div class="v">64.3%</div></div><div class="m"><div class="k">总市值</div><div class="v">369</div></div><div class="m"><div class="k">营收同比</div><div class="v">28.7%</div></div><div class="m"><div class="k">净利同比</div><div class="v">-429.0%</div></div></div></div>
+<div class="panel"><h2>历史收益</h2><span class="ychip">近1月 <b class="down">-20.36%</b></span><span class="ychip">近6月 <b class="down">-47.06%</b></span><span class="ychip">近1年 <b class="down">-47.06%</b></span></div>
+<div class="panel"><h2>大师圆桌<span class="sub">5 位</span></h2><div class="mreply"><div class="mh"><span class="who">段永平</span><span class="mscore">34</span></div><div class="md"><p>各位好，关于 06880 MOMENTA-W 这家公司，我的看法是这样的：</p><p>首先，这是一家处于自动驾驶赛道的企业。从行业前景来看，自动驾驶确实有很大的发展空间，市场对智能驾驶的需求也在不断增长，这构成了它的基本面优势。从技术层面看，MOMENTA-W 的研发实力在业内也属于比较强的水平。</p><p>然而，从投资的角度来看，我有几个担忧：</p><ul><li>公司的盈利能力目前看起来并不理想。净利润同比大幅下降，净利率为负，这表明公司的商业模式还没有完全跑通，商业化进程存在较大的不确定性。</li></ul><ul><li>行业竞争格局非常激烈。虽然自动驾驶赛道前景广阔，但参与竞争的企业众多，技术路线也各不相同，这给公司的长期发展带来了很大的挑战。</li></ul><ul><li>更重要的是，这家公司目前并不符合我投资的第一原则——&quot;只投看得懂的好生意&quot;。虽然行业前景和技术实力看起来都不错，但我对公司的商业模式和盈利能力还没有足够的信心。</li></ul><p>基于以上分析，我的建议是：</p><p>如果你是一个追求长期价值回报的投资者，可能需要再观察一段时间，等待公司商业模式更加清晰、盈利能力得到验证后再做决定。</p><p>在这里，我想特别提醒大家一点：投资中最重要的不是追逐热门赛道，而是找到那些你真正看得懂、能够理解其长期价值的好公司。自动驾驶虽然是一个很有吸引力的方向，但并不意味着所有参与者都能最终胜出。</p><p>最后，我想用一句话来概括我的观点：不要因为一个行业看起来很美，就忽略了公司的本质。做对的事，永远比做看起来很美的事更重要。</p></div></div><div class="mreply"><div class="mh"><span class="who">巴菲特</span><span class="mscore">60</span></div><div class="md"><p>各位朋友，关于MOMENTA-W这家公司，我有几个看法。</p><p>首先，我得说，自动驾驶这个赛道确实很有前景。我能想象未来十年，这个行业会继续增长，市场对智能驾驶的需求也会不断增加。从这个角度来看，这家公司似乎站在了一个不错的赛道上。</p><p>然而，我更关心的是，这家公司是否有足够深的护城河来保护它的生意。从目前的信息来看，虽然它的技术研发实力较强，但行业竞争格局非常激烈。而且，技术商业化的进程存在很大的不确定性。这让我有些担忧，因为如果没有强大的护城河，竞争对手很容易就会抢走市场份额。</p><p>再看看估值方面，目前这家公司的市销率（PS）达到了10.48倍，而它的净利润率竟然是负的1032%。这意味着公司在短期内并没有创造正的自由现金流。对于我来说，这不是一个好兆头。投资一家公司，我更希望看到的是它能够持续产生自由现金流，而不是依赖外部融资来维持运营。</p><p>风险方面，股价的持续下跌是一个警示信号。虽然市场情绪可能会波动，但持续的下跌往往反映了市场对公司基本面的担忧。此外，行业竞争激烈和技术商业化进程的不确定性也增加了投资的风险。</p><p>基于以上分析，我的建议是保持谨慎。如果你对自动驾驶行业有深入的了解，并且确信这家公司能够在激烈的竞争中脱颖而出，那么你可以考虑在价格更低的时候买入。但如果你像我一样，对这个行业不是那么熟悉，那么最好还是再观察一段时间，看看公司的基本面是否会有所改善。</p><p>最后，我想说的是，投资就像打棒球，你不需要每次都挥棒。耐心等待那个最有把握的机会，可能会带来更好的回报。</p></div></div><div class="mreply"><div class="mh"><span class="who">达利欧</span><span class="mscore">33</span></div><div class="md"><p>各位同仁，今天我们来讨论一下 MOMENTA-W（06880）这家公司。首先，我必须明确我的立场：在当前情况下，我对 MOMENTA-W 持谨慎态度。</p><h4>结论</h4><p>尽管自动驾驶赛道前景广阔，且 MOMENTA-W 在技术研发方面具备一定实力，但目前来看，公司的风险因素更为显著。我的判断是，这家公司的投资价值与风险之间的匹配度较低。</p><h4>理由</h4><ul><li><strong>行业前景与公司潜力</strong>：</li><li>自动驾驶和智能驾驶无疑是未来交通发展的重要方向，市场需求增长的趋势是明确的。MOMENTA-W 在这方面有一定的技术积累，这为其提供了长期发展的可能性。</li><li>然而，技术的商业化进程存在不确定性。尽管公司技术研发实力较强，但能否将这些技术有效转化为市场份额和盈利能力，仍需观察。</li></ul><ul><li><strong>财务表现与市场反应</strong>：</li><li>公司的净利润同比大幅下降，净利率为负，表明其盈利能力面临严峻挑战。</li><li>股价近期持续下跌，市场对其未来表现持怀疑态度。尽管市销率（PS）为 10.48，显示出市场对其未来增长有一定预期，但这种预期能否实现存在疑问。</li></ul><ul><li><strong>竞争格局</strong>：</li><li>自动驾驶领域的竞争非常激烈，不仅有传统汽车制造商，还有科技巨头和新兴创业公司参与其中。MOMENTA-W 在这样的环境中能否脱颖而出，需要打一个问号。</li></ul><h4>风险/行动建议</h4><ul><li><strong>风险</strong>：</li><li><strong>市场竞争风险</strong>：行业竞争加剧可能导致市场份额和利润率下降。</li><li><strong>技术商业化风险</strong>：技术研发成果能否顺利转化为商业成功存在不确定性。</li><li><strong>财务风险</strong>：持续的亏损可能影响公司的现金流和长期发展能力。</li></ul><ul><li><strong>行动建议</strong>：</li><li><strong>观望为主</strong>：对于 MOMENTA-W，我建议采取观望态度，等待更多明确信号，例如技术商业化的进展或财务状况的改善。</li><li><strong>关注行业动态</strong>：密切关注自动驾驶行业的整体发展动态，以及公司在其中的竞争地位变化。</li><li><strong>原则化决策</strong>：记录下当前的判断和理由，定期复盘。如果情况发生变化，例如公司盈利能力改善或技术商业化取得突破，再重新评估投资价值。</li></ul><h4>总结</h4><p>在当前阶段，MOMENTA-W 的投资价值与风险之间的平衡并不理想。对于追求稳健回报的投资者来说，这不是一个理想的选择。我们需要保持耐心，等待更清晰的信号出现。</p><p>谢谢大家。</p></div></div><div class="mreply"><div class="mh"><span class="who">彼得·林奇</span><span class="mscore">30</span></div><div class="md"><h4>彼得·林奇的圆桌发言</h4><p>各位朋友，今天我们来聊聊这家公司，MOMENTA-W（06880）。首先，我得说，我的总体看法是偏谨慎的。这家公司身处自动驾驶这个充满前景的行业，但目前的情况让我有些担忧。</p><h5>结论</h5><p>我不建议现在买入MOMENTA-W。尽管自动驾驶行业前景广阔，但这家公司的股价近期持续下跌，市场竞争激烈，而且技术商业化的进程存在较大的不确定性。</p><h5>理由</h5><ul><li><strong>行业前景与公司现状的脱节</strong>：自动驾驶赛道确实是一个充满潜力的领域，市场对智能驾驶的需求也在不断增长。然而，这并不意味着每一家公司都能从中受益。MOMENTA-W的技术研发实力虽然较强，但目前的市场竞争格局非常激烈，公司需要面对来自国内外众多强劲对手的挑战。</li></ul><ul><li><strong>财务表现不佳</strong>：公司的净利润同比大幅下降，净利率更是跌至负值。这种财务状况让我对公司的盈利能力产生了疑问。在竞争激烈的市场中，盈利能力是衡量公司能否持续发展的关键指标。</li></ul><ul><li><strong>股价表现</strong>：股价的持续下跌是一个明显的警示信号。虽然股价下跌可能是因为市场情绪或短期波动，但结合公司的财务表现和行业竞争格局，这更可能反映了市场对公司未来发展的担忧。</li></ul><h5>风险/行动建议</h5><ul><li><strong>竞争风险</strong>：自动驾驶行业的竞争非常激烈，公司需要不断投入研发以保持技术优势，同时还要面对来自其他科技巨头和新兴企业的挑战。如果公司不能在竞争中脱颖而出，可能会面临市场份额下降的风险。</li></ul><ul><li><strong>技术商业化风险</strong>：自动驾驶技术的商业化进程存在不确定性。即使公司拥有先进的技术，如何将其转化为实际产品和收入也是一个巨大的挑战。如果技术无法顺利商业化，公司的财务状况可能会进一步恶化。</li></ul><ul><li><strong>行动建议</strong>：对于投资者来说，现在最重要的是保持耐心。我建议密切关注公司的技术进展、市场份额变化以及财务状况。如果公司能够在未来几个季度内改善其财务表现，并展现出技术商业化的明确路径，那时再考虑入场也不迟。</li></ul><p>总之，MOMENTA-W目前的情况让我觉得风险大于机会。在投资决策中，我们不仅要看到行业的潜力，更要仔细评估公司的具体表现和风险。希望大家在投资时都能做出明智的选择。</p></div></div><div class="mreply"><div class="mh"><span class="who">芒格</span><span class="mscore">52</span></div><div class="md"><p>各位，这家公司的股票代码是 06880，名字是 MOMENTA-W。从投资的角度来看，我的初步判断是保持谨慎。</p><p>首先，我们来考虑失败的可能性：</p><ul><li>股价持续下跌的趋势可能反映市场对公司未来盈利能力的担忧。</li><li>自动驾驶行业竞争激烈，公司能否在技术商业化上取得突破存在不确定性。</li><li>公司的净利润率大幅下降，表明其盈利能力可能面临严重挑战。</li></ul><p>接下来，分析激励机制：</p><p>目前来看，公司的主要激励似乎集中在技术研发和市场拓展上。然而，如果管理层过于追求技术领先而忽视了商业化进程，可能会导致资金链紧张和股东价值受损。</p><p>再来看优势：</p><ul><li>自动驾驶赛道确实前景广阔，市场对智能驾驶的需求也在增长。</li><li>公司在技术研发方面有一定实力，这为其长期发展提供了基础。</li></ul><p>然而，我们必须严格审视风险：</p><ul><li>公司的净亏损大幅增加，净利润率降至 -1032%，这表明其盈利能力严重不足。</li><li>股价的持续下跌可能预示着市场对公司未来前景的悲观预期。</li><li>自动驾驶行业的竞争格局日益激烈，公司能否在众多竞争对手中脱颖而出仍需观察。</li></ul><p>从概率与赔率的角度来看，目前的胜率似乎不足以支撑大规模投资。虽然行业前景看好，但公司自身的财务状况和市场竞争格局都存在较大不确定性。</p><p>最后，我要提醒大家注意几个常见的心理学陷阱：</p><ul><li>不要因为对自动驾驶行业的乐观预期而忽视了公司自身的风险。</li><li>避免陷入&quot;这次不同&quot;的思维陷阱，认为公司能够克服所有挑战。</li><li>不要因为股价下跌而急于抄底，要耐心等待更明确的信号。</li></ul><p>综上所述，我的建议是：保持观望，除非公司能够证明其盈利能力有所改善，并且市场竞争格局对其有利。在做出任何投资决策之前，务必仔细评估风险，并确保自己能够承受可能的损失。</p><p>我能错在哪？也许我对公司技术实力的评估过于保守，或者低估了行业整体增长带来的机会。但无论如何，在当前情况下，谨慎行事似乎是更为明智的选择。</p></div></div></div>
+<div class="panel"><h2>分析师报告<span class="sub">2 篇</span></h2><details open><summary>市场面分析</summary><div class="body"><div class="md"><h4>06880 MOMENTA-W 市场面分析</h4><ul><li>红黑榜多空分数：多头 48 / 空头 80，分差 -32。</li><li>当前价格：156.50。</li><li>当前交易评级：Reduce。</li><li>值得加仓区间：140.85 - 147.11。</li><li>风险控制位：137.72。</li><li>市场愿意给溢价的原因：自动驾驶赛道前景广阔；技术研发实力较强；市场对智能驾驶需求增长。</li><li>当前主要压制因素：股价近期持续下跌；行业竞争格局激烈；技术商业化进程存在不确定性。</li></ul></div></div></details><details open><summary>基本面分析</summary><div class="body"><div class="md"><h4>06880 MOMENTA-W 基本面分析</h4><ul><li>报告期：暂无。</li><li>PS(TTM)：10.48。</li><li>ROE：64.27%。</li><li>营收同比：28.66%。</li><li>归母净利润同比：-429.02%。</li><li>核心判断：盈利能力处于可接受区间；收入仍在增长。</li></ul></div></div></details></div>
+<div class="panel"><h2>研究与计划</h2>
+<details><summary>基本面摘要</summary><div class="body"><div class="md"><h3>核心财务快照</h3><ul><li>报告期: 数据缺失</li><li>当前股价: 156.50 元</li><li>总市值: 368.62 亿元</li><li>PE (TTM): 数据缺失</li><li>PB: 数据缺失</li><li>PS (TTM): 10.48</li><li>营业总收入(报告期): 数据缺失 亿元</li><li>营收同比增长率: 28.66%</li><li>归母净利润(报告期): 数据缺失 亿元</li><li>归母净利润同比增长率: -429.02%</li><li>ROE (TTM/估算): 64.27%</li><li>资产负债率: 数据缺失</li><li>经营性现金流 / 归母净利润: 数据缺失</li></ul><h4>缺失字段</h4><ul><li>PE(TTM), PB, 营业总收入, 归母净利润, 资产负债率, 经营性现金流与归母净利润比值</li></ul></div></div></details>
+<details><summary>研究计划</summary><div class="body"><div class="md"><h4>06880 MOMENTA-W 研究摘要</h4><ul><li>红黑榜结论: Reduce</li><li>多头/空头: 48/80</li><li>正向信号: ROE 64.27%；营收同比 28.66%</li><li>风险信号: 归母净利润同比 -429.02%</li><li>榜单看多理由: 自动驾驶赛道前景广阔；技术研发实力较强；市场对智能驾驶需求增长</li><li>榜单风险提示: 股价近期持续下跌；行业竞争格局激烈；技术商业化进程存在不确定性</li></ul></div></div></details>
+<details><summary>交易计划</summary><div class="body"><div class="md"><h4>06880 MOMENTA-W 交易计划</h4><ul><li>评级: Reduce</li><li>当前价格: 156.50</li><li>值得加仓区间: 140.85 - 147.11</li><li>目标价格: 148.67</li><li>止损位: 137.72</li><li>备注: 当前为缓存降级交易卡，后续若完整 TradingAgent 结果生成，将自动覆盖。</li></ul></div></div></details>
+<details><summary>交易决策</summary><div class="body"><div class="md"><p>Reduce</p><p>06880 MOMENTA-W 当前使用红黑榜缓存结果生成兜底交易卡。多头 48 / 空头 80，分差 -32。当前尚未取得完整 TradingAgent 长文决策，但榜单分数、财务快照和大师观点已经足够生成基础交易建议。</p></div></div></details>
+</div>
+<div class="panel"><h2>多空逻辑</h2><div class="pts"><div class="h bull">看多逻辑</div><div class="md"><p>自动驾驶赛道前景广阔</p><p>技术研发实力较强</p><p>市场对智能驾驶需求增长</p></div></div><div class="pts"><div class="h bear">看空逻辑</div><div class="md"><p>股价近期持续下跌</p><p>行业竞争格局激烈</p><p>技术商业化进程存在不确定性</p></div></div></div>
+<div class="panel"><h2>伯克希尔研究</h2><p><strong>Momenta是一家在自动驾驶领域具有技术优势的企业，但面临行业竞争激烈和盈利模式不清晰的风险，当前估值偏高，需谨慎观察。</strong></p><p>伯克希尔综合评分：<strong>3.0</strong></p><div class="md"><p>{&quot;verdict&quot;: &quot;观望&quot;, &quot;conservative_tip&quot;: &quot;建议在PE TTM降至50倍以下时考虑买入&quot;, &quot;moderate_tip&quot;: &quot;建议在PE TTM降至100倍以下时小规模建仓&quot;, &quot;aggressive_tip&quot;: &quot;当前估值过高，不建议激进买入&quot;, &quot;catalysts_plus&quot;: [&quot;自动驾驶技术取得重大突破&quot;, &quot;公司获得大额订单或战略合作&quot;, &quot;盈利能力显著改善，净利润转正&quot;], &quot;catalysts_minus&quot;: [&quot;竞争加剧，市场份额下降&quot;, &quot;技术被颠覆或出现重大安全事故&quot;, &quot;监管政策收紧，对自动驾驶技术不利&quot;]}</p></div></div>
+<div class="panel news"><h2>最新资讯</h2><div class="md"><p>整体情绪偏利好，共2条利多，1条利空，3条中性。</p></div><div class="nitem"><div class="t">Price Performance</div><div class="s">Yahoo! Finance Canada · 中性</div></div><div class="nitem"><div class="t">MG 07 Goes on Pre-sales With Momenta Driver-assist, 845 Km Range</div><div class="s">Moomoo · 利好</div></div><div class="nitem"><div class="t">Summary of HK Stock Ratings: CMBI Maintains Buy Rating on China Pacific Insurance</div><div class="s">Moomoo · 中性</div></div><div class="nitem"><div class="t">Hong Kong&#x27;s Hang Seng Index Reclaims 24,000; Alibaba Surges Over 8% to Lead Tech Rally; IPO Debuts Diverge Sharply</div><div class="s">finance.biggo.com · 中性</div></div><div class="nitem"><div class="t">New FAW-Toyota bZ3 all-electric sedan with lidar, Momenta 5.0 ADAS, BYD Blade battery launched in China, starts at 15,700 USD</div><div class="s">CarNewsChina.com · 利好</div></div><div class="nitem"><div class="t">What’s up with the W boson mass?</div><div class="s">Symmetry Magazine · 利空</div></div></div>
+<footer>稳健理财Agent · 红黑榜每日归档 · 黑榜 #4 · 仅供研究，不构成投资建议</footer>
+</div></body>
+</html>

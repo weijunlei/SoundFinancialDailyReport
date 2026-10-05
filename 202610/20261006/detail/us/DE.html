@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DE(DE) 红榜 2026-10-06</title>
+<style>
+:root{--red:#d8342c;--redbg:#fdecea;--green:#1a9e54;--ink:#1c2230;--muted:#6b7385;
+--line:#e7e9ef;--card:#fff;--bg:#f4f6fa;--chip:#eef1f6;--dark:#23262d;--darkbg:#ececef}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",
+"Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);
+line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 16px 64px}
+header.top{background:linear-gradient(135deg,#1c2230,#2c3550);color:#fff;border-radius:14px;
+padding:22px 24px;margin-bottom:20px;box-shadow:0 6px 24px rgba(20,26,46,.12)}
+header.top h1{margin:0 0 6px;font-size:24px;letter-spacing:.5px}
+header.top .sub{opacity:.85;font-size:13px}
+header.top .sub b{color:#ffd166;font-weight:600}
+nav.mkt{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;
+background:rgba(244,246,250,.92);backdrop-filter:blur(6px);padding:10px 0;margin-bottom:14px}
+nav.mkt a{text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);
+padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600}
+nav.mkt a:hover{border-color:var(--red);color:var(--red)}
+.summary{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.summary .chip{background:var(--card);border:1px solid var(--line);border-radius:10px;
+padding:8px 12px;font-size:12px;color:var(--muted)}
+.summary .chip b{color:var(--ink);font-size:14px;margin-left:4px}
+section.board{margin:26px 0}
+.board-title{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:19px}
+.board-title .dot{width:10px;height:10px;border-radius:50%}
+.board-title.red .dot{background:var(--red)}
+.board-title.black .dot{background:var(--dark)}
+.board-title small{color:var(--muted);font-weight:400;font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+position:relative;transition:box-shadow .15s}
+.card:hover{box-shadow:0 4px 18px rgba(20,26,46,.08)}
+.card.red{border-top:3px solid var(--red)}
+.card.black{border-top:3px solid var(--dark)}
+.rank{position:absolute;top:10px;right:12px;font-size:26px;font-weight:800;color:#eceff5}
+.card.red .rank{color:#fbdcD9}
+.nm{font-size:16px;font-weight:700}
+.nm .tk{color:var(--muted);font-weight:500;font-size:12px;margin-left:6px}
+.tag{display:inline-block;background:var(--chip);color:var(--muted);border-radius:6px;
+padding:1px 7px;font-size:11px;margin:6px 6px 0 0}
+.price-row{display:flex;align-items:baseline;gap:10px;margin:10px 0 4px}
+.price{font-size:24px;font-weight:800}
+.pct{font-size:14px;font-weight:700;padding:2px 8px;border-radius:8px}
+.up{color:var(--red)}.down{color:var(--green)}.flat{color:var(--muted)}
+.pct.up{background:var(--redbg)}.pct.down{background:#e2f4e9}.pct.flat{background:var(--chip)}
+.psrc{font-size:11px;color:var(--muted);margin-left:auto}
+.scores{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.scores span{background:var(--chip);border-radius:6px;padding:2px 8px;font-size:11px;color:var(--muted)}
+.scores span b{color:var(--ink)}
+.pts{font-size:12.5px;margin:8px 0 0}
+.pts .h{font-weight:700;font-size:12px;margin:6px 0 2px}
+.pts .h.bull{color:var(--red)}.pts .h.bear{color:var(--green)}
+.pts ul{margin:2px 0 4px;padding-left:18px;color:#3a4152}
+.pts li{margin:1px 0}
+.masters{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:11px;color:var(--muted)}
+.masters b{color:var(--ink)}
+.summ{font-size:12.5px;color:#3a4152;background:#fafbfd;border:1px solid var(--line);
+border-radius:8px;padding:8px 10px;margin-top:8px}
+.empty{color:var(--muted);background:var(--card);border:1px dashed var(--line);
+border-radius:10px;padding:18px;text-align:center}
+footer{margin-top:34px;color:var(--muted);font-size:12px;text-align:center;line-height:1.8}
+a.lnk{color:var(--red);text-decoration:none}
+/* ── detail page ── */
+.backbar{margin-bottom:14px;font-size:13px}
+.backbar a{color:var(--muted);text-decoration:none;margin-right:14px}
+.backbar a:hover{color:var(--red)}
+.badge{display:inline-block;border-radius:6px;padding:2px 10px;font-size:12px;font-weight:700;margin-right:8px}
+.badge.red{background:var(--red);color:#fff}.badge.black{background:var(--dark);color:#fff}
+.trade{display:flex;flex-wrap:wrap;gap:10px;background:linear-gradient(135deg,#2c3550,#1c2230);
+color:#fff;border-radius:12px;padding:16px 18px;margin:16px 0}
+.trade .cell{min-width:120px}
+.trade .k{font-size:11px;opacity:.75}
+.trade .v{font-size:18px;font-weight:800;margin-top:2px}
+.trade .v.buy{color:#7ee2a8}.trade .v.sell{color:#ff9d97}.trade .v.hold{color:#ffd166}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0}
+.mgrid .m{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.mgrid .m .k{font-size:11px;color:var(--muted)}
+.mgrid .m .v{font-size:16px;font-weight:700;margin-top:2px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.panel>h2{margin:0 0 12px;font-size:17px}
+.panel>h2 .sub{font-size:12px;color:var(--muted);font-weight:400;margin-left:8px}
+.mreply{border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;
+padding:12px 14px;margin:10px 0;background:#fff}
+.mreply .mh{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.mreply .mh .who{font-weight:700;font-size:14px}
+.mreply .mh .mscore{margin-left:auto;background:var(--chip);border-radius:6px;padding:1px 8px;font-size:12px;font-weight:700}
+.md h2,.md h3,.md h4,.md h5{margin:12px 0 6px;font-size:15px}
+.md p{margin:6px 0;font-size:13.5px;color:#2c3345}
+.md ul{margin:6px 0;padding-left:20px;font-size:13.5px;color:#2c3345}
+.md li{margin:3px 0}
+.md strong{color:var(--ink)}
+details{border:1px solid var(--line);border-radius:10px;background:#fff;margin:10px 0;padding:0}
+details>summary{cursor:pointer;padding:12px 16px;font-weight:700;font-size:14px;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary:before{content:"▸ ";color:var(--red)}
+details[open]>summary:before{content:"▾ "}
+details>.body{padding:0 16px 14px;border-top:1px dashed var(--line)}
+.ychip{display:inline-block;background:var(--chip);border-radius:8px;padding:4px 10px;font-size:12px;margin:3px 6px 3px 0}
+.ychip b{font-size:13px}
+.news .nitem{border-top:1px dashed var(--line);padding:8px 0;font-size:13px}
+.news .nitem .t{font-weight:600}
+.news .nitem .s{color:var(--muted);font-size:12px}
+/* ── root landing page ── */
+.hero{padding:30px 26px}
+.hero-kicker{color:#ffd166;font-size:12px;font-weight:700;letter-spacing:2px;
+text-transform:uppercase;margin-bottom:8px}
+.hero h1{font-size:30px;margin:0 0 10px}
+.day-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.day-card{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);
+border-radius:12px;padding:14px 16px;transition:all .15s}
+.day-card:hover{border-color:var(--red);box-shadow:0 4px 16px rgba(216,52,44,.12);transform:translateY(-2px)}
+.day-card .d{font-weight:800;font-size:15px;color:var(--ink);display:flex;align-items:center;gap:8px}
+.day-card .m{margin-top:8px;display:flex;gap:6px}
+.day-card .m span{background:var(--chip);color:var(--muted);border-radius:6px;
+padding:2px 8px;font-size:11px}
+.latest-badge{background:var(--red);color:#fff;border-radius:6px;padding:1px 7px;
+font-size:10px;font-weight:700}
+</style>
+</head>
+<body><div class="wrap">
+<div class="backbar"><a href="../index.html">← 总览</a><a href="../us.html">← 美股榜单</a></div>
+<header class="top">
+  <h1><span class="badge red">红榜 #6</span>DE<span class="tk" style="opacity:.7;font-size:15px;font-weight:400;margin-left:8px">DE</span></h1>
+  <div class="sub">美股 ·  · 榜单日期 <b>2026-10-06</b> · 盘价采集 <b>2026-10-06 05:00:36</b></div>
+  <div class="price-row" style="margin-top:12px">
+    <span class="price" style="color:#fff">$682.20</span>
+    <span class="pct down">-0.70%</span>
+    <span class="psrc" style="color:rgba(255,255,255,.6)">实时</span>
+  </div>
+  <div class="scores" style="margin-top:10px">
+    <span>综合 <b>90.6</b></span>
+    <span>多头 <b>92</b></span>
+    <span>空头 <b>35</b></span>
+    <span>大师均值 <b>63</b></span>
+    <span>信号 <b>positive</b></span>
+  </div>
+</header>
+<div class="trade"><div class="cell"><div class="k">交易评级</div><span class="v buy">Buy</span></div><div class="cell"><div class="k">加仓区间</div><span class="v">665.74 ~ 693.19</span></div><div class="cell"><div class="k">目标价</div><span class="v">768.69</span></div><div class="cell"><div class="k">伯克希尔</div><span class="v">买入</span></div><div class="cell"><div class="k">伯克希尔分</div><span class="v">4.25</span></div></div>
+<div class="panel"><h2>财务指标</h2><div class="mgrid"><div class="m"><div class="k">市盈率 PE</div><div class="v">38.15</div></div><div class="m"><div class="k">市净率 PB</div><div class="v">6.61</div></div><div class="m"><div class="k">ROE</div><div class="v">18.2%</div></div><div class="m"><div class="k">总市值</div><div class="v">1851</div></div><div class="m"><div class="k">营收同比</div><div class="v">4.9%</div></div><div class="m"><div class="k">净利同比</div><div class="v">7.4%</div></div></div></div>
+<div class="panel"><h2>历史收益</h2><span class="ychip">近1月 <b class="up">+0.82%</b></span><span class="ychip">近6月 <b class="up">+19.34%</b></span><span class="ychip">近1年 <b class="up">+50.08%</b></span><span class="ychip">近5年 <b class="up">+102.88%</b></span></div>
+<div class="panel"><h2>大师圆桌<span class="sub">5 位</span></h2><div class="mreply"><div class="mh"><span class="who">段永平</span><span class="mscore">76</span></div><div class="md"><p>各位好，今天我想谈谈DE这家公司。</p><p>首先，我对这个公司的基本判断是偏正面的。这是一家做农业设备的企业，在当前全球对粮食安全关注度越来越高的背景下，它处在一个相对有利的位置。农业设备需求强劲，加上他们在技术创新方面的持续投入，这些都是支持其长期发展的积极因素。</p><p>从估值来看，目前38倍左右的市盈率不算便宜，但考虑到其行业地位和增长潜力，这个价格也并非完全不合理。作为价值投资者，我更关注的是这家公司是否在做&quot;对的事&quot;。在我看来，DE在专注主业、提升产品技术含量方面做得不错，这符合我&quot;本分&quot;的投资理念。</p><p>然而，我们也必须正视一些风险：</p><p>首先，供应链问题始终是一个挑战，这在短期内可能会影响其生产和交付能力。其次，原材料成本上升是一个不可忽视的压力，这会直接影响其利润率。此外，全球经济波动也可能对农业设备的需求造成影响。</p><p>基于以上分析，我的建议是：</p><p>如果已经持有DE的股票，可以继续持有，但需要密切关注供应链和成本控制情况。如果考虑买入，建议先观察一段时间，等待更合适的买入时机。投资这家公司，需要有耐心和定力，要做好长期持有的准备。</p><p>最后，我想提醒大家，投资要保持平常心。不要因为短期波动而做出仓促的决定，要始终关注企业的长期价值。这是我的一点看法，供大家参考。</p></div></div><div class="mreply"><div class="mh"><span class="who">巴菲特</span><span class="mscore">65</span></div><div class="md"><p>各位朋友，今天我们来聊聊 DE 这家公司。总体来说，我对 DE 的看法是谨慎乐观。</p><p>首先，DE 所在的农业设备领域确实有着强劲的需求。随着全球粮食安全问题日益受到关注，各国对农业现代化的投入持续增加，这为 DE 提供了长期的增长动力。此外，DE 在技术创新方面的投入也值得肯定，这使得他们在竞争中保持了一定的优势。</p><p>然而，我们也需要看到一些潜在的风险。供应链挑战和原材料成本上升是当前所有制造业企业面临的共同难题，DE 也不例外。虽然他们可以通过提价部分转嫁成本压力，但这无疑会削弱其产品的竞争力。此外，全球经济波动也可能影响农业设备的整体需求。</p><p>从估值角度来看，DE 的市盈率接近 38 倍，市净率超过 6 倍，这样的估值水平在我看来并不算便宜。尽管公司拥有不错的增长前景，但这样的价格已经反映了相当一部分乐观预期。作为价值投资者，我更倾向于在价格具有更大安全边际时进行投资。</p><p>基于以上分析，我建议：</p><ul><li>如果你已经持有 DE 的股票，可以继续持有，但需要密切关注公司如何应对供应链挑战和成本压力，以及全球经济形势的变化。</li></ul><ul><li>如果你正在考虑买入，我建议你耐心等待更好的买入时机。除非你能确定 DE 的护城河在未来几年能够持续加深，并且价格能够回调到更具吸引力的水平。</li></ul><ul><li>对于长期投资者来说，可以考虑将 DE 纳入观察名单，持续跟踪其基本面变化，等待市场情绪波动带来的机会。</li></ul><p>正如我常说的，投资就像打棒球，你不需要每次都挥棒。耐心等待那个最甜的好球出现，才是明智之举。</p></div></div><div class="mreply"><div class="mh"><span class="who">达利欧</span><span class="mscore">71</span></div><div class="md"><h4>发言内容：</h4><p>各位同仁，我将从达利欧的视角来谈谈我对DE（Deere &amp; Company）的看法。</p><p><strong>结论：</strong></p><p>DE是一家处于有利地位的公司，但其估值已较高，因此需要谨慎管理风险。</p><p><strong>理由：</strong></p><p>首先，从基本面来看，DE受益于当前强劲的农业设备需求和粮食安全主题的持续升温。这两点构成了其业务增长的主要驱动力。此外，DE在技术创新方面的持续投入也在推动其长期竞争力。这些因素使其获得了较高的牛市评分。</p><p>然而，我们不能忽视一些重要的风险因素。当前供应链挑战和原材料成本上升正在侵蚀其利润率。同时，全球经济波动可能影响其海外市场的表现。这些因素使其熊市评分也相当显著。</p><p>从估值角度来看，当前的市盈率（PE）约为38倍，市净率（PB）约为6.6倍，相较于历史平均水平偏高。这表明市场已经对其未来增长给予了相当乐观的预期。</p><p><strong>风险/行动建议：</strong></p><ul><li><strong>风险识别与对冲：</strong> 鉴于当前估值较高，建议投资者密切关注供应链和原材料成本的变化。可以考虑使用期权等工具对冲潜在的下行风险。</li></ul><ul><li><strong>分阶段建仓：</strong> 如果您看好DE的长期前景，建议采取分阶段建仓的策略，以避免在高位一次性买入带来的风险。</li></ul><ul><li><strong>密切关注宏观环境：</strong> DE的业绩与全球经济环境密切相关。建议投资者密切关注全球贸易政策、利率变化以及农业市场的供需动态。</li></ul><ul><li><strong>原则化决策：</strong> 将您的投资决策原则化，记录下您对DE的判断依据、风险评估和预期回报。这将帮助您在未来复盘时更清晰地了解您的决策过程。</li></ul><p><strong>总结：</strong></p><p>DE是一家具有吸引力的公司，但在当前估值水平下，我们需要保持警惕。通过原则化的决策过程和严格的风险管理，我们可以更好地把握投资机会，同时控制下行风险。正如我常说的，&quot;Pain + Reflection = Progress&quot;，让我们在投资过程中不断学习和改进。</p></div></div><div class="mreply"><div class="mh"><span class="who">彼得·林奇</span><span class="mscore">35</span></div><div class="md"><p>各位好，今天我们来聊聊DE这家公司。作为彼得·林奇风格的投资人，我首先会从日常生活和行业景气度来观察这家公司。</p><p>我的初步结论是：虽然DE是一家值得关注的公司，但目前的价格可能偏高。</p><h4>理由如下：</h4><ul><li><strong>行业景气度</strong>：农业设备需求确实强劲，这是DE的核心业务。从全球粮食安全的角度来看，这个趋势在未来几年可能会持续。这为DE提供了良好的增长环境。</li></ul><ul><li><strong>技术创新</strong>：DE在技术创新方面也做得不错，这有助于提升其产品竞争力和市场占有率。</li></ul><ul><li><strong>估值问题</strong>：然而，PE高达38倍，PB也达到了6.6倍。对于一家传统制造业公司来说，这样的估值水平显得有些昂贵。即使考虑到其增长潜力，我也认为市场可能已经提前透支了未来的利好。</li></ul><h4>风险提示：</h4><ul><li><strong>供应链挑战</strong>：DE面临供应链方面的挑战，这可能会影响其生产和交付能力。</li></ul><ul><li><strong>原材料成本上升</strong>：原材料价格的上涨会压缩其利润率。</li></ul><ul><li><strong>全球经济波动</strong>：全球经济的不确定性可能会影响农业设备的整体需求。</li></ul><h4>行动建议：</h4><p>如果我现在持有DE的股票，我会考虑在当前价位部分获利了结，等待更好的买入时机。对于想要买入的投资者，我建议再等等，观察公司能否在接下来的几个季度中证明其增长能力足以支撑当前的估值。</p><p>记住，投资股票就是投资一门生意。我们需要找到那些既能持续增长，又能在合理价格买入的公司。目前来看，DE的生意模式不错，但价格似乎还不够吸引人。</p><p>希望这些观点对大家有所帮助。谢谢！</p></div></div><div class="mreply"><div class="mh"><span class="who">芒格</span><span class="mscore">68</span></div><div class="md"><p>各位好，今天我们来谈谈DE公司（Deere &amp; Company）。我的初步结论是：<strong>DE值得持有，但要警惕估值风险</strong>。</p><p>首先，为什么看好DE？</p><ul><li><strong>农业设备需求强劲</strong>：全球粮食安全问题日益突出，各国都在加大农业投资，DE作为行业龙头，直接受益于这一趋势。</li><li><strong>粮食安全主题受益</strong>：地缘政治冲突和气候变化加剧了粮食供应的不确定性，这使得农业现代化和效率提升成为各国政府的优先事项，DE的设备和技术正好切中这一需求。</li><li><strong>技术创新驱动增长</strong>：DE在自动化和精准农业技术方面的持续投入，使其在竞争中保持领先，这为未来的增长提供了动力。</li></ul><p>然而，我们不能忽视一些明显的风险：</p><ul><li><strong>供应链挑战</strong>：全球供应链问题仍未完全解决，这可能会影响DE的生产和交付能力。</li><li><strong>原材料成本上升</strong>：钢铁和其他关键原材料的价格上涨，将压缩DE的利润率。</li><li><strong>全球经济波动影响</strong>：如果全球经济出现衰退，农业投资可能会被削减，从而影响DE的业绩。</li></ul><p>从估值角度来看，DE的市盈率（PE）约为38倍，市净率（PB）约为6.6倍。虽然这对于一家具有长期增长潜力的公司来说并非不合理，但在当前市场环境下，这样的估值水平已经包含了较高的增长预期。如果未来增长不及预期，股价可能会面临调整压力。</p><p>因此，我的建议是：<strong>持有DE，但不要追高买入</strong>。如果已经持有，可以继续持有，但需要密切关注公司业绩和全球经济环境的变化。如果估值出现明显回调，可以考虑适度加仓。</p><p>最后，我要提醒大家：<strong>不要被短期的市场情绪左右</strong>。在投资中，保持理性和纪律性至关重要。我们要用多元思维模型来分析问题，避免被单一视角所局限。同时，要时刻警惕那些可能导致失败的因素，比如供应链中断和成本上升。</p><p>我能错在哪？也许我对DE的长期增长潜力过于乐观，或者低估了全球经济波动带来的负面影响。但无论如何，保持对风险的敏感和对估值的谨慎，是我们长期投资成功的关键。</p></div></div></div>
+<div class="panel"><h2>分析师报告<span class="sub">2 篇</span></h2><details open><summary>市场面分析</summary><div class="body"><div class="md"><h4>DE DE 市场面分析</h4><ul><li>红黑榜多空分数：多头 92 / 空头 35，分差 57。</li><li>当前价格：686.34。</li><li>当前交易评级：Buy。</li><li>值得加仓区间：665.74 - 693.19。</li><li>目标价格：768.69。</li><li>市场愿意给溢价的原因：农业设备需求强劲；粮食安全主题受益；技术创新驱动增长。</li><li>当前主要压制因素：供应链挑战；原材料成本上升；全球经济波动影响。</li></ul></div></div></details><details open><summary>基本面分析</summary><div class="body"><div class="md"><h4>DE DE 基本面分析</h4><ul><li>报告期：暂无。</li><li>PE(TTM)：38.15。</li><li>PB：6.61。</li><li>ROE：18.24%。</li><li>营收同比：4.90%。</li><li>归母净利润同比：7.40%。</li><li>核心判断：盈利能力处于可接受区间；收入仍在增长；利润端保持扩张。</li></ul></div></div></details></div>
+<div class="panel"><h2>研究与计划</h2>
+<details><summary>基本面摘要</summary><div class="body"><div class="md"><h3>核心财务快照</h3><ul><li>报告期: 数据缺失</li><li>当前股价: 686.34 元</li><li>总市值: 1850.53 亿元</li><li>PE (TTM): 38.15</li><li>PB: 6.61</li><li>PS (TTM): 数据缺失</li><li>营业总收入(报告期): 数据缺失 亿元</li><li>营收同比增长率: 4.90%</li><li>归母净利润(报告期): 数据缺失 亿元</li><li>归母净利润同比增长率: 7.40%</li><li>ROE (TTM/估算): 18.24%</li><li>资产负债率: 数据缺失</li><li>经营性现金流 / 归母净利润: 数据缺失</li></ul><h4>缺失字段</h4><ul><li>PS(TTM), 营业总收入, 归母净利润, 资产负债率, 经营性现金流与归母净利润比值</li></ul></div></div></details>
+<details><summary>研究计划</summary><div class="body"><div class="md"><h4>DE DE 研究摘要</h4><ul><li>红黑榜结论: Buy</li><li>多头/空头: 92/35</li><li>正向信号: ROE 18.24%；营收同比 4.90%；归母净利润同比 7.40%；PE(TTM) 38.15</li><li>榜单看多理由: 农业设备需求强劲；粮食安全主题受益；技术创新驱动增长</li><li>榜单风险提示: 供应链挑战；原材料成本上升；全球经济波动影响</li></ul></div></div></details>
+<details><summary>交易计划</summary><div class="body"><div class="md"><h4>DE DE 交易计划</h4><ul><li>评级: Buy</li><li>当前价格: 686.33</li><li>值得加仓区间: 665.74 - 693.19</li><li>目标价格: 768.69</li><li>止损位: 631.42</li><li>备注: 当前为缓存降级交易卡，后续若完整 TradingAgent 结果生成，将自动覆盖。</li></ul></div></div></details>
+<details><summary>交易决策</summary><div class="body"><div class="md"><p>Buy</p><p>DE DE 当前使用红黑榜缓存结果生成兜底交易卡。多头 92 / 空头 35，分差 57。当前尚未取得完整 TradingAgent 长文决策，但榜单分数、财务快照和大师观点已经足够生成基础交易建议。</p></div></div></details>
+</div>
+<div class="panel"><h2>多空逻辑</h2><div class="pts"><div class="h bull">看多逻辑</div><div class="md"><p>农业设备需求强劲</p><p>粮食安全主题受益</p><p>技术创新驱动增长</p></div></div><div class="pts"><div class="h bear">看空逻辑</div><div class="md"><p>供应链挑战</p><p>原材料成本上升</p><p>全球经济波动影响</p></div></div></div>
+<div class="panel"><h2>伯克希尔研究</h2><p><strong>Deere &amp; Company是一家具备强大护城河和长期增长潜力的农业机械和工程机械巨头，但需关注周期性风险。</strong></p><p>伯克希尔综合评分：<strong>4.25</strong></p><div class="md"><p>{&quot;verdict&quot;: &quot;买入&quot;, &quot;conservative_tip&quot;: &quot;建议在PE低于14倍时买入，目标价450美元。&quot;, &quot;moderate_tip&quot;: &quot;建议在PE低于16倍时买入，目标价480美元。&quot;, &quot;aggressive_tip&quot;: &quot;建议在PE低于18倍时买入，目标价500美元。&quot;, &quot;catalysts_plus&quot;: [&quot;全球农业现代化加速&quot;, &quot;基建投资增加&quot;, &quot;新产品发布成功&quot;], &quot;catalysts_minus&quot;: [&quot;全球经济衰退&quot;, &quot;原材料价格大幅上涨&quot;, &quot;贸易政策恶化&quot;]}</p></div></div>
+<div class="panel news"><h2>最新资讯</h2><div class="md"><p>共12条新闻，其中利空2条，中性10条，无明显利好。</p></div><div class="nitem"><div class="t">Spain&#x27;s De la Fuente in disbelief as Yamal continues scoring streak</div><div class="s">ESPN · 中性</div></div><div class="nitem"><div class="t">De Niro calls Trump a ‘coward,’ ‘piece of s‑‑‑’</div><div class="s">The Hill · 中性</div></div><div class="nitem"><div class="t">Amherst College / Herzog &amp; de Meuron + Sasaki</div><div class="s">ArchDaily · 中性</div></div><div class="nitem"><div class="t">Highlights: De Minaur reaches Beijing 2026 championship match after Hurkacz retires</div><div class="s">ATP Tour · 中性</div></div><div class="nitem"><div class="t">Peter de Sève’s “Lapdog”</div><div class="s">The New Yorker · 中性</div></div><div class="nitem"><div class="t">De Profundis review – Oscar Wilde brought alive with righteous rage</div><div class="s">The Guardian · 中性</div></div><div class="nitem"><div class="t">Josue De Paula the youngest Dodgers position player in postseason in 61 years</div><div class="s">True Blue LA · 中性</div></div><div class="nitem"><div class="t">Days after Xi-Trump summit, top Taiwan diplomat opens de facto consulate in US</div><div class="s">South China Morning Post · 中性</div></div></div>
+<footer>稳健理财Agent · 红黑榜每日归档 · 红榜 #6 · 仅供研究，不构成投资建议</footer>
+</div></body>
+</html>
