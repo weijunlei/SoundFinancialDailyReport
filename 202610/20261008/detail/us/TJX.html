@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TJX(TJX) 红榜 2026-10-08</title>
+<style>
+:root{--red:#d8342c;--redbg:#fdecea;--green:#1a9e54;--ink:#1c2230;--muted:#6b7385;
+--line:#e7e9ef;--card:#fff;--bg:#f4f6fa;--chip:#eef1f6;--dark:#23262d;--darkbg:#ececef}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",
+"Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);
+line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 16px 64px}
+header.top{background:linear-gradient(135deg,#1c2230,#2c3550);color:#fff;border-radius:14px;
+padding:22px 24px;margin-bottom:20px;box-shadow:0 6px 24px rgba(20,26,46,.12)}
+header.top h1{margin:0 0 6px;font-size:24px;letter-spacing:.5px}
+header.top .sub{opacity:.85;font-size:13px}
+header.top .sub b{color:#ffd166;font-weight:600}
+nav.mkt{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;
+background:rgba(244,246,250,.92);backdrop-filter:blur(6px);padding:10px 0;margin-bottom:14px}
+nav.mkt a{text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);
+padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600}
+nav.mkt a:hover{border-color:var(--red);color:var(--red)}
+.summary{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.summary .chip{background:var(--card);border:1px solid var(--line);border-radius:10px;
+padding:8px 12px;font-size:12px;color:var(--muted)}
+.summary .chip b{color:var(--ink);font-size:14px;margin-left:4px}
+section.board{margin:26px 0}
+.board-title{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:19px}
+.board-title .dot{width:10px;height:10px;border-radius:50%}
+.board-title.red .dot{background:var(--red)}
+.board-title.black .dot{background:var(--dark)}
+.board-title small{color:var(--muted);font-weight:400;font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+position:relative;transition:box-shadow .15s}
+.card:hover{box-shadow:0 4px 18px rgba(20,26,46,.08)}
+.card.red{border-top:3px solid var(--red)}
+.card.black{border-top:3px solid var(--dark)}
+.rank{position:absolute;top:10px;right:12px;font-size:26px;font-weight:800;color:#eceff5}
+.card.red .rank{color:#fbdcD9}
+.nm{font-size:16px;font-weight:700}
+.nm .tk{color:var(--muted);font-weight:500;font-size:12px;margin-left:6px}
+.tag{display:inline-block;background:var(--chip);color:var(--muted);border-radius:6px;
+padding:1px 7px;font-size:11px;margin:6px 6px 0 0}
+.price-row{display:flex;align-items:baseline;gap:10px;margin:10px 0 4px}
+.price{font-size:24px;font-weight:800}
+.pct{font-size:14px;font-weight:700;padding:2px 8px;border-radius:8px}
+.up{color:var(--red)}.down{color:var(--green)}.flat{color:var(--muted)}
+.pct.up{background:var(--redbg)}.pct.down{background:#e2f4e9}.pct.flat{background:var(--chip)}
+.psrc{font-size:11px;color:var(--muted);margin-left:auto}
+.scores{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.scores span{background:var(--chip);border-radius:6px;padding:2px 8px;font-size:11px;color:var(--muted)}
+.scores span b{color:var(--ink)}
+.pts{font-size:12.5px;margin:8px 0 0}
+.pts .h{font-weight:700;font-size:12px;margin:6px 0 2px}
+.pts .h.bull{color:var(--red)}.pts .h.bear{color:var(--green)}
+.pts ul{margin:2px 0 4px;padding-left:18px;color:#3a4152}
+.pts li{margin:1px 0}
+.masters{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:11px;color:var(--muted)}
+.masters b{color:var(--ink)}
+.summ{font-size:12.5px;color:#3a4152;background:#fafbfd;border:1px solid var(--line);
+border-radius:8px;padding:8px 10px;margin-top:8px}
+.empty{color:var(--muted);background:var(--card);border:1px dashed var(--line);
+border-radius:10px;padding:18px;text-align:center}
+footer{margin-top:34px;color:var(--muted);font-size:12px;text-align:center;line-height:1.8}
+a.lnk{color:var(--red);text-decoration:none}
+/* ── detail page ── */
+.backbar{margin-bottom:14px;font-size:13px}
+.backbar a{color:var(--muted);text-decoration:none;margin-right:14px}
+.backbar a:hover{color:var(--red)}
+.badge{display:inline-block;border-radius:6px;padding:2px 10px;font-size:12px;font-weight:700;margin-right:8px}
+.badge.red{background:var(--red);color:#fff}.badge.black{background:var(--dark);color:#fff}
+.trade{display:flex;flex-wrap:wrap;gap:10px;background:linear-gradient(135deg,#2c3550,#1c2230);
+color:#fff;border-radius:12px;padding:16px 18px;margin:16px 0}
+.trade .cell{min-width:120px}
+.trade .k{font-size:11px;opacity:.75}
+.trade .v{font-size:18px;font-weight:800;margin-top:2px}
+.trade .v.buy{color:#7ee2a8}.trade .v.sell{color:#ff9d97}.trade .v.hold{color:#ffd166}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0}
+.mgrid .m{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.mgrid .m .k{font-size:11px;color:var(--muted)}
+.mgrid .m .v{font-size:16px;font-weight:700;margin-top:2px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.panel>h2{margin:0 0 12px;font-size:17px}
+.panel>h2 .sub{font-size:12px;color:var(--muted);font-weight:400;margin-left:8px}
+.mreply{border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;
+padding:12px 14px;margin:10px 0;background:#fff}
+.mreply .mh{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.mreply .mh .who{font-weight:700;font-size:14px}
+.mreply .mh .mscore{margin-left:auto;background:var(--chip);border-radius:6px;padding:1px 8px;font-size:12px;font-weight:700}
+.md h2,.md h3,.md h4,.md h5{margin:12px 0 6px;font-size:15px}
+.md p{margin:6px 0;font-size:13.5px;color:#2c3345}
+.md ul{margin:6px 0;padding-left:20px;font-size:13.5px;color:#2c3345}
+.md li{margin:3px 0}
+.md strong{color:var(--ink)}
+details{border:1px solid var(--line);border-radius:10px;background:#fff;margin:10px 0;padding:0}
+details>summary{cursor:pointer;padding:12px 16px;font-weight:700;font-size:14px;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary:before{content:"▸ ";color:var(--red)}
+details[open]>summary:before{content:"▾ "}
+details>.body{padding:0 16px 14px;border-top:1px dashed var(--line)}
+.ychip{display:inline-block;background:var(--chip);border-radius:8px;padding:4px 10px;font-size:12px;margin:3px 6px 3px 0}
+.ychip b{font-size:13px}
+.news .nitem{border-top:1px dashed var(--line);padding:8px 0;font-size:13px}
+.news .nitem .t{font-weight:600}
+.news .nitem .s{color:var(--muted);font-size:12px}
+/* ── root landing page ── */
+.hero{padding:30px 26px}
+.hero-kicker{color:#ffd166;font-size:12px;font-weight:700;letter-spacing:2px;
+text-transform:uppercase;margin-bottom:8px}
+.hero h1{font-size:30px;margin:0 0 10px}
+.day-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.day-card{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);
+border-radius:12px;padding:14px 16px;transition:all .15s}
+.day-card:hover{border-color:var(--red);box-shadow:0 4px 16px rgba(216,52,44,.12);transform:translateY(-2px)}
+.day-card .d{font-weight:800;font-size:15px;color:var(--ink);display:flex;align-items:center;gap:8px}
+.day-card .m{margin-top:8px;display:flex;gap:6px}
+.day-card .m span{background:var(--chip);color:var(--muted);border-radius:6px;
+padding:2px 8px;font-size:11px}
+.latest-badge{background:var(--red);color:#fff;border-radius:6px;padding:1px 7px;
+font-size:10px;font-weight:700}
+</style>
+</head>
+<body><div class="wrap">
+<div class="backbar"><a href="../index.html">← 总览</a><a href="../us.html">← 美股榜单</a></div>
+<header class="top">
+  <h1><span class="badge red">红榜 #8</span>TJX<span class="tk" style="opacity:.7;font-size:15px;font-weight:400;margin-left:8px">TJX</span></h1>
+  <div class="sub">美股 ·  · 榜单日期 <b>2026-10-08</b> · 盘价采集 <b>2026-10-08 05:00:27</b></div>
+  <div class="price-row" style="margin-top:12px">
+    <span class="price" style="color:#fff">$138.80</span>
+    <span class="pct up">+1.29%</span>
+    <span class="psrc" style="color:rgba(255,255,255,.6)">实时</span>
+  </div>
+  <div class="scores" style="margin-top:10px">
+    <span>综合 <b>84.4</b></span>
+    <span>多头 <b>88</b></span>
+    <span>空头 <b>22</b></span>
+    <span>大师均值 <b>61</b></span>
+    <span>信号 <b>positive</b></span>
+  </div>
+</header>
+<div class="trade"><div class="cell"><div class="k">交易评级</div><span class="v buy">Buy</span></div><div class="cell"><div class="k">加仓区间</div><span class="v">134.82 ~ 140.37</span></div><div class="cell"><div class="k">目标价</div><span class="v">155.66</span></div><div class="cell"><div class="k">伯克希尔</div><span class="v">买入</span></div><div class="cell"><div class="k">伯克希尔分</div><span class="v">3.75</span></div></div>
+<div class="panel"><h2>财务指标</h2><div class="mgrid"><div class="m"><div class="k">市盈率 PE</div><div class="v">25.74</div></div><div class="m"><div class="k">市净率 PB</div><div class="v">14.37</div></div><div class="m"><div class="k">ROE</div><div class="v">62.2%</div></div><div class="m"><div class="k">总市值</div><div class="v">1536</div></div><div class="m"><div class="k">营收同比</div><div class="v">5.4%</div></div><div class="m"><div class="k">净利同比</div><div class="v">23.6%</div></div></div></div>
+<div class="panel"><h2>历史收益</h2><span class="ychip">近1月 <b class="up">+7.81%</b></span><span class="ychip">近6月 <b class="down">-11.80%</b></span><span class="ychip">近1年 <b class="down">-2.58%</b></span><span class="ychip">近5年 <b class="up">+113.89%</b></span></div>
+<div class="panel"><h2>大师圆桌<span class="sub">5 位</span></h2><div class="mreply"><div class="mh"><span class="who">段永平</span><span class="mscore">49</span></div><div class="md"><p>对于TJX这家公司，我的看法是这样的。</p><p>首先，TJX作为折扣零售行业的领导者，在当前经济环境下确实有其独特的优势。消费者对性价比商品的需求持续强劲，这使得TJX能够很好地抓住经济复苏带来的机会。从数据上看，公司的营收和净利润都保持了不错的增长，尤其是净利润同比增长了23.6%，这在当前的市场环境下是相当不错的表现。</p><p>然而，我必须指出的是，任何投资都需要考虑风险。TJX目前面临的潜在风险包括经济衰退的可能性，这可能会影响消费者的购买力。此外，公司的库存管理需要持续优化，以确保在快速变化的市场中保持竞争力。更重要的是，当前估值接近历史高位，PE和PB都处于较高水平，这需要我们谨慎对待。</p><p>从我的投资哲学来看，我更倾向于投资那些我们真正看得懂、并且有长期竞争力的好生意。TJX的业务模式是清晰的，但当前的估值让我对其长期投资价值有所保留。我的建议是：</p><p>如果你已经持有TJX，并且成本较低，那么可以考虑继续持有，但需要密切关注其库存管理和市场环境的变化。如果你正在考虑买入，我建议你再等等，等到估值回到一个更合理的水平，或者市场出现更好的买入时机。</p><p>总的来说，投资需要耐心和定力。不要被短期的市场波动所左右，而要专注于公司的长期价值。在当前的市场环境下，保持谨慎和克制尤为重要。</p></div></div><div class="mreply"><div class="mh"><span class="who">巴菲特</span><span class="mscore">54</span></div><div class="md"><p>各位朋友，今天我们来聊聊TJX这家公司。</p><p>先说我的看法：我对TJX持中性偏乐观的态度。这是一家值得关注的零售企业，但目前的价格让我有些犹豫。</p><p>TJX作为折扣零售行业的领导者，拥有强大的商业模式。它的商业模式建立在为消费者提供物美价廉的商品上，这让它在各个经济周期中都能保持相对稳定的业绩表现。目前消费者需求持续强劲，经济复苏也为它带来了利好。</p><p>然而，我有几个担忧需要提醒大家注意：</p><p>首先，虽然TJX在零售业中占据优势地位，但它的护城河并不像我喜欢的可口可乐或喜诗糖果那样宽阔。它的竞争优势更多来自于运营效率，而非品牌忠诚度或转换成本。</p><p>其次，当前的估值已经接近历史高位，市盈率超过25倍，市净率接近14倍。虽然公司的净资产收益率（ROE）高达62%，但这种高估值让我在考虑投资时不得不更加谨慎。</p><p>最后，我要提醒大家注意宏观经济风险。虽然TJX在经济复苏期表现良好，但一旦经济出现衰退，消费者可能会减少非必需品的支出，这对TJX的业绩将构成挑战。</p><p>基于以上分析，我建议：</p><ul><li>如果你已经在持有TJX的股票，可以继续持有，但要注意观察公司的库存管理和成本控制情况。</li><li>如果你正在考虑买入，我建议你等待一个更好的价格。零售业是一个竞争激烈的行业，估值过高可能会影响长期回报。</li><li>密切关注宏观经济指标，如消费者信心指数和零售销售数据，这些指标的变化可能会影响TJX的业绩。</li></ul><p>最后，我想引用查理·芒格的一句话：&quot;投资就像打棒球，你不需要每次都挥棒。&quot;在面对TJX这样的公司时，我们需要耐心等待更好的机会。</p></div></div><div class="mreply"><div class="mh"><span class="who">达利欧</span><span class="mscore">78</span></div><div class="md"><h4>发言内容：</h4><p>各位同仁，今天我们讨论 TJX 这家公司，我的观点是偏乐观的，但同时也要关注潜在风险。</p><p>首先，TJX 作为折扣零售行业的领导者，其商业模式具有很强的抗周期性。在当前消费者需求持续强劲的背景下，TJX 的业务模式能够很好地捕捉到经济复苏带来的增长机会。从数据上看，公司营收同比增长 5.4%，净利润同比增长 23.6%，这表明其盈利能力在不断提升。</p><p>然而，我们不能忽视潜在的风险。TJX 的估值已经接近历史高位，市盈率（PE）为 25.7，市净率（PB）为 14.4，这在一定程度上反映了市场对其未来增长的乐观预期。但这种高估值也意味着，如果经济出现衰退，或者消费者支出减少，TJX 的业绩可能会受到较大影响。此外，库存管理的挑战始终存在，如何在保持高效运营的同时控制成本，是 TJX 需要持续优化的方面。</p><h4>风险与行动建议：</h4><ul><li><strong>经济衰退风险</strong>：如果全球经济出现衰退，消费者信心下降，TJX 的销售可能会受到冲击。建议密切关注宏观经济指标，特别是零售销售数据和美国消费者信心指数。</li></ul><ul><li><strong>库存管理挑战</strong>：TJX 需要在供应链管理和库存控制方面保持高效。建议关注公司财报中关于库存周转率和供应链成本的数据。</li></ul><ul><li><strong>估值风险</strong>：当前估值较高，市场预期已经反映在股价中。建议在投资时考虑分批买入，以降低短期波动带来的风险。</li></ul><h4>原则化收口：</h4><p>在做出投资决策时，我们需要遵循的原则是：既要看到公司的长期增长潜力，也要警惕短期内的不确定性。正如我常说的，&quot;Pain + Reflection = Progress&quot;，在投资中，我们需要不断反思和调整策略，以应对不断变化的市场环境。</p><p>基于以上分析，我建议对 TJX 保持关注，但也要做好风险管理的准备。希望大家在投资决策中，能够将原则和实际情况相结合，做出明智的选择。</p></div></div><div class="mreply"><div class="mh"><span class="who">彼得·林奇</span><span class="mscore">81</span></div><div class="md"><h4>圆桌发言：关于 TJX 的投资观点</h4><h5>结论：</h5><p>TJX 是一家值得关注的公司，我对其持乐观态度。公司的商业模式和当前的市场环境让我相信，它在未来几年内仍有不错的增长潜力。不过，投资者也需要注意估值已经处于相对高位，以及潜在的经济衰退风险。</p><h5>理由：</h5><ul><li><strong>行业领导地位</strong>：TJX 是折扣零售行业的领导者，拥有强大的品牌影响力和市场份额。这种领导地位使其能够在经济波动中保持相对稳定的业绩。</li></ul><ul><li><strong>强劲的消费者需求</strong>：从日常观察来看，消费者对折扣商品的需求依然强劲。这不仅是因为经济复苏带来的消费信心提升，也反映了消费者对性价比商品的持续偏好。</li></ul><ul><li><strong>经济复苏受益股</strong>：TJX 的商业模式使其能够从经济复苏中受益。随着消费者信心的恢复和可支配收入的增加，TJX 的销售增长有望继续加速。</li></ul><h5>风险/行动建议：</h5><ul><li><strong>经济衰退风险</strong>：尽管当前经济复苏势头良好，但投资者仍需警惕潜在的经济衰退风险。如果经济出现下滑，TJX 的销售增长可能会受到抑制。因此，建议投资者密切关注宏观经济指标的变化。</li></ul><ul><li><strong>库存管理挑战</strong>：TJX 需要持续优化其库存管理，以应对供应链中断和消费者需求变化带来的挑战。如果库存管理不当，可能会影响公司的利润率。</li></ul><ul><li><strong>估值接近历史高位</strong>：当前 TJX 的估值已经接近历史高位，这意味着投资者需要为未来的增长支付更高的价格。因此，建议投资者在买入时保持谨慎，不要盲目追高。</li></ul><h5>行动建议：</h5><p>如果你已经持有 TJX，建议继续持有，但密切关注公司的库存管理和宏观经济环境的变化。如果估值进一步上升，可以考虑逐步减仓以锁定部分利润。</p><p>如果你正在考虑买入，建议等待更好的买入时机，比如在经济数据出现波动或公司股价回调时再进行布局。同时，做好长期持有的准备，因为 TJX 的增长潜力需要时间来体现。</p><p>总之，TJX 是一家值得关注的优质公司，但投资者需要理性看待其估值和潜在风险。</p></div></div><div class="mreply"><div class="mh"><span class="who">芒格</span><span class="mscore">43</span></div><div class="md"><p>在今天的圆桌讨论中，我们来聊聊 TJX 这家公司。我的结论是：TJX 是一家值得关注的零售企业，但当前的价格让我感到谨慎。</p><p>首先，TJX 作为折扣零售行业的领导者，拥有强大的商业模式。它通过销售品牌折扣商品吸引消费者，这种模式在经济复苏时期表现尤为出色。从数据上看，TJX 的营收同比增长 5.4%，净利润同比增长 23.6%，净资产收益率（ROE）高达 62.17%，这些都显示出公司强劲的盈利能力。</p><p>然而，当我们运用逆向思维来审视这家公司时，需要考虑几个关键风险：</p><ul><li><strong>经济衰退风险</strong>：TJX 的商业模式依赖于消费者对非必需品的支出能力。如果经济出现衰退，消费者可能会减少在折扣零售商的支出，这将对 TJX 的业绩产生负面影响。</li></ul><ul><li><strong>库存管理挑战</strong>：TJX 需要在保持商品多样性和控制库存成本之间找到平衡。如果库存管理不当，可能会导致成本上升或商品短缺。</li></ul><ul><li><strong>估值接近历史高位</strong>：当前 TJX 的市盈率（PE）为 25.74，市净率（PB）为 14.37，估值接近历史高位。这意味着市场已经对公司的增长预期给予了较高的定价，进一步上涨的空间可能有限。</li></ul><p>从激励机制的角度来看，TJX 的管理层在过去的几年中表现出色，股东回报率较高。然而，随着公司规模的扩大，保持高增长可能会变得越来越困难。</p><p>在考虑投资 TJX 时，我们需要权衡其强大的市场地位和当前的高估值。我的建议是：</p><ul><li><strong>等待更好的入场时机</strong>：如果 TJX 的股价出现回调，或者市场出现整体调整，可能会提供一个更具吸引力的买入机会。</li></ul><ul><li><strong>密切关注经济指标</strong>：特别是消费者信心指数和零售销售数据，这些指标的变化可能会影响 TJX 的业绩。</li></ul><ul><li><strong>分散投资</strong>：如果决定投资 TJX，建议将其作为投资组合的一部分，而不是单一的重仓股，以分散风险。</li></ul><p>最后，关于&quot;我能错在哪&quot;，我认为最大的风险在于低估了经济衰退对消费者支出的影响。此外，市场对 TJX 的高估值也可能导致股价回调。因此，在做出投资决策时，必须保持警惕，并做好风险管理。</p></div></div></div>
+<div class="panel"><h2>分析师报告<span class="sub">2 篇</span></h2><details open><summary>市场面分析</summary><div class="body"><div class="md"><h4>TJX TJX 市场面分析</h4><ul><li>红黑榜多空分数：多头 88 / 空头 22，分差 66。</li><li>当前价格：139.02。</li><li>当前交易评级：Buy。</li><li>值得加仓区间：134.82 - 140.37。</li><li>目标价格：155.66。</li><li>市场愿意给溢价的原因：折扣零售行业领导者；消费者需求持续强劲；经济复苏受益股。</li><li>当前主要压制因素：经济衰退潜在风险；库存管理需持续优化；估值接近历史高位。</li></ul></div></div></details><details open><summary>基本面分析</summary><div class="body"><div class="md"><h4>TJX TJX 基本面分析</h4><ul><li>报告期：暂无。</li><li>PE(TTM)：25.74。</li><li>PB：14.37。</li><li>ROE：62.17%。</li><li>营收同比：5.40%。</li><li>归母净利润同比：23.60%。</li><li>核心判断：盈利能力处于可接受区间；收入仍在增长；利润端保持扩张。</li></ul></div></div></details></div>
+<div class="panel"><h2>研究与计划</h2>
+<details><summary>基本面摘要</summary><div class="body"><div class="md"><h3>核心财务快照</h3><ul><li>报告期: 数据缺失</li><li>当前股价: 139.02 元</li><li>总市值: 1535.72 亿元</li><li>PE (TTM): 25.74</li><li>PB: 14.37</li><li>PS (TTM): 数据缺失</li><li>营业总收入(报告期): 数据缺失 亿元</li><li>营收同比增长率: 5.40%</li><li>归母净利润(报告期): 数据缺失 亿元</li><li>归母净利润同比增长率: 23.60%</li><li>ROE (TTM/估算): 62.17%</li><li>资产负债率: 数据缺失</li><li>经营性现金流 / 归母净利润: 数据缺失</li></ul><h4>缺失字段</h4><ul><li>PS(TTM), 营业总收入, 归母净利润, 资产负债率, 经营性现金流与归母净利润比值</li></ul></div></div></details>
+<details><summary>研究计划</summary><div class="body"><div class="md"><h4>TJX TJX 研究摘要</h4><ul><li>红黑榜结论: Buy</li><li>多头/空头: 88/22</li><li>正向信号: ROE 62.17%；营收同比 5.40%；归母净利润同比 23.60%；PE(TTM) 25.74</li><li>榜单看多理由: 折扣零售行业领导者；消费者需求持续强劲；经济复苏受益股</li><li>榜单风险提示: 经济衰退潜在风险；库存管理需持续优化；估值接近历史高位</li></ul></div></div></details>
+<details><summary>交易计划</summary><div class="body"><div class="md"><h4>TJX TJX 交易计划</h4><ul><li>评级: Buy</li><li>当前价格: 138.99</li><li>值得加仓区间: 134.82 - 140.37</li><li>目标价格: 155.66</li><li>止损位: 127.87</li><li>备注: 当前为缓存降级交易卡，后续若完整 TradingAgent 结果生成，将自动覆盖。</li></ul></div></div></details>
+<details><summary>交易决策</summary><div class="body"><div class="md"><p>Buy</p><p>TJX TJX 当前使用红黑榜缓存结果生成兜底交易卡。多头 88 / 空头 22，分差 66。当前尚未取得完整 TradingAgent 长文决策，但榜单分数、财务快照和大师观点已经足够生成基础交易建议。</p></div></div></details>
+</div>
+<div class="panel"><h2>多空逻辑</h2><div class="pts"><div class="h bull">看多逻辑</div><div class="md"><p>折扣零售行业领导者</p><p>消费者需求持续强劲</p><p>经济复苏受益股</p></div></div><div class="pts"><div class="h bear">看空逻辑</div><div class="md"><p>经济衰退潜在风险</p><p>库存管理需持续优化</p><p>估值接近历史高位</p></div></div></div>
+<div class="panel"><h2>伯克希尔研究</h2><p><strong>TJX是一家拥有强大商业模式和护城河的企业，在零售业中具备长期增长潜力，但需警惕经济周期和行业竞争风险。</strong></p><p>伯克希尔综合评分：<strong>3.75</strong></p><div class="md"><p>{&quot;verdict&quot;: &quot;买入&quot;, &quot;conservative_tip&quot;: &quot;建议在PE TTM低于22倍时买入，目标价区间为70-75美元。&quot;, &quot;moderate_tip&quot;: &quot;建议在PE TTM低于25倍时买入，目标价区间为75-80美元。&quot;, &quot;aggressive_tip&quot;: &quot;建议在PE TTM低于28倍时买入，目标价区间为80-85美元。&quot;, &quot;catalysts_plus&quot;: [&quot;宏观经济复苏带动消费需求增长。&quot;, &quot;市场份额进一步扩大。&quot;, &quot;线上零售业务取得突破。&quot;], &quot;catalysts_minus&quot;: [&quot;经济衰退导致消费需求下降。&quot;, &quot;线上零售冲击加剧。&quot;, &quot;供应链中断或劳工政策变化。&quot;]}</p></div></div>
+<div class="panel news"><h2>最新资讯</h2><div class="md"><p>利空新闻较多，主要涉及销售下滑和门店关闭。</p></div><div class="nitem"><div class="t">16 TJ Maxx and Marshalls Finds Under $85 That Could Outshine October Prime Day</div><div class="s">Cosmopolitan · 中性</div></div><div class="nitem"><div class="t">The TJX Companies, Inc. (NYSE:TJX) Stock Has Consensus Target Price of $171.63</div><div class="s">MarketBeat · 利好</div></div><div class="nitem"><div class="t">T.J. Maxx store closings 2026 as TJX expands footprint</div><div class="s">Quartz · 利空</div></div><div class="nitem"><div class="t">TJX blames merchandising missteps for rare miss in the US, but is that the whole story?</div><div class="s">Retail Dive · 利空</div></div><div class="nitem"><div class="t">T.J. Maxx Parent TJX Says Self-Inflicted Issues Hurt Sales</div><div class="s">WSJ · 利空</div></div><div class="nitem"><div class="t">TJ Maxx, Marshalls &#x27;self-inflicted&#x27; slowdown clouds TJX earnings beat</div><div class="s">Reuters · 利空</div></div><div class="nitem"><div class="t">Cramer likes this retailer ahead of earnings — but sees trouble for one of our tech giants</div><div class="s">CNBC · 中性</div></div><div class="nitem"><div class="t">The TJX Companies, Inc. (TJX) Stock Price, News, Quote &amp; History</div><div class="s">Yahoo Finance · 中性</div></div></div>
+<footer>稳健理财Agent · 红黑榜每日归档 · 红榜 #8 · 仅供研究，不构成投资建议</footer>
+</div></body>
+</html>
