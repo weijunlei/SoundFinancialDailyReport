@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>壁仞科技(06082) 黑榜 2026-10-09</title>
+<style>
+:root{--red:#d8342c;--redbg:#fdecea;--green:#1a9e54;--ink:#1c2230;--muted:#6b7385;
+--line:#e7e9ef;--card:#fff;--bg:#f4f6fa;--chip:#eef1f6;--dark:#23262d;--darkbg:#ececef}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",
+"Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);
+line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 16px 64px}
+header.top{background:linear-gradient(135deg,#1c2230,#2c3550);color:#fff;border-radius:14px;
+padding:22px 24px;margin-bottom:20px;box-shadow:0 6px 24px rgba(20,26,46,.12)}
+header.top h1{margin:0 0 6px;font-size:24px;letter-spacing:.5px}
+header.top .sub{opacity:.85;font-size:13px}
+header.top .sub b{color:#ffd166;font-weight:600}
+nav.mkt{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;
+background:rgba(244,246,250,.92);backdrop-filter:blur(6px);padding:10px 0;margin-bottom:14px}
+nav.mkt a{text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);
+padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600}
+nav.mkt a:hover{border-color:var(--red);color:var(--red)}
+.summary{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.summary .chip{background:var(--card);border:1px solid var(--line);border-radius:10px;
+padding:8px 12px;font-size:12px;color:var(--muted)}
+.summary .chip b{color:var(--ink);font-size:14px;margin-left:4px}
+section.board{margin:26px 0}
+.board-title{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:19px}
+.board-title .dot{width:10px;height:10px;border-radius:50%}
+.board-title.red .dot{background:var(--red)}
+.board-title.black .dot{background:var(--dark)}
+.board-title small{color:var(--muted);font-weight:400;font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+position:relative;transition:box-shadow .15s}
+.card:hover{box-shadow:0 4px 18px rgba(20,26,46,.08)}
+.card.red{border-top:3px solid var(--red)}
+.card.black{border-top:3px solid var(--dark)}
+.rank{position:absolute;top:10px;right:12px;font-size:26px;font-weight:800;color:#eceff5}
+.card.red .rank{color:#fbdcD9}
+.nm{font-size:16px;font-weight:700}
+.nm .tk{color:var(--muted);font-weight:500;font-size:12px;margin-left:6px}
+.tag{display:inline-block;background:var(--chip);color:var(--muted);border-radius:6px;
+padding:1px 7px;font-size:11px;margin:6px 6px 0 0}
+.price-row{display:flex;align-items:baseline;gap:10px;margin:10px 0 4px}
+.price{font-size:24px;font-weight:800}
+.pct{font-size:14px;font-weight:700;padding:2px 8px;border-radius:8px}
+.up{color:var(--red)}.down{color:var(--green)}.flat{color:var(--muted)}
+.pct.up{background:var(--redbg)}.pct.down{background:#e2f4e9}.pct.flat{background:var(--chip)}
+.psrc{font-size:11px;color:var(--muted);margin-left:auto}
+.scores{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.scores span{background:var(--chip);border-radius:6px;padding:2px 8px;font-size:11px;color:var(--muted)}
+.scores span b{color:var(--ink)}
+.pts{font-size:12.5px;margin:8px 0 0}
+.pts .h{font-weight:700;font-size:12px;margin:6px 0 2px}
+.pts .h.bull{color:var(--red)}.pts .h.bear{color:var(--green)}
+.pts ul{margin:2px 0 4px;padding-left:18px;color:#3a4152}
+.pts li{margin:1px 0}
+.masters{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:11px;color:var(--muted)}
+.masters b{color:var(--ink)}
+.summ{font-size:12.5px;color:#3a4152;background:#fafbfd;border:1px solid var(--line);
+border-radius:8px;padding:8px 10px;margin-top:8px}
+.empty{color:var(--muted);background:var(--card);border:1px dashed var(--line);
+border-radius:10px;padding:18px;text-align:center}
+footer{margin-top:34px;color:var(--muted);font-size:12px;text-align:center;line-height:1.8}
+a.lnk{color:var(--red);text-decoration:none}
+/* ── detail page ── */
+.backbar{margin-bottom:14px;font-size:13px}
+.backbar a{color:var(--muted);text-decoration:none;margin-right:14px}
+.backbar a:hover{color:var(--red)}
+.badge{display:inline-block;border-radius:6px;padding:2px 10px;font-size:12px;font-weight:700;margin-right:8px}
+.badge.red{background:var(--red);color:#fff}.badge.black{background:var(--dark);color:#fff}
+.trade{display:flex;flex-wrap:wrap;gap:10px;background:linear-gradient(135deg,#2c3550,#1c2230);
+color:#fff;border-radius:12px;padding:16px 18px;margin:16px 0}
+.trade .cell{min-width:120px}
+.trade .k{font-size:11px;opacity:.75}
+.trade .v{font-size:18px;font-weight:800;margin-top:2px}
+.trade .v.buy{color:#7ee2a8}.trade .v.sell{color:#ff9d97}.trade .v.hold{color:#ffd166}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0}
+.mgrid .m{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.mgrid .m .k{font-size:11px;color:var(--muted)}
+.mgrid .m .v{font-size:16px;font-weight:700;margin-top:2px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.panel>h2{margin:0 0 12px;font-size:17px}
+.panel>h2 .sub{font-size:12px;color:var(--muted);font-weight:400;margin-left:8px}
+.mreply{border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;
+padding:12px 14px;margin:10px 0;background:#fff}
+.mreply .mh{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.mreply .mh .who{font-weight:700;font-size:14px}
+.mreply .mh .mscore{margin-left:auto;background:var(--chip);border-radius:6px;padding:1px 8px;font-size:12px;font-weight:700}
+.md h2,.md h3,.md h4,.md h5{margin:12px 0 6px;font-size:15px}
+.md p{margin:6px 0;font-size:13.5px;color:#2c3345}
+.md ul{margin:6px 0;padding-left:20px;font-size:13.5px;color:#2c3345}
+.md li{margin:3px 0}
+.md strong{color:var(--ink)}
+details{border:1px solid var(--line);border-radius:10px;background:#fff;margin:10px 0;padding:0}
+details>summary{cursor:pointer;padding:12px 16px;font-weight:700;font-size:14px;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary:before{content:"▸ ";color:var(--red)}
+details[open]>summary:before{content:"▾ "}
+details>.body{padding:0 16px 14px;border-top:1px dashed var(--line)}
+.ychip{display:inline-block;background:var(--chip);border-radius:8px;padding:4px 10px;font-size:12px;margin:3px 6px 3px 0}
+.ychip b{font-size:13px}
+.news .nitem{border-top:1px dashed var(--line);padding:8px 0;font-size:13px}
+.news .nitem .t{font-weight:600}
+.news .nitem .s{color:var(--muted);font-size:12px}
+/* ── root landing page ── */
+.hero{padding:30px 26px}
+.hero-kicker{color:#ffd166;font-size:12px;font-weight:700;letter-spacing:2px;
+text-transform:uppercase;margin-bottom:8px}
+.hero h1{font-size:30px;margin:0 0 10px}
+.day-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.day-card{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);
+border-radius:12px;padding:14px 16px;transition:all .15s}
+.day-card:hover{border-color:var(--red);box-shadow:0 4px 16px rgba(216,52,44,.12);transform:translateY(-2px)}
+.day-card .d{font-weight:800;font-size:15px;color:var(--ink);display:flex;align-items:center;gap:8px}
+.day-card .m{margin-top:8px;display:flex;gap:6px}
+.day-card .m span{background:var(--chip);color:var(--muted);border-radius:6px;
+padding:2px 8px;font-size:11px}
+.latest-badge{background:var(--red);color:#fff;border-radius:6px;padding:1px 7px;
+font-size:10px;font-weight:700}
+</style>
+</head>
+<body><div class="wrap">
+<div class="backbar"><a href="../index.html">← 总览</a><a href="../hk.html">← 港股榜单</a></div>
+<header class="top">
+  <h1><span class="badge black">黑榜 #4</span>壁仞科技<span class="tk" style="opacity:.7;font-size:15px;font-weight:400;margin-left:8px">06082</span></h1>
+  <div class="sub">港股 ·  · 榜单日期 <b>2026-10-09</b> · 盘价采集 <b>2026-10-09 05:00:20</b></div>
+  <div class="price-row" style="margin-top:12px">
+    <span class="price" style="color:#fff">HK$30.36</span>
+    <span class="pct down">-11.85%</span>
+    <span class="psrc" style="color:rgba(255,255,255,.6)">实时</span>
+  </div>
+  <div class="scores" style="margin-top:10px">
+    <span>综合 <b>30.0</b></span>
+    <span>多头 <b>45</b></span>
+    <span>空头 <b>85</b></span>
+    <span>大师均值 <b>74.6</b></span>
+    <span>信号 <b>negative</b></span>
+  </div>
+</header>
+<div class="trade"><div class="cell"><div class="k">交易评级</div><span class="v hold">Reduce</span></div><div class="cell"><div class="k">加仓区间</div><span class="v">27.32 ~ 28.54</span></div><div class="cell"><div class="k">伯克希尔</div><span class="v">观望</span></div><div class="cell"><div class="k">伯克希尔分</div><span class="v">3.00</span></div></div>
+<div class="panel"><h2>财务指标</h2><div class="mgrid"><div class="m"><div class="k">市净率 PB</div><div class="v">6.86</div></div><div class="m"><div class="k">ROE</div><div class="v">5.4%</div></div><div class="m"><div class="k">总市值</div><div class="v">789</div></div><div class="m"><div class="k">营收同比</div><div class="v">113.7%</div></div><div class="m"><div class="k">净利同比</div><div class="v">7.4%</div></div></div></div>
+<div class="panel"><h2>历史收益</h2><span class="ychip">近1月 <b class="down">-20.57%</b></span><span class="ychip">近6月 <b class="down">-37.86%</b></span><span class="ychip">近1年 <b class="down">-11.90%</b></span></div>
+<div class="panel"><h2>大师圆桌<span class="sub">5 位</span></h2><div class="mreply"><div class="mh"><span class="who">段永平</span><span class="mscore">84</span></div><div class="md"><p>我理解大家对壁仞科技的关注，尤其是在当前芯片行业充满挑战的背景下。我的看法如下：</p><h4>结论</h4><p>目前我对壁仞科技持谨慎态度。虽然芯片行业长期前景值得看好，但就这家公司而言，可能并不是一个好的投资时机。</p><h4>理由</h4><p>首先，从&quot;本分&quot;的角度来看，投资要建立在对公司的深入理解上。虽然芯片行业整体前景不错，但壁仞科技的具体业务模式、竞争优势以及长期盈利能力，我个人还没有完全看懂。</p><p>其次，从财务数据来看，虽然公司营收增长超过100%，但净利润率却是负30%，这说明公司目前还在大量投入研发，尚未实现盈利。这种模式本身没有问题，但需要投资者有足够的耐心和风险承受能力。</p><p>再者，从市场表现来看，股价近期大幅下跌11.85%，且未见明显止跌迹象。这反映出市场对整个芯片行业的估值回调压力，也说明投资者信心不足。</p><h4>风险/行动建议</h4><ul><li><strong>风险提示</strong>：芯片行业整体估值回调的风险不容忽视。壁仞科技作为一家尚未盈利的公司，在市场情绪低迷时可能会面临更大的压力。</li></ul><ul><li><strong>行动建议</strong>：</li><li>如果你持有该股票，建议仔细评估自己的风险承受能力。如果对公司长期发展没有足够的信心，可能需要考虑止损。</li><li>如果你考虑买入，我建议先耐心等待更明确的企稳信号，同时深入研究公司的核心竞争力和长期发展战略。</li></ul><h4>额外建议</h4><p>投资要&quot;做对的事&quot;，而不是盲目追逐热点。芯片行业虽然前景广阔，但具体到每家公司，需要仔细甄别。建议大家在投资前，先问自己：&quot;我真的懂这家公司吗？&quot;&quot;我愿意持有这家公司十年吗？&quot;如果答案是否定的，可能需要重新考虑。</p><p>记住，投资不是赌博。我们要做的是找到那些真正有价值的公司，并以合理的价格买入。</p></div></div><div class="mreply"><div class="mh"><span class="who">巴菲特</span><span class="mscore">81</span></div><div class="md"><p>各位朋友，今天我们来聊聊壁仞科技（06082）。首先，我得说，这家公司让我有些犹豫。</p><p>先说我的结论：目前我不会考虑投资壁仞科技。</p><h4>理由：</h4><p>首先，芯片行业确实是一个长期来看有前景的领域，壁仞科技在研发上的投入也显示了这方面的决心。这些都是值得肯定的。但是，当我们从价值投资的角度来看，问题就出现了。</p><ul><li><strong>估值过高</strong>：从市净率（PB）和市销率（PS）来看，壁仞科技的估值非常高。市净率超过6倍，市销率超过31倍，这让我感到不安。我们投资的是企业，而不是一张张被高估的股票。</li></ul><ul><li><strong>盈利能力不足</strong>：尽管营收增长超过113%，但净利润率却是负的，净利润同比增长仅为7.4%。这意味着公司在盈利能力上还有很长的路要走。</li></ul><ul><li><strong>市场情绪悲观</strong>：股价大幅下跌11.85%，且未见明显止跌迹象。这表明市场对整个芯片行业的估值回调压力较大，而壁仞科技也未能幸免。</li></ul><h4>风险：</h4><ul><li><strong>行业整体回调风险</strong>：芯片行业整体估值回调的压力可能会持续一段时间，这对壁仞科技来说是一个不小的挑战。</li></ul><ul><li><strong>盈利能力改善的不确定性</strong>：公司目前仍在亏损状态，何时能够实现盈利并持续改善盈利能力是一个未知数。</li></ul><ul><li><strong>市场情绪波动</strong>：短期内，市场情绪可能会继续影响股价走势，投资者需要做好心理准备。</li></ul><h4>行动建议：</h4><p>对于壁仞科技，我的建议是保持观望。如果你是长期投资者，并且对芯片行业有深入的理解和信心，可以继续关注公司的盈利能力改善情况。但目前来看，估值过高和盈利能力不足是两个主要的障碍。</p><p>如果是芒格，他会补充说：&quot;投资就像在果园里挑选最好的果树，不要因为树上的果实看起来诱人就忽略了树根的健康。&quot; 在这里，我们需要更关注公司的基本面和盈利能力，而不是短期的市场波动。</p><p>总之，壁仞科技目前并不在我的能力圈范围内，我会选择继续观察，而不是急于出手。</p></div></div><div class="mreply"><div class="mh"><span class="who">达利欧</span><span class="mscore">73</span></div><div class="md"><p>各位同仁，今天我们来讨论一下壁仞科技（06082）的投资前景。</p><h4>结论</h4><p>从当前情况来看，我认为壁仞科技面临较大的下行风险，但长期仍需关注其基本面和技术优势。</p><h4>理由</h4><p>首先，从宏观角度来看，全球芯片行业正处于估值回调阶段，市场情绪对这类高估值科技股并不友好。壁仞科技在过去一段时间股价大幅下跌11.85%，且未见明显止跌迹象，这表明市场对其当前估值的信心不足。尽管芯片行业长期前景依然看好，但短期内行业整体面临较大的调整压力。</p><p>其次，从公司基本面来看，壁仞科技在研发投入方面表现强劲，这为其长期竞争力提供了支撑。然而，公司的盈利能力目前较弱，净利率为-30.53%，这意味着短期内其财务状况可能面临挑战。此外，其市销率（PS）高达31.53，显示出市场对其未来增长的高预期，但这种高预期在当前市场环境下可能难以持续。</p><h4>风险/行动建议</h4><ul><li><strong>下行风险</strong>：短期内，壁仞科技面临的主要风险是市场情绪的持续恶化和芯片行业估值的整体回调。如果市场对科技股的抛售压力继续增加，壁仞科技的股价可能会进一步下跌。</li></ul><ul><li><strong>长期机会</strong>：对于长期投资者来说，可以关注公司在技术研发方面的持续投入和行业前景。如果公司能够在未来几年内实现盈利能力的提升，并保持在技术上的领先优势，那么当前的低点可能是一个较好的买入机会。</li></ul><ul><li><strong>行动建议</strong>：在当前市场环境下，建议采取谨慎的态度。如果投资者已经持有壁仞科技的股票，可以考虑在反弹时适当减仓以控制风险。对于尚未入场的投资者，建议等待更明确的止跌信号或公司基本面出现实质性改善后再做决策。</li></ul><h4>原则化收口</h4><p>在投资决策中，我们需要平衡长期前景和短期风险。正如我常说的，&quot;Pain + Reflection = Progress&quot;，当前的困境可以让我们更深入地思考和评估投资逻辑。在面对不确定性时，保持极度开放和透明的态度，审慎地评估各种可能性，是我们做出明智决策的关键。</p><p>希望这些分析对大家有所帮助。谢谢。</p></div></div><div class="mreply"><div class="mh"><span class="who">彼得·林奇</span><span class="mscore">50</span></div><div class="md"><h4>结论：</h4><p>对于壁仞科技这只股票，我目前持中性偏谨慎的态度。虽然芯片行业长期前景依然被看好，但就这只股票而言，现在并不是一个特别理想的买入时机。</p><h4>理由：</h4><p>首先，壁仞科技所处的芯片行业确实是一个长期看好的领域，研发投入力度大是公司的亮点之一，这表明公司对未来发展有一定的规划和信心。然而，从估值角度来看，目前的市净率（PB）高达6.85，市销率（PS）更是达到了31.53，这表明市场已经给予了公司相当高的预期。</p><p>其次，从财务数据来看，虽然营收同比增长了113%，但净利润同比仅增长了7.4%，净利润率为-30.5%，这意味着公司在盈利能力方面还有很大的提升空间。此外，股价在近期大幅下跌了11.85%，且未见明显的止跌企稳迹象，这表明市场对公司的信心可能正在减弱。</p><h4>风险/行动建议：</h4><ul><li><strong>估值风险</strong>：当前的估值水平已经反映了很高的增长预期，如果未来业绩增长不及预期，股价可能会面临较大的回调压力。</li><li><strong>盈利能力</strong>：需要密切关注公司未来几个季度的盈利能力改善情况，特别是净利润率的提升。</li><li><strong>市场情绪</strong>：短期内市场情绪可能继续受到压制，建议投资者在买入前要保持耐心，等待更明确的企稳信号。</li></ul><h4>具体行动：</h4><p>如果你已经持有这只股票，建议密切关注公司的基本面变化，特别是盈利能力的变化。如果你是打算新买入，我建议你再等等，等到股价企稳并且估值水平有所回落时再考虑进场。现在可以先关注公司的研发进展和市场动态，为未来的投资决策做好准备。</p><p>总之，投资股票就像经营一家小店，既要看到长期的前景，也要关注当下的经营状况和估值水平。壁仞科技有潜力，但目前的价格和风险让我建议大家保持谨慎。</p></div></div><div class="mreply"><div class="mh"><span class="who">芒格</span><span class="mscore">85</span></div><div class="md"><h4>圆桌发言：关于壁仞科技（06082）的看法</h4><p><strong>结论：</strong></p><p>在目前的情况下，我建议对壁仞科技持谨慎态度。尽管芯片行业长期前景依然被看好，但该公司当前面临的风险因素不容忽视。</p><p><strong>理由：</strong></p><ul><li><strong>逆向思考：</strong> 首先，让我们考虑失败的可能路径。当前股价已经大幅下跌11.85%，且未见明显止跌迹象，这表明市场情绪已经转向悲观。芯片行业的整体估值回调压力也在增加，这可能进一步拖累公司股价。</li></ul><ul><li><strong>激励机制：</strong> 从公司内部来看，虽然研发投入力度大是一个积极信号，但我们需要关注这些投入是否真正转化为可持续的竞争优势和市场认可度。如果研发投入未能带来相应的盈利增长，可能会加剧投资者的担忧。</li></ul><ul><li><strong>多元思维模型：</strong> 从多个学科的角度分析，芯片行业的技术进步和市场需求是长期趋势，但短期内市场情绪和估值回调的压力更为显著。公司的市净率（PB）和市销率（PS）都处于较高水平，这表明市场对其未来增长有较高的预期，但同时也增加了股价波动的风险。</li></ul><ul><li><strong>风险因素：</strong> 公司的净资产收益率（ROE）仅为5.45%，净利润同比增长率仅为7.42%，而净利率为-30.53%，这些财务指标表明公司在盈利能力方面存在较大挑战。此外，市场对芯片行业的整体估值回调可能会进一步压缩公司的估值空间。</li></ul><p><strong>风险/行动建议：</strong></p><ul><li><strong>风险提示：</strong> 当前市场情绪较为悲观，股价下跌趋势明显，投资者应警惕进一步的下行风险。</li></ul><ul><li><strong>行动建议：</strong> 如果您已经持有该股票，建议密切关注公司基本面和行业动态，评估是否需要调整仓位。对于潜在投资者，建议等待更明确的止跌信号和估值回调后再做考虑。</li></ul><ul><li><strong>长期视角：</strong> 如果您对芯片行业的长期前景有信心，可以考虑在估值回调到更具吸引力的水平时逐步建仓，但应控制好仓位，避免过度集中。</li></ul><p>总之，在当前的市场环境下，保持谨慎和耐心是明智的选择。正如我常说的，“如果我知道自己死在哪里，我就永远不去那里”。在投资中，识别并避开风险往往比追求收益更为重要。</p></div></div></div>
+<div class="panel"><h2>分析师报告<span class="sub">2 篇</span></h2><details open><summary>市场面分析</summary><div class="body"><div class="md"><h4>06082 壁仞科技 市场面分析</h4><ul><li>红黑榜多空分数：多头 45 / 空头 85，分差 -40。</li><li>当前价格：30.36。</li><li>当前交易评级：Reduce。</li><li>值得加仓区间：27.32 - 28.54。</li><li>风险控制位：26.72。</li><li>市场愿意给溢价的原因：芯片行业长期前景依然看好；公司研发投入力度大。</li><li>当前主要压制因素：股价大幅下跌11.85%，空头主导；芯片行业整体估值回调压力；未见明显止跌企稳迹象。</li></ul></div></div></details><details open><summary>基本面分析</summary><div class="body"><div class="md"><h4>06082 壁仞科技 基本面分析</h4><ul><li>报告期：暂无。</li><li>PB：6.86。</li><li>PS(TTM)：31.53。</li><li>ROE：5.45%。</li><li>营收同比：113.73%。</li><li>归母净利润同比：7.42%。</li><li>核心判断：收入仍在增长；利润端保持扩张。</li></ul></div></div></details></div>
+<div class="panel"><h2>研究与计划</h2>
+<details><summary>基本面摘要</summary><div class="body"><div class="md"><h3>核心财务快照</h3><ul><li>报告期: 数据缺失</li><li>当前股价: 30.36 元</li><li>总市值: 789.38 亿元</li><li>PE (TTM): 数据缺失</li><li>PB: 6.86</li><li>PS (TTM): 31.53</li><li>营业总收入(报告期): 数据缺失 亿元</li><li>营收同比增长率: 113.73%</li><li>归母净利润(报告期): 数据缺失 亿元</li><li>归母净利润同比增长率: 7.42%</li><li>ROE (TTM/估算): 5.45%</li><li>资产负债率: 数据缺失</li><li>经营性现金流 / 归母净利润: 数据缺失</li></ul><h4>缺失字段</h4><ul><li>PE(TTM), 营业总收入, 归母净利润, 资产负债率, 经营性现金流与归母净利润比值</li></ul></div></div></details>
+<details><summary>研究计划</summary><div class="body"><div class="md"><h4>06082 壁仞科技 研究摘要</h4><ul><li>红黑榜结论: Reduce</li><li>多头/空头: 45/85</li><li>正向信号: 营收同比 113.73%；归母净利润同比 7.42%；PB 6.86</li><li>风险信号: ROE 5.45%</li><li>榜单看多理由: 芯片行业长期前景依然看好；公司研发投入力度大</li><li>榜单风险提示: 股价大幅下跌11.85%，空头主导；芯片行业整体估值回调压力；未见明显止跌企稳迹象</li></ul></div></div></details>
+<details><summary>交易计划</summary><div class="body"><div class="md"><h4>06082 壁仞科技 交易计划</h4><ul><li>评级: Reduce</li><li>当前价格: 30.36</li><li>值得加仓区间: 27.32 - 28.54</li><li>目标价格: 28.84</li><li>止损位: 26.72</li><li>备注: 当前为缓存降级交易卡，后续若完整 TradingAgent 结果生成，将自动覆盖。</li></ul></div></div></details>
+<details><summary>交易决策</summary><div class="body"><div class="md"><p>Reduce</p><p>06082 壁仞科技 当前使用红黑榜缓存结果生成兜底交易卡。多头 45 / 空头 85，分差 -40。当前尚未取得完整 TradingAgent 长文决策，但榜单分数、财务快照和大师观点已经足够生成基础交易建议。</p></div></div></details>
+</div>
+<div class="panel"><h2>多空逻辑</h2><div class="pts"><div class="h bull">看多逻辑</div><div class="md"><p>芯片行业长期前景依然看好</p><p>公司研发投入力度大</p></div></div><div class="pts"><div class="h bear">看空逻辑</div><div class="md"><p>股价大幅下跌11.85%，空头主导</p><p>芯片行业整体估值回调压力</p><p>未见明显止跌企稳迹象</p></div></div></div>
+<div class="panel"><h2>伯克希尔研究</h2><p><strong>壁仞科技作为一家AI芯片初创企业，具有一定技术潜力，但商业模式尚不成熟且面临激烈竞争，当前估值偏高，建议观望。</strong></p><p>伯克希尔综合评分：<strong>3.0</strong></p><div class="md"><p>{&quot;verdict&quot;: &quot;观望&quot;, &quot;conservative_tip&quot;: &quot;建议等待公司盈利能力改善，PE TTM降至更合理水平后再考虑。&quot;, &quot;moderate_tip&quot;: &quot;可小仓位布局，关注未来几个季度营收增长及毛利率改善情况。&quot;, &quot;aggressive_tip&quot;: &quot;激进投资者可考虑在股价回调时买入，但需做好长期持有准备。&quot;, &quot;catalysts_plus&quot;: [&quot;AI芯片出货量超预期增长&quot;, &quot;毛利率显著提升&quot;, &quot;获得重大技术突破或大客户订单&quot;], &quot;catalysts_minus&quot;: [&quot;市场竞争加剧导致市场份额下降&quot;, &quot;现金流状况恶化&quot;, &quot;监管政策变化对AI产业产生负面影响&quot;]}</p></div></div>
+<div class="panel news"><h2>最新资讯</h2><div class="md"><p>整体情绪偏利好，共5条利多，1条利空，2条中性。</p></div><div class="nitem"><div class="t">AI Chip Designer Biren to Debut After $717 Million Hong Kong IPO</div><div class="s">Bloomberg.com · 利好</div></div><div class="nitem"><div class="t">China’s GPU ‘four dragons’ boost sales but bleed cash and chase profitability - CHOSUNBIZ</div><div class="s">Chosunbiz · 利空</div></div><div class="nitem"><div class="t">Shares in Chinese GPU start-up Biren soar in Hong Kong listing</div><div class="s">South China Morning Post · 利好</div></div><div class="nitem"><div class="t">China accelerates AI chip push as Enflame clears IPO, joins four-player lineup - CHOSUNBIZ</div><div class="s">Chosunbiz · 中性</div></div><div class="nitem"><div class="t">AI frenzy powers Hong Kong fundraising record</div><div class="s">Taipei Times · 利好</div></div><div class="nitem"><div class="t">壁仞科技计划筹集约 10 亿美元</div><div class="s">CryptoRank · 利好</div></div><div class="nitem"><div class="t">大摩：在壁仞科技H股的持股比例升至5.47%</div><div class="s">TradingView · 利好</div></div><div class="nitem"><div class="t">[Update] 50 Perusahaan Kecerdasan Buatan (AI) dengan Pendanaan Terbesar di Asia</div><div class="s">Tech in Asia Indonesia · 中性</div></div></div>
+<footer>稳健理财Agent · 红黑榜每日归档 · 黑榜 #4 · 仅供研究，不构成投资建议</footer>
+</div></body>
+</html>
