@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>天数智芯(09903) 黑榜 2026-10-10</title>
+<style>
+:root{--red:#d8342c;--redbg:#fdecea;--green:#1a9e54;--ink:#1c2230;--muted:#6b7385;
+--line:#e7e9ef;--card:#fff;--bg:#f4f6fa;--chip:#eef1f6;--dark:#23262d;--darkbg:#ececef}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",
+"Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);
+line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 16px 64px}
+header.top{background:linear-gradient(135deg,#1c2230,#2c3550);color:#fff;border-radius:14px;
+padding:22px 24px;margin-bottom:20px;box-shadow:0 6px 24px rgba(20,26,46,.12)}
+header.top h1{margin:0 0 6px;font-size:24px;letter-spacing:.5px}
+header.top .sub{opacity:.85;font-size:13px}
+header.top .sub b{color:#ffd166;font-weight:600}
+nav.mkt{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;
+background:rgba(244,246,250,.92);backdrop-filter:blur(6px);padding:10px 0;margin-bottom:14px}
+nav.mkt a{text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);
+padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600}
+nav.mkt a:hover{border-color:var(--red);color:var(--red)}
+.summary{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.summary .chip{background:var(--card);border:1px solid var(--line);border-radius:10px;
+padding:8px 12px;font-size:12px;color:var(--muted)}
+.summary .chip b{color:var(--ink);font-size:14px;margin-left:4px}
+section.board{margin:26px 0}
+.board-title{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:19px}
+.board-title .dot{width:10px;height:10px;border-radius:50%}
+.board-title.red .dot{background:var(--red)}
+.board-title.black .dot{background:var(--dark)}
+.board-title small{color:var(--muted);font-weight:400;font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+position:relative;transition:box-shadow .15s}
+.card:hover{box-shadow:0 4px 18px rgba(20,26,46,.08)}
+.card.red{border-top:3px solid var(--red)}
+.card.black{border-top:3px solid var(--dark)}
+.rank{position:absolute;top:10px;right:12px;font-size:26px;font-weight:800;color:#eceff5}
+.card.red .rank{color:#fbdcD9}
+.nm{font-size:16px;font-weight:700}
+.nm .tk{color:var(--muted);font-weight:500;font-size:12px;margin-left:6px}
+.tag{display:inline-block;background:var(--chip);color:var(--muted);border-radius:6px;
+padding:1px 7px;font-size:11px;margin:6px 6px 0 0}
+.price-row{display:flex;align-items:baseline;gap:10px;margin:10px 0 4px}
+.price{font-size:24px;font-weight:800}
+.pct{font-size:14px;font-weight:700;padding:2px 8px;border-radius:8px}
+.up{color:var(--red)}.down{color:var(--green)}.flat{color:var(--muted)}
+.pct.up{background:var(--redbg)}.pct.down{background:#e2f4e9}.pct.flat{background:var(--chip)}
+.psrc{font-size:11px;color:var(--muted);margin-left:auto}
+.scores{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.scores span{background:var(--chip);border-radius:6px;padding:2px 8px;font-size:11px;color:var(--muted)}
+.scores span b{color:var(--ink)}
+.pts{font-size:12.5px;margin:8px 0 0}
+.pts .h{font-weight:700;font-size:12px;margin:6px 0 2px}
+.pts .h.bull{color:var(--red)}.pts .h.bear{color:var(--green)}
+.pts ul{margin:2px 0 4px;padding-left:18px;color:#3a4152}
+.pts li{margin:1px 0}
+.masters{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:11px;color:var(--muted)}
+.masters b{color:var(--ink)}
+.summ{font-size:12.5px;color:#3a4152;background:#fafbfd;border:1px solid var(--line);
+border-radius:8px;padding:8px 10px;margin-top:8px}
+.empty{color:var(--muted);background:var(--card);border:1px dashed var(--line);
+border-radius:10px;padding:18px;text-align:center}
+footer{margin-top:34px;color:var(--muted);font-size:12px;text-align:center;line-height:1.8}
+a.lnk{color:var(--red);text-decoration:none}
+/* ── detail page ── */
+.backbar{margin-bottom:14px;font-size:13px}
+.backbar a{color:var(--muted);text-decoration:none;margin-right:14px}
+.backbar a:hover{color:var(--red)}
+.badge{display:inline-block;border-radius:6px;padding:2px 10px;font-size:12px;font-weight:700;margin-right:8px}
+.badge.red{background:var(--red);color:#fff}.badge.black{background:var(--dark);color:#fff}
+.trade{display:flex;flex-wrap:wrap;gap:10px;background:linear-gradient(135deg,#2c3550,#1c2230);
+color:#fff;border-radius:12px;padding:16px 18px;margin:16px 0}
+.trade .cell{min-width:120px}
+.trade .k{font-size:11px;opacity:.75}
+.trade .v{font-size:18px;font-weight:800;margin-top:2px}
+.trade .v.buy{color:#7ee2a8}.trade .v.sell{color:#ff9d97}.trade .v.hold{color:#ffd166}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0}
+.mgrid .m{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.mgrid .m .k{font-size:11px;color:var(--muted)}
+.mgrid .m .v{font-size:16px;font-weight:700;margin-top:2px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.panel>h2{margin:0 0 12px;font-size:17px}
+.panel>h2 .sub{font-size:12px;color:var(--muted);font-weight:400;margin-left:8px}
+.mreply{border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;
+padding:12px 14px;margin:10px 0;background:#fff}
+.mreply .mh{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.mreply .mh .who{font-weight:700;font-size:14px}
+.mreply .mh .mscore{margin-left:auto;background:var(--chip);border-radius:6px;padding:1px 8px;font-size:12px;font-weight:700}
+.md h2,.md h3,.md h4,.md h5{margin:12px 0 6px;font-size:15px}
+.md p{margin:6px 0;font-size:13.5px;color:#2c3345}
+.md ul{margin:6px 0;padding-left:20px;font-size:13.5px;color:#2c3345}
+.md li{margin:3px 0}
+.md strong{color:var(--ink)}
+details{border:1px solid var(--line);border-radius:10px;background:#fff;margin:10px 0;padding:0}
+details>summary{cursor:pointer;padding:12px 16px;font-weight:700;font-size:14px;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary:before{content:"▸ ";color:var(--red)}
+details[open]>summary:before{content:"▾ "}
+details>.body{padding:0 16px 14px;border-top:1px dashed var(--line)}
+.ychip{display:inline-block;background:var(--chip);border-radius:8px;padding:4px 10px;font-size:12px;margin:3px 6px 3px 0}
+.ychip b{font-size:13px}
+.news .nitem{border-top:1px dashed var(--line);padding:8px 0;font-size:13px}
+.news .nitem .t{font-weight:600}
+.news .nitem .s{color:var(--muted);font-size:12px}
+/* ── root landing page ── */
+.hero{padding:30px 26px}
+.hero-kicker{color:#ffd166;font-size:12px;font-weight:700;letter-spacing:2px;
+text-transform:uppercase;margin-bottom:8px}
+.hero h1{font-size:30px;margin:0 0 10px}
+.day-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.day-card{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);
+border-radius:12px;padding:14px 16px;transition:all .15s}
+.day-card:hover{border-color:var(--red);box-shadow:0 4px 16px rgba(216,52,44,.12);transform:translateY(-2px)}
+.day-card .d{font-weight:800;font-size:15px;color:var(--ink);display:flex;align-items:center;gap:8px}
+.day-card .m{margin-top:8px;display:flex;gap:6px}
+.day-card .m span{background:var(--chip);color:var(--muted);border-radius:6px;
+padding:2px 8px;font-size:11px}
+.latest-badge{background:var(--red);color:#fff;border-radius:6px;padding:1px 7px;
+font-size:10px;font-weight:700}
+</style>
+</head>
+<body><div class="wrap">
+<div class="backbar"><a href="../index.html">← 总览</a><a href="../hk.html">← 港股榜单</a></div>
+<header class="top">
+  <h1><span class="badge black">黑榜 #6</span>天数智芯<span class="tk" style="opacity:.7;font-size:15px;font-weight:400;margin-left:8px">09903</span></h1>
+  <div class="sub">港股 ·  · 榜单日期 <b>2026-10-10</b> · 盘价采集 <b>2026-10-10 05:00:12</b></div>
+  <div class="price-row" style="margin-top:12px">
+    <span class="price" style="color:#fff">HK$88.30</span>
+    <span class="pct down">-4.28%</span>
+    <span class="psrc" style="color:rgba(255,255,255,.6)">实时</span>
+  </div>
+  <div class="scores" style="margin-top:10px">
+    <span>综合 <b>31.9</b></span>
+    <span>多头 <b>45</b></span>
+    <span>空头 <b>75</b></span>
+    <span>大师均值 <b>55.4</b></span>
+    <span>信号 <b>negative</b></span>
+  </div>
+</header>
+<div class="trade"><div class="cell"><div class="k">交易评级</div><span class="v hold">Reduce</span></div><div class="cell"><div class="k">加仓区间</div><span class="v">79.47 ~ 83.00</span></div><div class="cell"><div class="k">伯克希尔</div><span class="v">观望</span></div><div class="cell"><div class="k">伯克希尔分</div><span class="v">2.75</span></div></div>
+<div class="panel"><h2>财务指标</h2><div class="mgrid"><div class="m"><div class="k">市净率 PB</div><div class="v">10.68</div></div><div class="m"><div class="k">ROE</div><div class="v">2.6%</div></div><div class="m"><div class="k">总市值</div><div class="v">713</div></div><div class="m"><div class="k">营收同比</div><div class="v">60.1%</div></div><div class="m"><div class="k">净利同比</div><div class="v">71.3%</div></div></div></div>
+<div class="panel"><h2>历史收益</h2><span class="ychip">近1月 <b class="down">-17.48%</b></span><span class="ychip">近6月 <b class="down">-36.17%</b></span><span class="ychip">近1年 <b class="up">+68.93%</b></span></div>
+<div class="panel"><h2>大师圆桌<span class="sub">5 位</span></h2><div class="mreply"><div class="mh"><span class="who">段永平</span><span class="mscore">38</span></div><div class="md"><p>关于天数智芯（09903），我的看法可能和大家的关注点不太一样。</p><p>首先，从长期价值投资的角度来看，这家公司目前不在我能力圈范围内。AI芯片确实有很好的发展潜力，但这个行业的竞争格局非常激烈，而且技术迭代速度非常快。作为投资者，我们不仅要看到行业的长期前景，更要理解公司的具体竞争优势在哪里。目前从公开信息来看，天数智芯在技术研发上有一定积累，但它的市场地位和盈利能力都还不够清晰。</p><p>其次，从&quot;本分&quot;的角度出发，我们投资的是公司本身，而不是某个概念或趋势。目前公司的股价持续下跌，市场情绪低迷，这反映了投资者对公司未来盈利能力的担忧。而从财务数据来看，虽然营收和净利润同比有增长，但ROE只有2.6%，PS高达37倍，这样的估值水平让我觉得风险大于机会。</p><h4>风险提示：</h4><ul><li>市场竞争加剧：AI芯片领域巨头林立，天数智芯能否持续保持竞争力需要打一个问号。</li><li>盈利压力：虽然营收增长不错，但高PS估值意味着市场对其盈利预期很高，如果未来业绩不达预期，股价可能会面临更大压力。</li><li>市场情绪：当前市场情绪低迷，短期内可能难以看到明显的反转信号。</li></ul><h4>行动建议：</h4><p>如果一定要参与，我建议先耐心等待更明确的信号，比如公司能否在竞争中获得更大的市场份额，或者能否实现更可持续的盈利能力。同时，要做好充分的风险管理，不要因为看好某个概念而忽视了基本面的重要性。</p><p>最后，我想说的是，投资要&quot;做对的事&quot;，而不是追逐热点。我们要看的是公司本身的价值，而不是短期的市场情绪。如果这家公司真的值得投资，未来会有足够的机会让我们以更安全的价格买入。</p></div></div><div class="mreply"><div class="mh"><span class="who">巴菲特</span><span class="mscore">76</span></div><div class="md"><p>各位朋友，今天我们讨论的是天数智芯这家公司。我想先给出我的结论：<strong>这是一家让我持谨慎态度的企业。</strong></p><p>首先，从长期发展的角度来看，AI芯片确实是一个充满潜力的领域。天数智芯在技术研发方面有一定的积累，这为其未来发展提供了支撑。然而，我们也需要看到一些令人担忧的信号。股价持续下跌，空头趋势明显，这反映了市场情绪的低迷。此外，行业竞争正在加剧，公司的盈利压力也在增加。</p><p>从价值投资的角度来看，我非常重视护城河和自由现金流这两个指标。天数智芯目前的市销率（PS）高达37倍，市净率（PB）也超过10倍，这表明市场对其未来增长抱有很高的期望。然而，从现有的财务数据来看，公司的净资产收益率（ROE）仅为2.6%，这意味着其资本配置效率并不高。</p><p>在这里，我想提出几个关键问题供大家思考：</p><ul><li><strong>这家公司在未来十年内能否保持其技术领先地位？</strong> AI芯片领域的竞争非常激烈，技术更新换代迅速。如果公司不能持续创新，其市场份额可能会被竞争对手迅速蚕食。</li></ul><ul><li><strong>公司的盈利能力能否持续改善？</strong> 尽管营收和净利润的同比增长率看起来不错，但考虑到其高昂的估值，我们需要看到更强劲的盈利能力和更稳定的现金流。</li></ul><ul><li><strong>市场情绪何时会反转？</strong> 短期内，市场情绪对股价的影响很大。如果市场情绪持续低迷，股价可能会继续承压。</li></ul><p>基于以上分析，我的建议是：<strong>在当前情况下，保持观望可能是更明智的选择。</strong> 如果你已经在关注这家公司，建议密切关注其技术研发进展、市场份额变化以及盈利能力改善的迹象。同时，考虑到市场情绪的影响，做好风险管理是至关重要的。</p><p>最后，我想引用查理·芒格的一句话来结束今天的发言：“投资就像打棒球，你不需要每次都挥棒。” 在面对不确定性时，耐心和谨慎往往是最宝贵的品质。</p></div></div><div class="mreply"><div class="mh"><span class="who">达利欧</span><span class="mscore">50</span></div><div class="md"><h4>圆桌发言</h4><h5>结论</h5><p>目前对天数智芯（09903）持中性偏谨慎的态度。虽然公司处于AI芯片这一具有长期发展潜力的赛道，但当前市场情绪低迷，股价持续下跌，且面临较大的盈利压力，短期内难有显著起色。</p><h5>理由</h5><ul><li><strong>AI芯片赛道长期潜力</strong>：</li><li>AI芯片作为未来科技发展的重要基础设施，其长期发展潜力毋庸置疑。天数智芯在技术研发方面有一定积累，这为其在未来的竞争中提供了一定的支撑。</li><li>然而，AI芯片市场竞争激烈，不仅有国际巨头的强势竞争，国内也有多家企业在积极布局。天数智芯能否在这样的环境中脱颖而出，还需要进一步观察其技术突破和市场策略。</li></ul><ul><li><strong>市场情绪与股价表现</strong>：</li><li>股价持续下跌，空头趋势明显，反映出市场对公司的短期前景持悲观态度。当前市净率（PB）和市销率（PS）均处于较高水平，显示出市场对其估值存在较大分歧。</li><li>短期内，市场情绪的低迷和盈利压力的增加，可能导致股价继续承压。</li></ul><ul><li><strong>盈利压力与市场竞争</strong>：</li><li>尽管营收和净利润同比大幅增长，但公司的净资产收益率（ROE）仅为2.6%，显示出其盈利能力仍然较弱。在市场竞争加剧的情况下，如何提高盈利能力是公司面临的主要挑战。</li></ul><h5>风险/行动建议</h5><ul><li><strong>风险</strong>：</li><li>市场竞争加剧可能导致市场份额下降，进而影响公司的盈利能力和市场估值。</li><li>市场情绪低迷可能持续较长时间，导致股价继续下跌。</li></ul><ul><li><strong>行动建议</strong>：</li><li><strong>原则化决策</strong>：在当前市场环境下，建议投资者采用“极度透明”和“算法决策”的方式，密切关注公司的基本面变化和技术进展。</li><li><strong>风险平衡</strong>：如果投资者已经持有该股票，建议在仓位上保持谨慎，避免过度集中。可以考虑在市场情绪好转或公司基本面出现明显改善时，再考虑加仓。</li><li><strong>长期视角</strong>：对于长期投资者，可以关注公司在AI芯片领域的研发进展和市场拓展情况，等待更合适的入场时机。</li></ul><p>总之，天数智芯虽然身处一个有前景的赛道，但当前面临的市场和盈利压力不容忽视。投资者需要根据自身的风险承受能力和投资周期，谨慎做出决策。</p></div></div><div class="mreply"><div class="mh"><span class="who">彼得·林奇</span><span class="mscore">52</span></div><div class="md"><h4>结论</h4><p>我对天数智芯持谨慎中立的态度。虽然这家公司身处AI芯片这一有前景的行业，但目前股价持续下跌、市场情绪低迷，估值也不便宜，因此我认为现阶段不适合贸然买入。</p><h4>理由</h4><ul><li><strong>行业前景</strong>：AI芯片确实是一个长期看好的赛道，天数智芯作为一家技术研发能力较强的公司，在这一领域有一定的竞争力。从这个角度看，它具备成为&quot;十倍股&quot;的潜力。</li></ul><ul><li><strong>估值问题</strong>：然而，目前的估值水平让我感到担忧。公司的市净率(PB)高达10.67，市销率(PS)更是达到了37.98，这表明市场已经给予了这家公司相当高的预期。相比之下，其净资产收益率(ROE)仅为2.6%，说明公司的盈利能力与其估值并不匹配。</li></ul><ul><li><strong>市场情绪</strong>：股价持续下跌，空头趋势明显，这反映出市场对公司的信心不足。短期内，市场情绪的低迷可能会继续压制股价表现。</li></ul><h4>风险/行动建议</h4><ul><li><strong>短期风险</strong>：市场竞争加剧，盈利压力较大，这是当前最主要的担忧。如果公司不能有效应对竞争压力，其高估值可能会面临回调风险。</li></ul><ul><li><strong>长期机会</strong>：如果公司能够在AI芯片领域持续创新，保持技术领先，并找到合适的盈利模式，那么长期来看可能会有不错的回报。</li></ul><ul><li><strong>具体行动</strong>：对于散户投资者，我建议暂时观望，不要急于入场。可以先关注公司的季度财报，看看其盈利能力是否有所改善。同时，可以去了解其产品的市场反馈，看看是否有更多的实际应用案例。</li></ul><p>总的来说，这家公司就像一个还在成长中的孩子，有潜力，但目前还不太稳定。如果你真的看好AI芯片行业，可以先做一些基础调研，比如去了解他们的产品在实际应用中的表现，或者关注行业内的其他竞争者。这样可以更好地判断这家公司是否值得长期投资。</p></div></div><div class="mreply"><div class="mh"><span class="who">芒格</span><span class="mscore">61</span></div><div class="md"><p>各位同仁，关于天数智芯（09903），我的看法是：目前不宜过度乐观。</p><p>首先，从逆向思维的角度来看，这家公司面临几个明显的失败风险：</p><ul><li>股价持续下跌，空头趋势明显，这表明市场对其前景的信心正在减弱。</li><li>市场竞争加剧，盈利压力较大。在AI芯片领域，不仅有国际巨头的竞争，还有国内其他企业的追赶，天数智芯能否持续保持技术优势存在疑问。</li><li>市场情绪低迷，短期内难有起色。当前整体市场环境不佳，投资者对高估值、高风险的科技股持谨慎态度。</li></ul><p>其次，从激励机制的角度分析，天数智芯的管理层和股东可能面临较大的业绩压力，这可能导致一些短视的决策，比如过度追求短期营收增长而忽视长期研发投入。</p><p>再者，从多元思维模型的角度来看：</p><ul><li>从经济学角度，市场竞争加剧和盈利压力是显而易见的风险。</li><li>从心理学角度，市场情绪低迷和股价持续下跌会形成负反馈，进一步打压股价。</li><li>从财务角度，尽管营收和净利润同比大幅增长，但ROE仅为2.6%，PS高达37.98，估值仍然偏高。</li></ul><p>基于以上分析，我的建议是：</p><ul><li>短期内不建议增持或重仓买入。当前市场情绪和估值水平都不支持大幅上涨。</li><li>如果已经持有，建议密切关注公司基本面变化，特别是市场竞争格局和盈利能力的变化。</li><li>长期来看，如果公司能够在技术研发上持续领先，并且市场情绪有所好转，可以考虑在估值合理时逐步增持。</li></ul><p>我能错在哪？或许我对市场竞争的严峻程度估计过高，或者对公司的技术研发能力过于悲观。但无论如何，在当前的市场环境下，保持谨慎是明智的选择。</p></div></div></div>
+<div class="panel"><h2>分析师报告<span class="sub">2 篇</span></h2><details open><summary>市场面分析</summary><div class="body"><div class="md"><h4>09903 天数智芯 市场面分析</h4><ul><li>红黑榜多空分数：多头 45 / 空头 75，分差 -30。</li><li>当前价格：88.30。</li><li>当前交易评级：Reduce。</li><li>值得加仓区间：79.47 - 83.00。</li><li>风险控制位：77.70。</li><li>市场愿意给溢价的原因：AI芯片长期发展潜力；技术研发能力提供一定支撑。</li><li>当前主要压制因素：股价持续下跌，空头趋势明显；市场竞争加剧，盈利压力较大；市场情绪低迷，短期内难有起色。</li></ul></div></div></details><details open><summary>基本面分析</summary><div class="body"><div class="md"><h4>09903 天数智芯 基本面分析</h4><ul><li>报告期：暂无。</li><li>PB：10.68。</li><li>PS(TTM)：37.98。</li><li>ROE：2.61%。</li><li>营收同比：60.12%。</li><li>归母净利润同比：71.30%。</li><li>核心判断：收入仍在增长；利润端保持扩张。</li></ul></div></div></details></div>
+<div class="panel"><h2>研究与计划</h2>
+<details><summary>基本面摘要</summary><div class="body"><div class="md"><h3>核心财务快照</h3><ul><li>报告期: 数据缺失</li><li>当前股价: 88.30 元</li><li>总市值: 713.04 亿元</li><li>PE (TTM): 数据缺失</li><li>PB: 10.68</li><li>PS (TTM): 37.98</li><li>营业总收入(报告期): 数据缺失 亿元</li><li>营收同比增长率: 60.12%</li><li>归母净利润(报告期): 数据缺失 亿元</li><li>归母净利润同比增长率: 71.30%</li><li>ROE (TTM/估算): 2.61%</li><li>资产负债率: 数据缺失</li><li>经营性现金流 / 归母净利润: 数据缺失</li></ul><h4>缺失字段</h4><ul><li>PE(TTM), 营业总收入, 归母净利润, 资产负债率, 经营性现金流与归母净利润比值</li></ul></div></div></details>
+<details><summary>研究计划</summary><div class="body"><div class="md"><h4>09903 天数智芯 研究摘要</h4><ul><li>红黑榜结论: Reduce</li><li>多头/空头: 45/75</li><li>正向信号: 营收同比 60.12%；归母净利润同比 71.30%；PB 10.68</li><li>风险信号: ROE 2.61%</li><li>榜单看多理由: AI芯片长期发展潜力；技术研发能力提供一定支撑</li><li>榜单风险提示: 股价持续下跌，空头趋势明显；市场竞争加剧，盈利压力较大；市场情绪低迷，短期内难有起色</li></ul></div></div></details>
+<details><summary>交易计划</summary><div class="body"><div class="md"><h4>09903 天数智芯 交易计划</h4><ul><li>评级: Reduce</li><li>当前价格: 88.30</li><li>值得加仓区间: 79.47 - 83.00</li><li>目标价格: 83.88</li><li>止损位: 77.70</li><li>备注: 当前为缓存降级交易卡，后续若完整 TradingAgent 结果生成，将自动覆盖。</li></ul></div></div></details>
+<details><summary>交易决策</summary><div class="body"><div class="md"><p>Reduce</p><p>09903 天数智芯 当前使用红黑榜缓存结果生成兜底交易卡。多头 45 / 空头 75，分差 -30。当前尚未取得完整 TradingAgent 长文决策，但榜单分数、财务快照和大师观点已经足够生成基础交易建议。</p></div></div></details>
+</div>
+<div class="panel"><h2>多空逻辑</h2><div class="pts"><div class="h bull">看多逻辑</div><div class="md"><p>AI芯片长期发展潜力</p><p>技术研发能力提供一定支撑</p></div></div><div class="pts"><div class="h bear">看空逻辑</div><div class="md"><p>股价持续下跌，空头趋势明显</p><p>市场竞争加剧，盈利压力较大</p><p>市场情绪低迷，短期内难有起色</p></div></div></div>
+<div class="panel"><h2>伯克希尔研究</h2><p><strong>天数智芯作为AI芯片领域的新兴企业，具有一定技术潜力，但面临激烈竞争和盈利压力，当前估值偏高，建议观望。</strong></p><p>伯克希尔综合评分：<strong>2.75</strong></p><div class="md"><p>{&quot;verdict&quot;: &quot;观望&quot;, &quot;conservative_tip&quot;: &quot;建议等待更明确的盈利信号，股价低于5港元时考虑轻仓介入。&quot;, &quot;moderate_tip&quot;: &quot;股价在5-7港元区间时，可小规模建仓，关注后续研发进展和市场份额变化。&quot;, &quot;aggressive_tip&quot;: &quot;股价低于5港元且有明确技术突破信号时，可考虑适度加仓，但需控制风险。&quot;, &quot;catalysts_plus&quot;: [&quot;AI芯片市场份额提升&quot;, &quot;技术突破获得市场认可&quot;, &quot;芯片国产化政策进一步落地&quot;], &quot;catalysts_minus&quot;: [&quot;持续亏损扩大&quot;, &quot;巨头加大竞争压力&quot;, &quot;现金流紧张导致资金链断裂&quot;]}</p></div></div>
+<div class="panel news"><h2>最新资讯</h2><div class="md"><p>整体情绪偏利好，共3条利多，1条利空，1条中性。</p></div><div class="nitem"><div class="t">China&#x27;s Iluvatar CoreX raises $800M in placement after 428% post-IPO rally</div><div class="s">Dealroom · 利好</div></div><div class="nitem"><div class="t">AI frenzy powers Hong Kong fundraising record</div><div class="s">Taipei Times · 利好</div></div><div class="nitem"><div class="t">Neuromorphic AI Inference: How China Mobile Cloud Cut Power Use by 40%</div><div class="s">Intelligent Living · 中性</div></div><div class="nitem"><div class="t">China’s GPU ‘four dragons’ boost sales but bleed cash and chase profitability - CHOSUNBIZ</div><div class="s">Chosunbiz · 利空</div></div><div class="nitem"><div class="t">[Update] 50 Perusahaan Kecerdasan Buatan (AI) dengan Pendanaan Terbesar di Asia</div><div class="s">Tech in Asia Indonesia · 利好</div></div></div>
+<footer>稳健理财Agent · 红黑榜每日归档 · 黑榜 #6 · 仅供研究，不构成投资建议</footer>
+</div></body>
+</html>

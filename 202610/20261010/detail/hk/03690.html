@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>美团-W(03690) 红榜 2026-10-10</title>
+<style>
+:root{--red:#d8342c;--redbg:#fdecea;--green:#1a9e54;--ink:#1c2230;--muted:#6b7385;
+--line:#e7e9ef;--card:#fff;--bg:#f4f6fa;--chip:#eef1f6;--dark:#23262d;--darkbg:#ececef}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",
+"Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);
+line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 16px 64px}
+header.top{background:linear-gradient(135deg,#1c2230,#2c3550);color:#fff;border-radius:14px;
+padding:22px 24px;margin-bottom:20px;box-shadow:0 6px 24px rgba(20,26,46,.12)}
+header.top h1{margin:0 0 6px;font-size:24px;letter-spacing:.5px}
+header.top .sub{opacity:.85;font-size:13px}
+header.top .sub b{color:#ffd166;font-weight:600}
+nav.mkt{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;
+background:rgba(244,246,250,.92);backdrop-filter:blur(6px);padding:10px 0;margin-bottom:14px}
+nav.mkt a{text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);
+padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600}
+nav.mkt a:hover{border-color:var(--red);color:var(--red)}
+.summary{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.summary .chip{background:var(--card);border:1px solid var(--line);border-radius:10px;
+padding:8px 12px;font-size:12px;color:var(--muted)}
+.summary .chip b{color:var(--ink);font-size:14px;margin-left:4px}
+section.board{margin:26px 0}
+.board-title{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:19px}
+.board-title .dot{width:10px;height:10px;border-radius:50%}
+.board-title.red .dot{background:var(--red)}
+.board-title.black .dot{background:var(--dark)}
+.board-title small{color:var(--muted);font-weight:400;font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+position:relative;transition:box-shadow .15s}
+.card:hover{box-shadow:0 4px 18px rgba(20,26,46,.08)}
+.card.red{border-top:3px solid var(--red)}
+.card.black{border-top:3px solid var(--dark)}
+.rank{position:absolute;top:10px;right:12px;font-size:26px;font-weight:800;color:#eceff5}
+.card.red .rank{color:#fbdcD9}
+.nm{font-size:16px;font-weight:700}
+.nm .tk{color:var(--muted);font-weight:500;font-size:12px;margin-left:6px}
+.tag{display:inline-block;background:var(--chip);color:var(--muted);border-radius:6px;
+padding:1px 7px;font-size:11px;margin:6px 6px 0 0}
+.price-row{display:flex;align-items:baseline;gap:10px;margin:10px 0 4px}
+.price{font-size:24px;font-weight:800}
+.pct{font-size:14px;font-weight:700;padding:2px 8px;border-radius:8px}
+.up{color:var(--red)}.down{color:var(--green)}.flat{color:var(--muted)}
+.pct.up{background:var(--redbg)}.pct.down{background:#e2f4e9}.pct.flat{background:var(--chip)}
+.psrc{font-size:11px;color:var(--muted);margin-left:auto}
+.scores{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.scores span{background:var(--chip);border-radius:6px;padding:2px 8px;font-size:11px;color:var(--muted)}
+.scores span b{color:var(--ink)}
+.pts{font-size:12.5px;margin:8px 0 0}
+.pts .h{font-weight:700;font-size:12px;margin:6px 0 2px}
+.pts .h.bull{color:var(--red)}.pts .h.bear{color:var(--green)}
+.pts ul{margin:2px 0 4px;padding-left:18px;color:#3a4152}
+.pts li{margin:1px 0}
+.masters{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:11px;color:var(--muted)}
+.masters b{color:var(--ink)}
+.summ{font-size:12.5px;color:#3a4152;background:#fafbfd;border:1px solid var(--line);
+border-radius:8px;padding:8px 10px;margin-top:8px}
+.empty{color:var(--muted);background:var(--card);border:1px dashed var(--line);
+border-radius:10px;padding:18px;text-align:center}
+footer{margin-top:34px;color:var(--muted);font-size:12px;text-align:center;line-height:1.8}
+a.lnk{color:var(--red);text-decoration:none}
+/* ── detail page ── */
+.backbar{margin-bottom:14px;font-size:13px}
+.backbar a{color:var(--muted);text-decoration:none;margin-right:14px}
+.backbar a:hover{color:var(--red)}
+.badge{display:inline-block;border-radius:6px;padding:2px 10px;font-size:12px;font-weight:700;margin-right:8px}
+.badge.red{background:var(--red);color:#fff}.badge.black{background:var(--dark);color:#fff}
+.trade{display:flex;flex-wrap:wrap;gap:10px;background:linear-gradient(135deg,#2c3550,#1c2230);
+color:#fff;border-radius:12px;padding:16px 18px;margin:16px 0}
+.trade .cell{min-width:120px}
+.trade .k{font-size:11px;opacity:.75}
+.trade .v{font-size:18px;font-weight:800;margin-top:2px}
+.trade .v.buy{color:#7ee2a8}.trade .v.sell{color:#ff9d97}.trade .v.hold{color:#ffd166}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0}
+.mgrid .m{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.mgrid .m .k{font-size:11px;color:var(--muted)}
+.mgrid .m .v{font-size:16px;font-weight:700;margin-top:2px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.panel>h2{margin:0 0 12px;font-size:17px}
+.panel>h2 .sub{font-size:12px;color:var(--muted);font-weight:400;margin-left:8px}
+.mreply{border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;
+padding:12px 14px;margin:10px 0;background:#fff}
+.mreply .mh{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.mreply .mh .who{font-weight:700;font-size:14px}
+.mreply .mh .mscore{margin-left:auto;background:var(--chip);border-radius:6px;padding:1px 8px;font-size:12px;font-weight:700}
+.md h2,.md h3,.md h4,.md h5{margin:12px 0 6px;font-size:15px}
+.md p{margin:6px 0;font-size:13.5px;color:#2c3345}
+.md ul{margin:6px 0;padding-left:20px;font-size:13.5px;color:#2c3345}
+.md li{margin:3px 0}
+.md strong{color:var(--ink)}
+details{border:1px solid var(--line);border-radius:10px;background:#fff;margin:10px 0;padding:0}
+details>summary{cursor:pointer;padding:12px 16px;font-weight:700;font-size:14px;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary:before{content:"▸ ";color:var(--red)}
+details[open]>summary:before{content:"▾ "}
+details>.body{padding:0 16px 14px;border-top:1px dashed var(--line)}
+.ychip{display:inline-block;background:var(--chip);border-radius:8px;padding:4px 10px;font-size:12px;margin:3px 6px 3px 0}
+.ychip b{font-size:13px}
+.news .nitem{border-top:1px dashed var(--line);padding:8px 0;font-size:13px}
+.news .nitem .t{font-weight:600}
+.news .nitem .s{color:var(--muted);font-size:12px}
+/* ── root landing page ── */
+.hero{padding:30px 26px}
+.hero-kicker{color:#ffd166;font-size:12px;font-weight:700;letter-spacing:2px;
+text-transform:uppercase;margin-bottom:8px}
+.hero h1{font-size:30px;margin:0 0 10px}
+.day-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.day-card{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);
+border-radius:12px;padding:14px 16px;transition:all .15s}
+.day-card:hover{border-color:var(--red);box-shadow:0 4px 16px rgba(216,52,44,.12);transform:translateY(-2px)}
+.day-card .d{font-weight:800;font-size:15px;color:var(--ink);display:flex;align-items:center;gap:8px}
+.day-card .m{margin-top:8px;display:flex;gap:6px}
+.day-card .m span{background:var(--chip);color:var(--muted);border-radius:6px;
+padding:2px 8px;font-size:11px}
+.latest-badge{background:var(--red);color:#fff;border-radius:6px;padding:1px 7px;
+font-size:10px;font-weight:700}
+</style>
+</head>
+<body><div class="wrap">
+<div class="backbar"><a href="../index.html">← 总览</a><a href="../hk.html">← 港股榜单</a></div>
+<header class="top">
+  <h1><span class="badge red">红榜 #3</span>美团-W<span class="tk" style="opacity:.7;font-size:15px;font-weight:400;margin-left:8px">03690</span></h1>
+  <div class="sub">港股 ·  · 榜单日期 <b>2026-10-10</b> · 盘价采集 <b>2026-10-10 05:00:12</b></div>
+  <div class="price-row" style="margin-top:12px">
+    <span class="price" style="color:#fff">HK$71.50</span>
+    <span class="pct up">+3.03%</span>
+    <span class="psrc" style="color:rgba(255,255,255,.6)">实时</span>
+  </div>
+  <div class="scores" style="margin-top:10px">
+    <span>综合 <b>88.8</b></span>
+    <span>多头 <b>87</b></span>
+    <span>空头 <b>28</b></span>
+    <span>大师均值 <b>60</b></span>
+    <span>信号 <b>positive</b></span>
+  </div>
+</header>
+<div class="trade"><div class="cell"><div class="k">交易评级</div><span class="v buy">Buy</span></div><div class="cell"><div class="k">加仓区间</div><span class="v">69.36 ~ 72.22</span></div><div class="cell"><div class="k">目标价</div><span class="v">80.08</span></div><div class="cell"><div class="k">伯克希尔</div><span class="v">买入</span></div><div class="cell"><div class="k">伯克希尔分</div><span class="v">4.10</span></div></div>
+<div class="panel"><h2>财务指标</h2><div class="mgrid"><div class="m"><div class="k">市净率 PB</div><div class="v">2.27</div></div><div class="m"><div class="k">总市值</div><div class="v">4415</div></div><div class="m"><div class="k">营收同比</div><div class="v">3.6%</div></div><div class="m"><div class="k">净利同比</div><div class="v">4.4%</div></div></div></div>
+<div class="panel"><h2>历史收益</h2><span class="ychip">近1月 <b class="down">-4.35%</b></span><span class="ychip">近6月 <b class="down">-17.34%</b></span><span class="ychip">近1年 <b class="down">-24.34%</b></span></div>
+<div class="panel"><h2>大师圆桌<span class="sub">5 位</span></h2><div class="mreply"><div class="mh"><span class="who">段永平</span><span class="mscore">50</span></div><div class="md"><h4>段永平圆桌发言</h4><p><strong>结论：美团是一家值得关注的优秀公司，但目前价格偏高，需要谨慎考虑。</strong></p><p><strong>理由：</strong></p><p>美团作为本地生活服务领域的领先企业，其护城河深厚，业务模式具有长期价值。从基本面来看，公司在本地生活服务市场的空间依然广阔，这为其未来增长提供了支撑。同时，美团的股价在过去一段时间内稳步上涨，趋势向好，这反映了市场对其业务模式的认可。</p><p>然而，需要注意的是，美团的估值目前处于较高水平。从市净率和市销率来看，市场对其未来增长预期较高，这带来了潜在的市场波动风险。此外，公司还面临着行业监管压力和市场竞争加剧的挑战，这些都可能影响其未来的盈利能力。</p><p><strong>风险/行动建议：</strong></p><ul><li><strong>估值风险</strong>：当前价格下买入可能面临估值回调的风险。建议投资者在考虑买入时，要对公司的长期增长潜力有清晰的认识，并做好应对市场波动的准备。</li></ul><ul><li><strong>行业监管</strong>：美团所处的行业受到监管政策的影响较大。投资者需要密切关注相关政策的变化，以及公司如何应对这些变化。</li></ul><ul><li><strong>市场竞争</strong>：虽然美团在本地生活服务市场占据领先地位，但市场竞争依然激烈。投资者需要评估公司在面对竞争对手时的应对策略和执行能力。</li></ul><ul><li><strong>长期持有</strong>：如果投资者认同美团的长期价值，并且能够承受短期市场波动，可以考虑长期持有。但前提是必须对公司有深入的理解，并对其未来发展有坚定的信心。</li></ul><p>总之，美团是一家值得关注的公司，但目前的价格需要谨慎对待。投资者应该根据自身的风险承受能力和投资目标，做出理性的决策。</p></div></div><div class="mreply"><div class="mh"><span class="who">巴菲特</span><span class="mscore">85</span></div><div class="md"><p>各位朋友，今天我们来聊聊美团-W（03690）。我的看法是，这是一家值得长期关注的优秀公司，但目前的价格需要谨慎对待。</p><p>首先，美团拥有非常强大的护城河。作为中国本地生活服务的领军企业，它已经建立起一个难以撼动的生态系统。从外卖到酒店预订，从共享单车到社区团购，美团的业务覆盖范围广泛，并且各个业务之间形成了强大的协同效应。这种网络效应和规模优势，使得竞争对手很难在短时间内对其构成实质性威胁。</p><p>从财务数据来看，美团的营收和利润都在稳步增长。尽管目前利润率仍为负数，但考虑到公司在技术研发和市场拓展方面的持续投入，这种状况是可以理解的。长期来看，随着规模效应的显现和运营效率的提升，美团的盈利能力有望得到显著改善。</p><p>然而，我们也需要正视一些潜在的风险。首先，美团的估值水平相对较高，市销率（PS）和市净率（PB）都处于较高位置。这意味着市场对公司的未来增长预期已经包含在当前股价中，任何不及预期的表现都可能导致股价波动。其次，行业监管的不确定性仍然存在，政府对互联网平台的监管政策可能会对美团的业务模式产生一定影响。此外，市场竞争也在加剧，阿里巴巴、拼多多等竞争对手都在不断加大对本地生活服务市场的投入。</p><p>基于以上分析，我的建议是：</p><p>如果你是一个长期投资者，并且相信美团的商业模式和竞争优势，那么在当前价格下可以考虑逐步建仓。但要注意控制仓位，避免一次性投入过多资金。</p><p>同时，要密切关注公司的基本面变化，特别是监管政策的变化和市场竞争格局的演变。如果发现美团的护城河出现松动，或者盈利能力持续低于预期，那么就需要重新评估投资决策。</p><p>最后，我想引用一句老话：&quot;时间是伟大生意的朋友，是烂生意的敌人。&quot;对于美团这样的公司，我们需要有足够的耐心和定力，让时间来验证我们的判断。</p><p>如果查理·芒格在这里，他可能会补充说：&quot;投资就像经营果园，你不能只看到眼前的果实，还要考虑树木的生长环境和未来的收成。&quot;美团就像一棵正在成长的果树，我们需要关注的是它能否在未来结出更多的果实。</p></div></div><div class="mreply"><div class="mh"><span class="who">达利欧</span><span class="mscore">59</span></div><div class="md"><h4>圆桌发言：关于美团-W (03690) 的投资观点</h4><h5>结论：</h5><p>美团-W 作为一家互联网巨头，在本地生活服务领域拥有强大的市场地位，但目前需要谨慎对待其投资价值。我们建议保持中性立场，同时密切关注其估值水平和潜在风险。</p><h5>理由：</h5><ul><li><strong>护城河与市场地位</strong>：</li></ul><p>   美团在本地生活服务领域拥有深厚的护城河，其平台效应和网络效应使其在竞争中占据优势地位。公司的业务模式涵盖了餐饮外卖、酒店旅游、到店服务等多个领域，市场空间广阔，增长潜力巨大。</p><ul><li><strong>估值与市场波动</strong>：</li></ul><p>   尽管公司基本面稳健，但当前估值水平偏高，PB和PS指标均处于历史高位。这意味着市场对其未来增长预期较高，但同时也增加了市场波动的风险。尤其是在当前全球经济环境不确定的背景下，高估值可能面临回调压力。</p><ul><li><strong>行业监管与竞争</strong>：</li></ul><p>   美团面临的行业监管压力不容忽视。近年来，中国政府对互联网行业的监管力度加大，美团作为行业巨头之一，可能会受到更多政策影响。此外，市场竞争也在加剧，新的竞争对手不断涌现，可能会侵蚀其市场份额。</p><h5>风险与行动建议：</h5><ul><li><strong>风险</strong>：</li><li><strong>估值风险</strong>：当前估值水平较高，市场波动可能带来股价回调压力。</li><li><strong>监管风险</strong>：行业监管政策的变化可能对公司业务产生不利影响。</li><li><strong>竞争风险</strong>：新进入者和现有竞争对手的挑战可能影响其市场份额和盈利能力。</li></ul><ul><li><strong>行动建议</strong>：</li><li><strong>保持关注</strong>：建议投资者密切关注公司财报和行业动态，特别是监管政策的变化和市场竞争态势。</li><li><strong>分散投资</strong>：在投资组合中保持适度仓位，避免过度集中于单一股票，以降低风险。</li><li><strong>原则化决策</strong>：根据个人投资原则和风险承受能力，制定明确的买入和卖出条件，并严格执行。例如，可以设定估值回调到合理水平时的买入计划，或在监管风险加剧时的卖出策略。</li></ul><h5>总结：</h5><p>美团-W 作为一家优秀的公司，其长期增长潜力依然值得期待。然而，当前市场环境和估值水平需要我们保持谨慎。建议投资者在决策时遵循原则化、透明化的原则，平衡好风险与收益的关系。通过持续的观察和评估，我们可以更好地把握投资机会。</p></div></div><div class="mreply"><div class="mh"><span class="who">彼得·林奇</span><span class="mscore">71</span></div><div class="md"><p>好的，我来谈谈美团这只股票的看法。</p><h4>结论</h4><p>美团是一家值得关注的公司，但目前估值偏高，投资者需要谨慎对待。</p><h4>理由</h4><ul><li><strong>护城河与市场地位</strong>：美团作为中国本地生活服务的巨头，拥有强大的护城河。它不仅在餐饮外卖市场占据领先地位，还在酒店、旅游等多个领域有广泛布局。这种多元化的业务模式使其在面对单一市场波动时更具韧性。</li></ul><ul><li><strong>增长潜力</strong>：本地生活服务市场在中国仍有巨大的增长空间。随着城市化进程的推进和消费升级，消费者对便捷、高效的生活服务需求只会增加。美团的平台模式使其能够快速捕捉这些新兴需求。</li></ul><ul><li><strong>股价表现</strong>：从股价走势来看，美团在过去几年表现相对稳健，显示出市场对其长期增长的信心。</li></ul><h4>风险与挑战</h4><ul><li><strong>估值压力</strong>：尽管美团的基本面强劲，但当前估值水平较高。市盈率（PE）虽然未给出，但市净率（PB）达到2.27，显示出市场对其未来增长有较高预期。如果增长不及预期，股价可能会面临回调压力。</li></ul><ul><li><strong>监管风险</strong>：作为互联网平台型公司，美团面临着来自监管方面的压力。近年来，中国政府对互联网行业的监管趋严，这可能会影响美团的业务模式和盈利能力。</li></ul><ul><li><strong>市场竞争</strong>：本地生活服务市场竞争激烈，不仅有阿里巴巴等传统巨头的竞争，还有新兴创业公司的不断涌现。美团需要持续创新和投入，以保持其市场领先地位。</li></ul><h4>行动建议</h4><ul><li><strong>观望为主</strong>：对于已经持有美团股票的投资者，建议继续持有，但密切关注公司的基本面变化和估值水平。如果股价出现大幅上涨，可以考虑适当减仓以锁定利润。</li></ul><ul><li><strong>等待回调机会</strong>：对于尚未买入的投资者，建议耐心等待更好的买入时机。可以关注公司财报发布后的市场反应，以及监管政策的变化。如果股价出现回调，可以考虑分批买入。</li></ul><ul><li><strong>关注行业动态</strong>：美团所在的本地生活服务行业变化迅速，投资者需要持续关注行业动态和竞争对手的动向。如果行业出现重大变革，可能需要重新评估美团的投资价值。</li></ul><p>总之，美团是一家值得长期关注的公司，但当前估值偏高，投资者需要谨慎操作。买入之前，建议深入了解公司的商业模式和未来增长潜力，并做好风险管理。</p></div></div><div class="mreply"><div class="mh"><span class="who">芒格</span><span class="mscore">35</span></div><div class="md"><h4>结论</h4><p>对于美团-W（03690），我的立场是谨慎乐观，但目前不建议重仓持有。</p><h4>理由</h4><p>首先，美团作为中国互联网巨头，在本地生活服务领域拥有深厚的护城河。其股价稳步上涨，趋势向好，这反映了市场对其长期增长潜力的认可。此外，本地生活服务市场的空间依然广阔，美团在这个领域具有显著的竞争优势。</p><p>然而，从逆向思维的角度来看，我们需要关注几个关键风险：</p><ul><li><strong>估值偏高</strong>：尽管美团的增长前景不错，但其当前的估值水平相对较高，市场波动可能会对其股价造成压力。</li><li><strong>行业监管压力</strong>：互联网行业面临的监管环境日益严格，这可能会影响美团的业务模式和盈利能力。</li><li><strong>市场竞争加剧</strong>：随着竞争对手的不断涌现，美团在本地生活服务市场的份额可能会受到挑战。</li></ul><p>从多元心智模型的角度分析，美团的商业模式虽然强大，但其盈利能力仍然面临挑战。当前其净利润率为负，这表明公司在盈利能力方面还有很长的路要走。</p><h4>风险/行动建议</h4><ul><li><strong>短期风险</strong>：市场波动和监管压力是短期内的主要风险因素。如果市场出现大幅调整，美团的股价可能会受到较大影响。</li><li><strong>长期潜力</strong>：从长期来看，美团在本地生活服务领域的竞争优势依然明显。如果能够有效应对监管压力并持续创新，其长期增长潜力依然值得期待。</li></ul><h4>行动建议</h4><ul><li><strong>当前仓位</strong>：如果你已经持有美团，建议保持现有仓位，但不要急于加仓。</li><li><strong>新投资者</strong>：对于新投资者，建议等待更明确的信号出现，例如监管环境明朗化或盈利能力改善后再考虑入场。</li><li><strong>风险控制</strong>：无论何时，都要做好风险管理，避免过度集中投资于单一股票。</li></ul><h4>我能错在哪</h4><p>我可能低估了美团在面对监管压力时的应对能力，或者高估了市场竞争对其业务的影响。此外，市场情绪的突然变化也可能导致股价出现意外波动。因此，保持灵活性和对市场变化的敏感度是至关重要的。</p></div></div></div>
+<div class="panel"><h2>分析师报告<span class="sub">2 篇</span></h2><details open><summary>市场面分析</summary><div class="body"><div class="md"><h4>03690 美团-W 市场面分析</h4><ul><li>红黑榜多空分数：多头 87 / 空头 28，分差 59。</li><li>当前价格：71.50。</li><li>当前交易评级：Buy。</li><li>值得加仓区间：69.36 - 72.22。</li><li>目标价格：80.08。</li><li>市场愿意给溢价的原因：作为互联网巨头，护城河深厚；股价稳步上涨，趋势向好；本地生活服务市场空间广阔。</li><li>当前主要压制因素：估值偏高，市场波动风险；面临行业监管压力；市场竞争加剧。</li></ul></div></div></details><details open><summary>基本面分析</summary><div class="body"><div class="md"><h4>03690 美团-W 基本面分析</h4><ul><li>报告期：暂无。</li><li>PB：2.27。</li><li>PS(TTM)：1.02。</li><li>营收同比：3.56%。</li><li>归母净利润同比：4.45%。</li><li>核心判断：收入仍在增长；利润端保持扩张。</li></ul></div></div></details></div>
+<div class="panel"><h2>研究与计划</h2>
+<details><summary>基本面摘要</summary><div class="body"><div class="md"><h3>核心财务快照</h3><ul><li>报告期: 数据缺失</li><li>当前股价: 71.50 元</li><li>总市值: 4415.49 亿元</li><li>PE (TTM): 数据缺失</li><li>PB: 2.27</li><li>PS (TTM): 1.02</li><li>营业总收入(报告期): 数据缺失 亿元</li><li>营收同比增长率: 3.56%</li><li>归母净利润(报告期): 数据缺失 亿元</li><li>归母净利润同比增长率: 4.45%</li><li>ROE (TTM/估算): 数据缺失</li><li>资产负债率: 数据缺失</li><li>经营性现金流 / 归母净利润: 数据缺失</li></ul><h4>缺失字段</h4><ul><li>PE(TTM), 营业总收入, 归母净利润, ROE, 资产负债率, 经营性现金流与归母净利润比值</li></ul></div></div></details>
+<details><summary>研究计划</summary><div class="body"><div class="md"><h4>03690 美团-W 研究摘要</h4><ul><li>红黑榜结论: Buy</li><li>多头/空头: 87/28</li><li>正向信号: 营收同比 3.56%；归母净利润同比 4.45%；PB 2.27</li><li>榜单看多理由: 作为互联网巨头，护城河深厚；股价稳步上涨，趋势向好；本地生活服务市场空间广阔</li><li>榜单风险提示: 估值偏高，市场波动风险；面临行业监管压力；市场竞争加剧</li></ul></div></div></details>
+<details><summary>交易计划</summary><div class="body"><div class="md"><h4>03690 美团-W 交易计划</h4><ul><li>评级: Buy</li><li>当前价格: 71.50</li><li>值得加仓区间: 69.36 - 72.22</li><li>目标价格: 80.08</li><li>止损位: 65.78</li><li>备注: 当前为缓存降级交易卡，后续若完整 TradingAgent 结果生成，将自动覆盖。</li></ul></div></div></details>
+<details><summary>交易决策</summary><div class="body"><div class="md"><p>Buy</p><p>03690 美团-W 当前使用红黑榜缓存结果生成兜底交易卡。多头 87 / 空头 28，分差 59。当前尚未取得完整 TradingAgent 长文决策，但榜单分数、财务快照和大师观点已经足够生成基础交易建议。</p></div></div></details>
+</div>
+<div class="panel"><h2>多空逻辑</h2><div class="pts"><div class="h bull">看多逻辑</div><div class="md"><p>作为互联网巨头，护城河深厚</p><p>股价稳步上涨，趋势向好</p><p>本地生活服务市场空间广阔</p></div></div><div class="pts"><div class="h bear">看空逻辑</div><div class="md"><p>估值偏高，市场波动风险</p><p>面临行业监管压力</p><p>市场竞争加剧</p></div></div></div>
+<div class="panel"><h2>伯克希尔研究</h2><p><strong>美团是一家具有强大护城河和长期增长潜力的互联网平台公司，但需警惕竞争加剧与监管风险。</strong></p><p>伯克希尔综合评分：<strong>4.1</strong></p><div class="md"><p>{&quot;verdict&quot;: &quot;买入&quot;, &quot;conservative_tip&quot;: &quot;建议在PE TTM 35倍以下买入，目标价200港元。&quot;, &quot;moderate_tip&quot;: &quot;建议在PE TTM 40倍以下买入，目标价220港元。&quot;, &quot;aggressive_tip&quot;: &quot;建议在PE TTM 45倍以下买入，目标价240港元。&quot;, &quot;catalysts_plus&quot;: [&quot;外卖与到店业务市场份额持续提升。&quot;, &quot;无人配送技术取得突破性进展。&quot;, &quot;反垄断政策风险逐步缓解。&quot;], &quot;catalysts_minus&quot;: [&quot;抖音等平台市场份额快速提升。&quot;, &quot;反垄断政策进一步收紧。&quot;, &quot;宏观经济下行导致消费需求疲软。&quot;]}</p></div></div>
+<div class="panel news"><h2>最新资讯</h2><div class="md"><p>共4条新闻，3条利好，1条中性，整体情绪偏多。</p></div><div class="nitem"><div class="t">美团-W(03690.HK)：核心主业盈利反转超预期 出海提效与AI构筑长期成长动能 - Futubull</div><div class="s">富途牛牛 · 利好</div></div><div class="nitem"><div class="t">美团-W(03690.HK)：Q2利润改善 竞争趋缓即配业务UE有望回到合理区间 - Futubull</div><div class="s">富途牛牛 · 利好</div></div><div class="nitem"><div class="t">MEITUAN - W (3690) - stock price, quote, history</div><div class="s">HKEX · 中性</div></div><div class="nitem"><div class="t">美团9月2日斥资1520.45万港元回购13.13万股</div><div class="s">Moomoo · 利好</div></div><div class="nitem"><div class="t">格隆汇快讯</div><div class="s">TradingView · 中性</div></div></div>
+<footer>稳健理财Agent · 红黑榜每日归档 · 红榜 #3 · 仅供研究，不构成投资建议</footer>
+</div></body>
+</html>
