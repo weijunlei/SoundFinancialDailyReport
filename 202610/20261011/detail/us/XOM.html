@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>XOM(XOM) 红榜 2026-10-11</title>
+<style>
+:root{--red:#d8342c;--redbg:#fdecea;--green:#1a9e54;--ink:#1c2230;--muted:#6b7385;
+--line:#e7e9ef;--card:#fff;--bg:#f4f6fa;--chip:#eef1f6;--dark:#23262d;--darkbg:#ececef}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",
+"Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);
+line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 16px 64px}
+header.top{background:linear-gradient(135deg,#1c2230,#2c3550);color:#fff;border-radius:14px;
+padding:22px 24px;margin-bottom:20px;box-shadow:0 6px 24px rgba(20,26,46,.12)}
+header.top h1{margin:0 0 6px;font-size:24px;letter-spacing:.5px}
+header.top .sub{opacity:.85;font-size:13px}
+header.top .sub b{color:#ffd166;font-weight:600}
+nav.mkt{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;
+background:rgba(244,246,250,.92);backdrop-filter:blur(6px);padding:10px 0;margin-bottom:14px}
+nav.mkt a{text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);
+padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600}
+nav.mkt a:hover{border-color:var(--red);color:var(--red)}
+.summary{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.summary .chip{background:var(--card);border:1px solid var(--line);border-radius:10px;
+padding:8px 12px;font-size:12px;color:var(--muted)}
+.summary .chip b{color:var(--ink);font-size:14px;margin-left:4px}
+section.board{margin:26px 0}
+.board-title{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:19px}
+.board-title .dot{width:10px;height:10px;border-radius:50%}
+.board-title.red .dot{background:var(--red)}
+.board-title.black .dot{background:var(--dark)}
+.board-title small{color:var(--muted);font-weight:400;font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+position:relative;transition:box-shadow .15s}
+.card:hover{box-shadow:0 4px 18px rgba(20,26,46,.08)}
+.card.red{border-top:3px solid var(--red)}
+.card.black{border-top:3px solid var(--dark)}
+.rank{position:absolute;top:10px;right:12px;font-size:26px;font-weight:800;color:#eceff5}
+.card.red .rank{color:#fbdcD9}
+.nm{font-size:16px;font-weight:700}
+.nm .tk{color:var(--muted);font-weight:500;font-size:12px;margin-left:6px}
+.tag{display:inline-block;background:var(--chip);color:var(--muted);border-radius:6px;
+padding:1px 7px;font-size:11px;margin:6px 6px 0 0}
+.price-row{display:flex;align-items:baseline;gap:10px;margin:10px 0 4px}
+.price{font-size:24px;font-weight:800}
+.pct{font-size:14px;font-weight:700;padding:2px 8px;border-radius:8px}
+.up{color:var(--red)}.down{color:var(--green)}.flat{color:var(--muted)}
+.pct.up{background:var(--redbg)}.pct.down{background:#e2f4e9}.pct.flat{background:var(--chip)}
+.psrc{font-size:11px;color:var(--muted);margin-left:auto}
+.scores{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.scores span{background:var(--chip);border-radius:6px;padding:2px 8px;font-size:11px;color:var(--muted)}
+.scores span b{color:var(--ink)}
+.pts{font-size:12.5px;margin:8px 0 0}
+.pts .h{font-weight:700;font-size:12px;margin:6px 0 2px}
+.pts .h.bull{color:var(--red)}.pts .h.bear{color:var(--green)}
+.pts ul{margin:2px 0 4px;padding-left:18px;color:#3a4152}
+.pts li{margin:1px 0}
+.masters{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:11px;color:var(--muted)}
+.masters b{color:var(--ink)}
+.summ{font-size:12.5px;color:#3a4152;background:#fafbfd;border:1px solid var(--line);
+border-radius:8px;padding:8px 10px;margin-top:8px}
+.empty{color:var(--muted);background:var(--card);border:1px dashed var(--line);
+border-radius:10px;padding:18px;text-align:center}
+footer{margin-top:34px;color:var(--muted);font-size:12px;text-align:center;line-height:1.8}
+a.lnk{color:var(--red);text-decoration:none}
+/* ── detail page ── */
+.backbar{margin-bottom:14px;font-size:13px}
+.backbar a{color:var(--muted);text-decoration:none;margin-right:14px}
+.backbar a:hover{color:var(--red)}
+.badge{display:inline-block;border-radius:6px;padding:2px 10px;font-size:12px;font-weight:700;margin-right:8px}
+.badge.red{background:var(--red);color:#fff}.badge.black{background:var(--dark);color:#fff}
+.trade{display:flex;flex-wrap:wrap;gap:10px;background:linear-gradient(135deg,#2c3550,#1c2230);
+color:#fff;border-radius:12px;padding:16px 18px;margin:16px 0}
+.trade .cell{min-width:120px}
+.trade .k{font-size:11px;opacity:.75}
+.trade .v{font-size:18px;font-weight:800;margin-top:2px}
+.trade .v.buy{color:#7ee2a8}.trade .v.sell{color:#ff9d97}.trade .v.hold{color:#ffd166}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0}
+.mgrid .m{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.mgrid .m .k{font-size:11px;color:var(--muted)}
+.mgrid .m .v{font-size:16px;font-weight:700;margin-top:2px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.panel>h2{margin:0 0 12px;font-size:17px}
+.panel>h2 .sub{font-size:12px;color:var(--muted);font-weight:400;margin-left:8px}
+.mreply{border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;
+padding:12px 14px;margin:10px 0;background:#fff}
+.mreply .mh{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.mreply .mh .who{font-weight:700;font-size:14px}
+.mreply .mh .mscore{margin-left:auto;background:var(--chip);border-radius:6px;padding:1px 8px;font-size:12px;font-weight:700}
+.md h2,.md h3,.md h4,.md h5{margin:12px 0 6px;font-size:15px}
+.md p{margin:6px 0;font-size:13.5px;color:#2c3345}
+.md ul{margin:6px 0;padding-left:20px;font-size:13.5px;color:#2c3345}
+.md li{margin:3px 0}
+.md strong{color:var(--ink)}
+details{border:1px solid var(--line);border-radius:10px;background:#fff;margin:10px 0;padding:0}
+details>summary{cursor:pointer;padding:12px 16px;font-weight:700;font-size:14px;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary:before{content:"▸ ";color:var(--red)}
+details[open]>summary:before{content:"▾ "}
+details>.body{padding:0 16px 14px;border-top:1px dashed var(--line)}
+.ychip{display:inline-block;background:var(--chip);border-radius:8px;padding:4px 10px;font-size:12px;margin:3px 6px 3px 0}
+.ychip b{font-size:13px}
+.news .nitem{border-top:1px dashed var(--line);padding:8px 0;font-size:13px}
+.news .nitem .t{font-weight:600}
+.news .nitem .s{color:var(--muted);font-size:12px}
+/* ── root landing page ── */
+.hero{padding:30px 26px}
+.hero-kicker{color:#ffd166;font-size:12px;font-weight:700;letter-spacing:2px;
+text-transform:uppercase;margin-bottom:8px}
+.hero h1{font-size:30px;margin:0 0 10px}
+.day-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.day-card{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);
+border-radius:12px;padding:14px 16px;transition:all .15s}
+.day-card:hover{border-color:var(--red);box-shadow:0 4px 16px rgba(216,52,44,.12);transform:translateY(-2px)}
+.day-card .d{font-weight:800;font-size:15px;color:var(--ink);display:flex;align-items:center;gap:8px}
+.day-card .m{margin-top:8px;display:flex;gap:6px}
+.day-card .m span{background:var(--chip);color:var(--muted);border-radius:6px;
+padding:2px 8px;font-size:11px}
+.latest-badge{background:var(--red);color:#fff;border-radius:6px;padding:1px 7px;
+font-size:10px;font-weight:700}
+</style>
+</head>
+<body><div class="wrap">
+<div class="backbar"><a href="../index.html">← 总览</a><a href="../us.html">← 美股榜单</a></div>
+<header class="top">
+  <h1><span class="badge red">红榜 #10</span>XOM<span class="tk" style="opacity:.7;font-size:15px;font-weight:400;margin-left:8px">XOM</span></h1>
+  <div class="sub">美股 ·  · 榜单日期 <b>2026-10-11</b> · 盘价采集 <b>2026-10-11 05:00:04</b></div>
+  <div class="price-row" style="margin-top:12px">
+    <span class="price" style="color:#fff">$168.94</span>
+    <span class="pct up">+0.26%</span>
+    <span class="psrc" style="color:rgba(255,255,255,.6)">实时</span>
+  </div>
+  <div class="scores" style="margin-top:10px">
+    <span>综合 <b>81.2</b></span>
+    <span>多头 <b>85</b></span>
+    <span>空头 <b>30</b></span>
+    <span>大师均值 <b>60.4</b></span>
+    <span>信号 <b>positive</b></span>
+  </div>
+</header>
+<div class="trade"><div class="cell"><div class="k">交易评级</div><span class="v buy">Buy</span></div><div class="cell"><div class="k">加仓区间</div><span class="v">163.87 ~ 170.63</span></div><div class="cell"><div class="k">目标价</div><span class="v">189.21</span></div><div class="cell"><div class="k">伯克希尔</div><span class="v">观望</span></div><div class="cell"><div class="k">伯克希尔分</div><span class="v">3.50</span></div></div>
+<div class="panel"><h2>财务指标</h2><div class="mgrid"><div class="m"><div class="k">市盈率 PE</div><div class="v">21.74</div></div><div class="m"><div class="k">市净率 PB</div><div class="v">2.68</div></div><div class="m"><div class="k">ROE</div><div class="v">12.6%</div></div><div class="m"><div class="k">总市值</div><div class="v">6947</div></div><div class="m"><div class="k">营收同比</div><div class="v">44.1%</div></div><div class="m"><div class="k">净利同比</div><div class="v">112.8%</div></div></div></div>
+<div class="panel"><h2>历史收益</h2><span class="ychip">近1月 <b class="up">+2.25%</b></span><span class="ychip">近6月 <b class="up">+10.77%</b></span><span class="ychip">近1年 <b class="up">+52.57%</b></span><span class="ychip">近5年 <b class="up">+174.43%</b></span></div>
+<div class="panel"><h2>大师圆桌<span class="sub">5 位</span></h2><div class="mreply"><div class="mh"><span class="who">段永平</span><span class="mscore">62</span></div><div class="md"><p>我理解大家都在关注XOM这家公司。作为价值投资者，我想先从本分的角度来谈谈我的看法。</p><p>首先，XOM确实是一家财务状况稳健的公司。从数据来看，它的营收同比增长44.1%，净利润同比增长112.8%，这样的业绩表现相当强劲。而且当前21.7倍的市盈率，2.68倍的市净率，从传统能源行业的估值水平来看，也还算合理。</p><p>但我们做投资要问自己：这真的是一件&quot;对的事&quot;吗？这里有几个需要考虑的因素：</p><ul><li>虽然目前能源需求持续增长，但长期来看，能源转型是大势所趋。传统能源企业面临的政策压力和转型挑战不容忽视。</li></ul><ul><li>地缘政治风险始终是悬在传统能源公司头上的达摩克利斯之剑。这种不确定性需要我们在投资时格外谨慎。</li></ul><ul><li>从&quot;本分&quot;的角度来看，我们需要问自己：我们真的懂这个行业吗？传统能源行业的周期性、复杂性，以及未来可能面临的颠覆性变化，都增加了投资的不确定性。</li></ul><p>所以我的建议是：</p><p>如果一定要投资这类公司，建议采取相对保守的策略。可以考虑将其作为投资组合中的一部分，但不宜重仓。同时要密切关注公司的转型战略和执行情况，以及全球能源政策的变化。</p><p>这里我想特别提醒一点：不要因为短期业绩好就忽视了长期风险。投资要看得远一些，想想十年后这个行业会变成什么样。</p><p>最后，我想用一句话来总结：投资要本分，不要被短期的亮丽业绩迷惑，要始终关注企业长期创造价值的能力。</p></div></div><div class="mreply"><div class="mh"><span class="who">巴菲特</span><span class="mscore">56</span></div><div class="md"><p>各位朋友，今天我们来聊聊埃克森美孚（XOM）。我的结论是，这是一家值得关注的能源巨头，但投资与否还需要仔细权衡。</p><p>首先，埃克森美孚拥有强大的护城河。能源行业是一个需要巨大资本投入的领域，而埃克森美孚凭借其规模优势和长期积累的技术经验，在全球市场上占据了重要地位。此外，公司的财务状况非常稳健，营收和净利润都实现了大幅增长，这表明其在当前能源市场中依然能够保持强劲的盈利能力。</p><p>然而，我们也必须正视一些风险。地缘政治的不确定性对能源行业始终是一个巨大的挑战，埃克森美孚的业务遍布全球，这意味着它可能会受到各种政治和经济波动的影响。此外，能源转型是一个不可忽视的趋势，尽管埃克森美孚已经开始在可再生能源领域进行投资，但短期内其主要收入仍然依赖于传统化石燃料。</p><p>在估值方面，目前埃克森美孚的市盈率约为21倍，市净率约为2.7倍。对于一家成熟的大型能源公司来说，这个估值并不算便宜，但也不算过高。考虑到其稳健的财务状况和持续的盈利能力，这个价格提供了一定的安全边际。</p><p>因此，我的建议是，如果你对能源行业有深入的了解，并且能够承受短期内的市场波动，埃克森美孚可以成为一个不错的投资选择。但如果你更倾向于规避风险，或者对能源转型带来的长期影响感到担忧，那么可能需要谨慎考虑。</p><p>最后，我想引用一句我常说的话：&quot;我们寻找的是那些即使在恶劣的经济环境下也能生存并繁荣的企业。&quot;埃克森美孚显然具备这样的特质，但投资者也需要做好应对各种挑战的准备。</p><p>如果是芒格，他会补充说：&quot;投资就像在果园里摘果子，你要确保自己摘的是最甜的那个，而不是随便抓一个就咬。&quot;在投资埃克森美孚之前，请确保你对其业务模式和风险有充分的了解。</p></div></div><div class="mreply"><div class="mh"><span class="who">达利欧</span><span class="mscore">73</span></div><div class="md"><p>各位同仁，今天我们来讨论埃克森美孚（XOM）的投资机会。我的观点是，XOM 在当前环境下具备一定的吸引力，但需要谨慎考虑潜在风险。</p><p>首先，XOM 的多头逻辑非常清晰：</p><ul><li><strong>全球能源需求持续增长</strong>：尽管可再生能源发展迅速，但化石燃料在全球能源结构中仍占据主导地位。尤其是在新兴市场和发展中国家，对石油和天然气的需求依然强劲，这为 XOM 提供了稳定的收入来源。</li></ul><ul><li><strong>财务状况稳健</strong>：XOM 的财务表现非常强劲，收入和净利润同比增长显著，净资产收益率（ROE）也保持在健康水平。这表明公司在当前市场环境下具备良好的盈利能力。</li></ul><p>然而，我们也必须正视一些空头风险：</p><ul><li><strong>地缘政治风险</strong>：石油市场对地缘政治事件非常敏感，任何主要产油地区的冲突或紧张局势都可能对油价产生重大影响，进而影响 XOM 的盈利。</li></ul><ul><li><strong>能源转型趋势</strong>：全球向可再生能源转型的趋势不可逆转，这将对传统石油公司的长期增长前景构成压力。尽管 XOM 也在积极投资于新能源技术，但转型过程充满挑战。</li></ul><p>基于以上分析，我建议采取以下行动：</p><ul><li><strong>关注地缘政治动态</strong>：密切关注主要产油地区的政治局势，及时调整仓位以应对潜在的市场波动。</li></ul><ul><li><strong>多元化投资组合</strong>：在投资 XOM 的同时，考虑增加对可再生能源和其他新兴能源技术的投资，以平衡传统能源行业的风险。</li></ul><ul><li><strong>保持长期视角</strong>：虽然短期内 XOM 可能会受到市场波动的影响，但从长期来看，其稳健的财务状况和行业地位使其成为一个值得关注的投资标的。</li></ul><p>最后，我想强调的是，投资决策应基于对宏观环境和公司基本面的深入分析，而不是短期的市场情绪。正如我常说的，&quot;Pain + Reflection = Progress&quot;，在投资过程中，我们需要不断反思和学习，以应对不断变化的市场环境。</p></div></div><div class="mreply"><div class="mh"><span class="who">彼得·林奇</span><span class="mscore">49</span></div><div class="md"><p>各位投资者朋友，今天我们来聊聊埃克森美孚（XOM）。我先说结论：我对这只股票持中性态度。这家公司目前财务状况稳健，能源需求也在持续增长，这是它的优势所在。然而，地缘政治风险和能源转型趋势带来的压力也不容忽视。</p><p>首先，埃克森美孚作为一家能源巨头，其财务状况相当稳健，营收和净利润同比大幅增长，净资产收益率（ROE）也保持在健康水平。这说明公司在当前市场环境下依然能够保持盈利能力。此外，能源需求持续增长，这为公司的长期发展提供了支撑。</p><p>然而，我们不能忽视一些潜在的风险。地缘政治的不确定性可能会对油价产生重大影响，而全球能源转型的趋势也意味着传统能源公司面临着长期的压力。虽然埃克森美孚已经开始在可再生能源领域进行投资，但转型需要时间，效果也有待观察。</p><p>从估值的角度来看，目前埃克森美孚的市盈率（PE）约为21倍，市净率（PB）约为2.7倍。对于一家成熟的大型能源公司来说，这个估值不算便宜，但也并非高得离谱。</p><p>基于以上分析，我的建议是：如果您对能源行业有深入的了解，并且能够承受一定的市场波动，那么可以考虑将埃克森美孚纳入您的投资组合。但请务必密切关注地缘政治局势和全球能源政策的变化，这些因素可能会对公司的业绩产生重大影响。</p><p>最后，我想提醒大家，投资股票不仅仅是看财务数据，更重要的是理解公司的商业模式和行业趋势。希望大家在做出投资决策时，能够综合考虑各方面的因素，做出理性的选择。</p></div></div><div class="mreply"><div class="mh"><span class="who">芒格</span><span class="mscore">62</span></div><div class="md"><p>各位好，关于XOM（埃克森美孚），我先说结论：目前来看，它是一个值得部分配置的投资标的，但不宜过于激进。</p><p>让我解释原因。我们可以从几个角度来分析。首先是能源需求，这是最基础的经济驱动力。全球经济复苏和工业活动增加，使得对石油和天然气的需求持续增长，这一点从XOM的收入同比增长44.1%和净利润同比增长112.8%中可以看出端倪。这种强劲的财务表现，反映了公司在当前市场环境下的竞争力和定价能力。</p><p>然而，正如我常说的，要先考虑失败的可能。XOM面临的最大风险来自两个方面：地缘政治的不确定性和能源转型的长期趋势。石油市场从来不是单纯的经济问题，它深受地缘政治博弈的影响，而这一点是我们无法预测也无法控制的。此外，尽管目前化石燃料仍占主导地位，但全球向可再生能源转型的趋势不可忽视，这将对传统能源公司的长期估值构成压力。</p><p>从估值来看，XOM的市盈率（PE）为21.7，市净率（PB）为2.68，考虑到其稳健的财务状况和行业地位，这个估值不算便宜，但也不算贵。它更像是一个处于合理区间的中等风险标的。</p><p>那么，我的建议是：如果你已经持有XOM，可以继续持有，但要注意控制仓位，不要超过总投资组合的15-20%。如果你正在考虑买入，建议等待更好的价格，或者分批建仓，以应对可能的市场波动。</p><p>最后，提醒大家关注两个关键点：第一，地缘政治局势的变化，这可能会对油价产生重大影响；第二，XOM在新能源领域的投资和转型策略，这将是其长期竞争力的重要因素。</p><p>我能错在哪？可能是低估了能源转型的速度，或者对地缘政治风险的冲击程度估计不足。记住，投资不是赌博，我们要做的是在风险和收益之间找到最佳平衡点。</p></div></div></div>
+<div class="panel"><h2>分析师报告<span class="sub">2 篇</span></h2><details open><summary>市场面分析</summary><div class="body"><div class="md"><h4>XOM XOM 市场面分析</h4><ul><li>红黑榜多空分数：多头 85 / 空头 30，分差 55。</li><li>当前价格：168.94。</li><li>当前交易评级：Buy。</li><li>值得加仓区间：163.87 - 170.63。</li><li>目标价格：189.21。</li><li>市场愿意给溢价的原因：能源需求持续增长；财务状况稳健。</li><li>当前主要压制因素：地缘政治风险影响；能源转型趋势带来压力。</li></ul></div></div></details><details open><summary>基本面分析</summary><div class="body"><div class="md"><h4>XOM XOM 基本面分析</h4><ul><li>报告期：暂无。</li><li>PE(TTM)：21.74。</li><li>PB：2.68。</li><li>ROE：12.58%。</li><li>营收同比：44.10%。</li><li>归母净利润同比：112.80%。</li><li>核心判断：盈利能力处于可接受区间；收入仍在增长；利润端保持扩张。</li></ul></div></div></details></div>
+<div class="panel"><h2>研究与计划</h2>
+<details><summary>基本面摘要</summary><div class="body"><div class="md"><h3>核心财务快照</h3><ul><li>报告期: 数据缺失</li><li>当前股价: 168.94 元</li><li>总市值: 6946.66 亿元</li><li>PE (TTM): 21.74</li><li>PB: 2.68</li><li>PS (TTM): 数据缺失</li><li>营业总收入(报告期): 数据缺失 亿元</li><li>营收同比增长率: 44.10%</li><li>归母净利润(报告期): 数据缺失 亿元</li><li>归母净利润同比增长率: 112.80%</li><li>ROE (TTM/估算): 12.58%</li><li>资产负债率: 数据缺失</li><li>经营性现金流 / 归母净利润: 数据缺失</li></ul><h4>缺失字段</h4><ul><li>PS(TTM), 营业总收入, 归母净利润, 资产负债率, 经营性现金流与归母净利润比值</li></ul></div></div></details>
+<details><summary>研究计划</summary><div class="body"><div class="md"><h4>XOM XOM 研究摘要</h4><ul><li>红黑榜结论: Buy</li><li>多头/空头: 85/30</li><li>正向信号: ROE 12.58%；营收同比 44.10%；归母净利润同比 112.80%；PE(TTM) 21.74</li><li>榜单看多理由: 能源需求持续增长；财务状况稳健</li><li>榜单风险提示: 地缘政治风险影响；能源转型趋势带来压力</li></ul></div></div></details>
+<details><summary>交易计划</summary><div class="body"><div class="md"><h4>XOM XOM 交易计划</h4><ul><li>评级: Buy</li><li>当前价格: 168.94</li><li>值得加仓区间: 163.87 - 170.63</li><li>目标价格: 189.21</li><li>止损位: 155.42</li><li>备注: 当前为缓存降级交易卡，后续若完整 TradingAgent 结果生成，将自动覆盖。</li></ul></div></div></details>
+<details><summary>交易决策</summary><div class="body"><div class="md"><p>Buy</p><p>XOM XOM 当前使用红黑榜缓存结果生成兜底交易卡。多头 85 / 空头 30，分差 55。当前尚未取得完整 TradingAgent 长文决策，但榜单分数、财务快照和大师观点已经足够生成基础交易建议。</p></div></div></details>
+</div>
+<div class="panel"><h2>多空逻辑</h2><div class="pts"><div class="h bull">看多逻辑</div><div class="md"><p>能源需求持续增长</p><p>财务状况稳健</p></div></div><div class="pts"><div class="h bear">看空逻辑</div><div class="md"><p>地缘政治风险影响</p><p>能源转型趋势带来压力</p></div></div></div>
+<div class="panel"><h2>伯克希尔研究</h2><p><strong>埃克森美孚是一家具备强大护城河和稳健财务表现的能源巨头，但需警惕能源转型带来的长期不确定性。</strong></p><p>伯克希尔综合评分：<strong>3.5</strong></p><div class="md"><p>{&quot;verdict&quot;: &quot;观望&quot;, &quot;conservative_tip&quot;: &quot;建议观望，耐心等待更优买入时机，当前价格区间为80-90美元。&quot;, &quot;moderate_tip&quot;: &quot;可考虑小仓位买入，设定止损位85美元，目标价100美元。&quot;, &quot;aggressive_tip&quot;: &quot;激进投资者可逢低买入，密切关注新能源转型进展，目标价110美元。&quot;, &quot;catalysts_plus&quot;: [&quot;油价持续上涨&quot;, &quot;低碳转型取得突破&quot;, &quot;新能源政策利好传统能源&quot;], &quot;catalysts_minus&quot;: [&quot;环保政策趋严&quot;, &quot;新能源技术突破&quot;, &quot;地缘政治冲突升级&quot;]}</p></div></div>
+<div class="panel news"><h2>最新资讯</h2><div class="md"><p>利多新闻6条，利空新闻1条，中性新闻4条，整体情绪偏利好。</p></div><div class="nitem"><div class="t">Has The Story Under ExxonMobil Stock Run Out?</div><div class="s">Trefis · 利空</div></div><div class="nitem"><div class="t">XOM Or CVX? Wall Street Sees More Upside In One Oil Major</div><div class="s">Stocktwits · 中性</div></div><div class="nitem"><div class="t">ExxonMobil Holdings Corporation (XOM) Presents at Barclays 40th Annual Energy-Power Conference - Slideshow</div><div class="s">Seeking Alpha · 中性</div></div><div class="nitem"><div class="t">Will Oil Supply Squeeze Change ExxonMobil Stock Narrative</div><div class="s">Simply Wall Street · 中性</div></div><div class="nitem"><div class="t">Morgan Stanley Sees ExxonMobil (XOM) Breaking its Record High. Can the Oil Giant Deliver?</div><div class="s">Yahoo Finance · 中性</div></div><div class="nitem"><div class="t">1 Cash-Producing Stock Worth Your Attention and 2 Facing Challenges</div><div class="s">The Globe and Mail · 中性</div></div><div class="nitem"><div class="t">Could Exxon Mobil (NYSE:XOM) Build a Stronger Market Story?</div><div class="s">Kalkine Media · 中性</div></div><div class="nitem"><div class="t">Fund Update: New $43.6M $XOM stock position opened by Farther Finance Advisors, LLC</div><div class="s">Quiver Quantitative · 中性</div></div></div>
+<footer>稳健理财Agent · 红黑榜每日归档 · 红榜 #10 · 仅供研究，不构成投资建议</footer>
+</div></body>
+</html>

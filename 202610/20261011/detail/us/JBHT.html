@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>JBHT(JBHT) 红榜 2026-10-11</title>
+<style>
+:root{--red:#d8342c;--redbg:#fdecea;--green:#1a9e54;--ink:#1c2230;--muted:#6b7385;
+--line:#e7e9ef;--card:#fff;--bg:#f4f6fa;--chip:#eef1f6;--dark:#23262d;--darkbg:#ececef}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",
+"Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);
+line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 16px 64px}
+header.top{background:linear-gradient(135deg,#1c2230,#2c3550);color:#fff;border-radius:14px;
+padding:22px 24px;margin-bottom:20px;box-shadow:0 6px 24px rgba(20,26,46,.12)}
+header.top h1{margin:0 0 6px;font-size:24px;letter-spacing:.5px}
+header.top .sub{opacity:.85;font-size:13px}
+header.top .sub b{color:#ffd166;font-weight:600}
+nav.mkt{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;
+background:rgba(244,246,250,.92);backdrop-filter:blur(6px);padding:10px 0;margin-bottom:14px}
+nav.mkt a{text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);
+padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600}
+nav.mkt a:hover{border-color:var(--red);color:var(--red)}
+.summary{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.summary .chip{background:var(--card);border:1px solid var(--line);border-radius:10px;
+padding:8px 12px;font-size:12px;color:var(--muted)}
+.summary .chip b{color:var(--ink);font-size:14px;margin-left:4px}
+section.board{margin:26px 0}
+.board-title{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:19px}
+.board-title .dot{width:10px;height:10px;border-radius:50%}
+.board-title.red .dot{background:var(--red)}
+.board-title.black .dot{background:var(--dark)}
+.board-title small{color:var(--muted);font-weight:400;font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+position:relative;transition:box-shadow .15s}
+.card:hover{box-shadow:0 4px 18px rgba(20,26,46,.08)}
+.card.red{border-top:3px solid var(--red)}
+.card.black{border-top:3px solid var(--dark)}
+.rank{position:absolute;top:10px;right:12px;font-size:26px;font-weight:800;color:#eceff5}
+.card.red .rank{color:#fbdcD9}
+.nm{font-size:16px;font-weight:700}
+.nm .tk{color:var(--muted);font-weight:500;font-size:12px;margin-left:6px}
+.tag{display:inline-block;background:var(--chip);color:var(--muted);border-radius:6px;
+padding:1px 7px;font-size:11px;margin:6px 6px 0 0}
+.price-row{display:flex;align-items:baseline;gap:10px;margin:10px 0 4px}
+.price{font-size:24px;font-weight:800}
+.pct{font-size:14px;font-weight:700;padding:2px 8px;border-radius:8px}
+.up{color:var(--red)}.down{color:var(--green)}.flat{color:var(--muted)}
+.pct.up{background:var(--redbg)}.pct.down{background:#e2f4e9}.pct.flat{background:var(--chip)}
+.psrc{font-size:11px;color:var(--muted);margin-left:auto}
+.scores{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.scores span{background:var(--chip);border-radius:6px;padding:2px 8px;font-size:11px;color:var(--muted)}
+.scores span b{color:var(--ink)}
+.pts{font-size:12.5px;margin:8px 0 0}
+.pts .h{font-weight:700;font-size:12px;margin:6px 0 2px}
+.pts .h.bull{color:var(--red)}.pts .h.bear{color:var(--green)}
+.pts ul{margin:2px 0 4px;padding-left:18px;color:#3a4152}
+.pts li{margin:1px 0}
+.masters{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:11px;color:var(--muted)}
+.masters b{color:var(--ink)}
+.summ{font-size:12.5px;color:#3a4152;background:#fafbfd;border:1px solid var(--line);
+border-radius:8px;padding:8px 10px;margin-top:8px}
+.empty{color:var(--muted);background:var(--card);border:1px dashed var(--line);
+border-radius:10px;padding:18px;text-align:center}
+footer{margin-top:34px;color:var(--muted);font-size:12px;text-align:center;line-height:1.8}
+a.lnk{color:var(--red);text-decoration:none}
+/* ── detail page ── */
+.backbar{margin-bottom:14px;font-size:13px}
+.backbar a{color:var(--muted);text-decoration:none;margin-right:14px}
+.backbar a:hover{color:var(--red)}
+.badge{display:inline-block;border-radius:6px;padding:2px 10px;font-size:12px;font-weight:700;margin-right:8px}
+.badge.red{background:var(--red);color:#fff}.badge.black{background:var(--dark);color:#fff}
+.trade{display:flex;flex-wrap:wrap;gap:10px;background:linear-gradient(135deg,#2c3550,#1c2230);
+color:#fff;border-radius:12px;padding:16px 18px;margin:16px 0}
+.trade .cell{min-width:120px}
+.trade .k{font-size:11px;opacity:.75}
+.trade .v{font-size:18px;font-weight:800;margin-top:2px}
+.trade .v.buy{color:#7ee2a8}.trade .v.sell{color:#ff9d97}.trade .v.hold{color:#ffd166}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0}
+.mgrid .m{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.mgrid .m .k{font-size:11px;color:var(--muted)}
+.mgrid .m .v{font-size:16px;font-weight:700;margin-top:2px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.panel>h2{margin:0 0 12px;font-size:17px}
+.panel>h2 .sub{font-size:12px;color:var(--muted);font-weight:400;margin-left:8px}
+.mreply{border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;
+padding:12px 14px;margin:10px 0;background:#fff}
+.mreply .mh{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.mreply .mh .who{font-weight:700;font-size:14px}
+.mreply .mh .mscore{margin-left:auto;background:var(--chip);border-radius:6px;padding:1px 8px;font-size:12px;font-weight:700}
+.md h2,.md h3,.md h4,.md h5{margin:12px 0 6px;font-size:15px}
+.md p{margin:6px 0;font-size:13.5px;color:#2c3345}
+.md ul{margin:6px 0;padding-left:20px;font-size:13.5px;color:#2c3345}
+.md li{margin:3px 0}
+.md strong{color:var(--ink)}
+details{border:1px solid var(--line);border-radius:10px;background:#fff;margin:10px 0;padding:0}
+details>summary{cursor:pointer;padding:12px 16px;font-weight:700;font-size:14px;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary:before{content:"▸ ";color:var(--red)}
+details[open]>summary:before{content:"▾ "}
+details>.body{padding:0 16px 14px;border-top:1px dashed var(--line)}
+.ychip{display:inline-block;background:var(--chip);border-radius:8px;padding:4px 10px;font-size:12px;margin:3px 6px 3px 0}
+.ychip b{font-size:13px}
+.news .nitem{border-top:1px dashed var(--line);padding:8px 0;font-size:13px}
+.news .nitem .t{font-weight:600}
+.news .nitem .s{color:var(--muted);font-size:12px}
+/* ── root landing page ── */
+.hero{padding:30px 26px}
+.hero-kicker{color:#ffd166;font-size:12px;font-weight:700;letter-spacing:2px;
+text-transform:uppercase;margin-bottom:8px}
+.hero h1{font-size:30px;margin:0 0 10px}
+.day-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.day-card{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);
+border-radius:12px;padding:14px 16px;transition:all .15s}
+.day-card:hover{border-color:var(--red);box-shadow:0 4px 16px rgba(216,52,44,.12);transform:translateY(-2px)}
+.day-card .d{font-weight:800;font-size:15px;color:var(--ink);display:flex;align-items:center;gap:8px}
+.day-card .m{margin-top:8px;display:flex;gap:6px}
+.day-card .m span{background:var(--chip);color:var(--muted);border-radius:6px;
+padding:2px 8px;font-size:11px}
+.latest-badge{background:var(--red);color:#fff;border-radius:6px;padding:1px 7px;
+font-size:10px;font-weight:700}
+</style>
+</head>
+<body><div class="wrap">
+<div class="backbar"><a href="../index.html">← 总览</a><a href="../us.html">← 美股榜单</a></div>
+<header class="top">
+  <h1><span class="badge red">红榜 #8</span>JBHT<span class="tk" style="opacity:.7;font-size:15px;font-weight:400;margin-left:8px">JBHT</span></h1>
+  <div class="sub">美股 ·  · 榜单日期 <b>2026-10-11</b> · 盘价采集 <b>2026-10-11 05:00:04</b></div>
+  <div class="price-row" style="margin-top:12px">
+    <span class="price" style="color:#fff">$229.26</span>
+    <span class="pct up">+0.37%</span>
+    <span class="psrc" style="color:rgba(255,255,255,.6)">实时</span>
+  </div>
+  <div class="scores" style="margin-top:10px">
+    <span>综合 <b>81.9</b></span>
+    <span>多头 <b>80</b></span>
+    <span>空头 <b>35</b></span>
+    <span>大师均值 <b>59.8</b></span>
+    <span>信号 <b>positive</b></span>
+  </div>
+</header>
+<div class="trade"><div class="cell"><div class="k">交易评级</div><span class="v buy">Buy</span></div><div class="cell"><div class="k">加仓区间</div><span class="v">222.38 ~ 231.55</span></div><div class="cell"><div class="k">目标价</div><span class="v">256.77</span></div><div class="cell"><div class="k">伯克希尔</div><span class="v">买入</span></div><div class="cell"><div class="k">伯克希尔分</div><span class="v">3.75</span></div></div>
+<div class="panel"><h2>财务指标</h2><div class="mgrid"><div class="m"><div class="k">市盈率 PE</div><div class="v">32.61</div></div><div class="m"><div class="k">市净率 PB</div><div class="v">5.89</div></div><div class="m"><div class="k">ROE</div><div class="v">18.4%</div></div><div class="m"><div class="k">总市值</div><div class="v">215</div></div><div class="m"><div class="k">营收同比</div><div class="v">19.4%</div></div><div class="m"><div class="k">净利同比</div><div class="v">45.8%</div></div></div></div>
+<div class="panel"><h2>历史收益</h2><span class="ychip">近1月 <b class="down">-14.40%</b></span><span class="ychip">近6月 <b class="up">+0.98%</b></span><span class="ychip">近1年 <b class="up">+67.23%</b></span><span class="ychip">近5年 <b class="up">+35.46%</b></span></div>
+<div class="panel"><h2>大师圆桌<span class="sub">5 位</span></h2><div class="mreply"><div class="mh"><span class="who">段永平</span><span class="mscore">74</span></div><div class="md"><h4>圆桌发言</h4><h5>结论：</h5><p>我目前对 JBHT（JB Hunt Transport Services）的看法是偏正面的。这家公司值得考虑，但需要保持谨慎。</p><h5>理由：</h5><ul><li><strong>物流行业需求强劲</strong>：从基本面来看，物流行业受益于电商的持续增长，需求端有很强的支撑。JBHT 作为行业的重要参与者，有机会分享这一红利。</li></ul><ul><li><strong>稳健的财务表现</strong>：公司当前的财务数据表现不错，营收同比增长 19.4%，净利润同比增长 45.8%，ROE 达到 18.48%。这些数字表明公司运营效率较高，盈利能力较强。</li></ul><ul><li><strong>估值相对合理</strong>：虽然 PE 达到 32.6 倍，但考虑到行业增长潜力和公司自身业绩，这个估值水平并非不可接受。PB 5.89 倍也反映了市场对其资产质量的认可。</li></ul><h5>风险/行动建议：</h5><ul><li><strong>劳动力短缺问题</strong>：物流行业面临人力成本上升和劳动力短缺的挑战，这可能会影响公司的运营效率和利润率。需要持续关注公司如何应对这一挑战。</li></ul><ul><li><strong>燃料成本上升</strong>：燃料价格波动对运输行业的利润率影响很大。如果油价持续上涨，可能会压缩公司的利润空间。</li></ul><ul><li><strong>经济放缓风险</strong>：如果宏观经济出现显著放缓，货运需求可能会受到影响，进而影响公司的业绩。</li></ul><p>基于以上分析，我的建议是：</p><ul><li>如果你看好物流行业的长期发展，并且认同 JBHT 的管理能力和市场地位，可以考虑将其纳入投资组合。但要控制好仓位，避免过度集中。</li><li>同时，要密切关注公司如何应对劳动力成本和燃料价格波动等风险因素。</li><li>长期持有需要耐心，要做好承受短期波动准备。投资决策要基于对公司长期竞争力的判断，而不是短期的市场情绪。</li></ul><p>最后，我想强调，投资要本分，要投看得懂的好生意。JBHT 符合这个标准，但任何投资都存在风险，要做好风险控制。</p></div></div><div class="mreply"><div class="mh"><span class="who">巴菲特</span><span class="mscore">58</span></div><div class="md"><p>各位朋友，今天我们来聊聊 JBHT 这家公司。作为一个长期关注物流行业的投资者，我首先要说，物流是现代经济的血脉，而 JBHT 在这个领域有着不错的表现。</p><p>从好的方面来看，JBHT 受益于电子商务的持续增长，这为他们的业务提供了强劲的需求支撑。他们的财务表现也相当稳健，营收同比增长 19.4%，净利润更是大幅增长 45.8%，这在当前的经济环境下显得尤为突出。此外，他们的净资产收益率（ROE）达到 18.48%，显示出良好的资本配置能力。</p><p>然而，我们也必须看到一些潜在的风险。首先，劳动力短缺的问题可能会影响他们的运营效率。其次，燃料成本的上升对利润率构成压力。最后，如果经济出现放缓，货运需求可能会受到负面影响。</p><p>从估值的角度来看，目前 32 倍的市盈率（PE）并不算便宜。虽然公司的增长势头强劲，但我们需要考虑这些增长是否能够持续，以及当前的价格是否已经充分反映了未来的增长预期。</p><p>基于以上分析，我的看法是：JBHT 是一家值得关注的优质公司，但当前的价格可能已经部分反映了其增长潜力。如果你能以更低的价格买入，那将是一个更好的安全边际。对于已经持有该公司股票的人来说，继续持有是合理的，但需要密切关注劳动力市场和燃料成本的变化。</p><p>最后，我想说的是，投资就像打棒球，你不需要每次都挥棒。在做出投资决策时，确保你有足够的安全边际，并记住，复利的力量在于长期持有，而不是频繁交易。</p><p>如果查理·芒格在这里，他可能会补充说，投资就像经营一个果园，你需要耐心等待果实成熟，而不是急于摘取未成熟的果子。</p></div></div><div class="mreply"><div class="mh"><span class="who">达利欧</span><span class="mscore">71</span></div><div class="md"><p>在当前形势下，我对JBHT（JB Hunt Transport Services）的看法是谨慎乐观。</p><h4>结论：</h4><p>JBHT在物流行业中具有吸引力，但需要密切关注宏观环境和成本压力的变化。</p><h4>理由：</h4><ul><li><strong>行业需求强劲</strong>：物流行业受益于电商的持续增长和供应链的复杂性，这为JBHT提供了稳定的业务基础。数据显示，JBHT的收入同比增长了19.4%，净利润同比增长了45.8%，这表明公司在当前市场环境下具有较强的盈利能力。</li></ul><ul><li><strong>稳健的财务表现</strong>：JBHT的财务状况稳健，净资产收益率为18.448%，这为公司提供了良好的安全边际。此外，其市盈率（PE）为32.6，市净率（PB）为5.89，虽然不算便宜，但在当前市场环境下仍具有一定的吸引力。</li></ul><ul><li><strong>宏观环境的支持</strong>：尽管存在一些不确定性，但整体经济环境仍然支持物流行业的增长。短期内，需求端的强劲表现可能会抵消部分成本上升的压力。</li></ul><h4>风险：</h4><ul><li><strong>劳动力短缺</strong>：劳动力市场的紧张状况可能会继续影响公司的运营成本和效率。如果这一问题加剧，可能会对利润率构成压力。</li></ul><ul><li><strong>燃料成本上升</strong>：燃料价格的波动是物流行业的关键风险因素。近期燃料成本的上升已经对利润率产生了一定影响，需要密切关注其未来的走势。</li></ul><ul><li><strong>经济放缓的风险</strong>：如果全球经济出现显著放缓，货运需求可能会受到影响，这将对JBHT的业务构成挑战。</li></ul><h4>行动建议：</h4><ul><li><strong>密切关注成本控制</strong>：投资者应密切关注JBHT在成本控制方面的措施，特别是劳动力成本和燃料成本的管理策略。</li></ul><ul><li><strong>评估宏观环境变化</strong>：在做出投资决策时，需要综合考虑宏观经济的整体趋势。如果经济放缓的迹象更加明显，可能需要重新评估对JBHT的持仓。</li></ul><ul><li><strong>保持适度仓位</strong>：基于当前的分析，我建议保持适度仓位，既不盲目追高，也不轻易放弃。在投资决策中，应遵循原则化的方法，记录决策日志，并定期复盘以应对市场变化。</li></ul><p>总之，JBHT在当前环境下具有投资价值，但需要保持警惕，关注潜在的风险因素，并做好风险管理。</p></div></div><div class="mreply"><div class="mh"><span class="who">彼得·林奇</span><span class="mscore">42</span></div><div class="md"><h4>发言</h4><p>各位，今天我们来讨论一下 JBHT 这家公司。首先，我的结论是：尽管这家公司有一些吸引人的地方，但目前的价格让我感到不太踏实。</p><h5>理由</h5><p>首先，JBHT 所在的物流行业确实需求强劲，这是不争的事实。受益于电商的发展，物流行业整体上仍然处于增长阶段。此外，JBHT 的财务表现也相当稳健，这为投资者提供了一定的安全边际。从这些角度来看，这家公司似乎是一个不错的选择。</p><p>然而，我必须指出一些让我担忧的因素。首先是劳动力短缺的问题，这在物流行业是一个长期存在的挑战，可能会影响公司的运营效率。其次，燃料成本的上升也是一个不容忽视的问题，这将对公司的利润率构成压力。最后，经济放缓的风险可能会导致货运需求的下降，这对公司的业务增长构成威胁。</p><p>从估值角度来看，JBHT 的市盈率（PE）约为 32 倍，市净率（PB）约为 5.9 倍。这些指标在我看来有些偏高，尤其是在当前的经济环境下。我更倾向于看到更合理的估值水平，以便为潜在的风险提供更大的缓冲。</p><h5>风险/行动建议</h5><p>基于以上分析，我建议投资者在考虑 JBHT 时要格外谨慎。以下是我的具体建议：</p><ul><li><strong>密切关注劳动力市场和燃料成本的变化</strong>：这些因素将对公司的盈利能力产生直接影响。如果劳动力短缺问题加剧或燃料成本继续上升，可能会对公司的财务表现造成负面影响。</li></ul><ul><li><strong>评估经济放缓的风险</strong>：如果经济出现明显放缓迹象，货运需求可能会下降，这将对 JBHT 的业务产生不利影响。</li></ul><ul><li><strong>等待更合理的估值</strong>：如果公司股价出现回调，或者其盈利增长能够持续超过估值水平，那么这可能是一个更好的买入时机。</li></ul><p>总之，JBHT 是一家在增长行业中表现稳健的公司，但在当前的价格水平下，我建议投资者保持谨慎，等待更好的入场时机。</p></div></div><div class="mreply"><div class="mh"><span class="who">芒格</span><span class="mscore">54</span></div><div class="md"><p>各位同仁，今天我们来讨论一下JBHT这家公司。让我先给出我的初步判断：这是一家值得关注的公司，但目前价格并不算便宜。</p><h4>结论：</h4><p>JBHT是一家处于有利行业地位的公司，拥有强劲的需求支撑和稳健的财务表现。然而，当前估值水平偏高，需要谨慎对待。</p><h4>理由：</h4><ul><li><strong>行业需求持续强劲</strong>：物流行业受益于电商发展的长期趋势，这一点从JBHT的收入同比增长19.4%可以看出。这表明公司处于一个增长的市场中。</li></ul><ul><li><strong>稳健的财务表现</strong>：公司净利润同比增长45.8%，净资产收益率（ROE）达到18.448%，这些数据都显示出公司具有较强的盈利能力和资本效率。</li></ul><ul><li><strong>安全边际</strong>：尽管当前市盈率（PE）为32.6，较高，但公司的市净率（PB）为5.89，考虑到其盈利能力和行业地位，这个估值水平在某种程度上是可以接受的。</li></ul><h4>风险：</h4><ul><li><strong>劳动力短缺</strong>：物流行业面临的劳动力短缺问题可能会加剧，这将对运营效率和成本控制构成挑战。</li></ul><ul><li><strong>燃料成本上升</strong>：燃料价格波动对运输行业的利润率有直接影响。如果油价持续上涨，可能会侵蚀公司的盈利能力。</li></ul><ul><li><strong>经济放缓风险</strong>：如果整体经济放缓，货运需求可能会受到影响，这对公司的收入增长构成威胁。</li></ul><h4>行动建议：</h4><ul><li><strong>估值考量</strong>：当前价格水平下，我不建议急于买入。可以等待更好的买入时机，比如在经济放缓导致市场恐慌性抛售时。</li></ul><ul><li><strong>关注成本控制</strong>：密切关注公司如何应对劳动力短缺和燃料成本上升的问题。这将是评估其长期竞争力的关键。</li></ul><ul><li><strong>多元化投资组合</strong>：考虑到当前估值水平较高，建议将JBHT作为投资组合的一部分，而不是单一重仓标的。这样可以分散风险，同时享受行业增长带来的收益。</li></ul><h4>我能错在哪：</h4><p>我可能低估了电商发展对物流行业的长期推动作用，或者高估了经济放缓对货运需求的负面影响。投资者应根据自己的风险承受能力和投资期限做出决策。</p><p>总之，JBHT是一家值得关注的优质公司，但在当前价格水平下，我们需要保持谨慎，等待更好的买入时机。</p></div></div></div>
+<div class="panel"><h2>分析师报告<span class="sub">2 篇</span></h2><details open><summary>市场面分析</summary><div class="body"><div class="md"><h4>JBHT JBHT 市场面分析</h4><ul><li>红黑榜多空分数：多头 80 / 空头 35，分差 45。</li><li>当前价格：229.26。</li><li>当前交易评级：Buy。</li><li>值得加仓区间：222.38 - 231.55。</li><li>目标价格：256.77。</li><li>市场愿意给溢价的原因：物流行业需求持续强劲；稳健的财务表现提供安全边际；受益于电商发展。</li><li>当前主要压制因素：劳动力短缺问题可能加剧；燃料成本上升影响利润率；经济放缓可能影响货运需求。</li></ul></div></div></details><details open><summary>基本面分析</summary><div class="body"><div class="md"><h4>JBHT JBHT 基本面分析</h4><ul><li>报告期：暂无。</li><li>PE(TTM)：32.61。</li><li>PB：5.89。</li><li>ROE：18.45%。</li><li>营收同比：19.40%。</li><li>归母净利润同比：45.80%。</li><li>核心判断：盈利能力处于可接受区间；收入仍在增长；利润端保持扩张。</li></ul></div></div></details></div>
+<div class="panel"><h2>研究与计划</h2>
+<details><summary>基本面摘要</summary><div class="body"><div class="md"><h3>核心财务快照</h3><ul><li>报告期: 数据缺失</li><li>当前股价: 229.26 元</li><li>总市值: 215.28 亿元</li><li>PE (TTM): 32.61</li><li>PB: 5.89</li><li>PS (TTM): 数据缺失</li><li>营业总收入(报告期): 数据缺失 亿元</li><li>营收同比增长率: 19.40%</li><li>归母净利润(报告期): 数据缺失 亿元</li><li>归母净利润同比增长率: 45.80%</li><li>ROE (TTM/估算): 18.45%</li><li>资产负债率: 数据缺失</li><li>经营性现金流 / 归母净利润: 数据缺失</li></ul><h4>缺失字段</h4><ul><li>PS(TTM), 营业总收入, 归母净利润, 资产负债率, 经营性现金流与归母净利润比值</li></ul></div></div></details>
+<details><summary>研究计划</summary><div class="body"><div class="md"><h4>JBHT JBHT 研究摘要</h4><ul><li>红黑榜结论: Buy</li><li>多头/空头: 80/35</li><li>正向信号: ROE 18.45%；营收同比 19.40%；归母净利润同比 45.80%；PE(TTM) 32.61</li><li>榜单看多理由: 物流行业需求持续强劲；稳健的财务表现提供安全边际；受益于电商发展</li><li>榜单风险提示: 劳动力短缺问题可能加剧；燃料成本上升影响利润率；经济放缓可能影响货运需求</li></ul></div></div></details>
+<details><summary>交易计划</summary><div class="body"><div class="md"><h4>JBHT JBHT 交易计划</h4><ul><li>评级: Buy</li><li>当前价格: 229.26</li><li>值得加仓区间: 222.38 - 231.55</li><li>目标价格: 256.77</li><li>止损位: 210.92</li><li>备注: 当前为缓存降级交易卡，后续若完整 TradingAgent 结果生成，将自动覆盖。</li></ul></div></div></details>
+<details><summary>交易决策</summary><div class="body"><div class="md"><p>Buy</p><p>JBHT JBHT 当前使用红黑榜缓存结果生成兜底交易卡。多头 80 / 空头 35，分差 45。当前尚未取得完整 TradingAgent 长文决策，但榜单分数、财务快照和大师观点已经足够生成基础交易建议。</p></div></div></details>
+</div>
+<div class="panel"><h2>多空逻辑</h2><div class="pts"><div class="h bull">看多逻辑</div><div class="md"><p>物流行业需求持续强劲</p><p>稳健的财务表现提供安全边际</p><p>受益于电商发展</p></div></div><div class="pts"><div class="h bear">看空逻辑</div><div class="md"><p>劳动力短缺问题可能加剧</p><p>燃料成本上升影响利润率</p><p>经济放缓可能影响货运需求</p></div></div></div>
+<div class="panel"><h2>伯克希尔研究</h2><p><strong>JBHT是一家具有强大护城河和稳健财务表现的运输物流公司，但面临行业周期性和竞争压力，当前估值合理但需关注宏观风险。</strong></p><p>伯克希尔综合评分：<strong>3.75</strong></p><div class="md"><p>{&quot;verdict&quot;: &quot;买入&quot;, &quot;conservative_tip&quot;: &quot;建议在PE TTM低于16倍时买入。&quot;, &quot;moderate_tip&quot;: &quot;建议在PE TTM低于18倍时买入。&quot;, &quot;aggressive_tip&quot;: &quot;建议在PE TTM低于20倍时买入。&quot;, &quot;catalysts_plus&quot;: [&quot;运输物流需求超预期增长。&quot;, &quot;公司推出创新运输解决方案。&quot;, &quot;宏观经济复苏带动运输需求上升。&quot;], &quot;catalysts_minus&quot;: [&quot;宏观经济衰退导致运输需求下降。&quot;, &quot;技术变革（如自动驾驶）削弱公司竞争力。&quot;, &quot;环保政策趋严增加运营成本。&quot;]}</p></div></div>
+<div class="panel news"><h2>最新资讯</h2><div class="md"><p>利空新闻较多，共7条利空，4条中性，0条利好。</p></div><div class="nitem"><div class="t">J.B. Hunt (JBHT) Stock Trades Below Fair Value As Caution Lingers</div><div class="s">Yahoo Finance · 利空</div></div><div class="nitem"><div class="t">J.B. Hunt Transport Services (JBHT) Nears Earnings, Is It A Bargain Or Fully Priced?</div><div class="s">Simply Wall Street · 中性</div></div><div class="nitem"><div class="t">Precision Trading with J.b. Hunt Transport Services Inc. (JBHT) Risk Zones</div><div class="s">Stock Traders Daily · 中性</div></div><div class="nitem"><div class="t">J.B. Hunt Q3 earnings, revenue to rise, analysts say</div><div class="s">Talk Business &amp; Politics · 利好</div></div><div class="nitem"><div class="t">J.B. Hunt Stock: Analysts Trim Price Targets Ahead Of Q3 Earnings As Freight Recovery Remains Supply-Driven</div><div class="s">TradingView · 利空</div></div><div class="nitem"><div class="t">JBHT Maintains Hold Rating -- Price Target Lowered to $289</div><div class="s">GuruFocus · 利空</div></div><div class="nitem"><div class="t">J.B. Hunt Gears Up for Q3 Earnings: What&#x27;s in Store for the Stock?</div><div class="s">The Globe and Mail · 中性</div></div><div class="nitem"><div class="t">INVESTOR ALERT: Pomerantz Law Firm Investigates Claims On Behalf of Investors of J.B. Hunt Transport Services, Inc. - JBHT</div><div class="s">PR Newswire · 利空</div></div></div>
+<footer>稳健理财Agent · 红黑榜每日归档 · 红榜 #8 · 仅供研究，不构成投资建议</footer>
+</div></body>
+</html>
