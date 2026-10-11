@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>KMX(KMX) 黑榜 2026-10-12</title>
+<style>
+:root{--red:#d8342c;--redbg:#fdecea;--green:#1a9e54;--ink:#1c2230;--muted:#6b7385;
+--line:#e7e9ef;--card:#fff;--bg:#f4f6fa;--chip:#eef1f6;--dark:#23262d;--darkbg:#ececef}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",
+"Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);
+line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 16px 64px}
+header.top{background:linear-gradient(135deg,#1c2230,#2c3550);color:#fff;border-radius:14px;
+padding:22px 24px;margin-bottom:20px;box-shadow:0 6px 24px rgba(20,26,46,.12)}
+header.top h1{margin:0 0 6px;font-size:24px;letter-spacing:.5px}
+header.top .sub{opacity:.85;font-size:13px}
+header.top .sub b{color:#ffd166;font-weight:600}
+nav.mkt{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;
+background:rgba(244,246,250,.92);backdrop-filter:blur(6px);padding:10px 0;margin-bottom:14px}
+nav.mkt a{text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);
+padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600}
+nav.mkt a:hover{border-color:var(--red);color:var(--red)}
+.summary{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.summary .chip{background:var(--card);border:1px solid var(--line);border-radius:10px;
+padding:8px 12px;font-size:12px;color:var(--muted)}
+.summary .chip b{color:var(--ink);font-size:14px;margin-left:4px}
+section.board{margin:26px 0}
+.board-title{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:19px}
+.board-title .dot{width:10px;height:10px;border-radius:50%}
+.board-title.red .dot{background:var(--red)}
+.board-title.black .dot{background:var(--dark)}
+.board-title small{color:var(--muted);font-weight:400;font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+position:relative;transition:box-shadow .15s}
+.card:hover{box-shadow:0 4px 18px rgba(20,26,46,.08)}
+.card.red{border-top:3px solid var(--red)}
+.card.black{border-top:3px solid var(--dark)}
+.rank{position:absolute;top:10px;right:12px;font-size:26px;font-weight:800;color:#eceff5}
+.card.red .rank{color:#fbdcD9}
+.nm{font-size:16px;font-weight:700}
+.nm .tk{color:var(--muted);font-weight:500;font-size:12px;margin-left:6px}
+.tag{display:inline-block;background:var(--chip);color:var(--muted);border-radius:6px;
+padding:1px 7px;font-size:11px;margin:6px 6px 0 0}
+.price-row{display:flex;align-items:baseline;gap:10px;margin:10px 0 4px}
+.price{font-size:24px;font-weight:800}
+.pct{font-size:14px;font-weight:700;padding:2px 8px;border-radius:8px}
+.up{color:var(--red)}.down{color:var(--green)}.flat{color:var(--muted)}
+.pct.up{background:var(--redbg)}.pct.down{background:#e2f4e9}.pct.flat{background:var(--chip)}
+.psrc{font-size:11px;color:var(--muted);margin-left:auto}
+.scores{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.scores span{background:var(--chip);border-radius:6px;padding:2px 8px;font-size:11px;color:var(--muted)}
+.scores span b{color:var(--ink)}
+.pts{font-size:12.5px;margin:8px 0 0}
+.pts .h{font-weight:700;font-size:12px;margin:6px 0 2px}
+.pts .h.bull{color:var(--red)}.pts .h.bear{color:var(--green)}
+.pts ul{margin:2px 0 4px;padding-left:18px;color:#3a4152}
+.pts li{margin:1px 0}
+.masters{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:11px;color:var(--muted)}
+.masters b{color:var(--ink)}
+.summ{font-size:12.5px;color:#3a4152;background:#fafbfd;border:1px solid var(--line);
+border-radius:8px;padding:8px 10px;margin-top:8px}
+.empty{color:var(--muted);background:var(--card);border:1px dashed var(--line);
+border-radius:10px;padding:18px;text-align:center}
+footer{margin-top:34px;color:var(--muted);font-size:12px;text-align:center;line-height:1.8}
+a.lnk{color:var(--red);text-decoration:none}
+/* ── detail page ── */
+.backbar{margin-bottom:14px;font-size:13px}
+.backbar a{color:var(--muted);text-decoration:none;margin-right:14px}
+.backbar a:hover{color:var(--red)}
+.badge{display:inline-block;border-radius:6px;padding:2px 10px;font-size:12px;font-weight:700;margin-right:8px}
+.badge.red{background:var(--red);color:#fff}.badge.black{background:var(--dark);color:#fff}
+.trade{display:flex;flex-wrap:wrap;gap:10px;background:linear-gradient(135deg,#2c3550,#1c2230);
+color:#fff;border-radius:12px;padding:16px 18px;margin:16px 0}
+.trade .cell{min-width:120px}
+.trade .k{font-size:11px;opacity:.75}
+.trade .v{font-size:18px;font-weight:800;margin-top:2px}
+.trade .v.buy{color:#7ee2a8}.trade .v.sell{color:#ff9d97}.trade .v.hold{color:#ffd166}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0}
+.mgrid .m{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.mgrid .m .k{font-size:11px;color:var(--muted)}
+.mgrid .m .v{font-size:16px;font-weight:700;margin-top:2px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.panel>h2{margin:0 0 12px;font-size:17px}
+.panel>h2 .sub{font-size:12px;color:var(--muted);font-weight:400;margin-left:8px}
+.mreply{border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;
+padding:12px 14px;margin:10px 0;background:#fff}
+.mreply .mh{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.mreply .mh .who{font-weight:700;font-size:14px}
+.mreply .mh .mscore{margin-left:auto;background:var(--chip);border-radius:6px;padding:1px 8px;font-size:12px;font-weight:700}
+.md h2,.md h3,.md h4,.md h5{margin:12px 0 6px;font-size:15px}
+.md p{margin:6px 0;font-size:13.5px;color:#2c3345}
+.md ul{margin:6px 0;padding-left:20px;font-size:13.5px;color:#2c3345}
+.md li{margin:3px 0}
+.md strong{color:var(--ink)}
+details{border:1px solid var(--line);border-radius:10px;background:#fff;margin:10px 0;padding:0}
+details>summary{cursor:pointer;padding:12px 16px;font-weight:700;font-size:14px;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary:before{content:"▸ ";color:var(--red)}
+details[open]>summary:before{content:"▾ "}
+details>.body{padding:0 16px 14px;border-top:1px dashed var(--line)}
+.ychip{display:inline-block;background:var(--chip);border-radius:8px;padding:4px 10px;font-size:12px;margin:3px 6px 3px 0}
+.ychip b{font-size:13px}
+.news .nitem{border-top:1px dashed var(--line);padding:8px 0;font-size:13px}
+.news .nitem .t{font-weight:600}
+.news .nitem .s{color:var(--muted);font-size:12px}
+/* ── root landing page ── */
+.hero{padding:30px 26px}
+.hero-kicker{color:#ffd166;font-size:12px;font-weight:700;letter-spacing:2px;
+text-transform:uppercase;margin-bottom:8px}
+.hero h1{font-size:30px;margin:0 0 10px}
+.day-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.day-card{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);
+border-radius:12px;padding:14px 16px;transition:all .15s}
+.day-card:hover{border-color:var(--red);box-shadow:0 4px 16px rgba(216,52,44,.12);transform:translateY(-2px)}
+.day-card .d{font-weight:800;font-size:15px;color:var(--ink);display:flex;align-items:center;gap:8px}
+.day-card .m{margin-top:8px;display:flex;gap:6px}
+.day-card .m span{background:var(--chip);color:var(--muted);border-radius:6px;
+padding:2px 8px;font-size:11px}
+.latest-badge{background:var(--red);color:#fff;border-radius:6px;padding:1px 7px;
+font-size:10px;font-weight:700}
+</style>
+</head>
+<body><div class="wrap">
+<div class="backbar"><a href="../index.html">← 总览</a><a href="../us.html">← 美股榜单</a></div>
+<header class="top">
+  <h1><span class="badge black">黑榜 #6</span>KMX<span class="tk" style="opacity:.7;font-size:15px;font-weight:400;margin-left:8px">KMX</span></h1>
+  <div class="sub">美股 ·  · 榜单日期 <b>2026-10-12</b> · 盘价采集 <b>2026-10-12 05:00:55</b></div>
+  <div class="price-row" style="margin-top:12px">
+    <span class="price" style="color:#fff">$52.61</span>
+    <span class="pct down">-2.19%</span>
+    <span class="psrc" style="color:rgba(255,255,255,.6)">实时</span>
+  </div>
+  <div class="scores" style="margin-top:10px">
+    <span>综合 <b>38.8</b></span>
+    <span>多头 <b>40</b></span>
+    <span>空头 <b>75</b></span>
+    <span>大师均值 <b>67.6</b></span>
+    <span>信号 <b>negative</b></span>
+  </div>
+</header>
+<div class="trade"><div class="cell"><div class="k">交易评级</div><span class="v hold">Reduce</span></div><div class="cell"><div class="k">加仓区间</div><span class="v">49.45 ~ 51.56</span></div><div class="cell"><div class="k">伯克希尔</div><span class="v">观望</span></div><div class="cell"><div class="k">伯克希尔分</div><span class="v">3.50</span></div></div>
+<div class="panel"><h2>财务指标</h2><div class="mgrid"><div class="m"><div class="k">市盈率 PE</div><div class="v">24.93</div></div><div class="m"><div class="k">市净率 PB</div><div class="v">1.18</div></div><div class="m"><div class="k">ROE</div><div class="v">4.7%</div></div><div class="m"><div class="k">总市值</div><div class="v">75</div></div><div class="m"><div class="k">营收同比</div><div class="v">17.7%</div></div><div class="m"><div class="k">净利同比</div><div class="v">81.6%</div></div></div></div>
+<div class="panel"><h2>历史收益</h2><span class="ychip">近1月 <b class="down">-13.07%</b></span><span class="ychip">近6月 <b class="up">+12.61%</b></span><span class="ychip">近1年 <b class="up">+21.87%</b></span><span class="ychip">近5年 <b class="down">-59.31%</b></span></div>
+<div class="panel"><h2>大师圆桌<span class="sub">5 位</span></h2><div class="mreply"><div class="mh"><span class="who">段永平</span><span class="mscore">88</span></div><div class="md"><h4>段永平圆桌发言：</h4><p><strong>结论</strong>：我对 KMX 这家公司持谨慎乐观态度，但建议大家先冷静思考，不要盲目跟进。</p><p><strong>理由</strong>：</p><p>首先，从&quot;本分&quot;的视角来看，KMX 所在的汽车销售市场确实存在长期需求，这是基本面支撑点。但同时，我们也要看到当前汽车行业整体承压，市场对信贷风险的担忧情绪浓厚。这些外部因素对 KMX 的影响不容忽视。</p><p>从估值角度看，24 倍的 PE 和 1.18 倍的 PB 并不算便宜。虽然公司营收同比增长 17.7%，净利润增长 81.6%，但这种高增长能否持续需要打个问号。特别是在市场情绪偏谨慎的背景下，投资者对这类高估值、高增长的公司往往会更加挑剔。</p><p><strong>风险/行动建议</strong>：</p><ul><li><strong>不要被短期反弹迷惑</strong>：虽然技术面显示短期有支撑，但我们要警惕这可能是市场情绪波动带来的短暂现象。</li><li><strong>关注信贷风险</strong>：汽车销售高度依赖信贷环境，如果信贷环境持续收紧，KMX 的经营压力会加大。</li><li><strong>审视自身能力圈</strong>：如果你对汽车行业和信贷环境没有深入理解，建议不要轻易介入。投资要投看得懂的公司，而不是追逐短期热点。</li></ul><p><strong>最后提醒</strong>：投资要保持平常心，不要被市场情绪左右。如果对 KMX 的长期发展没有足够信心，不如先观望，等待更合适的时机。记住，不做什么，往往比做什么更重要。</p></div></div><div class="mreply"><div class="mh"><span class="who">巴菲特</span><span class="mscore">59</span></div><div class="md"><p>各位朋友，今天我们来聊聊 KMX 这家公司。作为一个价值投资者，我首先关注的是这家公司是否拥有持久的竞争优势，也就是我们常说的&quot;护城河&quot;。从目前的信息来看，我并没有看到特别突出的护城河特征。汽车行业本身是一个竞争激烈且周期性强的行业，KMX 虽然在近期财务数据上表现不错，收入同比增长了 17.7%，净利润更是增长了 81.6%，但这更多反映的是短期市场需求的波动，而非长期可持续的竞争优势。</p><p>从估值角度来看，当前的市盈率约为 25 倍，市净率约为 1.18 倍。对于一个没有明显护城河的企业来说，这样的估值并不算便宜。我们需要思考的是，当市场环境发生变化时，这家公司是否能够保持这样的盈利能力。考虑到汽车行业整体承压，以及市场对信贷风险的担忧，我认为当前的价格并没有给我足够的&quot;安全边际&quot;。</p><p>接下来谈谈风险。首先，汽车行业面临的宏观压力不容忽视，包括供应链问题、原材料成本上升以及消费者信心的波动。其次，市场对信贷风险的担忧可能会进一步影响汽车销售，尤其是对于那些依赖信贷购买汽车的公司。最后，市场情绪偏谨慎，这可能会对股价造成压力。</p><p>基于以上分析，我的建议是保持谨慎。如果你是短期投资者，可能会被当前的技术面支撑所吸引，但我更倾向于从长期价值的角度来看待这家公司。除非你能看到公司未来几年内建立起明显的竞争优势，或者估值水平显著下降，否则我不会急于投资。</p><p>最后，如果查理·芒格在这里，他可能会用他的&quot;反向思维&quot;来提醒我们：在大家都关注短期收益的时候，我们更应该思考的是，这家公司十年后是否还能保持竞争力？它的商业模式是否足够强大，能够抵御市场波动？这些都是我们在做投资决策时需要认真考虑的问题。</p></div></div><div class="mreply"><div class="mh"><span class="who">达利欧</span><span class="mscore">71</span></div><div class="md"><h4>发言内容：</h4><p>各位同仁，在讨论 KMX 时，我的观点是基于对宏观环境、债务周期以及企业基本面综合评估得出的。</p><p>首先，我的初步结论是：<strong>对 KMX 持中性偏谨慎态度</strong>。原因在于，尽管公司基本面显示出一些积极信号，比如 17.7% 的营收同比增长和 81.6% 的净利润同比增长，但整体市场环境和行业风险因素让我对这只股票持保留意见。</p><h4>理由分析：</h4><ul><li><strong>宏观环境与行业压力</strong>：</li><li>当前我们正处于一个债务周期中的紧缩阶段，市场对信贷风险的担忧加剧。这对汽车行业尤其不利，因为汽车销售高度依赖信贷环境。</li><li>汽车行业整体承压，不仅受到宏观经济影响，还面临供应链问题和消费者信心下降的挑战。</li></ul><ul><li><strong>公司基本面与估值</strong>：</li><li>KMX 的营收和净利润增长确实亮眼，但 24.93 倍的市盈率（PE）相对较高。在当前市场环境下，市场可能会对高估值股票更加谨慎。</li><li>1.18 倍的市净率（PB）表明市场对公司的资产价值认可度有限。</li></ul><ul><li><strong>技术面与市场情绪</strong>：</li><li>短期技术面虽然提供了一些支撑，但市场情绪整体偏谨慎，这可能会限制股价的上涨空间。</li></ul><h4>风险与行动建议：</h4><ul><li><strong>主要风险</strong>：</li><li>信贷环境进一步收紧，导致汽车销售下滑。</li><li>市场情绪持续低迷，影响高估值股票的估值水平。</li><li>宏观经济下行压力加剧，影响消费者支出。</li></ul><ul><li><strong>行动建议</strong>：</li><li><strong>对于现有持仓者</strong>：建议密切关注信贷市场和宏观经济数据。如果信贷环境恶化或宏观经济数据不及预期，可能需要考虑减仓。</li><li><strong>对于潜在投资者</strong>：建议等待更明确的信号，比如信贷环境改善或市场情绪回暖。在当前环境下，谨慎观望可能是更好的策略。</li></ul><h4>原则化收口：</h4><p>在当前环境下，我们的决策应遵循<strong>风险平衡原则</strong>，即在追求收益的同时，密切关注潜在风险。通过<strong>极度透明</strong>地评估市场环境和公司基本面，我们可以做出更为稳健的投资决策。</p><p>请记住，<strong>Pain + Reflection = Progress</strong>。在市场不确定性增加的情况下，记录我们的决策过程和反思，将帮助我们在未来做出更明智的选择。</p></div></div><div class="mreply"><div class="mh"><span class="who">彼得·林奇</span><span class="mscore">57</span></div><div class="md"><h4>彼得·林奇的发言</h4><p><strong>结论：</strong></p><p>对于 KMX（CarMax），我目前持中性偏谨慎的态度。虽然这家公司有一些吸引力，但综合考虑行业环境和估值后，我建议投资者保持观望。</p><p><strong>理由：</strong></p><p>首先，KMX 的商业模式我非常熟悉——它作为二手车零售商，商业模式简单易懂，贴近日常生活。从基本面来看，公司的营收同比增长 17.7%，净利润更是大幅增长 81.6%，显示出强劲的盈利能力。此外，PB 值为 1.18 倍，估值不算太高。</p><p>然而，我必须指出几个让我担忧的因素：</p><ul><li><strong>行业承压</strong>：汽车行业整体面临挑战，包括供应链问题和消费者需求的不确定性。这对 KMX 的长期增长构成威胁。</li></ul><ul><li><strong>信贷风险</strong>：市场对信贷风险的担忧加剧，而 KMX 的业务模式与信贷市场密切相关。如果信贷环境恶化，可能会影响其销售和盈利能力。</li></ul><ul><li><strong>估值问题</strong>：尽管 PB 估值不算太高，但 PE 达到 24.93 倍，对于一个面临行业压力的公司来说，这个估值并不便宜。</li></ul><p><strong>风险/行动建议：</strong></p><ul><li><strong>观望为主</strong>：目前市场情绪偏谨慎，KMX 的股价可能会继续波动。在没有看到更明确的行业复苏迹象之前，建议投资者保持观望。</li></ul><ul><li><strong>关注信贷环境</strong>：密切关注信贷市场的变化，因为这是影响 KMX 业绩的关键因素之一。如果信贷环境恶化，可能需要重新评估投资决策。</li></ul><ul><li><strong>生活场景调研</strong>：如果你有时间和机会，可以去当地的 CarMax 门店看看客流量和顾客反馈。这将帮助你更好地了解公司的实际运营情况。</li></ul><ul><li><strong>估值重估</strong>：如果公司能够保持目前的增长势头，并且行业环境有所改善，可以考虑在 PE 降至 20 倍以下时重新评估投资机会。</li></ul><p>总之，KMX 是一家值得关注的公司，但在当前环境下，我建议投资者保持谨慎，等待更好的入场时机。</p></div></div><div class="mreply"><div class="mh"><span class="who">芒格</span><span class="mscore">63</span></div><div class="md"><p>各位同仁，今天我们来讨论一下 KMX 这家公司。</p><p>首先，我的结论是：对 KMX 的投资需要非常谨慎，目前我持中立态度。</p><p>让我们先从逆向思维的角度来看这个问题。汽车行业目前整体承压，市场对信贷风险的担忧加剧，再加上市场情绪偏谨慎，这些都是可能导致投资失败的重要因素。信贷风险尤其值得关注，因为汽车金融是 KMX 业务的重要组成部分。如果信贷环境进一步恶化，可能会对公司的盈利能力造成重大打击。</p><p>从多元心智模型的角度分析，我们可以看到一些相互矛盾的因素。一方面，汽车需求的基本面依然存在，这为 KMX 提供了潜在的增长机会。另一方面，市场对信贷风险的担忧可能会抑制消费者的购车意愿，从而影响公司的销售。此外，尽管短期技术面有一定的支撑，但这种支撑在整体市场情绪偏谨慎的情况下可能难以持续。</p><p>再来看激励机制。KMX 的管理层是否有足够的动力来应对当前的市场挑战？这是一个需要深入思考的问题。如果管理层过于关注短期业绩，可能会采取一些短视的策略，这反而会加剧公司的长期风险。</p><p>从估值角度来看，KMX 的市盈率（PE）为 24.93，市净率（PB）为 1.18。虽然这些指标并不算特别高，但在当前的市场环境下，估值水平仍然需要谨慎对待。</p><p>基于以上分析，我建议采取以下行动：</p><ul><li><strong>密切关注信贷环境的变化</strong>：信贷风险是当前最大的不确定性因素。如果信贷环境恶化，应及时调整投资策略。</li><li><strong>保持耐心，等待更好的入场时机</strong>：当前市场情绪偏谨慎，短期内可能不会有太大的上涨空间。投资者应保持耐心，等待市场情绪好转或公司基本面出现更明确的改善信号。</li><li><strong>分散投资，降低风险</strong>：在当前不确定的市场环境下，分散投资是一个明智的选择。不要把所有资金都押注在单一股票上。</li></ul><p>最后，我能错在哪？也许我对信贷风险的担忧过于悲观，或者低估了汽车需求复苏的潜力。但无论如何，在当前的市场环境下，保持谨慎是一个更为稳妥的选择。</p></div></div></div>
+<div class="panel"><h2>分析师报告<span class="sub">2 篇</span></h2><details open><summary>市场面分析</summary><div class="body"><div class="md"><h4>KMX KMX 市场面分析</h4><ul><li>红黑榜多空分数：多头 40 / 空头 75，分差 -35。</li><li>当前价格：52.61。</li><li>当前交易评级：Reduce。</li><li>值得加仓区间：49.45 - 51.56。</li><li>风险控制位：46.30。</li><li>市场愿意给溢价的原因：汽车需求基本面仍在；短期技术面有支撑。</li><li>当前主要压制因素：汽车行业整体承压；市场对信贷风险担忧；市场情绪偏谨慎。</li></ul></div></div></details><details open><summary>基本面分析</summary><div class="body"><div class="md"><h4>KMX KMX 基本面分析</h4><ul><li>报告期：暂无。</li><li>PE(TTM)：24.93。</li><li>PB：1.18。</li><li>ROE：4.68%。</li><li>营收同比：17.70%。</li><li>归母净利润同比：81.60%。</li><li>核心判断：收入仍在增长；利润端保持扩张。</li></ul></div></div></details></div>
+<div class="panel"><h2>研究与计划</h2>
+<details><summary>基本面摘要</summary><div class="body"><div class="md"><h3>核心财务快照</h3><ul><li>报告期: 数据缺失</li><li>当前股价: 52.61 元</li><li>总市值: 74.68 亿元</li><li>PE (TTM): 24.93</li><li>PB: 1.18</li><li>PS (TTM): 数据缺失</li><li>营业总收入(报告期): 数据缺失 亿元</li><li>营收同比增长率: 17.70%</li><li>归母净利润(报告期): 数据缺失 亿元</li><li>归母净利润同比增长率: 81.60%</li><li>ROE (TTM/估算): 4.68%</li><li>资产负债率: 数据缺失</li><li>经营性现金流 / 归母净利润: 数据缺失</li></ul><h4>缺失字段</h4><ul><li>PS(TTM), 营业总收入, 归母净利润, 资产负债率, 经营性现金流与归母净利润比值</li></ul></div></div></details>
+<details><summary>研究计划</summary><div class="body"><div class="md"><h4>KMX KMX 研究摘要</h4><ul><li>红黑榜结论: Reduce</li><li>多头/空头: 40/75</li><li>正向信号: 营收同比 17.70%；归母净利润同比 81.60%；PE(TTM) 24.93；PB 1.18</li><li>风险信号: ROE 4.68%</li><li>榜单看多理由: 汽车需求基本面仍在；短期技术面有支撑</li><li>榜单风险提示: 汽车行业整体承压；市场对信贷风险担忧；市场情绪偏谨慎</li></ul></div></div></details>
+<details><summary>交易计划</summary><div class="body"><div class="md"><h4>KMX KMX 交易计划</h4><ul><li>评级: Reduce</li><li>当前价格: 52.61</li><li>值得加仓区间: 47.35 - 49.45</li><li>目标价格: 49.98</li><li>止损位: 46.30</li><li>备注: 当前为缓存降级交易卡，后续若完整 TradingAgent 结果生成，将自动覆盖。</li></ul></div></div></details>
+<details><summary>交易决策</summary><div class="body"><div class="md"><p>Reduce</p><p>KMX KMX 当前使用红黑榜缓存结果生成兜底交易卡。多头 40 / 空头 75，分差 -35。当前尚未取得完整 TradingAgent 长文决策，但榜单分数、财务快照和大师观点已经足够生成基础交易建议。</p></div></div></details>
+</div>
+<div class="panel"><h2>多空逻辑</h2><div class="pts"><div class="h bull">看多逻辑</div><div class="md"><p>汽车需求基本面仍在</p><p>短期技术面有支撑</p></div></div><div class="pts"><div class="h bear">看空逻辑</div><div class="md"><p>汽车行业整体承压</p><p>市场对信贷风险担忧</p><p>市场情绪偏谨慎</p></div></div></div>
+<div class="panel"><h2>伯克希尔研究</h2><p><strong>CarMax是一家拥有强大品牌和规模效应的二手车零售商，但行业竞争加剧和宏观风险可能限制其长期增长潜力。</strong></p><p>伯克希尔综合评分：<strong>3.5</strong></p><div class="md"><p>{&quot;verdict&quot;: &quot;观望&quot;, &quot;conservative_tip&quot;: &quot;建议在PE TTM低于12倍时买入。&quot;, &quot;moderate_tip&quot;: &quot;建议在PE TTM低于13倍时买入。&quot;, &quot;aggressive_tip&quot;: &quot;建议在PE TTM低于14倍时买入。&quot;, &quot;catalysts_plus&quot;: [&quot;线上业务转型取得突破。&quot;, &quot;二手车市场需求回暖。&quot;, &quot;利率下降降低融资成本。&quot;], &quot;catalysts_minus&quot;: [&quot;竞争加剧导致市场份额下降。&quot;, &quot;宏观经济下行导致需求下降。&quot;, &quot;利率上升增加融资成本。&quot;]}</p></div></div>
+<div class="panel news"><h2>最新资讯</h2><div class="md"><p>共12条新闻，7条利多，2条利空，3条中性。整体情绪偏利好。</p></div><div class="nitem"><div class="t">CarMax, Inc. (KMX) Stock Price, News, Quote &amp; History</div><div class="s">Yahoo! Finance Canada · 中性</div></div><div class="nitem"><div class="t">CarMax (KMX) At 1% Undervalued As Earnings And Executive Changes Reset The Story</div><div class="s">Simply Wall Street · 中性</div></div><div class="nitem"><div class="t">CarMax Down 5.8% Since Q2 Earnings: Buy, Sell or Hold KMX?</div><div class="s">The Globe and Mail · 利空</div></div><div class="nitem"><div class="t">CarMax (NYSE:KMX) Upgraded at Wall Street Zen</div><div class="s">MarketBeat · 中性</div></div><div class="nitem"><div class="t">Is CarMax Inc (KMX) a Bargain After 3.6% Drop? GF Value Says Und</div><div class="s">GuruFocus · 中性</div></div><div class="nitem"><div class="t">CARMAX ($KMX) Releases Q2 2027 Earnings</div><div class="s">Quiver Quantitative · 中性</div></div><div class="nitem"><div class="t">CarMax (KMX) Reworks Leadership And Earnings Story As Valuation Looks About Right</div><div class="s">Yahoo Finance · 中性</div></div><div class="nitem"><div class="t">CarMax (KMX) Earnings Show Turnaround Progress, But Margin Pressure Remains</div><div class="s">Yahoo Finance · 利空</div></div></div>
+<footer>稳健理财Agent · 红黑榜每日归档 · 黑榜 #6 · 仅供研究，不构成投资建议</footer>
+</div></body>
+</html>
