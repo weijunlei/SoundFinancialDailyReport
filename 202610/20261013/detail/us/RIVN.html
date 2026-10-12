@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>RIVN(RIVN) 黑榜 2026-10-13</title>
+<style>
+:root{--red:#d8342c;--redbg:#fdecea;--green:#1a9e54;--ink:#1c2230;--muted:#6b7385;
+--line:#e7e9ef;--card:#fff;--bg:#f4f6fa;--chip:#eef1f6;--dark:#23262d;--darkbg:#ececef}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",
+"Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);
+line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 16px 64px}
+header.top{background:linear-gradient(135deg,#1c2230,#2c3550);color:#fff;border-radius:14px;
+padding:22px 24px;margin-bottom:20px;box-shadow:0 6px 24px rgba(20,26,46,.12)}
+header.top h1{margin:0 0 6px;font-size:24px;letter-spacing:.5px}
+header.top .sub{opacity:.85;font-size:13px}
+header.top .sub b{color:#ffd166;font-weight:600}
+nav.mkt{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;
+background:rgba(244,246,250,.92);backdrop-filter:blur(6px);padding:10px 0;margin-bottom:14px}
+nav.mkt a{text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);
+padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600}
+nav.mkt a:hover{border-color:var(--red);color:var(--red)}
+.summary{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.summary .chip{background:var(--card);border:1px solid var(--line);border-radius:10px;
+padding:8px 12px;font-size:12px;color:var(--muted)}
+.summary .chip b{color:var(--ink);font-size:14px;margin-left:4px}
+section.board{margin:26px 0}
+.board-title{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:19px}
+.board-title .dot{width:10px;height:10px;border-radius:50%}
+.board-title.red .dot{background:var(--red)}
+.board-title.black .dot{background:var(--dark)}
+.board-title small{color:var(--muted);font-weight:400;font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+position:relative;transition:box-shadow .15s}
+.card:hover{box-shadow:0 4px 18px rgba(20,26,46,.08)}
+.card.red{border-top:3px solid var(--red)}
+.card.black{border-top:3px solid var(--dark)}
+.rank{position:absolute;top:10px;right:12px;font-size:26px;font-weight:800;color:#eceff5}
+.card.red .rank{color:#fbdcD9}
+.nm{font-size:16px;font-weight:700}
+.nm .tk{color:var(--muted);font-weight:500;font-size:12px;margin-left:6px}
+.tag{display:inline-block;background:var(--chip);color:var(--muted);border-radius:6px;
+padding:1px 7px;font-size:11px;margin:6px 6px 0 0}
+.price-row{display:flex;align-items:baseline;gap:10px;margin:10px 0 4px}
+.price{font-size:24px;font-weight:800}
+.pct{font-size:14px;font-weight:700;padding:2px 8px;border-radius:8px}
+.up{color:var(--red)}.down{color:var(--green)}.flat{color:var(--muted)}
+.pct.up{background:var(--redbg)}.pct.down{background:#e2f4e9}.pct.flat{background:var(--chip)}
+.psrc{font-size:11px;color:var(--muted);margin-left:auto}
+.scores{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.scores span{background:var(--chip);border-radius:6px;padding:2px 8px;font-size:11px;color:var(--muted)}
+.scores span b{color:var(--ink)}
+.pts{font-size:12.5px;margin:8px 0 0}
+.pts .h{font-weight:700;font-size:12px;margin:6px 0 2px}
+.pts .h.bull{color:var(--red)}.pts .h.bear{color:var(--green)}
+.pts ul{margin:2px 0 4px;padding-left:18px;color:#3a4152}
+.pts li{margin:1px 0}
+.masters{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:11px;color:var(--muted)}
+.masters b{color:var(--ink)}
+.summ{font-size:12.5px;color:#3a4152;background:#fafbfd;border:1px solid var(--line);
+border-radius:8px;padding:8px 10px;margin-top:8px}
+.empty{color:var(--muted);background:var(--card);border:1px dashed var(--line);
+border-radius:10px;padding:18px;text-align:center}
+footer{margin-top:34px;color:var(--muted);font-size:12px;text-align:center;line-height:1.8}
+a.lnk{color:var(--red);text-decoration:none}
+/* ── detail page ── */
+.backbar{margin-bottom:14px;font-size:13px}
+.backbar a{color:var(--muted);text-decoration:none;margin-right:14px}
+.backbar a:hover{color:var(--red)}
+.badge{display:inline-block;border-radius:6px;padding:2px 10px;font-size:12px;font-weight:700;margin-right:8px}
+.badge.red{background:var(--red);color:#fff}.badge.black{background:var(--dark);color:#fff}
+.trade{display:flex;flex-wrap:wrap;gap:10px;background:linear-gradient(135deg,#2c3550,#1c2230);
+color:#fff;border-radius:12px;padding:16px 18px;margin:16px 0}
+.trade .cell{min-width:120px}
+.trade .k{font-size:11px;opacity:.75}
+.trade .v{font-size:18px;font-weight:800;margin-top:2px}
+.trade .v.buy{color:#7ee2a8}.trade .v.sell{color:#ff9d97}.trade .v.hold{color:#ffd166}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0}
+.mgrid .m{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.mgrid .m .k{font-size:11px;color:var(--muted)}
+.mgrid .m .v{font-size:16px;font-weight:700;margin-top:2px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.panel>h2{margin:0 0 12px;font-size:17px}
+.panel>h2 .sub{font-size:12px;color:var(--muted);font-weight:400;margin-left:8px}
+.mreply{border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;
+padding:12px 14px;margin:10px 0;background:#fff}
+.mreply .mh{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.mreply .mh .who{font-weight:700;font-size:14px}
+.mreply .mh .mscore{margin-left:auto;background:var(--chip);border-radius:6px;padding:1px 8px;font-size:12px;font-weight:700}
+.md h2,.md h3,.md h4,.md h5{margin:12px 0 6px;font-size:15px}
+.md p{margin:6px 0;font-size:13.5px;color:#2c3345}
+.md ul{margin:6px 0;padding-left:20px;font-size:13.5px;color:#2c3345}
+.md li{margin:3px 0}
+.md strong{color:var(--ink)}
+details{border:1px solid var(--line);border-radius:10px;background:#fff;margin:10px 0;padding:0}
+details>summary{cursor:pointer;padding:12px 16px;font-weight:700;font-size:14px;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary:before{content:"▸ ";color:var(--red)}
+details[open]>summary:before{content:"▾ "}
+details>.body{padding:0 16px 14px;border-top:1px dashed var(--line)}
+.ychip{display:inline-block;background:var(--chip);border-radius:8px;padding:4px 10px;font-size:12px;margin:3px 6px 3px 0}
+.ychip b{font-size:13px}
+.news .nitem{border-top:1px dashed var(--line);padding:8px 0;font-size:13px}
+.news .nitem .t{font-weight:600}
+.news .nitem .s{color:var(--muted);font-size:12px}
+/* ── root landing page ── */
+.hero{padding:30px 26px}
+.hero-kicker{color:#ffd166;font-size:12px;font-weight:700;letter-spacing:2px;
+text-transform:uppercase;margin-bottom:8px}
+.hero h1{font-size:30px;margin:0 0 10px}
+.day-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.day-card{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);
+border-radius:12px;padding:14px 16px;transition:all .15s}
+.day-card:hover{border-color:var(--red);box-shadow:0 4px 16px rgba(216,52,44,.12);transform:translateY(-2px)}
+.day-card .d{font-weight:800;font-size:15px;color:var(--ink);display:flex;align-items:center;gap:8px}
+.day-card .m{margin-top:8px;display:flex;gap:6px}
+.day-card .m span{background:var(--chip);color:var(--muted);border-radius:6px;
+padding:2px 8px;font-size:11px}
+.latest-badge{background:var(--red);color:#fff;border-radius:6px;padding:1px 7px;
+font-size:10px;font-weight:700}
+</style>
+</head>
+<body><div class="wrap">
+<div class="backbar"><a href="../index.html">← 总览</a><a href="../us.html">← 美股榜单</a></div>
+<header class="top">
+  <h1><span class="badge black">黑榜 #5</span>RIVN<span class="tk" style="opacity:.7;font-size:15px;font-weight:400;margin-left:8px">RIVN</span></h1>
+  <div class="sub">美股 ·  · 榜单日期 <b>2026-10-13</b> · 盘价采集 <b>2026-10-13 05:00:43</b></div>
+  <div class="price-row" style="margin-top:12px">
+    <span class="price" style="color:#fff">$13.54</span>
+    <span class="pct down">-3.01%</span>
+    <span class="psrc" style="color:rgba(255,255,255,.6)">实时</span>
+  </div>
+  <div class="scores" style="margin-top:10px">
+    <span>综合 <b>39.4</b></span>
+    <span>多头 <b>50</b></span>
+    <span>空头 <b>65</b></span>
+    <span>大师均值 <b>55.6</b></span>
+    <span>信号 <b>negative</b></span>
+  </div>
+</header>
+<div class="trade"><div class="cell"><div class="k">交易评级</div><span class="v hold">Hold</span></div><div class="cell"><div class="k">加仓区间</div><span class="v">12.73 ~ 13.27</span></div><div class="cell"><div class="k">目标价</div><span class="v">14.22</span></div><div class="cell"><div class="k">伯克希尔</div><span class="v">观望</span></div><div class="cell"><div class="k">伯克希尔分</div><span class="v">2.75</span></div></div>
+<div class="panel"><h2>财务指标</h2><div class="mgrid"><div class="m"><div class="k">市盈率 PE</div><div class="v">-7.80</div></div><div class="m"><div class="k">市净率 PB</div><div class="v">3.61</div></div><div class="m"><div class="k">ROE</div><div class="v">-57.5%</div></div><div class="m"><div class="k">总市值</div><div class="v">196</div></div><div class="m"><div class="k">营收同比</div><div class="v">27.2%</div></div></div></div>
+<div class="panel"><h2>历史收益</h2><span class="ychip">近1月 <b class="down">-14.63%</b></span><span class="ychip">近6月 <b class="down">-14.84%</b></span><span class="ychip">近1年 <b class="up">+3.68%</b></span><span class="ychip">近5年 <b class="down">-86.56%</b></span></div>
+<div class="panel"><h2>大师圆桌<span class="sub">5 位</span></h2><div class="mreply"><div class="mh"><span class="who">段永平</span><span class="mscore">74</span></div><div class="md"><p>各位好，关于 RIVN 这家公司，我来说几句。</p><p>首先，我的判断是，这家公司目前可能还不在我的能力圈内。为什么这么说呢？</p><p>从大方向上看，电动车行业确实有长期增长潜力，这是对的。但光有潜力还不够，关键要看公司能不能把事情做对。从目前的信息来看，RIVN 的技术创新能力值得肯定，但它的生产交付问题持续存在，这让我很担心。一个公司如果连基本的交付都做不好，很难说它能把事情做对。</p><p>再看估值，现在 RIVN 的股价是 13.54 美元，市值接近 200 亿美元，但它的 PE 是负的，PB 达到 3.6 倍。这说明市场对它的预期很高，但它的盈利能力还没有体现出来。对我来说，这不是一个舒服的买入区间。</p><p>风险方面，主要有几点：</p><ul><li>生产交付问题如果不能尽快解决，会持续影响市场信心。</li><li>股价持续承压，说明市场对它的耐心在减少。</li><li>盈利能力不足，短期内可能还要继续烧钱。</li></ul><p>我的建议是，如果你对电动车行业有深入研究，并且能看懂 RIVN 的商业模式，那么可以继续关注，但不要急于出手。如果没有看懂，那就不要碰。投资最重要的是做对的事，而做对的事的前提是真正看懂一家公司。</p><p>最后，我想提醒大家，不要被行业前景迷惑。电动车行业前景好，不代表所有公司都能成功。投资还是要回到公司本身，看它能不能把事情做对。</p><p>希望这些思考对大家有帮助。</p></div></div><div class="mreply"><div class="mh"><span class="who">巴菲特</span><span class="mscore">50</span></div><div class="md"><p>各位朋友，今天我们来聊聊RIVN这家公司。</p><p>首先，我的结论是：我现在对它持观望态度。这家公司有令人瞩目的亮点，但也有让我犹豫的地方。</p><p>让我先说说它吸引我的地方。电动车行业无疑是未来几十年最具增长潜力的领域之一，而RIVN在这个领域展现出了很强的技术创新能力。他们在产品设计和制造工艺上都有独特的优势，这让我看到了这家公司的潜力。</p><p>然而，当我们深入分析时，我看到了一些让我担忧的问题。最明显的是它的财务状况。目前RIVN的市盈率是负数，这意味着它还没有实现盈利。更让我担心的是它的净资产收益率(ROE)为-57.5%，这表明公司的资本使用效率非常低。作为一个价值投资者，我非常看重公司的资本配置能力，而这一点目前来看并不理想。</p><p>此外，RIVN面临着生产交付方面的挑战。这些问题不仅影响了公司的财务表现，也动摇了投资者的信心。虽然这些问题可能是暂时的，但它们确实给公司的前景蒙上了一层阴影。</p><p>在考虑是否投资时，我总是会问自己两个问题：第一，这家公司是否有持久的竞争优势？第二，我是否能在合理的价格买入？</p><p>对于RIVN，我目前还不能确定它的竞争优势是否足够强大到可以抵御未来的竞争压力。而且以它现在的估值水平，我很难说这是一个有吸引力的买入价格。</p><p>我的建议是：如果你对电动车行业有深入的了解，并且愿意承担较高的风险，那么你可以继续关注这家公司。但对于大多数投资者来说，现在可能还不是一个合适的买入时机。我会建议大家继续观察，看看公司在未来几个季度能否解决生产交付问题，并改善财务状况。</p><p>最后，我想借用查理·芒格的一句话：&quot;投资就像打棒球，你不需要每次都挥棒。&quot;在面对像RIVN这样的公司时，保持耐心和谨慎可能是更明智的选择。</p><p>这就是我今天的看法。谢谢大家。</p></div></div><div class="mreply"><div class="mh"><span class="who">达利欧</span><span class="mscore">47</span></div><div class="md"><h4>瑞·达利欧的圆桌发言：</h4><p><strong>结论</strong>：从目前来看，我对于Rivian（RIVN）的看法偏谨慎，倾向于建议投资者保持观望态度。</p><p><strong>理由</strong>：</p><p>首先，从电动车行业的宏观角度来看，这个行业确实拥有巨大的长期增长潜力，这是毫无疑问的。Rivian作为一家技术创新能力突出的公司，在电动车领域拥有一定的竞争优势，这构成了其多头逻辑的一部分。</p><p>然而，当我们深入分析公司的具体情况时，会发现一些令人担忧的因素：</p><ul><li><strong>股价持续承压</strong>：当前股价为13.54美元，较之前有所下跌，这反映了市场对其未来前景的担忧。</li></ul><ul><li><strong>生产交付问题</strong>：Rivian在生产和交付方面面临挑战，这不仅影响了其收入增长，也动摇了投资者的信心。从财报数据来看，尽管营收同比增长了27.2%，但其净资产收益率为-57.523%，这表明公司在盈利能力方面仍存在较大问题。</li></ul><ul><li><strong>估值问题</strong>：当前的市盈率（PE）为-7.796934，市净率（PB）为3.6116297，这显示出市场对其未来盈利能力的预期并不乐观。</li></ul><p><strong>风险/行动建议</strong>：</p><ul><li><strong>风险提示</strong>：对于Rivian来说，最大的风险在于其能否解决生产和交付问题，以及能否在竞争激烈的电动车市场中保持其技术优势。如果这些问题得不到有效解决，股价可能会继续承压。</li></ul><ul><li><strong>行动建议</strong>：在当前情况下，我建议投资者保持观望。如果你是长期投资者，并且对电动车行业的长期增长有信心，可以考虑在股价进一步下跌时逐步建仓，但需要密切关注公司的基本面变化，特别是生产和交付数据的改善情况。</li></ul><ul><li><strong>决策日志</strong>：建议将这次的分析和决策过程下来，包括你的判断依据、风险评估和行动方案。这样在未来回顾时，可以更好地理解你的决策过程，并从中学习。</li></ul><p>总之，Rivian目前面临的压力不容小觑，投资者需要谨慎对待，密切关注其基本面变化。</p></div></div><div class="mreply"><div class="mh"><span class="who">彼得·林奇</span><span class="mscore">32</span></div><div class="md"><h4>发言：</h4><p>各位投资者，大家好。今天我们来聊聊 Rivian（RIVN）这只股票。我的结论是：<strong>目前 Rivian 的风险大于机会，不建议买入</strong>。</p><p>首先，我们来看一下 Rivian 的基本面。这是一家电动车公司，所在的行业确实有巨大的长期增长潜力。电动车是未来趋势，这一点毋庸置疑。而且 Rivian 在技术创新方面也有一定的优势，这是它吸引人的地方。</p><p>然而，当我们把目光转向估值和实际运营情况时，问题就显现出来了。目前 Rivian 的股价是 13.54 美元，市盈率（PE）为 -7.8，这表明公司目前处于亏损状态。更为重要的是，它的市净率（PB）为 3.6，虽然不算特别高，但对于一家仍在亏损且交付问题频发的公司来说，这个估值并不算便宜。</p><h4>理由：</h4><ul><li><strong>生产交付问题</strong>：Rivian 一直面临生产交付的挑战，这严重影响了市场对其的信心。电动车行业竞争激烈，特斯拉等竞争对手已经占据了很大的市场份额，而 Rivian 还在为产能问题挣扎。</li></ul><ul><li><strong>盈利能力不足</strong>：目前公司尚未实现盈利，负的 PE 表明市场对其未来盈利能力的担忧。虽然电动车行业前景广阔，但投资者需要看到的是实实在在的业绩增长，而不是仅仅依靠未来的预期。</li></ul><ul><li><strong>股价持续承压</strong>：从股价表现来看，Rivian 一直处于下跌趋势，这反映了市场对其当前状况的担忧。</li></ul><h4>风险/行动建议：</h4><ul><li><strong>风险</strong>：Rivian 的主要风险在于其生产交付问题和盈利能力不足。如果这些问题得不到解决，股价可能会继续承压。</li></ul><ul><li><strong>行动建议</strong>：对于 Rivian，我的建议是观望。如果你是电动车行业的长期投资者，可以等待公司解决生产交付问题并实现盈利后再考虑入场。对于短期投资者来说，目前的风险较大，不建议介入。</li></ul><p>总之，Rivian 是一家有潜力的公司，但在当前阶段，估值和运营问题使得它不是一个理想的投资标的。我们需要看到更多的积极信号，才能考虑买入。</p></div></div><div class="mreply"><div class="mh"><span class="who">芒格</span><span class="mscore">75</span></div><div class="md"><p>各位，今天我们来谈谈RIVN这家公司。从芒格的视角来看，我首先要强调的是：投资不是赌博，不能只盯着赔率，而忽视胜率。</p><p>首先，RIVN确实拥有一些吸引人的特质。电动车行业的长期增长潜力毋庸置疑，而RIVN的技术创新能力也值得肯定。这就像我们常说的&quot;赛道&quot;理论，电动车无疑是未来十年最重要的赛道之一。</p><p>然而，芒格式思维的核心在于逆向思考。我们必须先问：&quot;这家公司可能会怎么死掉？&quot;在我看来，RIVN面临两大主要风险：</p><p>第一，股价持续承压。这不仅反映了市场对其短期表现的担忧，更深层次的问题是投资者信心正在动摇。当股价持续下跌时，企业融资成本会上升，这会进一步加剧经营压力。</p><p>第二，生产交付问题。这是我最担心的部分。汽车制造是一个极其复杂的系统工程，涉及到供应链管理、生产效率、质量控制等多个环节。如果RIVN无法解决这些问题，将严重影响其市场竞争力。</p><p>从多元思维模型的角度分析，RIVN目前面临的是典型的&quot;创新者困境&quot;。一方面，它需要持续投入研发以保持技术优势；另一方面，它又必须解决生产交付等基础运营问题。这种双重压力下，企业的资源分配和战略执行将面临巨大挑战。</p><p>基于以上分析，我的建议是：</p><ul><li>密切关注RIVN的生产交付进展。这是决定其能否扭转局面的关键因素。如果这个问题持续得不到解决，那么再好的技术也难以转化为商业成功。</li></ul><ul><li>对于已经持有该股票的投资者，我建议不要轻易加仓。当前市场情绪低迷，贸然加仓可能会导致更大的损失。</li></ul><ul><li>对于考虑入场的投资者，我建议先观察一段时间，等待更明确的信号出现。毕竟，投资不是赌博，我们不需要急于一时。</li></ul><p>最后，我想说的是，投资中最重要的是保持理性。不要被短期波动影响判断，也不要被所谓的&quot;创新故事&quot;冲昏头脑。我们要做的，是找到那些真正能够持续创造价值的企业，而RIVN目前还需要更多时间来证明自己。</p><p>我能错在哪？我可能低估了RIVN的技术优势，或者对电动车行业的整体发展速度过于保守。但无论如何，在当前这个充满不确定性的时期，保持谨慎总是明智的选择。</p></div></div></div>
+<div class="panel"><h2>分析师报告<span class="sub">2 篇</span></h2><details open><summary>市场面分析</summary><div class="body"><div class="md"><h4>RIVN RIVN 市场面分析</h4><ul><li>红黑榜多空分数：多头 50 / 空头 65，分差 -15。</li><li>当前价格：13.54。</li><li>当前交易评级：Hold。</li><li>值得加仓区间：12.73 - 13.27。</li><li>目标价格：14.22。</li><li>市场愿意给溢价的原因：电动车行业长期增长潜力大；技术创新能力突出。</li><li>当前主要压制因素：股价持续承压；生产交付问题影响市场信心。</li></ul></div></div></details><details open><summary>基本面分析</summary><div class="body"><div class="md"><h4>RIVN RIVN 基本面分析</h4><ul><li>报告期：暂无。</li><li>PE(TTM)：-7.80。</li><li>PB：3.61。</li><li>ROE：-57.52%。</li><li>营收同比：27.20%。</li><li>核心判断：收入仍在增长。</li></ul></div></div></details></div>
+<div class="panel"><h2>研究与计划</h2>
+<details><summary>基本面摘要</summary><div class="body"><div class="md"><h3>核心财务快照</h3><ul><li>报告期: 数据缺失</li><li>当前股价: 13.54 元</li><li>总市值: 196.04 亿元</li><li>PE (TTM): -7.80</li><li>PB: 3.61</li><li>PS (TTM): 数据缺失</li><li>营业总收入(报告期): 数据缺失 亿元</li><li>营收同比增长率: 27.20%</li><li>归母净利润(报告期): 数据缺失 亿元</li><li>归母净利润同比增长率: 数据缺失</li><li>ROE (TTM/估算): -57.52%</li><li>资产负债率: 数据缺失</li><li>经营性现金流 / 归母净利润: 数据缺失</li></ul><h4>缺失字段</h4><ul><li>PS(TTM), 营业总收入, 归母净利润, 归母净利润同比增长率, 资产负债率, 经营性现金流与归母净利润比值</li></ul></div></div></details>
+<details><summary>研究计划</summary><div class="body"><div class="md"><h4>RIVN RIVN 研究摘要</h4><ul><li>红黑榜结论: Hold</li><li>多头/空头: 50/65</li><li>正向信号: 营收同比 27.20%；PE(TTM) -7.80；PB 3.61</li><li>风险信号: ROE -57.52%</li><li>榜单看多理由: 电动车行业长期增长潜力大；技术创新能力突出</li><li>榜单风险提示: 股价持续承压；生产交付问题影响市场信心</li></ul></div></div></details>
+<details><summary>交易计划</summary><div class="body"><div class="md"><h4>RIVN RIVN 交易计划</h4><ul><li>评级: Hold</li><li>当前价格: 13.54</li><li>值得加仓区间: 12.73 - 13.27</li><li>目标价格: 14.22</li><li>止损位: 12.19</li><li>备注: 当前为缓存降级交易卡，后续若完整 TradingAgent 结果生成，将自动覆盖。</li></ul></div></div></details>
+<details><summary>交易决策</summary><div class="body"><div class="md"><p>Hold</p><p>RIVN RIVN 当前使用红黑榜缓存结果生成兜底交易卡。多头 50 / 空头 65，分差 -15。当前尚未取得完整 TradingAgent 长文决策，但榜单分数、财务快照和大师观点已经足够生成基础交易建议。</p></div></div></details>
+</div>
+<div class="panel"><h2>多空逻辑</h2><div class="pts"><div class="h bull">看多逻辑</div><div class="md"><p>电动车行业长期增长潜力大</p><p>技术创新能力突出</p></div></div><div class="pts"><div class="h bear">看空逻辑</div><div class="md"><p>股价持续承压</p><p>生产交付问题影响市场信心</p></div></div></div>
+<div class="panel"><h2>伯克希尔研究</h2><p><strong>Rivian是一家具有创新潜力的电动车初创企业，但当前面临盈利挑战和激烈竞争，需谨慎观察其长期发展。</strong></p><p>伯克希尔综合评分：<strong>2.75</strong></p><div class="md"><p>{&quot;verdict&quot;: &quot;观望&quot;, &quot;conservative_tip&quot;: &quot;建议等待更明确的盈利信号和估值回调，股价低于20美元时考虑建仓&quot;, &quot;moderate_tip&quot;: &quot;股价低于25美元时小规模建仓，密切关注公司盈利改善情况&quot;, &quot;aggressive_tip&quot;: &quot;股价低于30美元时小仓位介入，但需严格控制风险&quot;, &quot;catalysts_plus&quot;: [&quot;盈利改善，亏损收窄&quot;, &quot;市场份额提升，新车型发布&quot;, &quot;自由现金流转正&quot;], &quot;catalysts_minus&quot;: [&quot;持续亏损扩大&quot;, &quot;市场份额被竞争对手蚕食&quot;, &quot;自由现金流恶化，融资困难&quot;]}</p></div></div>
+<div class="panel news"><h2>最新资讯</h2><div class="md"><p>整体情绪偏多，共5条利多，3条利空，3条中性。</p></div><div class="nitem"><div class="t">Rivian Automotive (RIVN) vs. TSLA and F: Can Improving Margins and Its R2 Midsize SUV Unlock Profitable Growth?</div><div class="s">Yahoo Finance · 中性</div></div><div class="nitem"><div class="t">SA analyst upgrades/downgrades: MU, AMD, AMZN, RIVN (MU:NASDAQ)</div><div class="s">Seeking Alpha · 中性</div></div><div class="nitem"><div class="t">RIVN Stock Rises 4% After-Hours — Rivian Says R2 Is Exceeding Internal Expectations, Attracting Former Tesla Owners And New EV Buyers</div><div class="s">Stocktwits · 利好</div></div><div class="nitem"><div class="t">How to Play Rivian Stock as RIVN Keeps Falling Despite Record Deliveries</div><div class="s">Barchart.com · 利空</div></div><div class="nitem"><div class="t">SA analyst upgrades/downgrades: MU, AMD, AMZN, RIVN</div><div class="s">TradingView · 中性</div></div><div class="nitem"><div class="t">Rivian (RIVN) Stock May Trade At A Premium As Delivery Outlook Holds</div><div class="s">Simply Wall Street · 利好</div></div><div class="nitem"><div class="t">RIVN Stock Slides Toward Biggest Monthly Drop Since January – Wall Street Flags Profitability Challenges Despite Q2 Beat</div><div class="s">Stocktwits · 利空</div></div><div class="nitem"><div class="t">Can Rivian Automotive (NASDAQ:RIVN) Turn Record Deliveries and the Accessible-Model Rollout Into Momentum?</div><div class="s">Kalkine Media · 中性</div></div></div>
+<footer>稳健理财Agent · 红黑榜每日归档 · 黑榜 #5 · 仅供研究，不构成投资建议</footer>
+</div></body>
+</html>
