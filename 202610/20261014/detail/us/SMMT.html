@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SMMT(SMMT) 黑榜 2026-10-14</title>
+<style>
+:root{--red:#d8342c;--redbg:#fdecea;--green:#1a9e54;--ink:#1c2230;--muted:#6b7385;
+--line:#e7e9ef;--card:#fff;--bg:#f4f6fa;--chip:#eef1f6;--dark:#23262d;--darkbg:#ececef}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",
+"Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);
+line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 16px 64px}
+header.top{background:linear-gradient(135deg,#1c2230,#2c3550);color:#fff;border-radius:14px;
+padding:22px 24px;margin-bottom:20px;box-shadow:0 6px 24px rgba(20,26,46,.12)}
+header.top h1{margin:0 0 6px;font-size:24px;letter-spacing:.5px}
+header.top .sub{opacity:.85;font-size:13px}
+header.top .sub b{color:#ffd166;font-weight:600}
+nav.mkt{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;
+background:rgba(244,246,250,.92);backdrop-filter:blur(6px);padding:10px 0;margin-bottom:14px}
+nav.mkt a{text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);
+padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600}
+nav.mkt a:hover{border-color:var(--red);color:var(--red)}
+.summary{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.summary .chip{background:var(--card);border:1px solid var(--line);border-radius:10px;
+padding:8px 12px;font-size:12px;color:var(--muted)}
+.summary .chip b{color:var(--ink);font-size:14px;margin-left:4px}
+section.board{margin:26px 0}
+.board-title{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:19px}
+.board-title .dot{width:10px;height:10px;border-radius:50%}
+.board-title.red .dot{background:var(--red)}
+.board-title.black .dot{background:var(--dark)}
+.board-title small{color:var(--muted);font-weight:400;font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+position:relative;transition:box-shadow .15s}
+.card:hover{box-shadow:0 4px 18px rgba(20,26,46,.08)}
+.card.red{border-top:3px solid var(--red)}
+.card.black{border-top:3px solid var(--dark)}
+.rank{position:absolute;top:10px;right:12px;font-size:26px;font-weight:800;color:#eceff5}
+.card.red .rank{color:#fbdcD9}
+.nm{font-size:16px;font-weight:700}
+.nm .tk{color:var(--muted);font-weight:500;font-size:12px;margin-left:6px}
+.tag{display:inline-block;background:var(--chip);color:var(--muted);border-radius:6px;
+padding:1px 7px;font-size:11px;margin:6px 6px 0 0}
+.price-row{display:flex;align-items:baseline;gap:10px;margin:10px 0 4px}
+.price{font-size:24px;font-weight:800}
+.pct{font-size:14px;font-weight:700;padding:2px 8px;border-radius:8px}
+.up{color:var(--red)}.down{color:var(--green)}.flat{color:var(--muted)}
+.pct.up{background:var(--redbg)}.pct.down{background:#e2f4e9}.pct.flat{background:var(--chip)}
+.psrc{font-size:11px;color:var(--muted);margin-left:auto}
+.scores{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.scores span{background:var(--chip);border-radius:6px;padding:2px 8px;font-size:11px;color:var(--muted)}
+.scores span b{color:var(--ink)}
+.pts{font-size:12.5px;margin:8px 0 0}
+.pts .h{font-weight:700;font-size:12px;margin:6px 0 2px}
+.pts .h.bull{color:var(--red)}.pts .h.bear{color:var(--green)}
+.pts ul{margin:2px 0 4px;padding-left:18px;color:#3a4152}
+.pts li{margin:1px 0}
+.masters{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:11px;color:var(--muted)}
+.masters b{color:var(--ink)}
+.summ{font-size:12.5px;color:#3a4152;background:#fafbfd;border:1px solid var(--line);
+border-radius:8px;padding:8px 10px;margin-top:8px}
+.empty{color:var(--muted);background:var(--card);border:1px dashed var(--line);
+border-radius:10px;padding:18px;text-align:center}
+footer{margin-top:34px;color:var(--muted);font-size:12px;text-align:center;line-height:1.8}
+a.lnk{color:var(--red);text-decoration:none}
+/* ── detail page ── */
+.backbar{margin-bottom:14px;font-size:13px}
+.backbar a{color:var(--muted);text-decoration:none;margin-right:14px}
+.backbar a:hover{color:var(--red)}
+.badge{display:inline-block;border-radius:6px;padding:2px 10px;font-size:12px;font-weight:700;margin-right:8px}
+.badge.red{background:var(--red);color:#fff}.badge.black{background:var(--dark);color:#fff}
+.trade{display:flex;flex-wrap:wrap;gap:10px;background:linear-gradient(135deg,#2c3550,#1c2230);
+color:#fff;border-radius:12px;padding:16px 18px;margin:16px 0}
+.trade .cell{min-width:120px}
+.trade .k{font-size:11px;opacity:.75}
+.trade .v{font-size:18px;font-weight:800;margin-top:2px}
+.trade .v.buy{color:#7ee2a8}.trade .v.sell{color:#ff9d97}.trade .v.hold{color:#ffd166}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0}
+.mgrid .m{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.mgrid .m .k{font-size:11px;color:var(--muted)}
+.mgrid .m .v{font-size:16px;font-weight:700;margin-top:2px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.panel>h2{margin:0 0 12px;font-size:17px}
+.panel>h2 .sub{font-size:12px;color:var(--muted);font-weight:400;margin-left:8px}
+.mreply{border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;
+padding:12px 14px;margin:10px 0;background:#fff}
+.mreply .mh{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.mreply .mh .who{font-weight:700;font-size:14px}
+.mreply .mh .mscore{margin-left:auto;background:var(--chip);border-radius:6px;padding:1px 8px;font-size:12px;font-weight:700}
+.md h2,.md h3,.md h4,.md h5{margin:12px 0 6px;font-size:15px}
+.md p{margin:6px 0;font-size:13.5px;color:#2c3345}
+.md ul{margin:6px 0;padding-left:20px;font-size:13.5px;color:#2c3345}
+.md li{margin:3px 0}
+.md strong{color:var(--ink)}
+details{border:1px solid var(--line);border-radius:10px;background:#fff;margin:10px 0;padding:0}
+details>summary{cursor:pointer;padding:12px 16px;font-weight:700;font-size:14px;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary:before{content:"▸ ";color:var(--red)}
+details[open]>summary:before{content:"▾ "}
+details>.body{padding:0 16px 14px;border-top:1px dashed var(--line)}
+.ychip{display:inline-block;background:var(--chip);border-radius:8px;padding:4px 10px;font-size:12px;margin:3px 6px 3px 0}
+.ychip b{font-size:13px}
+.news .nitem{border-top:1px dashed var(--line);padding:8px 0;font-size:13px}
+.news .nitem .t{font-weight:600}
+.news .nitem .s{color:var(--muted);font-size:12px}
+/* ── root landing page ── */
+.hero{padding:30px 26px}
+.hero-kicker{color:#ffd166;font-size:12px;font-weight:700;letter-spacing:2px;
+text-transform:uppercase;margin-bottom:8px}
+.hero h1{font-size:30px;margin:0 0 10px}
+.day-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.day-card{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);
+border-radius:12px;padding:14px 16px;transition:all .15s}
+.day-card:hover{border-color:var(--red);box-shadow:0 4px 16px rgba(216,52,44,.12);transform:translateY(-2px)}
+.day-card .d{font-weight:800;font-size:15px;color:var(--ink);display:flex;align-items:center;gap:8px}
+.day-card .m{margin-top:8px;display:flex;gap:6px}
+.day-card .m span{background:var(--chip);color:var(--muted);border-radius:6px;
+padding:2px 8px;font-size:11px}
+.latest-badge{background:var(--red);color:#fff;border-radius:6px;padding:1px 7px;
+font-size:10px;font-weight:700}
+</style>
+</head>
+<body><div class="wrap">
+<div class="backbar"><a href="../index.html">← 总览</a><a href="../us.html">← 美股榜单</a></div>
+<header class="top">
+  <h1><span class="badge black">黑榜 #5</span>SMMT<span class="tk" style="opacity:.7;font-size:15px;font-weight:400;margin-left:8px">SMMT</span></h1>
+  <div class="sub">美股 ·  · 榜单日期 <b>2026-10-14</b> · 盘价采集 <b>2026-10-14 05:00:29</b></div>
+  <div class="price-row" style="margin-top:12px">
+    <span class="price" style="color:#fff">$15.52</span>
+    <span class="pct down">-9.40%</span>
+    <span class="psrc" style="color:rgba(255,255,255,.6)">实时</span>
+  </div>
+  <div class="scores" style="margin-top:10px">
+    <span>综合 <b>26.9</b></span>
+    <span>多头 <b>50</b></span>
+    <span>空头 <b>65</b></span>
+    <span>大师均值 <b>47.4</b></span>
+    <span>信号 <b>negative</b></span>
+  </div>
+</header>
+<div class="trade"><div class="cell"><div class="k">交易评级</div><span class="v hold">Hold</span></div><div class="cell"><div class="k">加仓区间</div><span class="v">13.97 ~ 14.59</span></div><div class="cell"><div class="k">目标价</div><span class="v">16.30</span></div><div class="cell"><div class="k">伯克希尔</div><span class="v">回避</span></div><div class="cell"><div class="k">伯克希尔分</div><span class="v">1.75</span></div></div>
+<div class="panel"><h2>财务指标</h2><div class="mgrid"><div class="m"><div class="k">市盈率 PE</div><div class="v">-13.61</div></div><div class="m"><div class="k">市净率 PB</div><div class="v">19.55</div></div><div class="m"><div class="k">ROE</div><div class="v">-192.5%</div></div><div class="m"><div class="k">总市值</div><div class="v">124</div></div></div></div>
+<div class="panel"><h2>历史收益</h2><span class="ychip">近1月 <b class="down">-15.74%</b></span><span class="ychip">近6月 <b class="down">-25.56%</b></span><span class="ychip">近1年 <b class="down">-28.64%</b></span><span class="ychip">近5年 <b class="up">+193.94%</b></span></div>
+<div class="panel"><h2>大师圆桌<span class="sub">5 位</span></h2><div class="mreply"><div class="mh"><span class="who">段永平</span><span class="mscore">64</span></div><div class="md"><p>各位朋友，今天讨论的是SMMT这家公司。我先给出我的判断：我对SMMT持谨慎态度。</p><h4>理由</h4><p>首先，生物科技行业确实前景广阔，SMMT的研发管线也展现出一定的潜力，这是支持这家公司发展的积极因素。然而，作为投资者，我们更需要关注的是风险点。从目前的信息来看，SMMT面临两个主要问题：</p><ul><li><strong>临床试验结果的不确定性</strong>：生物科技公司的核心价值在于其研发成果，但临床试验的成功与否存在很大的变数。这种不确定性是投资生物科技公司时必须面对的风险。</li></ul><ul><li><strong>资金消耗速度快</strong>：从财务数据来看，SMMT的市净率高达19倍，而净资产收益率为-192%，这表明公司目前处于亏损状态，且资金消耗速度很快。如果未来融资出现问题，可能会对公司的持续发展造成影响。</li></ul><h4>风险/行动建议</h4><p>在考虑是否投资SMMT时，我建议大家关注以下几点：</p><ul><li><strong>深入了解研发管线</strong>：如果对生物科技行业不够了解，建议不要轻易投资。投资者需要对SMMT的研发管线有深入的理解，并评估其成功的可能性。</li></ul><ul><li><strong>关注资金状况</strong>：密切关注公司的资金消耗速度以及未来的融资计划。如果公司无法持续获得资金支持，可能会面临严重的财务困境。</li></ul><ul><li><strong>估值问题</strong>：目前SMMT的估值偏高，市净率高达19倍，而市盈率更是负数。在这样的估值水平下，投资者需要谨慎评估其长期增长潜力是否能够支撑当前的股价。</li></ul><h4>总结</h4><p>投资生物科技公司需要极大的耐心和对行业的深刻理解。对于SMMT，我的建议是：如果您对这家公司的研发管线有足够的信心，并且能够承受其高风险，那么可以谨慎考虑投资。但如果您对生物科技行业不够了解，或者无法承受其高风险，那么最好还是选择观望。</p><p>最后，我想提醒大家，投资最重要的是&quot;做对的事&quot;，而不是盲目追逐热点。我们需要时刻保持清醒的头脑，理性评估风险和收益。</p></div></div><div class="mreply"><div class="mh"><span class="who">巴菲特</span><span class="mscore">71</span></div><div class="md"><p>各位朋友，今天我们来讨论一下SMMT这家公司。我的总体看法是：虽然这家公司身处生物科技这个前景广阔的领域，但目前我持谨慎态度。</p><p>首先，让我们谈谈这家公司的吸引力。生物科技行业无疑是未来几十年最具潜力的领域之一，而SMMT拥有多个研发管线，这为其提供了潜在的增长机会。如果这些管线中的任何一个取得成功，都可能带来巨大的回报。这种可能性是投资者需要考虑的一个重要因素。</p><p>然而，正如我常说的，&quot;价格是你付出的，价值是你得到的&quot;。在审视SMMT的财务状况时，我们看到一些令人担忧的信号。目前公司的市盈率是负数，市净率高达19倍，这表明市场对其未来增长抱有极高的期望，但同时也意味着当前价格已经包含了大量的乐观预期。此外，公司的资金消耗速度很快，这让我不禁要问：他们是否有足够的资源来支撑长期的研发投入？</p><p>再者，生物科技行业的一个显著特点是临床试验结果的高度不确定性。今天的成功并不意味着明天的胜利，而任何一项临床试验的失败都可能对公司的估值产生重大影响。</p><p>基于以上分析，我建议采取以下行动：</p><ul><li>如果你已经在关注这家公司，我建议你密切关注其临床试验进展和资金状况。任何负面消息都可能对股价产生重大影响。</li></ul><ul><li>对于考虑买入的投资者，我建议等待更明确的临床试验结果，或者等到市场情绪出现调整，估值更具吸引力时再考虑。</li></ul><ul><li>记住，投资就像打棒球，你不需要每次都挥棒。对于SMMT这样的高风险、高回报公司，只有在你有足够的耐心和风险承受能力时，才值得考虑。</li></ul><p>最后，我想说的是，虽然生物科技行业充满机遇，但投资者必须保持清醒的头脑。正如我常说的，&quot;别人贪婪时我恐惧，别人恐惧时我贪婪&quot;。在当前的市场环境下，保持谨慎可能是最明智的选择。</p><p>如果查理在这里，他可能会补充说，投资就像经营一个果园，你需要耐心等待果实成熟，而不是急于采摘未成熟的果子。对于SMMT，我们需要更多的耐心和观察。</p></div></div><div class="mreply"><div class="mh"><span class="who">达利欧</span><span class="mscore">35</span></div><div class="md"><h4>圆桌发言：关于 SMMT 的看法</h4><p><strong>结论：</strong></p><p>从我的视角来看，目前投资 SMMT 的风险较高，我对其持谨慎态度。</p><p><strong>理由：</strong></p><p>首先，生物科技行业确实前景广阔，SMMT 在研发管线方面也展现出一定的潜力，这是其多头逻辑的核心。然而，当我们深入分析时，会发现几个关键问题：</p><ul><li><strong>临床试验结果的不确定性</strong>：生物科技公司的核心价值在于其研发成果，但临床试验的成功与否直接影响到公司的未来发展。目前，SMMT 的临床试验结果存在较大不确定性，这使得其估值基础不够稳固。</li></ul><ul><li><strong>资金消耗速度快</strong>：从财务数据来看，SMMT 的资金消耗速度较快，而其盈利能力目前为负，PE 为 -13.61，ROE 为 -192.5%。这表明公司在短期内面临较大的财务压力，可能需要进一步融资来维持运营。</li></ul><ul><li><strong>市场估值偏高</strong>：PB 为 19.55，远高于行业平均水平，表明市场对其未来增长预期较高。然而，在当前临床试验结果不确定和资金压力较大的情况下，这种高估值可能存在回调风险。</li></ul><p><strong>风险/行动建议：</strong></p><ul><li><strong>风险提示</strong>：对于 SMMT 这样的生物科技公司，最大的风险在于临床试验失败和资金链断裂。如果临床试验结果不理想，或者公司无法获得足够的资金支持，其股价可能会出现大幅波动。</li></ul><ul><li><strong>行动建议</strong>：</li><li><strong>短期投资者</strong>：建议观望，等待更多临床试验结果的公布，或者公司有明确的资金支持计划后再做决定。</li><li><strong>长期投资者</strong>：如果对生物科技行业有坚定的信心，并且能够承受较高的风险，可以考虑在股价回调时逐步建仓，但需控制好仓位，避免过度集中。</li></ul><ul><li><strong>原则化决策</strong>：</li><li><strong>极度透明</strong>：在做出投资决策前，务必全面了解公司的财务状况、临床试验进展以及行业竞争格局。</li><li><strong>风险平衡</strong>：在投资组合中保持多元化，避免将过多资金投入高风险、高波动的单一标的。</li></ul><p>总之，SMMT 目前处于一个充满机遇但也充满挑战的阶段，投资者需要根据自身的风险承受能力和投资目标，谨慎评估后再做决策。</p></div></div><div class="mreply"><div class="mh"><span class="who">彼得·林奇</span><span class="mscore">30</span></div><div class="md"><h4>圆桌发言：关于SMMT公司的投资观点</h4><h5>结论：</h5><p>我对SMMT持谨慎态度，目前不建议买入。</p><h5>理由：</h5><ul><li><strong>生物科技行业的潜力与风险并存</strong>：SMMT所处的生物科技行业确实前景广阔，研发管线也提供了未来增长的可能性。然而，生物科技公司最大的特点就是不确定性极高，临床试验结果、监管审批等环节都可能成为重大风险点。</li></ul><ul><li><strong>估值问题</strong>：从估值指标来看，SMMT的PE为-13.6，PB高达19.5，这表明公司目前处于亏损状态，且股价相对于账面价值溢价过高。作为一个长期投资者，我更倾向于投资那些能够产生稳定现金流、并且估值合理的公司。</li></ul><ul><li><strong>资金消耗速度过快</strong>：生物科技公司通常需要大量资金投入研发，而SMMT的资金消耗速度过快，这让我对其长期生存能力产生担忧。如果不能及时获得新的融资或实现盈利，公司可能会面临严重的财务困境。</li></ul><h5>风险/行动建议：</h5><ul><li><strong>临床试验结果的风险</strong>：生物科技公司的核心价值在于其研发管线，但临床试验结果具有高度不确定性。如果试验失败，股价可能会大幅下跌。因此，投资者需要密切关注SMMT的临床进展，并做好应对负面结果的准备。</li></ul><ul><li><strong>资金压力</strong>：由于公司目前处于亏损状态，且资金消耗速度较快，投资者需要密切关注其融资计划。如果公司无法获得足够的资金支持，可能会面临严重的财务风险。</li></ul><ul><li><strong>长期持有的考虑</strong>：对于生物科技公司，我通常建议投资者要有长期持有的心理准备，并且只投入你能承受损失的资金。如果你决定投资SMMT，建议将其仓位控制在总投资组合的一小部分，并且密切关注公司的基本面变化。</li></ul><p>总的来说，SMMT目前给我的感觉是&quot;故事很美好，但风险也不小&quot;。如果你对生物科技行业有深入了解，并且愿意承担高风险，那么可以少量参与；但对于大多数投资者来说，我建议保持观望，等待更明确的机会。</p></div></div><div class="mreply"><div class="mh"><span class="who">芒格</span><span class="mscore">37</span></div><div class="md"><p>各位先生女士，关于这家公司 SMMT，我得说几句。</p><p>首先，我的结论很明确：目前我不建议投资这家公司。</p><p>让我解释一下原因。生物科技行业确实前景广阔，这没错。但我们要记住，潜力不等于现实。SMMT 的研发管线看似丰富，可临床试验结果的不确定性太大了。生物科技公司的价值，很大程度上取决于能否通过临床试验并最终获批上市，而这一点目前来看风险极高。</p><p>再看看公司的财务状况，PE 是负的，PB 却高达 19 倍，这显然不是一个健康的财务结构。资金消耗速度快，这意味着公司需要持续融资来维持运营，而频繁融资往往会稀释股东权益。</p><p>从逆向思维的角度出发，我们要问：什么情况会让这家公司失败？答案是临床试验失败、资金链断裂、市场竞争加剧。这些风险因素目前看来都很突出。</p><p>此外，激励机制也需要关注。生物科技公司往往依赖外部融资，这可能导致管理层更关注短期资金获取，而非长期价值创造。</p><p>基于以上分析，我建议大家谨慎行事。如果非要参与，也要做好以下准备：</p><ul><li>严格控制仓位，不要超过投资组合的 5%。</li><li>密切关注临床试验进展，一旦出现不利信号，立即止损。</li><li>做好长期持有准备，因为生物科技公司的价值实现往往需要较长时间。</li></ul><p>最后，我想提醒大家，投资决策应该基于扎实的基本面分析，而不是对行业前景的盲目乐观。我们要做的是识别并避开愚蠢，而不是追逐热点。</p></div></div></div>
+<div class="panel"><h2>分析师报告<span class="sub">2 篇</span></h2><details open><summary>市场面分析</summary><div class="body"><div class="md"><h4>SMMT SMMT 市场面分析</h4><ul><li>红黑榜多空分数：多头 50 / 空头 65，分差 -15。</li><li>当前价格：15.52。</li><li>当前交易评级：Hold。</li><li>值得加仓区间：13.97 - 14.59。</li><li>目标价格：16.30。</li><li>市场愿意给溢价的原因：生物科技行业前景广阔；研发管线提供未来增长潜力。</li><li>当前主要压制因素：临床试验结果不确定性；资金消耗速度快。</li></ul></div></div></details><details open><summary>基本面分析</summary><div class="body"><div class="md"><h4>SMMT SMMT 基本面分析</h4><ul><li>报告期：暂无。</li><li>PE(TTM)：-13.61。</li><li>PB：19.55。</li><li>ROE：-192.50%。</li></ul></div></div></details></div>
+<div class="panel"><h2>研究与计划</h2>
+<details><summary>基本面摘要</summary><div class="body"><div class="md"><h3>核心财务快照</h3><ul><li>报告期: 数据缺失</li><li>当前股价: 15.52 元</li><li>总市值: 123.81 亿元</li><li>PE (TTM): -13.61</li><li>PB: 19.55</li><li>PS (TTM): 数据缺失</li><li>营业总收入(报告期): 数据缺失 亿元</li><li>营收同比增长率: 数据缺失</li><li>归母净利润(报告期): 数据缺失 亿元</li><li>归母净利润同比增长率: 数据缺失</li><li>ROE (TTM/估算): -192.50%</li><li>资产负债率: 数据缺失</li><li>经营性现金流 / 归母净利润: 数据缺失</li></ul><h4>缺失字段</h4><ul><li>PS(TTM), 营业总收入, 营收同比增长率, 归母净利润, 归母净利润同比增长率, 资产负债率, 经营性现金流与归母净利润比值</li></ul></div></div></details>
+<details><summary>研究计划</summary><div class="body"><div class="md"><h4>SMMT SMMT 研究摘要</h4><ul><li>红黑榜结论: Hold</li><li>多头/空头: 50/65</li><li>正向信号: PE(TTM) -13.61；PB 19.55</li><li>风险信号: ROE -192.50%</li><li>榜单看多理由: 生物科技行业前景广阔；研发管线提供未来增长潜力</li><li>榜单风险提示: 临床试验结果不确定性；资金消耗速度快</li></ul></div></div></details>
+<details><summary>交易计划</summary><div class="body"><div class="md"><h4>SMMT SMMT 交易计划</h4><ul><li>评级: Hold</li><li>当前价格: 15.52</li><li>值得加仓区间: 14.59 - 15.21</li><li>目标价格: 16.30</li><li>止损位: 13.97</li><li>备注: 当前为缓存降级交易卡，后续若完整 TradingAgent 结果生成，将自动覆盖。</li></ul></div></div></details>
+<details><summary>交易决策</summary><div class="body"><div class="md"><p>Hold</p><p>SMMT SMMT 当前使用红黑榜缓存结果生成兜底交易卡。多头 50 / 空头 65，分差 -15。当前尚未取得完整 TradingAgent 长文决策，但榜单分数、财务快照和大师观点已经足够生成基础交易建议。</p></div></div></details>
+</div>
+<div class="panel"><h2>多空逻辑</h2><div class="pts"><div class="h bull">看多逻辑</div><div class="md"><p>生物科技行业前景广阔</p><p>研发管线提供未来增长潜力</p></div></div><div class="pts"><div class="h bear">看空逻辑</div><div class="md"><p>临床试验结果不确定性</p><p>资金消耗速度快</p></div></div></div>
+<div class="panel"><h2>伯克希尔研究</h2><p><strong>SMMT商业模式尚不清晰，财务表现较弱，护城河有限，当前投资价值有限，需谨慎观望。</strong></p><p>伯克希尔综合评分：<strong>1.75</strong></p><div class="md"><p>{&quot;verdict&quot;: &quot;回避&quot;, &quot;conservative_tip&quot;: &quot;当前股价过高，建议观望，耐心等待更明确信号。&quot;, &quot;moderate_tip&quot;: &quot;若股价跌至1美元以下，可考虑小仓位试探性建仓。&quot;, &quot;aggressive_tip&quot;: &quot;不建议激进投资，研发进展和财务改善前保持谨慎。&quot;, &quot;catalysts_plus&quot;: [&quot;研发取得重大突破。&quot;, &quot;获得大额融资或战略合作。&quot;, &quot;盈利能力显著改善，现金流转正。&quot;], &quot;catalysts_minus&quot;: [&quot;研发失败或延期。&quot;, &quot;资金链断裂或债务违约。&quot;, &quot;主要竞争对手推出更优产品。&quot;]}</p></div></div>
+<div class="panel news"><h2>最新资讯</h2><div class="md"><p>利空新闻较多，共5条利空，2条利好，4条中性。</p></div><div class="nitem"><div class="t">SMMT Mar 2027 5.000 call (SMMT270319C00005000) Stock Price, News, Quote &amp; History</div><div class="s">Yahoo! Finance Canada · 中性</div></div><div class="nitem"><div class="t">Summit Therapeutics Inc Stock (SMMT) Moved Down by 8.61% on Oct 13: Key Drivers Unveiled</div><div class="s">TradingKey · 利空</div></div><div class="nitem"><div class="t">Summit Therapeutics (SMMT) Teams With AstraZeneca And Daiichi As Valuation Debate Heats Up</div><div class="s">Simply Wall Street · 利好</div></div><div class="nitem"><div class="t">What Hit Syndax (NASDAQ:SNDX), Summit (NASDAQ:SMMT), Scribe (NASDAQ:SCTX) and Surrozen (NASDAQ:SRZN) on October 13?</div><div class="s">kalkine.ca · 利空</div></div><div class="nitem"><div class="t">Nasdaq Futures Tread Water After Monday Rout: MU, NVTS, NVO, KOD, SMMT, ASTS Stocks In Focus</div><div class="s">Stocktwits · 中性</div></div><div class="nitem"><div class="t">Record electric car market powers bumper September</div><div class="s">SMMT · 中性</div></div><div class="nitem"><div class="t">SMMT Stock Gains After Summit Reports Strong Lung Cancer Survival Results — Investors Await Q2 Earnings</div><div class="s">Stocktwits · 利好</div></div><div class="nitem"><div class="t">Why Did Summit Therapeutics (NASDAQ:SMMT) Slip 7.3% to USD 15.89?</div><div class="s">kalkine.ca · 利空</div></div></div>
+<footer>稳健理财Agent · 红黑榜每日归档 · 黑榜 #5 · 仅供研究，不构成投资建议</footer>
+</div></body>
+</html>
