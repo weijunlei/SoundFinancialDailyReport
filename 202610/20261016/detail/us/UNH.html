@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>UNH(UNH) 红榜 2026-10-16</title>
+<style>
+:root{--red:#d8342c;--redbg:#fdecea;--green:#1a9e54;--ink:#1c2230;--muted:#6b7385;
+--line:#e7e9ef;--card:#fff;--bg:#f4f6fa;--chip:#eef1f6;--dark:#23262d;--darkbg:#ececef}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",
+"Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);
+line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 16px 64px}
+header.top{background:linear-gradient(135deg,#1c2230,#2c3550);color:#fff;border-radius:14px;
+padding:22px 24px;margin-bottom:20px;box-shadow:0 6px 24px rgba(20,26,46,.12)}
+header.top h1{margin:0 0 6px;font-size:24px;letter-spacing:.5px}
+header.top .sub{opacity:.85;font-size:13px}
+header.top .sub b{color:#ffd166;font-weight:600}
+nav.mkt{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;
+background:rgba(244,246,250,.92);backdrop-filter:blur(6px);padding:10px 0;margin-bottom:14px}
+nav.mkt a{text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);
+padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600}
+nav.mkt a:hover{border-color:var(--red);color:var(--red)}
+.summary{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.summary .chip{background:var(--card);border:1px solid var(--line);border-radius:10px;
+padding:8px 12px;font-size:12px;color:var(--muted)}
+.summary .chip b{color:var(--ink);font-size:14px;margin-left:4px}
+section.board{margin:26px 0}
+.board-title{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:19px}
+.board-title .dot{width:10px;height:10px;border-radius:50%}
+.board-title.red .dot{background:var(--red)}
+.board-title.black .dot{background:var(--dark)}
+.board-title small{color:var(--muted);font-weight:400;font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+position:relative;transition:box-shadow .15s}
+.card:hover{box-shadow:0 4px 18px rgba(20,26,46,.08)}
+.card.red{border-top:3px solid var(--red)}
+.card.black{border-top:3px solid var(--dark)}
+.rank{position:absolute;top:10px;right:12px;font-size:26px;font-weight:800;color:#eceff5}
+.card.red .rank{color:#fbdcD9}
+.nm{font-size:16px;font-weight:700}
+.nm .tk{color:var(--muted);font-weight:500;font-size:12px;margin-left:6px}
+.tag{display:inline-block;background:var(--chip);color:var(--muted);border-radius:6px;
+padding:1px 7px;font-size:11px;margin:6px 6px 0 0}
+.price-row{display:flex;align-items:baseline;gap:10px;margin:10px 0 4px}
+.price{font-size:24px;font-weight:800}
+.pct{font-size:14px;font-weight:700;padding:2px 8px;border-radius:8px}
+.up{color:var(--red)}.down{color:var(--green)}.flat{color:var(--muted)}
+.pct.up{background:var(--redbg)}.pct.down{background:#e2f4e9}.pct.flat{background:var(--chip)}
+.psrc{font-size:11px;color:var(--muted);margin-left:auto}
+.scores{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.scores span{background:var(--chip);border-radius:6px;padding:2px 8px;font-size:11px;color:var(--muted)}
+.scores span b{color:var(--ink)}
+.pts{font-size:12.5px;margin:8px 0 0}
+.pts .h{font-weight:700;font-size:12px;margin:6px 0 2px}
+.pts .h.bull{color:var(--red)}.pts .h.bear{color:var(--green)}
+.pts ul{margin:2px 0 4px;padding-left:18px;color:#3a4152}
+.pts li{margin:1px 0}
+.masters{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:11px;color:var(--muted)}
+.masters b{color:var(--ink)}
+.summ{font-size:12.5px;color:#3a4152;background:#fafbfd;border:1px solid var(--line);
+border-radius:8px;padding:8px 10px;margin-top:8px}
+.empty{color:var(--muted);background:var(--card);border:1px dashed var(--line);
+border-radius:10px;padding:18px;text-align:center}
+footer{margin-top:34px;color:var(--muted);font-size:12px;text-align:center;line-height:1.8}
+a.lnk{color:var(--red);text-decoration:none}
+/* ── detail page ── */
+.backbar{margin-bottom:14px;font-size:13px}
+.backbar a{color:var(--muted);text-decoration:none;margin-right:14px}
+.backbar a:hover{color:var(--red)}
+.badge{display:inline-block;border-radius:6px;padding:2px 10px;font-size:12px;font-weight:700;margin-right:8px}
+.badge.red{background:var(--red);color:#fff}.badge.black{background:var(--dark);color:#fff}
+.trade{display:flex;flex-wrap:wrap;gap:10px;background:linear-gradient(135deg,#2c3550,#1c2230);
+color:#fff;border-radius:12px;padding:16px 18px;margin:16px 0}
+.trade .cell{min-width:120px}
+.trade .k{font-size:11px;opacity:.75}
+.trade .v{font-size:18px;font-weight:800;margin-top:2px}
+.trade .v.buy{color:#7ee2a8}.trade .v.sell{color:#ff9d97}.trade .v.hold{color:#ffd166}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0}
+.mgrid .m{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.mgrid .m .k{font-size:11px;color:var(--muted)}
+.mgrid .m .v{font-size:16px;font-weight:700;margin-top:2px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.panel>h2{margin:0 0 12px;font-size:17px}
+.panel>h2 .sub{font-size:12px;color:var(--muted);font-weight:400;margin-left:8px}
+.mreply{border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;
+padding:12px 14px;margin:10px 0;background:#fff}
+.mreply .mh{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.mreply .mh .who{font-weight:700;font-size:14px}
+.mreply .mh .mscore{margin-left:auto;background:var(--chip);border-radius:6px;padding:1px 8px;font-size:12px;font-weight:700}
+.md h2,.md h3,.md h4,.md h5{margin:12px 0 6px;font-size:15px}
+.md p{margin:6px 0;font-size:13.5px;color:#2c3345}
+.md ul{margin:6px 0;padding-left:20px;font-size:13.5px;color:#2c3345}
+.md li{margin:3px 0}
+.md strong{color:var(--ink)}
+details{border:1px solid var(--line);border-radius:10px;background:#fff;margin:10px 0;padding:0}
+details>summary{cursor:pointer;padding:12px 16px;font-weight:700;font-size:14px;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary:before{content:"▸ ";color:var(--red)}
+details[open]>summary:before{content:"▾ "}
+details>.body{padding:0 16px 14px;border-top:1px dashed var(--line)}
+.ychip{display:inline-block;background:var(--chip);border-radius:8px;padding:4px 10px;font-size:12px;margin:3px 6px 3px 0}
+.ychip b{font-size:13px}
+.news .nitem{border-top:1px dashed var(--line);padding:8px 0;font-size:13px}
+.news .nitem .t{font-weight:600}
+.news .nitem .s{color:var(--muted);font-size:12px}
+/* ── root landing page ── */
+.hero{padding:30px 26px}
+.hero-kicker{color:#ffd166;font-size:12px;font-weight:700;letter-spacing:2px;
+text-transform:uppercase;margin-bottom:8px}
+.hero h1{font-size:30px;margin:0 0 10px}
+.day-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.day-card{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);
+border-radius:12px;padding:14px 16px;transition:all .15s}
+.day-card:hover{border-color:var(--red);box-shadow:0 4px 16px rgba(216,52,44,.12);transform:translateY(-2px)}
+.day-card .d{font-weight:800;font-size:15px;color:var(--ink);display:flex;align-items:center;gap:8px}
+.day-card .m{margin-top:8px;display:flex;gap:6px}
+.day-card .m span{background:var(--chip);color:var(--muted);border-radius:6px;
+padding:2px 8px;font-size:11px}
+.latest-badge{background:var(--red);color:#fff;border-radius:6px;padding:1px 7px;
+font-size:10px;font-weight:700}
+</style>
+</head>
+<body><div class="wrap">
+<div class="backbar"><a href="../index.html">← 总览</a><a href="../us.html">← 美股榜单</a></div>
+<header class="top">
+  <h1><span class="badge red">红榜 #1</span>UNH<span class="tk" style="opacity:.7;font-size:15px;font-weight:400;margin-left:8px">UNH</span></h1>
+  <div class="sub">美股 ·  · 榜单日期 <b>2026-10-16</b> · 盘价采集 <b>2026-10-16 05:00:08</b></div>
+  <div class="price-row" style="margin-top:12px">
+    <span class="price" style="color:#fff">$406.67</span>
+    <span class="pct up">+2.79%</span>
+    <span class="psrc" style="color:rgba(255,255,255,.6)">实时</span>
+  </div>
+  <div class="scores" style="margin-top:10px">
+    <span>综合 <b>93.8</b></span>
+    <span>多头 <b>85</b></span>
+    <span>空头 <b>25</b></span>
+    <span>大师均值 <b>66.8</b></span>
+    <span>信号 <b>positive</b></span>
+  </div>
+</header>
+<div class="trade"><div class="cell"><div class="k">交易评级</div><span class="v buy">Buy</span></div><div class="cell"><div class="k">加仓区间</div><span class="v">394.47 ~ 410.74</span></div><div class="cell"><div class="k">目标价</div><span class="v">455.47</span></div><div class="cell"><div class="k">伯克希尔</div><span class="v">强烈买入</span></div><div class="cell"><div class="k">伯克希尔分</div><span class="v">4.50</span></div></div>
+<div class="panel"><h2>财务指标</h2><div class="mgrid"><div class="m"><div class="k">市盈率 PE</div><div class="v">24.96</div></div><div class="m"><div class="k">市净率 PB</div><div class="v">3.52</div></div><div class="m"><div class="k">ROE</div><div class="v">15.8%</div></div><div class="m"><div class="k">总市值</div><div class="v">3650</div></div><div class="m"><div class="k">营收同比</div><div class="v">-40.0%</div></div><div class="m"><div class="k">净利同比</div><div class="v">75.9%</div></div></div></div>
+<div class="panel"><h2>历史收益</h2><span class="ychip">近1月 <b class="up">+8.37%</b></span><span class="ychip">近6月 <b class="up">+28.53%</b></span><span class="ychip">近1年 <b class="up">+14.02%</b></span><span class="ychip">近5年 <b class="down">-4.23%</b></span></div>
+<div class="panel"><h2>大师圆桌<span class="sub">5 位</span></h2><div class="mreply"><div class="mh"><span class="who">段永平</span><span class="mscore">70</span></div><div class="md"><h4>圆桌发言</h4><p>各位同仁，今天我们来讨论一下联合健康（UNH）。从我的角度出发，我的初步判断是：UNH是一家不错的公司，但当前价格可能偏高，需要谨慎对待。</p><h5>结论：</h5><p>UNH是一家值得关注的医疗保健行业龙头，但目前估值较高，投资者需要考虑长期持有和短期波动的平衡。</p><h5>理由：</h5><ul><li><strong>行业地位与业务模式</strong>：UNH是医疗保健行业的领军企业，业务模式具有很强的抗周期性。无论经济环境如何变化，人们对医疗保健的需求始终存在，这为UNH提供了稳定的收入来源。</li><li><strong>近期表现</strong>：从股价表现来看，UNH近期表现强势，市场对其未来增长抱有较高预期。这反映了市场对其业务模式的认可。</li><li><strong>估值与风险</strong>：然而，当前UNH的估值处于高位，市盈率（PE）接近25倍，市净率（PB）超过3.5倍。这样的估值水平意味着市场对其未来增长有较高的预期，同时也带来了更大的风险。此外，政策的不确定性也可能对医疗保健行业产生重大影响。</li></ul><h5>风险/行动建议：</h5><ul><li><strong>估值风险</strong>：当前价格可能已经反映了大部分利好因素，投资者需要警惕估值回调的风险。如果市场情绪发生变化，股价可能会出现较大波动。</li><li><strong>政策风险</strong>：医疗保健行业受政策影响较大，投资者需要密切关注相关政策变化，确保对潜在风险有充分认识。</li><li><strong>长期持有</strong>：如果投资者能够接受短期波动，并且相信UNH的长期增长潜力，那么在合理配置仓位的前提下，可以考虑长期持有。但前提是，要确保自己对这家公司有足够的了解，并且能够承受可能的短期波动。</li></ul><p>总的来说，UNH是一家优秀的公司，但当前价格可能偏高。投资者需要根据自己的风险承受能力和投资目标，谨慎做出决策。正如我一直强调的，做对的事，把事做对，在投资中保持本分和理性，才能在长期中获得稳健的回报。</p></div></div><div class="mreply"><div class="mh"><span class="who">巴菲特</span><span class="mscore">50</span></div><div class="md"><p>各位好，今天我们来聊聊联合健康（UNH）。我的看法是，这是一家值得关注的生意，但目前的价格让我有些犹豫。</p><p>首先，联合健康无疑是医疗保健行业的龙头。它拥有强大的护城河，体现在其规模效应、品牌认知度以及与医疗服务提供商的稳固合作关系上。这些优势使得它在面对行业波动时表现出很强的抗周期性，这也是我一直以来重视的特质。</p><p>然而，当我们谈到价格时，情况就变得复杂了。当前联合健康的市盈率（PE）约为25倍，市净率（PB）超过3.5倍。虽然这家公司过去几年展现了良好的盈利能力，净利润同比大幅增长，但这样的估值水平已经反映了市场对其未来增长的乐观预期。</p><p>让我提醒大家，医疗保健行业面临较大的政策不确定性。政府的医保政策变化、药品定价管制等都可能对公司未来的盈利能力产生影响。尽管联合健康有强大的市场地位和运营能力，但政策风险始终是一个不可忽视的因素。</p><p>因此，我的建议是：如果你已经持有联合健康，可以继续持有，但需要密切关注政策动向和公司自由现金流的持续性。如果你正在考虑买入，我建议你再等等，寻找更好的安全边际。毕竟，市场先生有时候会给我们提供更诱人的价格。</p><p>最后，我想说，投资就像打棒球，你不需要每次都挥棒。耐心等待那个最甜的机会，可能会带来更好的回报。</p><p>如果是芒格，他可能会补充说：&quot;在投资中，耐心是一种美德，而过度乐观往往是危险的。&quot;</p></div></div><div class="mreply"><div class="mh"><span class="who">达利欧</span><span class="mscore">70</span></div><div class="md"><p>各位同仁，关于联合健康集团（UNH），我将从原则化的角度进行评估。</p><h4>结论：</h4><p>联合健康是一家具备长期投资价值的企业，但在当前时点，我们需要谨慎评估其估值水平和潜在风险。</p><h4>理由：</h4><ul><li><strong>行业地位与抗周期性</strong>：联合健康是医疗保健行业的龙头企业，业务模式具有较强的抗周期性。在经济波动中，医疗需求相对稳定，这为公司的长期发展提供了支撑。</li></ul><ul><li><strong>近期表现</strong>：从股价表现来看，UNH近期走势强劲，市场对其增长前景持乐观态度。财务数据显示，尽管营收同比下降40%，但净利润同比增长75.9%，这表明公司在成本控制和盈利能力方面表现良好。</li></ul><ul><li><strong>估值水平</strong>：然而，当前估值处于高位，市盈率（PE）为24.96，市净率（PB）为3.52。这表明市场已经对其未来增长给予了较高的预期。任何不及预期的业绩表现都可能引发估值回调。</li></ul><ul><li><strong>政策风险</strong>：医疗行业面临较大的政策不确定性。政府的医保政策、药品定价政策等变化都可能对公司的盈利模式产生重大影响。</li></ul><h4>风险/行动建议：</h4><ul><li><strong>风险评估</strong>：当前市场对UNH的预期较为乐观，这可能导致估值回调的风险。我们需要密切关注公司的业绩增长是否能够持续，以及政策环境的变化。</li></ul><ul><li><strong>投资策略</strong>：对于长期投资者而言，可以考虑在估值回调时逐步建仓。对于短期投资者，建议保持观望，等待更明确的信号。</li></ul><ul><li><strong>多元化配置</strong>：在投资组合中，UNH可以作为防御性配置的一部分，但不宜过度集中。应结合其他行业的优质标的，实现风险分散。</li></ul><ul><li><strong>原则化决策</strong>：根据&quot;Pain + Reflection = Progress&quot;的原则，我们需要定期回顾投资决策，评估市场环境和公司基本面的变化，及时调整投资策略。</li></ul><p>总之，联合健康是一家值得关注的优质企业，但在当前估值水平下，我们需要保持谨慎，密切关注其业绩表现和政策环境的变化。通过原则化的决策流程，我们可以更好地平衡风险与收益，实现长期稳健的投资回报。</p></div></div><div class="mreply"><div class="mh"><span class="who">彼得·林奇</span><span class="mscore">65</span></div><div class="md"><h4>圆桌发言：关于联合健康集团（UNH）</h4><h5>结论：</h5><p>联合健康（UNH）是一家值得关注的优质公司，但目前估值偏高，需要谨慎考虑买入时机。</p><h5>理由：</h5><ul><li><strong>行业地位与业务模式</strong>：</li><li>UNH是医疗保健行业的龙头企业，拥有强大的市场地位和多元化的业务组合，包括健康保险、医疗服务和药品福利管理。这种多元化使其业务模式具有很强的抗周期性。</li><li>从我个人的投资风格来看，我会倾向于关注那些在日常生活中能够观察到的公司，而医疗保健正是每个人都会接触到的领域。</li></ul><ul><li><strong>财务表现</strong>：</li><li>尽管营收同比下降了40%，但净利润同比增长了75.9%，这表明公司在成本控制和运营效率方面表现优异。</li><li>净资产收益率（ROE）为15.77%，显示出公司具有良好的盈利能力。</li></ul><ul><li><strong>市场表现</strong>：</li><li>近期股价表现强势，市场对其未来增长抱有较高预期。</li><li>然而，这种强势表现也带来了估值上的压力，当前市盈率（PE）为24.96倍，处于历史高位。</li></ul><h5>风险与行动建议：</h5><ul><li><strong>估值风险</strong>：</li><li>当前估值偏高，投资者需要警惕市场预期过高带来的回调风险。</li><li>如果你已经在持有UNH，建议密切关注公司的基本面变化和行业政策动向。</li></ul><ul><li><strong>政策不确定性</strong>：</li><li>医疗保健行业受政策影响较大，任何重大的政策变化都可能对公司的盈利模式产生重大影响。</li><li>建议投资者密切关注美国医疗政策的动向，特别是与医保改革相关的政策变化。</li></ul><ul><li><strong>具体行动建议</strong>：</li><li>如果你尚未买入，建议耐心等待更好的买入时机，比如在市场出现回调时再考虑介入。</li><li>如果你已经持有，可以考虑在股价继续上涨时逐步减仓，锁定部分利润，同时保留部分仓位以享受长期增长。</li></ul><p>总之，UNH是一家优秀的公司，但在当前估值水平下，投资者需要保持谨慎，密切关注市场变化和公司基本面。</p></div></div><div class="mreply"><div class="mh"><span class="who">芒格</span><span class="mscore">79</span></div><div class="md"><h4>芒格圆桌发言：关于 UNH（UnitedHealth Group）</h4><p>各位同仁，今天我们来谈谈 UNH 这家公司。首先，我给出我的结论：<strong>UNH 是一家值得关注的优质公司，但当前价格已经反映了大部分利好，投资者需要谨慎对待。</strong></p><h5>理由分析：</h5><ul><li><strong>行业龙头地位稳固</strong></li></ul><p>   UNH 是美国医疗保健行业的领军企业，拥有强大的市场地位和多元化的业务布局。这种龙头地位带来了显著的竞争优势，使其能够抵御经济周期波动，并在长期内保持稳定增长。</p><ul><li><strong>抗周期性强的商业模式</strong></li></ul><p>   医疗保健行业本身具有较强的抗周期性。无论经济环境如何变化，人们对医疗服务的需求始终存在。这种特性使得 UNH 在经济动荡时期也能保持相对稳定的收入来源。</p><ul><li><strong>近期股价表现强劲</strong></li></ul><p>   过去一段时间，UNH 的股价表现相当出色，这反映了市场对其未来增长的预期。但需要注意的是，股价的快速上涨也带来了估值压力。</p><ul><li><strong>估值处于高位</strong></li></ul><p>   尽管 UNH 的基本面强劲，但当前市盈率（PE）已经超过 24 倍，市净率（PB）也接近 3.5 倍。这意味着市场对其未来增长抱有很高的期望，任何低于预期的表现都可能引发股价回调。</p><ul><li><strong>政策不确定性</strong></li></ul><p>   医疗保健行业面临较大的政策风险。美国政府对医疗政策的任何调整都可能对 UNH 的业务模式产生重大影响。这种不确定性是投资者需要重点关注的风险点。</p><h5>风险与行动建议：</h5><ul><li><strong>警惕估值风险</strong></li></ul><p>   当前价格已经反映了大部分利好，投资者不应盲目追高。如果市场情绪出现逆转，估值回调的风险不容忽视。</p><ul><li><strong>关注政策变化</strong></li></ul><p>   密切关注美国医疗政策的任何变化，这将对 UNH 的长期前景产生重要影响。如果政策环境恶化，可能需要重新评估投资决策。</p><ul><li><strong>长期视角下的机会</strong></li></ul><p>   对于长期投资者而言，UNH 仍然是一个值得考虑的标的。但建议在价格回调时再考虑介入，而不是在当前高位追涨。</p><ul><li><strong>多元化投资组合</strong></li></ul><p>   考虑到医疗行业的政策风险，建议将 UNH 作为投资组合的一部分，而不是唯一的重仓标的。这样可以有效分散风险。</p><p>最后，我想提醒大家，投资决策不应仅仅基于对未来的乐观预期，而应充分考虑各种可能的风险因素。正如我常说的：&quot;如果我知道自己会死在哪里，我就永远不去那里。&quot; 在 UNH 这件事上，我们需要警惕的就是估值过高和政策风险。</p><p>希望我的分析对各位有所启发。谢谢。</p></div></div></div>
+<div class="panel"><h2>分析师报告<span class="sub">2 篇</span></h2><details open><summary>市场面分析</summary><div class="body"><div class="md"><h4>UNH UNH 市场面分析</h4><ul><li>红黑榜多空分数：多头 85 / 空头 25，分差 60。</li><li>当前价格：406.67。</li><li>当前交易评级：Buy。</li><li>值得加仓区间：394.47 - 410.74。</li><li>目标价格：455.47。</li><li>市场愿意给溢价的原因：医疗保健行业龙头；近期股价表现强势；业务模式抗周期性强。</li><li>当前主要压制因素：估值处于高位；政策不确定性；市场预期过于乐观。</li></ul></div></div></details><details open><summary>基本面分析</summary><div class="body"><div class="md"><h4>UNH UNH 基本面分析</h4><ul><li>报告期：暂无。</li><li>PE(TTM)：24.96。</li><li>PB：3.52。</li><li>ROE：15.77%。</li><li>营收同比：-40.00%。</li><li>归母净利润同比：75.90%。</li><li>核心判断：盈利能力处于可接受区间；利润端保持扩张。</li></ul></div></div></details></div>
+<div class="panel"><h2>研究与计划</h2>
+<details><summary>基本面摘要</summary><div class="body"><div class="md"><h3>核心财务快照</h3><ul><li>报告期: 数据缺失</li><li>当前股价: 406.67 元</li><li>总市值: 3650.25 亿元</li><li>PE (TTM): 24.96</li><li>PB: 3.52</li><li>PS (TTM): 数据缺失</li><li>营业总收入(报告期): 数据缺失 亿元</li><li>营收同比增长率: -40.00%</li><li>归母净利润(报告期): 数据缺失 亿元</li><li>归母净利润同比增长率: 75.90%</li><li>ROE (TTM/估算): 15.77%</li><li>资产负债率: 数据缺失</li><li>经营性现金流 / 归母净利润: 数据缺失</li></ul><h4>缺失字段</h4><ul><li>PS(TTM), 营业总收入, 归母净利润, 资产负债率, 经营性现金流与归母净利润比值</li></ul></div></div></details>
+<details><summary>研究计划</summary><div class="body"><div class="md"><h4>UNH UNH 研究摘要</h4><ul><li>红黑榜结论: Buy</li><li>多头/空头: 85/25</li><li>正向信号: ROE 15.77%；归母净利润同比 75.90%；PE(TTM) 24.96；PB 3.52</li><li>风险信号: 营收同比 -40.00%</li><li>榜单看多理由: 医疗保健行业龙头；近期股价表现强势；业务模式抗周期性强</li><li>榜单风险提示: 估值处于高位；政策不确定性；市场预期过于乐观</li></ul></div></div></details>
+<details><summary>交易计划</summary><div class="body"><div class="md"><h4>UNH UNH 交易计划</h4><ul><li>评级: Buy</li><li>当前价格: 406.67</li><li>值得加仓区间: 394.47 - 410.74</li><li>目标价格: 455.47</li><li>止损位: 374.14</li><li>备注: 当前为缓存降级交易卡，后续若完整 TradingAgent 结果生成，将自动覆盖。</li></ul></div></div></details>
+<details><summary>交易决策</summary><div class="body"><div class="md"><p>Buy</p><p>UNH UNH 当前使用红黑榜缓存结果生成兜底交易卡。多头 85 / 空头 25，分差 60。当前尚未取得完整 TradingAgent 长文决策，但榜单分数、财务快照和大师观点已经足够生成基础交易建议。</p></div></div></details>
+</div>
+<div class="panel"><h2>多空逻辑</h2><div class="pts"><div class="h bull">看多逻辑</div><div class="md"><p>医疗保健行业龙头</p><p>近期股价表现强势</p><p>业务模式抗周期性强</p></div></div><div class="pts"><div class="h bear">看空逻辑</div><div class="md"><p>估值处于高位</p><p>政策不确定性</p><p>市场预期过于乐观</p></div></div></div>
+<div class="panel"><h2>伯克希尔研究</h2><p><strong>UnitedHealth Group是一家拥有强大护城河、稳健财务和长期增长潜力的优质医疗健康企业，值得作为核心持仓配置。</strong></p><p>伯克希尔综合评分：<strong>4.5</strong></p><div class="md"><p>{&quot;verdict&quot;: &quot;强烈买入&quot;, &quot;conservative_tip&quot;: &quot;建议在PE低于20倍时买入，目标价600美元。&quot;, &quot;moderate_tip&quot;: &quot;建议在PE低于22倍时买入，目标价650美元。&quot;, &quot;aggressive_tip&quot;: &quot;建议在PE低于25倍时买入，目标价700美元。&quot;, &quot;catalysts_plus&quot;: [&quot;医保改革政策落地，利好公司业务。&quot;, &quot;医疗技术进步提升运营效率。&quot;, &quot;人口老龄化加速，医疗需求增加。&quot;], &quot;catalysts_minus&quot;: [&quot;医保改革政策不利公司业务。&quot;, &quot;医疗成本大幅上升。&quot;, &quot;经济衰退导致企业客户减少保险支出。&quot;]}</p></div></div>
+<div class="panel news"><h2>最新资讯</h2><div class="md"><p>共11条新闻，8条利多，1条利空，2条中性。</p></div><div class="nitem"><div class="t">UnitedHealth Group tops estimates, hikes profit outlook as insurer manages high medical costs</div><div class="s">CNBC · 中性</div></div><div class="nitem"><div class="t">UnitedHealth Group Incorporated (UNH) Stock Forecasts</div><div class="s">Yahoo Finance · 中性</div></div><div class="nitem"><div class="t">UNH announces nearly 5-percent increase in enrollment against national trends</div><div class="s">WMUR · 中性</div></div><div class="nitem"><div class="t">Who survives the 2027 Medicare Advantage reimbursement reset? (UNH:NYSE)</div><div class="s">Seeking Alpha · 利空</div></div><div class="nitem"><div class="t">UnitedHealth Stock Rallies After Q3 Profit And Revenue Beat</div><div class="s">TIKR.com · 中性</div></div><div class="nitem"><div class="t">UnitedHealth Stock Moves Higher: What&#x27;s Happening?</div><div class="s">Benzinga · 中性</div></div><div class="nitem"><div class="t">UnitedHealth Climbs As Earnings, Medical Costs Beat Forecasts</div><div class="s">Investor&#x27;s Business Daily · 中性</div></div><div class="nitem"><div class="t">UnitedHealth Stock Forecast: TD Cowen Stays Cautious Even as Mizuho Names UNH a Top Pick</div><div class="s">TipRanks · 中性</div></div></div>
+<footer>稳健理财Agent · 红黑榜每日归档 · 红榜 #1 · 仅供研究，不构成投资建议</footer>
+</div></body>
+</html>

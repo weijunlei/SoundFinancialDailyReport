@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>电能实业(00006) 红榜 2026-10-16</title>
+<style>
+:root{--red:#d8342c;--redbg:#fdecea;--green:#1a9e54;--ink:#1c2230;--muted:#6b7385;
+--line:#e7e9ef;--card:#fff;--bg:#f4f6fa;--chip:#eef1f6;--dark:#23262d;--darkbg:#ececef}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",
+"Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);
+line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 16px 64px}
+header.top{background:linear-gradient(135deg,#1c2230,#2c3550);color:#fff;border-radius:14px;
+padding:22px 24px;margin-bottom:20px;box-shadow:0 6px 24px rgba(20,26,46,.12)}
+header.top h1{margin:0 0 6px;font-size:24px;letter-spacing:.5px}
+header.top .sub{opacity:.85;font-size:13px}
+header.top .sub b{color:#ffd166;font-weight:600}
+nav.mkt{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;
+background:rgba(244,246,250,.92);backdrop-filter:blur(6px);padding:10px 0;margin-bottom:14px}
+nav.mkt a{text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);
+padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600}
+nav.mkt a:hover{border-color:var(--red);color:var(--red)}
+.summary{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.summary .chip{background:var(--card);border:1px solid var(--line);border-radius:10px;
+padding:8px 12px;font-size:12px;color:var(--muted)}
+.summary .chip b{color:var(--ink);font-size:14px;margin-left:4px}
+section.board{margin:26px 0}
+.board-title{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:19px}
+.board-title .dot{width:10px;height:10px;border-radius:50%}
+.board-title.red .dot{background:var(--red)}
+.board-title.black .dot{background:var(--dark)}
+.board-title small{color:var(--muted);font-weight:400;font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+position:relative;transition:box-shadow .15s}
+.card:hover{box-shadow:0 4px 18px rgba(20,26,46,.08)}
+.card.red{border-top:3px solid var(--red)}
+.card.black{border-top:3px solid var(--dark)}
+.rank{position:absolute;top:10px;right:12px;font-size:26px;font-weight:800;color:#eceff5}
+.card.red .rank{color:#fbdcD9}
+.nm{font-size:16px;font-weight:700}
+.nm .tk{color:var(--muted);font-weight:500;font-size:12px;margin-left:6px}
+.tag{display:inline-block;background:var(--chip);color:var(--muted);border-radius:6px;
+padding:1px 7px;font-size:11px;margin:6px 6px 0 0}
+.price-row{display:flex;align-items:baseline;gap:10px;margin:10px 0 4px}
+.price{font-size:24px;font-weight:800}
+.pct{font-size:14px;font-weight:700;padding:2px 8px;border-radius:8px}
+.up{color:var(--red)}.down{color:var(--green)}.flat{color:var(--muted)}
+.pct.up{background:var(--redbg)}.pct.down{background:#e2f4e9}.pct.flat{background:var(--chip)}
+.psrc{font-size:11px;color:var(--muted);margin-left:auto}
+.scores{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.scores span{background:var(--chip);border-radius:6px;padding:2px 8px;font-size:11px;color:var(--muted)}
+.scores span b{color:var(--ink)}
+.pts{font-size:12.5px;margin:8px 0 0}
+.pts .h{font-weight:700;font-size:12px;margin:6px 0 2px}
+.pts .h.bull{color:var(--red)}.pts .h.bear{color:var(--green)}
+.pts ul{margin:2px 0 4px;padding-left:18px;color:#3a4152}
+.pts li{margin:1px 0}
+.masters{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:11px;color:var(--muted)}
+.masters b{color:var(--ink)}
+.summ{font-size:12.5px;color:#3a4152;background:#fafbfd;border:1px solid var(--line);
+border-radius:8px;padding:8px 10px;margin-top:8px}
+.empty{color:var(--muted);background:var(--card);border:1px dashed var(--line);
+border-radius:10px;padding:18px;text-align:center}
+footer{margin-top:34px;color:var(--muted);font-size:12px;text-align:center;line-height:1.8}
+a.lnk{color:var(--red);text-decoration:none}
+/* ── detail page ── */
+.backbar{margin-bottom:14px;font-size:13px}
+.backbar a{color:var(--muted);text-decoration:none;margin-right:14px}
+.backbar a:hover{color:var(--red)}
+.badge{display:inline-block;border-radius:6px;padding:2px 10px;font-size:12px;font-weight:700;margin-right:8px}
+.badge.red{background:var(--red);color:#fff}.badge.black{background:var(--dark);color:#fff}
+.trade{display:flex;flex-wrap:wrap;gap:10px;background:linear-gradient(135deg,#2c3550,#1c2230);
+color:#fff;border-radius:12px;padding:16px 18px;margin:16px 0}
+.trade .cell{min-width:120px}
+.trade .k{font-size:11px;opacity:.75}
+.trade .v{font-size:18px;font-weight:800;margin-top:2px}
+.trade .v.buy{color:#7ee2a8}.trade .v.sell{color:#ff9d97}.trade .v.hold{color:#ffd166}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0}
+.mgrid .m{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.mgrid .m .k{font-size:11px;color:var(--muted)}
+.mgrid .m .v{font-size:16px;font-weight:700;margin-top:2px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.panel>h2{margin:0 0 12px;font-size:17px}
+.panel>h2 .sub{font-size:12px;color:var(--muted);font-weight:400;margin-left:8px}
+.mreply{border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;
+padding:12px 14px;margin:10px 0;background:#fff}
+.mreply .mh{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.mreply .mh .who{font-weight:700;font-size:14px}
+.mreply .mh .mscore{margin-left:auto;background:var(--chip);border-radius:6px;padding:1px 8px;font-size:12px;font-weight:700}
+.md h2,.md h3,.md h4,.md h5{margin:12px 0 6px;font-size:15px}
+.md p{margin:6px 0;font-size:13.5px;color:#2c3345}
+.md ul{margin:6px 0;padding-left:20px;font-size:13.5px;color:#2c3345}
+.md li{margin:3px 0}
+.md strong{color:var(--ink)}
+details{border:1px solid var(--line);border-radius:10px;background:#fff;margin:10px 0;padding:0}
+details>summary{cursor:pointer;padding:12px 16px;font-weight:700;font-size:14px;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary:before{content:"▸ ";color:var(--red)}
+details[open]>summary:before{content:"▾ "}
+details>.body{padding:0 16px 14px;border-top:1px dashed var(--line)}
+.ychip{display:inline-block;background:var(--chip);border-radius:8px;padding:4px 10px;font-size:12px;margin:3px 6px 3px 0}
+.ychip b{font-size:13px}
+.news .nitem{border-top:1px dashed var(--line);padding:8px 0;font-size:13px}
+.news .nitem .t{font-weight:600}
+.news .nitem .s{color:var(--muted);font-size:12px}
+/* ── root landing page ── */
+.hero{padding:30px 26px}
+.hero-kicker{color:#ffd166;font-size:12px;font-weight:700;letter-spacing:2px;
+text-transform:uppercase;margin-bottom:8px}
+.hero h1{font-size:30px;margin:0 0 10px}
+.day-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.day-card{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);
+border-radius:12px;padding:14px 16px;transition:all .15s}
+.day-card:hover{border-color:var(--red);box-shadow:0 4px 16px rgba(216,52,44,.12);transform:translateY(-2px)}
+.day-card .d{font-weight:800;font-size:15px;color:var(--ink);display:flex;align-items:center;gap:8px}
+.day-card .m{margin-top:8px;display:flex;gap:6px}
+.day-card .m span{background:var(--chip);color:var(--muted);border-radius:6px;
+padding:2px 8px;font-size:11px}
+.latest-badge{background:var(--red);color:#fff;border-radius:6px;padding:1px 7px;
+font-size:10px;font-weight:700}
+</style>
+</head>
+<body><div class="wrap">
+<div class="backbar"><a href="../index.html">← 总览</a><a href="../hk.html">← 港股榜单</a></div>
+<header class="top">
+  <h1><span class="badge red">红榜 #4</span>电能实业<span class="tk" style="opacity:.7;font-size:15px;font-weight:400;margin-left:8px">00006</span></h1>
+  <div class="sub">港股 ·  · 榜单日期 <b>2026-10-16</b> · 盘价采集 <b>2026-10-16 05:00:08</b></div>
+  <div class="price-row" style="margin-top:12px">
+    <span class="price" style="color:#fff">HK$60.60</span>
+    <span class="pct up">+0.66%</span>
+    <span class="psrc" style="color:rgba(255,255,255,.6)">实时</span>
+  </div>
+  <div class="scores" style="margin-top:10px">
+    <span>综合 <b>84.4</b></span>
+    <span>多头 <b>86</b></span>
+    <span>空头 <b>24</b></span>
+    <span>大师均值 <b>58.2</b></span>
+    <span>信号 <b>positive</b></span>
+  </div>
+</header>
+<div class="trade"><div class="cell"><div class="k">交易评级</div><span class="v buy">Buy</span></div><div class="cell"><div class="k">加仓区间</div><span class="v">58.78 ~ 61.21</span></div><div class="cell"><div class="k">目标价</div><span class="v">67.87</span></div><div class="cell"><div class="k">伯克希尔</div><span class="v">观望</span></div><div class="cell"><div class="k">伯克希尔分</div><span class="v">3.75</span></div></div>
+<div class="panel"><h2>财务指标</h2><div class="mgrid"><div class="m"><div class="k">市盈率 PE</div><div class="v">7.22</div></div><div class="m"><div class="k">市净率 PB</div><div class="v">1.25</div></div><div class="m"><div class="k">ROE</div><div class="v">15.2%</div></div><div class="m"><div class="k">总市值</div><div class="v">1291</div></div><div class="m"><div class="k">营收同比</div><div class="v">-8.9%</div></div><div class="m"><div class="k">净利同比</div><div class="v">177.5%</div></div></div></div>
+<div class="panel"><h2>历史收益</h2><span class="ychip">近1月 <b class="up">+0.75%</b></span><span class="ychip">近6月 <b class="down">-1.72%</b></span><span class="ychip">近1年 <b class="up">+27.04%</b></span></div>
+<div class="panel"><h2>大师圆桌<span class="sub">5 位</span></h2><div class="mreply"><div class="mh"><span class="who">段永平</span><span class="mscore">58</span></div><div class="md"><h4>圆桌发言：关于电能实业的投资看法</h4><p>各位好，关于电能实业这家公司，我的看法是这样的：<strong>这只股票可能适合作为防御性投资的一部分，但不适合追求高增长的投资者。</strong></p><p>首先，电能实业拥有<strong>全球化的电力投资布局</strong>，这为其提供了稳定的现金流和抗风险能力。同时，它<strong>稳定的派息政策</strong>也为投资者提供了不错的安全边际，尤其在当前市场波动较大的环境下，这类公用事业股票往往能提供一定的防御性。</p><p>然而，我们也要看到一些<strong>潜在的风险</strong>。在当前<strong>利率上升的环境下</strong>，公用事业公司的融资成本可能会增加，这对公司的盈利能力构成压力。此外，<strong>地缘政治风险</strong>也可能对公司的海外业务产生不利影响。更重要的是，电能实业的<strong>增长空间相对有限</strong>，这意味着它可能无法为追求高回报的投资者提供足够的增长潜力。</p><h4>投资建议</h4><p>如果你是寻求稳定收益、且对公用事业行业有了解的投资者，电能实业可能是一个不错的选择。但如果你更看重增长性，可能需要考虑其他更具成长性的投资机会。</p><h4>风险提示</h4><p>在做出投资决策时，需要特别注意以下几点：</p><ul><li><strong>利率变化的影响</strong>：密切关注全球利率走势，因为这将直接影响公司的融资成本和盈利能力。</li><li><strong>地缘政治风险</strong>：评估公司在不同地区的业务分布，评估潜在的地缘政治风险。</li><li><strong>估值合理性</strong>：虽然当前市盈率较低，但也要考虑其增长潜力是否与估值相匹配。</li></ul><h4>总结</h4><p>总的来说，电能实业是一家稳健的公用事业公司，适合作为防御性投资的一部分。但投资者需要根据自身的风险承受能力和投资目标，谨慎评估其是否适合纳入投资组合。</p><p>别忘了，投资决策最终还是要回到&quot;做对的事&quot;这个原则上来，确保你真正理解这家公司，并在自己的能力圈内做出选择。</p></div></div><div class="mreply"><div class="mh"><span class="who">巴菲特</span><span class="mscore">56</span></div><div class="md"><p>各位同仁，关于电能实业这支股票，我来说几句。</p><p>首先，我的结论是：这是一家值得关注的公用事业公司，但目前我持中性偏观望态度。</p><p>为什么这么说呢？这家公司有几个明显的优势：</p><p>第一，它的全球电力投资布局很完善，资产遍布多个国家和地区，这种分散性本身就是一种风险对冲。</p><p>第二，电能实业一直保持着稳定的派息，这对追求长期稳定回报的投资者来说是一个重要的安全边际。作为股东，能持续获得现金流本身就是一种价值体现。</p><p>第三，作为公用事业公司，它的业务具有很强的防御性。即使在经济下行时期，人们对电力的需求依然存在，这为公司的收入提供了基本保障。</p><p>然而，我们也要看到一些潜在的风险：</p><p>首先，在当前利率上升的环境下，公用事业公司普遍面临压力，因为它们通常依赖债务融资来维持运营和扩张。</p><p>其次，地缘政治风险可能会影响其海外业务运营的稳定性。</p><p>最后，从增长空间来看，公用事业行业的特性决定了它很难实现高速增长。</p><p>如果让我给建议，我会说：</p><p>对于追求稳定收益的长期投资者来说，电能实业值得考虑，但要注意价格的安全边际。目前的估值水平（PE在7倍左右）虽然不算高，但考虑到公用事业行业的特性，也不算特别吸引人。</p><p>在做出投资决定之前，我建议大家思考两个问题：</p><ul><li>你是否愿意接受一个长期来看增长空间有限，但能提供稳定回报的投资？</li></ul><ul><li>你是否对地缘政治风险有足够的承受能力？</li></ul><p>最后，我想借用查理·芒格的一句话：&quot;在投资中，我们不需要每次都挥棒。&quot; 对于电能实业这样的公司，保持耐心，等待更好的价格出现，也许是一个更明智的选择。</p></div></div><div class="mreply"><div class="mh"><span class="who">达利欧</span><span class="mscore">80</span></div><div class="md"><h4>圆桌发言：关于电能实业的投资观点</h4><p><strong>结论：</strong></p><p>我认为电能实业在当前环境下是一个相对稳健的投资选择，具有较强的防御性，但投资者也需要关注宏观环境和地缘政治风险。</p><p><strong>理由：</strong></p><p>首先，电能实业在全球电力投资布局方面非常完善，这为其提供了稳定的现金流和长期的增长潜力。作为一家公用事业公司，其业务模式本身就具有防御性，能够在市场波动中保持相对稳定。此外，公司一直以来的稳定派息政策也为投资者提供了额外的安全边际，目前的股息收益率约为4.65%，这在当前低利率环境下显得尤为吸引人。</p><p>然而，我们也需要看到一些潜在的风险。利率上升的环境对公用事业公司来说是一个不利因素，因为这会增加其融资成本，并可能对其估值产生压力。此外，地缘政治风险也可能对其海外业务产生影响，尤其是在当前全球局势不稳定的背景下。最后，尽管公司目前的盈利能力较强，但其增长空间相对有限，这可能会限制其长期股价表现。</p><p><strong>风险/行动建议：</strong></p><ul><li><strong>利率风险：</strong> 投资者应密切关注全球利率走势，特别是美联储的货币政策变化。如果利率继续上升，可能会对公司的财务状况和估值产生负面影响。</li></ul><ul><li><strong>地缘政治风险：</strong> 关注公司主要海外市场的政治和经济状况，特别是那些可能受到地缘政治紧张局势影响的国家。如果出现重大地缘政治事件，可能需要重新评估公司的风险敞口。</li></ul><ul><li><strong>防御性投资组合：</strong> 对于寻求防御性投资的投资者来说，电能实业仍然是一个不错的选择。建议将其作为投资组合的一部分，以平衡其他高风险资产。</li></ul><ul><li><strong>长期持有：</strong> 如果投资者能够接受相对稳定的回报并愿意长期持有，电能实业可能是一个不错的选择。建议在投资决策中考虑个人的风险承受能力和投资期限。</li></ul><p><strong>总结原则：</strong></p><p>在投资决策中，保持极度开放和透明的态度至关重要。我们需要全面评估公司的基本面和宏观环境，同时也要考虑个人的风险偏好和投资目标。正如我常说的，&quot;Pain + Reflection = Progress&quot;，在投资过程中，不断反思和调整策略是取得长期成功的关键。</p></div></div><div class="mreply"><div class="mh"><span class="who">彼得·林奇</span><span class="mscore">50</span></div><div class="md"><p>各位，今天我们来聊聊电能实业（00006），一家在全球拥有广泛电力投资布局的公用事业公司。</p><p>首先，我得说，电能实业是一家<strong>值得考虑</strong>的投资标的，尤其适合那些寻求稳定收益和防御性资产的投资者。它的派息率相当吸引人，目前的股息收益率超过4.5%，这在当前市场环境下提供了一个不错的安全边际。而且，公用事业属性本身就带有防御性，在经济波动时表现相对稳健。</p><p>不过，我得提醒大家，这家公司并非没有挑战。利率上升的环境对公用事业公司来说是一个不利因素，因为它们通常依赖债务融资。此外，地缘政治风险可能会影响其海外业务的稳定性。最后，尽管电能实业在派息方面表现优异，但其增长空间相对有限。</p><p><strong>估值方面</strong>，目前市盈率（PE）约为7.2，市净率（PB）约为1.25。从历史水平来看，这些估值指标并不高，尤其是对于一家拥有稳定现金流的公司来说。然而，考虑到其增长潜力有限，市场可能不会给予过高的估值溢价。</p><p><strong>风险提示</strong>：</p><ul><li><strong>利率风险</strong>：利率上升会增加融资成本，压缩利润率。</li><li><strong>地缘政治风险</strong>：海外业务可能受到政治和经济不稳定的影响。</li><li><strong>增长瓶颈</strong>：在现有业务模式下，突破性增长的机会有限。</li></ul><p><strong>行动建议</strong>：</p><p>如果你是一个寻求稳定收益的投资者，并且不介意增长空间有限，那么电能实业可以作为一个不错的防御性投资选择。但如果你更看重增长潜力，可能需要考虑其他标的。</p><p>最后，我建议大家在投资前，多关注公司的海外业务表现，以及利率环境的变化。这些因素可能会对公司的长期表现产生重要影响。</p></div></div><div class="mreply"><div class="mh"><span class="who">芒格</span><span class="mscore">47</span></div><div class="md"><p>各位先生女士，关于电能实业（00006），我先说结论：<strong>这只股票目前不适合重注投资，但作为防御性配置的一部分可以考虑。</strong></p><p>首先，电能实业确实有其可取之处——它的全球电力投资布局和稳定派息政策是其最大的亮点。作为公用事业公司，它在市场动荡时期提供了不错的防御性。这些特质让它看起来像是一个稳健的选择，尤其适合那些寻求稳定回报的投资者。</p><p>然而，我们不能只看到这些优点。让我们反过来想：<strong>什么情况下电能实业会让我们失望？</strong></p><p>首先，公用事业公司对利率环境非常敏感。当前利率上升的趋势对这类公司并不友好，因为这会提高它们的融资成本，压缩利润率。其次，地缘政治风险不容忽视。电能实业在多个国家运营，任何一个地区的政治不稳定都可能对其业务造成冲击。此外，尽管它有稳定的派息，但其增长空间相对有限。对于追求资本增值的投资者来说，这可能是一个问题。</p><p>再者，从激励机制的角度来看，公用事业公司的管理层往往更注重稳定运营而非创新和扩张。这种激励机制可能导致公司在面对快速变化的市场环境时反应迟缓。</p><p>考虑到这些因素，我的建议是：</p><ul><li><strong>如果你是寻求稳定收益的投资者</strong>，可以将电能实业作为投资组合的一部分，利用其防御性和派息优势。但要控制仓位，不要超过总投资组合的10-15%。</li></ul><ul><li><strong>如果你更关注资本增值</strong>，那么这只股票可能不是最佳选择。它的增长空间有限，在当前利率环境下，其估值提升的可能性不大。</li></ul><ul><li><strong>密切关注地缘政治风险和利率变化</strong>。如果利率继续上升，或者地缘政治局势恶化，可能需要重新评估投资决策。</li></ul><p>最后，我要提醒大家，投资决策不能只看当前的财务指标和派息率。我们必须考虑更广泛的经济环境和公司面临的潜在风险。正如我常说的：&quot;如果我知道自己死在哪里，我就永远不去那里。&quot; 在投资中，识别并避开这些&quot;死亡之地&quot;才是关键。</p></div></div></div>
+<div class="panel"><h2>分析师报告<span class="sub">2 篇</span></h2><details open><summary>市场面分析</summary><div class="body"><div class="md"><h4>00006 电能实业 市场面分析</h4><ul><li>红黑榜多空分数：多头 86 / 空头 24，分差 62。</li><li>当前价格：60.60。</li><li>当前交易评级：Buy。</li><li>值得加仓区间：58.78 - 61.21。</li><li>目标价格：67.87。</li><li>市场愿意给溢价的原因：全球电力投资布局完善；稳定派息提供投资安全边际；公用事业属性提供防御性。</li><li>当前主要压制因素：利率上升环境对公用事业不利；地缘政治风险可能影响海外业务；增长空间相对有限。</li></ul></div></div></details><details open><summary>基本面分析</summary><div class="body"><div class="md"><h4>00006 电能实业 基本面分析</h4><ul><li>报告期：暂无。</li><li>PE(TTM)：7.22。</li><li>PB：1.25。</li><li>PS(TTM)：180.12。</li><li>ROE：15.17%。</li><li>营收同比：-8.93%。</li><li>归母净利润同比：177.49%。</li><li>核心判断：盈利能力处于可接受区间；利润端保持扩张。</li></ul></div></div></details></div>
+<div class="panel"><h2>研究与计划</h2>
+<details><summary>基本面摘要</summary><div class="body"><div class="md"><h3>核心财务快照</h3><ul><li>报告期: 数据缺失</li><li>当前股价: 60.60 元</li><li>总市值: 1291.45 亿元</li><li>PE (TTM): 7.22</li><li>PB: 1.25</li><li>PS (TTM): 180.12</li><li>营业总收入(报告期): 数据缺失 亿元</li><li>营收同比增长率: -8.93%</li><li>归母净利润(报告期): 数据缺失 亿元</li><li>归母净利润同比增长率: 177.49%</li><li>ROE (TTM/估算): 15.17%</li><li>资产负债率: 数据缺失</li><li>经营性现金流 / 归母净利润: 数据缺失</li></ul><h4>缺失字段</h4><ul><li>营业总收入, 归母净利润, 资产负债率, 经营性现金流与归母净利润比值</li></ul></div></div></details>
+<details><summary>研究计划</summary><div class="body"><div class="md"><h4>00006 电能实业 研究摘要</h4><ul><li>红黑榜结论: Buy</li><li>多头/空头: 86/24</li><li>正向信号: ROE 15.17%；归母净利润同比 177.49%；PE(TTM) 7.22；PB 1.25</li><li>风险信号: 营收同比 -8.93%</li><li>榜单看多理由: 全球电力投资布局完善；稳定派息提供投资安全边际；公用事业属性提供防御性</li><li>榜单风险提示: 利率上升环境对公用事业不利；地缘政治风险可能影响海外业务；增长空间相对有限</li></ul></div></div></details>
+<details><summary>交易计划</summary><div class="body"><div class="md"><h4>00006 电能实业 交易计划</h4><ul><li>评级: Buy</li><li>当前价格: 60.60</li><li>值得加仓区间: 58.78 - 61.21</li><li>目标价格: 67.87</li><li>止损位: 55.75</li><li>备注: 当前为缓存降级交易卡，后续若完整 TradingAgent 结果生成，将自动覆盖。</li></ul></div></div></details>
+<details><summary>交易决策</summary><div class="body"><div class="md"><p>Buy</p><p>00006 电能实业 当前使用红黑榜缓存结果生成兜底交易卡。多头 86 / 空头 24，分差 62。当前尚未取得完整 TradingAgent 长文决策，但榜单分数、财务快照和大师观点已经足够生成基础交易建议。</p></div></div></details>
+</div>
+<div class="panel"><h2>多空逻辑</h2><div class="pts"><div class="h bull">看多逻辑</div><div class="md"><p>全球电力投资布局完善</p><p>稳定派息提供投资安全边际</p><p>公用事业属性提供防御性</p></div></div><div class="pts"><div class="h bear">看空逻辑</div><div class="md"><p>利率上升环境对公用事业不利</p><p>地缘政治风险可能影响海外业务</p><p>增长空间相对有限</p></div></div></div>
+<div class="panel"><h2>伯克希尔研究</h2><p><strong>电能实业是一家拥有稳定现金流和长期护城河的公用事业公司，但增长空间有限，适合保守型投资者。</strong></p><p>伯克希尔综合评分：<strong>3.75</strong></p><div class="md"><p>{&quot;verdict&quot;: &quot;观望&quot;, &quot;conservative_tip&quot;: &quot;建议在PE TTM低于18倍时买入。&quot;, &quot;moderate_tip&quot;: &quot;建议在PE TTM低于20倍时买入。&quot;, &quot;aggressive_tip&quot;: &quot;建议在PE TTM低于22倍时买入。&quot;, &quot;catalysts_plus&quot;: [&quot;新能源转型取得突破。&quot;, &quot;政策支持传统电力公司发展。&quot;, &quot;自由现金流持续增长。&quot;], &quot;catalysts_minus&quot;: [&quot;新能源转型导致市场份额下降。&quot;, &quot;环保政策趋严增加成本。&quot;, &quot;自由现金流增速放缓。&quot;]}</p></div></div>
+
+<footer>稳健理财Agent · 红黑榜每日归档 · 红榜 #4 · 仅供研究，不构成投资建议</footer>
+</div></body>
+</html>

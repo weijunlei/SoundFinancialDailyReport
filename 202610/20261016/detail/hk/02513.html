@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>智谱(02513) 黑榜 2026-10-16</title>
+<style>
+:root{--red:#d8342c;--redbg:#fdecea;--green:#1a9e54;--ink:#1c2230;--muted:#6b7385;
+--line:#e7e9ef;--card:#fff;--bg:#f4f6fa;--chip:#eef1f6;--dark:#23262d;--darkbg:#ececef}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",
+"Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);
+line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 16px 64px}
+header.top{background:linear-gradient(135deg,#1c2230,#2c3550);color:#fff;border-radius:14px;
+padding:22px 24px;margin-bottom:20px;box-shadow:0 6px 24px rgba(20,26,46,.12)}
+header.top h1{margin:0 0 6px;font-size:24px;letter-spacing:.5px}
+header.top .sub{opacity:.85;font-size:13px}
+header.top .sub b{color:#ffd166;font-weight:600}
+nav.mkt{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;
+background:rgba(244,246,250,.92);backdrop-filter:blur(6px);padding:10px 0;margin-bottom:14px}
+nav.mkt a{text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);
+padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600}
+nav.mkt a:hover{border-color:var(--red);color:var(--red)}
+.summary{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.summary .chip{background:var(--card);border:1px solid var(--line);border-radius:10px;
+padding:8px 12px;font-size:12px;color:var(--muted)}
+.summary .chip b{color:var(--ink);font-size:14px;margin-left:4px}
+section.board{margin:26px 0}
+.board-title{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:19px}
+.board-title .dot{width:10px;height:10px;border-radius:50%}
+.board-title.red .dot{background:var(--red)}
+.board-title.black .dot{background:var(--dark)}
+.board-title small{color:var(--muted);font-weight:400;font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+position:relative;transition:box-shadow .15s}
+.card:hover{box-shadow:0 4px 18px rgba(20,26,46,.08)}
+.card.red{border-top:3px solid var(--red)}
+.card.black{border-top:3px solid var(--dark)}
+.rank{position:absolute;top:10px;right:12px;font-size:26px;font-weight:800;color:#eceff5}
+.card.red .rank{color:#fbdcD9}
+.nm{font-size:16px;font-weight:700}
+.nm .tk{color:var(--muted);font-weight:500;font-size:12px;margin-left:6px}
+.tag{display:inline-block;background:var(--chip);color:var(--muted);border-radius:6px;
+padding:1px 7px;font-size:11px;margin:6px 6px 0 0}
+.price-row{display:flex;align-items:baseline;gap:10px;margin:10px 0 4px}
+.price{font-size:24px;font-weight:800}
+.pct{font-size:14px;font-weight:700;padding:2px 8px;border-radius:8px}
+.up{color:var(--red)}.down{color:var(--green)}.flat{color:var(--muted)}
+.pct.up{background:var(--redbg)}.pct.down{background:#e2f4e9}.pct.flat{background:var(--chip)}
+.psrc{font-size:11px;color:var(--muted);margin-left:auto}
+.scores{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.scores span{background:var(--chip);border-radius:6px;padding:2px 8px;font-size:11px;color:var(--muted)}
+.scores span b{color:var(--ink)}
+.pts{font-size:12.5px;margin:8px 0 0}
+.pts .h{font-weight:700;font-size:12px;margin:6px 0 2px}
+.pts .h.bull{color:var(--red)}.pts .h.bear{color:var(--green)}
+.pts ul{margin:2px 0 4px;padding-left:18px;color:#3a4152}
+.pts li{margin:1px 0}
+.masters{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:11px;color:var(--muted)}
+.masters b{color:var(--ink)}
+.summ{font-size:12.5px;color:#3a4152;background:#fafbfd;border:1px solid var(--line);
+border-radius:8px;padding:8px 10px;margin-top:8px}
+.empty{color:var(--muted);background:var(--card);border:1px dashed var(--line);
+border-radius:10px;padding:18px;text-align:center}
+footer{margin-top:34px;color:var(--muted);font-size:12px;text-align:center;line-height:1.8}
+a.lnk{color:var(--red);text-decoration:none}
+/* ── detail page ── */
+.backbar{margin-bottom:14px;font-size:13px}
+.backbar a{color:var(--muted);text-decoration:none;margin-right:14px}
+.backbar a:hover{color:var(--red)}
+.badge{display:inline-block;border-radius:6px;padding:2px 10px;font-size:12px;font-weight:700;margin-right:8px}
+.badge.red{background:var(--red);color:#fff}.badge.black{background:var(--dark);color:#fff}
+.trade{display:flex;flex-wrap:wrap;gap:10px;background:linear-gradient(135deg,#2c3550,#1c2230);
+color:#fff;border-radius:12px;padding:16px 18px;margin:16px 0}
+.trade .cell{min-width:120px}
+.trade .k{font-size:11px;opacity:.75}
+.trade .v{font-size:18px;font-weight:800;margin-top:2px}
+.trade .v.buy{color:#7ee2a8}.trade .v.sell{color:#ff9d97}.trade .v.hold{color:#ffd166}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0}
+.mgrid .m{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.mgrid .m .k{font-size:11px;color:var(--muted)}
+.mgrid .m .v{font-size:16px;font-weight:700;margin-top:2px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.panel>h2{margin:0 0 12px;font-size:17px}
+.panel>h2 .sub{font-size:12px;color:var(--muted);font-weight:400;margin-left:8px}
+.mreply{border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;
+padding:12px 14px;margin:10px 0;background:#fff}
+.mreply .mh{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.mreply .mh .who{font-weight:700;font-size:14px}
+.mreply .mh .mscore{margin-left:auto;background:var(--chip);border-radius:6px;padding:1px 8px;font-size:12px;font-weight:700}
+.md h2,.md h3,.md h4,.md h5{margin:12px 0 6px;font-size:15px}
+.md p{margin:6px 0;font-size:13.5px;color:#2c3345}
+.md ul{margin:6px 0;padding-left:20px;font-size:13.5px;color:#2c3345}
+.md li{margin:3px 0}
+.md strong{color:var(--ink)}
+details{border:1px solid var(--line);border-radius:10px;background:#fff;margin:10px 0;padding:0}
+details>summary{cursor:pointer;padding:12px 16px;font-weight:700;font-size:14px;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary:before{content:"▸ ";color:var(--red)}
+details[open]>summary:before{content:"▾ "}
+details>.body{padding:0 16px 14px;border-top:1px dashed var(--line)}
+.ychip{display:inline-block;background:var(--chip);border-radius:8px;padding:4px 10px;font-size:12px;margin:3px 6px 3px 0}
+.ychip b{font-size:13px}
+.news .nitem{border-top:1px dashed var(--line);padding:8px 0;font-size:13px}
+.news .nitem .t{font-weight:600}
+.news .nitem .s{color:var(--muted);font-size:12px}
+/* ── root landing page ── */
+.hero{padding:30px 26px}
+.hero-kicker{color:#ffd166;font-size:12px;font-weight:700;letter-spacing:2px;
+text-transform:uppercase;margin-bottom:8px}
+.hero h1{font-size:30px;margin:0 0 10px}
+.day-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.day-card{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);
+border-radius:12px;padding:14px 16px;transition:all .15s}
+.day-card:hover{border-color:var(--red);box-shadow:0 4px 16px rgba(216,52,44,.12);transform:translateY(-2px)}
+.day-card .d{font-weight:800;font-size:15px;color:var(--ink);display:flex;align-items:center;gap:8px}
+.day-card .m{margin-top:8px;display:flex;gap:6px}
+.day-card .m span{background:var(--chip);color:var(--muted);border-radius:6px;
+padding:2px 8px;font-size:11px}
+.latest-badge{background:var(--red);color:#fff;border-radius:6px;padding:1px 7px;
+font-size:10px;font-weight:700}
+</style>
+</head>
+<body><div class="wrap">
+<div class="backbar"><a href="../index.html">← 总览</a><a href="../hk.html">← 港股榜单</a></div>
+<header class="top">
+  <h1><span class="badge black">黑榜 #7</span>智谱<span class="tk" style="opacity:.7;font-size:15px;font-weight:400;margin-left:8px">02513</span></h1>
+  <div class="sub">港股 ·  · 榜单日期 <b>2026-10-16</b> · 盘价采集 <b>2026-10-16 05:00:08</b></div>
+  <div class="price-row" style="margin-top:12px">
+    <span class="price" style="color:#fff">HK$513.50</span>
+    <span class="pct down">-10.23%</span>
+    <span class="psrc" style="color:rgba(255,255,255,.6)">实时</span>
+  </div>
+  <div class="scores" style="margin-top:10px">
+    <span>综合 <b>36.2</b></span>
+    <span>多头 <b>35</b></span>
+    <span>空头 <b>75</b></span>
+    <span>大师均值 <b>58</b></span>
+    <span>信号 <b>negative</b></span>
+  </div>
+</header>
+<div class="trade"><div class="cell"><div class="k">交易评级</div><span class="v hold">Reduce</span></div><div class="cell"><div class="k">加仓区间</div><span class="v">482.69 ~ 503.23</span></div><div class="cell"><div class="k">伯克希尔</div><span class="v">观望</span></div><div class="cell"><div class="k">伯克希尔分</div><span class="v">3.50</span></div></div>
+<div class="panel"><h2>财务指标</h2><div class="mgrid"><div class="m"><div class="k">市净率 PB</div><div class="v">49.23</div></div><div class="m"><div class="k">ROE</div><div class="v">112.7%</div></div><div class="m"><div class="k">总市值</div><div class="v">2504</div></div><div class="m"><div class="k">营收同比</div><div class="v">105.3%</div></div><div class="m"><div class="k">净利同比</div><div class="v">6.0%</div></div></div></div>
+<div class="panel"><h2>历史收益</h2><span class="ychip">近1月 <b class="down">-28.68%</b></span><span class="ychip">近6月 <b class="down">-50.05%</b></span><span class="ychip">近1年 <b class="up">+290.49%</b></span></div>
+<div class="panel"><h2>大师圆桌<span class="sub">5 位</span></h2><div class="mreply"><div class="mh"><span class="who">段永平</span><span class="mscore">48</span></div><div class="md"><h4>发言：</h4><p>首先，我得说智谱这家公司目前让我有些犹豫。虽然AI行业的前景确实非常广阔，智谱在技术积累方面也有一定优势，但有几个关键问题需要我们仔细思考。</p><h5>理由：</h5><ul><li><strong>估值问题</strong>：从数据上看，智谱的市销率（PS）高达148倍，市净率（PB）也接近50倍。这样的估值水平意味着市场已经对公司的未来增长给予了极高的预期。然而，净利润同比增长仅为5.96%，净利润率更是为负数，这表明公司的盈利能力并没有跟上估值增长的步伐。</li></ul><ul><li><strong>市场担忧</strong>：股价的快速下跌反映了市场对智谱未来发展的担忧。尽管AI行业整体空间巨大，但具体到智谱这家公司，是否能在激烈的市场竞争中保持领先地位，还需要打一个问号。</li></ul><ul><li><strong>本分原则</strong>：作为投资者，我们始终要问自己，这是否是一笔&quot;看得懂的好生意&quot;？目前来看，智谱的盈利模式和高估值之间存在一定的矛盾，这让我对其长期发展持保留态度。</li></ul><h5>风险/行动建议：</h5><ul><li><strong>风险提示</strong>：高估值带来的风险不容忽视。如果市场情绪发生变化，股价可能会面临更大的下行压力。</li></ul><ul><li><strong>长期视角</strong>：如果决定投资智谱，需要做好长期持有的准备，并密切关注公司的盈利能力和市场竞争格局的变化。</li></ul><ul><li><strong>本分原则</strong>：在做出投资决策前，建议重新审视智谱是否符合&quot;做对的事&quot;的原则。如果对公司的商业模式和长期发展没有足够的信心，或许应该考虑其他更符合自身投资理念的标的。</li></ul><p>总之，投资决策需要理性分析，不能被市场的短期波动和行业热点所左右。希望大家在投资时都能保持平常心，做出符合自身风险偏好的选择。</p></div></div><div class="mreply"><div class="mh"><span class="who">巴菲特</span><span class="mscore">39</span></div><div class="md"><h4>圆桌发言：关于智谱（02513）的看法</h4><h5>结论：</h5><p>我对智谱这只股票持谨慎态度。尽管AI行业前景广阔，但我认为当前智谱的估值水平过高，市场对其的担忧也反映在股价的快速下跌中。</p><h5>理由：</h5><p>首先，AI行业确实有巨大的发展空间，公司在技术积累方面也有一定的优势。然而，这些优势是否足以支撑其当前的估值水平，我对此持怀疑态度。当前智谱的市净率（PB）高达49倍，市销率（PS）也达到了148倍，这样的估值水平在我看来是偏高的。</p><p>其次，尽管公司营收同比增长超过100%，但净利润的增长却只有不到6%，净利润率甚至为负。这表明公司在盈利能力方面存在较大的问题。巴菲特常说，“价格是你付出的，价值是你得到的”，而目前智谱的价格与其价值之间似乎并不匹配。</p><p>此外，股价的快速下跌也反映了市场对其未来盈利能力的担忧。在市场先生情绪波动剧烈的时候，我们更需要保持冷静，关注公司的基本面和长期价值。</p><h5>风险/行动建议：</h5><ul><li><strong>关注盈利能力</strong>：如果公司不能在未来几个季度内显著改善其盈利能力，那么当前的估值水平将难以维持。</li><li><strong>等待市场情绪稳定</strong>：在市场情绪波动较大的时候，不急于做出投资决策。耐心等待市场情绪稳定，股价回归合理水平。</li><li><strong>评估护城河</strong>：深入分析公司在AI行业中的竞争优势，看看其是否具备可持续的护城河。如果护城河不够坚固，那么即使行业前景广阔，公司也难以长期保持高增长。</li></ul><p>如果是芒格，他会补充说：“投资就像在果园里挑选最好的果树，而不是在森林里随便摘果子。”在面对高估值和高波动性的股票时，我们需要更加谨慎，确保我们投资的是那些真正有长期价值的公司。</p></div></div><div class="mreply"><div class="mh"><span class="who">达利欧</span><span class="mscore">76</span></div><div class="md"><h4>发言内容：</h4><p>首先，我的结论是：智谱（02513）目前面临较大风险，尽管其所在的AI行业前景广阔，但公司的估值水平和市场表现令人担忧。</p><h5>理由分析：</h5><ul><li><strong>AI行业前景与公司技术实力</strong>：</li><li>AI行业确实拥有巨大的发展空间，这一点是毋庸置疑的。智谱在技术积累方面也展现出一定的优势，这为其长期发展提供了基础。然而，行业前景并不等同于公司前景，尤其是在当前市场环境下。</li></ul><ul><li><strong>市场表现与估值水平</strong>：</li><li>智谱的股价近期出现了快速下跌，这反映了市场对其未来发展的担忧。当前其市净率（PB）高达49倍，市销率（PS）更是达到148倍，这表明市场对其估值已经处于非常高的水平。</li><li>此外，尽管营收同比增长105%，但净利润同比仅增长5.96%，净利润率为-217%，这显示出公司在盈利能力方面存在较大问题。高估值与低盈利能力的对比，使得当前股价显得更加脆弱。</li></ul><ul><li><strong>宏观与风险平衡</strong>：</li><li>从宏观角度来看，当前市场环境充满不确定性，利率上升和经济增长放缓的预期对高估值股票构成压力。智谱的高估值使其在这样的环境中显得尤为脆弱。</li><li>此外，AI行业的竞争日益激烈，智谱需要持续投入大量资源进行技术研发和市场拓展，这对其未来的盈利能力构成挑战。</li></ul><h5>风险与行动建议：</h5><ul><li><strong>短期风险</strong>：</li><li>智谱的股价可能会继续承压，尤其是在市场情绪低迷和估值回归的过程中。投资者需要警惕短期内的进一步下跌风险。</li></ul><ul><li><strong>长期机会</strong>：</li><li>如果智谱能够在未来几年内实现盈利能力的提升，并保持在AI技术领域的领先地位，那么其长期投资价值仍然存在。然而，这需要公司展现出更强的盈利能力和更清晰的增长路径。</li></ul><ul><li><strong>行动建议</strong>：</li><li>对于当前持有智谱的投资者，建议密切关注公司的基本面变化和市场的整体趋势。如果市场情绪持续恶化，可以考虑适当减仓以控制风险。</li><li>对于潜在投资者，建议等待更明确的盈利信号和更合理的估值水平出现后再做决策。</li></ul><h5>原则化收口：</h5><p>在当前环境下，投资决策应更加注重风险管理和长期价值。智谱的案例提醒我们，在追求高增长的同时，不能忽视估值和盈利能力的匹配。正如我常说的：“Pain + Reflection = Progress”，我们需要从市场的波动中吸取教训，不断完善我们的投资原则和决策机制。</p><p>希望这些分析对大家有所帮助。谢谢。</p></div></div><div class="mreply"><div class="mh"><span class="who">彼得·林奇</span><span class="mscore">85</span></div><div class="md"><p>各位好，我来说说对智谱这只股票的看法。</p><h4>结论：</h4><p>智谱这家公司，我建议大家要非常谨慎。短期内，我看不到一个让人安心的买入理由。</p><h4>理由：</h4><p>首先，从行业角度看，AI 领域确实前景广阔，这是智谱的一个亮点。但光有前景是不够的。我们需要看到的是，这个前景如何转化为实实在在的盈利能力。</p><p>从估值来看，智谱的市净率（PB）高达 49 倍，市销率（PS）更是达到 148 倍。这样的估值水平，即使放在高速增长的科技公司中，也显得过高了。更令人担忧的是，公司的净利润率竟然是负的 -217%，这意味着公司目前还在大量烧钱。</p><p>股价的快速下跌也反映了市场对这只股票的担忧。在短短时间内，股价已经下跌了 10% 以上，这不是一个好兆头。</p><h4>风险：</h4><ul><li><strong>估值过高</strong>：即使公司未来几年能保持高速增长，目前的估值水平也透支了太多未来的增长空间。</li><li><strong>盈利能力不足</strong>：负的净利润率表明公司还在大量烧钱，未来能否实现盈利是一个巨大的问号。</li><li><strong>市场情绪波动</strong>：股价的快速下跌表明市场情绪已经转向负面，这可能会进一步加剧股价的波动。</li></ul><h4>行动建议：</h4><p>对于智谱，我的建议是暂时观望。如果你已经持有这只股票，建议你重新审视你的投资逻辑，看看是否需要调整仓位。如果你正在考虑买入，我建议你再等等，等到估值水平更合理，或者公司的盈利能力有明显改善时再考虑。</p><p>记住，投资股票不是赌博。我们要做的是找到那些既有前景又有盈利能力的公司，而不是仅仅因为一个热门概念就盲目跟风。</p><p>希望这些建议对大家有帮助。谢谢！</p></div></div><div class="mreply"><div class="mh"><span class="who">芒格</span><span class="mscore">42</span></div><div class="md"><p>各位同仁，关于智谱（02513），我得说，这家公司目前的情况并不让我感到乐观。让我们先从结论说起：我建议对智谱保持谨慎，甚至考虑回避。</p><p>首先，智谱所处的AI行业确实前景广阔，这是不争的事实。公司在技术积累方面也有一定优势，这些都是多头逻辑。但我们必须警惕的是，市场已经用脚投票——股价快速下跌，这反映了投资者对公司的担忧。而且，当前的估值水平实在太高，PB达到49倍，PS更是高达148倍。这样的估值意味着市场对公司未来的增长预期极高，但现实是，公司的净利润增速仅为5.96%，净利润率甚至为负。这样的财务表现与高估值之间存在明显的不匹配。</p><p>从逆向思维的角度来看，我们得问自己：什么情况下这家公司会失败？在我看来，高估值和低盈利能力的组合是一个巨大的风险。如果AI行业的竞争加剧，或者公司技术优势被削弱，股价可能会进一步承压。此外，过高的估值意味着市场对公司未来增长的预期极高，任何不达预期的表现都可能导致股价大幅回调。</p><p>从激励机制的角度来看，我们需要关注公司管理层的行为。高估值往往会扭曲管理层的决策，使他们倾向于追求短期增长而忽视长期价值创造。如果管理层在这种压力下做出过于激进的决策，可能会给公司带来更大的风险。</p><p>在多元思维模型的框架下，我们还需要考虑行业周期和技术变革的影响。AI行业虽然前景广阔，但也存在技术迭代快、竞争激烈的特点。如果智谱不能在技术创新和市场竞争中保持领先地位，其高估值将难以维持。</p><p>基于以上分析，我建议采取以下行动：</p><ul><li>避免在当前价位买入智谱，因为估值过高，风险收益比不具吸引力。</li><li>如果已经持有，建议密切关注公司基本面的变化，特别是盈利能力的改善情况。如果基本面没有明显改善，考虑减仓或退出。</li><li>密切关注AI行业的竞争格局和技术发展趋势，如果出现不利变化，及时调整投资策略。</li></ul><p>最后，我要提醒大家，投资中最重要的是保持理性，避免被情绪和市场的短期波动所左右。正如我常说的，&quot;如果我知道自己死在哪里，我就永远不去那里&quot;。在智谱这个案例中，高估值和低盈利能力的组合就是一个明显的&quot;死亡陷阱&quot;，我们应当远离。</p></div></div></div>
+<div class="panel"><h2>分析师报告<span class="sub">2 篇</span></h2><details open><summary>市场面分析</summary><div class="body"><div class="md"><h4>02513 智谱 市场面分析</h4><ul><li>红黑榜多空分数：多头 35 / 空头 75，分差 -40。</li><li>当前价格：513.50。</li><li>当前交易评级：Reduce。</li><li>值得加仓区间：482.69 - 503.23。</li><li>风险控制位：451.88。</li><li>市场愿意给溢价的原因：AI行业发展空间巨大；公司技术积累较深。</li><li>当前主要压制因素：股价快速下跌反映市场担忧；当前估值水平偏高。</li></ul></div></div></details><details open><summary>基本面分析</summary><div class="body"><div class="md"><h4>02513 智谱 基本面分析</h4><ul><li>报告期：暂无。</li><li>PB：49.23。</li><li>PS(TTM)：148.07。</li><li>ROE：112.71%。</li><li>营收同比：105.34%。</li><li>归母净利润同比：5.96%。</li><li>核心判断：盈利能力处于可接受区间；收入仍在增长；利润端保持扩张。</li></ul></div></div></details></div>
+<div class="panel"><h2>研究与计划</h2>
+<details><summary>基本面摘要</summary><div class="body"><div class="md"><h3>核心财务快照</h3><ul><li>报告期: 数据缺失</li><li>当前股价: 513.50 元</li><li>总市值: 2503.76 亿元</li><li>PE (TTM): 数据缺失</li><li>PB: 49.23</li><li>PS (TTM): 148.07</li><li>营业总收入(报告期): 数据缺失 亿元</li><li>营收同比增长率: 105.34%</li><li>归母净利润(报告期): 数据缺失 亿元</li><li>归母净利润同比增长率: 5.96%</li><li>ROE (TTM/估算): 112.71%</li><li>资产负债率: 数据缺失</li><li>经营性现金流 / 归母净利润: 数据缺失</li></ul><h4>缺失字段</h4><ul><li>PE(TTM), 营业总收入, 归母净利润, 资产负债率, 经营性现金流与归母净利润比值</li></ul></div></div></details>
+<details><summary>研究计划</summary><div class="body"><div class="md"><h4>02513 智谱 研究摘要</h4><ul><li>红黑榜结论: Reduce</li><li>多头/空头: 35/75</li><li>正向信号: ROE 112.71%；营收同比 105.34%；归母净利润同比 5.96%；PB 49.23</li><li>榜单看多理由: AI行业发展空间巨大；公司技术积累较深</li><li>榜单风险提示: 股价快速下跌反映市场担忧；当前估值水平偏高</li></ul></div></div></details>
+<details><summary>交易计划</summary><div class="body"><div class="md"><h4>02513 智谱 交易计划</h4><ul><li>评级: Reduce</li><li>当前价格: 513.50</li><li>值得加仓区间: 462.15 - 482.69</li><li>目标价格: 487.82</li><li>止损位: 451.88</li><li>备注: 当前为缓存降级交易卡，后续若完整 TradingAgent 结果生成，将自动覆盖。</li></ul></div></div></details>
+<details><summary>交易决策</summary><div class="body"><div class="md"><p>Reduce</p><p>02513 智谱 当前使用红黑榜缓存结果生成兜底交易卡。多头 35 / 空头 75，分差 -40。当前尚未取得完整 TradingAgent 长文决策，但榜单分数、财务快照和大师观点已经足够生成基础交易建议。</p></div></div></details>
+</div>
+<div class="panel"><h2>多空逻辑</h2><div class="pts"><div class="h bull">看多逻辑</div><div class="md"><p>AI行业发展空间巨大</p><p>公司技术积累较深</p></div></div><div class="pts"><div class="h bear">看空逻辑</div><div class="md"><p>股价快速下跌反映市场担忧</p><p>当前估值水平偏高</p></div></div></div>
+<div class="panel"><h2>伯克希尔研究</h2><p><strong>智谱作为AI领域的潜在领先者，具备一定技术护城河，但商业模式尚需验证，当前估值偏高，建议观望。</strong></p><p>伯克希尔综合评分：<strong>3.5</strong></p><div class="md"><p>{&quot;verdict&quot;: &quot;观望&quot;, &quot;conservative_tip&quot;: &quot;建议等待估值回调至PE TTM 40倍以下再考虑买入&quot;, &quot;moderate_tip&quot;: &quot;若股价回调至当前价格的80%，可小仓位建仓&quot;, &quot;aggressive_tip&quot;: &quot;当前价格可小仓位试探性买入，但需密切关注基本面变化&quot;, &quot;catalysts_plus&quot;: [&quot;AI行业政策利好&quot;, &quot;公司获得重大技术突破&quot;, &quot;营收增速超预期&quot;], &quot;catalysts_minus&quot;: [&quot;政策监管趋严&quot;, &quot;竞争加剧导致市场份额下降&quot;, &quot;盈利能力下滑&quot;]}</p></div></div>
+<div class="panel news"><h2>最新资讯</h2><div class="md"><p>整体情绪偏利好，共7条利多，1条利空，3条中性。</p></div><div class="nitem"><div class="t">China&#x27;s Zhipu AI revenue quintuples in first half, loss narrows</div><div class="s">Reuters · 利好</div></div><div class="nitem"><div class="t">Chinese AI taps AWS and OpenAI to speed overseas push amid risks - CHOSUNBIZ</div><div class="s">Chosunbiz · 中性</div></div><div class="nitem"><div class="t">上市捷报丨沙利文助力北京智谱华章科技股份有限公司成功赴港上市（2513.HK）</div><div class="s">frostchina.com · 利好</div></div><div class="nitem"><div class="t">8:00 1K News | Sam&#x27;s Club Headquarters Summoned over Food Safety Issues; Zhipu&#x27;s Stock Price Soars, Hits Record Single-Day Trading Volume Since Listing; US and Iran Confirm Deal, International Oil Pri</div><div class="s">36 Kr · 利好</div></div><div class="nitem"><div class="t">The Mistral paradox: Europe’s push for tech sovereignty relies on China’s Z.ai</div><div class="s">South China Morning Post · 中性</div></div><div class="nitem"><div class="t">The Z.ai Playbook</div><div class="s">ChinaTalk · 中性</div></div><div class="nitem"><div class="t">Zhipu AI&#x27;s GLM-Image Goes Viral: Free, No Watermark, Chinese Text Generation Beats Foreign Tools</div><div class="s">Pandaily · 利好</div></div><div class="nitem"><div class="t">Zhipu GLM-5.5 Is About to Launch: Expected to Catch Up with Global Top Large Models in August</div><div class="s">AIBase · 利好</div></div></div>
+<footer>稳健理财Agent · 红黑榜每日归档 · 黑榜 #7 · 仅供研究，不构成投资建议</footer>
+</div></body>
+</html>
