@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>LLY(LLY) 红榜 2026-10-17</title>
+<style>
+:root{--red:#d8342c;--redbg:#fdecea;--green:#1a9e54;--ink:#1c2230;--muted:#6b7385;
+--line:#e7e9ef;--card:#fff;--bg:#f4f6fa;--chip:#eef1f6;--dark:#23262d;--darkbg:#ececef}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",
+"Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);
+line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 16px 64px}
+header.top{background:linear-gradient(135deg,#1c2230,#2c3550);color:#fff;border-radius:14px;
+padding:22px 24px;margin-bottom:20px;box-shadow:0 6px 24px rgba(20,26,46,.12)}
+header.top h1{margin:0 0 6px;font-size:24px;letter-spacing:.5px}
+header.top .sub{opacity:.85;font-size:13px}
+header.top .sub b{color:#ffd166;font-weight:600}
+nav.mkt{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;
+background:rgba(244,246,250,.92);backdrop-filter:blur(6px);padding:10px 0;margin-bottom:14px}
+nav.mkt a{text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);
+padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600}
+nav.mkt a:hover{border-color:var(--red);color:var(--red)}
+.summary{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.summary .chip{background:var(--card);border:1px solid var(--line);border-radius:10px;
+padding:8px 12px;font-size:12px;color:var(--muted)}
+.summary .chip b{color:var(--ink);font-size:14px;margin-left:4px}
+section.board{margin:26px 0}
+.board-title{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:19px}
+.board-title .dot{width:10px;height:10px;border-radius:50%}
+.board-title.red .dot{background:var(--red)}
+.board-title.black .dot{background:var(--dark)}
+.board-title small{color:var(--muted);font-weight:400;font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+position:relative;transition:box-shadow .15s}
+.card:hover{box-shadow:0 4px 18px rgba(20,26,46,.08)}
+.card.red{border-top:3px solid var(--red)}
+.card.black{border-top:3px solid var(--dark)}
+.rank{position:absolute;top:10px;right:12px;font-size:26px;font-weight:800;color:#eceff5}
+.card.red .rank{color:#fbdcD9}
+.nm{font-size:16px;font-weight:700}
+.nm .tk{color:var(--muted);font-weight:500;font-size:12px;margin-left:6px}
+.tag{display:inline-block;background:var(--chip);color:var(--muted);border-radius:6px;
+padding:1px 7px;font-size:11px;margin:6px 6px 0 0}
+.price-row{display:flex;align-items:baseline;gap:10px;margin:10px 0 4px}
+.price{font-size:24px;font-weight:800}
+.pct{font-size:14px;font-weight:700;padding:2px 8px;border-radius:8px}
+.up{color:var(--red)}.down{color:var(--green)}.flat{color:var(--muted)}
+.pct.up{background:var(--redbg)}.pct.down{background:#e2f4e9}.pct.flat{background:var(--chip)}
+.psrc{font-size:11px;color:var(--muted);margin-left:auto}
+.scores{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.scores span{background:var(--chip);border-radius:6px;padding:2px 8px;font-size:11px;color:var(--muted)}
+.scores span b{color:var(--ink)}
+.pts{font-size:12.5px;margin:8px 0 0}
+.pts .h{font-weight:700;font-size:12px;margin:6px 0 2px}
+.pts .h.bull{color:var(--red)}.pts .h.bear{color:var(--green)}
+.pts ul{margin:2px 0 4px;padding-left:18px;color:#3a4152}
+.pts li{margin:1px 0}
+.masters{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:11px;color:var(--muted)}
+.masters b{color:var(--ink)}
+.summ{font-size:12.5px;color:#3a4152;background:#fafbfd;border:1px solid var(--line);
+border-radius:8px;padding:8px 10px;margin-top:8px}
+.empty{color:var(--muted);background:var(--card);border:1px dashed var(--line);
+border-radius:10px;padding:18px;text-align:center}
+footer{margin-top:34px;color:var(--muted);font-size:12px;text-align:center;line-height:1.8}
+a.lnk{color:var(--red);text-decoration:none}
+/* ── detail page ── */
+.backbar{margin-bottom:14px;font-size:13px}
+.backbar a{color:var(--muted);text-decoration:none;margin-right:14px}
+.backbar a:hover{color:var(--red)}
+.badge{display:inline-block;border-radius:6px;padding:2px 10px;font-size:12px;font-weight:700;margin-right:8px}
+.badge.red{background:var(--red);color:#fff}.badge.black{background:var(--dark);color:#fff}
+.trade{display:flex;flex-wrap:wrap;gap:10px;background:linear-gradient(135deg,#2c3550,#1c2230);
+color:#fff;border-radius:12px;padding:16px 18px;margin:16px 0}
+.trade .cell{min-width:120px}
+.trade .k{font-size:11px;opacity:.75}
+.trade .v{font-size:18px;font-weight:800;margin-top:2px}
+.trade .v.buy{color:#7ee2a8}.trade .v.sell{color:#ff9d97}.trade .v.hold{color:#ffd166}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0}
+.mgrid .m{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.mgrid .m .k{font-size:11px;color:var(--muted)}
+.mgrid .m .v{font-size:16px;font-weight:700;margin-top:2px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.panel>h2{margin:0 0 12px;font-size:17px}
+.panel>h2 .sub{font-size:12px;color:var(--muted);font-weight:400;margin-left:8px}
+.mreply{border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;
+padding:12px 14px;margin:10px 0;background:#fff}
+.mreply .mh{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.mreply .mh .who{font-weight:700;font-size:14px}
+.mreply .mh .mscore{margin-left:auto;background:var(--chip);border-radius:6px;padding:1px 8px;font-size:12px;font-weight:700}
+.md h2,.md h3,.md h4,.md h5{margin:12px 0 6px;font-size:15px}
+.md p{margin:6px 0;font-size:13.5px;color:#2c3345}
+.md ul{margin:6px 0;padding-left:20px;font-size:13.5px;color:#2c3345}
+.md li{margin:3px 0}
+.md strong{color:var(--ink)}
+details{border:1px solid var(--line);border-radius:10px;background:#fff;margin:10px 0;padding:0}
+details>summary{cursor:pointer;padding:12px 16px;font-weight:700;font-size:14px;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary:before{content:"▸ ";color:var(--red)}
+details[open]>summary:before{content:"▾ "}
+details>.body{padding:0 16px 14px;border-top:1px dashed var(--line)}
+.ychip{display:inline-block;background:var(--chip);border-radius:8px;padding:4px 10px;font-size:12px;margin:3px 6px 3px 0}
+.ychip b{font-size:13px}
+.news .nitem{border-top:1px dashed var(--line);padding:8px 0;font-size:13px}
+.news .nitem .t{font-weight:600}
+.news .nitem .s{color:var(--muted);font-size:12px}
+/* ── root landing page ── */
+.hero{padding:30px 26px}
+.hero-kicker{color:#ffd166;font-size:12px;font-weight:700;letter-spacing:2px;
+text-transform:uppercase;margin-bottom:8px}
+.hero h1{font-size:30px;margin:0 0 10px}
+.day-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.day-card{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);
+border-radius:12px;padding:14px 16px;transition:all .15s}
+.day-card:hover{border-color:var(--red);box-shadow:0 4px 16px rgba(216,52,44,.12);transform:translateY(-2px)}
+.day-card .d{font-weight:800;font-size:15px;color:var(--ink);display:flex;align-items:center;gap:8px}
+.day-card .m{margin-top:8px;display:flex;gap:6px}
+.day-card .m span{background:var(--chip);color:var(--muted);border-radius:6px;
+padding:2px 8px;font-size:11px}
+.latest-badge{background:var(--red);color:#fff;border-radius:6px;padding:1px 7px;
+font-size:10px;font-weight:700}
+</style>
+</head>
+<body><div class="wrap">
+<div class="backbar"><a href="../index.html">← 总览</a><a href="../us.html">← 美股榜单</a></div>
+<header class="top">
+  <h1><span class="badge red">红榜 #4</span>LLY<span class="tk" style="opacity:.7;font-size:15px;font-weight:400;margin-left:8px">LLY</span></h1>
+  <div class="sub">美股 ·  · 榜单日期 <b>2026-10-17</b> · 盘价采集 <b>2026-10-17 05:00:56</b></div>
+  <div class="price-row" style="margin-top:12px">
+    <span class="price" style="color:#fff">$1,257.03</span>
+    <span class="pct up">+0.43%</span>
+    <span class="psrc" style="color:rgba(255,255,255,.6)">实时</span>
+  </div>
+  <div class="scores" style="margin-top:10px">
+    <span>综合 <b>93.8</b></span>
+    <span>多头 <b>92</b></span>
+    <span>空头 <b>25</b></span>
+    <span>大师均值 <b>49.4</b></span>
+    <span>信号 <b>positive</b></span>
+  </div>
+</header>
+<div class="trade"><div class="cell"><div class="k">交易评级</div><span class="v buy">Buy</span></div><div class="cell"><div class="k">加仓区间</div><span class="v">1,219.32 ~ 1,269.60</span></div><div class="cell"><div class="k">目标价</div><span class="v">1,407.87</span></div><div class="cell"><div class="k">伯克希尔</div><span class="v">买入</span></div><div class="cell"><div class="k">伯克希尔分</div><span class="v">4.50</span></div></div>
+<div class="panel"><h2>财务指标</h2><div class="mgrid"><div class="m"><div class="k">市盈率 PE</div><div class="v">42.20</div></div><div class="m"><div class="k">市净率 PB</div><div class="v">33.08</div></div><div class="m"><div class="k">ROE</div><div class="v">102.3%</div></div><div class="m"><div class="k">总市值</div><div class="v">1.1万</div></div><div class="m"><div class="k">营收同比</div><div class="v">47.7%</div></div><div class="m"><div class="k">净利同比</div><div class="v">26.2%</div></div></div></div>
+<div class="panel"><h2>历史收益</h2><span class="ychip">近1月 <b class="up">+9.08%</b></span><span class="ychip">近6月 <b class="up">+35.60%</b></span><span class="ychip">近1年 <b class="up">+56.57%</b></span><span class="ychip">近5年 <b class="up">+426.00%</b></span></div>
+<div class="panel"><h2>大师圆桌<span class="sub">5 位</span></h2><div class="mreply"><div class="mh"><span class="who">段永平</span><span class="mscore">54</span></div><div class="md"><h4>发言内容：</h4><p>各位好，我来说说对 LLY 的看法。</p><p>首先，我认同 LLY 是一家优秀的公司。从基本面来看，它的营收和净利润都有不错的增长，特别是营收同比增长了 47.7%，净利润同比增长了 26.2%，这在医药行业里算是很亮眼的成绩。而且医药行业本身具有长期增长潜力，这是我们不能忽视的。</p><p>不过，回到&quot;本分&quot;的角度，我必须问自己：我真的懂这家公司吗？医药行业是一个特殊的行业，受政策影响很大，监管风险始终存在。虽然 LLY 目前表现强劲，但高估值是一个不可忽视的问题。当前 42 倍的 PE 和 33 倍的 PB，意味着市场已经给了它很高的预期。这种情况下，上行空间可能会受到限制。</p><h4>风险与行动建议：</h4><ul><li><strong>估值风险</strong>：当前估值较高，可能已经透支了未来的增长空间。如果市场情绪发生变化，股价可能会有较大波动。</li><li><strong>监管风险</strong>：医药行业受政策影响较大，任何监管变化都可能对公司的经营产生重大影响。</li><li><strong>市场预期管理</strong>：市场对大型药企的估值担忧始终存在，需要密切关注市场情绪的变化。</li></ul><p>如果是我，我会先问自己：我真的懂这家公司的商业模式和未来增长潜力吗？如果答案是肯定的，那么我会考虑在估值回调时逐步买入。但无论如何，我都会保持警惕，关注公司基本面和行业动态的变化。</p><h4>别错过的隐含约束：</h4><p>别因为市场的高预期而忽视了风险。投资医药行业，始终要记住：政策风险和估值风险是两大不可忽视的因素。</p></div></div><div class="mreply"><div class="mh"><span class="who">巴菲特</span><span class="mscore">33</span></div><div class="md"><p>各位朋友，今天我们来聊聊礼来公司（LLY）。首先，我的立场很明确：对于这家公司，我持谨慎态度。</p><p>先说说好的方面。礼来在医药行业确实展现了一些吸引力。它的股价近期表现强劲，涨幅达到3.55%，市值超过1.1万亿美元，这为投资者提供了一定的稳定性。此外，医药行业本身具有长期增长潜力，人口老龄化和新药研发都支持这一趋势。</p><p>然而，从我的投资框架来看，礼来存在一些问题。首先是估值问题。目前礼来的市盈率超过42倍，市净率更是高达33倍。这样的高估值让我很难找到足够的安全边际。即使公司未来几年保持增长，市场对大型药企的估值担忧以及潜在的监管风险都可能限制其股价上行空间。</p><p>再深入一点，礼来的护城河在哪里？我一直在问自己这个问题。医药行业的竞争非常激烈，专利到期、仿制药的冲击以及新药研发的不确定性都是需要考虑的风险因素。虽然礼来有一些重磅药物，但这些药物的长期盈利能力是否能持续，需要打一个问号。</p><p>基于以上分析，我建议投资者要格外谨慎。如果你已经持有礼来，可以考虑以下几点：</p><ul><li>密切关注公司的研发管线和新药审批情况，这是决定其未来增长的关键。</li><li>留意医药行业的政策变化，这可能对礼来的盈利能力产生重大影响。</li><li>评估当前价格是否已经充分反映了公司的增长预期，如果估值过高，可能需要考虑减仓。</li></ul><p>最后，我想说，投资就像打棒球，你不需要每次都挥棒。对于礼来这样的公司，我更倾向于等待一个更好的击球点。</p><p>如果查理·芒格在这里，他可能会补充说：&quot;在投资中，耐心是一种美德。不要因为股价的短期波动而做出仓促的决定。&quot;</p></div></div><div class="mreply"><div class="mh"><span class="who">达利欧</span><span class="mscore">67</span></div><div class="md"><h4>发言内容：</h4><p>各位同仁，今天我们来讨论一下礼来（LLY）这家公司。我的观点是，当前礼来处于一个<strong>中性偏多</strong>的位置，但这并不意味着没有风险。</p><p>首先，从基本面来看，礼来展现了一些积极的信号。公司股价近期上涨了3.55%，市值超过1.1万亿美元，这为其提供了相当强的稳定性。此外，医药行业作为长期增长的领域，礼来作为行业内的重要参与者，有望继续受益于这一趋势。营收同比增长47.7%，净利润同比增长26.2%，这些数据都显示了公司强劲的增长势头。</p><p>然而，我们不能忽视其中的风险。高估值是一个显著的担忧，当前PE超过42倍，PB超过33倍，这表明市场已经对公司的未来增长给予了很高的预期。任何不及预期的表现都可能导致估值回调。此外，医药行业面临的监管风险和市场对大型药企的估值担忧也不容忽视。这些因素都可能对礼来的股价构成压力。</p><h4>风险与行动建议：</h4><ul><li><strong>估值风险</strong>：当前估值较高，市场对礼来的预期已经很高。如果公司未能持续超出预期，股价可能会面临回调压力。建议密切关注公司的财报和指引。</li></ul><ul><li><strong>监管风险</strong>：医药行业的监管环境变化莫测，任何政策变动都可能对公司的业务产生重大影响。建议投资者保持对行业政策的高度敏感。</li></ul><ul><li><strong>市场情绪</strong>：市场对大型药企的估值担忧可能会影响礼来的股价表现。建议在投资组合中保持一定的分散度，以应对潜在的市场波动。</li></ul><h4>原则化收口：</h4><p>基于以上分析，我建议投资者在决策时遵循以下原则：<strong>&quot;在高度不确定的环境中，保持对风险的敏感度，并通过分散投资来平衡潜在收益和损失。&quot;</strong> 这意味着在投资礼来时，应将其视为整体投资组合的一部分，而不是孤注一掷。</p><p>最后，我建议大家在做出投资决策时，记录下自己的思考过程和原则，以便在未来复盘时能够清晰地看到自己的决策路径。正如我常说的，&quot;Pain + Reflection = Progress&quot;。</p></div></div><div class="mreply"><div class="mh"><span class="who">彼得·林奇</span><span class="mscore">61</span></div><div class="md"><p>让我以彼得·林奇的方式来谈谈这只股票 LLY。</p><h4>结论：</h4><p>这只股票现在处于一个让我有点犹豫的位置——不是强烈买入，也不是完全回避。我会把它归类为稳定增长型公司，但估值偏高。</p><h4>理由：</h4><ul><li>医药行业确实是个好赛道。从日常生活就能看到，药品的需求是刚性的，而且随着人口老龄化，这个需求还会持续增长。LLY 作为一家大型制药公司，拥有稳定的现金流和持续创新的能力，这是它的优势。</li></ul><ul><li>但是，我们也要看到一些令人担忧的地方。目前 42 倍的市盈率（PE）对于一家成熟的大型药企来说偏高。要知道，制药行业面临严格的监管风险，新药研发也充满不确定性。</li></ul><ul><li>从财务数据来看，47.7% 的营收增长看起来很吸引人，但净利润增长只有 26.2%，说明盈利能力并没有跟上营收增长的步伐。而且 33 倍的市净率（PB）也显示出市场对其资产给予了相当高的溢价。</li></ul><h4>风险/行动建议：</h4><ul><li>主要风险在于估值过高。如果市场情绪发生变化，或者公司的新药研发遇到挫折，股价可能会面临较大回调压力。</li></ul><ul><li>对于已经在车上的投资者，我建议密切关注公司新药研发进展和 FDA 的监管动向。如果出现重大利好，可以考虑分批减仓；反之，如果出现负面消息，也要做好止损准备。</li></ul><ul><li>对于想要买入的投资者，我建议耐心等待更好的时机。可以考虑在 PE 降到 30 倍左右时再考虑入场，或者等待市场出现调整时再介入。</li></ul><ul><li>记住，制药行业是一个需要耐心和持续关注的行业。不要被短期的股价上涨冲昏头脑，要时刻关注公司的基本面变化。</li></ul><p>总的来说，这是一家好公司，但现在的价格让我有点担心。作为一个注重估值的安全边际的投资者，我会选择继续观察，等待更好的买入时机。</p></div></div><div class="mreply"><div class="mh"><span class="who">芒格</span><span class="mscore">32</span></div><div class="md"><p>各位同仁，今天我们来谈谈 LLY 这家公司。</p><p>我的结论是：对于这家公司，我持谨慎态度。虽然它目前表现强劲，但我认为它并不完全符合我们的投资标准。</p><p>首先，我们来看看它的多头逻辑：</p><ul><li>股价表现确实不错，过去涨幅达到 3.55%，这在当前市场环境下值得肯定。</li><li>作为一家大型制药公司，它拥有较高的市值，这通常意味着更强的抗风险能力。</li><li>医药行业本身具有长期增长潜力，这是不可否认的。</li></ul><p>然而，当我们运用逆向思维和多元心智模型来审视这家公司时，一些问题就浮现出来了：</p><ul><li>当前 42 倍的市盈率(P/E)已经处于相当高的水平，这可能会限制其未来的上行空间。</li><li>医药行业面临日益增加的监管风险，这可能会影响公司的盈利能力。</li><li>市场对大型制药公司的估值普遍存在担忧，这可能会对股价造成压力。</li></ul><p>此外，我们还需要考虑一些更深层次的问题：</p><ul><li>公司的净资产收益率(ROE)虽然高达 102%，但这是否可持续？</li><li>营收同比增长 47.7% 看起来很吸引人，但净利润增长仅为 26.2%，这表明利润率可能正在下降。</li><li>33 倍的市净率(P/B)也处于高位，这让我对其估值产生疑虑。</li></ul><p>基于以上分析，我的建议是：</p><ul><li>在做出投资决策之前，我们需要更深入地了解公司的长期增长动力，以及其如何应对日益增长的监管压力。</li><li>对于已经持有该股票的投资者，建议密切关注估值变化，并考虑在合适的时机进行部分获利了结。</li><li>对于正在考虑买入的投资者，我建议耐心等待更好的入场时机，或者寻找其他估值更具吸引力的投资机会。</li></ul><p>最后，我要说的是，投资决策不应仅仅基于短期的价格走势。我们需要从多个角度审视一家公司，并始终将风险控制放在首位。正如我常说的：&quot;如果我知道自己死在哪里，我就永远不去那里。&quot; 在投资中，识别并避开风险往往比追求收益更为重要。</p></div></div></div>
+<div class="panel"><h2>分析师报告<span class="sub">2 篇</span></h2><details open><summary>市场面分析</summary><div class="body"><div class="md"><h4>LLY LLY 市场面分析</h4><ul><li>红黑榜多空分数：多头 92 / 空头 25，分差 67。</li><li>当前价格：1257.03。</li><li>当前交易评级：Buy。</li><li>值得加仓区间：1219.32 - 1269.60。</li><li>目标价格：1407.87。</li><li>市场愿意给溢价的原因：强劲的3.55%价格涨幅；高市值提供稳定性；医药行业长期增长潜力。</li><li>当前主要压制因素：高估值限制上行空间；医药行业监管风险；市场对大型药企的估值担忧。</li></ul></div></div></details><details open><summary>基本面分析</summary><div class="body"><div class="md"><h4>LLY LLY 基本面分析</h4><ul><li>报告期：暂无。</li><li>PE(TTM)：42.20。</li><li>PB：33.08。</li><li>ROE：102.29%。</li><li>营收同比：47.70%。</li><li>归母净利润同比：26.20%。</li><li>核心判断：盈利能力处于可接受区间；收入仍在增长；利润端保持扩张。</li></ul></div></div></details></div>
+<div class="panel"><h2>研究与计划</h2>
+<details><summary>基本面摘要</summary><div class="body"><div class="md"><h3>核心财务快照</h3><ul><li>报告期: 数据缺失</li><li>当前股价: 1257.03 元</li><li>总市值: 11204.63 亿元</li><li>PE (TTM): 42.20</li><li>PB: 33.08</li><li>PS (TTM): 数据缺失</li><li>营业总收入(报告期): 数据缺失 亿元</li><li>营收同比增长率: 47.70%</li><li>归母净利润(报告期): 数据缺失 亿元</li><li>归母净利润同比增长率: 26.20%</li><li>ROE (TTM/估算): 102.29%</li><li>资产负债率: 数据缺失</li><li>经营性现金流 / 归母净利润: 数据缺失</li></ul><h4>缺失字段</h4><ul><li>PS(TTM), 营业总收入, 归母净利润, 资产负债率, 经营性现金流与归母净利润比值</li></ul></div></div></details>
+<details><summary>研究计划</summary><div class="body"><div class="md"><h4>LLY LLY 研究摘要</h4><ul><li>红黑榜结论: Buy</li><li>多头/空头: 92/25</li><li>正向信号: ROE 102.29%；营收同比 47.70%；归母净利润同比 26.20%；PE(TTM) 42.20</li><li>榜单看多理由: 强劲的3.55%价格涨幅；高市值提供稳定性；医药行业长期增长潜力</li><li>榜单风险提示: 高估值限制上行空间；医药行业监管风险；市场对大型药企的估值担忧</li></ul></div></div></details>
+<details><summary>交易计划</summary><div class="body"><div class="md"><h4>LLY LLY 交易计划</h4><ul><li>评级: Buy</li><li>当前价格: 1257.03</li><li>值得加仓区间: 1219.32 - 1269.60</li><li>目标价格: 1407.87</li><li>止损位: 1156.47</li><li>备注: 当前为缓存降级交易卡，后续若完整 TradingAgent 结果生成，将自动覆盖。</li></ul></div></div></details>
+<details><summary>交易决策</summary><div class="body"><div class="md"><p>Buy</p><p>LLY LLY 当前使用红黑榜缓存结果生成兜底交易卡。多头 92 / 空头 25，分差 67。当前尚未取得完整 TradingAgent 长文决策，但榜单分数、财务快照和大师观点已经足够生成基础交易建议。</p></div></div></details>
+</div>
+<div class="panel"><h2>多空逻辑</h2><div class="pts"><div class="h bull">看多逻辑</div><div class="md"><p>强劲的3.55%价格涨幅</p><p>高市值提供稳定性</p><p>医药行业长期增长潜力</p></div></div><div class="pts"><div class="h bear">看空逻辑</div><div class="md"><p>高估值限制上行空间</p><p>医药行业监管风险</p><p>市场对大型药企的估值担忧</p></div></div></div>
+<div class="panel"><h2>伯克希尔研究</h2><p><strong>礼来公司是一家拥有强大护城河、稳健财务表现和长期增长潜力的生物制药企业，当前估值合理，值得稳健型投资者关注。</strong></p><p>伯克希尔综合评分：<strong>4.5</strong></p><div class="md"><p>{&quot;verdict&quot;: &quot;买入&quot;, &quot;conservative_tip&quot;: &quot;建议在PE TTM低于35倍时买入，长期持有。&quot;, &quot;moderate_tip&quot;: &quot;建议在PE TTM低于40倍时买入，持有5年以上。&quot;, &quot;aggressive_tip&quot;: &quot;建议在当前价位买入，密切关注研发进展和行业动态。&quot;, &quot;catalysts_plus&quot;: [&quot;新药获批上市。&quot;, &quot;强劲的财报发布。&quot;, &quot;行业政策利好。&quot;], &quot;catalysts_minus&quot;: [&quot;新药研发失败。&quot;, &quot;药品定价政策收紧。&quot;, &quot;主要竞争对手推出颠覆性产品。&quot;]}</p></div></div>
+<div class="panel news"><h2>最新资讯</h2><div class="md"><p>LLY近期新闻以利好为主，共8条利好，1条利空，2条中性。</p></div><div class="nitem"><div class="t">Eli Lilly (LLY) Stock Looks Undervalued As Its 404% Run Continues</div><div class="s">Yahoo Finance · 利好</div></div><div class="nitem"><div class="t">Eli Lilly (LLY) Shares In Focus After Omvoh Shows Deep Remission In Crohn’s</div><div class="s">Simply Wall Street · 利好</div></div><div class="nitem"><div class="t">Lilly wins EU backing for Foundayo weight-loss pill (LLY:NYSE)</div><div class="s">Seeking Alpha · 利好</div></div><div class="nitem"><div class="t">A $1,000 Investment in Eli Lilly Became $18,637. The Obesity Boom Changed Everything</div><div class="s">24/7 Wall St. · 利好</div></div><div class="nitem"><div class="t">EMA Endorses Eli Lilly&#x27;s Foundayo for Type 2 Diabetes; LLY Stock Shows 20% Undervaluation</div><div class="s">GuruFocus · 利好</div></div><div class="nitem"><div class="t">New composite outcomes data show patients treated with Lilly&#x27;s Omvoh (mirikizumab-mrkz) achieved comprehensive corticosteroid-free disease control in ulcerative colitis and corticosteroid-free deep re</div><div class="s">PR Newswire · 利好</div></div><div class="nitem"><div class="t">Lilly’s Foundayo Pill Gets European Regulatory Backing – LLY Stock Heads For Best Week In Nearly Four Months</div><div class="s">Yahoo Finance · 利好</div></div><div class="nitem"><div class="t">A 305,000-share sale is proposed by Eli Lilly (LLY) shareholder Lilly Endowment.</div><div class="s">Stock Titan · 利空</div></div></div>
+<footer>稳健理财Agent · 红黑榜每日归档 · 红榜 #4 · 仅供研究，不构成投资建议</footer>
+</div></body>
+</html>
