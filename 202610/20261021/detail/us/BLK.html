@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BLK(BLK) 红榜 2026-10-21</title>
+<style>
+:root{--red:#d8342c;--redbg:#fdecea;--green:#1a9e54;--ink:#1c2230;--muted:#6b7385;
+--line:#e7e9ef;--card:#fff;--bg:#f4f6fa;--chip:#eef1f6;--dark:#23262d;--darkbg:#ececef}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",
+"Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);
+line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 16px 64px}
+header.top{background:linear-gradient(135deg,#1c2230,#2c3550);color:#fff;border-radius:14px;
+padding:22px 24px;margin-bottom:20px;box-shadow:0 6px 24px rgba(20,26,46,.12)}
+header.top h1{margin:0 0 6px;font-size:24px;letter-spacing:.5px}
+header.top .sub{opacity:.85;font-size:13px}
+header.top .sub b{color:#ffd166;font-weight:600}
+nav.mkt{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;
+background:rgba(244,246,250,.92);backdrop-filter:blur(6px);padding:10px 0;margin-bottom:14px}
+nav.mkt a{text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);
+padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600}
+nav.mkt a:hover{border-color:var(--red);color:var(--red)}
+.summary{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.summary .chip{background:var(--card);border:1px solid var(--line);border-radius:10px;
+padding:8px 12px;font-size:12px;color:var(--muted)}
+.summary .chip b{color:var(--ink);font-size:14px;margin-left:4px}
+section.board{margin:26px 0}
+.board-title{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:19px}
+.board-title .dot{width:10px;height:10px;border-radius:50%}
+.board-title.red .dot{background:var(--red)}
+.board-title.black .dot{background:var(--dark)}
+.board-title small{color:var(--muted);font-weight:400;font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+position:relative;transition:box-shadow .15s}
+.card:hover{box-shadow:0 4px 18px rgba(20,26,46,.08)}
+.card.red{border-top:3px solid var(--red)}
+.card.black{border-top:3px solid var(--dark)}
+.rank{position:absolute;top:10px;right:12px;font-size:26px;font-weight:800;color:#eceff5}
+.card.red .rank{color:#fbdcD9}
+.nm{font-size:16px;font-weight:700}
+.nm .tk{color:var(--muted);font-weight:500;font-size:12px;margin-left:6px}
+.tag{display:inline-block;background:var(--chip);color:var(--muted);border-radius:6px;
+padding:1px 7px;font-size:11px;margin:6px 6px 0 0}
+.price-row{display:flex;align-items:baseline;gap:10px;margin:10px 0 4px}
+.price{font-size:24px;font-weight:800}
+.pct{font-size:14px;font-weight:700;padding:2px 8px;border-radius:8px}
+.up{color:var(--red)}.down{color:var(--green)}.flat{color:var(--muted)}
+.pct.up{background:var(--redbg)}.pct.down{background:#e2f4e9}.pct.flat{background:var(--chip)}
+.psrc{font-size:11px;color:var(--muted);margin-left:auto}
+.scores{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.scores span{background:var(--chip);border-radius:6px;padding:2px 8px;font-size:11px;color:var(--muted)}
+.scores span b{color:var(--ink)}
+.pts{font-size:12.5px;margin:8px 0 0}
+.pts .h{font-weight:700;font-size:12px;margin:6px 0 2px}
+.pts .h.bull{color:var(--red)}.pts .h.bear{color:var(--green)}
+.pts ul{margin:2px 0 4px;padding-left:18px;color:#3a4152}
+.pts li{margin:1px 0}
+.masters{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:11px;color:var(--muted)}
+.masters b{color:var(--ink)}
+.summ{font-size:12.5px;color:#3a4152;background:#fafbfd;border:1px solid var(--line);
+border-radius:8px;padding:8px 10px;margin-top:8px}
+.empty{color:var(--muted);background:var(--card);border:1px dashed var(--line);
+border-radius:10px;padding:18px;text-align:center}
+footer{margin-top:34px;color:var(--muted);font-size:12px;text-align:center;line-height:1.8}
+a.lnk{color:var(--red);text-decoration:none}
+/* ── detail page ── */
+.backbar{margin-bottom:14px;font-size:13px}
+.backbar a{color:var(--muted);text-decoration:none;margin-right:14px}
+.backbar a:hover{color:var(--red)}
+.badge{display:inline-block;border-radius:6px;padding:2px 10px;font-size:12px;font-weight:700;margin-right:8px}
+.badge.red{background:var(--red);color:#fff}.badge.black{background:var(--dark);color:#fff}
+.trade{display:flex;flex-wrap:wrap;gap:10px;background:linear-gradient(135deg,#2c3550,#1c2230);
+color:#fff;border-radius:12px;padding:16px 18px;margin:16px 0}
+.trade .cell{min-width:120px}
+.trade .k{font-size:11px;opacity:.75}
+.trade .v{font-size:18px;font-weight:800;margin-top:2px}
+.trade .v.buy{color:#7ee2a8}.trade .v.sell{color:#ff9d97}.trade .v.hold{color:#ffd166}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0}
+.mgrid .m{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.mgrid .m .k{font-size:11px;color:var(--muted)}
+.mgrid .m .v{font-size:16px;font-weight:700;margin-top:2px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.panel>h2{margin:0 0 12px;font-size:17px}
+.panel>h2 .sub{font-size:12px;color:var(--muted);font-weight:400;margin-left:8px}
+.mreply{border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;
+padding:12px 14px;margin:10px 0;background:#fff}
+.mreply .mh{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.mreply .mh .who{font-weight:700;font-size:14px}
+.mreply .mh .mscore{margin-left:auto;background:var(--chip);border-radius:6px;padding:1px 8px;font-size:12px;font-weight:700}
+.md h2,.md h3,.md h4,.md h5{margin:12px 0 6px;font-size:15px}
+.md p{margin:6px 0;font-size:13.5px;color:#2c3345}
+.md ul{margin:6px 0;padding-left:20px;font-size:13.5px;color:#2c3345}
+.md li{margin:3px 0}
+.md strong{color:var(--ink)}
+details{border:1px solid var(--line);border-radius:10px;background:#fff;margin:10px 0;padding:0}
+details>summary{cursor:pointer;padding:12px 16px;font-weight:700;font-size:14px;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary:before{content:"▸ ";color:var(--red)}
+details[open]>summary:before{content:"▾ "}
+details>.body{padding:0 16px 14px;border-top:1px dashed var(--line)}
+.ychip{display:inline-block;background:var(--chip);border-radius:8px;padding:4px 10px;font-size:12px;margin:3px 6px 3px 0}
+.ychip b{font-size:13px}
+.news .nitem{border-top:1px dashed var(--line);padding:8px 0;font-size:13px}
+.news .nitem .t{font-weight:600}
+.news .nitem .s{color:var(--muted);font-size:12px}
+/* ── root landing page ── */
+.hero{padding:30px 26px}
+.hero-kicker{color:#ffd166;font-size:12px;font-weight:700;letter-spacing:2px;
+text-transform:uppercase;margin-bottom:8px}
+.hero h1{font-size:30px;margin:0 0 10px}
+.day-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.day-card{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);
+border-radius:12px;padding:14px 16px;transition:all .15s}
+.day-card:hover{border-color:var(--red);box-shadow:0 4px 16px rgba(216,52,44,.12);transform:translateY(-2px)}
+.day-card .d{font-weight:800;font-size:15px;color:var(--ink);display:flex;align-items:center;gap:8px}
+.day-card .m{margin-top:8px;display:flex;gap:6px}
+.day-card .m span{background:var(--chip);color:var(--muted);border-radius:6px;
+padding:2px 8px;font-size:11px}
+.latest-badge{background:var(--red);color:#fff;border-radius:6px;padding:1px 7px;
+font-size:10px;font-weight:700}
+</style>
+</head>
+<body><div class="wrap">
+<div class="backbar"><a href="../index.html">← 总览</a><a href="../us.html">← 美股榜单</a></div>
+<header class="top">
+  <h1><span class="badge red">红榜 #1</span>BLK<span class="tk" style="opacity:.7;font-size:15px;font-weight:400;margin-left:8px">BLK</span></h1>
+  <div class="sub">美股 ·  · 榜单日期 <b>2026-10-21</b> · 盘价采集 <b>2026-10-21 05:00:51</b></div>
+  <div class="price-row" style="margin-top:12px">
+    <span class="price" style="color:#fff">$1,128.68</span>
+    <span class="pct up">+0.36%</span>
+    <span class="psrc" style="color:rgba(255,255,255,.6)">实时</span>
+  </div>
+  <div class="scores" style="margin-top:10px">
+    <span>综合 <b>93.8</b></span>
+    <span>多头 <b>88</b></span>
+    <span>空头 <b>22</b></span>
+    <span>大师均值 <b>62.2</b></span>
+    <span>信号 <b>positive</b></span>
+  </div>
+</header>
+<div class="trade"><div class="cell"><div class="k">交易评级</div><span class="v buy">Buy</span></div><div class="cell"><div class="k">加仓区间</div><span class="v">1,094.69 ~ 1,139.84</span></div><div class="cell"><div class="k">目标价</div><span class="v">1,263.98</span></div><div class="cell"><div class="k">伯克希尔</div><span class="v">买入</span></div><div class="cell"><div class="k">伯克希尔分</div><span class="v">4.50</span></div></div>
+<div class="panel"><h2>财务指标</h2><div class="mgrid"><div class="m"><div class="k">市盈率 PE</div><div class="v">25.70</div></div><div class="m"><div class="k">市净率 PB</div><div class="v">3.04</div></div><div class="m"><div class="k">总市值</div><div class="v">1834</div></div><div class="m"><div class="k">营收同比</div><div class="v">19.1%</div></div><div class="m"><div class="k">净利同比</div><div class="v">25.4%</div></div></div></div>
+<div class="panel"><h2>历史收益</h2><span class="ychip">近1月 <b class="up">+3.51%</b></span><span class="ychip">近6月 <b class="up">+8.22%</b></span><span class="ychip">近1年 <b class="down">-0.13%</b></span><span class="ychip">近5年 <b class="up">+24.88%</b></span></div>
+<div class="panel"><h2>大师圆桌<span class="sub">5 位</span></h2><div class="mreply"><div class="mh"><span class="who">段永平</span><span class="mscore">86</span></div><div class="md"><h4>段永平圆桌发言：</h4><h5>结论：</h5><p>我认为BLK（贝莱德）是一家值得关注的优秀公司，但目前价格可能偏高。</p><h5>理由：</h5><p>首先，从&quot;本分&quot;的角度来看，贝莱德确实在做对的事。作为全球领先的资产管理公司，它拥有稳固的市场地位和多元化的业务布局，这为其提供了强大的抗风险能力。其资产管理规模持续增长，反映出其在全球金融市场中的竞争力。</p><p>其次，从&quot;看得懂&quot;的角度，贝莱德的商业模式相对清晰，主要依靠管理费和业绩提成盈利，这种模式在长期来看具有可持续性。其营收和净利润的稳健增长也印证了这一点。</p><p>然而，我们也必须注意到一些潜在风险：</p><ul><li>当前估值水平相对较高，市盈率超过25倍，可能已经反映了大部分增长预期。</li><li>市场波动和利率上升环境可能对其资产管理规模造成压力，进而影响短期业绩表现。</li></ul><h5>风险/行动建议：</h5><ul><li><strong>估值风险</strong>：目前价格可能已经反映了大部分增长预期，建议投资者在买入前仔细评估其长期增长潜力与当前估值的匹配度。</li><li><strong>利率风险</strong>：在当前利率上升的环境下，需要密切关注其资产管理规模的变化，以及对业绩的影响。</li><li><strong>长期持有</strong>：如果决定投资，建议以长期持有的心态来对待，因为短期的市场波动可能会带来心理压力。</li></ul><p>总的来说，贝莱德是一家优秀的公司，但投资决策需要结合自身的风险承受能力和投资期限来做出。如果是我，我会更倾向于在估值更具吸引力的时候再考虑买入。</p><h5>别错过的隐含约束：</h5><p>别因为短期市场波动而忽视了长期持有的价值，也别因为公司优秀就忽视了价格的重要性。</p></div></div><div class="mreply"><div class="mh"><span class="who">巴菲特</span><span class="mscore">59</span></div><div class="md"><p>各位朋友，今天我们来聊聊 BLK（贝莱德）。首先，我的结论是：这是一门好生意，但目前的价格让我有些犹豫。</p><p>让我先说说为什么这是一门好生意。BLK 是全球资产管理行业的领导者，这一点毋庸置疑。它的多元化业务模式提供了很强的抗风险能力，无论是市场动荡还是经济周期变化，它都能保持相对稳健的表现。从长期来看，它的增长潜力依然强劲，这得益于其在全球资管市场的持续扩张和不断创新的产品服务。</p><p>然而，当我们谈到价格时，我必须说，目前的估值水平让我有些谨慎。25 倍的市盈率对于这样一家成熟公司来说并不算便宜。尽管它的净资产收益率（ROE）表现不错，但考虑到当前市场环境下的利率上升压力，这可能会对它的未来盈利增长构成挑战。</p><p>在这里，我想提出几个问题供大家思考：</p><p>首先，BLK 的护城河有多宽？它在资产管理领域的领先地位是否足够稳固，能让它在未来十年继续维持这种优势？</p><p>其次，在当前利率上升的环境下，它的资本配置能力是否依然出色？它能否继续为股东创造足够的自由现金流？</p><p>最后，我们是否愿意以目前的价格买入，并持有足够长的时间来享受它的长期增长？</p><p>关于风险，我认为短期内市场波动和利率上升可能会影响它的表现。如果你是短期投资者，这可能会让你感到不安。但对于长期投资者来说，关键在于评估它的长期增长潜力和资本配置能力。</p><p>我的建议是，如果你已经在持有 BLK，并且相信它的长期价值，那么继续持有可能是明智的选择。但如果你正在考虑买入，我建议你再等等，看看是否有更好的买入时机。</p><p>最后，我想借用查理·芒格的一句话：&quot;投资就像打棒球，你不需要每次都挥棒。&quot; 在这里，我们可能需要多一点耐心，等待那个最甜的机会出现。</p></div></div><div class="mreply"><div class="mh"><span class="who">达利欧</span><span class="mscore">66</span></div><div class="md"><p>在当前的圆桌讨论中，关于BLK（贝莱德）的投资价值，我将从几个关键角度进行分析。</p><p>首先，BLK作为全球资产管理行业的领导者，其市场地位非常稳固。贝莱德拥有多元化的业务布局，这不仅包括传统的资产管理，还涵盖了技术平台和风险管理服务。这种多元化的业务模式为公司在不同经济环境下提供了较强的抗风险能力。此外，从长期增长潜力来看，贝莱德在ETF（交易所交易基金）市场的领导地位以及其在可持续投资领域的持续投入，都为其未来的增长提供了坚实的基础。</p><p>然而，我们也必须关注到一些潜在的风险因素。当前市场波动性较高，这可能会对贝莱德的短期表现产生一定影响。此外，在利率上升的环境下，资产管理公司普遍面临更大的挑战，因为更高的利率可能会抑制投资者的风险偏好，并影响资产管理的总体规模。最后，从估值角度来看，贝莱德的市盈率（PE）约为25.7，市净率（PB）约为3.04，相对于市场平均水平来说，估值水平相对较高，这可能会限制其短期内的股价上涨空间。</p><p>基于以上分析，我的观点是：</p><p>结论：BLK是一个值得关注的投资标的，但需要在估值和风险之间找到平衡。</p><p>理由：贝莱德在资产管理行业的领导地位、多元化的业务模式以及长期增长潜力是其主要的优势。然而，市场波动、利率上升和较高的估值水平是需要谨慎对待的风险因素。</p><p>风险/行动建议：</p><ul><li><strong>风险提示</strong>：如果市场波动性继续增加，或者利率上升速度超出预期，贝莱德的股价可能会面临短期压力。对于风险承受能力较低的投资者，建议保持谨慎。</li></ul><ul><li><strong>估值考量</strong>：当前估值水平较高，建议投资者关注贝莱德的长期增长潜力，而不是短期股价波动。如果投资者能够接受较长的时间周期，并相信贝莱德在ETF和可持续投资领域的持续优势，那么当前的价格可能是一个合理的入场点。</li></ul><ul><li><strong>多元化配置</strong>：考虑到贝莱德在市场中的领导地位，建议将其作为多元化投资组合的一部分，而不是唯一的投资标的。这样可以在享受其增长潜力的同时，分散单一投资的风险。</li></ul><p>最后，我想强调的是，投资决策应当基于个人的风险承受能力和投资目标。对于BLK这样的公司，建议投资者在做出决策前，仔细评估自身的投资组合和风险偏好，并考虑将决策过程下来，以便在未来进行复盘和调整。</p></div></div><div class="mreply"><div class="mh"><span class="who">彼得·林奇</span><span class="mscore">33</span></div><div class="md"><h4>发言：</h4><p>各位朋友，今天我们来聊聊贝莱德（BLK）。我的结论是：对于这只股票，我持谨慎态度，尽管它有很多值得称道的优点，但目前的估值让我感到有些不安。</p><p>首先，<strong>贝莱德作为全球资产管理行业的领导者</strong>，其地位非常稳固。它不仅管理着庞大的资产规模，还在多个领域拥有多元化布局，这种多元化给它带来了很强的抗风险能力。此外，从财务数据来看，营收和净利润都保持着两位数的增长，显示出强劲的长期增长潜力。</p><p>然而，<strong>估值是一个不可忽视的问题</strong>。目前贝莱德的市盈率（PE）约为26倍，市净率（PB）也超过了3倍。对于一家资产管理公司来说，这样的估值水平相对较高。在当前市场波动加剧、利率上升的环境下，这些因素都可能对贝莱德的资产管理规模构成挑战，进而影响其盈利能力。</p><h4>理由：</h4><ul><li><strong>市场波动的影响</strong>：资产管理行业的表现与市场环境密切相关。如果市场出现大幅波动，投资者可能会减少投资，导致贝莱德的管理资产规模下降。</li><li><strong>利率上升的挑战</strong>：利率上升通常会增加借贷成本，影响投资者的风险偏好，这对资产管理公司来说是一个不利因素。</li><li><strong>估值偏高</strong>：在当前的市场环境下，26倍的PE和3倍的PB让我觉得股价已经反映了大部分利好因素，留给投资者的安全边际相对较小。</li></ul><h4>风险/行动建议：</h4><ul><li><strong>短期风险</strong>：如果市场继续波动，贝莱德的股价可能会面临压力。对于短期投资者来说，现在可能不是买入的好时机。</li><li><strong>长期投资者</strong>：如果你是一个长期投资者，并且相信贝莱德能够继续在全球资产管理行业保持领先地位，那么可以等待一个更好的买入时机，比如在市场回调时逢低买入。</li><li><strong>估值重估</strong>：密切关注贝莱德的财务表现和市场份额变化。如果其增长势头能够持续，并且估值回到一个更合理的水平，那么可以考虑逐步建仓。</li></ul><p>总之，贝莱德是一家优秀的公司，但目前的价格让我觉得需要谨慎对待。希望大家在做出投资决策时，能够充分考虑这些因素。</p></div></div><div class="mreply"><div class="mh"><span class="who">芒格</span><span class="mscore">67</span></div><div class="md"><p>在座的各位，今天我们来谈谈黑石集团（BLK）。我的结论是：黑石是一家值得关注的优质公司，但当前价格让我保持谨慎。</p><p>首先，黑石作为全球资产管理行业的领导者，其地位是毋庸置疑的。它拥有多元化的业务布局，从私募股权到房地产，再到信贷投资，这种多元化结构为它提供了强大的抗风险能力。此外，黑石在长期增长方面展现了强劲的潜力，这得益于其卓越的管理团队和不断扩大的资产管理规模。</p><p>然而，我们不能忽视几个关键风险：</p><p>第一，市场波动对资产管理行业的影响不容小觑。短期内，任何市场动荡都可能对黑石的业绩产生负面影响。</p><p>第二，当前利率上升的环境对黑石构成挑战。利率上升会增加借贷成本，并可能抑制某些资产类别的投资需求。</p><p>第三，尽管黑石的基本面强劲，但其估值水平相对较高。当前25倍左右的市盈率（PE）和3倍左右的市净率（PB）表明市场已经对其增长前景给予了相当高的预期。</p><p>从多元思维模型的角度来看，我们还需要考虑以下几点：</p><ul><li><strong>激励机制</strong>：黑石的管理层激励与公司长期业绩挂钩，这有助于确保他们的决策符合股东利益。</li></ul><ul><li><strong>机会成本</strong>：在当前市场环境下，投资者可能会考虑其他估值更合理的投资机会。</li></ul><ul><li><strong>概率与赔率</strong>：尽管黑石的增长前景乐观，但在高估值下，其上行空间可能有限，而下行风险则相对较大。</li></ul><p>基于以上分析，我建议：</p><ul><li>如果你已经在持有黑石股票，可以考虑在市场波动中逢低加仓，但要控制好仓位，避免过度集中。</li></ul><ul><li>对于尚未买入的投资者，建议等待更合适的买入时机，比如市场出现回调或公司估值更具吸引力时。</li></ul><p>最后，我要提醒大家，投资决策不应仅仅基于短期的市场波动，而应着眼于长期的价值创造。黑石的基本面依然强劲，但当前的价格让我倾向于保持观望，等待更好的入场机会。</p><p>我能错在哪？或许是我对市场波动的担忧过度，或者对黑石管理层的长期能力估计不足。投资永远需要保持谦逊和开放的态度。</p></div></div></div>
+<div class="panel"><h2>分析师报告<span class="sub">2 篇</span></h2><details open><summary>市场面分析</summary><div class="body"><div class="md"><h4>BLK BLK 市场面分析</h4><ul><li>红黑榜多空分数：多头 88 / 空头 22，分差 66。</li><li>当前价格：1128.55。</li><li>当前交易评级：Buy。</li><li>值得加仓区间：1094.69 - 1139.84。</li><li>目标价格：1263.98。</li><li>市场愿意给溢价的原因：全球资产管理领导者地位稳固；多元化业务提供抗风险能力；长期增长潜力强劲。</li><li>当前主要压制因素：市场波动可能影响短期表现；利率上升环境构成挑战；估值水平相对较高。</li></ul></div></div></details><details open><summary>基本面分析</summary><div class="body"><div class="md"><h4>BLK BLK 基本面分析</h4><ul><li>报告期：暂无。</li><li>PE(TTM)：25.70。</li><li>PB：3.04。</li><li>营收同比：19.10%。</li><li>归母净利润同比：25.40%。</li><li>核心判断：收入仍在增长；利润端保持扩张。</li></ul></div></div></details></div>
+<div class="panel"><h2>研究与计划</h2>
+<details><summary>基本面摘要</summary><div class="body"><div class="md"><h3>核心财务快照</h3><ul><li>报告期: 数据缺失</li><li>当前股价: 1128.55 元</li><li>总市值: 1833.63 亿元</li><li>PE (TTM): 25.70</li><li>PB: 3.04</li><li>PS (TTM): 数据缺失</li><li>营业总收入(报告期): 数据缺失 亿元</li><li>营收同比增长率: 19.10%</li><li>归母净利润(报告期): 数据缺失 亿元</li><li>归母净利润同比增长率: 25.40%</li><li>ROE (TTM/估算): 数据缺失</li><li>资产负债率: 数据缺失</li><li>经营性现金流 / 归母净利润: 数据缺失</li></ul><h4>缺失字段</h4><ul><li>PS(TTM), 营业总收入, 归母净利润, ROE, 资产负债率, 经营性现金流与归母净利润比值</li></ul></div></div></details>
+<details><summary>研究计划</summary><div class="body"><div class="md"><h4>BLK BLK 研究摘要</h4><ul><li>红黑榜结论: Buy</li><li>多头/空头: 88/22</li><li>正向信号: 营收同比 19.10%；归母净利润同比 25.40%；PE(TTM) 25.70；PB 3.04</li><li>榜单看多理由: 全球资产管理领导者地位稳固；多元化业务提供抗风险能力；长期增长潜力强劲</li><li>榜单风险提示: 市场波动可能影响短期表现；利率上升环境构成挑战；估值水平相对较高</li></ul></div></div></details>
+<details><summary>交易计划</summary><div class="body"><div class="md"><h4>BLK BLK 交易计划</h4><ul><li>评级: Buy</li><li>当前价格: 1128.55</li><li>值得加仓区间: 1094.69 - 1139.84</li><li>目标价格: 1263.98</li><li>止损位: 1038.27</li><li>备注: 当前为缓存降级交易卡，后续若完整 TradingAgent 结果生成，将自动覆盖。</li></ul></div></div></details>
+<details><summary>交易决策</summary><div class="body"><div class="md"><p>Buy</p><p>BLK BLK 当前使用红黑榜缓存结果生成兜底交易卡。多头 88 / 空头 22，分差 66。当前尚未取得完整 TradingAgent 长文决策，但榜单分数、财务快照和大师观点已经足够生成基础交易建议。</p></div></div></details>
+</div>
+<div class="panel"><h2>多空逻辑</h2><div class="pts"><div class="h bull">看多逻辑</div><div class="md"><p>全球资产管理领导者地位稳固</p><p>多元化业务提供抗风险能力</p><p>长期增长潜力强劲</p></div></div><div class="pts"><div class="h bear">看空逻辑</div><div class="md"><p>市场波动可能影响短期表现</p><p>利率上升环境构成挑战</p><p>估值水平相对较高</p></div></div></div>
+<div class="panel"><h2>伯克希尔研究</h2><p><strong>贝莱德是一家拥有强大护城河、稳健财务表现和长期增长潜力的资产管理公司，值得稳健型投资者关注。</strong></p><p>伯克希尔综合评分：<strong>4.5</strong></p><div class="md"><p>{&quot;verdict&quot;: &quot;买入&quot;, &quot;conservative_tip&quot;: &quot;建议在PE TTM低于15倍时买入，目标价700美元。&quot;, &quot;moderate_tip&quot;: &quot;建议在PE TTM低于16倍时买入，目标价750美元。&quot;, &quot;aggressive_tip&quot;: &quot;建议在PE TTM低于17倍时买入，目标价800美元。&quot;, &quot;catalysts_plus&quot;: [&quot;ETF市场份额进一步提升。&quot;, &quot;全球经济复苏带动资产管理规模增长。&quot;, &quot;AI技术应用提升投资效率。&quot;], &quot;catalysts_minus&quot;: [&quot;重大监管处罚。&quot;, &quot;ETF市场竞争加剧。&quot;, &quot;全球经济衰退导致资产管理规模下降。&quot;]}</p></div></div>
+<div class="panel news"><h2>最新资讯</h2><div class="md"><p>整体情绪偏利好，共3条利多，1条利空，7条中性。</p></div><div class="nitem"><div class="t">IST students build connections, leadership skills at BLK Men in Tech conference</div><div class="s">The Pennsylvania State University · 中性</div></div><div class="nitem"><div class="t">Panthers Recall Cooper Black From Charlotte</div><div class="s">Charlotte Checkers Hockey · 中性</div></div><div class="nitem"><div class="t">Learn Why The Bull Case For BlackRock (BLK) Could Change Following Earnings Beat</div><div class="s">Simply Wall Street · 中性</div></div><div class="nitem"><div class="t">Nato increases Black Sea deployment amid escalating deadly Russian attacks</div><div class="s">The Guardian · 中性</div></div><div class="nitem"><div class="t">Defund the police betrayed Black America. I&#x27;m rebuilding what activists broke</div><div class="s">Fox News · 中性</div></div><div class="nitem"><div class="t">NATO to send planes and drones to Black Sea after attacks on shipping</div><div class="s">Reuters · 中性</div></div><div class="nitem"><div class="t">NYC school integration debate exposes tensions between Black parents and Mamdani</div><div class="s">Gothamist · 中性</div></div><div class="nitem"><div class="t">2026 Critics Choice Celebration of Black Cinema &amp; Television Honorees</div><div class="s">Deadline · 中性</div></div></div>
+<footer>稳健理财Agent · 红黑榜每日归档 · 红榜 #1 · 仅供研究，不构成投资建议</footer>
+</div></body>
+</html>

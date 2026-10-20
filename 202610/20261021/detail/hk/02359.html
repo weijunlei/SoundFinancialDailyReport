@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>药明康德(02359) 红榜 2026-10-21</title>
+<style>
+:root{--red:#d8342c;--redbg:#fdecea;--green:#1a9e54;--ink:#1c2230;--muted:#6b7385;
+--line:#e7e9ef;--card:#fff;--bg:#f4f6fa;--chip:#eef1f6;--dark:#23262d;--darkbg:#ececef}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",
+"Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);
+line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 16px 64px}
+header.top{background:linear-gradient(135deg,#1c2230,#2c3550);color:#fff;border-radius:14px;
+padding:22px 24px;margin-bottom:20px;box-shadow:0 6px 24px rgba(20,26,46,.12)}
+header.top h1{margin:0 0 6px;font-size:24px;letter-spacing:.5px}
+header.top .sub{opacity:.85;font-size:13px}
+header.top .sub b{color:#ffd166;font-weight:600}
+nav.mkt{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;
+background:rgba(244,246,250,.92);backdrop-filter:blur(6px);padding:10px 0;margin-bottom:14px}
+nav.mkt a{text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);
+padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600}
+nav.mkt a:hover{border-color:var(--red);color:var(--red)}
+.summary{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.summary .chip{background:var(--card);border:1px solid var(--line);border-radius:10px;
+padding:8px 12px;font-size:12px;color:var(--muted)}
+.summary .chip b{color:var(--ink);font-size:14px;margin-left:4px}
+section.board{margin:26px 0}
+.board-title{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:19px}
+.board-title .dot{width:10px;height:10px;border-radius:50%}
+.board-title.red .dot{background:var(--red)}
+.board-title.black .dot{background:var(--dark)}
+.board-title small{color:var(--muted);font-weight:400;font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+position:relative;transition:box-shadow .15s}
+.card:hover{box-shadow:0 4px 18px rgba(20,26,46,.08)}
+.card.red{border-top:3px solid var(--red)}
+.card.black{border-top:3px solid var(--dark)}
+.rank{position:absolute;top:10px;right:12px;font-size:26px;font-weight:800;color:#eceff5}
+.card.red .rank{color:#fbdcD9}
+.nm{font-size:16px;font-weight:700}
+.nm .tk{color:var(--muted);font-weight:500;font-size:12px;margin-left:6px}
+.tag{display:inline-block;background:var(--chip);color:var(--muted);border-radius:6px;
+padding:1px 7px;font-size:11px;margin:6px 6px 0 0}
+.price-row{display:flex;align-items:baseline;gap:10px;margin:10px 0 4px}
+.price{font-size:24px;font-weight:800}
+.pct{font-size:14px;font-weight:700;padding:2px 8px;border-radius:8px}
+.up{color:var(--red)}.down{color:var(--green)}.flat{color:var(--muted)}
+.pct.up{background:var(--redbg)}.pct.down{background:#e2f4e9}.pct.flat{background:var(--chip)}
+.psrc{font-size:11px;color:var(--muted);margin-left:auto}
+.scores{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.scores span{background:var(--chip);border-radius:6px;padding:2px 8px;font-size:11px;color:var(--muted)}
+.scores span b{color:var(--ink)}
+.pts{font-size:12.5px;margin:8px 0 0}
+.pts .h{font-weight:700;font-size:12px;margin:6px 0 2px}
+.pts .h.bull{color:var(--red)}.pts .h.bear{color:var(--green)}
+.pts ul{margin:2px 0 4px;padding-left:18px;color:#3a4152}
+.pts li{margin:1px 0}
+.masters{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:11px;color:var(--muted)}
+.masters b{color:var(--ink)}
+.summ{font-size:12.5px;color:#3a4152;background:#fafbfd;border:1px solid var(--line);
+border-radius:8px;padding:8px 10px;margin-top:8px}
+.empty{color:var(--muted);background:var(--card);border:1px dashed var(--line);
+border-radius:10px;padding:18px;text-align:center}
+footer{margin-top:34px;color:var(--muted);font-size:12px;text-align:center;line-height:1.8}
+a.lnk{color:var(--red);text-decoration:none}
+/* ── detail page ── */
+.backbar{margin-bottom:14px;font-size:13px}
+.backbar a{color:var(--muted);text-decoration:none;margin-right:14px}
+.backbar a:hover{color:var(--red)}
+.badge{display:inline-block;border-radius:6px;padding:2px 10px;font-size:12px;font-weight:700;margin-right:8px}
+.badge.red{background:var(--red);color:#fff}.badge.black{background:var(--dark);color:#fff}
+.trade{display:flex;flex-wrap:wrap;gap:10px;background:linear-gradient(135deg,#2c3550,#1c2230);
+color:#fff;border-radius:12px;padding:16px 18px;margin:16px 0}
+.trade .cell{min-width:120px}
+.trade .k{font-size:11px;opacity:.75}
+.trade .v{font-size:18px;font-weight:800;margin-top:2px}
+.trade .v.buy{color:#7ee2a8}.trade .v.sell{color:#ff9d97}.trade .v.hold{color:#ffd166}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0}
+.mgrid .m{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.mgrid .m .k{font-size:11px;color:var(--muted)}
+.mgrid .m .v{font-size:16px;font-weight:700;margin-top:2px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.panel>h2{margin:0 0 12px;font-size:17px}
+.panel>h2 .sub{font-size:12px;color:var(--muted);font-weight:400;margin-left:8px}
+.mreply{border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;
+padding:12px 14px;margin:10px 0;background:#fff}
+.mreply .mh{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.mreply .mh .who{font-weight:700;font-size:14px}
+.mreply .mh .mscore{margin-left:auto;background:var(--chip);border-radius:6px;padding:1px 8px;font-size:12px;font-weight:700}
+.md h2,.md h3,.md h4,.md h5{margin:12px 0 6px;font-size:15px}
+.md p{margin:6px 0;font-size:13.5px;color:#2c3345}
+.md ul{margin:6px 0;padding-left:20px;font-size:13.5px;color:#2c3345}
+.md li{margin:3px 0}
+.md strong{color:var(--ink)}
+details{border:1px solid var(--line);border-radius:10px;background:#fff;margin:10px 0;padding:0}
+details>summary{cursor:pointer;padding:12px 16px;font-weight:700;font-size:14px;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary:before{content:"▸ ";color:var(--red)}
+details[open]>summary:before{content:"▾ "}
+details>.body{padding:0 16px 14px;border-top:1px dashed var(--line)}
+.ychip{display:inline-block;background:var(--chip);border-radius:8px;padding:4px 10px;font-size:12px;margin:3px 6px 3px 0}
+.ychip b{font-size:13px}
+.news .nitem{border-top:1px dashed var(--line);padding:8px 0;font-size:13px}
+.news .nitem .t{font-weight:600}
+.news .nitem .s{color:var(--muted);font-size:12px}
+/* ── root landing page ── */
+.hero{padding:30px 26px}
+.hero-kicker{color:#ffd166;font-size:12px;font-weight:700;letter-spacing:2px;
+text-transform:uppercase;margin-bottom:8px}
+.hero h1{font-size:30px;margin:0 0 10px}
+.day-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.day-card{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);
+border-radius:12px;padding:14px 16px;transition:all .15s}
+.day-card:hover{border-color:var(--red);box-shadow:0 4px 16px rgba(216,52,44,.12);transform:translateY(-2px)}
+.day-card .d{font-weight:800;font-size:15px;color:var(--ink);display:flex;align-items:center;gap:8px}
+.day-card .m{margin-top:8px;display:flex;gap:6px}
+.day-card .m span{background:var(--chip);color:var(--muted);border-radius:6px;
+padding:2px 8px;font-size:11px}
+.latest-badge{background:var(--red);color:#fff;border-radius:6px;padding:1px 7px;
+font-size:10px;font-weight:700}
+</style>
+</head>
+<body><div class="wrap">
+<div class="backbar"><a href="../index.html">← 总览</a><a href="../hk.html">← 港股榜单</a></div>
+<header class="top">
+  <h1><span class="badge red">红榜 #1</span>药明康德<span class="tk" style="opacity:.7;font-size:15px;font-weight:400;margin-left:8px">02359</span></h1>
+  <div class="sub">港股 ·  · 榜单日期 <b>2026-10-21</b> · 盘价采集 <b>2026-10-21 05:00:51</b></div>
+  <div class="price-row" style="margin-top:12px">
+    <span class="price" style="color:#fff">HK$196.50</span>
+    <span class="pct up">+0.15%</span>
+    <span class="psrc" style="color:rgba(255,255,255,.6)">实时</span>
+  </div>
+  <div class="scores" style="margin-top:10px">
+    <span>综合 <b>93.8</b></span>
+    <span>多头 <b>80</b></span>
+    <span>空头 <b>20</b></span>
+    <span>大师均值 <b>55.6</b></span>
+    <span>信号 <b>positive</b></span>
+  </div>
+</header>
+<div class="trade"><div class="cell"><div class="k">交易评级</div><span class="v buy">Buy</span></div><div class="cell"><div class="k">加仓区间</div><span class="v">190.60 ~ 198.47</span></div><div class="cell"><div class="k">目标价</div><span class="v">220.08</span></div><div class="cell"><div class="k">伯克希尔</div><span class="v">强烈买入</span></div><div class="cell"><div class="k">伯克希尔分</div><span class="v">4.50</span></div></div>
+<div class="panel"><h2>财务指标</h2><div class="mgrid"><div class="m"><div class="k">市盈率 PE</div><div class="v">23.77</div></div><div class="m"><div class="k">市净率 PB</div><div class="v">6.17</div></div><div class="m"><div class="k">ROE</div><div class="v">13.6%</div></div><div class="m"><div class="k">总市值</div><div class="v">5924</div></div><div class="m"><div class="k">营收同比</div><div class="v">12.5%</div></div><div class="m"><div class="k">净利同比</div><div class="v">8.3%</div></div></div></div>
+<div class="panel"><h2>历史收益</h2><span class="ychip">近1月 <b class="down">-1.75%</b></span><span class="ychip">近6月 <b class="up">+58.47%</b></span><span class="ychip">近1年 <b class="up">+73.62%</b></span></div>
+<div class="panel"><h2>大师圆桌<span class="sub">5 位</span></h2><div class="mreply"><div class="mh"><span class="who">段永平</span><span class="mscore">39</span></div><div class="md"><p>各位好，我简单说几句我的看法。</p><p>从基本面来看，药明康德确实是一家在CRO领域处于领先位置的公司，其在创新药研发服务方面的需求增长和国际布局也让人印象深刻。这些都是支撑其业务发展的积极因素。</p><p>不过，我更想从&quot;做对的事&quot;这个角度来谈谈我的看法。药明康德虽然行业地位突出，但有几个方面让我觉得需要谨慎：</p><p>首先，CRO行业本质上是一个to B的服务型生意，这类生意往往受制于大客户的研发投入周期和政策环境变化。当前的地缘政治风险可能会对公司的国际业务产生持续影响，这是一个不得不考虑的风险点。</p><p>其次，从估值角度来看，23倍左右的PE对于一个重资产、高研发投入的行业来说，可能已经price in了太多乐观预期。虽然公司盈利能力不错，但过高的估值会压缩未来的回报空间。</p><p>最后，我想强调的是，我们投资要关注的是自己是否真的&quot;看得懂&quot;。对于药明康德这种业务复杂、依赖政策环境和国际关系的公司，我个人是持谨慎态度的。</p><p>我的建议是：</p><ul><li>如果已经持有，建议密切关注地缘政治风险的变化，以及公司主要客户的研发投入情况</li><li>如果考虑买入，我建议先等等，直到公司能更清晰地展示出应对地缘政治风险的具体策略</li><li>投资这类公司时，要特别警惕估值过高的风险，不要因为短期增长而忽视了长期的不确定性</li></ul><p>记住一句话：投资中最重要的不是追逐热点，而是找到自己能理解的好生意，并且以合理的价格买入。希望大家都能做出理性的判断。</p></div></div><div class="mreply"><div class="mh"><span class="who">巴菲特</span><span class="mscore">31</span></div><div class="md"><p>各位，今天我们来聊聊药明康德（02359）这家公司。</p><p>首先，我的结论是：药明康德是一家优秀的公司，但从我的投资风格来看，它并不完全符合我的标准。</p><h4>理由：</h4><ul><li><strong>行业地位与需求</strong></li></ul><p>   药明康德在CRO（合同研发服务）领域确实处于领先地位，这是其一大优势。随着全球对创新药研发需求的持续增长，这家公司有很好的发展前景。</p><ul><li><strong>国际化布局</strong></li></ul><p>   药明康德的国际化布局较为完善，这使得它能够更好地服务全球客户，分散单一市场的风险。</p><ul><li><strong>护城河与竞争</strong></li></ul><p>   然而，尽管药明康德在行业中占据领先地位，但CRO行业的进入门槛相对较低，竞争正在加剧。这让我对其长期护城河产生了一些疑虑。</p><ul><li><strong>地缘政治风险</strong></li></ul><p>   地缘政治风险是一个不可忽视的因素，尤其是在当前的国际环境下，这可能会影响公司的业务稳定性和盈利能力。</p><ul><li><strong>财务指标</strong></li></ul><p>   从财务指标来看，药明康德的市盈率（PE）约为23倍，市净率（PB）约为6倍，净资产收益率（ROE）为13.6%。这些指标显示公司目前的估值并不便宜。</p><h4>风险与行动建议：</h4><ul><li><strong>研发投入压力</strong></li></ul><p>   药明康德需要持续进行高额的研发投入，这对公司的现金流是一个考验。如果研发成果不及预期，可能会对股价造成压力。</p><ul><li><strong>地缘政治风险</strong></li></ul><p>   投资者需要密切关注国际局势的变化，这可能会对公司的业务产生重大影响。</p><ul><li><strong>竞争加剧</strong></li></ul><p>   行业竞争加剧可能会侵蚀公司的利润率，投资者需要持续关注市场份额的变化。</p><h4>总结：</h4><p>如果你是追求长期价值投资，并且对公司的护城河和自由现金流有严格要求，那么药明康德可能并不是最佳选择。它的行业地位和增长前景不错，但护城河和估值让我有所保留。</p><p>如果是芒格，他会补充说：&quot;投资就像经营果园，你得确保你的果树能结出好果子，而且你得有能力保护它们不受风暴的侵袭。&quot; 在这里，风暴就是地缘政治风险和行业竞争，而果子就是公司的长期盈利能力。希望这些分析对你们有所帮助。</p></div></div><div class="mreply"><div class="mh"><span class="who">达利欧</span><span class="mscore">40</span></div><div class="md"><p>各位同仁，今天我们来讨论药明康德这家公司。首先，我给出我的结论：<strong>药明康德在当前时点存在一定的不确定性，我对其持谨慎态度</strong>。以下是我的分析：</p><h4>理由：</h4><ul><li><strong>CRO行业的领先地位</strong>：药明康德作为CRO（合同研究组织）行业的龙头企业，在全球范围内具有较强的竞争力。其在创新药研发服务方面的需求持续增长，这为其提供了稳定的收入来源。</li></ul><ul><li><strong>国际化布局</strong>：药明康德的国际化布局较为完善，这使其能够更好地应对单一市场的波动，并在全球范围内捕捉增长机会。</li></ul><ul><li><strong>地缘政治风险</strong>：然而，我们不能忽视的是，当前全球地缘政治环境复杂多变，这对药明康德这样的国际化企业构成了潜在的风险。特别是在中美关系紧张的背景下，其在美国市场的业务可能会受到影响。</li></ul><ul><li><strong>研发投入压力</strong>：CRO行业本身是一个高度依赖研发投入的行业，药明康德需要持续投入大量资金进行研发，以保持其技术优势和市场份额。这对其现金流和盈利能力构成了一定的压力。</li></ul><ul><li><strong>行业竞争加剧</strong>：随着CRO行业的快速发展，越来越多的企业进入这一领域，竞争日益激烈。这可能会对药明康德的利润率产生负面影响。</li></ul><h4>风险与行动建议：</h4><ul><li><strong>地缘政治风险</strong>：这是当前最大的不确定性因素。我们需要密切关注中美关系的动态，以及药明康德在美国市场的业务表现。如果地缘政治风险加剧，可能会对其股价产生负面影响。</li></ul><ul><li><strong>研发投入与盈利能力</strong>：建议关注药明康德的研发投入比例及其对盈利能力的影响。如果研发投入过大，可能会影响其短期利润表现。</li></ul><ul><li><strong>行业竞争</strong>：建议跟踪CRO行业的竞争格局变化，特别是新进入者的动态。如果竞争加剧，可能会对药明康德的利润率产生压力。</li></ul><h4>总结：</h4><p>基于上述分析，我认为药明康德在当前时点存在一定的不确定性。虽然其在CRO行业的领先地位和国际布局是其优势，但地缘政治风险和行业竞争加剧是需要重点关注的风险因素。</p><p><strong>建议</strong>：对于投资者而言，可以考虑采取分批建仓的策略，以降低单一时点的不确定性风险。同时，建议密切关注公司的基本面变化，特别是地缘政治环境和行业竞争格局的变化。</p><p>最后，我想强调的是，在做出投资决策时，我们需要保持极度开放和透明的态度，不断审视和调整我们的原则和策略，以适应不断变化的市场环境。</p></div></div><div class="mreply"><div class="mh"><span class="who">彼得·林奇</span><span class="mscore">94</span></div><div class="md"><p>各位朋友，今天我们来聊聊药明康德这家公司。我的看法是，这是一家值得关注的优质企业，但投资时需要谨慎权衡。</p><h4>先说结论：药明康德是一家优秀的公司，但目前估值不算便宜，需要耐心等待更好的买入时机。</h4><h4>理由如下：</h4><p>首先，从行业地位和商业模式来看，药明康德是中国CRO（医药研发外包）行业的绝对龙头。这家公司不仅在国内市场占据领先地位，还积极拓展海外市场，形成了完善的国际化布局。随着全球创新药研发需求的持续增长，CRO行业的前景非常光明，而药明康德作为行业领军者，将持续受益于这一趋势。</p><p>其次，从财务数据来看，虽然公司的营收和净利润增速保持在两位数，但净利润增速略低于营收增速，这表明公司在研发投入和市场拓展方面面临一定压力。不过，考虑到CRO行业的特性，这种投入是必要的，也是未来增长的基石。</p><h4>风险提示：</h4><p>然而，我们也需要注意几个潜在的风险点：</p><ul><li><strong>地缘政治风险</strong>：CRO行业涉及大量国际合作，地缘政治的不确定性可能对公司的海外业务产生不利影响。</li><li><strong>研发投入压力</strong>：虽然研发投入是必要的，但过高的投入可能会影响短期盈利能力。</li><li><strong>行业竞争加剧</strong>：随着CRO行业的快速发展，越来越多的企业进入这一领域，竞争加剧可能会影响公司的市场份额和利润率。</li></ul><h4>行动建议：</h4><p>对于投资者来说，我的建议是：</p><ul><li><strong>耐心等待</strong>：目前药明康德的估值不算便宜，PE约为24倍，PB约为6倍。对于一家CRO公司来说，这个估值水平需要更高的增长预期来支撑。因此，我建议投资者耐心等待更好的买入时机，比如市场出现回调或公司发布超预期财报时。</li></ul><ul><li><strong>关注行业动态</strong>：CRO行业的景气度与创新药研发需求密切相关。投资者需要密切关注行业动态，特别是全球医药研发的趋势和政策变化。</li></ul><ul><li><strong>分散投资</strong>：由于CRO行业受地缘政治和行业竞争的影响较大，建议投资者在投资药明康德时，保持适度的仓位分散，以降低单一股票的风险。</li></ul><p>总之，药明康德是一家值得关注的公司，但投资时需要谨慎权衡，耐心等待更好的买入时机。希望我的分享对大家有所帮助。</p></div></div><div class="mreply"><div class="mh"><span class="who">芒格</span><span class="mscore">74</span></div><div class="md"><p>各位同仁，今天我们来讨论一下药明康德这家公司。首先，我得说，这是一家在CRO（合同研发服务）领域占据领先地位的企业。从基本面来看，它拥有强大的市场地位，并且受益于全球创新药研发需求的持续增长。这两点构成了它主要的投资吸引力。</p><p>然而，正如我常说的，要先搞清楚&quot;这件事可能怎么死掉&quot;。药明康德面临的风险不可忽视。首先是地缘政治风险，这可能会影响其国际业务布局。其次，研发投入压力较大，这不仅考验其财务稳健性，也可能影响其盈利能力。最后，行业竞争正在加剧，这可能会侵蚀其市场份额和利润率。</p><p>从多元思维模型的角度分析，药明康德的优势在于其行业地位和市场需求，但这些优势能否持续，取决于其能否有效应对上述风险。我们需要特别关注其研发投入的效率和国际市场的稳定性。</p><p>激励机制方面，药明康德的商业模式依赖于长期稳定的客户关系和持续的技术创新。这要求管理层具备长远的战略眼光和强大的执行力。如果激励机制能够有效激励管理层和研发团队，那么这将是一个重要的加分项。</p><p>在胜率和赔率方面，考虑到当前的市场环境和公司的基本面，我认为药明康德的胜率较高，但赔率相对有限。当前市盈率约为23.77倍，估值并不便宜，这意味着我们需要对其增长预期保持谨慎。</p><p>最后，我得提醒大家，投资决策不能忽视心理学陷阱。药明康德作为行业龙头，可能会让投资者产生过度自信和从众心理。我们必须时刻保持警惕，避免被市场情绪左右。</p><p>综上所述，我建议：</p><ul><li>如果你已经在持有药明康德，可以继续持有，但需要密切关注其研发投入效率和地缘政治风险的变化。</li><li>如果你正在考虑买入，我建议等待更好的入场时机，或者在投资组合中保持适度的配置比例。</li><li>无论何时，都要做好风险管理，确保投资组合的多样性和流动性。</li></ul><p>我能错在哪？可能是我低估了地缘政治风险的影响，或者对行业竞争加剧的趋势判断不够准确。投资永远是一个不断学习和调整的过程。</p></div></div></div>
+<div class="panel"><h2>分析师报告<span class="sub">2 篇</span></h2><details open><summary>市场面分析</summary><div class="body"><div class="md"><h4>02359 药明康德 市场面分析</h4><ul><li>红黑榜多空分数：多头 80 / 空头 20，分差 60。</li><li>当前价格：196.50。</li><li>当前交易评级：Buy。</li><li>值得加仓区间：190.60 - 198.47。</li><li>目标价格：220.08。</li><li>市场愿意给溢价的原因：CRO行业绝对领先地位；创新药研发需求持续增长；国际化布局完善。</li><li>当前主要压制因素：地缘政治风险影响；研发投入压力较大；行业竞争加剧。</li></ul></div></div></details><details open><summary>基本面分析</summary><div class="body"><div class="md"><h4>02359 药明康德 基本面分析</h4><ul><li>报告期：暂无。</li><li>PE(TTM)：23.77。</li><li>PB：6.17。</li><li>ROE：13.59%。</li><li>营收同比：12.47%。</li><li>归母净利润同比：8.26%。</li><li>核心判断：盈利能力处于可接受区间；收入仍在增长；利润端保持扩张。</li></ul></div></div></details></div>
+<div class="panel"><h2>研究与计划</h2>
+<details><summary>基本面摘要</summary><div class="body"><div class="md"><h3>核心财务快照</h3><ul><li>报告期: 数据缺失</li><li>当前股价: 196.50 元</li><li>总市值: 5923.99 亿元</li><li>PE (TTM): 23.77</li><li>PB: 6.17</li><li>PS (TTM): 数据缺失</li><li>营业总收入(报告期): 数据缺失 亿元</li><li>营收同比增长率: 12.47%</li><li>归母净利润(报告期): 数据缺失 亿元</li><li>归母净利润同比增长率: 8.26%</li><li>ROE (TTM/估算): 13.59%</li><li>资产负债率: 数据缺失</li><li>经营性现金流 / 归母净利润: 数据缺失</li></ul><h4>缺失字段</h4><ul><li>PS(TTM), 营业总收入, 归母净利润, 资产负债率, 经营性现金流与归母净利润比值</li></ul></div></div></details>
+<details><summary>研究计划</summary><div class="body"><div class="md"><h4>02359 药明康德 研究摘要</h4><ul><li>红黑榜结论: Buy</li><li>多头/空头: 80/20</li><li>正向信号: ROE 13.59%；营收同比 12.47%；归母净利润同比 8.26%；PE(TTM) 23.77</li><li>榜单看多理由: CRO行业绝对领先地位；创新药研发需求持续增长；国际化布局完善</li><li>榜单风险提示: 地缘政治风险影响；研发投入压力较大；行业竞争加剧</li></ul></div></div></details>
+<details><summary>交易计划</summary><div class="body"><div class="md"><h4>02359 药明康德 交易计划</h4><ul><li>评级: Buy</li><li>当前价格: 196.50</li><li>值得加仓区间: 190.60 - 198.47</li><li>目标价格: 220.08</li><li>止损位: 180.78</li><li>备注: 当前为缓存降级交易卡，后续若完整 TradingAgent 结果生成，将自动覆盖。</li></ul></div></div></details>
+<details><summary>交易决策</summary><div class="body"><div class="md"><p>Buy</p><p>02359 药明康德 当前使用红黑榜缓存结果生成兜底交易卡。多头 80 / 空头 20，分差 60。当前尚未取得完整 TradingAgent 长文决策，但榜单分数、财务快照和大师观点已经足够生成基础交易建议。</p></div></div></details>
+</div>
+<div class="panel"><h2>多空逻辑</h2><div class="pts"><div class="h bull">看多逻辑</div><div class="md"><p>CRO行业绝对领先地位</p><p>创新药研发需求持续增长</p><p>国际化布局完善</p></div></div><div class="pts"><div class="h bear">看空逻辑</div><div class="md"><p>地缘政治风险影响</p><p>研发投入压力较大</p><p>行业竞争加剧</p></div></div></div>
+<div class="panel"><h2>伯克希尔研究</h2><p><strong>药明康德是一家具有强大护城河、稳健财务表现和长期增长潜力的全球性医药研发服务龙头，值得重点关注。</strong></p><p>伯克希尔综合评分：<strong>4.5</strong></p><div class="md"><p>{&quot;verdict&quot;: &quot;强烈买入&quot;, &quot;conservative_tip&quot;: &quot;建议在PE TTM低于20倍时买入，长期持有&quot;, &quot;moderate_tip&quot;: &quot;建议在PE TTM低于25倍时买入，中期持有&quot;, &quot;aggressive_tip&quot;: &quot;建议在PE TTM低于30倍时买入，短期持有&quot;, &quot;catalysts_plus&quot;: [&quot;新药研发订单增加&quot;, &quot;海外市场份额提升&quot;, &quot;AI药物研发技术突破&quot;], &quot;catalysts_minus&quot;: [&quot;地缘政治风险加剧&quot;, &quot;行业监管政策收紧&quot;, &quot;主要客户流失&quot;]}</p></div></div>
+<div class="panel news"><h2>最新资讯</h2><div class="md"><p>利空新闻较多，主要涉及美国制裁和军事关联指控。</p></div><div class="nitem"><div class="t">The Biotech Empire of Wuxi - by Nick Corvino</div><div class="s">ChinaTalk | Jordan Schneider · 中性</div></div><div class="nitem"><div class="t">WuXi AppTec’s injunction may hinge on ‘irreparable harm’</div><div class="s">BioCentury · 利空</div></div><div class="nitem"><div class="t">Senate bill seeks cybersecurity review, potential recall of Chinese-made medical devices used in US healthcare systems</div><div class="s">Industrial Cyber · 利空</div></div><div class="nitem"><div class="t">As customers &#x27;suspend relationships,&#x27; WuXi AppTec seeks injunction over China military list</div><div class="s">Endpoints News · 利空</div></div><div class="nitem"><div class="t">US judge blocks Pentagon’s ‘Chinese military’ label for WuXi AppTec</div><div class="s">South China Morning Post · 利好</div></div><div class="nitem"><div class="t">DoD presents case for designating WuXi AppTec a Chinese military company</div><div class="s">BioCentury Inc. · 利空</div></div><div class="nitem"><div class="t">US suggests listing China firms as aiding military</div><div class="s">Taipei Times · 利空</div></div><div class="nitem"><div class="t">In Li’s words</div><div class="s">Chemical &amp; Engineering News · 中性</div></div></div>
+<footer>稳健理财Agent · 红黑榜每日归档 · 红榜 #1 · 仅供研究，不构成投资建议</footer>
+</div></body>
+</html>
