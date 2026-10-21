@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>禾赛-W(02525) 黑榜 2026-10-22</title>
+<style>
+:root{--red:#d8342c;--redbg:#fdecea;--green:#1a9e54;--ink:#1c2230;--muted:#6b7385;
+--line:#e7e9ef;--card:#fff;--bg:#f4f6fa;--chip:#eef1f6;--dark:#23262d;--darkbg:#ececef}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",
+"Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);
+line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 16px 64px}
+header.top{background:linear-gradient(135deg,#1c2230,#2c3550);color:#fff;border-radius:14px;
+padding:22px 24px;margin-bottom:20px;box-shadow:0 6px 24px rgba(20,26,46,.12)}
+header.top h1{margin:0 0 6px;font-size:24px;letter-spacing:.5px}
+header.top .sub{opacity:.85;font-size:13px}
+header.top .sub b{color:#ffd166;font-weight:600}
+nav.mkt{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;
+background:rgba(244,246,250,.92);backdrop-filter:blur(6px);padding:10px 0;margin-bottom:14px}
+nav.mkt a{text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);
+padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600}
+nav.mkt a:hover{border-color:var(--red);color:var(--red)}
+.summary{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.summary .chip{background:var(--card);border:1px solid var(--line);border-radius:10px;
+padding:8px 12px;font-size:12px;color:var(--muted)}
+.summary .chip b{color:var(--ink);font-size:14px;margin-left:4px}
+section.board{margin:26px 0}
+.board-title{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:19px}
+.board-title .dot{width:10px;height:10px;border-radius:50%}
+.board-title.red .dot{background:var(--red)}
+.board-title.black .dot{background:var(--dark)}
+.board-title small{color:var(--muted);font-weight:400;font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+position:relative;transition:box-shadow .15s}
+.card:hover{box-shadow:0 4px 18px rgba(20,26,46,.08)}
+.card.red{border-top:3px solid var(--red)}
+.card.black{border-top:3px solid var(--dark)}
+.rank{position:absolute;top:10px;right:12px;font-size:26px;font-weight:800;color:#eceff5}
+.card.red .rank{color:#fbdcD9}
+.nm{font-size:16px;font-weight:700}
+.nm .tk{color:var(--muted);font-weight:500;font-size:12px;margin-left:6px}
+.tag{display:inline-block;background:var(--chip);color:var(--muted);border-radius:6px;
+padding:1px 7px;font-size:11px;margin:6px 6px 0 0}
+.price-row{display:flex;align-items:baseline;gap:10px;margin:10px 0 4px}
+.price{font-size:24px;font-weight:800}
+.pct{font-size:14px;font-weight:700;padding:2px 8px;border-radius:8px}
+.up{color:var(--red)}.down{color:var(--green)}.flat{color:var(--muted)}
+.pct.up{background:var(--redbg)}.pct.down{background:#e2f4e9}.pct.flat{background:var(--chip)}
+.psrc{font-size:11px;color:var(--muted);margin-left:auto}
+.scores{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.scores span{background:var(--chip);border-radius:6px;padding:2px 8px;font-size:11px;color:var(--muted)}
+.scores span b{color:var(--ink)}
+.pts{font-size:12.5px;margin:8px 0 0}
+.pts .h{font-weight:700;font-size:12px;margin:6px 0 2px}
+.pts .h.bull{color:var(--red)}.pts .h.bear{color:var(--green)}
+.pts ul{margin:2px 0 4px;padding-left:18px;color:#3a4152}
+.pts li{margin:1px 0}
+.masters{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:11px;color:var(--muted)}
+.masters b{color:var(--ink)}
+.summ{font-size:12.5px;color:#3a4152;background:#fafbfd;border:1px solid var(--line);
+border-radius:8px;padding:8px 10px;margin-top:8px}
+.empty{color:var(--muted);background:var(--card);border:1px dashed var(--line);
+border-radius:10px;padding:18px;text-align:center}
+footer{margin-top:34px;color:var(--muted);font-size:12px;text-align:center;line-height:1.8}
+a.lnk{color:var(--red);text-decoration:none}
+/* ── detail page ── */
+.backbar{margin-bottom:14px;font-size:13px}
+.backbar a{color:var(--muted);text-decoration:none;margin-right:14px}
+.backbar a:hover{color:var(--red)}
+.badge{display:inline-block;border-radius:6px;padding:2px 10px;font-size:12px;font-weight:700;margin-right:8px}
+.badge.red{background:var(--red);color:#fff}.badge.black{background:var(--dark);color:#fff}
+.trade{display:flex;flex-wrap:wrap;gap:10px;background:linear-gradient(135deg,#2c3550,#1c2230);
+color:#fff;border-radius:12px;padding:16px 18px;margin:16px 0}
+.trade .cell{min-width:120px}
+.trade .k{font-size:11px;opacity:.75}
+.trade .v{font-size:18px;font-weight:800;margin-top:2px}
+.trade .v.buy{color:#7ee2a8}.trade .v.sell{color:#ff9d97}.trade .v.hold{color:#ffd166}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0}
+.mgrid .m{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.mgrid .m .k{font-size:11px;color:var(--muted)}
+.mgrid .m .v{font-size:16px;font-weight:700;margin-top:2px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.panel>h2{margin:0 0 12px;font-size:17px}
+.panel>h2 .sub{font-size:12px;color:var(--muted);font-weight:400;margin-left:8px}
+.mreply{border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;
+padding:12px 14px;margin:10px 0;background:#fff}
+.mreply .mh{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.mreply .mh .who{font-weight:700;font-size:14px}
+.mreply .mh .mscore{margin-left:auto;background:var(--chip);border-radius:6px;padding:1px 8px;font-size:12px;font-weight:700}
+.md h2,.md h3,.md h4,.md h5{margin:12px 0 6px;font-size:15px}
+.md p{margin:6px 0;font-size:13.5px;color:#2c3345}
+.md ul{margin:6px 0;padding-left:20px;font-size:13.5px;color:#2c3345}
+.md li{margin:3px 0}
+.md strong{color:var(--ink)}
+details{border:1px solid var(--line);border-radius:10px;background:#fff;margin:10px 0;padding:0}
+details>summary{cursor:pointer;padding:12px 16px;font-weight:700;font-size:14px;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary:before{content:"▸ ";color:var(--red)}
+details[open]>summary:before{content:"▾ "}
+details>.body{padding:0 16px 14px;border-top:1px dashed var(--line)}
+.ychip{display:inline-block;background:var(--chip);border-radius:8px;padding:4px 10px;font-size:12px;margin:3px 6px 3px 0}
+.ychip b{font-size:13px}
+.news .nitem{border-top:1px dashed var(--line);padding:8px 0;font-size:13px}
+.news .nitem .t{font-weight:600}
+.news .nitem .s{color:var(--muted);font-size:12px}
+/* ── root landing page ── */
+.hero{padding:30px 26px}
+.hero-kicker{color:#ffd166;font-size:12px;font-weight:700;letter-spacing:2px;
+text-transform:uppercase;margin-bottom:8px}
+.hero h1{font-size:30px;margin:0 0 10px}
+.day-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.day-card{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);
+border-radius:12px;padding:14px 16px;transition:all .15s}
+.day-card:hover{border-color:var(--red);box-shadow:0 4px 16px rgba(216,52,44,.12);transform:translateY(-2px)}
+.day-card .d{font-weight:800;font-size:15px;color:var(--ink);display:flex;align-items:center;gap:8px}
+.day-card .m{margin-top:8px;display:flex;gap:6px}
+.day-card .m span{background:var(--chip);color:var(--muted);border-radius:6px;
+padding:2px 8px;font-size:11px}
+.latest-badge{background:var(--red);color:#fff;border-radius:6px;padding:1px 7px;
+font-size:10px;font-weight:700}
+</style>
+</head>
+<body><div class="wrap">
+<div class="backbar"><a href="../index.html">← 总览</a><a href="../hk.html">← 港股榜单</a></div>
+<header class="top">
+  <h1><span class="badge black">黑榜 #2</span>禾赛-W<span class="tk" style="opacity:.7;font-size:15px;font-weight:400;margin-left:8px">02525</span></h1>
+  <div class="sub">港股 ·  · 榜单日期 <b>2026-10-22</b> · 盘价采集 <b>2026-10-22 05:00:36</b></div>
+  <div class="price-row" style="margin-top:12px">
+    <span class="price" style="color:#fff">HK$13.36</span>
+    <span class="pct down">-6.57%</span>
+    <span class="psrc" style="color:rgba(255,255,255,.6)">实时</span>
+  </div>
+  <div class="scores" style="margin-top:10px">
+    <span>综合 <b>31.2</b></span>
+    <span>多头 <b>35</b></span>
+    <span>空头 <b>85</b></span>
+    <span>大师均值 <b>62.6</b></span>
+    <span>信号 <b>negative</b></span>
+  </div>
+</header>
+<div class="trade"><div class="cell"><div class="k">交易评级</div><span class="v hold">Reduce</span></div><div class="cell"><div class="k">加仓区间</div><span class="v">12.02 ~ 12.56</span></div><div class="cell"><div class="k">伯克希尔</div><span class="v">观望</span></div><div class="cell"><div class="k">伯克希尔分</div><span class="v">3.50</span></div></div>
+<div class="panel"><h2>财务指标</h2><div class="mgrid"><div class="m"><div class="k">市盈率 PE</div><div class="v">30.31</div></div><div class="m"><div class="k">市净率 PB</div><div class="v">1.63</div></div><div class="m"><div class="k">ROE</div><div class="v">1.0%</div></div><div class="m"><div class="k">总市值</div><div class="v">168</div></div><div class="m"><div class="k">营收同比</div><div class="v">4.9%</div></div><div class="m"><div class="k">净利同比</div><div class="v">5.6%</div></div></div></div>
+<div class="panel"><h2>历史收益</h2><span class="ychip">近1月 <b class="down">-19.37%</b></span><span class="ychip">近6月 <b class="down">-40.52%</b></span><span class="ychip">近1年 <b class="down">-39.00%</b></span></div>
+<div class="panel"><h2>大师圆桌<span class="sub">5 位</span></h2><div class="mreply"><div class="mh"><span class="who">段永平</span><span class="mscore">60</span></div><div class="md"><p>我的观点是，对于禾赛-W这只股票，我们需要谨慎对待。</p><p>首先，从本分的角度出发，我们要问自己：这家公司的商业模式是否足够好，是否能持续为用户创造价值？从目前的信息来看，禾赛作为一家科技公司，长期前景是有潜力的，但短期面临的压力也不容忽视。</p><p>从估值角度来看，当前的市盈率约30倍，市净率1.63倍，这个估值水平在当前市场环境下并不算便宜。而最近股价下跌6.57%，也反映出市场对科技股的整体情绪比较低迷。</p><p>接下来谈谈风险：</p><ul><li>短期缺乏明显的催化剂，市场情绪的恢复可能需要时间</li><li>科技行业的竞争格局变化很快，需要持续关注公司的核心竞争力是否稳固</li><li>当前估值虽然不算特别高，但也没有明显的折价空间</li></ul><p>基于以上分析，我建议：</p><ul><li>如果你持有这只股票，建议先观察，不要急于加仓</li><li>如果你想买入，最好等到市场情绪更加明朗，或者估值更有吸引力时再考虑</li><li>重点关注公司能否持续推出有竞争力的产品，以及能否保持技术领先地位</li></ul><p>最后，我想强调一点：投资要本分，不要被短期波动影响判断。如果这家公司确实是你看得懂的好生意，那么长期来看，股价最终会反映其真实价值。但如果是跟风买入，那就要三思而后行了。</p><p>记住：做对的事，比把事做对更重要。</p></div></div><div class="mreply"><div class="mh"><span class="who">巴菲特</span><span class="mscore">78</span></div><div class="md"><p>各位朋友，今天我们来谈谈禾赛-W（02525）。首先，我得说，我对这只股票持谨慎态度。虽然科技行业长期前景依然存在，但目前来看，这只股票的风险似乎大于机会。</p><h4>结论：</h4><p>我倾向于认为这只股票目前不是特别吸引人的投资标的。</p><h4>理由：</h4><ul><li><strong>护城河不清晰</strong>：从我的角度来看，禾赛-W所在的科技行业虽然有长期潜力，但目前并没有展现出特别强大的护城河。它的商业模式和竞争优势并没有让我看到那种能够长期维持高利润的能力。</li></ul><ul><li><strong>市场情绪低迷</strong>：市场对科技股的情绪持续低迷，这不是一个好兆头。股价已经大幅下跌了6.57%，这表明投资者对这只股票的热情不高。</li></ul><ul><li><strong>缺乏短期催化剂</strong>：目前没有明显的利好消息或催化剂来推动股价上涨。在市场情绪低迷的情况下，缺乏催化剂意味着股价可能会继续承压。</li></ul><ul><li><strong>估值偏高</strong>：市盈率（PE）达到30倍，这在当前市场环境下显得偏高。在没有强劲增长预期的情况下，这样的估值水平让人难以安心。</li></ul><h4>风险/行动建议：</h4><ul><li><strong>风险</strong>：如果你已经持有这只股票，需要警惕股价进一步下跌的风险。市场情绪的低迷和缺乏催化剂可能会继续对股价造成压力。</li></ul><ul><li><strong>行动建议</strong>：如果你正在考虑买入，我建议你再观察一段时间，等待更明确的信号出现。可以关注公司是否有新的产品发布、市场份额变化或其他能够提升其竞争力的因素。</li></ul><ul><li><strong>长期视角</strong>：如果你是一个长期投资者，并且相信科技行业的未来，那么你可以考虑在股价进一步下跌时逐步建仓。但即便如此，也需要做好长期持有的准备，并确保你有足够的耐心和信心。</li></ul><p>最后，我想说的是，投资就像打棒球，你不需要每次都挥棒。在市场情绪低迷的时候，保持耐心，等待那个最有把握的机会出现，可能是更好的策略。</p><p>如果是芒格，他会补充说：“在投资中，耐心和纪律是最重要的美德。不要被市场的短期波动所左右，要坚持自己的判断和原则。”</p></div></div><div class="mreply"><div class="mh"><span class="who">达利欧</span><span class="mscore">58</span></div><div class="md"><p>各位同仁，今天我们讨论的是禾赛-W（02525）。我的观点是：目前对这只股票持中性立场，但需要密切监控风险和估值变化。</p><h4>结论</h4><p>禾赛-W目前处于一个需要谨慎观察的阶段。虽然科技行业的长期前景依然存在，但短期内缺乏明确的催化剂，且市场情绪低迷，这些因素都增加了不确定性。</p><h4>理由</h4><ul><li><strong>市场情绪与股价表现</strong>：禾赛-W的股价在近期大幅下跌了6.57%，这表明市场对这只股票的情绪较为悲观。同时，科技股整体的情绪也持续低迷，这不是一个积极的信号。</li><li><strong>估值水平</strong>：从估值指标来看，禾赛的市盈率（PE）为30.31，市净率（PB）为1.63，市销率（PS）为4.46。这些指标显示，尽管股价已经有所调整，但估值仍然不算便宜。</li><li><strong>基本面数据</strong>：禾赛的收入同比增长4.85%，净利润同比增长5.61%，净资产收益率（ROE）为0.99%。这些数据表明公司的盈利能力虽然稳定，但增长并不强劲。</li></ul><h4>风险与行动建议</h4><ul><li><strong>风险</strong>：短期内，缺乏催化剂和市场情绪低迷是主要风险。如果市场情绪进一步恶化，股价可能会继续承压。此外，科技行业的整体波动性也需要警惕。</li><li><strong>行动建议</strong>：</li><li><strong>观察为主</strong>：目前不建议急于买入或卖出。可以先观察公司未来的业绩表现和市场情绪的变化。</li><li><strong>关注催化剂</strong>：密切关注公司是否有新的产品发布、市场拓展或其他能够提振投资者信心的消息。</li><li><strong>估值调整</strong>：如果股价进一步下跌，估值变得更加合理，可以考虑逐步建仓。但在此之前，需要确保有足够的安全边际。</li></ul><h4>原则化思考</h4><p>在这种情况下，我们需要遵循的原则是：极度透明地评估风险和机会，不被短期的市场波动所左右。我们可以记录下这次决策的逻辑和依据，以便在未来回顾和复盘时，能够清晰地看到我们的思考过程和决策依据。</p><p>总之，禾赛-W目前处于一个需要谨慎观察的阶段，建议大家保持耐心，等待更明确的信号出现。</p></div></div><div class="mreply"><div class="mh"><span class="who">彼得·林奇</span><span class="mscore">48</span></div><div class="md"><p>各位好，关于禾赛-W这只股票，我来说说我的看法。</p><p>首先，我得说，我不太倾向于现在买入这只股票。理由很简单：<strong>估值太高了</strong>。30倍的市盈率对于一家收入和利润增长只有4%-5%的公司来说，实在有些过高了。即使在科技行业，这样的估值也显得不太合理。</p><h4>为什么这么说？</h4><ul><li><strong>增长乏力</strong>：禾赛-W的收入同比增长只有4.85%，净利润同比增长也只有5.6%。这对于一家科技公司来说，显然不是一个令人满意的增长速度。科技行业的魅力在于高速增长，而禾赛-W的增长显然没有体现出这种潜力。</li></ul><ul><li><strong>市场情绪低迷</strong>：最近股价大幅下跌6.57%，这表明市场对这只股票的热情正在消退。而且，科技股整体情绪持续低迷，缺乏短期催化剂，这使得禾赛-W在短期内很难有大的表现。</li></ul><ul><li><strong>估值过高</strong>：30倍的市盈率，4.46倍的市销率，这些指标都显示出市场对禾赛-W的预期过高。在当前的增长速度下，这样的估值很难维持。</li></ul><h4>风险在哪里？</h4><ul><li><strong>估值风险</strong>：如果市场情绪继续恶化，估值可能会进一步回调，这对于高位买入的投资者来说是一个巨大的风险。</li><li><strong>增长风险</strong>：如果公司不能在未来几个季度内展现出更强的增长势头，市场可能会对其失去耐心，导致股价进一步下跌。</li><li><strong>行业风险</strong>：科技行业竞争激烈，如果禾赛-W不能保持其技术优势，可能会被竞争对手超越。</li></ul><h4>行动建议：</h4><p>对于禾赛-W，我的建议是：<strong>暂时观望</strong>。如果你已经持有这只股票，可以考虑在反弹时适当减仓。如果你正在考虑买入，我建议你再等等，等到估值更合理的时候再出手。</p><p>总之，禾赛-W目前并不是一个值得买入的标的。我们需要看到更强劲的增长和更合理的估值，才能考虑将其纳入投资组合。</p><p>希望这些建议对大家有所帮助。谢谢！</p></div></div><div class="mreply"><div class="mh"><span class="who">芒格</span><span class="mscore">69</span></div><div class="md"><p>各位同行，今天我们来讨论一下禾赛-W（02525）。我的看法是，对这家公司需要持谨慎态度。</p><p>首先，从逆向思维的角度来看，这家公司目前面临的风险远大于机会。股价已经下跌了6.57%，这表明市场情绪正在恶化。更重要的是，科技股整体情绪持续低迷，缺乏短期催化剂来扭转局面。这就像一艘船在逆流中航行，没有风帆的助力。</p><p>从多元心智模型的角度分析，我们可以看到几个关键问题：</p><ul><li><strong>估值问题</strong>：当前市盈率高达30倍，而市净率也达到1.63倍。在当前市场环境下，这样的估值水平显得过高，尤其是在公司收入同比增长仅为4.85%，净利润同比增长5.61%的情况下。这样的增长不足以支撑如此高的估值。</li></ul><ul><li><strong>盈利能力</strong>：净资产收益率（ROE）为0.99%，虽然不是负数，但显然不够理想。净利润率仅为5.77%，这表明公司在盈利能力方面还有很大的提升空间。</li></ul><ul><li><strong>市场环境</strong>：科技行业的长期前景虽然存在，但短期内的不确定性很高。市场对科技股的信心不足，这将对禾赛-W的股价构成持续压力。</li></ul><p>基于以上分析，我建议采取以下行动：</p><ul><li><strong>观望为主</strong>：在当前市场环境下，不宜急于买入。耐心等待更好的时机，观察公司是否能够提供更强劲的增长数据或市场情绪是否有所改善。</li></ul><ul><li><strong>关注催化剂</strong>：密切关注公司是否有新的产品发布、重大合同签订或其他能够提振市场信心的消息。这些催化剂可能是改变局势的关键。</li></ul><ul><li><strong>风险管理</strong>：如果已经持有该股票，建议设定止损位以控制风险。当前市场环境下，保护本金比追求收益更为重要。</li></ul><p>最后，我要提醒大家，任何投资决策都需要考虑自身的风险承受能力。正如我常说的，&quot;如果我知道自己死在哪里，我就永远不去那里&quot;。在投资中，识别风险并避开它们是取得长期成功的关键。</p></div></div></div>
+<div class="panel"><h2>分析师报告<span class="sub">2 篇</span></h2><details open><summary>市场面分析</summary><div class="body"><div class="md"><h4>02525 禾赛-W 市场面分析</h4><ul><li>红黑榜多空分数：多头 35 / 空头 85，分差 -50。</li><li>当前价格：13.36。</li><li>当前交易评级：Reduce。</li><li>值得加仓区间：12.02 - 12.56。</li><li>风险控制位：11.76。</li><li>市场愿意给溢价的原因：无明显利空加剧；科技行业长期前景仍存。</li><li>当前主要压制因素：股价大幅下跌6.57%；市场对科技股情绪持续低迷；缺乏短期催化剂。</li></ul></div></div></details><details open><summary>基本面分析</summary><div class="body"><div class="md"><h4>02525 禾赛-W 基本面分析</h4><ul><li>报告期：暂无。</li><li>PE(TTM)：30.31。</li><li>PB：1.63。</li><li>PS(TTM)：4.46。</li><li>ROE：0.99%。</li><li>营收同比：4.85%。</li><li>归母净利润同比：5.61%。</li><li>核心判断：收入仍在增长；利润端保持扩张。</li></ul></div></div></details></div>
+<div class="panel"><h2>研究与计划</h2>
+<details><summary>基本面摘要</summary><div class="body"><div class="md"><h3>核心财务快照</h3><ul><li>报告期: 数据缺失</li><li>当前股价: 13.36 元</li><li>总市值: 168.49 亿元</li><li>PE (TTM): 30.31</li><li>PB: 1.63</li><li>PS (TTM): 4.46</li><li>营业总收入(报告期): 数据缺失 亿元</li><li>营收同比增长率: 4.85%</li><li>归母净利润(报告期): 数据缺失 亿元</li><li>归母净利润同比增长率: 5.61%</li><li>ROE (TTM/估算): 0.99%</li><li>资产负债率: 数据缺失</li><li>经营性现金流 / 归母净利润: 数据缺失</li></ul><h4>缺失字段</h4><ul><li>营业总收入, 归母净利润, 资产负债率, 经营性现金流与归母净利润比值</li></ul></div></div></details>
+<details><summary>研究计划</summary><div class="body"><div class="md"><h4>02525 禾赛-W 研究摘要</h4><ul><li>红黑榜结论: Reduce</li><li>多头/空头: 35/85</li><li>正向信号: 营收同比 4.85%；归母净利润同比 5.61%；PE(TTM) 30.31；PB 1.63</li><li>风险信号: ROE 0.99%</li><li>榜单看多理由: 无明显利空加剧；科技行业长期前景仍存</li><li>榜单风险提示: 股价大幅下跌6.57%；市场对科技股情绪持续低迷；缺乏短期催化剂</li></ul></div></div></details>
+<details><summary>交易计划</summary><div class="body"><div class="md"><h4>02525 禾赛-W 交易计划</h4><ul><li>评级: Reduce</li><li>当前价格: 13.36</li><li>值得加仓区间: 12.02 - 12.56</li><li>目标价格: 12.69</li><li>止损位: 11.76</li><li>备注: 当前为缓存降级交易卡，后续若完整 TradingAgent 结果生成，将自动覆盖。</li></ul></div></div></details>
+<details><summary>交易决策</summary><div class="body"><div class="md"><p>Reduce</p><p>02525 禾赛-W 当前使用红黑榜缓存结果生成兜底交易卡。多头 35 / 空头 85，分差 -50。当前尚未取得完整 TradingAgent 长文决策，但榜单分数、财务快照和大师观点已经足够生成基础交易建议。</p></div></div></details>
+</div>
+<div class="panel"><h2>多空逻辑</h2><div class="pts"><div class="h bull">看多逻辑</div><div class="md"><p>无明显利空加剧</p><p>科技行业长期前景仍存</p></div></div><div class="pts"><div class="h bear">看空逻辑</div><div class="md"><p>股价大幅下跌6.57%</p><p>市场对科技股情绪持续低迷</p><p>缺乏短期催化剂</p></div></div></div>
+<div class="panel"><h2>伯克希尔研究</h2><p><strong>禾赛-W作为激光雷达领域的领先企业，具备技术壁垒和增长潜力，但面临竞争加剧和盈利压力，需谨慎评估其长期价值。</strong></p><p>伯克希尔综合评分：<strong>3.5</strong></p><div class="md"><p>{&quot;verdict&quot;: &quot;观望&quot;, &quot;conservative_tip&quot;: &quot;建议等待盈利能力改善后再考虑投资，当前观望为主。&quot;, &quot;moderate_tip&quot;: &quot;可小规模建仓，关注未来几个季度的财务表现。&quot;, &quot;aggressive_tip&quot;: &quot;若对激光雷达行业有深入研究且看好长期前景，可逢低买入。&quot;, &quot;catalysts_plus&quot;: [&quot;盈利能力改善，净利润转正。&quot;, &quot;获得大额订单或战略合作。&quot;, &quot;固态激光雷达技术取得突破。&quot;], &quot;catalysts_minus&quot;: [&quot;竞争加剧导致市场份额下降。&quot;, &quot;现金流状况恶化，融资成本上升。&quot;, &quot;监管政策收紧影响自动驾驶行业发展。&quot;]}</p></div></div>
+
+<footer>稳健理财Agent · 红黑榜每日归档 · 黑榜 #2 · 仅供研究，不构成投资建议</footer>
+</div></body>
+</html>
