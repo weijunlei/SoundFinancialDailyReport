@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>F(F) 黑榜 2026-10-27</title>
+<style>
+:root{--red:#d8342c;--redbg:#fdecea;--green:#1a9e54;--ink:#1c2230;--muted:#6b7385;
+--line:#e7e9ef;--card:#fff;--bg:#f4f6fa;--chip:#eef1f6;--dark:#23262d;--darkbg:#ececef}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",
+"Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);
+line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 16px 64px}
+header.top{background:linear-gradient(135deg,#1c2230,#2c3550);color:#fff;border-radius:14px;
+padding:22px 24px;margin-bottom:20px;box-shadow:0 6px 24px rgba(20,26,46,.12)}
+header.top h1{margin:0 0 6px;font-size:24px;letter-spacing:.5px}
+header.top .sub{opacity:.85;font-size:13px}
+header.top .sub b{color:#ffd166;font-weight:600}
+nav.mkt{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;
+background:rgba(244,246,250,.92);backdrop-filter:blur(6px);padding:10px 0;margin-bottom:14px}
+nav.mkt a{text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);
+padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600}
+nav.mkt a:hover{border-color:var(--red);color:var(--red)}
+.summary{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.summary .chip{background:var(--card);border:1px solid var(--line);border-radius:10px;
+padding:8px 12px;font-size:12px;color:var(--muted)}
+.summary .chip b{color:var(--ink);font-size:14px;margin-left:4px}
+section.board{margin:26px 0}
+.board-title{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:19px}
+.board-title .dot{width:10px;height:10px;border-radius:50%}
+.board-title.red .dot{background:var(--red)}
+.board-title.black .dot{background:var(--dark)}
+.board-title small{color:var(--muted);font-weight:400;font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+position:relative;transition:box-shadow .15s}
+.card:hover{box-shadow:0 4px 18px rgba(20,26,46,.08)}
+.card.red{border-top:3px solid var(--red)}
+.card.black{border-top:3px solid var(--dark)}
+.rank{position:absolute;top:10px;right:12px;font-size:26px;font-weight:800;color:#eceff5}
+.card.red .rank{color:#fbdcD9}
+.nm{font-size:16px;font-weight:700}
+.nm .tk{color:var(--muted);font-weight:500;font-size:12px;margin-left:6px}
+.tag{display:inline-block;background:var(--chip);color:var(--muted);border-radius:6px;
+padding:1px 7px;font-size:11px;margin:6px 6px 0 0}
+.price-row{display:flex;align-items:baseline;gap:10px;margin:10px 0 4px}
+.price{font-size:24px;font-weight:800}
+.pct{font-size:14px;font-weight:700;padding:2px 8px;border-radius:8px}
+.up{color:var(--red)}.down{color:var(--green)}.flat{color:var(--muted)}
+.pct.up{background:var(--redbg)}.pct.down{background:#e2f4e9}.pct.flat{background:var(--chip)}
+.psrc{font-size:11px;color:var(--muted);margin-left:auto}
+.scores{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.scores span{background:var(--chip);border-radius:6px;padding:2px 8px;font-size:11px;color:var(--muted)}
+.scores span b{color:var(--ink)}
+.pts{font-size:12.5px;margin:8px 0 0}
+.pts .h{font-weight:700;font-size:12px;margin:6px 0 2px}
+.pts .h.bull{color:var(--red)}.pts .h.bear{color:var(--green)}
+.pts ul{margin:2px 0 4px;padding-left:18px;color:#3a4152}
+.pts li{margin:1px 0}
+.masters{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:11px;color:var(--muted)}
+.masters b{color:var(--ink)}
+.summ{font-size:12.5px;color:#3a4152;background:#fafbfd;border:1px solid var(--line);
+border-radius:8px;padding:8px 10px;margin-top:8px}
+.empty{color:var(--muted);background:var(--card);border:1px dashed var(--line);
+border-radius:10px;padding:18px;text-align:center}
+footer{margin-top:34px;color:var(--muted);font-size:12px;text-align:center;line-height:1.8}
+a.lnk{color:var(--red);text-decoration:none}
+/* ── detail page ── */
+.backbar{margin-bottom:14px;font-size:13px}
+.backbar a{color:var(--muted);text-decoration:none;margin-right:14px}
+.backbar a:hover{color:var(--red)}
+.badge{display:inline-block;border-radius:6px;padding:2px 10px;font-size:12px;font-weight:700;margin-right:8px}
+.badge.red{background:var(--red);color:#fff}.badge.black{background:var(--dark);color:#fff}
+.trade{display:flex;flex-wrap:wrap;gap:10px;background:linear-gradient(135deg,#2c3550,#1c2230);
+color:#fff;border-radius:12px;padding:16px 18px;margin:16px 0}
+.trade .cell{min-width:120px}
+.trade .k{font-size:11px;opacity:.75}
+.trade .v{font-size:18px;font-weight:800;margin-top:2px}
+.trade .v.buy{color:#7ee2a8}.trade .v.sell{color:#ff9d97}.trade .v.hold{color:#ffd166}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0}
+.mgrid .m{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.mgrid .m .k{font-size:11px;color:var(--muted)}
+.mgrid .m .v{font-size:16px;font-weight:700;margin-top:2px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.panel>h2{margin:0 0 12px;font-size:17px}
+.panel>h2 .sub{font-size:12px;color:var(--muted);font-weight:400;margin-left:8px}
+.mreply{border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;
+padding:12px 14px;margin:10px 0;background:#fff}
+.mreply .mh{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.mreply .mh .who{font-weight:700;font-size:14px}
+.mreply .mh .mscore{margin-left:auto;background:var(--chip);border-radius:6px;padding:1px 8px;font-size:12px;font-weight:700}
+.md h2,.md h3,.md h4,.md h5{margin:12px 0 6px;font-size:15px}
+.md p{margin:6px 0;font-size:13.5px;color:#2c3345}
+.md ul{margin:6px 0;padding-left:20px;font-size:13.5px;color:#2c3345}
+.md li{margin:3px 0}
+.md strong{color:var(--ink)}
+details{border:1px solid var(--line);border-radius:10px;background:#fff;margin:10px 0;padding:0}
+details>summary{cursor:pointer;padding:12px 16px;font-weight:700;font-size:14px;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary:before{content:"▸ ";color:var(--red)}
+details[open]>summary:before{content:"▾ "}
+details>.body{padding:0 16px 14px;border-top:1px dashed var(--line)}
+.ychip{display:inline-block;background:var(--chip);border-radius:8px;padding:4px 10px;font-size:12px;margin:3px 6px 3px 0}
+.ychip b{font-size:13px}
+.news .nitem{border-top:1px dashed var(--line);padding:8px 0;font-size:13px}
+.news .nitem .t{font-weight:600}
+.news .nitem .s{color:var(--muted);font-size:12px}
+/* ── root landing page ── */
+.hero{padding:30px 26px}
+.hero-kicker{color:#ffd166;font-size:12px;font-weight:700;letter-spacing:2px;
+text-transform:uppercase;margin-bottom:8px}
+.hero h1{font-size:30px;margin:0 0 10px}
+.day-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.day-card{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);
+border-radius:12px;padding:14px 16px;transition:all .15s}
+.day-card:hover{border-color:var(--red);box-shadow:0 4px 16px rgba(216,52,44,.12);transform:translateY(-2px)}
+.day-card .d{font-weight:800;font-size:15px;color:var(--ink);display:flex;align-items:center;gap:8px}
+.day-card .m{margin-top:8px;display:flex;gap:6px}
+.day-card .m span{background:var(--chip);color:var(--muted);border-radius:6px;
+padding:2px 8px;font-size:11px}
+.latest-badge{background:var(--red);color:#fff;border-radius:6px;padding:1px 7px;
+font-size:10px;font-weight:700}
+</style>
+</head>
+<body><div class="wrap">
+<div class="backbar"><a href="../index.html">← 总览</a><a href="../us.html">← 美股榜单</a></div>
+<header class="top">
+  <h1><span class="badge black">黑榜 #2</span>F<span class="tk" style="opacity:.7;font-size:15px;font-weight:400;margin-left:8px">F</span></h1>
+  <div class="sub">美股 ·  · 榜单日期 <b>2026-10-27</b> · 盘价采集 <b>2026-10-27 05:00:01</b></div>
+  <div class="price-row" style="margin-top:12px">
+    <span class="price" style="color:#fff">$11.58</span>
+    <span class="pct down">-0.17%</span>
+    <span class="psrc" style="color:rgba(255,255,255,.6)">实时</span>
+  </div>
+  <div class="scores" style="margin-top:10px">
+    <span>综合 <b>21.9</b></span>
+    <span>多头 <b>25</b></span>
+    <span>空头 <b>75</b></span>
+    <span>大师均值 <b>56.4</b></span>
+    <span>信号 <b>negative</b></span>
+  </div>
+</header>
+<div class="trade"><div class="cell"><div class="k">交易评级</div><span class="v hold">Reduce</span></div><div class="cell"><div class="k">加仓区间</div><span class="v">10.42 ~ 10.89</span></div><div class="cell"><div class="k">伯克希尔</div><span class="v">观望</span></div><div class="cell"><div class="k">伯克希尔分</div><span class="v">2.75</span></div></div>
+<div class="panel"><h2>财务指标</h2><div class="mgrid"><div class="m"><div class="k">市盈率 PE</div><div class="v">6.04</div></div><div class="m"><div class="k">市净率 PB</div><div class="v">1.29</div></div><div class="m"><div class="k">ROE</div><div class="v">-18.3%</div></div><div class="m"><div class="k">总市值</div><div class="v">462</div></div><div class="m"><div class="k">营收同比</div><div class="v">-3.8%</div></div></div></div>
+<div class="panel"><h2>历史收益</h2><span class="ychip">近1月 <b class="down">-6.46%</b></span><span class="ychip">近6月 <b class="down">-7.29%</b></span><span class="ychip">近1年 <b class="down">-12.67%</b></span><span class="ychip">近5年 <b class="down">-25.34%</b></span></div>
+<div class="panel"><h2>大师圆桌<span class="sub">5 位</span></h2><div class="mreply"><div class="mh"><span class="who">段永平</span><span class="mscore">75</span></div><div class="md"><p>各位好，今天讨论的公司是福特汽车（F）。从我的角度出发，我主要从&quot;本分&quot;和&quot;看得懂&quot;这两个原则来考虑投资决策。</p><h4>结论：</h4><p>目前我对福特汽车持谨慎态度。虽然估值看似便宜，但考虑到公司面临的挑战，我建议保持观望。</p><h4>理由：</h4><p>首先，从&quot;本分&quot;的角度看，福特正在经历电动车转型的关键阶段。这是一个&quot;做对的事&quot;的举措，因为汽车行业的未来必然是电动化的。然而，转型能否成功存在很大不确定性。传统汽车业务面临的压力不容忽视，营收同比下降3.8%，ROE为-18.25%也反映了公司目前面临的困境。</p><p>其次，从&quot;看得懂&quot;的角度，我个人对汽车行业，特别是传统汽车制造商的转型前景感到难以把握。电动车市场竞争已经非常激烈，特斯拉、比亚迪等公司已经占据了相当大的市场份额。福特能否在这个竞争环境中突围，还需要进一步观察。</p><p>从估值来看，目前6倍左右的PE和1.29倍的PB看似有吸引力，但股价近期的下跌（-2.85%）表明市场对其转型前景的担忧。</p><h4>风险/行动建议：</h4><ul><li>主要风险在于转型失败的风险，以及传统业务持续下滑的风险。如果电动车战略不能如期取得成果，可能会进一步拖累公司整体业绩。</li></ul><ul><li>建议投资者不要被低估值迷惑，要特别关注公司电动车业务的进展，包括新车型推出速度、市场接受度以及盈利能力。</li></ul><ul><li>如果一定要投资，建议采取分批建仓的方式，并做好长期持有的准备。因为转型需要时间，短期内可能难以看到明显的业绩改善。</li></ul><p>最后，我想强调，投资决策应该基于对公司长期竞争力的判断，而不是短期的股价波动。对于福特来说，现在可能是一个观察期，而不是急于出手的时机。</p></div></div><div class="mreply"><div class="mh"><span class="who">巴菲特</span><span class="mscore">50</span></div><div class="md"><p>各位朋友，我今天想谈谈我对F公司的看法。总体来说，我的立场是中性的，既不完全看空，也不完全看多。</p><p>首先，我们来谈谈这家公司的优点。F公司目前正在积极转型电动车，这是一个长期来看可能带来增长的机会。此外，它的估值水平相对较低，市盈率只有6倍左右，市净率也只有1.3倍左右，这表明市场可能已经消化了不少负面预期。</p><p>然而，我们也要看到一些明显的挑战。F公司的传统汽车业务正面临不小的压力，这一点从它股价最近下跌近3%可以看出端倪。而且，它的净资产收益率（ROE）为负数，这说明公司在资本配置方面可能存在问题。</p><p>现在，让我们从价值投资的角度来分析。如果我们要投资这家公司，我们需要问自己几个问题：</p><ul><li>这家公司的护城河在哪里？它的电动车转型战略能否真正建立起可持续的竞争优势？</li><li>它的自由现金流状况如何？目前的市场价格是否提供了足够的安全边际？</li></ul><p>从目前的数据来看，我认为F公司还需要更多时间来证明其电动车战略的可行性。同时，传统业务的挑战也不容忽视。</p><p>因此，我的建议是：</p><ul><li>如果你已经在持有F公司的股票，建议密切关注其电动车转型的进展和自由现金流的改善情况。</li><li>如果你正在考虑买入，建议等待更明确的信号，比如电动车业务的实质性增长或自由现金流的改善。</li></ul><p>最后，我想引用一句我常说的话：&quot;时间是伟大生意的朋友，是烂生意的敌人。&quot; 对于F公司，我们需要更多时间来观察它的转型是否能够成功。</p><p>如果查理·芒格在这里，他可能会补充说：&quot;投资就像打棒球，你不需要每次都挥棒。&quot; 在这种情况下，我们或许应该等待一个更好的击球机会。</p></div></div><div class="mreply"><div class="mh"><span class="who">达利欧</span><span class="mscore">55</span></div><div class="md"><p>各位同仁，今天我们来讨论一下福特汽车（F）的投资前景。</p><p>首先，我的结论是：<strong>目前对福特持中性偏谨慎的态度</strong>。虽然福特在电动车转型方面展现出了一定的长期潜力，但其传统业务面临的挑战和近期股价的弱势表现让我对短期持谨慎看法。</p><p><strong>理由如下：</strong></p><ul><li><strong>电动车转型战略的长期机会</strong>：福特在电动车领域的投入和战略布局是值得肯定的，这为其长期发展提供了新的增长点。然而，转型过程中需要大量的资本投入和时间积累，短期内可能难以看到显著的财务回报。</li></ul><ul><li><strong>估值水平相对较低</strong>：从估值指标来看，福特的市盈率和市净率都处于较低水平，这表明市场对其未来增长预期较为保守。然而，低估值并不一定意味着立即的买入机会，尤其是在基本面面临挑战的情况下。</li></ul><ul><li><strong>传统汽车业务面临挑战</strong>：福特的核心传统汽车业务正在经历显著的压力，收入同比下降3.8%，净资产收益率为负18.252%，这些数据都显示出其当前业务的困境。</li></ul><ul><li><strong>股价表现弱势</strong>：近期股价下跌2.85%，这进一步表明市场对福特的前景持谨慎态度。</li></ul><p><strong>风险与行动建议：</strong></p><ul><li><strong>风险</strong>：福特面临的主要风险包括传统业务的持续下滑、电动车转型的高投入和不确定性，以及全球经济环境的不确定性。如果转型不成功或市场环境恶化，福特可能会面临更大的财务压力。</li></ul><ul><li><strong>行动建议</strong>：对于福特的投资，我建议采取观望态度，等待更明确的转型成果和财务改善信号。如果投资者对电动车领域有长期信心，可以考虑在股价进一步下跌时逐步建仓，但需严格控制仓位并做好风险管理。</li></ul><p><strong>总结原则</strong>：在面对转型期的公司时，<strong>极度透明地评估转型风险和财务压力</strong>，并在决策中<strong>平衡长期机会和短期风险</strong>。建议将这一原则纳入您的决策日志，以便在未来类似情况下进行参考。</p><p>希望这些分析对大家有所帮助。谢谢。</p></div></div><div class="mreply"><div class="mh"><span class="who">彼得·林奇</span><span class="mscore">48</span></div><div class="md"><p>各位朋友，关于福特汽车（F），我想分享一些我的看法。</p><h4>结论：</h4><p>我目前对福特持中性偏谨慎的态度。这家公司有值得关注的潜力，但同时也面临一些严峻的挑战。</p><h4>理由：</h4><p>首先，福特正在积极向电动车转型，这确实是一个值得期待的机会。电动车市场正在快速增长，如果福特能够成功转型，它有可能在未来几年内重新获得增长动力。此外，当前的估值水平相对较低，市盈率（PE）只有6倍左右，市净率（PB）也只有1.29倍，这表明市场对它的预期已经相当低。</p><p>然而，福特面临的挑战也不容忽视。最近股价下跌了2.85%，显示出市场对其前景的担忧。传统汽车业务面临来自特斯拉和其他电动车制造商的激烈竞争，同时福特的净资产收益率（ROE）为负数，营收同比下降3.8%，这些都表明其核心业务正在经历困难时期。</p><h4>风险/行动建议：</h4><ul><li><strong>电动车转型风险</strong>：虽然电动车转型是一个机会，但转型过程中需要大量的资本投入和时间。投资者需要密切关注福特在这方面的进展，看看其能否在竞争激烈的市场中站稳脚跟。</li></ul><ul><li><strong>传统业务挑战</strong>：福特的传统汽车业务面临严峻挑战，投资者需要评估其能否在短期内稳定其核心业务。如果传统业务持续下滑，可能会拖累其整体业绩。</li></ul><ul><li><strong>估值与风险匹配</strong>：当前的低估值确实提供了一个安全边际，但投资者需要问自己一个问题：如果福特再跌50%，你还会愿意买入吗？如果答案是肯定的，那么现在可能是一个不错的入场时机。</li></ul><h4>具体行动：</h4><p>对于福特，我的建议是保持观望。如果你已经持有福特，可以考虑在反弹时适当减仓，以降低风险。如果你正在考虑买入，建议先观察其电动车转型的进展以及传统业务的稳定情况，等待更明确的信号。</p><p>总之，福特有潜力，但风险也不小。投资者需要根据自身的风险承受能力和投资期限，谨慎做出决策。</p></div></div><div class="mreply"><div class="mh"><span class="who">芒格</span><span class="mscore">54</span></div><div class="md"><p>各位同仁，关于福特汽车（F）的投资机会，我有一些看法。</p><p>首先，我要给一个明确的结论：<strong>目前我对福特汽车持中性偏谨慎的态度</strong>。这意味着我不会强烈推荐买入，但也不会完全否定其投资价值。</p><p>为什么我会得出这样的结论？让我们从几个角度来分析：</p><h4>1. 逆向思考：失败的可能性</h4><p>当我们考虑投资福特时，首先要问的不是&quot;它能涨多少&quot;，而是&quot;它可能怎么失败&quot;。我认为福特面临的主要风险包括：</p><ul><li><strong>传统汽车业务的持续下滑</strong>：尽管福特在电动车领域有所布局，但传统汽车业务的挑战依然严峻。营收同比下降3.8%，ROE为负18.25%，这些数字都表明其核心业务正在承受巨大压力。</li><li><strong>电动车转型的巨额投入</strong>：电动车转型需要大量资金投入，而福特目前的财务状况并不理想。负的ROE和相对较低的估值水平表明，市场对其转型成功的信心并不充足。</li><li><strong>市场竞争加剧</strong>：特斯拉和其他新兴电动车企的竞争压力不容小觑，福特能否在激烈的市场竞争中脱颖而出还是个未知数。</li></ul><h4>2. 激励机制分析</h4><p>从激励机制来看，福特的管理层显然意识到了转型的必要性，并正在积极推动电动化战略。然而，管理层能否在保持传统业务稳定的同时，成功实现转型，仍然是一个巨大的挑战。此外，股东结构和管理层的利益一致性也需要进一步观察。</p><h4>3. 多元思维模型审视</h4><p>从多个学科的角度来看：</p><ul><li><strong>经济学</strong>：福特面临的是典型的&quot;创新者的窘境&quot;。传统业务的惯性可能会阻碍其转型速度。</li><li><strong>心理学</strong>：市场对福特转型的预期可能过于乐观，存在一定的情绪溢价。</li><li><strong>物理学</strong>：福特目前的财务状况就像一辆正在减速的车辆，需要更大的动力才能重新加速。</li></ul><h4>4. 概率与赔率</h4><p>综合考虑胜率和赔率，我认为福特目前的投资机会并不理想。虽然估值水平较低，但考虑到其面临的诸多挑战，胜率并不高。即使电动车转型成功，短期内也难以弥补传统业务的下滑。</p><h4>5. 风险与行动建议</h4><p>基于以上分析，我建议：</p><ul><li><strong>风险控制</strong>：如果已经持有福特股票，建议密切关注其电动车转型的进展和传统业务的下滑速度。如果转型进展不顺利，可能需要及时止损。</li><li><strong>观望为主</strong>：对于尚未持有的投资者，建议暂时观望，等待更明确的转型信号和市场信心的恢复。</li><li><strong>分散投资</strong>：如果一定要投资，可以考虑将福特作为投资组合的一部分，但不要重仓。</li></ul><p>最后，我要提醒大家，投资决策不应基于单一因素或短期波动，而应综合考虑长期趋势和风险控制。正如我常说的：&quot;如果我知道自己会死在哪里，我就永远不去那里。&quot;在投资中，避免愚蠢往往比追求聪明更重要。</p></div></div></div>
+<div class="panel"><h2>分析师报告<span class="sub">2 篇</span></h2><details open><summary>市场面分析</summary><div class="body"><div class="md"><h4>F F 市场面分析</h4><ul><li>红黑榜多空分数：多头 25 / 空头 75，分差 -50。</li><li>当前价格：11.58。</li><li>当前交易评级：Reduce。</li><li>值得加仓区间：10.42 - 10.89。</li><li>风险控制位：10.19。</li><li>市场愿意给溢价的原因：电动车转型战略提供长期机会；估值水平相对较低。</li><li>当前主要压制因素：股价下跌2.85%显示明显弱势；传统汽车业务面临挑战。</li></ul></div></div></details><details open><summary>基本面分析</summary><div class="body"><div class="md"><h4>F F 基本面分析</h4><ul><li>报告期：暂无。</li><li>PE(TTM)：6.04。</li><li>PB：1.29。</li><li>ROE：-18.25%。</li><li>营收同比：-3.80%。</li></ul></div></div></details></div>
+<div class="panel"><h2>研究与计划</h2>
+<details><summary>基本面摘要</summary><div class="body"><div class="md"><h3>核心财务快照</h3><ul><li>报告期: 数据缺失</li><li>当前股价: 11.58 元</li><li>总市值: 461.77 亿元</li><li>PE (TTM): 6.04</li><li>PB: 1.29</li><li>PS (TTM): 数据缺失</li><li>营业总收入(报告期): 数据缺失 亿元</li><li>营收同比增长率: -3.80%</li><li>归母净利润(报告期): 数据缺失 亿元</li><li>归母净利润同比增长率: 数据缺失</li><li>ROE (TTM/估算): -18.25%</li><li>资产负债率: 数据缺失</li><li>经营性现金流 / 归母净利润: 数据缺失</li></ul><h4>缺失字段</h4><ul><li>PS(TTM), 营业总收入, 归母净利润, 归母净利润同比增长率, 资产负债率, 经营性现金流与归母净利润比值</li></ul></div></div></details>
+<details><summary>研究计划</summary><div class="body"><div class="md"><h4>F F 研究摘要</h4><ul><li>红黑榜结论: Reduce</li><li>多头/空头: 25/75</li><li>正向信号: PE(TTM) 6.04；PB 1.29</li><li>风险信号: ROE -18.25%；营收同比 -3.80%</li><li>榜单看多理由: 电动车转型战略提供长期机会；估值水平相对较低</li><li>榜单风险提示: 股价下跌2.85%显示明显弱势；传统汽车业务面临挑战</li></ul></div></div></details>
+<details><summary>交易计划</summary><div class="body"><div class="md"><h4>F F 交易计划</h4><ul><li>评级: Reduce</li><li>当前价格: 11.58</li><li>值得加仓区间: 10.42 - 10.89</li><li>目标价格: 11.00</li><li>止损位: 10.19</li><li>备注: 当前为缓存降级交易卡，后续若完整 TradingAgent 结果生成，将自动覆盖。</li></ul></div></div></details>
+<details><summary>交易决策</summary><div class="body"><div class="md"><p>Reduce</p><p>F F 当前使用红黑榜缓存结果生成兜底交易卡。多头 25 / 空头 75，分差 -50。当前尚未取得完整 TradingAgent 长文决策，但榜单分数、财务快照和大师观点已经足够生成基础交易建议。</p></div></div></details>
+</div>
+<div class="panel"><h2>多空逻辑</h2><div class="pts"><div class="h bull">看多逻辑</div><div class="md"><p>电动车转型战略提供长期机会</p><p>估值水平相对较低</p></div></div><div class="pts"><div class="h bear">看空逻辑</div><div class="md"><p>股价下跌2.85%显示明显弱势</p><p>传统汽车业务面临挑战</p></div></div></div>
+<div class="panel"><h2>伯克希尔研究</h2><p><strong>福特汽车是一家具有转型潜力的传统汽车制造商，但面临行业变革和竞争压力，需谨慎评估其长期价值。</strong></p><p>伯克希尔综合评分：<strong>2.75</strong></p><div class="md"><p>{&quot;verdict&quot;: &quot;观望&quot;, &quot;conservative_tip&quot;: &quot;建议等待电动车转型取得更多成果后再考虑投资，当前观望。&quot;, &quot;moderate_tip&quot;: &quot;可小仓位布局，关注电动车销量增长和利润率改善。&quot;, &quot;aggressive_tip&quot;: &quot;若电动车销量超预期，可考虑增持，但需严格控制风险。&quot;, &quot;catalysts_plus&quot;: [&quot;电动车销量大幅增长&quot;, &quot;毛利率持续改善&quot;, &quot;成功推出爆款电动车车型&quot;], &quot;catalysts_minus&quot;: [&quot;原材料成本持续上涨&quot;, &quot;电动车市场份额下降&quot;, &quot;传统燃油车业务加速下滑&quot;]}</p></div></div>
+<div class="panel news"><h2>最新资讯</h2><div class="md"><p>整体情绪中性，1条利多，0条利空，10条中性。</p></div><div class="nitem"><div class="t">NFL Week 7 grades: Falcons earn solid &#x27;A&#x27; mark, while Panthers flop with a resounding &#x27;F&#x27;</div><div class="s">CBS Sports · 中性</div></div><div class="nitem"><div class="t">Palm Beach Intercept: NORAD F-16 Headbutts Plane Over Mar-a-Lago</div><div class="s">MiGFlug · 中性</div></div><div class="nitem"><div class="t">Michael F. Dewiel Obituary (1950 - 2026) - Bucyrus, OH - Crawford County Now</div><div class="s">Legacy | Obituary · 中性</div></div><div class="nitem"><div class="t">Father William F. Graney, 82, longtime pastor in Diocese of Wilmington, dies at 82</div><div class="s">The Dialog · 中性</div></div><div class="nitem"><div class="t">Robert F. Bausch Obituary Oct 23, 2026</div><div class="s">Kramer-Grau Funeral Homes &amp; Crematory Inc · 中性</div></div><div class="nitem"><div class="t">Canada receives first F-35 fighter jets from U.S.</div><div class="s">The Globe and Mail · 利好</div></div><div class="nitem"><div class="t">Canada Just Got Its First F-35 Fighter Jets. Will They Be Its Last?</div><div class="s">The National Interest · 中性</div></div><div class="nitem"><div class="t">Ukraine’s Air Force Is Going Fully Western—F-16 Wings, Gripen-Ready Bases and New Upgrades</div><div class="s">UNITED24 Media · 中性</div></div></div>
+<footer>稳健理财Agent · 红黑榜每日归档 · 黑榜 #2 · 仅供研究，不构成投资建议</footer>
+</div></body>
+</html>

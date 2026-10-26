@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FTNT(FTNT) 红榜 2026-10-27</title>
+<style>
+:root{--red:#d8342c;--redbg:#fdecea;--green:#1a9e54;--ink:#1c2230;--muted:#6b7385;
+--line:#e7e9ef;--card:#fff;--bg:#f4f6fa;--chip:#eef1f6;--dark:#23262d;--darkbg:#ececef}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",
+"Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);
+line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 16px 64px}
+header.top{background:linear-gradient(135deg,#1c2230,#2c3550);color:#fff;border-radius:14px;
+padding:22px 24px;margin-bottom:20px;box-shadow:0 6px 24px rgba(20,26,46,.12)}
+header.top h1{margin:0 0 6px;font-size:24px;letter-spacing:.5px}
+header.top .sub{opacity:.85;font-size:13px}
+header.top .sub b{color:#ffd166;font-weight:600}
+nav.mkt{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;
+background:rgba(244,246,250,.92);backdrop-filter:blur(6px);padding:10px 0;margin-bottom:14px}
+nav.mkt a{text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);
+padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600}
+nav.mkt a:hover{border-color:var(--red);color:var(--red)}
+.summary{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.summary .chip{background:var(--card);border:1px solid var(--line);border-radius:10px;
+padding:8px 12px;font-size:12px;color:var(--muted)}
+.summary .chip b{color:var(--ink);font-size:14px;margin-left:4px}
+section.board{margin:26px 0}
+.board-title{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:19px}
+.board-title .dot{width:10px;height:10px;border-radius:50%}
+.board-title.red .dot{background:var(--red)}
+.board-title.black .dot{background:var(--dark)}
+.board-title small{color:var(--muted);font-weight:400;font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+position:relative;transition:box-shadow .15s}
+.card:hover{box-shadow:0 4px 18px rgba(20,26,46,.08)}
+.card.red{border-top:3px solid var(--red)}
+.card.black{border-top:3px solid var(--dark)}
+.rank{position:absolute;top:10px;right:12px;font-size:26px;font-weight:800;color:#eceff5}
+.card.red .rank{color:#fbdcD9}
+.nm{font-size:16px;font-weight:700}
+.nm .tk{color:var(--muted);font-weight:500;font-size:12px;margin-left:6px}
+.tag{display:inline-block;background:var(--chip);color:var(--muted);border-radius:6px;
+padding:1px 7px;font-size:11px;margin:6px 6px 0 0}
+.price-row{display:flex;align-items:baseline;gap:10px;margin:10px 0 4px}
+.price{font-size:24px;font-weight:800}
+.pct{font-size:14px;font-weight:700;padding:2px 8px;border-radius:8px}
+.up{color:var(--red)}.down{color:var(--green)}.flat{color:var(--muted)}
+.pct.up{background:var(--redbg)}.pct.down{background:#e2f4e9}.pct.flat{background:var(--chip)}
+.psrc{font-size:11px;color:var(--muted);margin-left:auto}
+.scores{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.scores span{background:var(--chip);border-radius:6px;padding:2px 8px;font-size:11px;color:var(--muted)}
+.scores span b{color:var(--ink)}
+.pts{font-size:12.5px;margin:8px 0 0}
+.pts .h{font-weight:700;font-size:12px;margin:6px 0 2px}
+.pts .h.bull{color:var(--red)}.pts .h.bear{color:var(--green)}
+.pts ul{margin:2px 0 4px;padding-left:18px;color:#3a4152}
+.pts li{margin:1px 0}
+.masters{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:11px;color:var(--muted)}
+.masters b{color:var(--ink)}
+.summ{font-size:12.5px;color:#3a4152;background:#fafbfd;border:1px solid var(--line);
+border-radius:8px;padding:8px 10px;margin-top:8px}
+.empty{color:var(--muted);background:var(--card);border:1px dashed var(--line);
+border-radius:10px;padding:18px;text-align:center}
+footer{margin-top:34px;color:var(--muted);font-size:12px;text-align:center;line-height:1.8}
+a.lnk{color:var(--red);text-decoration:none}
+/* ── detail page ── */
+.backbar{margin-bottom:14px;font-size:13px}
+.backbar a{color:var(--muted);text-decoration:none;margin-right:14px}
+.backbar a:hover{color:var(--red)}
+.badge{display:inline-block;border-radius:6px;padding:2px 10px;font-size:12px;font-weight:700;margin-right:8px}
+.badge.red{background:var(--red);color:#fff}.badge.black{background:var(--dark);color:#fff}
+.trade{display:flex;flex-wrap:wrap;gap:10px;background:linear-gradient(135deg,#2c3550,#1c2230);
+color:#fff;border-radius:12px;padding:16px 18px;margin:16px 0}
+.trade .cell{min-width:120px}
+.trade .k{font-size:11px;opacity:.75}
+.trade .v{font-size:18px;font-weight:800;margin-top:2px}
+.trade .v.buy{color:#7ee2a8}.trade .v.sell{color:#ff9d97}.trade .v.hold{color:#ffd166}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0}
+.mgrid .m{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.mgrid .m .k{font-size:11px;color:var(--muted)}
+.mgrid .m .v{font-size:16px;font-weight:700;margin-top:2px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.panel>h2{margin:0 0 12px;font-size:17px}
+.panel>h2 .sub{font-size:12px;color:var(--muted);font-weight:400;margin-left:8px}
+.mreply{border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;
+padding:12px 14px;margin:10px 0;background:#fff}
+.mreply .mh{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.mreply .mh .who{font-weight:700;font-size:14px}
+.mreply .mh .mscore{margin-left:auto;background:var(--chip);border-radius:6px;padding:1px 8px;font-size:12px;font-weight:700}
+.md h2,.md h3,.md h4,.md h5{margin:12px 0 6px;font-size:15px}
+.md p{margin:6px 0;font-size:13.5px;color:#2c3345}
+.md ul{margin:6px 0;padding-left:20px;font-size:13.5px;color:#2c3345}
+.md li{margin:3px 0}
+.md strong{color:var(--ink)}
+details{border:1px solid var(--line);border-radius:10px;background:#fff;margin:10px 0;padding:0}
+details>summary{cursor:pointer;padding:12px 16px;font-weight:700;font-size:14px;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary:before{content:"▸ ";color:var(--red)}
+details[open]>summary:before{content:"▾ "}
+details>.body{padding:0 16px 14px;border-top:1px dashed var(--line)}
+.ychip{display:inline-block;background:var(--chip);border-radius:8px;padding:4px 10px;font-size:12px;margin:3px 6px 3px 0}
+.ychip b{font-size:13px}
+.news .nitem{border-top:1px dashed var(--line);padding:8px 0;font-size:13px}
+.news .nitem .t{font-weight:600}
+.news .nitem .s{color:var(--muted);font-size:12px}
+/* ── root landing page ── */
+.hero{padding:30px 26px}
+.hero-kicker{color:#ffd166;font-size:12px;font-weight:700;letter-spacing:2px;
+text-transform:uppercase;margin-bottom:8px}
+.hero h1{font-size:30px;margin:0 0 10px}
+.day-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.day-card{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);
+border-radius:12px;padding:14px 16px;transition:all .15s}
+.day-card:hover{border-color:var(--red);box-shadow:0 4px 16px rgba(216,52,44,.12);transform:translateY(-2px)}
+.day-card .d{font-weight:800;font-size:15px;color:var(--ink);display:flex;align-items:center;gap:8px}
+.day-card .m{margin-top:8px;display:flex;gap:6px}
+.day-card .m span{background:var(--chip);color:var(--muted);border-radius:6px;
+padding:2px 8px;font-size:11px}
+.latest-badge{background:var(--red);color:#fff;border-radius:6px;padding:1px 7px;
+font-size:10px;font-weight:700}
+</style>
+</head>
+<body><div class="wrap">
+<div class="backbar"><a href="../index.html">← 总览</a><a href="../us.html">← 美股榜单</a></div>
+<header class="top">
+  <h1><span class="badge red">红榜 #5</span>FTNT<span class="tk" style="opacity:.7;font-size:15px;font-weight:400;margin-left:8px">FTNT</span></h1>
+  <div class="sub">美股 ·  · 榜单日期 <b>2026-10-27</b> · 盘价采集 <b>2026-10-27 05:00:01</b></div>
+  <div class="price-row" style="margin-top:12px">
+    <span class="price" style="color:#fff">$183.33</span>
+    <span class="pct up">+1.86%</span>
+    <span class="psrc" style="color:rgba(255,255,255,.6)">实时</span>
+  </div>
+  <div class="scores" style="margin-top:10px">
+    <span>综合 <b>90.6</b></span>
+    <span>多头 <b>82</b></span>
+    <span>空头 <b>25</b></span>
+    <span>大师均值 <b>59.4</b></span>
+    <span>信号 <b>positive</b></span>
+  </div>
+</header>
+<div class="trade"><div class="cell"><div class="k">交易评级</div><span class="v buy">Buy</span></div><div class="cell"><div class="k">加仓区间</div><span class="v">177.88 ~ 185.21</span></div><div class="cell"><div class="k">目标价</div><span class="v">205.39</span></div><div class="cell"><div class="k">伯克希尔</div><span class="v">买入</span></div><div class="cell"><div class="k">伯克希尔分</div><span class="v">4.25</span></div></div>
+<div class="panel"><h2>财务指标</h2><div class="mgrid"><div class="m"><div class="k">市盈率 PE</div><div class="v">64.83</div></div><div class="m"><div class="k">市净率 PB</div><div class="v">86.79</div></div><div class="m"><div class="k">ROE</div><div class="v">117.4%</div></div><div class="m"><div class="k">总市值</div><div class="v">1346</div></div><div class="m"><div class="k">营收同比</div><div class="v">25.6%</div></div><div class="m"><div class="k">净利同比</div><div class="v">43.9%</div></div></div></div>
+<div class="panel"><h2>历史收益</h2><span class="ychip">近1月 <b class="up">+4.00%</b></span><span class="ychip">近6月 <b class="up">+114.05%</b></span><span class="ychip">近1年 <b class="up">+115.01%</b></span><span class="ychip">近5年 <b class="up">+184.20%</b></span></div>
+<div class="panel"><h2>大师圆桌<span class="sub">5 位</span></h2><div class="mreply"><div class="mh"><span class="who">段永平</span><span class="mscore">34</span></div><div class="md"><p>我理解大家对网络安全领域的关注，尤其是像FTNT这样的公司，它在行业内确实有着不错的表现。但从我的角度来说，我更倾向于用&quot;本分&quot;的视角来审视这家公司。</p><p>首先，我想问几个问题：我们真的懂网络安全这个行业吗？FTNT的竞争优势是否足够明显，以至于能长期保持领先地位？目前84倍的PE（市盈率）和87倍的PB（市净率），这意味着市场已经给了它非常高的预期。这样的估值水平，是否已经透支了未来的增长空间？</p><p>虽然公司目前的财务数据看起来不错，收入同比增长25.6%，净利润增长43.9%，但我们要思考的是：这样的增速能否持续？网络安全行业虽然景气度高，但竞争也在加剧。当前的市场环境下，FTNT能否继续保持这样的利润率？</p><p>如果是我，我会更谨慎一些。理由有三：</p><ul><li>估值偏高 - 过高的估值意味着容错空间很小，一旦业绩不及预期，股价可能会面临较大压力。</li></ul><ul><li>竞争加剧 - 网络安全行业的竞争格局正在发生变化，我们需要密切关注FTNT能否持续保持竞争优势。</li></ul><ul><li>增长可持续性 - 在如此高的基数上，公司能否继续维持这样的高增长？这是需要打一个问号的。</li></ul><p>我的建议是：与其现在急于进场，不如先耐心观察。关注公司未来几个季度的业绩表现，看看能否持续证明自己的增长能力。同时，也要评估一下网络安全行业的整体发展趋势。</p><p>别忘了，投资中最重要的是&quot;不懂不做&quot;。如果你对网络安全行业没有足够的了解，最好还是谨慎一些。投资不是比谁跑得快，而是比谁活得久。</p></div></div><div class="mreply"><div class="mh"><span class="who">巴菲特</span><span class="mscore">83</span></div><div class="md"><p>各位朋友，今天我们来聊聊网络安全领域的公司FTNT。</p><p>先说我的总体看法：我对这家公司的长期前景持乐观态度，但目前的价格让我有些犹豫。</p><h4>理由</h4><p>首先，这家公司处在一个高景气的赛道里。随着数字化转型加速，网络安全的重要性只会与日俱增。从财务数据来看，FTNT过去几年表现相当稳健，收入和利润都保持了两位数的增长，净资产收益率也非常出色。</p><p>其次，这家公司在行业中的地位相当稳固。他们建立了强大的品牌和客户粘性，这构成了坚实的护城河。我喜欢那些能够持续产生自由现金流的公司，而FTNT在这方面表现不错。</p><h4>风险</h4><p>不过，我也要提醒大家注意几个风险点：</p><ul><li>当前估值偏高，市盈率超过60倍，市净率更是接近90倍。这意味着市场已经对未来的增长给予了很高的预期。如果业绩稍有波动，可能会面临较大的估值回调压力。</li></ul><ul><li>行业竞争正在加剧。虽然FTNT目前处于领先地位，但像微软这样的巨头也在积极布局网络安全领域，这可能会给公司带来新的挑战。</li></ul><ul><li>考虑到目前的市场环境，增长空间可能会受到宏观经济环境的制约。</li></ul><h4>行动建议</h4><p>对于已经持有这只股票的朋友，我会建议继续持有，但需要密切关注公司的基本面变化。如果发现竞争格局恶化或者增长放缓的迹象，就要重新评估投资逻辑。</p><p>对于想要买入的朋友，我会建议耐心等待更好的时机。现在这个价格让我觉得安全边际不够充分。就像我常说的，投资就像打棒球，你不需要每次都挥棒。耐心等待一个更有吸引力的价格，可能会是一个更明智的选择。</p><h4>芒格的补充</h4><p>如果查理在这里，他可能会用&quot;市场先生&quot;的比喻来提醒大家：不要被市场的乐观情绪冲昏头脑。保持理性，坚持自己的估值标准，这才是长期成功的关键。</p><p>总之，我对FTNT这家公司持谨慎乐观的态度，但当前价格让我选择观望。</p></div></div><div class="mreply"><div class="mh"><span class="who">达利欧</span><span class="mscore">74</span></div><div class="md"><p>各位同仁，今天我们来讨论一下网络安全领域的公司 FTNT。</p><h4>结论：</h4><p>我目前对 FTNT 持谨慎乐观态度。从原则化视角来看，这家公司符合&quot;稳健增长 + 行业景气&quot;的标准，但同时也面临估值过高的挑战。</p><h4>理由：</h4><ul><li><strong>行业前景</strong>：网络安全行业正处于高景气周期。随着数字化转型加速和全球地缘政治紧张局势加剧，网络安全需求持续增长。FTNT 作为行业领先者，享有市场地位和品牌优势。</li></ul><ul><li><strong>财务表现</strong>：公司财务数据强劲，营收同比增长 25.6%，净利润同比增长 43.9%。这种增长势头表明其商业模式具有可持续性。</li></ul><ul><li><strong>市场地位</strong>：FTNT 在网络安全领域拥有稳固的市场地位，其产品线覆盖多个关键领域，包括防火墙、端点安全和云安全等。</li></ul><p>然而，我们也必须正视一些潜在风险：</p><h4>风险：</h4><ul><li><strong>估值偏高</strong>：当前市盈率（PE）超过 64 倍，市净率（PB）高达 86 倍。这样的估值水平意味着市场对其增长预期已经很高，任何不及预期的表现都可能引发股价回调。</li></ul><ul><li><strong>竞争压力</strong>：随着行业吸引力增加，更多竞争对手进入市场，可能对 FTNT 的市场份额构成威胁。</li></ul><ul><li><strong>增长空间</strong>：尽管行业整体增长迅速，但 FTNT 能否持续扩大其市场份额并保持高利润率仍需观察。</li></ul><h4>行动建议：</h4><ul><li><strong>原则化决策</strong>：基于&quot;痛苦 + 反思 = 进步&quot;的原则，我们需要对估值风险保持警惕。建议在投资决策中采用&quot;可信度加权&quot;的方法，综合考虑行业专家和数据分析的结论。</li></ul><ul><li><strong>风险对冲</strong>：考虑到估值风险，可以考虑采用对冲策略，例如买入看跌期权或设置止损点，以控制下行风险。</li></ul><ul><li><strong>长期视角</strong>：如果从长期持有角度出发，建议密切关注公司基本面变化，特别是市场份额变化和利润率趋势。同时，定期记录决策日志，将观察到的关键数据和原则变化记录下来，以便未来复盘。</li></ul><ul><li><strong>周期定位</strong>：当前市场处于利率上升周期，这对高估值股票构成压力。我们需要评估 FTNT 在不同利率环境下的表现，并相应调整仓位。</li></ul><p>总之，FTNT 是一家值得关注的优质公司，但在投资决策时需要平衡增长预期和估值风险。通过原则化的方法，我们可以更好地应对市场波动，实现长期收益。</p></div></div><div class="mreply"><div class="mh"><span class="who">彼得·林奇</span><span class="mscore">65</span></div><div class="md"><h4>圆桌发言：关于 FTNT 的看法</h4><p><strong>结论：</strong></p><p>我对 FTNT 持中性偏谨慎的态度。虽然这家公司身处高景气的网络安全行业，财务表现稳健，市场地位稳固，但目前估值偏高，需要谨慎对待。</p><p><strong>理由：</strong></p><ul><li><strong>行业景气与公司表现：</strong></li><li>网络安全行业目前处于高增长阶段，FTNT 作为行业领先者，财务表现相当亮眼。过去一年营收同比增长 25.6%，净利润更是大幅增长 43.9%，显示出强劲的盈利能力。</li><li>公司的净资产收益率（ROE）高达 117.44%，这在科技公司中是非常罕见的，表明其资本运用效率极高。</li></ul><ul><li><strong>市场地位与竞争优势：</strong></li><li>FTNT 在网络安全领域拥有稳固的市场地位，其产品和服务被广泛认可。这种竞争优势为其持续增长提供了坚实基础。</li></ul><ul><li><strong>估值考量：</strong></li><li>然而，当前的估值水平令人担忧。市盈率（PE）高达 64.8 倍，市净率（PB）更是达到 86.75 倍。这样的估值意味着市场已经对公司的未来增长给予了非常高的预期。</li><li>从彼得·林奇的角度来看，我会特别关注&quot;估值与成长性是否匹配&quot;。目前来看，FTNT 的估值已经反映了大部分增长预期，未来需要持续的超预期表现才能支撑这样的估值。</li></ul><p><strong>风险/行动建议：</strong></p><ul><li><strong>主要风险：</strong></li><li>估值过高是当前最大的风险。如果未来增长不及预期，股价可能会面临较大回调压力。</li><li>行业竞争加剧也是一个潜在风险。虽然 FTNT 目前处于领先地位，但网络安全领域的竞争日益激烈，新进入者和技术创新都可能对现有格局造成冲击。</li></ul><ul><li><strong>行动建议：</strong></li><li>对于已经持有 FTNT 的投资者，建议密切关注公司未来几个季度的业绩表现。如果增长势头能够持续，可以考虑继续持有；但如果出现增长放缓的迹象，建议逐步减仓。</li><li>对于考虑买入的投资者，我建议等待更合适的时机，比如估值回调到更合理的水平，或者公司发布超预期的业绩报告时再考虑入场。</li><li>此外，可以关注公司是否在新兴领域（如云安全、物联网安全）有新的突破，这些都可能成为未来新的增长点。</li></ul><p>总之，FTNT 是一家优秀的公司，但目前的估值需要谨慎对待。投资决策应基于对公司长期成长性的判断，而不是短期的市场情绪。</p></div></div><div class="mreply"><div class="mh"><span class="who">芒格</span><span class="mscore">41</span></div><div class="md"><h4>结论</h4><p>我倾向于对 FTNT 持谨慎态度。虽然网络安全行业整体景气度较高，公司财务表现也相当稳健，但从逆向思考和多元心智模型的角度来看，当前的估值水平可能已经反映了大部分乐观预期。</p><h4>理由</h4><p>首先，FTNT 所处的网络安全行业确实处于高景气周期，这为其提供了良好的增长环境。从财务数据来看，收入同比增长 25.6%，净利润同比增长 43.9%，净资产收益率（ROE）高达 117.4%，这些数据都显示出公司强劲的盈利能力。</p><p>然而，从逆向思维出发，我们需要问：什么因素可能导致 FTNT 的失败？</p><ul><li><strong>估值过高</strong>：当前市盈率（PE）高达 64.8 倍，市净率（PB）更是达到 86.7 倍。这样的估值水平意味着市场已经对未来的增长预期打得很满。如果增长不及预期，股价可能会面临大幅回调的风险。</li></ul><ul><li><strong>市场竞争加剧</strong>：网络安全行业虽然增长迅速，但竞争也日益激烈。FTNT 需要不断创新和投入研发，以保持其市场地位。如果竞争对手推出更具性价比的产品或服务，可能会对 FTNT 的市场份额造成冲击。</li></ul><ul><li><strong>宏观经济环境变化</strong>：如果全球经济出现衰退，企业可能会削减 IT 预算，这将对网络安全行业的整体增长构成压力。</li></ul><p>从多元心智模型的角度来看，我们还需要考虑：</p><ul><li><strong>激励机制</strong>：公司管理层是否有足够的动力去追求长期价值，而非短期业绩？当前的高估值可能会导致管理层采取过于激进的增长策略，从而增加经营风险。</li><li><strong>概率与赔率</strong>：虽然网络安全行业增长前景良好，但考虑到当前估值水平，胜率（成功概率）可能已经降低，而赔率（潜在收益）也相应缩小。</li></ul><h4>风险/行动建议</h4><p>基于以上分析，我建议采取以下行动：</p><ul><li><strong>谨慎观望</strong>：对于已经持有 FTNT 的投资者，建议密切关注公司未来的业绩增长和估值变化。如果估值出现回调，可以考虑逢低买入。</li></ul><ul><li><strong>关注竞争格局</strong>：密切关注行业竞争格局的变化，特别是主要竞争对手的动向。如果出现新的颠覆性技术或产品，需要及时评估其对 FTNT 的影响。</li></ul><ul><li><strong>控制仓位</strong>：如果决定投资 FTNT，建议控制好仓位，避免过度集中投资于单一股票，以分散风险。</li></ul><ul><li><strong>长期视角</strong>：网络安全行业长期增长趋势明确，但短期内可能会受到市场波动的影响。投资者需要保持耐心，以长期视角看待投资。</li></ul><p>总之，FTNT 是一家优秀的公司，但在当前估值水平下，我们需要更加谨慎地评估其投资价值。正如我常说的：&quot;如果我知道自己死在哪里，我就永远不去那里。&quot; 在投资中，避免愚蠢往往比追求聪明更重要。</p></div></div></div>
+<div class="panel"><h2>分析师报告<span class="sub">2 篇</span></h2><details open><summary>市场面分析</summary><div class="body"><div class="md"><h4>FTNT FTNT 市场面分析</h4><ul><li>红黑榜多空分数：多头 82 / 空头 25，分差 57。</li><li>当前价格：183.48。</li><li>当前交易评级：Buy。</li><li>值得加仓区间：177.88 - 185.21。</li><li>目标价格：205.39。</li><li>市场愿意给溢价的原因：网络安全行业高景气；财务表现稳健；市场地位稳固。</li><li>当前主要压制因素：估值偏高；竞争压力增大；增长空间可能受限。</li></ul></div></div></details><details open><summary>基本面分析</summary><div class="body"><div class="md"><h4>FTNT FTNT 基本面分析</h4><ul><li>报告期：暂无。</li><li>PE(TTM)：64.83。</li><li>PB：86.79。</li><li>ROE：117.44%。</li><li>营收同比：25.60%。</li><li>归母净利润同比：43.90%。</li><li>核心判断：盈利能力处于可接受区间；收入仍在增长；利润端保持扩张；估值偏贵，需要更强兑现。</li></ul></div></div></details></div>
+<div class="panel"><h2>研究与计划</h2>
+<details><summary>基本面摘要</summary><div class="body"><div class="md"><h3>核心财务快照</h3><ul><li>报告期: 数据缺失</li><li>当前股价: 183.48 元</li><li>总市值: 1346.18 亿元</li><li>PE (TTM): 64.83</li><li>PB: 86.79</li><li>PS (TTM): 数据缺失</li><li>营业总收入(报告期): 数据缺失 亿元</li><li>营收同比增长率: 25.60%</li><li>归母净利润(报告期): 数据缺失 亿元</li><li>归母净利润同比增长率: 43.90%</li><li>ROE (TTM/估算): 117.44%</li><li>资产负债率: 数据缺失</li><li>经营性现金流 / 归母净利润: 数据缺失</li></ul><h4>缺失字段</h4><ul><li>PS(TTM), 营业总收入, 归母净利润, 资产负债率, 经营性现金流与归母净利润比值</li></ul></div></div></details>
+<details><summary>研究计划</summary><div class="body"><div class="md"><h4>FTNT FTNT 研究摘要</h4><ul><li>红黑榜结论: Buy</li><li>多头/空头: 82/25</li><li>正向信号: ROE 117.44%；营收同比 25.60%；归母净利润同比 43.90%；PB 86.75</li><li>风险信号: PE(TTM) 64.80</li><li>榜单看多理由: 网络安全行业高景气；财务表现稳健；市场地位稳固</li><li>榜单风险提示: 估值偏高；竞争压力增大；增长空间可能受限</li></ul></div></div></details>
+<details><summary>交易计划</summary><div class="body"><div class="md"><h4>FTNT FTNT 交易计划</h4><ul><li>评级: Buy</li><li>当前价格: 183.38</li><li>值得加仓区间: 177.88 - 185.21</li><li>目标价格: 205.39</li><li>止损位: 168.71</li><li>备注: 当前为缓存降级交易卡，后续若完整 TradingAgent 结果生成，将自动覆盖。</li></ul></div></div></details>
+<details><summary>交易决策</summary><div class="body"><div class="md"><p>Buy</p><p>FTNT FTNT 当前使用红黑榜缓存结果生成兜底交易卡。多头 82 / 空头 25，分差 57。当前尚未取得完整 TradingAgent 长文决策，但榜单分数、财务快照和大师观点已经足够生成基础交易建议。</p></div></div></details>
+</div>
+<div class="panel"><h2>多空逻辑</h2><div class="pts"><div class="h bull">看多逻辑</div><div class="md"><p>网络安全行业高景气</p><p>财务表现稳健</p><p>市场地位稳固</p></div></div><div class="pts"><div class="h bear">看空逻辑</div><div class="md"><p>估值偏高</p><p>竞争压力增大</p><p>增长空间可能受限</p></div></div></div>
+<div class="panel"><h2>伯克希尔研究</h2><p><strong>Fortinet是一家具备强大护城河和长期增长潜力的网络安全公司，当前估值合理，值得关注。</strong></p><p>伯克希尔综合评分：<strong>4.25</strong></p><div class="md"><p>{&quot;verdict&quot;: &quot;买入&quot;, &quot;conservative_tip&quot;: &quot;建议在PE TTM 35倍以下买入，目标价65美元。&quot;, &quot;moderate_tip&quot;: &quot;建议在PE TTM 40倍以下买入，目标价70美元。&quot;, &quot;aggressive_tip&quot;: &quot;建议在PE TTM 45倍以下买入，目标价75美元。&quot;, &quot;catalysts_plus&quot;: [&quot;网络安全市场需求超预期增长。&quot;, &quot;公司推出突破性新产品或技术。&quot;, &quot;市场份额持续提升。&quot;], &quot;catalysts_minus&quot;: [&quot;行业竞争加剧导致利润率下降。&quot;, &quot;重大网络安全事件引发市场担忧。&quot;, &quot;宏观经济下行导致企业IT支出减少。&quot;]}</p></div></div>
+<div class="panel news"><h2>最新资讯</h2><div class="md"><p>整体情绪偏利好，共6条利多，2条利空，3条中性。</p></div><div class="nitem"><div class="t">Fortinet (FTNT) Is Up 6.42% in One Week: What You Should Know</div><div class="s">Yahoo Finance · 利好</div></div><div class="nitem"><div class="t">Fortinet Stock Before Q3 Earnings: Buy Now or Wait for Results?</div><div class="s">TradingView · 中性</div></div><div class="nitem"><div class="t">Fortinet patches critical FortiOS flaws found with AI help</div><div class="s">Help Net Security · 利空</div></div><div class="nitem"><div class="t">Here&#x27;s How Much $100 Invested In Fortinet 15 Years Ago Would Be Worth Today</div><div class="s">Benzinga · 中性</div></div><div class="nitem"><div class="t">Fortinet Launches FortiGuard Inline AI Security Service to Expand Enterprise AI Protection</div><div class="s">citybiz · 利好</div></div><div class="nitem"><div class="t">Fortinet (NASDAQ:FTNT): High-Growth Cybersecurity Leadership With Strong Momentum</div><div class="s">ChartMill · 利好</div></div><div class="nitem"><div class="t">A new service scans AI prompts and can block data leaks without extra security systems.</div><div class="s">Stock Titan · 利好</div></div><div class="nitem"><div class="t">Cantor Fitzgerald Reiterates Neutral Rating on Fortinet (FTNT)</div><div class="s">StreetInsider · 中性</div></div></div>
+<footer>稳健理财Agent · 红黑榜每日归档 · 红榜 #5 · 仅供研究，不构成投资建议</footer>
+</div></body>
+</html>
