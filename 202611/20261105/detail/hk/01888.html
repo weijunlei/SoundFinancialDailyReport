@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>建滔积层板(01888) 黑榜 2026-11-04</title>
+<style>
+:root{--red:#d8342c;--redbg:#fdecea;--green:#1a9e54;--ink:#1c2230;--muted:#6b7385;
+--line:#e7e9ef;--card:#fff;--bg:#f4f6fa;--chip:#eef1f6;--dark:#23262d;--darkbg:#ececef}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",
+"Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);
+line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 16px 64px}
+header.top{background:linear-gradient(135deg,#1c2230,#2c3550);color:#fff;border-radius:14px;
+padding:22px 24px;margin-bottom:20px;box-shadow:0 6px 24px rgba(20,26,46,.12)}
+header.top h1{margin:0 0 6px;font-size:24px;letter-spacing:.5px}
+header.top .sub{opacity:.85;font-size:13px}
+header.top .sub b{color:#ffd166;font-weight:600}
+nav.mkt{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;
+background:rgba(244,246,250,.92);backdrop-filter:blur(6px);padding:10px 0;margin-bottom:14px}
+nav.mkt a{text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);
+padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600}
+nav.mkt a:hover{border-color:var(--red);color:var(--red)}
+.summary{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.summary .chip{background:var(--card);border:1px solid var(--line);border-radius:10px;
+padding:8px 12px;font-size:12px;color:var(--muted)}
+.summary .chip b{color:var(--ink);font-size:14px;margin-left:4px}
+section.board{margin:26px 0}
+.board-title{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:19px}
+.board-title .dot{width:10px;height:10px;border-radius:50%}
+.board-title.red .dot{background:var(--red)}
+.board-title.black .dot{background:var(--dark)}
+.board-title small{color:var(--muted);font-weight:400;font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+position:relative;transition:box-shadow .15s}
+.card:hover{box-shadow:0 4px 18px rgba(20,26,46,.08)}
+.card.red{border-top:3px solid var(--red)}
+.card.black{border-top:3px solid var(--dark)}
+.rank{position:absolute;top:10px;right:12px;font-size:26px;font-weight:800;color:#eceff5}
+.card.red .rank{color:#fbdcD9}
+.nm{font-size:16px;font-weight:700}
+.nm .tk{color:var(--muted);font-weight:500;font-size:12px;margin-left:6px}
+.tag{display:inline-block;background:var(--chip);color:var(--muted);border-radius:6px;
+padding:1px 7px;font-size:11px;margin:6px 6px 0 0}
+.price-row{display:flex;align-items:baseline;gap:10px;margin:10px 0 4px}
+.price{font-size:24px;font-weight:800}
+.pct{font-size:14px;font-weight:700;padding:2px 8px;border-radius:8px}
+.up{color:var(--red)}.down{color:var(--green)}.flat{color:var(--muted)}
+.pct.up{background:var(--redbg)}.pct.down{background:#e2f4e9}.pct.flat{background:var(--chip)}
+.psrc{font-size:11px;color:var(--muted);margin-left:auto}
+.scores{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.scores span{background:var(--chip);border-radius:6px;padding:2px 8px;font-size:11px;color:var(--muted)}
+.scores span b{color:var(--ink)}
+.pts{font-size:12.5px;margin:8px 0 0}
+.pts .h{font-weight:700;font-size:12px;margin:6px 0 2px}
+.pts .h.bull{color:var(--red)}.pts .h.bear{color:var(--green)}
+.pts ul{margin:2px 0 4px;padding-left:18px;color:#3a4152}
+.pts li{margin:1px 0}
+.masters{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:11px;color:var(--muted)}
+.masters b{color:var(--ink)}
+.summ{font-size:12.5px;color:#3a4152;background:#fafbfd;border:1px solid var(--line);
+border-radius:8px;padding:8px 10px;margin-top:8px}
+.empty{color:var(--muted);background:var(--card);border:1px dashed var(--line);
+border-radius:10px;padding:18px;text-align:center}
+footer{margin-top:34px;color:var(--muted);font-size:12px;text-align:center;line-height:1.8}
+a.lnk{color:var(--red);text-decoration:none}
+/* ── detail page ── */
+.backbar{margin-bottom:14px;font-size:13px}
+.backbar a{color:var(--muted);text-decoration:none;margin-right:14px}
+.backbar a:hover{color:var(--red)}
+.badge{display:inline-block;border-radius:6px;padding:2px 10px;font-size:12px;font-weight:700;margin-right:8px}
+.badge.red{background:var(--red);color:#fff}.badge.black{background:var(--dark);color:#fff}
+.trade{display:flex;flex-wrap:wrap;gap:10px;background:linear-gradient(135deg,#2c3550,#1c2230);
+color:#fff;border-radius:12px;padding:16px 18px;margin:16px 0}
+.trade .cell{min-width:120px}
+.trade .k{font-size:11px;opacity:.75}
+.trade .v{font-size:18px;font-weight:800;margin-top:2px}
+.trade .v.buy{color:#7ee2a8}.trade .v.sell{color:#ff9d97}.trade .v.hold{color:#ffd166}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0}
+.mgrid .m{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.mgrid .m .k{font-size:11px;color:var(--muted)}
+.mgrid .m .v{font-size:16px;font-weight:700;margin-top:2px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.panel>h2{margin:0 0 12px;font-size:17px}
+.panel>h2 .sub{font-size:12px;color:var(--muted);font-weight:400;margin-left:8px}
+.mreply{border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;
+padding:12px 14px;margin:10px 0;background:#fff}
+.mreply .mh{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.mreply .mh .who{font-weight:700;font-size:14px}
+.mreply .mh .mscore{margin-left:auto;background:var(--chip);border-radius:6px;padding:1px 8px;font-size:12px;font-weight:700}
+.md h2,.md h3,.md h4,.md h5{margin:12px 0 6px;font-size:15px}
+.md p{margin:6px 0;font-size:13.5px;color:#2c3345}
+.md ul{margin:6px 0;padding-left:20px;font-size:13.5px;color:#2c3345}
+.md li{margin:3px 0}
+.md strong{color:var(--ink)}
+details{border:1px solid var(--line);border-radius:10px;background:#fff;margin:10px 0;padding:0}
+details>summary{cursor:pointer;padding:12px 16px;font-weight:700;font-size:14px;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary:before{content:"▸ ";color:var(--red)}
+details[open]>summary:before{content:"▾ "}
+details>.body{padding:0 16px 14px;border-top:1px dashed var(--line)}
+.ychip{display:inline-block;background:var(--chip);border-radius:8px;padding:4px 10px;font-size:12px;margin:3px 6px 3px 0}
+.ychip b{font-size:13px}
+.news .nitem{border-top:1px dashed var(--line);padding:8px 0;font-size:13px}
+.news .nitem .t{font-weight:600}
+.news .nitem .s{color:var(--muted);font-size:12px}
+/* ── root landing page ── */
+.hero{padding:30px 26px}
+.hero-kicker{color:#ffd166;font-size:12px;font-weight:700;letter-spacing:2px;
+text-transform:uppercase;margin-bottom:8px}
+.hero h1{font-size:30px;margin:0 0 10px}
+.day-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.day-card{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);
+border-radius:12px;padding:14px 16px;transition:all .15s}
+.day-card:hover{border-color:var(--red);box-shadow:0 4px 16px rgba(216,52,44,.12);transform:translateY(-2px)}
+.day-card .d{font-weight:800;font-size:15px;color:var(--ink);display:flex;align-items:center;gap:8px}
+.day-card .m{margin-top:8px;display:flex;gap:6px}
+.day-card .m span{background:var(--chip);color:var(--muted);border-radius:6px;
+padding:2px 8px;font-size:11px}
+.latest-badge{background:var(--red);color:#fff;border-radius:6px;padding:1px 7px;
+font-size:10px;font-weight:700}
+</style>
+</head>
+<body><div class="wrap">
+<div class="backbar"><a href="../index.html">← 总览</a><a href="../hk.html">← 港股榜单</a></div>
+<header class="top">
+  <h1><span class="badge black">黑榜 #10</span>建滔积层板<span class="tk" style="opacity:.7;font-size:15px;font-weight:400;margin-left:8px">01888</span></h1>
+  <div class="sub">港股 ·  · 榜单日期 <b>2026-11-04</b> · 盘价采集 <b>2026-11-05 05:00:04</b></div>
+  <div class="price-row" style="margin-top:12px">
+    <span class="price" style="color:#fff">HK$37.32</span>
+    <span class="pct up">+14.55%</span>
+    <span class="psrc" style="color:rgba(255,255,255,.6)">实时</span>
+  </div>
+  <div class="scores" style="margin-top:10px">
+    <span>综合 <b>36.2</b></span>
+    <span>多头 <b>50</b></span>
+    <span>空头 <b>90</b></span>
+    <span>大师均值 <b>62.6</b></span>
+    <span>信号 <b>negative</b></span>
+  </div>
+</header>
+<div class="trade"><div class="cell"><div class="k">交易评级</div><span class="v hold">Reduce</span></div><div class="cell"><div class="k">加仓区间</div><span class="v">30.63 ~ 31.93</span></div><div class="cell"><div class="k">伯克希尔</div><span class="v">观望</span></div><div class="cell"><div class="k">伯克希尔分</div><span class="v">3.50</span></div></div>
+<div class="panel"><h2>财务指标</h2><div class="mgrid"><div class="m"><div class="k">市盈率 PE</div><div class="v">23.36</div></div><div class="m"><div class="k">市净率 PB</div><div class="v">5.60</div></div><div class="m"><div class="k">ROE</div><div class="v">16.6%</div></div><div class="m"><div class="k">总市值</div><div class="v">1027</div></div><div class="m"><div class="k">营收同比</div><div class="v">22.8%</div></div><div class="m"><div class="k">净利同比</div><div class="v">75.1%</div></div></div></div>
+<div class="panel"><h2>历史收益</h2><span class="ychip">近1月 <b class="down">-41.08%</b></span><span class="ychip">近6月 <b class="down">-26.11%</b></span><span class="ychip">近1年 <b class="up">+179.66%</b></span></div>
+<div class="panel"><h2>大师圆桌<span class="sub">5 位</span></h2><div class="mreply"><div class="mh"><span class="who">段永平</span><span class="mscore">64</span></div><div class="md"><h4>圆桌发言：</h4><p>首先，我对这个公司的看法是偏中性的。目前来看，建滔积层板面临一些挑战，但也有其潜在的机会。</p><h5>理由：</h5><ul><li><strong>经济复苏预期与周期性行业</strong>：建滔积层板所处的行业具有较强的周期性，而目前市场对经济复苏的预期可能会对其业务产生积极影响。这可能是其潜在的机会之一。</li></ul><ul><li><strong>估值处于低位</strong>：从估值角度来看，公司的市盈率（PE）和市净率（PB）都处于相对较低的水平，这可能意味着市场对其未来增长的预期较为保守，存在一定的安全边际。</li></ul><ul><li><strong>市场信心受挫</strong>：然而，近期股价的暴跌表明市场信心受到了严重打击。这种情况下，投资者需要特别谨慎，因为市场情绪的恢复可能需要时间。</li></ul><ul><li><strong>行业周期性波动风险</strong>：建滔积层板所在的行业波动性较大，这对其业绩的稳定性构成了一定的风险。投资者需要评估自己是否能够承受这种波动。</li></ul><h5>风险/行动建议：</h5><ul><li><strong>本分与能力圈</strong>：作为投资者，首先需要问自己是否真正理解这家公司的商业模式和行业风险。如果看不懂，就不应该轻易投资。</li></ul><ul><li><strong>长期视角</strong>：如果决定投资，需要考虑的是长期持有，而不是短期波动。周期性行业的特点是波动较大，但长期来看，如果经济复苏趋势确立，可能会带来不错的回报。</li></ul><ul><li><strong>风险控制</strong>：在当前市场信心不足的情况下，建议投资者控制仓位，不要一次性投入过多资金。可以考虑分批买入，以降低风险。</li></ul><ul><li><strong>关注基本面变化</strong>：密切关注公司的基本面变化，特别是经济复苏的进展和行业周期的拐点。如果经济复苏不及预期，或者行业周期出现逆转，需要及时调整投资策略。</li></ul><p>总的来说，建滔积层板目前处于一个需要谨慎观察的阶段。投资者需要根据自己的风险承受能力和投资目标来决定是否参与。如果是我，我会先观察一段时间，等待更明确的市场信号出现。</p></div></div><div class="mreply"><div class="mh"><span class="who">巴菲特</span><span class="mscore">41</span></div><div class="md"><h4>圆桌发言：关于建滔积层板（01888）的看法</h4><p>各位朋友，今天我们讨论的是建滔积层板（01888）。首先，我得说，这家公司目前的情况让我有些担忧。</p><h5>结论：</h5><p>我不倾向于现在投资建滔积层板。</p><h5>理由：</h5><ul><li><strong>护城河与周期性风险</strong>：</li><li>建滔积层板所处的行业具有较强的周期性。虽然经济复苏的预期可能带来一些利好，但这种周期性波动也意味着风险较高。我们需要问自己：这家公司是否具备足够的护城河来抵御行业波动？目前的信息不足以让我相信这一点。</li><li>估值方面，虽然市盈率（PE）和市净率（PB）看起来不算特别高，但考虑到行业的周期性，估值低可能只是反映了市场对未来的谨慎预期。</li></ul><ul><li><strong>市场信心与股价表现</strong>：</li><li>股价在近期暴跌了10.2%，这显示出市场信心严重受挫。在价值投资中，我们常说“市场先生”是我们的朋友，但当市场先生如此悲观时，我们需要谨慎对待。</li><li>股价的剧烈波动往往意味着市场对公司未来盈利能力的担忧，而这种担忧在周期性行业中尤为明显。</li></ul><ul><li><strong>财务指标与盈利能力</strong>：</li><li>公司的净资产收益率（ROE）看起来不错，达到了16.65%，但净利润率（Net Margin）虽然达到19.37%，却需要结合行业周期性和未来增长预期来评估其可持续性。</li><li>营收和净利润的同比增长看起来很强劲，但这种增长是否能够持续，尤其是在经济复苏预期不确定的情况下，是一个需要深入思考的问题。</li></ul><h5>风险与行动建议：</h5><ul><li><strong>风险</strong>：</li><li>行业周期性波动风险是主要的风险因素。如果经济复苏不如预期，或者行业竞争加剧，建滔积层板的盈利能力可能会受到严重影响。</li><li>市场信心的恢复需要时间，而股价的波动可能会进一步影响投资者的情绪。</li></ul><ul><li><strong>行动建议</strong>：</li><li>如果你已经在关注这家公司，我建议你再观察一段时间，等待市场信心的恢复和更明确的行业复苏信号。</li><li>对于价值投资者来说，现在可能不是最好的买入时机。我们需要看到更坚实的护城河和更稳定的盈利能力，才能考虑投资。</li></ul><p>最后，我想说，投资就像打棒球，你不需要每次都挥棒。现在的情况让我觉得，这不是一个值得挥棒的好球。</p><h5>如果是芒格，他会补充什么？</h5><p>查理可能会提醒我们，投资中最重要的不是找到好公司，而是避免那些会让我们陷入困境的糟糕投资。他可能会用“逆向思维”来分析这个问题，思考如果现在买入，可能会面临哪些潜在的风险和挑战。</p></div></div><div class="mreply"><div class="mh"><span class="who">达利欧</span><span class="mscore">93</span></div><div class="md"><p>各位同仁，今天我们来讨论一下建滔积层板（01888）的投资机会。我的看法是，虽然该公司在某些方面存在吸引力，但整体而言风险较高，需要谨慎对待。</p><p>首先，从多头逻辑来看，经济复苏的预期确实可能对周期性行业构成利好。建滔积层板作为一家周期性企业，在经济回暖时可能会受益。此外，其估值指标显示目前处于相对低位，PE、PB等指标都显示出一定的吸引力。</p><p>然而，空头风险同样不容忽视。近期股价暴跌10.2%，这表明市场信心严重受挫。股价的剧烈波动不仅反映了投资者情绪的变化，也暗示了公司基本面可能面临的不确定性。此外，周期性行业的波动性本身就是一大风险，尤其是在当前全球经济环境充满变数的情况下。</p><p>从我的原则化视角来看，投资决策应基于对风险和回报的平衡分析。我们需要考虑以下几个关键点：</p><ul><li><strong>经济复苏的力度和持续性</strong>：虽然复苏预期存在，但具体力度和持续性仍需观察。如果复苏不及预期，周期性行业的反弹可能难以持续。</li><li><strong>市场信心的恢复</strong>：股价的暴跌反映了市场信心的不足，需要关注是否有实质性因素导致这种信心缺失，以及这些因素是否会持续影响公司业绩。</li><li><strong>行业周期性波动的风险</strong>：周期性行业的特点是波动性大，投资者需要做好心理准备，承受可能的剧烈波动。</li></ul><p>基于以上分析，我的建议是：</p><ul><li><strong>保持谨慎</strong>：在当前市场环境下，建议投资者保持谨慎，不要急于入场。如果确实看好该公司的长期前景，可以考虑分批建仓，以降低短期波动带来的风险。</li><li><strong>密切关注基本面变化</strong>：持续关注公司基本面变化，特别是经济复苏的进展和行业周期的波动情况。如果有新的数据或事件发生，及时调整投资策略。</li><li><strong>风险管理</strong>：设定止损位，控制投资风险。如果股价继续下跌，及时止损以避免更大的损失。</li></ul><p>最后，从原则化的角度，我建议大家将这次投资决策记录在决策日志中，并定期回顾和反思。这样可以帮助我们在未来的投资中更好地应对类似的情况。</p><p>总之，建滔积层板目前面临的风险较高，投资需谨慎。希望大家在做出决策时，能够充分考虑各种因素，保持理性。</p></div></div><div class="mreply"><div class="mh"><span class="who">彼得·林奇</span><span class="mscore">59</span></div><div class="md"><h4>发言内容：</h4><p>各位好，今天我们来聊聊建滔积层板（01888）。我的初步结论是：<strong>这只股票目前处于观望状态，但值得持续关注。</strong></p><h5>理由：</h5><p>首先，这是一家周期性很强的公司。从数据上看，它的营收同比增长22.8%，净利润更是大涨75%，显示出在经济复苏预期下，周期性行业确实受益。估值方面，23倍的市盈率（PE）和5.6倍的市净率（PB）看起来不算特别贵，尤其是考虑到它16.6%的净资产收益率（ROE）还算不错。</p><p>然而，市场似乎并不买账，股价暴跌10.2%，这表明投资者信心严重受挫。这种情况下，我们需要特别警惕周期性波动的风险。周期性行业的好处是，经济好的时候它涨得快，但坏的时候跌得也狠。</p><h5>风险/行动建议：</h5><ul><li><strong>周期性风险</strong>：建滔积层板所在的行业波动性很大，经济复苏的预期能否持续是关键。如果经济复苏不及预期，股价可能会进一步承压。</li></ul><ul><li><strong>估值问题</strong>：虽然PE和PB看起来不算离谱，但考虑到市场信心不足，现在买入需要做好长期抗压的准备。我的建议是，先不要急于进场，可以观察一段时间，看看公司能否在接下来的几个季度继续证明其盈利能力。</li></ul><ul><li><strong>生活场景验证</strong>：作为投资者，我总是喜欢去实地看看，比如去工厂附近转转，看看物流情况、员工状态等。这些细节往往能给我更多信心。如果有机会，建议大家也去做一些类似的调研。</li></ul><ul><li><strong>分批建仓</strong>：如果真的看好这只股票，可以考虑分批建仓，而不是一次性买入。这样可以降低风险，同时保持灵活性。</li></ul><p>总之，建滔积层板目前处于一个需要谨慎观察的阶段。经济复苏的预期和公司自身的盈利能力是支撑其股价的重要因素，但市场信心不足和周期性风险也不容忽视。建议大家保持耐心，等待更好的时机。</p></div></div><div class="mreply"><div class="mh"><span class="who">芒格</span><span class="mscore">56</span></div><div class="md"><p>各位同行，今天我们来聊聊建滔积层板这家公司。我的结论是：目前我不会重仓建滔积层板，但会密切关注。</p><p>首先，逆向思考一下：建滔积层板可能会怎么失败？从数据上看，这家公司面临几个显著风险。第一，股价暴跌10.2%，这表明市场信心严重受挫，投资者正在用脚投票。第二，它所在的行业周期性波动风险较高，经济复苏的预期虽然存在，但复苏的力度和持续性仍不确定。第三，从估值来看，尽管市盈率23倍不算离谱，但市净率高达5.6倍，显示出市场对其资产质量的担忧。</p><p>再从激励机制的角度分析：建滔积层板作为周期性行业公司，其管理层可能更倾向于在行业景气时过度扩张，而在下行周期时面临资金链压力。这种行为模式在历史上屡见不鲜，值得警惕。</p><p>尽管如此，建滔积层板也有一些值得关注的亮点。它的营收同比增长22.8%，净利润增长75%，显示出强劲的盈利能力。而且目前估值处于相对低位，如果行业周期反转，可能会有不错的反弹空间。</p><p>然而，我必须强调，投资不是简单的&quot;低买高卖&quot;。在考虑优势的同时，更要关注风险。建滔积层板面临的最大挑战是行业周期性波动带来的不确定性，以及市场信心的恢复需要时间。</p><p>我的建议是：对于建滔积层板，保持关注，但不要急于重仓。可以考虑在以下条件满足时逐步建仓：</p><ul><li>行业周期性指标出现明确好转信号</li><li>公司基本面持续改善，盈利能力稳定</li><li>市场信心恢复，股价企稳回升</li></ul><p>最后，提醒大家，投资决策要基于质量而非单纯的价格。建滔积层板目前的价格看似诱人，但我们要问自己：&quot;我可能错在哪里？&quot; 我的答案是：如果对行业周期判断失误，或者公司基本面出现意外恶化，可能会导致投资损失。因此，保持耐心和纪律至关重要。</p></div></div></div>
+<div class="panel"><h2>分析师报告<span class="sub">2 篇</span></h2><details open><summary>市场面分析</summary><div class="body"><div class="md"><h4>01888 建滔积层板 市场面分析</h4><ul><li>红黑榜多空分数：多头 50 / 空头 90，分差 -40。</li><li>当前价格：32.58。</li><li>当前交易评级：Reduce。</li><li>值得加仓区间：30.63 - 31.93。</li><li>风险控制位：28.67。</li><li>市场愿意给溢价的原因：经济复苏预期利好周期性行业；估值处于低位。</li><li>当前主要压制因素：股价暴跌10.2%，市场信心严重受挫；行业周期性波动风险较高。</li></ul></div></div></details><details open><summary>基本面分析</summary><div class="body"><div class="md"><h4>01888 建滔积层板 基本面分析</h4><ul><li>报告期：暂无。</li><li>PE(TTM)：23.36。</li><li>PB：5.60。</li><li>PS(TTM)：3.99。</li><li>ROE：16.65%。</li><li>营收同比：22.80%。</li><li>归母净利润同比：75.07%。</li><li>核心判断：盈利能力处于可接受区间；收入仍在增长；利润端保持扩张。</li></ul></div></div></details></div>
+<div class="panel"><h2>研究与计划</h2>
+<details><summary>基本面摘要</summary><div class="body"><div class="md"><h3>核心财务快照</h3><ul><li>报告期: 数据缺失</li><li>当前股价: 32.58 元</li><li>总市值: 1026.74 亿元</li><li>PE (TTM): 23.36</li><li>PB: 5.60</li><li>PS (TTM): 3.99</li><li>营业总收入(报告期): 数据缺失 亿元</li><li>营收同比增长率: 22.80%</li><li>归母净利润(报告期): 数据缺失 亿元</li><li>归母净利润同比增长率: 75.07%</li><li>ROE (TTM/估算): 16.65%</li><li>资产负债率: 数据缺失</li><li>经营性现金流 / 归母净利润: 数据缺失</li></ul><h4>缺失字段</h4><ul><li>营业总收入, 归母净利润, 资产负债率, 经营性现金流与归母净利润比值</li></ul></div></div></details>
+<details><summary>研究计划</summary><div class="body"><div class="md"><h4>01888 建滔积层板 研究摘要</h4><ul><li>红黑榜结论: Reduce</li><li>多头/空头: 50/90</li><li>正向信号: ROE 16.65%；营收同比 22.80%；归母净利润同比 75.07%；PE(TTM) 23.36</li><li>榜单看多理由: 经济复苏预期利好周期性行业；估值处于低位</li><li>榜单风险提示: 股价暴跌10.2%，市场信心严重受挫；行业周期性波动风险较高</li></ul></div></div></details>
+<details><summary>交易计划</summary><div class="body"><div class="md"><h4>01888 建滔积层板 交易计划</h4><ul><li>评级: Reduce</li><li>当前价格: 32.58</li><li>值得加仓区间: 29.32 - 30.63</li><li>目标价格: 30.95</li><li>止损位: 28.67</li><li>备注: 当前为缓存降级交易卡，后续若完整 TradingAgent 结果生成，将自动覆盖。</li></ul></div></div></details>
+<details><summary>交易决策</summary><div class="body"><div class="md"><p>Reduce</p><p>01888 建滔积层板 当前使用红黑榜缓存结果生成兜底交易卡。多头 50 / 空头 90，分差 -40。当前尚未取得完整 TradingAgent 长文决策，但榜单分数、财务快照和大师观点已经足够生成基础交易建议。</p></div></div></details>
+</div>
+<div class="panel"><h2>多空逻辑</h2><div class="pts"><div class="h bull">看多逻辑</div><div class="md"><p>经济复苏预期利好周期性行业</p><p>估值处于低位</p></div></div><div class="pts"><div class="h bear">看空逻辑</div><div class="md"><p>股价暴跌10.2%，市场信心严重受挫</p><p>行业周期性波动风险较高</p></div></div></div>
+<div class="panel"><h2>伯克希尔研究</h2><p><strong>建滔积层板是一家具有稳定护城河和行业地位的制造业公司，但面临行业周期性和增长天花板问题，当前估值合理但需谨慎关注宏观风险。</strong></p><p>伯克希尔综合评分：<strong>3.5</strong></p><div class="md"><p>{&quot;verdict&quot;: &quot;观望&quot;, &quot;conservative_tip&quot;: &quot;建议在PE低于6倍时买入，目标价8-10港元&quot;, &quot;moderate_tip&quot;: &quot;建议在PE 7倍左右买入，目标价10-12港元&quot;, &quot;aggressive_tip&quot;: &quot;建议在PE 6倍以下买入，目标价12-15港元&quot;, &quot;catalysts_plus&quot;: [&quot;原材料价格下跌&quot;, &quot;新产品线拓展成功&quot;, &quot;宏观经济复苏带动需求增长&quot;], &quot;catalysts_minus&quot;: [&quot;原材料价格大幅上涨&quot;, &quot;新技术替代加速&quot;, &quot;宏观经济下行导致需求下降&quot;]}</p></div></div>
+<div class="panel news"><h2>最新资讯</h2><div class="md"><p>整体情绪偏多，3条利好，1条利空，1条中性</p></div><div class="nitem"><div class="t">港股PCB概念股集体上涨，建滔积层板涨超5%</div><div class="s">TradingView · 利好</div></div><div class="nitem"><div class="t">港股PCB概念股集体下跌，建滔积层板跌超6%</div><div class="s">TradingView · 利空</div></div><div class="nitem"><div class="t">建滔积层板(01888.HK)获执行董事张国平增持30万股</div><div class="s">TradingView · 利好</div></div><div class="nitem"><div class="t">港股PCB概念股普涨，建滔积层板涨超4%</div><div class="s">TradingView · 利好</div></div><div class="nitem"><div class="t">港股PCB概念跌幅进一步扩大，广合科技、景旺电子跌超11%</div><div class="s">TradingView · 中性</div></div></div>
+<footer>稳健理财Agent · 红黑榜每日归档 · 黑榜 #10 · 仅供研究，不构成投资建议</footer>
+</div></body>
+</html>
