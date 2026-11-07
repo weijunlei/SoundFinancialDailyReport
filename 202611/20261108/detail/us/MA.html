@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MA(MA) 红榜 2026-11-04</title>
+<style>
+:root{--red:#d8342c;--redbg:#fdecea;--green:#1a9e54;--ink:#1c2230;--muted:#6b7385;
+--line:#e7e9ef;--card:#fff;--bg:#f4f6fa;--chip:#eef1f6;--dark:#23262d;--darkbg:#ececef}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",
+"Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);
+line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 16px 64px}
+header.top{background:linear-gradient(135deg,#1c2230,#2c3550);color:#fff;border-radius:14px;
+padding:22px 24px;margin-bottom:20px;box-shadow:0 6px 24px rgba(20,26,46,.12)}
+header.top h1{margin:0 0 6px;font-size:24px;letter-spacing:.5px}
+header.top .sub{opacity:.85;font-size:13px}
+header.top .sub b{color:#ffd166;font-weight:600}
+nav.mkt{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;
+background:rgba(244,246,250,.92);backdrop-filter:blur(6px);padding:10px 0;margin-bottom:14px}
+nav.mkt a{text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);
+padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600}
+nav.mkt a:hover{border-color:var(--red);color:var(--red)}
+.summary{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.summary .chip{background:var(--card);border:1px solid var(--line);border-radius:10px;
+padding:8px 12px;font-size:12px;color:var(--muted)}
+.summary .chip b{color:var(--ink);font-size:14px;margin-left:4px}
+section.board{margin:26px 0}
+.board-title{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:19px}
+.board-title .dot{width:10px;height:10px;border-radius:50%}
+.board-title.red .dot{background:var(--red)}
+.board-title.black .dot{background:var(--dark)}
+.board-title small{color:var(--muted);font-weight:400;font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+position:relative;transition:box-shadow .15s}
+.card:hover{box-shadow:0 4px 18px rgba(20,26,46,.08)}
+.card.red{border-top:3px solid var(--red)}
+.card.black{border-top:3px solid var(--dark)}
+.rank{position:absolute;top:10px;right:12px;font-size:26px;font-weight:800;color:#eceff5}
+.card.red .rank{color:#fbdcD9}
+.nm{font-size:16px;font-weight:700}
+.nm .tk{color:var(--muted);font-weight:500;font-size:12px;margin-left:6px}
+.tag{display:inline-block;background:var(--chip);color:var(--muted);border-radius:6px;
+padding:1px 7px;font-size:11px;margin:6px 6px 0 0}
+.price-row{display:flex;align-items:baseline;gap:10px;margin:10px 0 4px}
+.price{font-size:24px;font-weight:800}
+.pct{font-size:14px;font-weight:700;padding:2px 8px;border-radius:8px}
+.up{color:var(--red)}.down{color:var(--green)}.flat{color:var(--muted)}
+.pct.up{background:var(--redbg)}.pct.down{background:#e2f4e9}.pct.flat{background:var(--chip)}
+.psrc{font-size:11px;color:var(--muted);margin-left:auto}
+.scores{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.scores span{background:var(--chip);border-radius:6px;padding:2px 8px;font-size:11px;color:var(--muted)}
+.scores span b{color:var(--ink)}
+.pts{font-size:12.5px;margin:8px 0 0}
+.pts .h{font-weight:700;font-size:12px;margin:6px 0 2px}
+.pts .h.bull{color:var(--red)}.pts .h.bear{color:var(--green)}
+.pts ul{margin:2px 0 4px;padding-left:18px;color:#3a4152}
+.pts li{margin:1px 0}
+.masters{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:11px;color:var(--muted)}
+.masters b{color:var(--ink)}
+.summ{font-size:12.5px;color:#3a4152;background:#fafbfd;border:1px solid var(--line);
+border-radius:8px;padding:8px 10px;margin-top:8px}
+.empty{color:var(--muted);background:var(--card);border:1px dashed var(--line);
+border-radius:10px;padding:18px;text-align:center}
+footer{margin-top:34px;color:var(--muted);font-size:12px;text-align:center;line-height:1.8}
+a.lnk{color:var(--red);text-decoration:none}
+/* ── detail page ── */
+.backbar{margin-bottom:14px;font-size:13px}
+.backbar a{color:var(--muted);text-decoration:none;margin-right:14px}
+.backbar a:hover{color:var(--red)}
+.badge{display:inline-block;border-radius:6px;padding:2px 10px;font-size:12px;font-weight:700;margin-right:8px}
+.badge.red{background:var(--red);color:#fff}.badge.black{background:var(--dark);color:#fff}
+.trade{display:flex;flex-wrap:wrap;gap:10px;background:linear-gradient(135deg,#2c3550,#1c2230);
+color:#fff;border-radius:12px;padding:16px 18px;margin:16px 0}
+.trade .cell{min-width:120px}
+.trade .k{font-size:11px;opacity:.75}
+.trade .v{font-size:18px;font-weight:800;margin-top:2px}
+.trade .v.buy{color:#7ee2a8}.trade .v.sell{color:#ff9d97}.trade .v.hold{color:#ffd166}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0}
+.mgrid .m{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.mgrid .m .k{font-size:11px;color:var(--muted)}
+.mgrid .m .v{font-size:16px;font-weight:700;margin-top:2px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.panel>h2{margin:0 0 12px;font-size:17px}
+.panel>h2 .sub{font-size:12px;color:var(--muted);font-weight:400;margin-left:8px}
+.mreply{border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;
+padding:12px 14px;margin:10px 0;background:#fff}
+.mreply .mh{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.mreply .mh .who{font-weight:700;font-size:14px}
+.mreply .mh .mscore{margin-left:auto;background:var(--chip);border-radius:6px;padding:1px 8px;font-size:12px;font-weight:700}
+.md h2,.md h3,.md h4,.md h5{margin:12px 0 6px;font-size:15px}
+.md p{margin:6px 0;font-size:13.5px;color:#2c3345}
+.md ul{margin:6px 0;padding-left:20px;font-size:13.5px;color:#2c3345}
+.md li{margin:3px 0}
+.md strong{color:var(--ink)}
+details{border:1px solid var(--line);border-radius:10px;background:#fff;margin:10px 0;padding:0}
+details>summary{cursor:pointer;padding:12px 16px;font-weight:700;font-size:14px;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary:before{content:"▸ ";color:var(--red)}
+details[open]>summary:before{content:"▾ "}
+details>.body{padding:0 16px 14px;border-top:1px dashed var(--line)}
+.ychip{display:inline-block;background:var(--chip);border-radius:8px;padding:4px 10px;font-size:12px;margin:3px 6px 3px 0}
+.ychip b{font-size:13px}
+.news .nitem{border-top:1px dashed var(--line);padding:8px 0;font-size:13px}
+.news .nitem .t{font-weight:600}
+.news .nitem .s{color:var(--muted);font-size:12px}
+/* ── root landing page ── */
+.hero{padding:30px 26px}
+.hero-kicker{color:#ffd166;font-size:12px;font-weight:700;letter-spacing:2px;
+text-transform:uppercase;margin-bottom:8px}
+.hero h1{font-size:30px;margin:0 0 10px}
+.day-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.day-card{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);
+border-radius:12px;padding:14px 16px;transition:all .15s}
+.day-card:hover{border-color:var(--red);box-shadow:0 4px 16px rgba(216,52,44,.12);transform:translateY(-2px)}
+.day-card .d{font-weight:800;font-size:15px;color:var(--ink);display:flex;align-items:center;gap:8px}
+.day-card .m{margin-top:8px;display:flex;gap:6px}
+.day-card .m span{background:var(--chip);color:var(--muted);border-radius:6px;
+padding:2px 8px;font-size:11px}
+.latest-badge{background:var(--red);color:#fff;border-radius:6px;padding:1px 7px;
+font-size:10px;font-weight:700}
+</style>
+</head>
+<body><div class="wrap">
+<div class="backbar"><a href="../index.html">← 总览</a><a href="../us.html">← 美股榜单</a></div>
+<header class="top">
+  <h1><span class="badge red">红榜 #3</span>MA<span class="tk" style="opacity:.7;font-size:15px;font-weight:400;margin-left:8px">MA</span></h1>
+  <div class="sub">美股 ·  · 榜单日期 <b>2026-11-04</b> · 盘价采集 <b>2026-11-08 05:00:19</b></div>
+  <div class="price-row" style="margin-top:12px">
+    <span class="price" style="color:#fff">$652.70</span>
+    <span class="pct down">-0.49%</span>
+    <span class="psrc" style="color:rgba(255,255,255,.6)">实时</span>
+  </div>
+  <div class="scores" style="margin-top:10px">
+    <span>综合 <b>52.6</b></span>
+    <span>多头 <b>75</b></span>
+    <span>空头 <b>44</b></span>
+    <span>大师均值 <b>71.6</b></span>
+    <span>信号 <b></b></span>
+  </div>
+</header>
+<div class="trade"><div class="cell"><div class="k">交易评级</div><span class="v buy">Buy</span></div><div class="cell"><div class="k">加仓区间</div><span class="v">627.76 ~ 653.65</span></div><div class="cell"><div class="k">目标价</div><span class="v">728.09</span></div><div class="cell"><div class="k">伯克希尔</div><span class="v">买入</span></div><div class="cell"><div class="k">伯克希尔分</div><span class="v">4.50</span></div></div>
+<div class="panel"><h2>财务指标</h2><div class="mgrid"><div class="m"><div class="k">市盈率 PE</div><div class="v">33.87</div></div><div class="m"><div class="k">市净率 PB</div><div class="v">83.58</div></div><div class="m"><div class="k">ROE</div><div class="v">2.3%</div></div><div class="m"><div class="k">总市值</div><div class="v">5638</div></div><div class="m"><div class="k">营收同比</div><div class="v">14.0%</div></div><div class="m"><div class="k">净利同比</div><div class="v">21.7%</div></div></div></div>
+<div class="panel"><h2>历史收益</h2><span class="ychip">近1月 <b class="up">+15.14%</b></span><span class="ychip">近6月 <b class="up">+28.80%</b></span><span class="ychip">近1年 <b class="up">+19.48%</b></span><span class="ychip">近5年 <b class="up">+97.33%</b></span></div>
+<div class="panel"><h2>大师圆桌<span class="sub">5 位</span></h2><div class="mreply"><div class="mh"><span class="who">段永平</span><span class="mscore">71</span></div><div class="md"><h4>圆桌发言：关于 MA 的投资观点</h4><p><strong>结论</strong>：MA 这家公司值得关注，但需要谨慎评估其估值水平。</p><p><strong>理由</strong>：</p><p>MA 作为一家市值排名靠前的公司，流动性和市场关注度都比较强。从短期来看，其价格表现似乎有一定支撑。但我们投资不能只看短期表现，需要深入理解其商业模式和长期竞争力。</p><p>MA 的营收同比增长 14%，净利润同比增长 21.7%，这些数据看起来不错。但 ROE 只有 2.3%，PB 却高达 83 倍，这样的估值水平让我觉得需要格外谨慎。投资中，安全边际是非常重要的，而 MA 的估值似乎没有给我们留下足够的缓冲空间。</p><p><strong>风险/行动建议</strong>：</p><ul><li><strong>商业模式</strong>：首先要确认 MA 的商业模式是否足够稳健，是否有长期可持续的竞争优势。这个问题不解决，再好的短期数据也难以支撑长期投资。</li></ul><ul><li><strong>估值安全边际</strong>：目前 MA 的估值水平较高，如果要投资，需要考虑是否留足了安全边际。投资者可以问问自己，如果市场出现调整，MA 的价格下跌 30% 甚至更多，是否还能安心持有？</li></ul><ul><li><strong>催化剂验证</strong>：除了估值和分红，还需要观察是否有其他催化剂来支撑其高估值。比如新的业务增长点、竞争格局的变化等。</li></ul><ul><li><strong>长期视角</strong>：投资要避免被短期价格波动影响。如果决定投资 MA，需要做好长期持有的准备，并持续跟踪其基本面变化。</li></ul><p>总的来说，MA 是一家值得关注的优秀公司，但目前的价格可能已经反映了大部分利好因素。作为投资者，我们需要保持理性，在充分评估风险后，再决定是否投资。记住，投资中最重要的不是赚得多，而是活得久。</p></div></div><div class="mreply"><div class="mh"><span class="who">巴菲特</span><span class="mscore">71</span></div><div class="md"><p>各位朋友，关于MA这家公司的投资，我来说说我的看法。</p><p>首先，我的结论是：这是一家值得关注的生意，但目前的价格让我有些犹豫。</p><p>为什么这么说呢？从护城河的角度来看，MA在支付领域确实占据了一个很有利的位置。它的业务模式具有网络效应，用户和商户越多，它的价值就越大。这种优势让它在市场上拥有很强的竞争力，就像一个坚固的城堡。</p><p>从财务数据来看，营收和净利润都有不错的增长，PE在33倍左右，ROE虽然不算特别高，但也在合理范围内。这些数字表明，这家公司目前经营状况良好。</p><p>然而，我必须指出几个让我谨慎的原因：</p><p>首先，83倍的PB对我来说有些过高了。这意味着我们为公司的账面价值支付了过高的溢价。我一向喜欢用四毛钱买一块钱的东西，而现在的价格显然没有给我足够的&quot;安全边际&quot;。</p><p>其次，虽然营收和利润在增长，但我们还需要更多证据来确认这种增长的质量和可持续性。我常说，现金是氧气，而目前我还没有看到足够多的&quot;氧气&quot;来让我完全放心。</p><p>基于以上分析，我给大家以下几点建议：</p><ul><li>如果你已经在关注这家公司，建议继续观察一段时间，等待更好的买入时机。记住，市场先生有时候会给我们提供更好的价格。</li></ul><ul><li>在考虑买入之前，试着回答这个问题：&quot;十年后这家公司还会像现在这样赚钱吗？&quot;如果答案是肯定的，那么现在的等待可能是值得的。</li></ul><ul><li>如果你决定买入，务必控制好仓位，不要让这只股票在你的投资组合中占比过高。</li></ul><p>最后，我想说，投资就像打棒球，你不需要每次都挥棒。耐心等待那个最有把握的球出现，然后用力挥杆。</p><p>如果是芒格，他会补充说：&quot;投资就像经营果园，不要急着摘下还没成熟的果实。&quot;等待更好的时机，可能会带来更甜美的收获。</p></div></div><div class="mreply"><div class="mh"><span class="who">达利欧</span><span class="mscore">72</span></div><div class="md"><h4>圆桌发言：</h4><p>各位同仁，关于 MA 这家公司，我的看法是：它符合我们资产配置框架下的某些条件，但需要谨慎评估其当前估值和催化因素。</p><h5>结论：</h5><p>MA 在我们的资产配置框架中具有相对吸引力，尤其是在考虑其市场地位和技术优势时。然而，当前估值水平较高，需要更多催化剂来支撑其长期增长预期。</p><h5>理由：</h5><ul><li><strong>市场地位和技术优势</strong>：MA 作为支付处理领域的领导者，拥有强大的市场地位和广泛的技术应用场景。其市值排名靠前，流动性强，这为投资者提供了较好的交易环境和关注度。</li><li><strong>短期价格支撑</strong>：从短期来看，MA 的价格表现有一定的支撑，这得益于其稳定的收入增长和净利润增长（分别为 14% 和 21.7%）。</li><li><strong>估值考量</strong>：尽管 MA 的 ROE 为 2.31%，但其 PE 达到 33.87 倍，PB 高达 83.58 倍，这表明市场对其未来增长有较高的预期。然而，这些估值指标也意味着我们需要更多的催化剂来验证其长期增长潜力。</li></ul><h5>风险/行动建议：</h5><ul><li><strong>估值风险</strong>：当前估值水平较高，投资者需要警惕市场情绪变化带来的潜在回调风险。我们建议在资产配置中保持适度比例，并密切关注其财报表现和未来增长预期。</li><li><strong>催化剂验证</strong>：MA 需要更多的催化剂来支撑其高估值，例如新市场的拓展、技术创新的突破或市场份额的进一步提升。我们建议投资者密切关注这些方面的进展。</li><li><strong>宏观经济环境</strong>：在当前全球宏观经济环境下，利率变化和通胀压力可能对 MA 的业务模式产生影响。我们建议投资者在评估 MA 时，将其置于更广泛的宏观经济框架中进行分析。</li></ul><p>综上所述，MA 是一家具有吸引力的公司，但在当前估值水平下，我们需要保持谨慎，并在资产配置中综合考虑其相对强弱和催化因素。正如我常说的，&quot;Pain + Reflection = Progress&quot;，我们需要不断反思和调整我们的投资策略，以应对不断变化的市场环境。</p></div></div><div class="mreply"><div class="mh"><span class="who">彼得·林奇</span><span class="mscore">72</span></div><div class="md"><p>各位，今天我们来聊聊MA这家公司。</p><p>先说我的结论：MA是一家值得关注的成长型公司，但目前估值偏高，需要谨慎对待。</p><h4>为什么值得关注？</h4><p>首先，MA作为支付行业的巨头，拥有强大的市场地位和持续的增长能力。它的营收同比增长14%，净利润同比增长21.7%，显示出稳健的盈利能力。而且，它33倍的市盈率相对于其成长性来说，虽然不便宜，但也不算离谱。</p><p>其次，MA的业务模式简单易懂。我们日常生活中都能感受到无现金支付的普及，这种趋势还在加速。作为行业领导者，MA无疑会从中受益。</p><h4>估值考量</h4><p>然而，83倍的市净率确实偏高。这意味着市场对MA的未来增长预期非常高。任何增长放缓的迹象都可能导致股价大幅波动。</p><p>此外，2.3%的净资产收益率（ROE）相对较低，表明公司当前的盈利能力与其高估值之间存在一定差距。</p><h4>风险提示</h4><ul><li><strong>估值风险</strong>：当前估值已经反映了较高的增长预期。如果未来增长不及预期，股价可能会面临回调压力。</li><li><strong>竞争压力</strong>：虽然MA在支付领域占据领先地位，但来自新兴支付技术公司和传统金融机构的竞争也不容忽视。</li><li><strong>宏观经济风险</strong>：如果全球经济出现衰退，消费者支出减少，可能会影响MA的业绩。</li></ul><h4>行动建议</h4><p>对于已经持有的投资者，建议密切关注公司财报和行业动态。如果发现增长放缓的迹象，可以考虑逐步减仓。</p><p>对于想要买入的投资者，建议等待更好的时机，比如市场出现回调或公司发布超预期财报时再考虑介入。</p><p>总之，MA是一家优秀的公司，但目前的价格需要我们保持警惕。就像我在书中反复强调的：好公司也要有好价格才能买入。</p></div></div><div class="mreply"><div class="mh"><span class="who">芒格</span><span class="mscore">72</span></div><div class="md"><p>各位同仁，今天我们来谈谈 MA 这家公司。我先给出结论：MA 是一家值得关注的企业，但投资决策需要谨慎。</p><p>首先，MA 的基本面有一定吸引力。市值排名靠前，流动性强，短期价格表现有一定支撑。此外，营收同比增长 14%，净利润同比增长 21.7%，显示出一定的增长潜力。然而，这些数据只是初步筛选的结果，我们还需要更多细节来验证其长期价值。</p><p>从估值角度来看，MA 的市盈率（PE）为 33.87，市净率（PB）高达 83.58。这样的估值水平意味着市场对其未来增长有很高的预期，但同时也带来了较高的风险。我们需要警惕的是，高估值需要持续的业绩增长来支撑，否则可能会面临估值回调的压力。</p><p>在考虑投资 MA 时，我们必须关注以下几点风险：</p><ul><li><strong>估值风险</strong>：高 PB 和 PE 意味着市场对其未来增长有很高的预期。如果业绩增长不及预期，股价可能会出现大幅调整。</li><li><strong>催化因素不足</strong>：尽管短期价格表现有一定支撑，但缺乏明显的催化因素来推动股价进一步上涨。我们需要等待更多财报数据或行业趋势的验证。</li><li><strong>市场情绪波动</strong>：高估值股票对市场情绪变化更为敏感，任何负面消息都可能导致股价剧烈波动。</li></ul><p>基于以上分析，我的建议是：</p><ul><li><strong>保持耐心</strong>：不要急于买入，等待更多财报数据和市场趋势的明朗化。</li><li><strong>关注催化剂</strong>：密切跟踪公司业绩和行业动态，寻找可能的催化因素。</li><li><strong>分散投资</strong>：如果决定投资，建议将 MA 作为投资组合的一部分，而不是单一重仓，以分散风险。</li></ul><p>最后，我想提醒大家，投资决策不应仅仅依赖于短期价格表现或市场情绪。我们需要深入分析公司的基本面和长期增长潜力。正如我常说的，&quot;如果我知道自己死在哪里，我就永远不去那里&quot;。在投资 MA 时，我们要警惕高估值带来的风险，并做好充分的准备。</p><p>我能错在哪？我可能低估了 MA 在未来几年内的增长潜力，或者忽略了某些潜在的催化因素。但无论如何，保持理性和谨慎始终是我们的首要原则。</p></div></div></div>
+<div class="panel"><h2>分析师报告<span class="sub">2 篇</span></h2><details open><summary>市场面分析</summary><div class="body"><div class="md"><h4>MA MA 市场面分析</h4><ul><li>红黑榜多空分数：多头 75 / 空头 44，分差 31。</li><li>当前价格：649.92。</li><li>当前交易评级：Buy。</li><li>值得加仓区间：630.58 - 656.58。</li><li>目标价格：728.09。</li><li>市场愿意给溢价的原因：市值排名靠前（约前12），流动性和关注度更强；短期价格表现有一定支撑。</li><li>当前主要压制因素：缺少财报级验证，当前更适合做榜单初筛；估值与分红之外仍需更多催化验证。</li></ul></div></div></details><details open><summary>基本面分析</summary><div class="body"><div class="md"><h3>核心财务快照</h3><ul><li>报告期: 数据缺失</li><li>当前股价: 647.18 元</li><li>总市值: 5638.08 亿元</li><li>PE (TTM): 33.87</li><li>PB: 83.58</li><li>PS (TTM): 数据缺失</li><li>营业总收入(报告期): 数据缺失 亿元</li><li>营收同比增长率: 14.00%</li><li>归母净利润(报告期): 数据缺失 亿元</li><li>归母净利润同比增长率: 21.70%</li><li>ROE (TTM/估算): 2.31%</li><li>资产负债率: 数据缺失</li><li>经营性现金流 / 归母净利润: 数据缺失</li></ul><h4>缺失字段</h4><ul><li>PS(TTM), 营业总收入, 归母净利润, 资产负债率, 经营性现金流与归母净利润比值</li></ul></div></div></details></div>
+<div class="panel"><h2>研究与计划</h2>
+<details><summary>基本面摘要</summary><div class="body"><div class="md"><h3>核心财务快照</h3><ul><li>报告期: 数据缺失</li><li>当前股价: 647.18 元</li><li>总市值: 5638.08 亿元</li><li>PE (TTM): 33.87</li><li>PB: 83.58</li><li>PS (TTM): 数据缺失</li><li>营业总收入(报告期): 数据缺失 亿元</li><li>营收同比增长率: 14.00%</li><li>归母净利润(报告期): 数据缺失 亿元</li><li>归母净利润同比增长率: 21.70%</li><li>ROE (TTM/估算): 2.31%</li><li>资产负债率: 数据缺失</li><li>经营性现金流 / 归母净利润: 数据缺失</li></ul><h4>缺失字段</h4><ul><li>PS(TTM), 营业总收入, 归母净利润, 资产负债率, 经营性现金流与归母净利润比值</li></ul></div></div></details>
+<details><summary>研究计划</summary><div class="body"><div class="md"><h4>MA MA 研究摘要</h4><ul><li>红黑榜结论: Buy</li><li>多头/空头: 75/44</li><li>正向信号: 营收同比 14.00%；归母净利润同比 21.70%；PE(TTM) 34.02；PB 83.96</li><li>风险信号: ROE 2.31%</li><li>榜单看多理由: 市值排名靠前（约前12），流动性和关注度更强；短期价格表现有一定支撑</li><li>榜单风险提示: 缺少财报级验证，当前更适合做榜单初筛；估值与分红之外仍需更多催化验证</li></ul></div></div></details>
+<details><summary>交易计划</summary><div class="body"><div class="md"><h4>MA MA 交易计划</h4><ul><li>评级: Buy</li><li>当前价格: 650.08</li><li>值得加仓区间: 630.58 - 656.58</li><li>目标价格: 728.09</li><li>止损位: 598.07</li><li>备注: 当前为缓存降级交易卡，后续若完整 TradingAgent 结果生成，将自动覆盖。</li></ul></div></div></details>
+<details><summary>交易决策</summary><div class="body"><div class="md"><p>Buy</p><p>MA MA 当前使用红黑榜缓存结果生成兜底交易卡。多头 75 / 空头 44，分差 31。当前尚未取得完整 TradingAgent 长文决策，但榜单分数、财务快照和大师观点已经足够生成基础交易建议。</p></div></div></details>
+</div>
+<div class="panel"><h2>多空逻辑</h2><div class="pts"><div class="h bull">看多逻辑</div><div class="md"><p>市值排名靠前（约前12），流动性和关注度更强</p><p>短期价格表现有一定支撑</p></div></div><div class="pts"><div class="h bear">看空逻辑</div><div class="md"><p>缺少财报级验证，当前更适合做榜单初筛</p><p>估值与分红之外仍需更多催化验证</p></div></div></div>
+<div class="panel"><h2>伯克希尔研究</h2><p><strong>万事达卡是一家具有强大护城河、持续增长潜力以及稳健财务表现的全球支付网络公司，值得长期关注和投资。</strong></p><p>伯克希尔综合评分：<strong>4.5</strong></p><div class="md"><p>{&quot;verdict&quot;: &quot;买入&quot;, &quot;conservative_tip&quot;: &quot;建议在PE TTM低于30倍时买入，目标价400美元&quot;, &quot;moderate_tip&quot;: &quot;建议在PE TTM低于32倍时买入，目标价420美元&quot;, &quot;aggressive_tip&quot;: &quot;建议在PE TTM低于28倍时买入，目标价440美元&quot;, &quot;catalysts_plus&quot;: [&quot;全球支付市场增长超预期&quot;, &quot;加密货币和央行数字货币发展不及预期&quot;, &quot;公司推出新的创新产品或服务&quot;], &quot;catalysts_minus&quot;: [&quot;加密货币和央行数字货币发展超预期&quot;, &quot;全球经济大幅下滑&quot;, &quot;重大监管政策变化&quot;]}</p></div></div>
+<div class="panel news"><h2>最新资讯</h2><div class="md"><p>整体情绪偏利好，共3条利多，0条利空，8条中性。</p></div><div class="nitem"><div class="t">Massachusetts Ballot Measures Midterm Vote 2026: Live Election Results</div><div class="s">NBC News · 中性</div></div><div class="nitem"><div class="t">Massachusetts 2026: Live Midterm Election Results</div><div class="s">The New York Times · 中性</div></div><div class="nitem"><div class="t">Election live updates: Pappas wins NH Senate, Maine too early to call, Mass. results</div><div class="s">NBC Boston · 中性</div></div><div class="nitem"><div class="t">Mass. election results: Top races, all 9 ballot questions</div><div class="s">WCVB · 中性</div></div><div class="nitem"><div class="t">Healey, Markey will win reelection, the AP projects, as Sununu concedes to Pappas in N.H. Senate race. Follow live updates.</div><div class="s">The Boston Globe · 中性</div></div><div class="nitem"><div class="t">Koh wins Moulton’s open Massachusetts House seat</div><div class="s">The Hill · 中性</div></div><div class="nitem"><div class="t">Merrill’s Marauder finally back home in Massachusetts 82 years later</div><div class="s">Boston Herald · 中性</div></div><div class="nitem"><div class="t">Final Trade: MA, WMT, HD, XLP</div><div class="s">CNBC · 中性</div></div></div>
+<footer>稳健理财Agent · 红黑榜每日归档 · 红榜 #3 · 仅供研究，不构成投资建议</footer>
+</div></body>
+</html>
